@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { useParams } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock, Share2, Linkedin } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Share2, Linkedin, Twitter } from "lucide-react";
 import { Link } from "wouter";
 import { BlogComments } from "@/components/BlogComments";
 import { BannerAd } from "@/components/BannerAd";
