@@ -1,13 +1,14 @@
 import { Link, useLocation } from "wouter";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Menu, Wallet, Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { useEffect } from "react";
 import { PriceTicker } from "./PriceTicker";
 import { SocialLinks } from "./SocialLinks";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSelector } from "./LanguageSelector";
 import { useSearch } from "./SearchDialog";
+import siteLogo from "@/assets/logos/allthingsxrpl-logo.png";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -34,11 +35,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="bg-primary/20 p-2 rounded-lg group-hover:bg-primary/30 transition-colors border border-primary/50">
-              <Wallet className="h-6 w-6 text-primary" />
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-lg overflow-hidden group-hover:scale-105 transition-transform">
+              <img src={siteLogo} alt="All Things XRPL" className="w-full h-full object-cover" />
             </div>
-            <span className="text-xl font-bold font-display tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70 dark:from-white dark:to-white/70">
+            <span className="text-xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-cyan-400" style={{ fontFamily: "'Audiowide', cursive" }}>
               ALL THINGS XRPL
             </span>
           </Link>
@@ -100,8 +101,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             <div className="col-span-2 md:col-span-1 space-y-4">
               <div className="flex items-center gap-2">
-                <Wallet className="h-5 w-5 text-primary" />
-                <span className="text-lg font-bold font-display">ALL THINGS XRPL</span>
+                <div className="w-8 h-8 rounded-lg overflow-hidden">
+                  <img src={siteLogo} alt="All Things XRPL" className="w-full h-full object-cover" />
+                </div>
+                <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400" style={{ fontFamily: "'Audiowide', cursive" }}>ALL THINGS XRPL</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Your trusted guide to the XRP Ledger ecosystem.
