@@ -9,7 +9,7 @@ export default function Disclosure() {
         
         <div className="prose prose-invert prose-lg max-w-none text-muted-foreground">
           <p className="lead text-xl text-white mb-8">
-            Transparency is a core value at XRP Nexus. We believe in being open about how we fund our operations and content creation.
+            Transparency is a core value at XRPL Radar. We believe in being open about how we fund our operations and content creation.
           </p>
 
           <div className="p-6 rounded-xl bg-card border border-white/10 mb-10">

@@ -22,7 +22,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Wallet className="h-6 w-6 text-primary" />
             </div>
             <span className="text-xl font-bold font-display tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
-              XRP NEXUS
+              XRPL RADAR
             </span>
           </Link>
 
@@ -84,7 +84,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <Wallet className="h-5 w-5 text-primary" />
-                <span className="text-lg font-bold font-display">XRP NEXUS</span>
+                <span className="text-lg font-bold font-display">XRPL RADAR</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 The premier destination for XRP Ledger ecosystem reviews, wallet comparisons, and dApp insights.
@@ -122,7 +122,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
           
           <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} XRP Nexus. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} XRPL Radar. All rights reserved.</p>
             <p>Not financial advice. Do your own research.</p>
           </div>
         </div>
