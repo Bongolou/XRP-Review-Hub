@@ -30,11 +30,11 @@ const wallets = [
     features: ["Self-Custody", "dApp Browser", "Biometric Auth", "Fiat On-ramp"],
     popular: true,
     badgeText: "Top Free XRPL Wallet",
-    link: "https://xumm.app/?ref=xrplradar",
+    link: "https://xumm.app/?ref=allthingsxrpl",
     icon: <Smartphone className="h-6 w-6 text-blue-400" />,
     complementary: [
-      { name: "Tangem Card (Backup)", link: "https://tangem.com/?promocode=XRPLRADAR" },
-      { name: "Ledger (Cold Storage)", link: "https://shop.ledger.com/?r=xrplradar" }
+      { name: "Tangem Card (Backup)", link: "https://tangem.com/?promocode=ALLTHINGSXRPL" },
+      { name: "Ledger (Cold Storage)", link: "https://shop.ledger.com/?r=allthingsxrpl" }
     ]
   },
   {
@@ -45,7 +45,7 @@ const wallets = [
     fees: "Standard",
     features: ["Cold Storage", "Bluetooth", "Multi-Currency", "High Security"],
     popular: false,
-    link: "https://shop.ledger.com/?r=xrplradar",
+    link: "https://shop.ledger.com/?r=allthingsxrpl",
     icon: <Shield className="h-6 w-6 text-purple-400" />
   },
   {
@@ -56,7 +56,7 @@ const wallets = [
     fees: "Low",
     features: ["Web3 Auth", "Multi-Network", "Developer Friendly", "Lightweight"],
     popular: false,
-    link: "https://crossmark.io/?ref=xrplradar",
+    link: "https://crossmark.io/?ref=allthingsxrpl",
     icon: <Globe className="h-6 w-6 text-orange-400" />
   },
   {
@@ -67,7 +67,7 @@ const wallets = [
     fees: "None",
     features: ["NFC Support", "Waterproof", "No Battery", "Easy Setup"],
     popular: false,
-    link: "https://tangem.com/?promocode=XRPLRADAR",
+    link: "https://tangem.com/?promocode=ALLTHINGSXRPL",
     icon: <Cpu className="h-6 w-6 text-green-400" />
   }
 ];
@@ -78,7 +78,7 @@ const exchanges = [
     name: "Uphold",
     bonus: "$20 BTC Bonus",
     features: ["Best for XRP", "Fiat On-Ramp", "Instant Trade"],
-    link: "https://uphold.com/signup?referral=xrplradar",
+    link: "https://uphold.com/signup?referral=allthingsxrpl",
     color: "text-green-500",
     bgColor: "bg-green-500/20"
   },
@@ -87,7 +87,7 @@ const exchanges = [
     name: "Bitrue",
     bonus: "1000 XRP Airdrop",
     features: ["XRP Base Pairs", "Power Piggy Staking", "Low Fees"],
-    link: "https://bitrue.com/user/register?inviteCode=xrplradar",
+    link: "https://bitrue.com/user/register?inviteCode=allthingsxrpl",
     color: "text-blue-500",
     bgColor: "bg-blue-500/20"
   },
@@ -96,7 +96,7 @@ const exchanges = [
     name: "Kraken",
     bonus: "Low Fee Trading",
     features: ["High Security", "Deep Liquidity", "Pro Tools"],
-    link: "https://kraken.com/sign-up?r=xrplradar",
+    link: "https://kraken.com/sign-up?r=allthingsxrpl",
     color: "text-purple-500",
     bgColor: "bg-purple-500/20"
   }
@@ -349,7 +349,7 @@ export default function Home() {
 
           <div className="mt-16 p-8 rounded-2xl border border-white/10 bg-gradient-to-r from-card/50 to-transparent flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-              <h3 className="text-xl font-bold font-display mb-2">Partner with XRPL Radar</h3>
+              <h3 className="text-xl font-bold font-display mb-2">Partner with All Things XRPL</h3>
               <p className="text-muted-foreground">Are you a project builder or service provider? Connect with our audience.</p>
             </div>
             <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">
@@ -451,7 +451,7 @@ export default function Home() {
         <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 p-12 text-center">
           <div className="absolute inset-0 grid-bg opacity-30" />
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">Join the XRPL Radar</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">Join All Things XRPL</h2>
             <p className="text-muted-foreground mb-8 text-lg">
               Get the latest wallet reviews, security alerts, and dApp opportunities delivered straight to your inbox.
             </p>
