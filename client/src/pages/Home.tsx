@@ -465,7 +465,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Link href="/blog/3" className="group">
-              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 cursor-pointer h-full">
+              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 cursor-pointer h-full hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]">
                 <div className="bg-primary/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-primary/30 group-hover:scale-110 transition-transform">
                   <Lock className="h-6 w-6 text-primary" />
                 </div>
@@ -479,21 +479,21 @@ export default function Home() {
               </div>
             </Link>
             <Link href="/yield" className="group">
-              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-secondary/50 transition-all duration-300 cursor-pointer h-full">
-                <div className="bg-secondary/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-secondary/30 group-hover:scale-110 transition-transform">
-                  <TrendingUp className="h-6 w-6 text-secondary" />
+              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-green-500/50 transition-all duration-300 cursor-pointer h-full hover:shadow-[0_0_30px_-10px_rgba(34,197,94,0.3)]">
+                <div className="bg-green-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-green-500/30 group-hover:scale-110 transition-transform">
+                  <TrendingUp className="h-6 w-6 text-green-400" />
                 </div>
-                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-secondary transition-colors">Yield Opportunities</h3>
+                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-green-400 transition-colors">Yield Opportunities</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Discover the best places to stake your XRP and participate in AMM pools to earn passive income on your holdings.
                 </p>
-                <span className="text-sm text-secondary flex items-center gap-1">
+                <span className="text-sm text-green-400 flex items-center gap-1">
                   Explore staking options <ArrowRight className="h-4 w-4" />
                 </span>
               </div>
             </Link>
             <Link href="/blog" className="group">
-              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300 cursor-pointer h-full">
+              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300 cursor-pointer h-full hover:shadow-[0_0_30px_-10px_rgba(168,85,247,0.3)]">
                 <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-purple-500/30 group-hover:scale-110 transition-transform">
                   <Layers className="h-6 w-6 text-purple-400" />
                 </div>
