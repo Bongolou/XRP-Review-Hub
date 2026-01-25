@@ -41,7 +41,7 @@ const blogPosts = [
     category: "NFTs",
     date: "Jan 12, 2026",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1620321023374-d1a68fddadb3?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1646463535635-74ac0e2f5a20?w=800&auto=format&fit=crop"
   },
   {
     id: 5,
