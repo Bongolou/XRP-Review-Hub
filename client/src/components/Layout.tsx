@@ -8,11 +8,13 @@ import { SocialLinks } from "./SocialLinks";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSelector } from "./LanguageSelector";
 import { useSearch } from "./SearchDialog";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import siteLogo from "@/assets/logos/allthingsxrpl-logo.png";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const search = useSearch();
+  const { t } = useLanguage();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -46,16 +48,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           <nav className="hidden lg:flex items-center gap-6">
             <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/' ? 'text-primary' : 'text-muted-foreground'}`}>
-              Home
+              {t("nav.home")}
             </Link>
             <Link href="/#wallets" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
-              Wallets
+              {t("nav.wallets")}
             </Link>
             <Link href="/getting-started" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/getting-started' ? 'text-primary' : 'text-muted-foreground'}`}>
-              Get Started
+              {t("nav.gettingStarted")}
             </Link>
             <Link href="/blog" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/blog' ? 'text-primary' : 'text-muted-foreground'}`}>
-              Blog
+              {t("nav.blog")}
             </Link>
             <Link href="/wallet-quiz" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/wallet-quiz' ? 'text-primary' : 'text-muted-foreground'}`}>
               Quiz
@@ -78,14 +80,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </SheetTrigger>
             <SheetContent side="right" className="bg-card border-l border-white/10">
               <nav className="flex flex-col gap-4 mt-10">
-                <Link href="/" className="text-lg font-medium hover:text-primary">Home</Link>
-                <Link href="/#wallets" className="text-lg font-medium hover:text-primary">Wallets</Link>
-                <Link href="/getting-started" className="text-lg font-medium hover:text-primary">Get Started</Link>
-                <Link href="/blog" className="text-lg font-medium hover:text-primary">Blog</Link>
+                <Link href="/" className="text-lg font-medium hover:text-primary">{t("nav.home")}</Link>
+                <Link href="/#wallets" className="text-lg font-medium hover:text-primary">{t("nav.wallets")}</Link>
+                <Link href="/getting-started" className="text-lg font-medium hover:text-primary">{t("nav.gettingStarted")}</Link>
+                <Link href="/blog" className="text-lg font-medium hover:text-primary">{t("nav.blog")}</Link>
                 <Link href="/wallet-quiz" className="text-lg font-medium hover:text-primary">Wallet Quiz</Link>
                 <Link href="/faq" className="text-lg font-medium hover:text-primary">FAQ</Link>
-                <Link href="/contact" className="text-lg font-medium hover:text-primary">Contact</Link>
-                <Link href="/disclosure" className="text-lg font-medium hover:text-primary">Disclosure</Link>
+                <Link href="/contact" className="text-lg font-medium hover:text-primary">{t("nav.contact")}</Link>
+                <Link href="/disclosure" className="text-lg font-medium hover:text-primary">{t("common.affiliate")}</Link>
               </nav>
             </SheetContent>
           </Sheet>
@@ -107,47 +109,47 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <span className="text-xl tracking-wider text-white uppercase" style={{ fontFamily: "'Michroma', sans-serif" }}>All Things <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400">XRPL</span></span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Your trusted guide to the XRP Ledger ecosystem.
+                {t("footer.tagline")}
               </p>
               <SocialLinks />
             </div>
             
             <div>
-              <h3 className="font-display font-bold mb-4">Wallets</h3>
+              <h3 className="font-display font-bold mb-4">{t("nav.wallets")}</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/wallet/xaman" className="hover:text-primary transition-colors">Xaman Review</Link></li>
-                <li><Link href="/wallet/tangem" className="hover:text-primary transition-colors">Tangem Review</Link></li>
-                <li><Link href="/wallet/ledger" className="hover:text-primary transition-colors">Ledger Review</Link></li>
+                <li><Link href="/wallet/xaman" className="hover:text-primary transition-colors">Xaman {t("common.review")}</Link></li>
+                <li><Link href="/wallet/tangem" className="hover:text-primary transition-colors">Tangem {t("common.review")}</Link></li>
+                <li><Link href="/wallet/ledger" className="hover:text-primary transition-colors">Ledger {t("common.review")}</Link></li>
                 <li><Link href="/compare/xaman-vs-ledger" className="hover:text-primary transition-colors">Xaman vs Ledger</Link></li>
                 <li><Link href="/wallet-quiz" className="hover:text-primary transition-colors">Wallet Quiz</Link></li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-display font-bold mb-4">Exchanges</h3>
+              <h3 className="font-display font-bold mb-4">{t("nav.exchanges")}</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/exchange/uphold" className="hover:text-primary transition-colors">Uphold Review</Link></li>
-                <li><Link href="/exchange/bitrue" className="hover:text-primary transition-colors">Bitrue Review</Link></li>
-                <li><Link href="/exchange/kraken" className="hover:text-primary transition-colors">Kraken Review</Link></li>
+                <li><Link href="/exchange/uphold" className="hover:text-primary transition-colors">Uphold {t("common.review")}</Link></li>
+                <li><Link href="/exchange/bitrue" className="hover:text-primary transition-colors">Bitrue {t("common.review")}</Link></li>
+                <li><Link href="/exchange/kraken" className="hover:text-primary transition-colors">Kraken {t("common.review")}</Link></li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-display font-bold mb-4">Resources</h3>
+              <h3 className="font-display font-bold mb-4">{t("footer.resources")}</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/getting-started" className="hover:text-primary transition-colors">Getting Started</Link></li>
-                <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
+                <li><Link href="/getting-started" className="hover:text-primary transition-colors">{t("nav.gettingStarted")}</Link></li>
+                <li><Link href="/blog" className="hover:text-primary transition-colors">{t("nav.blog")}</Link></li>
                 <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
                 <li><a href="/rss.xml" className="hover:text-primary transition-colors">RSS Feed</a></li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-display font-bold mb-4">Company</h3>
+              <h3 className="font-display font-bold mb-4">{t("footer.company")}</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-                <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
-                <li><Link href="/disclosure" className="hover:text-primary transition-colors">Affiliate Disclosure</Link></li>
+                <li><Link href="/about" className="hover:text-primary transition-colors">{t("nav.about")}</Link></li>
+                <li><Link href="/contact" className="hover:text-primary transition-colors">{t("nav.contact")}</Link></li>
+                <li><Link href="/disclosure" className="hover:text-primary transition-colors">{t("common.affiliate")}</Link></li>
                 <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
                 <li><Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link></li>
               </ul>
@@ -155,7 +157,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
           
           <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} All Things XRPL. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} All Things XRPL. {t("footer.rights")}</p>
             <p>Not financial advice. Do your own research.</p>
           </div>
         </div>

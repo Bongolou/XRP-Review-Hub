@@ -24,6 +24,7 @@ import { motion } from "framer-motion";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { DealOfTheWeek } from "@/components/DealOfTheWeek";
 import { BannerAd } from "@/components/BannerAd";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 // Mock Data
 const wallets = [
@@ -176,6 +177,8 @@ const blogPosts = [
 ];
 
 export default function Home() {
+  const { t } = useLanguage();
+  
   return (
     <Layout>
       {/* Hero Section */}
