@@ -9,6 +9,10 @@ import {
   AlertTriangle,
   ExternalLink
 } from "lucide-react";
+import upholdLogo from "@/assets/logos/uphold-logo.png";
+import bitrueLogo from "@/assets/logos/bitrue-logo.png";
+import krakenLogo from "@/assets/logos/kraken-logo.png";
+import xamanLogo from "@/assets/logos/xaman-logo.png";
 
 const steps = [
   {
@@ -28,7 +32,12 @@ const steps = [
             rel="noopener noreferrer"
             className="p-4 rounded-lg bg-card/50 border border-white/10 hover:border-primary/50 transition-colors group"
           >
-            <div className="font-bold mb-1 group-hover:text-primary transition-colors">Uphold</div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
+                <img src={upholdLogo} alt="Uphold" className="w-full h-full object-cover" />
+              </div>
+              <div className="font-bold group-hover:text-primary transition-colors">Uphold</div>
+            </div>
             <div className="text-sm text-muted-foreground">Best for beginners, direct XRP purchases</div>
           </a>
           <a 
@@ -37,7 +46,12 @@ const steps = [
             rel="noopener noreferrer"
             className="p-4 rounded-lg bg-card/50 border border-white/10 hover:border-primary/50 transition-colors group"
           >
-            <div className="font-bold mb-1 group-hover:text-primary transition-colors">Bitrue</div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
+                <img src={bitrueLogo} alt="Bitrue" className="w-full h-full object-cover" />
+              </div>
+              <div className="font-bold group-hover:text-primary transition-colors">Bitrue</div>
+            </div>
             <div className="text-sm text-muted-foreground">XRP-focused, great for trading</div>
           </a>
           <a 
@@ -46,7 +60,12 @@ const steps = [
             rel="noopener noreferrer"
             className="p-4 rounded-lg bg-card/50 border border-white/10 hover:border-primary/50 transition-colors group"
           >
-            <div className="font-bold mb-1 group-hover:text-primary transition-colors">Kraken</div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
+                <img src={krakenLogo} alt="Kraken" className="w-full h-full object-cover" />
+              </div>
+              <div className="font-bold group-hover:text-primary transition-colors">Kraken</div>
+            </div>
             <div className="text-sm text-muted-foreground">Established, secure, good liquidity</div>
           </a>
         </div>
@@ -135,13 +154,16 @@ const steps = [
           href="https://xaman.app/?ref=allthingsxrpl" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="flex items-center justify-between p-4 rounded-lg bg-primary/10 border border-primary/30 hover:bg-primary/20 transition-colors"
+          className="flex items-center gap-4 p-4 rounded-lg bg-primary/10 border border-primary/30 hover:bg-primary/20 transition-colors"
         >
-          <div>
+          <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 border border-primary/30">
+            <img src={xamanLogo} alt="Xaman" className="w-full h-full object-cover" />
+          </div>
+          <div className="flex-1">
             <div className="font-bold text-primary">Download Xaman</div>
             <div className="text-sm text-muted-foreground">Free • iOS & Android • Full XRPL support</div>
           </div>
-          <ExternalLink className="h-5 w-5 text-primary" />
+          <ExternalLink className="h-5 w-5 text-primary flex-shrink-0" />
         </a>
         <ol className="space-y-3 text-muted-foreground">
           <li className="flex gap-3">
