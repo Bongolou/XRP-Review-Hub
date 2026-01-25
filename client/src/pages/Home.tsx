@@ -25,12 +25,17 @@ const wallets = [
     id: 1,
     name: "Xaman (Xumm)",
     type: "Mobile App",
-    rating: 9.8,
-    fees: "Low",
+    rating: 9.9,
+    fees: "Free",
     features: ["Self-Custody", "dApp Browser", "Biometric Auth", "Fiat On-ramp"],
     popular: true,
+    badgeText: "Top Free XRPL Wallet",
     link: "https://xumm.app/?ref=xrpnexus",
-    icon: <Smartphone className="h-6 w-6 text-blue-400" />
+    icon: <Smartphone className="h-6 w-6 text-blue-400" />,
+    complementary: [
+      { name: "Tangem Card (Backup)", link: "https://tangem.com/?promocode=XRPNEXUS" },
+      { name: "Ledger (Cold Storage)", link: "https://shop.ledger.com/?r=xrpnexus" }
+    ]
   },
   {
     id: 2,
@@ -232,10 +237,32 @@ export default function Home() {
                     <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
                       <h3 className="text-xl font-bold font-display">{wallet.name}</h3>
                       {wallet.popular && (
-                        <Badge className="bg-secondary/20 text-secondary border-secondary/50">Top Choice</Badge>
+                        <Badge className="bg-secondary/20 text-secondary border-secondary/50">
+                          {wallet.badgeText || "Top Choice"}
+                        </Badge>
                       )}
                     </div>
                     <p className="text-sm text-muted-foreground">{wallet.type} Wallet • {wallet.fees} Fees</p>
+                    
+                    {/* Complementary Tools Section */}
+                    {wallet.complementary && (
+                      <div className="mt-3 p-3 bg-white/5 rounded-lg border border-white/10 text-xs">
+                        <span className="text-muted-foreground block mb-2 font-medium">Maximize Security with:</span>
+                        <div className="flex flex-wrap gap-2">
+                          {wallet.complementary.map((tool, tIdx) => (
+                            <a 
+                              key={tIdx} 
+                              href={tool.link} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center text-primary hover:text-primary/80 transition-colors bg-primary/10 px-2 py-1 rounded border border-primary/20"
+                            >
+                              {tool.name} <ExternalLink className="ml-1 h-3 w-3" />
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex-1 w-full md:w-auto">
