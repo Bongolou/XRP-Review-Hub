@@ -274,12 +274,12 @@ export default function Home() {
               <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-card/40 backdrop-blur-md p-6 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 
-                <div className="flex flex-col md:flex-row items-center gap-6 relative z-10">
-                  <div className="flex-shrink-0 rounded-xl overflow-hidden">
+                <div className="flex flex-col md:flex-row items-start gap-6 relative z-10">
+                  <div className="flex-shrink-0 rounded-xl overflow-hidden self-center md:self-start">
                     <img src={wallet.logo} alt={`${wallet.name} logo`} className="w-14 h-14 object-cover rounded-xl" />
                   </div>
                   
-                  <div className="flex-1 text-center md:text-left">
+                  <div className="flex-1 min-w-0 text-center md:text-left">
                     <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
                       <h3 className="text-xl font-bold font-display">{wallet.name}</h3>
                       {wallet.popular && (
@@ -288,11 +288,18 @@ export default function Home() {
                         </Badge>
                       )}
                     </div>
-                    <p className="text-sm text-muted-foreground">{wallet.type} Wallet • {wallet.fees} Fees</p>
+                    <p className="text-sm text-muted-foreground mb-3">{wallet.type} Wallet • {wallet.fees} Fees</p>
                     
-                    {/* Complementary Tools Section */}
+                    <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-3">
+                      {wallet.features.map((feature, i) => (
+                        <span key={i} className="text-xs px-2 py-1 rounded bg-white/5 border border-white/10 text-muted-foreground">
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                    
                     {wallet.complementary && (
-                      <div className="mt-3 p-3 bg-white/5 rounded-lg border border-white/10 text-xs">
+                      <div className="p-3 bg-white/5 rounded-lg border border-white/10 text-xs">
                         <span className="text-muted-foreground block mb-2 font-medium">Maximize Security with:</span>
                         <div className="flex flex-wrap gap-2">
                           {wallet.complementary.map((tool, tIdx) => (
@@ -311,23 +318,13 @@ export default function Home() {
                     )}
                   </div>
 
-                  <div className="flex-1 w-full md:w-auto">
-                    <div className="flex flex-wrap justify-center md:justify-start gap-2">
-                      {wallet.features.map((feature, i) => (
-                        <span key={i} className="text-xs px-2 py-1 rounded bg-white/5 border border-white/10 text-muted-foreground">
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col items-center gap-2 min-w-[120px]">
+                  <div className="flex flex-col items-center gap-2 flex-shrink-0 self-center md:self-start md:pt-1">
                     <div className="text-3xl font-black font-display text-primary">{wallet.rating}</div>
                     <div className="text-xs text-muted-foreground uppercase tracking-widest">Score</div>
                   </div>
 
-                  <div className="flex flex-col gap-3 w-full md:w-auto">
-                    <Button asChild className="w-full md:w-auto relative group overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
+                  <div className="flex flex-col gap-3 flex-shrink-0 w-full md:w-[140px] self-center md:self-start md:pt-1">
+                    <Button asChild className="w-full relative group overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
                       <a href={wallet.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
                         <span className="relative z-10">Visit Site</span>
                         <ExternalLink className="ml-2 h-4 w-4 relative z-10" />
@@ -335,8 +332,8 @@ export default function Home() {
                     </Button>
                     {wallet.slug && (
                       <Link href={`/wallet/${wallet.slug}`}>
-                        <Button variant="ghost" className="w-full md:w-auto text-sm text-muted-foreground hover:text-primary border border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all duration-300">
-                          Read Review <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        <Button variant="ghost" className="w-full text-sm text-muted-foreground hover:text-primary border border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all duration-300">
+                          Read Review <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                       </Link>
                     )}
