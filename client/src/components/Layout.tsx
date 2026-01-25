@@ -36,11 +36,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg overflow-hidden group-hover:scale-105 transition-transform">
+            <div className="w-12 h-12 rounded-xl overflow-hidden group-hover:scale-105 transition-transform shadow-[0_0_15px_-3px_rgba(59,130,246,0.5)]">
               <img src={siteLogo} alt="All Things XRPL" className="w-full h-full object-cover" />
             </div>
-            <span className="text-2xl tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-cyan-400 uppercase" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-              All Things XRPL
+            <span className="text-2xl md:text-3xl tracking-wider text-white uppercase" style={{ fontFamily: "'Michroma', sans-serif" }}>
+              All Things <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400">XRPL</span>
             </span>
           </Link>
 
@@ -100,11 +100,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             <div className="col-span-2 md:col-span-1 space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg overflow-hidden">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl overflow-hidden shadow-[0_0_15px_-3px_rgba(59,130,246,0.5)]">
                   <img src={siteLogo} alt="All Things XRPL" className="w-full h-full object-cover" />
                 </div>
-                <span className="text-xl tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-cyan-400 uppercase" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>All Things XRPL</span>
+                <span className="text-xl tracking-wider text-white uppercase" style={{ fontFamily: "'Michroma', sans-serif" }}>All Things <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400">XRPL</span></span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Your trusted guide to the XRP Ledger ecosystem.
