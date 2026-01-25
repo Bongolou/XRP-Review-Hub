@@ -25,6 +25,7 @@ const wallets = [
   {
     id: 1,
     name: "Xaman (Xumm)",
+    slug: "xaman",
     type: "Mobile App",
     rating: 9.9,
     fees: "Free",
@@ -41,6 +42,7 @@ const wallets = [
   {
     id: 2,
     name: "Ledger Nano X",
+    slug: "ledger",
     type: "Hardware",
     rating: 9.9,
     fees: "Standard",
@@ -52,6 +54,7 @@ const wallets = [
   {
     id: 3,
     name: "Crossmark",
+    slug: "crossmark",
     type: "Browser Ext",
     rating: 9.5,
     fees: "Low",
@@ -63,6 +66,7 @@ const wallets = [
   {
     id: 4,
     name: "Tangem",
+    slug: "tangem",
     type: "Hardware Card",
     rating: 9.4,
     fees: "None",
@@ -77,6 +81,7 @@ const exchanges = [
   {
     id: 1,
     name: "Uphold",
+    slug: "uphold",
     bonus: "$20 BTC Bonus",
     features: ["Best for XRP", "Fiat On-Ramp", "Instant Trade"],
     link: "https://uphold.com/signup?referral=allthingsxrpl",
@@ -86,6 +91,7 @@ const exchanges = [
   {
     id: 2,
     name: "Bitrue",
+    slug: "bitrue",
     bonus: "1000 XRP Airdrop",
     features: ["XRP Base Pairs", "Power Piggy Staking", "Low Fees"],
     link: "https://bitrue.com/user/register?inviteCode=allthingsxrpl",
@@ -95,6 +101,7 @@ const exchanges = [
   {
     id: 3,
     name: "Kraken",
+    slug: "kraken",
     bonus: "Low Fee Trading",
     features: ["High Security", "Deep Liquidity", "Pro Tools"],
     link: "https://kraken.com/sign-up?r=allthingsxrpl",
@@ -220,12 +227,16 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Button size="lg" className="h-14 px-8 text-base bg-primary hover:bg-primary/90 text-white font-bold tracking-wide shadow-[0_0_30px_-10px_theme('colors.primary.DEFAULT')]">
-              Compare Wallets
-            </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8 text-base border-white/20 bg-white/5 hover:bg-white/10 hover:text-white backdrop-blur-sm">
-              Explore dApps
-            </Button>
+            <Link href="/#wallets">
+              <Button size="lg" className="h-14 px-8 text-base bg-primary hover:bg-primary/90 text-white font-bold tracking-wide shadow-[0_0_30px_-10px_theme('colors.primary.DEFAULT')]">
+                Compare Wallets
+              </Button>
+            </Link>
+            <Link href="/wallet-quiz">
+              <Button size="lg" variant="outline" className="h-14 px-8 text-base border-white/20 bg-white/5 hover:bg-white/10 hover:text-white backdrop-blur-sm">
+                Find Your Perfect Wallet
+              </Button>
+            </Link>
           </motion.div>
         </div>
 
@@ -308,17 +319,32 @@ export default function Home() {
                     <div className="text-xs text-muted-foreground uppercase tracking-widest">Score</div>
                   </div>
 
-                  <div className="w-full md:w-auto">
+                  <div className="flex flex-col gap-2 w-full md:w-auto">
                     <Button asChild className="w-full md:w-auto bg-white text-black hover:bg-white/90 font-bold">
                       <a href={wallet.link} target="_blank" rel="noopener noreferrer">
                         Visit Site <ExternalLink className="ml-2 h-4 w-4" />
                       </a>
                     </Button>
+                    {wallet.slug && (
+                      <Link href={`/wallet/${wallet.slug}`}>
+                        <Button variant="outline" className="w-full md:w-auto border-white/20 text-sm">
+                          Read Review <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link href="/wallet-quiz">
+            <Button size="lg" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">
+              Not sure which wallet? Take the Quiz <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
       </section>
 
@@ -365,11 +391,18 @@ export default function Home() {
                     ))}
                   </ul>
 
-                  <Button asChild className="w-full bg-white text-black hover:bg-white/90 font-bold group-hover:scale-105 transition-transform">
-                    <a href={exchange.link} target="_blank" rel="noopener noreferrer">
-                      Claim Bonus <ArrowRight className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
+                  <div className="flex flex-col gap-2">
+                    <Button asChild className="w-full bg-white text-black hover:bg-white/90 font-bold group-hover:scale-105 transition-transform">
+                      <a href={exchange.link} target="_blank" rel="noopener noreferrer">
+                        Claim Bonus <ArrowRight className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                    <Link href={`/exchange/${exchange.slug}`}>
+                      <Button variant="outline" className="w-full border-white/20 text-sm">
+                        Read Review
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             ))}
