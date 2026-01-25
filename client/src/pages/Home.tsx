@@ -3,10 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { 
-  Shield, 
-  Smartphone, 
-  Globe, 
-  Cpu, 
   Check, 
   ArrowRight, 
   ExternalLink,
@@ -16,6 +12,10 @@ import {
   TrendingUp
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.png";
+import xamanLogo from "@/assets/logos/xaman-logo.png";
+import ledgerLogo from "@/assets/logos/ledger-logo.png";
+import crossmarkLogo from "@/assets/logos/crossmark-logo.png";
+import tangemLogo from "@/assets/logos/tangem-logo.png";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { NewsletterForm } from "@/components/NewsletterForm";
@@ -35,7 +35,7 @@ const wallets = [
     popular: true,
     badgeText: "Top Free XRPL Wallet",
     link: "https://xumm.app/?ref=allthingsxrpl",
-    icon: <Smartphone className="h-6 w-6 text-blue-400" />,
+    logo: xamanLogo,
     complementary: [
       { name: "Tangem Card (Backup)", link: "https://tangem.com/?promocode=ALLTHINGSXRPL" },
       { name: "Ledger (Cold Storage)", link: "https://shop.ledger.com/?r=allthingsxrpl" }
@@ -51,7 +51,7 @@ const wallets = [
     features: ["Cold Storage", "Bluetooth", "Multi-Currency", "High Security"],
     popular: false,
     link: "https://shop.ledger.com/?r=allthingsxrpl",
-    icon: <Shield className="h-6 w-6 text-purple-400" />
+    logo: ledgerLogo
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ const wallets = [
     features: ["Web3 Auth", "Multi-Network", "Developer Friendly", "Lightweight"],
     popular: false,
     link: "https://crossmark.io/?ref=allthingsxrpl",
-    icon: <Globe className="h-6 w-6 text-orange-400" />
+    logo: crossmarkLogo
   },
   {
     id: 4,
@@ -75,7 +75,7 @@ const wallets = [
     features: ["NFC Support", "Waterproof", "No Battery", "Easy Setup"],
     popular: false,
     link: "https://tangem.com/?promocode=ALLTHINGSXRPL",
-    icon: <Cpu className="h-6 w-6 text-green-400" />
+    logo: tangemLogo
   }
 ];
 
@@ -275,8 +275,8 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 
                 <div className="flex flex-col md:flex-row items-center gap-6 relative z-10">
-                  <div className="flex-shrink-0 bg-card p-4 rounded-xl border border-white/5 shadow-inner">
-                    {wallet.icon}
+                  <div className="flex-shrink-0 bg-card p-2 rounded-xl border border-white/5 shadow-inner overflow-hidden">
+                    <img src={wallet.logo} alt={`${wallet.name} logo`} className="w-12 h-12 object-contain" />
                   </div>
                   
                   <div className="flex-1 text-center md:text-left">
