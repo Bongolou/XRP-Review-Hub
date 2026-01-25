@@ -39,8 +39,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="w-10 h-10 rounded-lg overflow-hidden group-hover:scale-105 transition-transform">
               <img src={siteLogo} alt="All Things XRPL" className="w-full h-full object-cover" />
             </div>
-            <span className="text-xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700 }}>
-              ALL THINGS XRPL
+            <span className="text-2xl tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-cyan-400 uppercase" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              All Things XRPL
             </span>
           </Link>
 
@@ -104,7 +104,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <div className="w-8 h-8 rounded-lg overflow-hidden">
                   <img src={siteLogo} alt="All Things XRPL" className="w-full h-full object-cover" />
                 </div>
-                <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 700 }}>ALL THINGS XRPL</span>
+                <span className="text-xl tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-cyan-400 uppercase" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>All Things XRPL</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Your trusted guide to the XRP Ledger ecosystem.
