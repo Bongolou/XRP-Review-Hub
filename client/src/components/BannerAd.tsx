@@ -87,7 +87,7 @@ export function BannerAd({
           <div className="text-xs text-muted-foreground uppercase tracking-wider">Sponsored</div>
           <div className="h-4 w-px bg-white/10" />
           {logoMap[adPartner] && (
-            <img src={logoMap[adPartner]} alt={adPartner} className="w-8 h-8 rounded-lg object-cover" />
+            <img src={logoMap[adPartner]} alt={adPartner} className="w-12 h-12 rounded-xl object-cover border border-white/10" />
           )}
           <div>
             <span className="font-bold group-hover:text-primary transition-colors">{adTitle}</span>
