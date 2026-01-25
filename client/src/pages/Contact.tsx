@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, MessageSquare, Send } from "lucide-react";
+import { Mail, MessageSquare, Send, HelpCircle, Newspaper } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -61,20 +61,20 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           <div className="p-6 rounded-xl bg-card/30 border border-white/10 text-center">
             <div className="bg-primary/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 border border-primary/30">
               <Mail className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="font-display font-bold mb-2">Email Us</h3>
+            <h3 className="font-display font-bold mb-2">General Inquiries</h3>
             <p className="text-sm text-muted-foreground">hello@allthingsxrpl.com</p>
           </div>
           <div className="p-6 rounded-xl bg-card/30 border border-white/10 text-center">
-            <div className="bg-secondary/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 border border-secondary/30">
-              <MessageSquare className="h-6 w-6 text-secondary" />
+            <div className="bg-green-500/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 border border-green-500/30">
+              <HelpCircle className="h-6 w-6 text-green-400" />
             </div>
-            <h3 className="font-display font-bold mb-2">Community</h3>
-            <p className="text-sm text-muted-foreground">Join our Discord server</p>
+            <h3 className="font-display font-bold mb-2">Support</h3>
+            <p className="text-sm text-muted-foreground">support@allthingsxrpl.com</p>
           </div>
           <div className="p-6 rounded-xl bg-card/30 border border-white/10 text-center">
             <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
@@ -82,6 +82,20 @@ export default function Contact() {
             </div>
             <h3 className="font-display font-bold mb-2">Partnerships</h3>
             <p className="text-sm text-muted-foreground">partners@allthingsxrpl.com</p>
+          </div>
+          <div className="p-6 rounded-xl bg-card/30 border border-white/10 text-center">
+            <div className="bg-cyan-500/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 border border-cyan-500/30">
+              <Newspaper className="h-6 w-6 text-cyan-400" />
+            </div>
+            <h3 className="font-display font-bold mb-2">Newsletter</h3>
+            <p className="text-sm text-muted-foreground">newsletter@allthingsxrpl.com</p>
+          </div>
+          <div className="p-6 rounded-xl bg-card/30 border border-white/10 text-center">
+            <div className="bg-secondary/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 border border-secondary/30">
+              <MessageSquare className="h-6 w-6 text-secondary" />
+            </div>
+            <h3 className="font-display font-bold mb-2">Community</h3>
+            <p className="text-sm text-muted-foreground">Join our Discord server</p>
           </div>
         </div>
 
