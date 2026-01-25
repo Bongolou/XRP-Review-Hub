@@ -14,7 +14,7 @@ const blogPosts = [
     category: "Ecosystem",
     date: "Jan 24, 2026",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2832&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop"
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const blogPosts = [
     category: "Guides",
     date: "Jan 20, 2026",
     readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1620321023374-d1a68fddadb3?q=80&w=2940&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop"
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const blogPosts = [
     category: "Security",
     date: "Jan 15, 2026",
     readTime: "4 min read",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2940&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop"
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ const blogPosts = [
     category: "NFTs",
     date: "Jan 12, 2026",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1646483236255-8e7c77d5dc4b?q=80&w=2832&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1620321023374-d1a68fddadb3?w=800&auto=format&fit=crop"
   },
   {
     id: 5,
@@ -50,7 +50,7 @@ const blogPosts = [
     category: "Technology",
     date: "Jan 8, 2026",
     readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2834&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop"
   },
   {
     id: 6,
@@ -59,7 +59,7 @@ const blogPosts = [
     category: "Institutional",
     date: "Jan 5, 2026",
     readTime: "9 min read",
-    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2851&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop"
   },
   {
     id: 7,
@@ -68,7 +68,7 @@ const blogPosts = [
     category: "Technology",
     date: "Jan 2, 2026",
     readTime: "10 min read",
-    image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=2928&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&fit=crop"
   },
   {
     id: 8,
@@ -77,7 +77,7 @@ const blogPosts = [
     category: "Security",
     date: "Dec 28, 2025",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2832&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop"
   },
   {
     id: 9,
@@ -86,7 +86,61 @@ const blogPosts = [
     category: "Institutional",
     date: "Dec 22, 2025",
     readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=2940&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&auto=format&fit=crop"
+  },
+  {
+    id: 10,
+    title: "How to Set Up Trustlines on XRPL",
+    excerpt: "A step-by-step guide to enabling trustlines and holding issued tokens on the XRP Ledger.",
+    category: "Guides",
+    date: "Dec 18, 2025",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop"
+  },
+  {
+    id: 11,
+    title: "Protecting Against Phishing Attacks",
+    excerpt: "Learn how to identify and avoid common crypto scams targeting XRP holders and XRPL users.",
+    category: "Security",
+    date: "Dec 15, 2025",
+    readTime: "5 min read",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop"
+  },
+  {
+    id: 12,
+    title: "XRP Ledger vs Ethereum: Key Differences",
+    excerpt: "A detailed comparison of XRPL and Ethereum, from consensus mechanisms to transaction costs.",
+    category: "Technology",
+    date: "Dec 10, 2025",
+    readTime: "8 min read",
+    image: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=800&auto=format&fit=crop"
+  },
+  {
+    id: 13,
+    title: "The Rise of XRPL Gaming",
+    excerpt: "Exploring the growing gaming ecosystem on XRPL, from play-to-earn to NFT-based games.",
+    category: "Ecosystem",
+    date: "Dec 5, 2025",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&auto=format&fit=crop"
+  },
+  {
+    id: 14,
+    title: "Minting Your First NFT on XRPL",
+    excerpt: "A beginner-friendly tutorial on creating and listing your own NFTs on the XRP Ledger.",
+    category: "NFTs",
+    date: "Dec 1, 2025",
+    readTime: "7 min read",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop"
+  },
+  {
+    id: 15,
+    title: "XRP Tax Guide for 2026",
+    excerpt: "Everything you need to know about reporting XRP gains, losses, and staking rewards on your taxes.",
+    category: "Guides",
+    date: "Nov 28, 2025",
+    readTime: "10 min read",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&auto=format&fit=crop"
   }
 ];
 

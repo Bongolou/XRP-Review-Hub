@@ -126,7 +126,7 @@ const blogPosts = [
     category: "Ecosystem",
     date: "Jan 24, 2026",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2832&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop"
   },
   {
     id: 2,
@@ -135,7 +135,7 @@ const blogPosts = [
     category: "Guides",
     date: "Jan 20, 2026",
     readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1620321023374-d1a68fddadb3?q=80&w=2940&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop"
   },
   {
     id: 3,
@@ -144,7 +144,7 @@ const blogPosts = [
     category: "Security",
     date: "Jan 15, 2026",
     readTime: "4 min read",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2940&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop"
   },
   {
     id: 4,
@@ -153,7 +153,7 @@ const blogPosts = [
     category: "NFTs",
     date: "Jan 12, 2026",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1646483236255-8e7c77d5dc4b?q=80&w=2832&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1620321023374-d1a68fddadb3?w=800&auto=format&fit=crop"
   },
   {
     id: 5,
@@ -162,7 +162,7 @@ const blogPosts = [
     category: "Technology",
     date: "Jan 8, 2026",
     readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2834&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop"
   },
   {
     id: 6,
@@ -171,7 +171,7 @@ const blogPosts = [
     category: "Institutional",
     date: "Jan 5, 2026",
     readTime: "9 min read",
-    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2851&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop"
   }
 ];
 
@@ -446,9 +446,11 @@ export default function Home() {
               <h3 className="text-xl font-bold font-display mb-2">Partner with All Things XRPL</h3>
               <p className="text-muted-foreground">Are you a project builder or service provider? Connect with our audience.</p>
             </div>
-            <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">
-              Become a Partner
-            </Button>
+            <Link href="/contact">
+              <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">
+                Become a Partner
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -459,33 +461,48 @@ export default function Home() {
         
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm">
-              <div className="bg-primary/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-primary/30">
-                <Lock className="h-6 w-6 text-primary" />
+            <Link href="/blog/3" className="group">
+              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 cursor-pointer h-full">
+                <div className="bg-primary/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-primary/30 group-hover:scale-110 transition-transform">
+                  <Lock className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-primary transition-colors">Security First</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  We prioritize security above all else. Our reviews focus heavily on auditing standards, key management, and track records.
+                </p>
+                <span className="text-sm text-primary flex items-center gap-1">
+                  Learn about wallet security <ArrowRight className="h-4 w-4" />
+                </span>
               </div>
-              <h3 className="text-xl font-bold font-display mb-3">Security First</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                We prioritize security above all else. Our reviews focus heavily on auditing standards, key management, and track records.
-              </p>
-            </div>
-            <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm">
-              <div className="bg-secondary/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-secondary/30">
-                <TrendingUp className="h-6 w-6 text-secondary" />
+            </Link>
+            <a href="https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL" target="_blank" rel="noopener noreferrer" className="group">
+              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-secondary/50 transition-all duration-300 cursor-pointer h-full">
+                <div className="bg-secondary/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-secondary/30 group-hover:scale-110 transition-transform">
+                  <TrendingUp className="h-6 w-6 text-secondary" />
+                </div>
+                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-secondary transition-colors">Yield Opportunities</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Discover the best places to stake your XRP and participate in AMM pools to earn passive income on your holdings.
+                </p>
+                <span className="text-sm text-secondary flex items-center gap-1">
+                  Explore staking options <ExternalLink className="h-4 w-4" />
+                </span>
               </div>
-              <h3 className="text-xl font-bold font-display mb-3">Yield Opportunities</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Discover the best places to stake your XRP and participate in AMM pools to earn passive income on your holdings.
-              </p>
-            </div>
-            <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm">
-              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-purple-500/30">
-                <Layers className="h-6 w-6 text-purple-400" />
+            </a>
+            <Link href="/blog" className="group">
+              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300 cursor-pointer h-full">
+                <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-purple-500/30 group-hover:scale-110 transition-transform">
+                  <Layers className="h-6 w-6 text-purple-400" />
+                </div>
+                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-purple-400 transition-colors">Deep Dives</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  We go beyond surface-level features. Our team tests every dApp and wallet to give you the real user experience.
+                </p>
+                <span className="text-sm text-purple-400 flex items-center gap-1">
+                  Read our articles <ArrowRight className="h-4 w-4" />
+                </span>
               </div>
-              <h3 className="text-xl font-bold font-display mb-3">Deep Dives</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                We go beyond surface-level features. Our team tests every dApp and wallet to give you the real user experience.
-              </p>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -499,9 +516,11 @@ export default function Home() {
               Stay ahead of the curve with our latest research on the XRP Ledger ecosystem.
             </p>
           </div>
-          <Button variant="outline" className="border-white/20 hover:bg-white/10">
-            View All Articles <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
+          <Link href="/blog">
+            <Button variant="outline" className="border-white/20 hover:bg-white/10">
+              View All Articles <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
