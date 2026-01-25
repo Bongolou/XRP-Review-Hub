@@ -475,7 +475,7 @@ export default function Home() {
                 </span>
               </div>
             </Link>
-            <a href="https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL" target="_blank" rel="noopener noreferrer" className="group">
+            <Link href="/yield" className="group">
               <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-secondary/50 transition-all duration-300 cursor-pointer h-full">
                 <div className="bg-secondary/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-secondary/30 group-hover:scale-110 transition-transform">
                   <TrendingUp className="h-6 w-6 text-secondary" />
@@ -485,10 +485,10 @@ export default function Home() {
                   Discover the best places to stake your XRP and participate in AMM pools to earn passive income on your holdings.
                 </p>
                 <span className="text-sm text-secondary flex items-center gap-1">
-                  Explore staking options <ExternalLink className="h-4 w-4" />
+                  Explore staking options <ArrowRight className="h-4 w-4" />
                 </span>
               </div>
-            </a>
+            </Link>
             <Link href="/blog" className="group">
               <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300 cursor-pointer h-full">
                 <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-purple-500/30 group-hover:scale-110 transition-transform">

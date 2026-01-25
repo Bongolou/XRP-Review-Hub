@@ -21,6 +21,7 @@ import WalletQuiz from "@/pages/WalletQuiz";
 import WalletReview from "@/pages/reviews/WalletReview";
 import ExchangeReview from "@/pages/reviews/ExchangeReview";
 import Compare from "@/pages/Compare";
+import YieldOpportunities from "@/pages/YieldOpportunities";
 
 function Router() {
   return (
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/terms" component={Terms} />
       <Route path="/faq" component={FAQ} />
       <Route path="/getting-started" component={GettingStarted} />
+      <Route path="/yield" component={YieldOpportunities} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:id" component={BlogPost} />
       <Route path="/wallet-quiz" component={WalletQuiz} />
