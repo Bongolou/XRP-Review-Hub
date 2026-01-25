@@ -13,7 +13,7 @@ const faqs = [
       },
       {
         q: "How do I buy XRP?",
-        a: "You can buy XRP on cryptocurrency exchanges like Uphold, Bitrue, or Kraken. First, create an account on a supported exchange, complete identity verification (KYC), deposit funds via bank transfer or card, then purchase XRP. We recommend transferring your XRP to a self-custody wallet like Xaman for security."
+        a: 'You can buy XRP on cryptocurrency exchanges like <a href="https://uphold.com/signup?referral=allthingsxrpl" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Uphold</a>, <a href="https://bitrue.com/user/register?inviteCode=allthingsxrpl" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Bitrue</a>, or <a href="https://kraken.com/sign-up?r=allthingsxrpl" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Kraken</a>. First, create an account on a supported exchange, complete identity verification (KYC), deposit funds via bank transfer or card, then purchase XRP. We recommend transferring your XRP to a self-custody wallet like <a href="https://xumm.app/?ref=allthingsxrpl" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Xaman</a> for security.'
       },
       {
         q: "What's the difference between XRP and Ripple?",
@@ -96,7 +96,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         <ChevronDown className={cn("h-5 w-5 shrink-0 transition-transform", isOpen && "rotate-180")} />
       </button>
       <div className={cn("overflow-hidden transition-all", isOpen ? "max-h-96 pb-4" : "max-h-0")}>
-        <p className="text-muted-foreground leading-relaxed">{answer}</p>
+        <p className="text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: answer }} />
       </div>
     </div>
   );
