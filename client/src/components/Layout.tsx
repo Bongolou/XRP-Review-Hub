@@ -1,13 +1,17 @@
 import { Link, useLocation } from "wouter";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Menu, Wallet } from "lucide-react";
+import { Menu, Wallet, Search } from "lucide-react";
 import { useEffect } from "react";
 import { PriceTicker } from "./PriceTicker";
 import { SocialLinks } from "./SocialLinks";
+import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSelector } from "./LanguageSelector";
+import { useSearch } from "./SearchDialog";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
+  const search = useSearch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -15,10 +19,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary selection:text-primary-foreground">
+      
       <div className="bg-primary/10 border-b border-primary/20 py-1.5">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <PriceTicker />
-          <SocialLinks />
+          <div className="flex items-center gap-2">
+            <SocialLinks />
+            <div className="hidden sm:block h-4 w-px bg-white/20 mx-2" />
+            <LanguageSelector />
+            <ThemeToggle />
+          </div>
         </div>
       </div>
 
@@ -28,12 +38,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="bg-primary/20 p-2 rounded-lg group-hover:bg-primary/30 transition-colors border border-primary/50">
               <Wallet className="h-6 w-6 text-primary" />
             </div>
-            <span className="text-xl font-bold font-display tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
+            <span className="text-xl font-bold font-display tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70 dark:from-white dark:to-white/70">
               ALL THINGS XRPL
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-6">
             <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/' ? 'text-primary' : 'text-muted-foreground'}`}>
               Home
             </Link>
@@ -47,13 +57,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
               Blog
             </Link>
             <Link href="/wallet-quiz" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/wallet-quiz' ? 'text-primary' : 'text-muted-foreground'}`}>
-              Wallet Quiz
+              Quiz
             </Link>
+            <button 
+              onClick={search.open}
+              className="p-2 rounded-lg hover:bg-white/10 transition-colors"
+              title="Search (⌘K)"
+              data-testid="search-button"
+            >
+              <Search className="h-4 w-4 text-muted-foreground" />
+            </button>
           </nav>
 
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button variant="ghost" size="icon" className="lg:hidden">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
@@ -97,6 +115,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/wallet/xaman" className="hover:text-primary transition-colors">Xaman Review</Link></li>
                 <li><Link href="/wallet/tangem" className="hover:text-primary transition-colors">Tangem Review</Link></li>
                 <li><Link href="/wallet/ledger" className="hover:text-primary transition-colors">Ledger Review</Link></li>
+                <li><Link href="/compare/xaman-vs-ledger" className="hover:text-primary transition-colors">Xaman vs Ledger</Link></li>
                 <li><Link href="/wallet-quiz" className="hover:text-primary transition-colors">Wallet Quiz</Link></li>
               </ul>
             </div>
@@ -116,6 +135,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/getting-started" className="hover:text-primary transition-colors">Getting Started</Link></li>
                 <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
                 <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
+                <li><a href="/rss.xml" className="hover:text-primary transition-colors">RSS Feed</a></li>
               </ul>
             </div>
 

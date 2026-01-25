@@ -2,8 +2,10 @@ import { Layout } from "@/components/Layout";
 import { useParams } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock, Share2, Twitter, Linkedin, Facebook } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Share2, Linkedin } from "lucide-react";
 import { Link } from "wouter";
+import { BlogComments } from "@/components/BlogComments";
+import { BannerAd } from "@/components/BannerAd";
 
 export default function BlogPost() {
   const { id } = useParams();
@@ -110,6 +112,12 @@ export default function BlogPost() {
                 className="prose prose-invert prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary prose-img:rounded-xl"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
+
+              <div className="mt-8">
+                <BannerAd variant="horizontal" />
+              </div>
+
+              <BlogComments postId={parseInt(id || "1")} />
             </div>
           </div>
         </div>

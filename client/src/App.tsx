@@ -3,6 +3,9 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { NewsletterPopup } from "@/components/NewsletterPopup";
+import { SearchDialog, useSearch } from "@/components/SearchDialog";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Disclosure from "@/pages/Disclosure";
@@ -17,6 +20,7 @@ import Blog from "@/pages/Blog";
 import WalletQuiz from "@/pages/WalletQuiz";
 import WalletReview from "@/pages/reviews/WalletReview";
 import ExchangeReview from "@/pages/reviews/ExchangeReview";
+import Compare from "@/pages/Compare";
 
 function Router() {
   return (
@@ -34,19 +38,34 @@ function Router() {
       <Route path="/wallet-quiz" component={WalletQuiz} />
       <Route path="/wallet/:slug" component={WalletReview} />
       <Route path="/exchange/:slug" component={ExchangeReview} />
+      <Route path="/compare/:slug" component={Compare} />
       <Route component={NotFound} />
     </Switch>
   );
 }
 
+function AppContent() {
+  const search = useSearch();
+  
+  return (
+    <>
+      <SearchDialog isOpen={search.isOpen} onClose={search.close} />
+      <NewsletterPopup />
+      <Router />
+    </>
+  );
+}
+
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <AppContent />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 

@@ -19,6 +19,8 @@ import heroBg from "@/assets/hero-bg.png";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { DealOfTheWeek } from "@/components/DealOfTheWeek";
+import { BannerAd } from "@/components/BannerAd";
 
 // Mock Data
 const wallets = [
@@ -244,6 +246,11 @@ export default function Home() {
         <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-background to-transparent z-10" />
       </section>
 
+      {/* Deal of the Week */}
+      <section className="container mx-auto px-4 py-12 -mt-12 relative z-20">
+        <DealOfTheWeek />
+      </section>
+
       {/* Wallet Comparison Section */}
       <section id="wallets" className="py-24 container mx-auto px-4 relative">
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
@@ -339,13 +346,35 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 space-y-6">
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/compare/xaman-vs-ledger">
+              <Button variant="outline" className="border-white/20 text-sm">
+                Xaman vs Ledger
+              </Button>
+            </Link>
+            <Link href="/compare/xaman-vs-tangem">
+              <Button variant="outline" className="border-white/20 text-sm">
+                Xaman vs Tangem
+              </Button>
+            </Link>
+            <Link href="/compare/ledger-vs-tangem">
+              <Button variant="outline" className="border-white/20 text-sm">
+                Ledger vs Tangem
+              </Button>
+            </Link>
+          </div>
           <Link href="/wallet-quiz">
             <Button size="lg" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">
               Not sure which wallet? Take the Quiz <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>
+      </section>
+
+      {/* Sponsored Banner */}
+      <section className="container mx-auto px-4 py-6">
+        <BannerAd variant="horizontal" />
       </section>
 
       {/* Top Exchanges Section */}

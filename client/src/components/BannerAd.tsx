@@ -1,0 +1,94 @@
+import { ExternalLink } from "lucide-react";
+import { trackAffiliateClick } from "@/lib/tracking";
+
+interface BannerAdProps {
+  variant?: "horizontal" | "sidebar";
+  partner?: string;
+  title?: string;
+  description?: string;
+  ctaText?: string;
+  link?: string;
+}
+
+const defaultAds = {
+  horizontal: {
+    partner: "uphold",
+    title: "Buy XRP with Uphold",
+    description: "Get $20 bonus when you sign up and trade",
+    ctaText: "Sign Up Free",
+    link: "https://uphold.com/signup?referral=allthingsxrpl"
+  },
+  sidebar: {
+    partner: "ledger",
+    title: "Secure Your XRP",
+    description: "Get a Ledger hardware wallet",
+    ctaText: "Shop Now",
+    link: "https://shop.ledger.com/?r=allthingsxrpl"
+  }
+};
+
+export function BannerAd({ 
+  variant = "horizontal",
+  partner,
+  title,
+  description,
+  ctaText,
+  link
+}: BannerAdProps) {
+  const defaults = defaultAds[variant];
+  const adPartner = partner || defaults.partner;
+  const adTitle = title || defaults.title;
+  const adDescription = description || defaults.description;
+  const adCta = ctaText || defaults.ctaText;
+  const adLink = link || defaults.link;
+
+  const handleClick = () => {
+    trackAffiliateClick(adPartner, `banner_${variant}`);
+  };
+
+  if (variant === "sidebar") {
+    return (
+      <a
+        href={adLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleClick}
+        className="block p-4 rounded-xl border border-white/10 bg-card/30 hover:border-primary/50 transition-colors group"
+        data-testid={`banner-ad-${variant}`}
+      >
+        <div className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Sponsored</div>
+        <h4 className="font-bold mb-1 group-hover:text-primary transition-colors">{adTitle}</h4>
+        <p className="text-sm text-muted-foreground mb-3">{adDescription}</p>
+        <span className="text-primary text-sm font-medium flex items-center gap-1">
+          {adCta} <ExternalLink className="h-3 w-3" />
+        </span>
+      </a>
+    );
+  }
+
+  return (
+    <a
+      href={adLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={handleClick}
+      className="block p-4 rounded-xl border border-white/10 bg-gradient-to-r from-card/50 to-primary/5 hover:border-primary/50 transition-colors group"
+      data-testid={`banner-ad-${variant}`}
+    >
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="text-xs text-muted-foreground uppercase tracking-wider">Sponsored</div>
+          <div className="h-4 w-px bg-white/10" />
+          <div>
+            <span className="font-bold group-hover:text-primary transition-colors">{adTitle}</span>
+            <span className="text-muted-foreground mx-2">—</span>
+            <span className="text-muted-foreground">{adDescription}</span>
+          </div>
+        </div>
+        <span className="text-primary font-medium flex items-center gap-1 shrink-0">
+          {adCta} <ExternalLink className="h-4 w-4" />
+        </span>
+      </div>
+    </a>
+  );
+}
