@@ -29,7 +29,7 @@ const wallets = [
     fees: "Low",
     features: ["Self-Custody", "dApp Browser", "Biometric Auth", "Fiat On-ramp"],
     popular: true,
-    link: "https://xumm.app/",
+    link: "https://xumm.app/?ref=xrpnexus",
     icon: <Smartphone className="h-6 w-6 text-blue-400" />
   },
   {
@@ -40,7 +40,7 @@ const wallets = [
     fees: "Standard",
     features: ["Cold Storage", "Bluetooth", "Multi-Currency", "High Security"],
     popular: false,
-    link: "https://www.ledger.com/",
+    link: "https://shop.ledger.com/?r=xrpnexus",
     icon: <Shield className="h-6 w-6 text-purple-400" />
   },
   {
@@ -51,7 +51,7 @@ const wallets = [
     fees: "Low",
     features: ["Web3 Auth", "Multi-Network", "Developer Friendly", "Lightweight"],
     popular: false,
-    link: "https://crossmark.io/",
+    link: "https://crossmark.io/?ref=xrpnexus",
     icon: <Globe className="h-6 w-6 text-orange-400" />
   },
   {
@@ -62,8 +62,38 @@ const wallets = [
     fees: "None",
     features: ["NFC Support", "Waterproof", "No Battery", "Easy Setup"],
     popular: false,
-    link: "https://tangem.com/",
+    link: "https://tangem.com/?promocode=XRPNEXUS",
     icon: <Cpu className="h-6 w-6 text-green-400" />
+  }
+];
+
+const exchanges = [
+  {
+    id: 1,
+    name: "Uphold",
+    bonus: "$20 BTC Bonus",
+    features: ["Best for XRP", "Fiat On-Ramp", "Instant Trade"],
+    link: "https://uphold.com/signup?referral=xrpnexus",
+    color: "text-green-500",
+    bgColor: "bg-green-500/20"
+  },
+  {
+    id: 2,
+    name: "Bitrue",
+    bonus: "1000 XRP Airdrop",
+    features: ["XRP Base Pairs", "Power Piggy Staking", "Low Fees"],
+    link: "https://bitrue.com/user/register?inviteCode=xrpnexus",
+    color: "text-blue-500",
+    bgColor: "bg-blue-500/20"
+  },
+  {
+    id: 3,
+    name: "Kraken",
+    bonus: "Low Fee Trading",
+    features: ["High Security", "Deep Liquidity", "Pro Tools"],
+    link: "https://kraken.com/sign-up?r=xrpnexus",
+    color: "text-purple-500",
+    bgColor: "bg-purple-500/20"
   }
 ];
 
@@ -234,6 +264,71 @@ export default function Home() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Top Exchanges Section */}
+      <section className="py-24 bg-card/10 border-y border-white/5 relative">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/30 border-primary/50">Partner Offers</Badge>
+            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">Top Exchanges for XRP</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Get the best sign-up bonuses and lowest fees with our partner exchanges.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {exchanges.map((exchange, idx) => (
+              <motion.div
+                key={exchange.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="group relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-2xl -z-10" />
+                <div className="p-8 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-sm hover:border-primary/50 transition-colors h-full flex flex-col">
+                  <div className="flex justify-between items-start mb-6">
+                    <div className={`w-12 h-12 rounded-lg ${exchange.bgColor} flex items-center justify-center border border-white/10`}>
+                      <TrendingUp className={`h-6 w-6 ${exchange.color}`} />
+                    </div>
+                    <Badge variant="outline" className="border-green-500/50 text-green-400 bg-green-500/10">
+                      {exchange.bonus}
+                    </Badge>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold font-display mb-4">{exchange.name}</h3>
+                  
+                  <ul className="space-y-3 mb-8 flex-1">
+                    {exchange.features.map((feature, i) => (
+                      <li key={i} className="flex items-center text-sm text-muted-foreground">
+                        <Check className="h-4 w-4 text-primary mr-2" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button asChild className="w-full bg-white text-black hover:bg-white/90 font-bold group-hover:scale-105 transition-transform">
+                    <a href={exchange.link} target="_blank" rel="noopener noreferrer">
+                      Claim Bonus <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-16 p-8 rounded-2xl border border-white/10 bg-gradient-to-r from-card/50 to-transparent flex flex-col md:flex-row items-center justify-between gap-8">
+            <div>
+              <h3 className="text-xl font-bold font-display mb-2">Partner with XRP Nexus</h3>
+              <p className="text-muted-foreground">Are you a project builder or service provider? Connect with our audience.</p>
+            </div>
+            <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">
+              Become a Partner
+            </Button>
+          </div>
         </div>
       </section>
 
