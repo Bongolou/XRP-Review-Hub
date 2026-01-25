@@ -11,6 +11,15 @@ import {
   ExternalLink,
   ArrowLeft
 } from "lucide-react";
+import xamanLogo from "@/assets/logos/xaman-logo.png";
+import ledgerLogo from "@/assets/logos/ledger-logo.png";
+import crossmarkLogo from "@/assets/logos/crossmark-logo.png";
+
+const logoMap: Record<string, string> = {
+  xaman: xamanLogo,
+  ledger: ledgerLogo,
+  crossmark: crossmarkLogo
+};
 
 const walletData: Record<string, {
   name: string;
@@ -234,10 +243,17 @@ export default function WalletReview() {
 
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
-            <div>
-              <div className="text-sm text-primary font-display mb-2">{wallet.type}</div>
-              <h1 className="text-3xl md:text-4xl font-black font-display mb-2">{wallet.name}</h1>
-              <p className="text-xl text-muted-foreground">{wallet.tagline}</p>
+            <div className="flex items-start gap-5">
+              {logoMap[slug || ""] && (
+                <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-primary/30 bg-black/40 flex-shrink-0 shadow-[0_0_20px_-5px_rgba(59,130,246,0.4)]">
+                  <img src={logoMap[slug || ""]} alt={wallet.name} className="w-full h-full object-cover" />
+                </div>
+              )}
+              <div>
+                <div className="text-sm text-primary font-display mb-2">{wallet.type}</div>
+                <h1 className="text-3xl md:text-4xl font-black font-display mb-2">{wallet.name}</h1>
+                <p className="text-xl text-muted-foreground">{wallet.tagline}</p>
+              </div>
             </div>
             <div className="flex flex-col items-start md:items-end gap-2">
               <div className="flex items-center gap-2">
