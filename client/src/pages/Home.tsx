@@ -18,6 +18,7 @@ import {
 import heroBg from "@/assets/hero-bg.png";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 // Mock Data
 const wallets = [
@@ -129,6 +130,33 @@ const blogPosts = [
     date: "Jan 15, 2026",
     readTime: "4 min read",
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2940&auto=format&fit=crop"
+  },
+  {
+    id: 4,
+    title: "NFT Marketplaces on XRPL: Complete Guide",
+    excerpt: "Explore the growing NFT ecosystem on the XRP Ledger, including top marketplaces and how to mint your first NFT.",
+    category: "NFTs",
+    date: "Jan 12, 2026",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1646483236255-8e7c77d5dc4b?q=80&w=2832&auto=format&fit=crop"
+  },
+  {
+    id: 5,
+    title: "XRPL Sidechains Explained",
+    excerpt: "Learn how sidechains extend the capabilities of the XRP Ledger and enable new use cases like smart contracts.",
+    category: "Technology",
+    date: "Jan 8, 2026",
+    readTime: "7 min read",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2834&auto=format&fit=crop"
+  },
+  {
+    id: 6,
+    title: "Tokenizing Real World Assets on XRPL",
+    excerpt: "How institutions are bringing real estate, stocks, and commodities to the XRP Ledger through tokenization.",
+    category: "Institutional",
+    date: "Jan 5, 2026",
+    readTime: "9 min read",
+    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2851&auto=format&fit=crop"
   }
 ];
 
@@ -455,16 +483,7 @@ export default function Home() {
             <p className="text-muted-foreground mb-8 text-lg">
               Get the latest wallet reviews, security alerts, and dApp opportunities delivered straight to your inbox.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Enter your email address" 
-                className="flex-1 h-12 px-4 rounded-lg bg-background/50 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-white placeholder:text-muted-foreground/70"
-              />
-              <Button className="h-12 px-8 bg-white text-black hover:bg-white/90 font-bold">
-                Subscribe
-              </Button>
-            </div>
+            <NewsletterForm />
             <p className="mt-4 text-xs text-muted-foreground">
               We respect your privacy. Unsubscribe at any time.
             </p>

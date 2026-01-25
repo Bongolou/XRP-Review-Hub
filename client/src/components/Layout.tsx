@@ -40,9 +40,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/disclosure" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/disclosure' ? 'text-primary' : 'text-muted-foreground'}`}>
               Disclosure
             </Link>
-            <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary font-display uppercase tracking-widest text-xs">
-              Connect Wallet
-            </Button>
+            <Link href="/contact" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/contact' ? 'text-primary' : 'text-muted-foreground'}`}>
+              Contact
+            </Link>
           </nav>
 
           {/* Mobile Nav */}
@@ -65,6 +65,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </Link>
                 <Link href="/disclosure" className="text-lg font-medium hover:text-primary">
                   Disclosure
+                </Link>
+                <Link href="/contact" className="text-lg font-medium hover:text-primary">
+                  Contact
                 </Link>
               </nav>
             </SheetContent>
