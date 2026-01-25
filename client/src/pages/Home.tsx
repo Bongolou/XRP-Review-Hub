@@ -16,6 +16,9 @@ import xamanLogo from "@/assets/logos/xaman-logo.png";
 import ledgerLogo from "@/assets/logos/ledger-logo.png";
 import crossmarkLogo from "@/assets/logos/crossmark-logo.png";
 import tangemLogo from "@/assets/logos/tangem-logo.png";
+import upholdLogo from "@/assets/logos/uphold-logo.png";
+import bitrueLogo from "@/assets/logos/bitrue-logo.png";
+import krakenLogo from "@/assets/logos/kraken-logo.png";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { NewsletterForm } from "@/components/NewsletterForm";
@@ -88,7 +91,8 @@ const exchanges = [
     features: ["Best for XRP", "Fiat On-Ramp", "Instant Trade"],
     link: "https://uphold.com/signup?referral=allthingsxrpl",
     color: "text-green-500",
-    bgColor: "bg-green-500/20"
+    bgColor: "bg-green-500/20",
+    logo: upholdLogo
   },
   {
     id: 2,
@@ -98,7 +102,8 @@ const exchanges = [
     features: ["XRP Base Pairs", "Power Piggy Staking", "Low Fees"],
     link: "https://bitrue.com/user/register?inviteCode=allthingsxrpl",
     color: "text-blue-500",
-    bgColor: "bg-blue-500/20"
+    bgColor: "bg-blue-500/20",
+    logo: bitrueLogo
   },
   {
     id: 3,
@@ -108,7 +113,8 @@ const exchanges = [
     features: ["High Security", "Deep Liquidity", "Pro Tools"],
     link: "https://kraken.com/sign-up?r=allthingsxrpl",
     color: "text-purple-500",
-    bgColor: "bg-purple-500/20"
+    bgColor: "bg-purple-500/20",
+    logo: krakenLogo
   }
 ];
 
@@ -397,10 +403,10 @@ export default function Home() {
                 className="group relative"
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-2xl -z-10" />
-                <div className="p-8 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-sm hover:border-primary/50 transition-colors h-full flex flex-col">
+                <div className="p-8 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] h-full flex flex-col">
                   <div className="flex justify-between items-start mb-6">
-                    <div className={`w-12 h-12 rounded-lg ${exchange.bgColor} flex items-center justify-center border border-white/10`}>
-                      <TrendingUp className={`h-6 w-6 ${exchange.color}`} />
+                    <div className="w-14 h-14 rounded-xl overflow-hidden">
+                      <img src={exchange.logo} alt={`${exchange.name} logo`} className="w-full h-full object-cover" />
                     </div>
                     <Badge variant="outline" className="border-green-500/50 text-green-400 bg-green-500/10">
                       {exchange.bonus}
@@ -418,15 +424,15 @@ export default function Home() {
                     ))}
                   </ul>
 
-                  <div className="flex flex-col gap-2">
-                    <Button asChild className="w-full bg-white text-black hover:bg-white/90 font-bold group-hover:scale-105 transition-transform">
+                  <div className="flex flex-col gap-3">
+                    <Button asChild className="w-full relative overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
                       <a href={exchange.link} target="_blank" rel="noopener noreferrer">
                         Claim Bonus <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
                     </Button>
                     <Link href={`/exchange/${exchange.slug}`}>
-                      <Button variant="outline" className="w-full border-white/20 text-sm">
-                        Read Review
+                      <Button variant="ghost" className="w-full text-sm text-muted-foreground hover:text-primary border border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all duration-300">
+                        Read Review <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </Link>
                   </div>
