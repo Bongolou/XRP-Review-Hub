@@ -1,5 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import { trackAffiliateClick } from "@/lib/tracking";
+import upholdLogo from "@/assets/logos/uphold-logo.png";
+import ledgerLogo from "@/assets/logos/ledger-logo.png";
 
 interface BannerAdProps {
   variant?: "horizontal" | "sidebar";
@@ -66,6 +68,11 @@ export function BannerAd({
     );
   }
 
+  const logoMap: Record<string, string> = {
+    uphold: upholdLogo,
+    ledger: ledgerLogo
+  };
+
   return (
     <a
       href={adLink}
@@ -79,6 +86,9 @@ export function BannerAd({
         <div className="flex items-center gap-4">
           <div className="text-xs text-muted-foreground uppercase tracking-wider">Sponsored</div>
           <div className="h-4 w-px bg-white/10" />
+          {logoMap[adPartner] && (
+            <img src={logoMap[adPartner]} alt={adPartner} className="w-8 h-8 rounded-lg object-cover" />
+          )}
           <div>
             <span className="font-bold group-hover:text-primary transition-colors">{adTitle}</span>
             <span className="text-muted-foreground mx-2">—</span>
