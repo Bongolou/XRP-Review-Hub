@@ -159,6 +159,50 @@ const walletData: Record<string, {
       "Genuine check via Ledger Live",
       "Regular security audits"
     ]
+  },
+  crossmark: {
+    name: "Crossmark",
+    tagline: "The Developer-Friendly Browser Wallet",
+    rating: 4.7,
+    type: "Browser Extension",
+    price: "Free",
+    platforms: ["Chrome", "Firefox", "Brave", "Edge"],
+    website: "crossmark.io",
+    affiliateLink: "https://crossmark.io/?ref=allthingsxrpl",
+    description: "Crossmark is a powerful browser extension wallet built for the XRP Ledger. It's designed with developers in mind, offering seamless Web3 authentication and multi-network support. Lightweight yet feature-rich, it's perfect for users who prefer browser-based crypto management.",
+    features: [
+      "Web3 authentication",
+      "Multi-network support",
+      "Developer-friendly APIs",
+      "Lightweight design",
+      "Transaction signing",
+      "dApp connectivity",
+      "Trustline management",
+      "Cross-browser compatibility"
+    ],
+    pros: [
+      "Completely free to use",
+      "Fast and lightweight",
+      "Great developer documentation",
+      "Easy Web3 integration",
+      "Works across major browsers",
+      "Clean, intuitive interface"
+    ],
+    cons: [
+      "Browser-only (no mobile app)",
+      "Smaller community than Xaman",
+      "Fewer xApp integrations",
+      "Less beginner-focused tutorials"
+    ],
+    bestFor: "Developers and power users who prefer browser-based wallet access with seamless dApp integration.",
+    securityFeatures: [
+      "Encrypted local storage",
+      "Password protection",
+      "Transaction confirmation prompts",
+      "No private key cloud storage",
+      "Open-source codebase",
+      "Regular security updates"
+    ]
   }
 };
 
