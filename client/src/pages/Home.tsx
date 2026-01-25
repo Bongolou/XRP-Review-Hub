@@ -275,8 +275,8 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 
                 <div className="flex flex-col md:flex-row items-center gap-6 relative z-10">
-                  <div className="flex-shrink-0 bg-card p-2 rounded-xl border border-white/5 shadow-inner overflow-hidden">
-                    <img src={wallet.logo} alt={`${wallet.name} logo`} className="w-12 h-12 object-contain" />
+                  <div className="flex-shrink-0 rounded-xl overflow-hidden">
+                    <img src={wallet.logo} alt={`${wallet.name} logo`} className="w-14 h-14 object-cover rounded-xl" />
                   </div>
                   
                   <div className="flex-1 text-center md:text-left">
