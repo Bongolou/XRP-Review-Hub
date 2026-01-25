@@ -326,16 +326,17 @@ export default function Home() {
                     <div className="text-xs text-muted-foreground uppercase tracking-widest">Score</div>
                   </div>
 
-                  <div className="flex flex-col gap-2 w-full md:w-auto">
-                    <Button asChild className="w-full md:w-auto bg-white text-black hover:bg-white/90 font-bold">
-                      <a href={wallet.link} target="_blank" rel="noopener noreferrer">
-                        Visit Site <ExternalLink className="ml-2 h-4 w-4" />
+                  <div className="flex flex-col gap-3 w-full md:w-auto">
+                    <Button asChild className="w-full md:w-auto relative group overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
+                      <a href={wallet.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                        <span className="relative z-10">Visit Site</span>
+                        <ExternalLink className="ml-2 h-4 w-4 relative z-10" />
                       </a>
                     </Button>
                     {wallet.slug && (
                       <Link href={`/wallet/${wallet.slug}`}>
-                        <Button variant="outline" className="w-full md:w-auto border-white/20 text-sm">
-                          Read Review <ArrowRight className="ml-2 h-4 w-4" />
+                        <Button variant="ghost" className="w-full md:w-auto text-sm text-muted-foreground hover:text-primary border border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all duration-300">
+                          Read Review <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Button>
                       </Link>
                     )}
@@ -347,25 +348,25 @@ export default function Home() {
         </div>
 
         <div className="text-center mt-12 space-y-6">
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             <Link href="/compare/xaman-vs-ledger">
-              <Button variant="outline" className="border-white/20 text-sm">
+              <Button variant="outline" className="border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/30 text-sm transition-all duration-300">
                 Xaman vs Ledger
               </Button>
             </Link>
             <Link href="/compare/xaman-vs-tangem">
-              <Button variant="outline" className="border-white/20 text-sm">
+              <Button variant="outline" className="border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/30 text-sm transition-all duration-300">
                 Xaman vs Tangem
               </Button>
             </Link>
             <Link href="/compare/ledger-vs-tangem">
-              <Button variant="outline" className="border-white/20 text-sm">
+              <Button variant="outline" className="border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/30 text-sm transition-all duration-300">
                 Ledger vs Tangem
               </Button>
             </Link>
           </div>
           <Link href="/wallet-quiz">
-            <Button size="lg" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">
+            <Button size="lg" className="bg-gradient-to-r from-primary/20 to-blue-400/20 border border-primary/50 text-primary hover:from-primary/30 hover:to-blue-400/30 hover:shadow-[0_0_20px_-5px_rgba(59,130,246,0.4)] transition-all duration-300">
               Not sure which wallet? Take the Quiz <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
