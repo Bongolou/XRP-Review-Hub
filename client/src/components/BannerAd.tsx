@@ -82,20 +82,18 @@ export function BannerAd({
       className="block p-4 rounded-xl border border-white/10 bg-gradient-to-r from-card/50 to-primary/5 hover:border-primary/50 transition-colors group"
       data-testid={`banner-ad-${variant}`}
     >
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="text-xs text-muted-foreground uppercase tracking-wider">Sponsored</div>
-          <div className="h-4 w-px bg-white/10" />
+          <div className="text-xs text-muted-foreground uppercase tracking-wider whitespace-nowrap">Sponsored</div>
           {logoMap[adPartner] && (
-            <img src={logoMap[adPartner]} alt={adPartner} className="w-12 h-12 rounded-xl object-cover border border-white/10" />
+            <img src={logoMap[adPartner]} alt={adPartner} className="w-12 h-12 rounded-xl object-cover border border-white/10 shrink-0" />
           )}
-          <div>
-            <span className="font-bold group-hover:text-primary transition-colors">{adTitle}</span>
-            <span className="text-muted-foreground mx-2">—</span>
-            <span className="text-muted-foreground">{adDescription}</span>
+          <div className="min-w-0">
+            <div className="font-bold group-hover:text-primary transition-colors">{adTitle}</div>
+            <div className="text-muted-foreground text-sm">{adDescription}</div>
           </div>
         </div>
-        <span className="text-primary font-medium flex items-center gap-1 shrink-0">
+        <span className="text-primary font-medium flex items-center gap-1 shrink-0 whitespace-nowrap">
           {adCta} <ExternalLink className="h-4 w-4" />
         </span>
       </div>
