@@ -120,8 +120,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/wallet/xaman" className="hover:text-primary transition-colors">Xaman {t("common.review")}</Link></li>
                 <li><Link href="/wallet/tangem" className="hover:text-primary transition-colors">Tangem {t("common.review")}</Link></li>
                 <li><Link href="/wallet/ledger" className="hover:text-primary transition-colors">Ledger {t("common.review")}</Link></li>
-                <li><Link href="/compare/xaman-vs-ledger" className="hover:text-primary transition-colors">Xaman vs Ledger</Link></li>
+                <li><Link href="/wallet/bifrost" className="hover:text-primary transition-colors">Bifrost {t("common.review")}</Link></li>
+                <li><Link href="/wallet/trezor" className="hover:text-primary transition-colors">Trezor {t("common.review")}</Link></li>
                 <li><Link href="/wallet-quiz" className="hover:text-primary transition-colors">Wallet Quiz</Link></li>
+                <li><Link href="/#wallets" className="hover:text-primary transition-colors font-medium text-primary">View All Wallets →</Link></li>
               </ul>
             </div>
 
@@ -129,8 +131,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <h3 className="font-display font-bold mb-4">{t("nav.exchanges")}</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><Link href="/exchange/uphold" className="hover:text-primary transition-colors">Uphold {t("common.review")}</Link></li>
-                <li><Link href="/exchange/bitrue" className="hover:text-primary transition-colors">Bitrue {t("common.review")}</Link></li>
+                <li><Link href="/exchange/coinbase" className="hover:text-primary transition-colors">Coinbase {t("common.review")}</Link></li>
                 <li><Link href="/exchange/kraken" className="hover:text-primary transition-colors">Kraken {t("common.review")}</Link></li>
+                <li><Link href="/exchange/bitstamp" className="hover:text-primary transition-colors">Bitstamp {t("common.review")}</Link></li>
+                <li><Link href="/exchange/cryptocom" className="hover:text-primary transition-colors">Crypto.com {t("common.review")}</Link></li>
+                <li><Link href="/#exchanges" className="hover:text-primary transition-colors font-medium text-primary">View All Exchanges →</Link></li>
               </ul>
             </div>
 
