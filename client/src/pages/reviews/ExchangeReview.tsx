@@ -15,11 +15,19 @@ import {
 import upholdLogo from "@/assets/logos/uphold-logo.png";
 import bitrueLogo from "@/assets/logos/bitrue-logo.png";
 import krakenLogo from "@/assets/logos/kraken-logo.png";
+import bitstampLogo from "@/assets/logos/bitstamp-logo.png";
+import coinbaseLogo from "@/assets/logos/coinbase-logo.png";
+import cryptocomLogo from "@/assets/logos/cryptocom-logo.png";
+import kucoinLogo from "@/assets/logos/kucoin-logo.png";
 
 const logoMap: Record<string, string> = {
   uphold: upholdLogo,
   bitrue: bitrueLogo,
-  kraken: krakenLogo
+  kraken: krakenLogo,
+  bitstamp: bitstampLogo,
+  coinbase: coinbaseLogo,
+  cryptocom: cryptocomLogo,
+  kucoin: kucoinLogo
 };
 
 const exchangeData: Record<string, {
@@ -176,6 +184,182 @@ const exchangeData: Record<string, {
     },
     paymentMethods: ["Bank Wire", "ACH (USA)", "SEPA (EU)", "Crypto Deposit", "Apple Pay", "Google Pay"],
     supportedCountries: "Available in most countries (some US state restrictions)"
+  },
+  bitstamp: {
+    name: "Bitstamp",
+    tagline: "Europe's Oldest Crypto Exchange",
+    rating: 4.5,
+    type: "Cryptocurrency Exchange",
+    founded: "2011",
+    headquarters: "Luxembourg",
+    website: "bitstamp.net",
+    affiliateLink: "https://www.bitstamp.net/?ref=allthingsxrpl",
+    bonus: "Low trading fees for high volume",
+    description: "Bitstamp is one of the oldest and most reputable cryptocurrency exchanges, founded in 2011 in Europe. It's known for its strong regulatory compliance, reliable service, and straightforward fee structure. Bitstamp offers XRP trading with deep liquidity and a user-friendly interface.",
+    features: [
+      "Established since 2011",
+      "Full regulatory compliance",
+      "Tradeview Pro platform",
+      "Instant buy with card",
+      "Staking rewards",
+      "Mobile trading app",
+      "API for automated trading",
+      "Institutional services"
+    ],
+    pros: [
+      "One of the oldest exchanges",
+      "Strong regulatory standing",
+      "Reliable uptime",
+      "Simple fee structure",
+      "Good liquidity for XRP",
+      "Trusted reputation"
+    ],
+    cons: [
+      "Fewer coins than competitors",
+      "Higher fees for small trades",
+      "Limited advanced features",
+      "Slower verification process"
+    ],
+    bestFor: "European traders who want a reliable, regulated exchange with a strong track record.",
+    fees: {
+      trading: "0.30% - 0.00% (volume-based)",
+      deposit: "Free (SEPA), 5% (card)",
+      withdrawal: "0.02 XRP"
+    },
+    paymentMethods: ["SEPA", "Bank Wire", "Credit/Debit Card", "Crypto Deposit"],
+    supportedCountries: "Available in 100+ countries including EU and most US states"
+  },
+  coinbase: {
+    name: "Coinbase",
+    tagline: "America's Largest Crypto Exchange",
+    rating: 4.4,
+    type: "Cryptocurrency Exchange",
+    founded: "2012",
+    headquarters: "San Francisco, USA",
+    website: "coinbase.com",
+    affiliateLink: "https://www.coinbase.com/join?ref=allthingsxrpl",
+    bonus: "$10 in free crypto for new users",
+    description: "Coinbase is the largest cryptocurrency exchange in the United States and is publicly traded on NASDAQ. After the SEC case resolution, XRP trading was restored. Known for its beginner-friendly interface, strong security, and regulatory compliance, it's the go-to choice for millions of Americans.",
+    features: [
+      "Publicly traded (NASDAQ: COIN)",
+      "Coinbase Pro for advanced trading",
+      "Coinbase Wallet integration",
+      "Coinbase Card (spend crypto)",
+      "Staking rewards",
+      "Learn & Earn program",
+      "Vault for secure storage",
+      "Recurring buys"
+    ],
+    pros: [
+      "Most trusted US exchange",
+      "Very beginner-friendly",
+      "Strong security record",
+      "Publicly traded company",
+      "Great mobile app",
+      "Educational resources"
+    ],
+    cons: [
+      "Higher fees than competitors",
+      "Limited customer support",
+      "Some coins not available",
+      "Complex fee structure"
+    ],
+    bestFor: "US beginners who want the most trusted, easy-to-use platform for buying XRP.",
+    fees: {
+      trading: "0.5% spread + flat fee",
+      deposit: "Free (ACH), 3.99% (card)",
+      withdrawal: "Network fees"
+    },
+    paymentMethods: ["ACH Bank Transfer", "Wire Transfer", "Debit Card", "PayPal", "Crypto Deposit"],
+    supportedCountries: "Available in 100+ countries with full US support"
+  },
+  cryptocom: {
+    name: "Crypto.com",
+    tagline: "All-in-One Crypto Super App",
+    rating: 4.3,
+    type: "Cryptocurrency Exchange",
+    founded: "2016",
+    headquarters: "Singapore",
+    website: "crypto.com",
+    affiliateLink: "https://crypto.com/app?ref=allthingsxrpl",
+    bonus: "Up to $25 signup bonus",
+    description: "Crypto.com is a comprehensive cryptocurrency platform offering an exchange, Visa card, DeFi wallet, and NFT marketplace. With aggressive marketing and a user-friendly app, it has grown rapidly. XRP holders can earn staking rewards and spend XRP with their metal Visa card.",
+    features: [
+      "Crypto.com Visa Card",
+      "Earn interest on XRP",
+      "DeFi Wallet",
+      "NFT marketplace",
+      "250+ cryptocurrencies",
+      "Supercharger events",
+      "Pay merchants with crypto",
+      "Margin trading"
+    ],
+    pros: [
+      "Metal Visa cards with cashback",
+      "Good staking/earn rates",
+      "All-in-one platform",
+      "Sleek mobile app",
+      "Wide coin selection",
+      "Good promotions"
+    ],
+    cons: [
+      "Confusing tier system",
+      "Staking lockups required",
+      "CRO token requirements",
+      "Spread fees on trades"
+    ],
+    bestFor: "Users who want a crypto lifestyle with cards, earn features, and an all-in-one app.",
+    fees: {
+      trading: "0.075% maker / 0.075% taker",
+      deposit: "Free (crypto), 2.99% (card)",
+      withdrawal: "0.25 XRP"
+    },
+    paymentMethods: ["Credit/Debit Card", "Bank Transfer", "Crypto Deposit", "Apple Pay", "Google Pay"],
+    supportedCountries: "Available in 90+ countries"
+  },
+  kucoin: {
+    name: "KuCoin",
+    tagline: "The People's Exchange",
+    rating: 4.4,
+    type: "Cryptocurrency Exchange",
+    founded: "2017",
+    headquarters: "Seychelles",
+    website: "kucoin.com",
+    affiliateLink: "https://www.kucoin.com/r?ref=allthingsxrpl",
+    bonus: "Welcome bonus for new users",
+    description: "KuCoin is known for its vast selection of altcoins and trading pairs, making it a favorite among crypto enthusiasts looking for variety. It offers XRP with numerous trading pairs, competitive fees, and features like trading bots, futures, and margin trading.",
+    features: [
+      "800+ cryptocurrencies",
+      "Trading bots",
+      "Futures trading",
+      "Margin trading (10x)",
+      "Lending & earning",
+      "NFT marketplace",
+      "KuCoin Spotlight (new tokens)",
+      "Low trading fees"
+    ],
+    pros: [
+      "Huge coin selection",
+      "Very low trading fees",
+      "Many XRP pairs available",
+      "Built-in trading bots",
+      "Good liquidity",
+      "Active promotions"
+    ],
+    cons: [
+      "Not licensed in US",
+      "Less regulatory oversight",
+      "Can be overwhelming",
+      "Withdrawal fees vary"
+    ],
+    bestFor: "Experienced traders who want access to many altcoins and trading features.",
+    fees: {
+      trading: "0.1% maker / 0.1% taker",
+      deposit: "Free (crypto)",
+      withdrawal: "0.25 XRP"
+    },
+    paymentMethods: ["Credit/Debit Card", "Bank Transfer", "P2P Trading", "Crypto Deposit", "Apple Pay"],
+    supportedCountries: "Available globally (some restrictions apply)"
   }
 };
 

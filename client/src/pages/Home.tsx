@@ -19,6 +19,15 @@ import tangemLogo from "@/assets/logos/tangem-logo.png";
 import upholdLogo from "@/assets/logos/uphold-logo.png";
 import bitrueLogo from "@/assets/logos/bitrue-logo.png";
 import krakenLogo from "@/assets/logos/kraken-logo.png";
+import bifrostLogo from "@/assets/logos/bifrost-logo.png";
+import gatehubLogo from "@/assets/logos/gatehub-logo.png";
+import trustwalletLogo from "@/assets/logos/trustwallet-logo.png";
+import ellipalLogo from "@/assets/logos/ellipal-logo.png";
+import trezorLogo from "@/assets/logos/trezor-logo.png";
+import bitstampLogo from "@/assets/logos/bitstamp-logo.png";
+import coinbaseLogo from "@/assets/logos/coinbase-logo.png";
+import cryptocomLogo from "@/assets/logos/cryptocom-logo.png";
+import kucoinLogo from "@/assets/logos/kucoin-logo.png";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { NewsletterForm } from "@/components/NewsletterForm";
@@ -80,6 +89,66 @@ const wallets = [
     popular: false,
     link: "https://tangem.com/?promocode=ALLTHINGSXRPL",
     logo: tangemLogo
+  },
+  {
+    id: 5,
+    name: "Bifrost Wallet",
+    slug: "bifrost",
+    type: "Mobile App",
+    rating: 9.2,
+    fees: "Free",
+    features: ["Privacy-Focused", "dApp Browser", "No Tracking", "Multi-Chain"],
+    popular: false,
+    link: "https://bifrostwallet.com/?ref=allthingsxrpl",
+    logo: bifrostLogo
+  },
+  {
+    id: 6,
+    name: "Trust Wallet",
+    slug: "trustwallet",
+    type: "Mobile App",
+    rating: 9.0,
+    fees: "Free",
+    features: ["70M+ Users", "Multi-Chain", "dApp Browser", "Staking"],
+    popular: false,
+    link: "https://trustwallet.com/?ref=allthingsxrpl",
+    logo: trustwalletLogo
+  },
+  {
+    id: 7,
+    name: "GateHub",
+    slug: "gatehub",
+    type: "Web Wallet",
+    rating: 8.8,
+    fees: "Low",
+    features: ["Fiat Gateway", "Multisig", "Trading", "Theft Cover"],
+    popular: false,
+    link: "https://gatehub.net/?ref=allthingsxrpl",
+    logo: gatehubLogo
+  },
+  {
+    id: 8,
+    name: "ELLIPAL Titan",
+    slug: "ellipal",
+    type: "Hardware",
+    rating: 9.4,
+    fees: "$169",
+    features: ["Air-Gapped", "QR Only", "Military-Grade", "Anti-Tamper"],
+    popular: false,
+    link: "https://www.ellipal.com/?ref=allthingsxrpl",
+    logo: ellipalLogo
+  },
+  {
+    id: 9,
+    name: "Trezor Safe 3",
+    slug: "trezor",
+    type: "Hardware",
+    rating: 9.2,
+    fees: "$79",
+    features: ["Open Source", "Secure Element", "Budget-Friendly", "Trusted"],
+    popular: false,
+    link: "https://trezor.io/?ref=allthingsxrpl",
+    logo: trezorLogo
   }
 ];
 
@@ -116,6 +185,50 @@ const exchanges = [
     color: "text-purple-500",
     bgColor: "bg-purple-500/20",
     logo: krakenLogo
+  },
+  {
+    id: 4,
+    name: "Coinbase",
+    slug: "coinbase",
+    bonus: "$10 Free Crypto",
+    features: ["Most Trusted", "Beginner-Friendly", "US Based"],
+    link: "https://www.coinbase.com/join?ref=allthingsxrpl",
+    color: "text-blue-400",
+    bgColor: "bg-blue-400/20",
+    logo: coinbaseLogo
+  },
+  {
+    id: 5,
+    name: "Bitstamp",
+    slug: "bitstamp",
+    bonus: "Volume Discounts",
+    features: ["Since 2011", "EU Regulated", "High Liquidity"],
+    link: "https://www.bitstamp.net/?ref=allthingsxrpl",
+    color: "text-emerald-500",
+    bgColor: "bg-emerald-500/20",
+    logo: bitstampLogo
+  },
+  {
+    id: 6,
+    name: "Crypto.com",
+    slug: "cryptocom",
+    bonus: "$25 Signup Bonus",
+    features: ["Visa Card", "Earn Interest", "250+ Coins"],
+    link: "https://crypto.com/app?ref=allthingsxrpl",
+    color: "text-indigo-400",
+    bgColor: "bg-indigo-400/20",
+    logo: cryptocomLogo
+  },
+  {
+    id: 7,
+    name: "KuCoin",
+    slug: "kucoin",
+    bonus: "Welcome Bonus",
+    features: ["800+ Coins", "Trading Bots", "Low Fees"],
+    link: "https://www.kucoin.com/r?ref=allthingsxrpl",
+    color: "text-teal-500",
+    bgColor: "bg-teal-500/20",
+    logo: kucoinLogo
   }
 ];
 

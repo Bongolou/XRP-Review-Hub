@@ -10,7 +10,12 @@ import {
   BarChart3,
   Coins,
   Sparkles,
-  Globe
+  Globe,
+  LineChart,
+  Search,
+  Layers,
+  Repeat,
+  Code
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -122,10 +127,136 @@ const dapps = [
     color: "from-cyan-500 to-blue-500",
     icon: Droplets,
     verified: true
+  },
+  {
+    id: 7,
+    name: "OnTheDex.live",
+    tagline: "Real-Time XRPL Token Data",
+    description: "OnTheDex.live provides real-time token data, price charts, trading volume, and market cap for all tokens on the XRP Ledger. Essential for XRPL traders and researchers.",
+    category: "Analytics",
+    features: [
+      "Real-time token prices",
+      "Trading volume tracking",
+      "Market cap data",
+      "Historical charts"
+    ],
+    website: "https://onthedex.live",
+    affiliate: "https://onthedex.live/?ref=allthingsxrpl",
+    color: "from-green-500 to-teal-500",
+    icon: LineChart,
+    verified: true
+  },
+  {
+    id: 8,
+    name: "XRPLWin",
+    tagline: "XRPL & Xahau Explorer",
+    description: "XRPLWin is a comprehensive explorer for both XRPL and Xahau networks. View account details, transactions, hooks, and network metrics with detailed analytics.",
+    category: "Explorer",
+    features: [
+      "Account explorer",
+      "Transaction details",
+      "Hooks monitoring",
+      "Network metrics"
+    ],
+    website: "https://xrplwin.com",
+    affiliate: "https://xrplwin.com/?ref=allthingsxrpl",
+    color: "from-yellow-500 to-orange-500",
+    icon: Search,
+    verified: true
+  },
+  {
+    id: 9,
+    name: "XRPLORER",
+    tagline: "Forensics-Focused Explorer",
+    description: "XRPLORER specializes in transaction tracing and forensic analysis on the XRP Ledger. Used by researchers and compliance teams to follow fund flows and investigate transactions.",
+    category: "Explorer",
+    features: [
+      "Transaction tracing",
+      "Fund flow analysis",
+      "Compliance tools",
+      "Account forensics"
+    ],
+    website: "https://xrplorer.com",
+    affiliate: "https://xrplorer.com/?ref=allthingsxrpl",
+    color: "from-red-500 to-pink-500",
+    icon: Search,
+    verified: true
+  },
+  {
+    id: 10,
+    name: "GateHub Trade",
+    tagline: "Web-Based XRPL Trading",
+    description: "GateHub Trade offers a browser-based trading interface for the XRPL DEX. Trade tokens directly on-chain with an intuitive web interface and fiat gateway access.",
+    category: "DEX",
+    features: [
+      "Web-based trading",
+      "XRPL DEX access",
+      "Fiat on/off ramps",
+      "Multiple wallets"
+    ],
+    website: "https://gatehub.net/trade",
+    affiliate: "https://gatehub.net/?ref=allthingsxrpl",
+    color: "from-blue-500 to-indigo-500",
+    icon: Repeat,
+    verified: true
+  },
+  {
+    id: 11,
+    name: "SOLO DEX",
+    tagline: "Advanced XRPL Trading",
+    description: "SOLO DEX provides advanced charting, trading pairs, and analytics for XRPL traders. Part of the Sologenic ecosystem with integrated rewards and staking.",
+    category: "DEX",
+    features: [
+      "Advanced charting",
+      "Custom trading pairs",
+      "SOLO rewards",
+      "Integrated staking"
+    ],
+    website: "https://sologenic.org/trade",
+    affiliate: "https://sologenic.org/trade?ref=allthingsxrpl",
+    color: "from-orange-500 to-yellow-500",
+    icon: BarChart3,
+    verified: true
+  },
+  {
+    id: 12,
+    name: "Xahau",
+    tagline: "Smart Contract Sidechain",
+    description: "Xahau is a hooks-enabled sidechain of XRPL, allowing smart contract functionality while maintaining compatibility. Build and deploy hooks for automated on-chain logic.",
+    category: "Sidechain",
+    features: [
+      "Hooks (smart contracts)",
+      "XRPL compatible",
+      "Native XAH token",
+      "Developer tools"
+    ],
+    website: "https://xahau.network",
+    affiliate: "https://xahau.network/?ref=allthingsxrpl",
+    color: "from-purple-500 to-indigo-500",
+    icon: Code,
+    verified: true
+  },
+  {
+    id: 13,
+    name: "XRPL EVM",
+    tagline: "Ethereum-Compatible Sidechain",
+    description: "XRPL EVM is an Ethereum-compatible sidechain launched in 2025. Deploy Solidity smart contracts and use familiar EVM tools while benefiting from XRPL's speed and low fees.",
+    category: "Sidechain",
+    features: [
+      "EVM compatibility",
+      "Solidity support",
+      "Axelar bridge",
+      "DeFi capabilities"
+    ],
+    website: "https://www.xrplevm.org",
+    affiliate: "https://www.xrplevm.org/?ref=allthingsxrpl",
+    color: "from-emerald-500 to-green-500",
+    icon: Layers,
+    verified: true
   }
 ];
 
-const categories = ["All", "Yield", "DeFi", "DEX", "NFT/Trading", "Analytics", "DeFi Tools"];
+const categories = ["All", "Yield", "DeFi", "DEX", "NFT/Trading", "Analytics", "DeFi Tools", "Explorer", "Sidechain"];
 
 export default function DApps() {
   return (

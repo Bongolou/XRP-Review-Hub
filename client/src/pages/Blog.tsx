@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ArrowRight, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const categories = ["All", "Ecosystem", "Guides", "Security", "NFTs", "Technology", "Institutional"];
+const categories = ["All", "Ecosystem", "Guides", "Security", "NFTs", "Technology", "Institutional", "DeFi"];
 
 const blogPosts = [
   {
@@ -141,6 +141,42 @@ const blogPosts = [
     date: "Nov 28, 2025",
     readTime: "10 min read",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&auto=format&fit=crop"
+  },
+  {
+    id: 16,
+    title: "XRPL EVM Sidechain: Complete Guide",
+    excerpt: "Everything you need to know about the new Ethereum-compatible sidechain launched on XRPL in 2025, enabling Solidity smart contracts.",
+    category: "Technology",
+    date: "Jan 26, 2026",
+    readTime: "12 min read",
+    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop"
+  },
+  {
+    id: 17,
+    title: "AMM Liquidity Pools: How to Earn Passive Income",
+    excerpt: "A step-by-step guide to providing liquidity on XRPL's native Automated Market Maker and earning trading fees.",
+    category: "DeFi",
+    date: "Jan 25, 2026",
+    readTime: "9 min read",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop"
+  },
+  {
+    id: 18,
+    title: "Multi-Purpose Tokens (MPT) Explained",
+    excerpt: "Understanding the new MPT standard on XRPL that enables advanced tokenization for real-world assets and compliance features.",
+    category: "Technology",
+    date: "Jan 24, 2026",
+    readTime: "8 min read",
+    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop"
+  },
+  {
+    id: 19,
+    title: "XRPL NFTs: XLS-20 Standard Deep Dive",
+    excerpt: "A comprehensive look at native NFTs on the XRP Ledger, including minting, trading, and the advantages over other chains.",
+    category: "NFTs",
+    date: "Jan 23, 2026",
+    readTime: "10 min read",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop"
   }
 ];
 
