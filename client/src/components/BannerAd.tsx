@@ -25,7 +25,7 @@ const defaultAds = {
     title: "Secure Your XRP",
     description: "Get a Ledger hardware wallet",
     ctaText: "Shop Now",
-    link: "https://shop.ledger.com/?r=allthingsxrpl"
+    link: "https://shop.ledger.com/?r=5d81f18905fe"
   }
 };
 

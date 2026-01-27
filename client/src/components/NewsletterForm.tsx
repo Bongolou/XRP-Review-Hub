@@ -13,13 +13,14 @@ export function NewsletterForm() {
 
     setIsLoading(true);
     try {
-      const response = await fetch("/api/subscribe", {
+      const response = await fetch("https://formspree.io/f/mzdrkdre", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
         body: JSON.stringify({ email }),
       });
-
-      const data = await response.json();
 
       if (response.ok) {
         toast({
@@ -30,7 +31,7 @@ export function NewsletterForm() {
       } else {
         toast({
           title: "Error",
-          description: data.error || "Failed to subscribe",
+          description: "Failed to subscribe. Please try again.",
           variant: "destructive",
         });
       }
@@ -49,6 +50,7 @@ export function NewsletterForm() {
     <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
       <input
         type="email"
+        name="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Enter your email address"

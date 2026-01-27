@@ -41,7 +41,7 @@ const comparisons: Record<string, ComparisonData> = {
       slug: "ledger",
       type: "Hardware",
       price: "$149",
-      link: "https://shop.ledger.com/?r=allthingsxrpl"
+      link: "https://shop.ledger.com/?r=5d81f18905fe"
     },
     winner: "Both",
     winnerReason: "Use Xaman for daily transactions and DeFi, pair with Ledger for cold storage of larger holdings.",
@@ -96,7 +96,7 @@ const comparisons: Record<string, ComparisonData> = {
       slug: "ledger",
       type: "Hardware",
       price: "$149",
-      link: "https://shop.ledger.com/?r=allthingsxrpl"
+      link: "https://shop.ledger.com/?r=5d81f18905fe"
     },
     wallet2: {
       name: "Tangem",

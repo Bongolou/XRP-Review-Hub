@@ -143,7 +143,7 @@ const walletData: Record<string, {
     price: "$149",
     platforms: ["Windows", "macOS", "Linux", "iOS", "Android"],
     website: "ledger.com",
-    affiliateLink: "https://shop.ledger.com/?r=allthingsxrpl",
+    affiliateLink: "https://shop.ledger.com/?r=5d81f18905fe",
     description: "Ledger is the most trusted name in hardware wallets. The Nano X offers Bluetooth connectivity for mobile use, a secure element chip for key storage, and supports over 5,500 cryptocurrencies including XRP. It's the gold standard for securing significant crypto holdings.",
     features: [
       "Bluetooth connectivity",
@@ -363,7 +363,7 @@ const walletData: Record<string, {
     price: "$169",
     platforms: ["iOS", "Android", "Air-Gapped Device"],
     website: "ellipal.com",
-    affiliateLink: "https://www.ellipal.com/?ref=allthingsxrpl",
+    affiliateLink: "https://www.ellipal.com/?rfsn=8973243.bbfab69",
     description: "ELLIPAL Titan is a fully air-gapped hardware wallet with no USB, WiFi, Bluetooth, or any connectivity. It uses QR codes for all communications, making it completely immune to remote attacks. With a large touchscreen and metal body, it offers military-grade security for serious investors.",
     features: [
       "100% air-gapped design",

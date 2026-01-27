@@ -19,13 +19,14 @@ export default function Contact() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://formspree.io/f/mqeqgeqk", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
         body: JSON.stringify(formData),
       });
-
-      const data = await response.json();
 
       if (response.ok) {
         toast({
@@ -36,7 +37,7 @@ export default function Contact() {
       } else {
         toast({
           title: "Error",
-          description: data.error || "Failed to send message",
+          description: "Failed to send message. Please try again.",
           variant: "destructive",
         });
       }
@@ -111,6 +112,7 @@ export default function Contact() {
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
@@ -126,6 +128,7 @@ export default function Contact() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
@@ -143,6 +146,7 @@ export default function Contact() {
               <input
                 type="text"
                 id="subject"
+                name="subject"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 required
@@ -158,6 +162,7 @@ export default function Contact() {
               </label>
               <textarea
                 id="message"
+                name="message"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 required

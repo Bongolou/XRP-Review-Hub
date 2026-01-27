@@ -72,7 +72,7 @@ function getRecommendation(answers: Answers): {
         name: "Ledger Nano X",
         slug: "ledger",
         description: "For your holding size, we recommend hardware security. The Ledger Nano X offers industry-leading protection with Bluetooth convenience.",
-        link: "https://shop.ledger.com/?r=allthingsxrpl"
+        link: "https://shop.ledger.com/?r=5d81f18905fe"
       },
       secondary: {
         name: "Xaman",

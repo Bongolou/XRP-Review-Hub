@@ -51,7 +51,7 @@ const wallets = [
     logo: xamanLogo,
     complementary: [
       { name: "Tangem Card (Backup)", link: "https://tangem.com/?promocode=ALLTHINGSXRPL" },
-      { name: "Ledger (Cold Storage)", link: "https://shop.ledger.com/?r=allthingsxrpl" }
+      { name: "Ledger (Cold Storage)", link: "https://shop.ledger.com/?r=5d81f18905fe" }
     ]
   },
   {
@@ -63,7 +63,7 @@ const wallets = [
     fees: "Standard",
     features: ["Cold Storage", "Bluetooth", "Multi-Currency", "High Security"],
     popular: false,
-    link: "https://shop.ledger.com/?r=allthingsxrpl",
+    link: "https://shop.ledger.com/?r=5d81f18905fe",
     logo: ledgerLogo
   },
   {
@@ -135,7 +135,7 @@ const wallets = [
     fees: "$169",
     features: ["Air-Gapped", "QR Only", "Military-Grade", "Anti-Tamper"],
     popular: false,
-    link: "https://www.ellipal.com/?ref=allthingsxrpl",
+    link: "https://www.ellipal.com/?rfsn=8973243.bbfab69",
     logo: ellipalLogo
   },
   {
