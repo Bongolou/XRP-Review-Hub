@@ -1,6 +1,7 @@
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { 
   Star, 
   Shield, 
@@ -33,430 +34,431 @@ const logoMap: Record<string, string> = {
 
 const walletData: Record<string, {
   name: string;
-  tagline: string;
+  taglineKey: string;
   rating: number;
-  type: string;
+  typeKey: string;
   price: string;
   platforms: string[];
   website: string;
   affiliateLink: string;
-  description: string;
-  features: string[];
-  pros: string[];
-  cons: string[];
-  bestFor: string;
-  securityFeatures: string[];
+  descriptionKey: string;
+  featureKeys: string[];
+  proKeys: string[];
+  conKeys: string[];
+  bestForKey: string;
+  securityFeatureKeys: string[];
 }> = {
   xaman: {
     name: "Xaman (XUMM)",
-    tagline: "The Top Free XRPL Wallet",
+    taglineKey: "walletDetail.xaman.tagline",
     rating: 4.9,
-    type: "Software Wallet",
+    typeKey: "wallet.type.mobileApp",
     price: "Free",
     platforms: ["iOS", "Android"],
     website: "xaman.app",
     affiliateLink: "https://xaman.app/?ref=allthingsxrpl",
-    description: "Xaman (formerly XUMM) is the premier mobile wallet for the XRP Ledger. Built by XRPL Labs, it offers the most comprehensive XRPL experience with support for all native features including the DEX, NFTs, AMM, and trustlines. It's completely free and designed specifically for the XRP Ledger ecosystem.",
-    features: [
-      "Full XRPL DEX integration",
-      "Native NFT support (XLS-20)",
-      "AMM liquidity provision",
-      "Trustline management",
-      "xApp ecosystem",
-      "Multi-account support",
-      "Transaction signing for web apps",
-      "PayString support"
+    descriptionKey: "walletDetail.xaman.description",
+    featureKeys: [
+      "walletDetail.xaman.feature1",
+      "walletDetail.xaman.feature2",
+      "walletDetail.xaman.feature3",
+      "walletDetail.xaman.feature4",
+      "walletDetail.xaman.feature5",
+      "walletDetail.xaman.feature6",
+      "walletDetail.xaman.feature7",
+      "walletDetail.xaman.feature8"
     ],
-    pros: [
-      "Completely free to use",
-      "Best-in-class XRPL feature support",
-      "Regular updates and active development",
-      "Strong security with biometrics",
-      "Large ecosystem of xApps",
-      "User-friendly interface",
-      "Built by XRPL Labs (core contributors)"
+    proKeys: [
+      "walletDetail.xaman.pro1",
+      "walletDetail.xaman.pro2",
+      "walletDetail.xaman.pro3",
+      "walletDetail.xaman.pro4",
+      "walletDetail.xaman.pro5",
+      "walletDetail.xaman.pro6",
+      "walletDetail.xaman.pro7"
     ],
-    cons: [
-      "Mobile only (no desktop version)",
-      "No hardware wallet functionality",
-      "Learning curve for advanced features"
+    conKeys: [
+      "walletDetail.xaman.con1",
+      "walletDetail.xaman.con2",
+      "walletDetail.xaman.con3"
     ],
-    bestFor: "Anyone looking for a free, full-featured XRPL wallet. Perfect for beginners and advanced users alike.",
-    securityFeatures: [
-      "Biometric authentication (Face ID/fingerprint)",
-      "PIN protection",
-      "Encrypted local storage",
-      "No private key cloud backup",
-      "Transaction signing confirmation",
-      "Security audit completed"
+    bestForKey: "walletDetail.xaman.bestFor",
+    securityFeatureKeys: [
+      "walletDetail.xaman.security1",
+      "walletDetail.xaman.security2",
+      "walletDetail.xaman.security3",
+      "walletDetail.xaman.security4",
+      "walletDetail.xaman.security5",
+      "walletDetail.xaman.security6"
     ]
   },
   tangem: {
     name: "Tangem",
-    tagline: "Tap-to-Sign Hardware Security",
+    taglineKey: "walletDetail.tangem.tagline",
     rating: 4.7,
-    type: "Hardware Wallet",
+    typeKey: "wallet.type.hardware",
     price: "$54.90",
     platforms: ["iOS", "Android", "NFC Card"],
     website: "tangem.com",
     affiliateLink: "https://tangem.com/?ref=allthingsxrpl",
-    description: "Tangem is a unique hardware wallet in the form of a credit card. It uses NFC technology to sign transactions through your smartphone, combining the security of hardware wallets with the convenience of mobile apps. The cards are water-resistant, durable, and have a 25-year lifespan.",
-    features: [
-      "NFC card form factor",
-      "Tap-to-sign transactions",
-      "Multi-card backup system",
-      "No battery required",
-      "Water and dust resistant",
-      "25-year chip lifespan",
-      "Multi-currency support",
-      "Works with mobile app"
+    descriptionKey: "walletDetail.tangem.description",
+    featureKeys: [
+      "walletDetail.tangem.feature1",
+      "walletDetail.tangem.feature2",
+      "walletDetail.tangem.feature3",
+      "walletDetail.tangem.feature4",
+      "walletDetail.tangem.feature5",
+      "walletDetail.tangem.feature6",
+      "walletDetail.tangem.feature7",
+      "walletDetail.tangem.feature8"
     ],
-    pros: [
-      "Extremely portable card design",
-      "No battery or charging needed",
-      "Very durable and water-resistant",
-      "Easy backup with multiple cards",
-      "Works seamlessly with phones",
-      "Affordable for hardware wallet"
+    proKeys: [
+      "walletDetail.tangem.pro1",
+      "walletDetail.tangem.pro2",
+      "walletDetail.tangem.pro3",
+      "walletDetail.tangem.pro4",
+      "walletDetail.tangem.pro5",
+      "walletDetail.tangem.pro6"
     ],
-    cons: [
-      "Requires smartphone to use",
-      "Newer company than Ledger",
-      "Limited advanced features",
-      "No screen on the card itself"
+    conKeys: [
+      "walletDetail.tangem.con1",
+      "walletDetail.tangem.con2",
+      "walletDetail.tangem.con3",
+      "walletDetail.tangem.con4"
     ],
-    bestFor: "Users who want hardware security without the bulk. Great for those always on the go.",
-    securityFeatures: [
-      "EAL6+ certified secure element",
-      "Private keys never leave card",
-      "NFC communication only",
-      "Multi-card backup option",
-      "No firmware updates needed",
-      "Independently audited"
+    bestForKey: "walletDetail.tangem.bestFor",
+    securityFeatureKeys: [
+      "walletDetail.tangem.security1",
+      "walletDetail.tangem.security2",
+      "walletDetail.tangem.security3",
+      "walletDetail.tangem.security4",
+      "walletDetail.tangem.security5",
+      "walletDetail.tangem.security6"
     ]
   },
   ledger: {
     name: "Ledger Nano X",
-    tagline: "Industry-Leading Hardware Security",
+    taglineKey: "walletDetail.ledger.tagline",
     rating: 4.8,
-    type: "Hardware Wallet",
+    typeKey: "wallet.type.hardware",
     price: "$149",
     platforms: ["Windows", "macOS", "Linux", "iOS", "Android"],
     website: "ledger.com",
     affiliateLink: "https://shop.ledger.com/?r=5d81f18905fe",
-    description: "Ledger is the most trusted name in hardware wallets. The Nano X offers Bluetooth connectivity for mobile use, a secure element chip for key storage, and supports over 5,500 cryptocurrencies including XRP. It's the gold standard for securing significant crypto holdings.",
-    features: [
-      "Bluetooth connectivity",
-      "Secure Element chip (CC EAL5+)",
-      "Built-in screen for verification",
-      "5,500+ supported assets",
-      "Ledger Live app integration",
-      "Staking support",
-      "NFT management",
-      "DeFi access via Ledger Live"
+    descriptionKey: "walletDetail.ledger.description",
+    featureKeys: [
+      "walletDetail.ledger.feature1",
+      "walletDetail.ledger.feature2",
+      "walletDetail.ledger.feature3",
+      "walletDetail.ledger.feature4",
+      "walletDetail.ledger.feature5",
+      "walletDetail.ledger.feature6",
+      "walletDetail.ledger.feature7",
+      "walletDetail.ledger.feature8"
     ],
-    pros: [
-      "Industry-leading security reputation",
-      "Large screen for transaction verification",
-      "Bluetooth for mobile convenience",
-      "Massive cryptocurrency support",
-      "Active development and updates",
-      "Strong community and support"
+    proKeys: [
+      "walletDetail.ledger.pro1",
+      "walletDetail.ledger.pro2",
+      "walletDetail.ledger.pro3",
+      "walletDetail.ledger.pro4",
+      "walletDetail.ledger.pro5",
+      "walletDetail.ledger.pro6"
     ],
-    cons: [
-      "Higher price point",
-      "Bluetooth adds complexity",
-      "Ledger Live required for full features",
-      "Past data breach concerns"
+    conKeys: [
+      "walletDetail.ledger.con1",
+      "walletDetail.ledger.con2",
+      "walletDetail.ledger.con3",
+      "walletDetail.ledger.con4"
     ],
-    bestFor: "Serious investors with significant holdings who want maximum security and multi-coin support.",
-    securityFeatures: [
-      "CC EAL5+ certified Secure Element",
-      "On-device transaction verification",
-      "24-word recovery phrase",
-      "PIN protection",
-      "Genuine check via Ledger Live",
-      "Regular security audits"
+    bestForKey: "walletDetail.ledger.bestFor",
+    securityFeatureKeys: [
+      "walletDetail.ledger.security1",
+      "walletDetail.ledger.security2",
+      "walletDetail.ledger.security3",
+      "walletDetail.ledger.security4",
+      "walletDetail.ledger.security5",
+      "walletDetail.ledger.security6"
     ]
   },
   crossmark: {
     name: "Crossmark",
-    tagline: "The Developer-Friendly Browser Wallet",
+    taglineKey: "walletDetail.crossmark.tagline",
     rating: 4.7,
-    type: "Browser Extension",
+    typeKey: "wallet.type.browserExt",
     price: "Free",
     platforms: ["Chrome", "Firefox", "Brave", "Edge"],
     website: "crossmark.io",
     affiliateLink: "https://crossmark.io/?ref=allthingsxrpl",
-    description: "Crossmark is a powerful browser extension wallet built for the XRP Ledger. It's designed with developers in mind, offering seamless Web3 authentication and multi-network support. Lightweight yet feature-rich, it's perfect for users who prefer browser-based crypto management.",
-    features: [
-      "Web3 authentication",
-      "Multi-network support",
-      "Developer-friendly APIs",
-      "Lightweight design",
-      "Transaction signing",
-      "dApp connectivity",
-      "Trustline management",
-      "Cross-browser compatibility"
+    descriptionKey: "walletDetail.crossmark.description",
+    featureKeys: [
+      "walletDetail.crossmark.feature1",
+      "walletDetail.crossmark.feature2",
+      "walletDetail.crossmark.feature3",
+      "walletDetail.crossmark.feature4",
+      "walletDetail.crossmark.feature5",
+      "walletDetail.crossmark.feature6",
+      "walletDetail.crossmark.feature7",
+      "walletDetail.crossmark.feature8"
     ],
-    pros: [
-      "Completely free to use",
-      "Fast and lightweight",
-      "Great developer documentation",
-      "Easy Web3 integration",
-      "Works across major browsers",
-      "Clean, intuitive interface"
+    proKeys: [
+      "walletDetail.crossmark.pro1",
+      "walletDetail.crossmark.pro2",
+      "walletDetail.crossmark.pro3",
+      "walletDetail.crossmark.pro4",
+      "walletDetail.crossmark.pro5",
+      "walletDetail.crossmark.pro6"
     ],
-    cons: [
-      "Browser-only (no mobile app)",
-      "Smaller community than Xaman",
-      "Fewer xApp integrations",
-      "Less beginner-focused tutorials"
+    conKeys: [
+      "walletDetail.crossmark.con1",
+      "walletDetail.crossmark.con2",
+      "walletDetail.crossmark.con3",
+      "walletDetail.crossmark.con4"
     ],
-    bestFor: "Developers and power users who prefer browser-based wallet access with seamless dApp integration.",
-    securityFeatures: [
-      "Encrypted local storage",
-      "Password protection",
-      "Transaction confirmation prompts",
-      "No private key cloud storage",
-      "Open-source codebase",
-      "Regular security updates"
+    bestForKey: "walletDetail.crossmark.bestFor",
+    securityFeatureKeys: [
+      "walletDetail.crossmark.security1",
+      "walletDetail.crossmark.security2",
+      "walletDetail.crossmark.security3",
+      "walletDetail.crossmark.security4",
+      "walletDetail.crossmark.security5",
+      "walletDetail.crossmark.security6"
     ]
   },
   bifrost: {
     name: "Bifrost Wallet",
-    tagline: "Privacy-Focused Multi-Chain Wallet",
+    taglineKey: "walletDetail.bifrost.tagline",
     rating: 4.6,
-    type: "Software Wallet",
+    typeKey: "wallet.type.mobileApp",
     price: "Free",
     platforms: ["iOS", "Android"],
     website: "bifrostwallet.com",
     affiliateLink: "https://bifrostwallet.com/?ref=allthingsxrpl",
-    description: "Bifrost Wallet is a privacy-focused, non-custodial mobile wallet with native XRP Ledger support. It features a built-in dApp browser, XRP Toolkit integration, and zero tracking or ads. Perfect for users who prioritize privacy while wanting full access to XRPL features.",
-    features: [
-      "Built-in dApp browser",
-      "XRP Toolkit integration",
-      "Multi-chain support",
-      "No ads or trackers",
-      "DEX access",
-      "NFT support",
-      "Trustline management",
-      "Token swaps"
+    descriptionKey: "walletDetail.bifrost.description",
+    featureKeys: [
+      "walletDetail.bifrost.feature1",
+      "walletDetail.bifrost.feature2",
+      "walletDetail.bifrost.feature3",
+      "walletDetail.bifrost.feature4",
+      "walletDetail.bifrost.feature5",
+      "walletDetail.bifrost.feature6",
+      "walletDetail.bifrost.feature7",
+      "walletDetail.bifrost.feature8"
     ],
-    pros: [
-      "Completely privacy-focused",
-      "No ads or tracking",
-      "Built-in dApp browser",
-      "Clean, intuitive interface",
-      "Active development team",
-      "Multi-chain support"
+    proKeys: [
+      "walletDetail.bifrost.pro1",
+      "walletDetail.bifrost.pro2",
+      "walletDetail.bifrost.pro3",
+      "walletDetail.bifrost.pro4",
+      "walletDetail.bifrost.pro5",
+      "walletDetail.bifrost.pro6"
     ],
-    cons: [
-      "Smaller community than Xaman",
-      "Mobile only",
-      "Fewer integrations",
-      "Less XRPL-specific features"
+    conKeys: [
+      "walletDetail.bifrost.con1",
+      "walletDetail.bifrost.con2",
+      "walletDetail.bifrost.con3",
+      "walletDetail.bifrost.con4"
     ],
-    bestFor: "Privacy-conscious users who want a clean, ad-free wallet with dApp browsing capabilities.",
-    securityFeatures: [
-      "Non-custodial design",
-      "Biometric authentication",
-      "Encrypted storage",
-      "No data collection",
-      "PIN protection",
-      "Secure key generation"
+    bestForKey: "walletDetail.bifrost.bestFor",
+    securityFeatureKeys: [
+      "walletDetail.bifrost.security1",
+      "walletDetail.bifrost.security2",
+      "walletDetail.bifrost.security3",
+      "walletDetail.bifrost.security4",
+      "walletDetail.bifrost.security5",
+      "walletDetail.bifrost.security6"
     ]
   },
   gatehub: {
     name: "GateHub",
-    tagline: "Web-Based Trading & Wallet Platform",
+    taglineKey: "walletDetail.gatehub.tagline",
     rating: 4.4,
-    type: "Web Wallet",
+    typeKey: "wallet.type.webWallet",
     price: "Free",
     platforms: ["Web", "iOS", "Android"],
     website: "gatehub.net",
     affiliateLink: "https://gatehub.net/?ref=allthingsxrpl",
-    description: "GateHub is one of the oldest and most established XRPL gateways, offering a web-based wallet with built-in exchange functionality. It provides fiat on/off ramps, multisignature support, and theft protection coverage. Ideal for users who prefer web-based access with trading features.",
-    features: [
-      "Built-in exchange",
-      "Fiat gateway (EUR/USD)",
-      "Multisignature support",
-      "Theft protection coverage",
-      "XRPL DEX access",
-      "Multiple wallet support",
-      "Transaction history",
-      "Network forensics tools"
+    descriptionKey: "walletDetail.gatehub.description",
+    featureKeys: [
+      "walletDetail.gatehub.feature1",
+      "walletDetail.gatehub.feature2",
+      "walletDetail.gatehub.feature3",
+      "walletDetail.gatehub.feature4",
+      "walletDetail.gatehub.feature5",
+      "walletDetail.gatehub.feature6",
+      "walletDetail.gatehub.feature7",
+      "walletDetail.gatehub.feature8"
     ],
-    pros: [
-      "Established since 2014",
-      "Fiat on/off ramps",
-      "Multisig security option",
-      "Theft cover insurance",
-      "Web-based convenience",
-      "Built-in trading"
+    proKeys: [
+      "walletDetail.gatehub.pro1",
+      "walletDetail.gatehub.pro2",
+      "walletDetail.gatehub.pro3",
+      "walletDetail.gatehub.pro4",
+      "walletDetail.gatehub.pro5",
+      "walletDetail.gatehub.pro6"
     ],
-    cons: [
-      "Requires email registration",
-      "Not fully non-custodial",
-      "Higher fees than DEX-only",
-      "Past security incidents"
+    conKeys: [
+      "walletDetail.gatehub.con1",
+      "walletDetail.gatehub.con2",
+      "walletDetail.gatehub.con3",
+      "walletDetail.gatehub.con4"
     ],
-    bestFor: "Users who want web-based access with fiat gateway and don't mind a more centralized approach.",
-    securityFeatures: [
-      "Multisignature accounts",
-      "2FA authentication",
-      "Theft cover protection",
-      "Email verification",
-      "Activity monitoring",
-      "IP whitelisting"
+    bestForKey: "walletDetail.gatehub.bestFor",
+    securityFeatureKeys: [
+      "walletDetail.gatehub.security1",
+      "walletDetail.gatehub.security2",
+      "walletDetail.gatehub.security3",
+      "walletDetail.gatehub.security4",
+      "walletDetail.gatehub.security5",
+      "walletDetail.gatehub.security6"
     ]
   },
   trustwallet: {
     name: "Trust Wallet",
-    tagline: "Binance's Multi-Chain Mobile Wallet",
+    taglineKey: "walletDetail.trustwallet.tagline",
     rating: 4.5,
-    type: "Software Wallet",
+    typeKey: "wallet.type.mobileApp",
     price: "Free",
     platforms: ["iOS", "Android", "Browser Extension"],
     website: "trustwallet.com",
     affiliateLink: "https://trustwallet.com/?ref=allthingsxrpl",
-    description: "Trust Wallet is one of the most popular mobile wallets globally with over 70 million users. Owned by Binance, it supports XRP along with thousands of other cryptocurrencies. It's beginner-friendly with a simple interface and built-in dApp browser for DeFi access.",
-    features: [
-      "70+ million users",
-      "Multi-chain support (70+ chains)",
-      "Built-in dApp browser",
-      "Staking support",
-      "NFT gallery",
-      "Token swaps",
-      "Price tracking",
-      "Binance integration"
+    descriptionKey: "walletDetail.trustwallet.description",
+    featureKeys: [
+      "walletDetail.trustwallet.feature1",
+      "walletDetail.trustwallet.feature2",
+      "walletDetail.trustwallet.feature3",
+      "walletDetail.trustwallet.feature4",
+      "walletDetail.trustwallet.feature5",
+      "walletDetail.trustwallet.feature6",
+      "walletDetail.trustwallet.feature7",
+      "walletDetail.trustwallet.feature8"
     ],
-    pros: [
-      "Massive user base",
-      "Very beginner-friendly",
-      "Huge multi-chain support",
-      "Backed by Binance",
-      "Regular updates",
-      "Built-in swaps"
+    proKeys: [
+      "walletDetail.trustwallet.pro1",
+      "walletDetail.trustwallet.pro2",
+      "walletDetail.trustwallet.pro3",
+      "walletDetail.trustwallet.pro4",
+      "walletDetail.trustwallet.pro5",
+      "walletDetail.trustwallet.pro6"
     ],
-    cons: [
-      "Not XRPL-specialized",
-      "No XRPL DEX integration",
-      "Limited XRPL features",
-      "Some centralization concerns"
+    conKeys: [
+      "walletDetail.trustwallet.con1",
+      "walletDetail.trustwallet.con2",
+      "walletDetail.trustwallet.con3",
+      "walletDetail.trustwallet.con4"
     ],
-    bestFor: "Beginners and multi-chain users who want XRP alongside many other cryptocurrencies.",
-    securityFeatures: [
-      "Non-custodial design",
-      "Biometric authentication",
-      "Recovery phrase backup",
-      "Transaction signing",
-      "Security audits",
-      "No data collection"
+    bestForKey: "walletDetail.trustwallet.bestFor",
+    securityFeatureKeys: [
+      "walletDetail.trustwallet.security1",
+      "walletDetail.trustwallet.security2",
+      "walletDetail.trustwallet.security3",
+      "walletDetail.trustwallet.security4",
+      "walletDetail.trustwallet.security5",
+      "walletDetail.trustwallet.security6"
     ]
   },
   ellipal: {
     name: "ELLIPAL Titan",
-    tagline: "Air-Gapped Military-Grade Security",
+    taglineKey: "walletDetail.ellipal.tagline",
     rating: 4.7,
-    type: "Hardware Wallet",
+    typeKey: "wallet.type.hardware",
     price: "$169",
     platforms: ["iOS", "Android", "Air-Gapped Device"],
     website: "ellipal.com",
     affiliateLink: "https://www.ellipal.com/?rfsn=8973243.bbfab69",
-    description: "ELLIPAL Titan is a fully air-gapped hardware wallet with no USB, WiFi, Bluetooth, or any connectivity. It uses QR codes for all communications, making it completely immune to remote attacks. With a large touchscreen and metal body, it offers military-grade security for serious investors.",
-    features: [
-      "100% air-gapped design",
-      "QR code communication only",
-      "Large touchscreen display",
-      "Metal anti-tamper body",
-      "10,000+ token support",
-      "Staking support",
-      "Multi-account management",
-      "Self-destruct on tamper"
+    descriptionKey: "walletDetail.ellipal.description",
+    featureKeys: [
+      "walletDetail.ellipal.feature1",
+      "walletDetail.ellipal.feature2",
+      "walletDetail.ellipal.feature3",
+      "walletDetail.ellipal.feature4",
+      "walletDetail.ellipal.feature5",
+      "walletDetail.ellipal.feature6",
+      "walletDetail.ellipal.feature7",
+      "walletDetail.ellipal.feature8"
     ],
-    pros: [
-      "Completely air-gapped",
-      "No remote attack surface",
-      "Large easy-to-use screen",
-      "Extremely durable design",
-      "Anti-tamper protection",
-      "No connectivity = no hacks"
+    proKeys: [
+      "walletDetail.ellipal.pro1",
+      "walletDetail.ellipal.pro2",
+      "walletDetail.ellipal.pro3",
+      "walletDetail.ellipal.pro4",
+      "walletDetail.ellipal.pro5",
+      "walletDetail.ellipal.pro6"
     ],
-    cons: [
-      "Higher price point",
-      "QR scanning takes longer",
-      "Requires mobile app",
-      "Bulkier than Ledger"
+    conKeys: [
+      "walletDetail.ellipal.con1",
+      "walletDetail.ellipal.con2",
+      "walletDetail.ellipal.con3",
+      "walletDetail.ellipal.con4"
     ],
-    bestFor: "Maximum security seekers who want zero remote attack surface and don't mind the extra steps.",
-    securityFeatures: [
-      "EAL5+ secure element",
-      "100% air-gapped",
-      "QR code only communication",
-      "Anti-tamper self-destruct",
-      "Metal sealed enclosure",
-      "Independently audited"
+    bestForKey: "walletDetail.ellipal.bestFor",
+    securityFeatureKeys: [
+      "walletDetail.ellipal.security1",
+      "walletDetail.ellipal.security2",
+      "walletDetail.ellipal.security3",
+      "walletDetail.ellipal.security4",
+      "walletDetail.ellipal.security5",
+      "walletDetail.ellipal.security6"
     ]
   },
   trezor: {
     name: "Trezor Safe 3",
-    tagline: "Open-Source Hardware Security",
+    taglineKey: "walletDetail.trezor.tagline",
     rating: 4.6,
-    type: "Hardware Wallet",
+    typeKey: "wallet.type.hardware",
     price: "$79",
     platforms: ["Windows", "macOS", "Linux"],
     website: "trezor.io",
     affiliateLink: "https://trezor.io/?ref=allthingsxrpl",
-    description: "Trezor is the original hardware wallet, pioneering cold storage security since 2014. The Safe 3 offers a secure element chip, open-source firmware, and support for thousands of cryptocurrencies including XRP. It's a trusted choice for security-conscious users who value transparency.",
-    features: [
-      "Secure Element chip",
-      "Open-source firmware",
-      "8,000+ supported assets",
-      "Trezor Suite app",
-      "Password manager",
-      "U2F authentication",
-      "Shamir backup option",
-      "Coin control features"
+    descriptionKey: "walletDetail.trezor.description",
+    featureKeys: [
+      "walletDetail.trezor.feature1",
+      "walletDetail.trezor.feature2",
+      "walletDetail.trezor.feature3",
+      "walletDetail.trezor.feature4",
+      "walletDetail.trezor.feature5",
+      "walletDetail.trezor.feature6",
+      "walletDetail.trezor.feature7",
+      "walletDetail.trezor.feature8"
     ],
-    pros: [
-      "Original hardware wallet brand",
-      "Fully open-source",
-      "Budget-friendly option",
-      "Strong track record",
-      "Active development",
-      "Transparent security"
+    proKeys: [
+      "walletDetail.trezor.pro1",
+      "walletDetail.trezor.pro2",
+      "walletDetail.trezor.pro3",
+      "walletDetail.trezor.pro4",
+      "walletDetail.trezor.pro5",
+      "walletDetail.trezor.pro6"
     ],
-    cons: [
-      "No Bluetooth (USB only)",
-      "Smaller screen than competitors",
-      "Some features need Suite app",
-      "Less mobile-friendly"
+    conKeys: [
+      "walletDetail.trezor.con1",
+      "walletDetail.trezor.con2",
+      "walletDetail.trezor.con3",
+      "walletDetail.trezor.con4"
     ],
-    bestFor: "Security-focused users who value open-source transparency and want a trusted, affordable hardware wallet.",
-    securityFeatures: [
-      "Secure Element (EAL6+)",
-      "Open-source verification",
-      "PIN protection",
-      "Passphrase support",
-      "Shamir backup (SLIP39)",
-      "Regular security audits"
+    bestForKey: "walletDetail.trezor.bestFor",
+    securityFeatureKeys: [
+      "walletDetail.trezor.security1",
+      "walletDetail.trezor.security2",
+      "walletDetail.trezor.security3",
+      "walletDetail.trezor.security4",
+      "walletDetail.trezor.security5",
+      "walletDetail.trezor.security6"
     ]
   }
 };
 
 export default function WalletReview() {
   const { slug } = useParams<{ slug: string }>();
+  const { t } = useLanguage();
   const wallet = walletData[slug || ""];
 
   if (!wallet) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-24 text-center">
-          <h1 className="text-4xl font-bold mb-4">Wallet Not Found</h1>
-          <p className="text-muted-foreground mb-8">The wallet you're looking for doesn't exist.</p>
+          <h1 className="text-4xl font-bold mb-4">{t("walletReview.notFound")}</h1>
+          <p className="text-muted-foreground mb-8">{t("walletReview.notFoundDesc")}</p>
           <Button asChild>
-            <Link href="/#wallets">View All Wallets</Link>
+            <Link href="/#wallets">{t("walletReview.viewAll")}</Link>
           </Button>
         </div>
       </Layout>
@@ -468,7 +470,7 @@ export default function WalletReview() {
       <div className="container mx-auto px-4 py-24 max-w-4xl">
         <Link href="/#wallets" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="h-4 w-4" />
-          Back to Wallet Comparison
+          {t("walletReview.backToComparison")}
         </Link>
 
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8">
@@ -480,9 +482,9 @@ export default function WalletReview() {
                 </div>
               )}
               <div>
-                <div className="text-sm text-primary font-display mb-2">{wallet.type}</div>
+                <div className="text-sm text-primary font-display mb-2">{t(wallet.typeKey)}</div>
                 <h1 className="text-3xl md:text-4xl font-black font-display mb-2">{wallet.name}</h1>
-                <p className="text-xl text-muted-foreground">{wallet.tagline}</p>
+                <p className="text-xl text-muted-foreground">{t(wallet.taglineKey)}</p>
               </div>
             </div>
             <div className="flex flex-col items-start md:items-end gap-2">
@@ -504,7 +506,7 @@ export default function WalletReview() {
           </div>
 
           <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-            {wallet.description}
+            {t(wallet.descriptionKey)}
           </p>
 
           <a 
@@ -514,7 +516,7 @@ export default function WalletReview() {
             className="inline-flex items-center gap-2 h-12 px-8 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"
             data-testid={`button-get-${slug}`}
           >
-            Get {wallet.name} <ExternalLink className="h-4 w-4" />
+            {t("walletReview.get")} {wallet.name} <ExternalLink className="h-4 w-4" />
           </a>
         </div>
 
@@ -522,13 +524,13 @@ export default function WalletReview() {
           <div className="bg-card/30 border border-white/10 rounded-2xl p-6">
             <h2 className="text-xl font-bold font-display mb-4 flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-400" />
-              Pros
+              {t("walletReview.pros")}
             </h2>
             <ul className="space-y-2">
-              {wallet.pros.map((pro) => (
-                <li key={pro} className="flex items-start gap-2 text-muted-foreground">
+              {wallet.proKeys.map((proKey) => (
+                <li key={proKey} className="flex items-start gap-2 text-muted-foreground">
                   <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-1" />
-                  {pro}
+                  {t(proKey)}
                 </li>
               ))}
             </ul>
@@ -536,13 +538,13 @@ export default function WalletReview() {
           <div className="bg-card/30 border border-white/10 rounded-2xl p-6">
             <h2 className="text-xl font-bold font-display mb-4 flex items-center gap-2">
               <XCircle className="h-5 w-5 text-red-400" />
-              Cons
+              {t("walletReview.cons")}
             </h2>
             <ul className="space-y-2">
-              {wallet.cons.map((con) => (
-                <li key={con} className="flex items-start gap-2 text-muted-foreground">
+              {wallet.conKeys.map((conKey) => (
+                <li key={conKey} className="flex items-start gap-2 text-muted-foreground">
                   <XCircle className="h-4 w-4 text-red-400 shrink-0 mt-1" />
-                  {con}
+                  {t(conKey)}
                 </li>
               ))}
             </ul>
@@ -552,13 +554,13 @@ export default function WalletReview() {
         <div className="bg-card/30 border border-white/10 rounded-2xl p-6 mb-8">
           <h2 className="text-xl font-bold font-display mb-4 flex items-center gap-2">
             <Globe className="h-5 w-5 text-primary" />
-            Key Features
+            {t("walletReview.keyFeatures")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {wallet.features.map((feature) => (
-              <div key={feature} className="flex items-center gap-2 text-muted-foreground">
+            {wallet.featureKeys.map((featureKey) => (
+              <div key={featureKey} className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
-                {feature}
+                {t(featureKey)}
               </div>
             ))}
           </div>
@@ -567,21 +569,21 @@ export default function WalletReview() {
         <div className="bg-card/30 border border-white/10 rounded-2xl p-6 mb-8">
           <h2 className="text-xl font-bold font-display mb-4 flex items-center gap-2">
             <Shield className="h-5 w-5 text-secondary" />
-            Security Features
+            {t("walletReview.securityFeatures")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {wallet.securityFeatures.map((feature) => (
-              <div key={feature} className="flex items-center gap-2 text-muted-foreground">
+            {wallet.securityFeatureKeys.map((featureKey) => (
+              <div key={featureKey} className="flex items-center gap-2 text-muted-foreground">
                 <Shield className="h-4 w-4 text-secondary shrink-0" />
-                {feature}
+                {t(featureKey)}
               </div>
             ))}
           </div>
         </div>
 
         <div className="bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 rounded-2xl p-6 mb-8">
-          <h2 className="text-xl font-bold font-display mb-2">Best For</h2>
-          <p className="text-muted-foreground">{wallet.bestFor}</p>
+          <h2 className="text-xl font-bold font-display mb-2">{t("walletReview.bestFor")}</h2>
+          <p className="text-muted-foreground">{t(wallet.bestForKey)}</p>
         </div>
 
         <div className="text-center">
@@ -591,10 +593,10 @@ export default function WalletReview() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-14 px-10 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-lg transition-colors"
           >
-            Get {wallet.name} Today <ExternalLink className="h-5 w-5" />
+            {t("walletReview.get")} {wallet.name} {t("walletReview.getToday")} <ExternalLink className="h-5 w-5" />
           </a>
           <p className="mt-4 text-sm text-muted-foreground">
-            Affiliate link - we may earn a commission at no extra cost to you
+            {t("walletReview.affiliateDisclaimer")}
           </p>
         </div>
       </div>

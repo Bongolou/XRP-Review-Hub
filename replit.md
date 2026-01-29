@@ -81,6 +81,12 @@ The site supports 8 languages: English (en), Spanish (es), Chinese (zh), Japanes
 - Features section (security, yield, guides)
 - Newsletter CTA
 - Footer (all links, disclaimers, RSS feed)
+- **About page**: Full content translated (mission statement, 4 feature cards, affiliate disclosure) across all 8 languages
+- **Contact page**: All form labels, success/error messages, and contact info sections translated across all 8 languages
+- **FAQ page**: Section headers, 14 Q&A pairs, category labels, and CTA translated across all 8 languages
+- **Getting Started page**: 5-step guide with titles, descriptions, tips, warnings, and CTA buttons translated across all 8 languages
+- **Wallet detail pages**: UI elements (buttons, labels, section headers) translated; detailed content in English with UI fallback pattern
+- **Exchange detail pages**: UI elements translated; detailed content in English with UI fallback pattern
 
 ### Translation Key Structure
 - `wallets.sectionTitle/sectionSubtitle`: Wallet section headers

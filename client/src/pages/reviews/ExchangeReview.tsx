@@ -1,6 +1,7 @@
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { 
   Star, 
   Shield, 
@@ -32,349 +33,350 @@ const logoMap: Record<string, string> = {
 
 const exchangeData: Record<string, {
   name: string;
-  tagline: string;
+  taglineKey: string;
   rating: number;
-  type: string;
+  typeKey: string;
   founded: string;
   headquarters: string;
   website: string;
   affiliateLink: string;
-  bonus: string;
-  description: string;
-  features: string[];
-  pros: string[];
-  cons: string[];
-  bestFor: string;
+  bonusKey: string;
+  descriptionKey: string;
+  featureKeys: string[];
+  proKeys: string[];
+  conKeys: string[];
+  bestForKey: string;
   fees: {
     trading: string;
     deposit: string;
     withdrawal: string;
   };
-  paymentMethods: string[];
-  supportedCountries: string;
+  paymentMethodKeys: string[];
+  supportedCountriesKey: string;
 }> = {
   uphold: {
     name: "Uphold",
-    tagline: "Buy XRP Directly with Fiat",
+    taglineKey: "exchangeDetail.uphold.tagline",
     rating: 4.5,
-    type: "Multi-Asset Platform",
+    typeKey: "exchangeDetail.uphold.type",
     founded: "2015",
     headquarters: "New York, USA",
     website: "uphold.com",
     affiliateLink: "https://uphold.com/sign-up?referral=allthingsxrpl",
-    bonus: "$20 in XRP for new users",
-    description: "Uphold is a multi-asset digital money platform that makes it easy to buy, hold, and trade XRP directly with fiat currency. Unlike many US exchanges that delisted XRP, Uphold has continued to support XRP trading, making it one of the most accessible options for American users.",
-    features: [
-      "Direct XRP purchases with USD/EUR",
-      "Debit card for spending crypto",
-      "Recurring buy feature",
-      "64+ cryptocurrencies",
-      "Precious metals trading",
-      "US equities access",
-      "Instant withdrawals to external wallets",
-      "AutoPilot (dollar-cost averaging)"
+    bonusKey: "exchangeDetail.uphold.bonus",
+    descriptionKey: "exchangeDetail.uphold.description",
+    featureKeys: [
+      "exchangeDetail.uphold.feature1",
+      "exchangeDetail.uphold.feature2",
+      "exchangeDetail.uphold.feature3",
+      "exchangeDetail.uphold.feature4",
+      "exchangeDetail.uphold.feature5",
+      "exchangeDetail.uphold.feature6",
+      "exchangeDetail.uphold.feature7",
+      "exchangeDetail.uphold.feature8"
     ],
-    pros: [
-      "One of few US platforms with XRP",
-      "Buy XRP directly with bank/card",
-      "No trading fees (spread only)",
-      "Easy-to-use interface",
-      "Uphold card for spending",
-      "Fast external withdrawals"
+    proKeys: [
+      "exchangeDetail.uphold.pro1",
+      "exchangeDetail.uphold.pro2",
+      "exchangeDetail.uphold.pro3",
+      "exchangeDetail.uphold.pro4",
+      "exchangeDetail.uphold.pro5",
+      "exchangeDetail.uphold.pro6"
     ],
-    cons: [
-      "Spreads can be 1-2%",
-      "Limited advanced trading features",
-      "No margin trading",
-      "Customer support can be slow"
+    conKeys: [
+      "exchangeDetail.uphold.con1",
+      "exchangeDetail.uphold.con2",
+      "exchangeDetail.uphold.con3",
+      "exchangeDetail.uphold.con4"
     ],
-    bestFor: "US residents who want a simple way to buy XRP with a bank account or debit card.",
+    bestForKey: "exchangeDetail.uphold.bestFor",
     fees: {
       trading: "0% (spread only, ~1-2%)",
       deposit: "Free (ACH), 3.99% (card)",
       withdrawal: "Network fees only"
     },
-    paymentMethods: ["Bank Transfer (ACH)", "Debit/Credit Card", "Wire Transfer", "Crypto Deposit"],
-    supportedCountries: "Available in 180+ countries including USA (most states)"
+    paymentMethodKeys: ["exchangeDetail.payment.bankTransfer", "exchangeDetail.payment.debitCard", "exchangeDetail.payment.wire", "exchangeDetail.payment.crypto"],
+    supportedCountriesKey: "exchangeDetail.uphold.countries"
   },
   bitrue: {
     name: "Bitrue",
-    tagline: "XRP-Focused Trading Platform",
+    taglineKey: "exchangeDetail.bitrue.tagline",
     rating: 4.3,
-    type: "Cryptocurrency Exchange",
+    typeKey: "exchangeDetail.bitrue.type",
     founded: "2018",
     headquarters: "Singapore",
     website: "bitrue.com",
     affiliateLink: "https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL",
-    bonus: "Up to $3,000 welcome bonus",
-    description: "Bitrue is a Singapore-based cryptocurrency exchange that has positioned itself as an XRP-friendly platform. It offers extensive XRP trading pairs, staking rewards, and was one of the first exchanges to support various XRPL tokens. It's popular among XRP enthusiasts for its strong ecosystem support.",
-    features: [
-      "100+ XRP trading pairs",
-      "XRP staking/yield programs",
-      "XRPL token support",
-      "Futures trading",
-      "Bitrue Earn (interest)",
-      "Power Piggy savings",
-      "NFT marketplace",
-      "Mobile app"
+    bonusKey: "exchangeDetail.bitrue.bonus",
+    descriptionKey: "exchangeDetail.bitrue.description",
+    featureKeys: [
+      "exchangeDetail.bitrue.feature1",
+      "exchangeDetail.bitrue.feature2",
+      "exchangeDetail.bitrue.feature3",
+      "exchangeDetail.bitrue.feature4",
+      "exchangeDetail.bitrue.feature5",
+      "exchangeDetail.bitrue.feature6",
+      "exchangeDetail.bitrue.feature7",
+      "exchangeDetail.bitrue.feature8"
     ],
-    pros: [
-      "Excellent XRP pair selection",
-      "Strong XRPL ecosystem support",
-      "Competitive trading fees",
-      "Yield opportunities on XRP",
-      "Active promotions and bonuses",
-      "Good liquidity"
+    proKeys: [
+      "exchangeDetail.bitrue.pro1",
+      "exchangeDetail.bitrue.pro2",
+      "exchangeDetail.bitrue.pro3",
+      "exchangeDetail.bitrue.pro4",
+      "exchangeDetail.bitrue.pro5",
+      "exchangeDetail.bitrue.pro6"
     ],
-    cons: [
-      "Not available in some countries",
-      "Less regulated than US exchanges",
-      "Interface can be overwhelming",
-      "Past security incident (2019)"
+    conKeys: [
+      "exchangeDetail.bitrue.con1",
+      "exchangeDetail.bitrue.con2",
+      "exchangeDetail.bitrue.con3",
+      "exchangeDetail.bitrue.con4"
     ],
-    bestFor: "XRP traders who want maximum trading pairs and yield opportunities.",
+    bestForKey: "exchangeDetail.bitrue.bestFor",
     fees: {
       trading: "0.098% maker/taker",
       deposit: "Free",
       withdrawal: "0.25 XRP"
     },
-    paymentMethods: ["Crypto Deposit", "Credit Card (via partners)", "P2P Trading"],
-    supportedCountries: "Available globally (restrictions in USA, some EU countries)"
+    paymentMethodKeys: ["exchangeDetail.payment.crypto", "exchangeDetail.payment.creditCard", "exchangeDetail.payment.p2p"],
+    supportedCountriesKey: "exchangeDetail.bitrue.countries"
   },
   kraken: {
     name: "Kraken",
-    tagline: "Trusted Security & Liquidity",
+    taglineKey: "exchangeDetail.kraken.tagline",
     rating: 4.6,
-    type: "Cryptocurrency Exchange",
+    typeKey: "exchangeDetail.kraken.type",
     founded: "2011",
     headquarters: "San Francisco, USA",
     website: "kraken.com",
     affiliateLink: "https://www.kraken.com/sign-up?clickid=allthingsxrpl",
-    bonus: "Competitive trading fees",
-    description: "Kraken is one of the oldest and most trusted cryptocurrency exchanges in the world. Founded in 2011, it has built a reputation for security and reliability. Kraken offers XRP trading in many jurisdictions and provides professional-grade trading features alongside a beginner-friendly interface.",
-    features: [
-      "Kraken Pro for advanced trading",
-      "Staking rewards",
-      "Futures trading",
-      "Margin trading (up to 5x)",
-      "OTC desk for large trades",
-      "24/7 live support",
-      "Bank funding (ACH/wire)",
-      "API for automated trading"
+    bonusKey: "exchangeDetail.kraken.bonus",
+    descriptionKey: "exchangeDetail.kraken.description",
+    featureKeys: [
+      "exchangeDetail.kraken.feature1",
+      "exchangeDetail.kraken.feature2",
+      "exchangeDetail.kraken.feature3",
+      "exchangeDetail.kraken.feature4",
+      "exchangeDetail.kraken.feature5",
+      "exchangeDetail.kraken.feature6",
+      "exchangeDetail.kraken.feature7",
+      "exchangeDetail.kraken.feature8"
     ],
-    pros: [
-      "Excellent security track record",
-      "Never been hacked",
-      "Strong regulatory compliance",
-      "Deep liquidity",
-      "Professional trading tools",
-      "Good customer support"
+    proKeys: [
+      "exchangeDetail.kraken.pro1",
+      "exchangeDetail.kraken.pro2",
+      "exchangeDetail.kraken.pro3",
+      "exchangeDetail.kraken.pro4",
+      "exchangeDetail.kraken.pro5",
+      "exchangeDetail.kraken.pro6"
     ],
-    cons: [
-      "Verification can take time",
-      "Higher fees for instant buy",
-      "XRP not available in all US states",
-      "Interface learning curve"
+    conKeys: [
+      "exchangeDetail.kraken.con1",
+      "exchangeDetail.kraken.con2",
+      "exchangeDetail.kraken.con3",
+      "exchangeDetail.kraken.con4"
     ],
-    bestFor: "Traders who prioritize security and want professional-grade trading features.",
+    bestForKey: "exchangeDetail.kraken.bestFor",
     fees: {
       trading: "0.16% maker / 0.26% taker",
       deposit: "Free (crypto), varies (fiat)",
       withdrawal: "0.02 XRP"
     },
-    paymentMethods: ["Bank Wire", "ACH (USA)", "SEPA (EU)", "Crypto Deposit", "Apple Pay", "Google Pay"],
-    supportedCountries: "Available in most countries (some US state restrictions)"
+    paymentMethodKeys: ["exchangeDetail.payment.wire", "exchangeDetail.payment.ach", "exchangeDetail.payment.sepa", "exchangeDetail.payment.crypto", "exchangeDetail.payment.applePay", "exchangeDetail.payment.googlePay"],
+    supportedCountriesKey: "exchangeDetail.kraken.countries"
   },
   bitstamp: {
     name: "Bitstamp",
-    tagline: "Europe's Oldest Crypto Exchange",
+    taglineKey: "exchangeDetail.bitstamp.tagline",
     rating: 4.5,
-    type: "Cryptocurrency Exchange",
+    typeKey: "exchangeDetail.bitstamp.type",
     founded: "2011",
     headquarters: "Luxembourg",
     website: "bitstamp.net",
     affiliateLink: "https://www.bitstamp.net/?ref=allthingsxrpl",
-    bonus: "Low trading fees for high volume",
-    description: "Bitstamp is one of the oldest and most reputable cryptocurrency exchanges, founded in 2011 in Europe. It's known for its strong regulatory compliance, reliable service, and straightforward fee structure. Bitstamp offers XRP trading with deep liquidity and a user-friendly interface.",
-    features: [
-      "Established since 2011",
-      "Full regulatory compliance",
-      "Tradeview Pro platform",
-      "Instant buy with card",
-      "Staking rewards",
-      "Mobile trading app",
-      "API for automated trading",
-      "Institutional services"
+    bonusKey: "exchangeDetail.bitstamp.bonus",
+    descriptionKey: "exchangeDetail.bitstamp.description",
+    featureKeys: [
+      "exchangeDetail.bitstamp.feature1",
+      "exchangeDetail.bitstamp.feature2",
+      "exchangeDetail.bitstamp.feature3",
+      "exchangeDetail.bitstamp.feature4",
+      "exchangeDetail.bitstamp.feature5",
+      "exchangeDetail.bitstamp.feature6",
+      "exchangeDetail.bitstamp.feature7",
+      "exchangeDetail.bitstamp.feature8"
     ],
-    pros: [
-      "One of the oldest exchanges",
-      "Strong regulatory standing",
-      "Reliable uptime",
-      "Simple fee structure",
-      "Good liquidity for XRP",
-      "Trusted reputation"
+    proKeys: [
+      "exchangeDetail.bitstamp.pro1",
+      "exchangeDetail.bitstamp.pro2",
+      "exchangeDetail.bitstamp.pro3",
+      "exchangeDetail.bitstamp.pro4",
+      "exchangeDetail.bitstamp.pro5",
+      "exchangeDetail.bitstamp.pro6"
     ],
-    cons: [
-      "Fewer coins than competitors",
-      "Higher fees for small trades",
-      "Limited advanced features",
-      "Slower verification process"
+    conKeys: [
+      "exchangeDetail.bitstamp.con1",
+      "exchangeDetail.bitstamp.con2",
+      "exchangeDetail.bitstamp.con3",
+      "exchangeDetail.bitstamp.con4"
     ],
-    bestFor: "European traders who want a reliable, regulated exchange with a strong track record.",
+    bestForKey: "exchangeDetail.bitstamp.bestFor",
     fees: {
       trading: "0.30% - 0.00% (volume-based)",
       deposit: "Free (SEPA), 5% (card)",
       withdrawal: "0.02 XRP"
     },
-    paymentMethods: ["SEPA", "Bank Wire", "Credit/Debit Card", "Crypto Deposit"],
-    supportedCountries: "Available in 100+ countries including EU and most US states"
+    paymentMethodKeys: ["exchangeDetail.payment.sepa", "exchangeDetail.payment.wire", "exchangeDetail.payment.creditCard", "exchangeDetail.payment.crypto"],
+    supportedCountriesKey: "exchangeDetail.bitstamp.countries"
   },
   coinbase: {
     name: "Coinbase",
-    tagline: "America's Largest Crypto Exchange",
+    taglineKey: "exchangeDetail.coinbase.tagline",
     rating: 4.4,
-    type: "Cryptocurrency Exchange",
+    typeKey: "exchangeDetail.coinbase.type",
     founded: "2012",
     headquarters: "San Francisco, USA",
     website: "coinbase.com",
     affiliateLink: "https://www.coinbase.com/join?ref=allthingsxrpl",
-    bonus: "$10 in free crypto for new users",
-    description: "Coinbase is the largest cryptocurrency exchange in the United States and is publicly traded on NASDAQ. After the SEC case resolution, XRP trading was restored. Known for its beginner-friendly interface, strong security, and regulatory compliance, it's the go-to choice for millions of Americans.",
-    features: [
-      "Publicly traded (NASDAQ: COIN)",
-      "Coinbase Pro for advanced trading",
-      "Coinbase Wallet integration",
-      "Coinbase Card (spend crypto)",
-      "Staking rewards",
-      "Learn & Earn program",
-      "Vault for secure storage",
-      "Recurring buys"
+    bonusKey: "exchangeDetail.coinbase.bonus",
+    descriptionKey: "exchangeDetail.coinbase.description",
+    featureKeys: [
+      "exchangeDetail.coinbase.feature1",
+      "exchangeDetail.coinbase.feature2",
+      "exchangeDetail.coinbase.feature3",
+      "exchangeDetail.coinbase.feature4",
+      "exchangeDetail.coinbase.feature5",
+      "exchangeDetail.coinbase.feature6",
+      "exchangeDetail.coinbase.feature7",
+      "exchangeDetail.coinbase.feature8"
     ],
-    pros: [
-      "Most trusted US exchange",
-      "Very beginner-friendly",
-      "Strong security record",
-      "Publicly traded company",
-      "Great mobile app",
-      "Educational resources"
+    proKeys: [
+      "exchangeDetail.coinbase.pro1",
+      "exchangeDetail.coinbase.pro2",
+      "exchangeDetail.coinbase.pro3",
+      "exchangeDetail.coinbase.pro4",
+      "exchangeDetail.coinbase.pro5",
+      "exchangeDetail.coinbase.pro6"
     ],
-    cons: [
-      "Higher fees than competitors",
-      "Limited customer support",
-      "Some coins not available",
-      "Complex fee structure"
+    conKeys: [
+      "exchangeDetail.coinbase.con1",
+      "exchangeDetail.coinbase.con2",
+      "exchangeDetail.coinbase.con3",
+      "exchangeDetail.coinbase.con4"
     ],
-    bestFor: "US beginners who want the most trusted, easy-to-use platform for buying XRP.",
+    bestForKey: "exchangeDetail.coinbase.bestFor",
     fees: {
       trading: "0.5% spread + flat fee",
       deposit: "Free (ACH), 3.99% (card)",
       withdrawal: "Network fees"
     },
-    paymentMethods: ["ACH Bank Transfer", "Wire Transfer", "Debit Card", "PayPal", "Crypto Deposit"],
-    supportedCountries: "Available in 100+ countries with full US support"
+    paymentMethodKeys: ["exchangeDetail.payment.ach", "exchangeDetail.payment.wire", "exchangeDetail.payment.debitCard", "exchangeDetail.payment.paypal", "exchangeDetail.payment.crypto"],
+    supportedCountriesKey: "exchangeDetail.coinbase.countries"
   },
   cryptocom: {
     name: "Crypto.com",
-    tagline: "All-in-One Crypto Super App",
+    taglineKey: "exchangeDetail.cryptocom.tagline",
     rating: 4.3,
-    type: "Cryptocurrency Exchange",
+    typeKey: "exchangeDetail.cryptocom.type",
     founded: "2016",
     headquarters: "Singapore",
     website: "crypto.com",
     affiliateLink: "https://crypto.com/app?ref=allthingsxrpl",
-    bonus: "Up to $25 signup bonus",
-    description: "Crypto.com is a comprehensive cryptocurrency platform offering an exchange, Visa card, DeFi wallet, and NFT marketplace. With aggressive marketing and a user-friendly app, it has grown rapidly. XRP holders can earn staking rewards and spend XRP with their metal Visa card.",
-    features: [
-      "Crypto.com Visa Card",
-      "Earn interest on XRP",
-      "DeFi Wallet",
-      "NFT marketplace",
-      "250+ cryptocurrencies",
-      "Supercharger events",
-      "Pay merchants with crypto",
-      "Margin trading"
+    bonusKey: "exchangeDetail.cryptocom.bonus",
+    descriptionKey: "exchangeDetail.cryptocom.description",
+    featureKeys: [
+      "exchangeDetail.cryptocom.feature1",
+      "exchangeDetail.cryptocom.feature2",
+      "exchangeDetail.cryptocom.feature3",
+      "exchangeDetail.cryptocom.feature4",
+      "exchangeDetail.cryptocom.feature5",
+      "exchangeDetail.cryptocom.feature6",
+      "exchangeDetail.cryptocom.feature7",
+      "exchangeDetail.cryptocom.feature8"
     ],
-    pros: [
-      "Metal Visa cards with cashback",
-      "Good staking/earn rates",
-      "All-in-one platform",
-      "Sleek mobile app",
-      "Wide coin selection",
-      "Good promotions"
+    proKeys: [
+      "exchangeDetail.cryptocom.pro1",
+      "exchangeDetail.cryptocom.pro2",
+      "exchangeDetail.cryptocom.pro3",
+      "exchangeDetail.cryptocom.pro4",
+      "exchangeDetail.cryptocom.pro5",
+      "exchangeDetail.cryptocom.pro6"
     ],
-    cons: [
-      "Confusing tier system",
-      "Staking lockups required",
-      "CRO token requirements",
-      "Spread fees on trades"
+    conKeys: [
+      "exchangeDetail.cryptocom.con1",
+      "exchangeDetail.cryptocom.con2",
+      "exchangeDetail.cryptocom.con3",
+      "exchangeDetail.cryptocom.con4"
     ],
-    bestFor: "Users who want a crypto lifestyle with cards, earn features, and an all-in-one app.",
+    bestForKey: "exchangeDetail.cryptocom.bestFor",
     fees: {
       trading: "0.075% maker / 0.075% taker",
       deposit: "Free (crypto), 2.99% (card)",
       withdrawal: "0.25 XRP"
     },
-    paymentMethods: ["Credit/Debit Card", "Bank Transfer", "Crypto Deposit", "Apple Pay", "Google Pay"],
-    supportedCountries: "Available in 90+ countries"
+    paymentMethodKeys: ["exchangeDetail.payment.creditCard", "exchangeDetail.payment.bankTransfer", "exchangeDetail.payment.crypto", "exchangeDetail.payment.applePay", "exchangeDetail.payment.googlePay"],
+    supportedCountriesKey: "exchangeDetail.cryptocom.countries"
   },
   kucoin: {
     name: "KuCoin",
-    tagline: "The People's Exchange",
+    taglineKey: "exchangeDetail.kucoin.tagline",
     rating: 4.4,
-    type: "Cryptocurrency Exchange",
+    typeKey: "exchangeDetail.kucoin.type",
     founded: "2017",
     headquarters: "Seychelles",
     website: "kucoin.com",
     affiliateLink: "https://www.kucoin.com/r?ref=allthingsxrpl",
-    bonus: "Welcome bonus for new users",
-    description: "KuCoin is known for its vast selection of altcoins and trading pairs, making it a favorite among crypto enthusiasts looking for variety. It offers XRP with numerous trading pairs, competitive fees, and features like trading bots, futures, and margin trading.",
-    features: [
-      "800+ cryptocurrencies",
-      "Trading bots",
-      "Futures trading",
-      "Margin trading (10x)",
-      "Lending & earning",
-      "NFT marketplace",
-      "KuCoin Spotlight (new tokens)",
-      "Low trading fees"
+    bonusKey: "exchangeDetail.kucoin.bonus",
+    descriptionKey: "exchangeDetail.kucoin.description",
+    featureKeys: [
+      "exchangeDetail.kucoin.feature1",
+      "exchangeDetail.kucoin.feature2",
+      "exchangeDetail.kucoin.feature3",
+      "exchangeDetail.kucoin.feature4",
+      "exchangeDetail.kucoin.feature5",
+      "exchangeDetail.kucoin.feature6",
+      "exchangeDetail.kucoin.feature7",
+      "exchangeDetail.kucoin.feature8"
     ],
-    pros: [
-      "Huge coin selection",
-      "Very low trading fees",
-      "Many XRP pairs available",
-      "Built-in trading bots",
-      "Good liquidity",
-      "Active promotions"
+    proKeys: [
+      "exchangeDetail.kucoin.pro1",
+      "exchangeDetail.kucoin.pro2",
+      "exchangeDetail.kucoin.pro3",
+      "exchangeDetail.kucoin.pro4",
+      "exchangeDetail.kucoin.pro5",
+      "exchangeDetail.kucoin.pro6"
     ],
-    cons: [
-      "Not licensed in US",
-      "Less regulatory oversight",
-      "Can be overwhelming",
-      "Withdrawal fees vary"
+    conKeys: [
+      "exchangeDetail.kucoin.con1",
+      "exchangeDetail.kucoin.con2",
+      "exchangeDetail.kucoin.con3",
+      "exchangeDetail.kucoin.con4"
     ],
-    bestFor: "Experienced traders who want access to many altcoins and trading features.",
+    bestForKey: "exchangeDetail.kucoin.bestFor",
     fees: {
       trading: "0.1% maker / 0.1% taker",
       deposit: "Free (crypto)",
       withdrawal: "0.25 XRP"
     },
-    paymentMethods: ["Credit/Debit Card", "Bank Transfer", "P2P Trading", "Crypto Deposit", "Apple Pay"],
-    supportedCountries: "Available globally (some restrictions apply)"
+    paymentMethodKeys: ["exchangeDetail.payment.creditCard", "exchangeDetail.payment.bankTransfer", "exchangeDetail.payment.p2p", "exchangeDetail.payment.crypto", "exchangeDetail.payment.applePay"],
+    supportedCountriesKey: "exchangeDetail.kucoin.countries"
   }
 };
 
 export default function ExchangeReview() {
   const { slug } = useParams<{ slug: string }>();
+  const { t } = useLanguage();
   const exchange = exchangeData[slug || ""];
 
   if (!exchange) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-24 text-center">
-          <h1 className="text-4xl font-bold mb-4">Exchange Not Found</h1>
-          <p className="text-muted-foreground mb-8">The exchange you're looking for doesn't exist.</p>
+          <h1 className="text-4xl font-bold mb-4">{t("exchangeReview.notFound")}</h1>
+          <p className="text-muted-foreground mb-8">{t("exchangeReview.notFoundDesc")}</p>
           <Button asChild>
-            <Link href="/#exchanges">View All Exchanges</Link>
+            <Link href="/#exchanges">{t("exchangeReview.viewAll")}</Link>
           </Button>
         </div>
       </Layout>
@@ -386,7 +388,7 @@ export default function ExchangeReview() {
       <div className="container mx-auto px-4 py-24 max-w-4xl">
         <Link href="/#exchanges" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="h-4 w-4" />
-          Back to Exchange Partners
+          {t("exchangeReview.backToPartners")}
         </Link>
 
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8">
@@ -398,9 +400,9 @@ export default function ExchangeReview() {
                 </div>
               )}
               <div>
-                <div className="text-sm text-primary font-display mb-2">{exchange.type}</div>
+                <div className="text-sm text-primary font-display mb-2">{t(exchange.typeKey)}</div>
                 <h1 className="text-3xl md:text-4xl font-black font-display mb-2">{exchange.name}</h1>
-                <p className="text-xl text-muted-foreground">{exchange.tagline}</p>
+                <p className="text-xl text-muted-foreground">{t(exchange.taglineKey)}</p>
               </div>
             </div>
             <div className="flex flex-col items-start md:items-end gap-2">
@@ -413,15 +415,15 @@ export default function ExchangeReview() {
             </div>
           </div>
 
-          {exchange.bonus && (
+          {exchange.bonusKey && (
             <div className="flex items-center gap-2 p-4 rounded-lg bg-green-500/10 border border-green-500/20 mb-8">
               <Gift className="h-5 w-5 text-green-400" />
-              <span className="text-green-200">{exchange.bonus}</span>
+              <span className="text-green-200">{t(exchange.bonusKey)}</span>
             </div>
           )}
 
           <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-            {exchange.description}
+            {t(exchange.descriptionKey)}
           </p>
 
           <a 
@@ -431,7 +433,7 @@ export default function ExchangeReview() {
             className="inline-flex items-center gap-2 h-12 px-8 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"
             data-testid={`button-signup-${slug}`}
           >
-            Sign Up for {exchange.name} <ExternalLink className="h-4 w-4" />
+            {t("exchangeReview.signUp")} {exchange.name} <ExternalLink className="h-4 w-4" />
           </a>
         </div>
 
@@ -439,13 +441,13 @@ export default function ExchangeReview() {
           <div className="bg-card/30 border border-white/10 rounded-2xl p-6">
             <h2 className="text-xl font-bold font-display mb-4 flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-400" />
-              Pros
+              {t("exchangeReview.pros")}
             </h2>
             <ul className="space-y-2">
-              {exchange.pros.map((pro) => (
-                <li key={pro} className="flex items-start gap-2 text-muted-foreground">
+              {exchange.proKeys.map((proKey) => (
+                <li key={proKey} className="flex items-start gap-2 text-muted-foreground">
                   <CheckCircle2 className="h-4 w-4 text-green-400 shrink-0 mt-1" />
-                  {pro}
+                  {t(proKey)}
                 </li>
               ))}
             </ul>
@@ -453,13 +455,13 @@ export default function ExchangeReview() {
           <div className="bg-card/30 border border-white/10 rounded-2xl p-6">
             <h2 className="text-xl font-bold font-display mb-4 flex items-center gap-2">
               <XCircle className="h-5 w-5 text-red-400" />
-              Cons
+              {t("exchangeReview.cons")}
             </h2>
             <ul className="space-y-2">
-              {exchange.cons.map((con) => (
-                <li key={con} className="flex items-start gap-2 text-muted-foreground">
+              {exchange.conKeys.map((conKey) => (
+                <li key={conKey} className="flex items-start gap-2 text-muted-foreground">
                   <XCircle className="h-4 w-4 text-red-400 shrink-0 mt-1" />
-                  {con}
+                  {t(conKey)}
                 </li>
               ))}
             </ul>
@@ -469,19 +471,19 @@ export default function ExchangeReview() {
         <div className="bg-card/30 border border-white/10 rounded-2xl p-6 mb-8">
           <h2 className="text-xl font-bold font-display mb-4 flex items-center gap-2">
             <DollarSign className="h-5 w-5 text-green-400" />
-            Fees
+            {t("exchangeReview.fees")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="p-4 rounded-lg bg-white/5">
-              <div className="text-sm text-muted-foreground mb-1">Trading Fee</div>
+              <div className="text-sm text-muted-foreground mb-1">{t("exchangeReview.tradingFee")}</div>
               <div className="font-bold">{exchange.fees.trading}</div>
             </div>
             <div className="p-4 rounded-lg bg-white/5">
-              <div className="text-sm text-muted-foreground mb-1">Deposit Fee</div>
+              <div className="text-sm text-muted-foreground mb-1">{t("exchangeReview.depositFee")}</div>
               <div className="font-bold">{exchange.fees.deposit}</div>
             </div>
             <div className="p-4 rounded-lg bg-white/5">
-              <div className="text-sm text-muted-foreground mb-1">XRP Withdrawal</div>
+              <div className="text-sm text-muted-foreground mb-1">{t("exchangeReview.withdrawalFee")}</div>
               <div className="font-bold">{exchange.fees.withdrawal}</div>
             </div>
           </div>
@@ -490,13 +492,13 @@ export default function ExchangeReview() {
         <div className="bg-card/30 border border-white/10 rounded-2xl p-6 mb-8">
           <h2 className="text-xl font-bold font-display mb-4 flex items-center gap-2">
             <Globe className="h-5 w-5 text-primary" />
-            Key Features
+            {t("exchangeReview.keyFeatures")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {exchange.features.map((feature) => (
-              <div key={feature} className="flex items-center gap-2 text-muted-foreground">
+            {exchange.featureKeys.map((featureKey) => (
+              <div key={featureKey} className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
-                {feature}
+                {t(featureKey)}
               </div>
             ))}
           </div>
@@ -504,29 +506,29 @@ export default function ExchangeReview() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="bg-card/30 border border-white/10 rounded-2xl p-6">
-            <h2 className="text-lg font-bold font-display mb-4">Payment Methods</h2>
+            <h2 className="text-lg font-bold font-display mb-4">{t("exchangeReview.paymentMethods")}</h2>
             <ul className="space-y-2">
-              {exchange.paymentMethods.map((method) => (
-                <li key={method} className="flex items-center gap-2 text-muted-foreground">
+              {exchange.paymentMethodKeys.map((methodKey) => (
+                <li key={methodKey} className="flex items-center gap-2 text-muted-foreground">
                   <CheckCircle2 className="h-4 w-4 text-secondary shrink-0" />
-                  {method}
+                  {t(methodKey)}
                 </li>
               ))}
             </ul>
           </div>
           <div className="bg-card/30 border border-white/10 rounded-2xl p-6">
-            <h2 className="text-lg font-bold font-display mb-4">Availability</h2>
-            <p className="text-muted-foreground">{exchange.supportedCountries}</p>
+            <h2 className="text-lg font-bold font-display mb-4">{t("exchangeReview.availability")}</h2>
+            <p className="text-muted-foreground">{t(exchange.supportedCountriesKey)}</p>
             <div className="mt-4 text-sm text-muted-foreground">
               <Shield className="h-4 w-4 inline mr-2" />
-              Headquarters: {exchange.headquarters}
+              {t("exchangeReview.headquarters")}: {exchange.headquarters}
             </div>
           </div>
         </div>
 
         <div className="bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 rounded-2xl p-6 mb-8">
-          <h2 className="text-xl font-bold font-display mb-2">Best For</h2>
-          <p className="text-muted-foreground">{exchange.bestFor}</p>
+          <h2 className="text-xl font-bold font-display mb-2">{t("exchangeReview.bestFor")}</h2>
+          <p className="text-muted-foreground">{t(exchange.bestForKey)}</p>
         </div>
 
         <div className="text-center">
@@ -536,10 +538,10 @@ export default function ExchangeReview() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-14 px-10 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-lg transition-colors"
           >
-            Sign Up for {exchange.name} <ExternalLink className="h-5 w-5" />
+            {t("exchangeReview.signUp")} {exchange.name} <ExternalLink className="h-5 w-5" />
           </a>
           <p className="mt-4 text-sm text-muted-foreground">
-            Affiliate link - we may earn a commission at no extra cost to you
+            {t("exchangeReview.affiliateDisclaimer")}
           </p>
         </div>
       </div>
