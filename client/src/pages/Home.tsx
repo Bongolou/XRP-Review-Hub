@@ -35,33 +35,33 @@ import { DealOfTheWeek } from "@/components/DealOfTheWeek";
 import { BannerAd } from "@/components/BannerAd";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-// Mock Data
-const wallets = [
+// Wallet data with translation keys
+const walletsData = [
   {
     id: 1,
     name: "Xaman (Xumm)",
     slug: "xaman",
-    type: "Mobile App",
+    typeKey: "wallet.type.mobileApp",
     rating: 9.9,
-    fees: "Free",
-    features: ["Self-Custody", "dApp Browser", "Biometric Auth", "Fiat On-ramp"],
+    feesKey: "wallet.fees.free",
+    featureKeys: ["wallet.feature.selfCustody", "wallet.feature.dappBrowser", "wallet.feature.biometricAuth", "wallet.feature.fiatOnramp"],
     popular: true,
-    badgeText: "Top Free XRPL Wallet",
+    badgeKey: "wallet.badge.topFreeXRPL",
     link: "https://xumm.app/?ref=allthingsxrpl",
     logo: xamanLogo,
     complementary: [
-      { name: "Tangem Card (Backup)", link: "https://tangem.com/?promocode=ALLTHINGSXRPL" },
-      { name: "Ledger (Cold Storage)", link: "https://shop.ledger.com/?r=5d81f18905fe" }
+      { nameKey: "wallet.complementary.tangemBackup", link: "https://tangem.com/?promocode=ALLTHINGSXRPL" },
+      { nameKey: "wallet.complementary.ledgerCold", link: "https://shop.ledger.com/?r=5d81f18905fe" }
     ]
   },
   {
     id: 2,
     name: "Ledger Nano X",
     slug: "ledger",
-    type: "Hardware",
+    typeKey: "wallet.type.hardware",
     rating: 9.9,
-    fees: "Standard",
-    features: ["Cold Storage", "Bluetooth", "Multi-Currency", "High Security"],
+    feesKey: "wallet.fees.standard",
+    featureKeys: ["wallet.feature.coldStorage", "wallet.feature.bluetooth", "wallet.feature.multiCurrency", "wallet.feature.highSecurity"],
     popular: false,
     link: "https://shop.ledger.com/?r=5d81f18905fe",
     logo: ledgerLogo
@@ -70,10 +70,10 @@ const wallets = [
     id: 3,
     name: "Crossmark",
     slug: "crossmark",
-    type: "Browser Ext",
+    typeKey: "wallet.type.browserExt",
     rating: 9.5,
-    fees: "Low",
-    features: ["Web3 Auth", "Multi-Network", "Developer Friendly", "Lightweight"],
+    feesKey: "wallet.fees.low",
+    featureKeys: ["wallet.feature.web3Auth", "wallet.feature.multiNetwork", "wallet.feature.developerFriendly", "wallet.feature.lightweight"],
     popular: false,
     link: "https://crossmark.io/?ref=allthingsxrpl",
     logo: crossmarkLogo
@@ -82,10 +82,10 @@ const wallets = [
     id: 4,
     name: "Tangem",
     slug: "tangem",
-    type: "Hardware Card",
+    typeKey: "wallet.type.hardwareCard",
     rating: 9.4,
-    fees: "None",
-    features: ["NFC Support", "Waterproof", "No Battery", "Easy Setup"],
+    feesKey: "wallet.fees.none",
+    featureKeys: ["wallet.feature.nfcSupport", "wallet.feature.waterproof", "wallet.feature.noBattery", "wallet.feature.easySetup"],
     popular: false,
     link: "https://tangem.com/?promocode=ALLTHINGSXRPL",
     logo: tangemLogo
@@ -94,10 +94,10 @@ const wallets = [
     id: 5,
     name: "Bifrost Wallet",
     slug: "bifrost",
-    type: "Mobile App",
+    typeKey: "wallet.type.mobileApp",
     rating: 9.2,
-    fees: "Free",
-    features: ["Privacy-Focused", "dApp Browser", "No Tracking", "Multi-Chain"],
+    feesKey: "wallet.fees.free",
+    featureKeys: ["wallet.feature.privacyFocused", "wallet.feature.dappBrowser", "wallet.feature.noTracking", "wallet.feature.multiChain"],
     popular: false,
     link: "https://bifrostwallet.com/?ref=allthingsxrpl",
     logo: bifrostLogo
@@ -106,10 +106,10 @@ const wallets = [
     id: 6,
     name: "Trust Wallet",
     slug: "trustwallet",
-    type: "Mobile App",
+    typeKey: "wallet.type.mobileApp",
     rating: 9.0,
-    fees: "Free",
-    features: ["70M+ Users", "Multi-Chain", "dApp Browser", "Staking"],
+    feesKey: "wallet.fees.free",
+    featureKeys: ["wallet.feature.users70m", "wallet.feature.multiChain", "wallet.feature.dappBrowser", "wallet.feature.staking"],
     popular: false,
     link: "https://trustwallet.com/?ref=allthingsxrpl",
     logo: trustwalletLogo
@@ -118,10 +118,10 @@ const wallets = [
     id: 7,
     name: "GateHub",
     slug: "gatehub",
-    type: "Web Wallet",
+    typeKey: "wallet.type.webWallet",
     rating: 8.8,
-    fees: "Low",
-    features: ["Fiat Gateway", "Multisig", "Trading", "Theft Cover"],
+    feesKey: "wallet.fees.low",
+    featureKeys: ["wallet.feature.fiatGateway", "wallet.feature.multisig", "wallet.feature.trading", "wallet.feature.theftCover"],
     popular: false,
     link: "https://gatehub.net/?ref=allthingsxrpl",
     logo: gatehubLogo
@@ -130,10 +130,10 @@ const wallets = [
     id: 8,
     name: "ELLIPAL Titan",
     slug: "ellipal",
-    type: "Hardware",
+    typeKey: "wallet.type.hardware",
     rating: 9.4,
     fees: "$169",
-    features: ["Air-Gapped", "QR Only", "Military-Grade", "Anti-Tamper"],
+    featureKeys: ["wallet.feature.airGapped", "wallet.feature.qrOnly", "wallet.feature.militaryGrade", "wallet.feature.antiTamper"],
     popular: false,
     link: "https://www.ellipal.com/?rfsn=8973243.bbfab69",
     logo: ellipalLogo
@@ -142,23 +142,24 @@ const wallets = [
     id: 9,
     name: "Trezor Safe 3",
     slug: "trezor",
-    type: "Hardware",
+    typeKey: "wallet.type.hardware",
     rating: 9.2,
     fees: "$79",
-    features: ["Open Source", "Secure Element", "Budget-Friendly", "Trusted"],
+    featureKeys: ["wallet.feature.openSource", "wallet.feature.secureElement", "wallet.feature.budgetFriendly", "wallet.feature.trusted"],
     popular: false,
     link: "https://trezor.io/?ref=allthingsxrpl",
     logo: trezorLogo
   }
 ];
 
-const exchanges = [
+// Exchange data with translation keys
+const exchangesData = [
   {
     id: 1,
     name: "Uphold",
     slug: "uphold",
-    bonus: "$20 BTC Bonus",
-    features: ["Best for XRP", "Fiat On-Ramp", "Instant Trade"],
+    bonusKey: "exchange.bonus.btc20",
+    featureKeys: ["exchange.feature.bestForXRP", "exchange.feature.fiatOnRamp", "exchange.feature.instantTrade"],
     link: "https://uphold.com/signup?referral=allthingsxrpl",
     color: "text-green-500",
     bgColor: "bg-green-500/20",
@@ -168,8 +169,8 @@ const exchanges = [
     id: 2,
     name: "Bitrue",
     slug: "bitrue",
-    bonus: "1000 XRP Airdrop",
-    features: ["XRP Base Pairs", "Power Piggy Staking", "Low Fees"],
+    bonusKey: "exchange.bonus.xrp1000",
+    featureKeys: ["exchange.feature.xrpBasePairs", "exchange.feature.powerPiggy", "exchange.feature.lowFees"],
     link: "https://bitrue.com/user/register?inviteCode=allthingsxrpl",
     color: "text-blue-500",
     bgColor: "bg-blue-500/20",
@@ -179,8 +180,8 @@ const exchanges = [
     id: 3,
     name: "Kraken",
     slug: "kraken",
-    bonus: "Low Fee Trading",
-    features: ["High Security", "Deep Liquidity", "Pro Tools"],
+    bonusKey: "exchange.bonus.lowFee",
+    featureKeys: ["exchange.feature.highSecurity", "exchange.feature.deepLiquidity", "exchange.feature.proTools"],
     link: "https://kraken.com/sign-up?r=allthingsxrpl",
     color: "text-purple-500",
     bgColor: "bg-purple-500/20",
@@ -190,8 +191,8 @@ const exchanges = [
     id: 4,
     name: "Coinbase",
     slug: "coinbase",
-    bonus: "$10 Free Crypto",
-    features: ["Most Trusted", "Beginner-Friendly", "US Based"],
+    bonusKey: "exchange.bonus.crypto10",
+    featureKeys: ["exchange.feature.mostTrusted", "exchange.feature.beginnerFriendly", "exchange.feature.usBased"],
     link: "https://www.coinbase.com/join?ref=allthingsxrpl",
     color: "text-blue-400",
     bgColor: "bg-blue-400/20",
@@ -201,8 +202,8 @@ const exchanges = [
     id: 5,
     name: "Bitstamp",
     slug: "bitstamp",
-    bonus: "Volume Discounts",
-    features: ["Since 2011", "EU Regulated", "High Liquidity"],
+    bonusKey: "exchange.bonus.volume",
+    featureKeys: ["exchange.feature.since2011", "exchange.feature.euRegulated", "exchange.feature.highLiquidity"],
     link: "https://www.bitstamp.net/?ref=allthingsxrpl",
     color: "text-emerald-500",
     bgColor: "bg-emerald-500/20",
@@ -212,8 +213,8 @@ const exchanges = [
     id: 6,
     name: "Crypto.com",
     slug: "cryptocom",
-    bonus: "$25 Signup Bonus",
-    features: ["Visa Card", "Earn Interest", "250+ Coins"],
+    bonusKey: "exchange.bonus.signup25",
+    featureKeys: ["exchange.feature.visaCard", "exchange.feature.earnInterest", "exchange.feature.coins250"],
     link: "https://crypto.com/app?ref=allthingsxrpl",
     color: "text-indigo-400",
     bgColor: "bg-indigo-400/20",
@@ -223,8 +224,8 @@ const exchanges = [
     id: 7,
     name: "KuCoin",
     slug: "kucoin",
-    bonus: "Welcome Bonus",
-    features: ["800+ Coins", "Trading Bots", "Low Fees"],
+    bonusKey: "exchange.bonus.welcome",
+    featureKeys: ["exchange.feature.coins800", "exchange.feature.tradingBots", "exchange.feature.lowFees"],
     link: "https://www.kucoin.com/r?ref=allthingsxrpl",
     color: "text-teal-500",
     bgColor: "bg-teal-500/20",
@@ -232,59 +233,60 @@ const exchanges = [
   }
 ];
 
-const blogPosts = [
+// Blog posts data with translation keys
+const blogPostsData = [
   {
     id: 1,
-    title: "Top 5 DeFi dApps on XRPL in 2026",
-    excerpt: "Discover the leading decentralized finance protocols bringing yield and liquidity to the XRP Ledger this year.",
-    category: "Ecosystem",
+    titleKey: "blog.post1.title",
+    excerptKey: "blog.post1.excerpt",
+    categoryKey: "blog.post1.category",
     date: "Jan 24, 2026",
-    readTime: "5 min read",
+    readTimeNum: 5,
     image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop"
   },
   {
     id: 2,
-    title: "Understanding AMM Staking Rewards",
-    excerpt: "A comprehensive guide to the Automated Market Maker (AMM) functionality on XRPL and how to earn passive income.",
-    category: "Guides",
+    titleKey: "blog.post2.title",
+    excerptKey: "blog.post2.excerpt",
+    categoryKey: "blog.post2.category",
     date: "Jan 20, 2026",
-    readTime: "8 min read",
+    readTimeNum: 8,
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop"
   },
   {
     id: 3,
-    title: "Security Best Practices for Self-Custody",
-    excerpt: "Protect your digital assets with these essential security tips for hardware and software wallet users.",
-    category: "Security",
+    titleKey: "blog.post3.title",
+    excerptKey: "blog.post3.excerpt",
+    categoryKey: "blog.post3.category",
     date: "Jan 15, 2026",
-    readTime: "4 min read",
+    readTimeNum: 4,
     image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop"
   },
   {
     id: 4,
-    title: "NFT Marketplaces on XRPL: Complete Guide",
-    excerpt: "Explore the growing NFT ecosystem on the XRP Ledger, including top marketplaces and how to mint your first NFT.",
-    category: "NFTs",
+    titleKey: "blog.post4.title",
+    excerptKey: "blog.post4.excerpt",
+    categoryKey: "blog.post4.category",
     date: "Jan 12, 2026",
-    readTime: "6 min read",
+    readTimeNum: 6,
     image: "https://images.unsplash.com/photo-1643101809204-6fb869816dbe?w=800&auto=format&fit=crop"
   },
   {
     id: 5,
-    title: "XRPL Sidechains Explained",
-    excerpt: "Learn how sidechains extend the capabilities of the XRP Ledger and enable new use cases like smart contracts.",
-    category: "Technology",
+    titleKey: "blog.post5.title",
+    excerptKey: "blog.post5.excerpt",
+    categoryKey: "blog.post5.category",
     date: "Jan 8, 2026",
-    readTime: "7 min read",
+    readTimeNum: 7,
     image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop"
   },
   {
     id: 6,
-    title: "Tokenizing Real World Assets on XRPL",
-    excerpt: "How institutions are bringing real estate, stocks, and commodities to the XRP Ledger through tokenization.",
-    category: "Institutional",
+    titleKey: "blog.post6.title",
+    excerptKey: "blog.post6.excerpt",
+    categoryKey: "blog.post6.category",
     date: "Jan 5, 2026",
-    readTime: "9 min read",
+    readTimeNum: 9,
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop"
   }
 ];
@@ -392,14 +394,14 @@ export default function Home() {
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="text-center mb-16 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">Top XRP Wallets</h2>
+          <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">{t("wallets.sectionTitle")}</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Secure your XRP with the most trusted wallets in the industry. We've tested them all so you don't have to.
+            {t("wallets.sectionSubtitle")}
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 relative z-10">
-          {wallets.map((wallet, idx) => (
+          {walletsData.map((wallet, idx) => (
             <motion.div 
               key={wallet.id}
               initial={{ opacity: 0, y: 20 }}
@@ -418,18 +420,18 @@ export default function Home() {
                   <div className="flex-1 min-w-0 text-center md:text-left">
                     <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
                       <h3 className="text-xl font-bold font-display">{wallet.name}</h3>
-                      {wallet.popular && (
+                      {wallet.popular && wallet.badgeKey && (
                         <Badge className="bg-secondary/20 text-secondary border-secondary/50">
-                          {wallet.badgeText || "Top Choice"}
+                          {t(wallet.badgeKey)}
                         </Badge>
                       )}
                     </div>
-                    <p className="text-sm text-muted-foreground mb-3">{wallet.type} {t("wallets.wallet")} • {wallet.fees} {t("wallets.fees")}</p>
+                    <p className="text-sm text-muted-foreground mb-3">{t(wallet.typeKey)} {t("wallets.wallet")} • {wallet.fees || t(wallet.feesKey)} {t("wallets.fees")}</p>
                     
                     <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-3">
-                      {wallet.features.map((feature, i) => (
+                      {wallet.featureKeys.map((featureKey, i) => (
                         <span key={i} className="text-xs px-2 py-1 rounded bg-white/5 border border-white/10 text-muted-foreground">
-                          {feature}
+                          {t(featureKey)}
                         </span>
                       ))}
                     </div>
@@ -446,7 +448,7 @@ export default function Home() {
                               rel="noopener noreferrer"
                               className="inline-flex items-center text-primary hover:text-primary/80 transition-colors bg-primary/10 px-2 py-1 rounded border border-primary/20"
                             >
-                              {tool.name} <ExternalLink className="ml-1 h-3 w-3" />
+                              {t(tool.nameKey)} <ExternalLink className="ml-1 h-3 w-3" />
                             </a>
                           ))}
                         </div>
@@ -523,7 +525,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {exchanges.map((exchange, idx) => (
+            {exchangesData.map((exchange, idx) => (
               <motion.div
                 key={exchange.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -539,17 +541,17 @@ export default function Home() {
                       <img src={exchange.logo} alt={`${exchange.name} logo`} className="w-full h-full object-cover" />
                     </div>
                     <Badge variant="outline" className="border-green-500/50 text-green-400 bg-green-500/10">
-                      {exchange.bonus}
+                      {t(exchange.bonusKey)}
                     </Badge>
                   </div>
                   
                   <h3 className="text-2xl font-bold font-display mb-4">{exchange.name}</h3>
                   
                   <ul className="space-y-3 mb-8 flex-1">
-                    {exchange.features.map((feature, i) => (
+                    {exchange.featureKeys.map((featureKey, i) => (
                       <li key={i} className="flex items-center text-sm text-muted-foreground">
                         <Check className="h-4 w-4 text-primary mr-2" />
-                        {feature}
+                        {t(featureKey)}
                       </li>
                     ))}
                   </ul>
@@ -654,30 +656,30 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post, idx) => (
+          {blogPostsData.map((post, idx) => (
             <Link key={post.id} href={`/blog/${post.id}`} className="group block h-full">
               <div className="h-full bg-card/30 rounded-xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300 flex flex-col">
                 <div className="aspect-video relative overflow-hidden">
                   <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <img 
                     src={post.image} 
-                    alt={post.title} 
+                    alt={t(post.titleKey)} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
                   />
                   <Badge className="absolute top-4 left-4 z-20 bg-background/80 backdrop-blur border-white/10 text-foreground hover:bg-background">
-                    {post.category}
+                    {t(post.categoryKey)}
                   </Badge>
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <div className="text-xs text-primary font-medium mb-3 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    {post.date} • {post.readTime}
+                    {post.date} • {post.readTimeNum} {t("blog.minRead")}
                   </div>
                   <h3 className="text-xl font-bold font-display mb-3 group-hover:text-primary transition-colors leading-tight">
-                    {post.title}
+                    {t(post.titleKey)}
                   </h3>
                   <p className="text-muted-foreground text-sm line-clamp-3 mb-6 flex-1">
-                    {post.excerpt}
+                    {t(post.excerptKey)}
                   </p>
                   <div className="flex items-center text-sm font-medium text-white group-hover:translate-x-1 transition-transform">
                     {t("blog.readArticle")} <ArrowRight className="ml-2 h-4 w-4" />

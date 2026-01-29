@@ -124,7 +124,121 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.privacy": "Privacy Policy",
     "footer.terms": "Terms of Service",
     "footer.disclaimer": "Not financial advice. Do your own research.",
-    "footer.rssFeed": "RSS Feed"
+    "footer.rssFeed": "RSS Feed",
+    
+    // Wallet Section Header
+    "wallets.sectionTitle": "Top XRP Wallets",
+    "wallets.sectionSubtitle": "Secure your XRP with the most trusted wallets in the industry. We've tested them all so you don't have to.",
+    
+    // Wallet Types
+    "wallet.type.mobileApp": "Mobile App",
+    "wallet.type.hardware": "Hardware",
+    "wallet.type.browserExt": "Browser Ext",
+    "wallet.type.hardwareCard": "Hardware Card",
+    "wallet.type.webWallet": "Web Wallet",
+    
+    // Wallet Fees
+    "wallet.fees.free": "Free",
+    "wallet.fees.standard": "Standard",
+    "wallet.fees.low": "Low",
+    "wallet.fees.none": "None",
+    
+    // Wallet Features
+    "wallet.feature.selfCustody": "Self-Custody",
+    "wallet.feature.dappBrowser": "dApp Browser",
+    "wallet.feature.biometricAuth": "Biometric Auth",
+    "wallet.feature.fiatOnramp": "Fiat On-ramp",
+    "wallet.feature.coldStorage": "Cold Storage",
+    "wallet.feature.bluetooth": "Bluetooth",
+    "wallet.feature.multiCurrency": "Multi-Currency",
+    "wallet.feature.highSecurity": "High Security",
+    "wallet.feature.web3Auth": "Web3 Auth",
+    "wallet.feature.multiNetwork": "Multi-Network",
+    "wallet.feature.developerFriendly": "Developer Friendly",
+    "wallet.feature.lightweight": "Lightweight",
+    "wallet.feature.nfcSupport": "NFC Support",
+    "wallet.feature.waterproof": "Waterproof",
+    "wallet.feature.noBattery": "No Battery",
+    "wallet.feature.easySetup": "Easy Setup",
+    "wallet.feature.privacyFocused": "Privacy-Focused",
+    "wallet.feature.noTracking": "No Tracking",
+    "wallet.feature.multiChain": "Multi-Chain",
+    "wallet.feature.users70m": "70M+ Users",
+    "wallet.feature.staking": "Staking",
+    "wallet.feature.fiatGateway": "Fiat Gateway",
+    "wallet.feature.multisig": "Multisig",
+    "wallet.feature.trading": "Trading",
+    "wallet.feature.theftCover": "Theft Cover",
+    "wallet.feature.airGapped": "Air-Gapped",
+    "wallet.feature.qrOnly": "QR Only",
+    "wallet.feature.militaryGrade": "Military-Grade",
+    "wallet.feature.antiTamper": "Anti-Tamper",
+    "wallet.feature.openSource": "Open Source",
+    "wallet.feature.secureElement": "Secure Element",
+    "wallet.feature.budgetFriendly": "Budget-Friendly",
+    "wallet.feature.trusted": "Trusted",
+    
+    // Wallet Badges
+    "wallet.badge.topFreeXRPL": "Top Free XRPL Wallet",
+    "wallet.badge.topChoice": "Top Choice",
+    
+    // Complementary Wallets
+    "wallet.complementary.tangemBackup": "Tangem Card (Backup)",
+    "wallet.complementary.ledgerCold": "Ledger (Cold Storage)",
+    
+    // Exchange Bonuses
+    "exchange.bonus.btc20": "$20 BTC Bonus",
+    "exchange.bonus.xrp1000": "1000 XRP Airdrop",
+    "exchange.bonus.lowFee": "Low Fee Trading",
+    "exchange.bonus.crypto10": "$10 Free Crypto",
+    "exchange.bonus.volume": "Volume Discounts",
+    "exchange.bonus.signup25": "$25 Signup Bonus",
+    "exchange.bonus.welcome": "Welcome Bonus",
+    
+    // Exchange Features
+    "exchange.feature.bestForXRP": "Best for XRP",
+    "exchange.feature.fiatOnRamp": "Fiat On-Ramp",
+    "exchange.feature.instantTrade": "Instant Trade",
+    "exchange.feature.xrpBasePairs": "XRP Base Pairs",
+    "exchange.feature.powerPiggy": "Power Piggy Staking",
+    "exchange.feature.lowFees": "Low Fees",
+    "exchange.feature.highSecurity": "High Security",
+    "exchange.feature.deepLiquidity": "Deep Liquidity",
+    "exchange.feature.proTools": "Pro Tools",
+    "exchange.feature.mostTrusted": "Most Trusted",
+    "exchange.feature.beginnerFriendly": "Beginner-Friendly",
+    "exchange.feature.usBased": "US Based",
+    "exchange.feature.since2011": "Since 2011",
+    "exchange.feature.euRegulated": "EU Regulated",
+    "exchange.feature.highLiquidity": "High Liquidity",
+    "exchange.feature.visaCard": "Visa Card",
+    "exchange.feature.earnInterest": "Earn Interest",
+    "exchange.feature.coins250": "250+ Coins",
+    "exchange.feature.coins800": "800+ Coins",
+    "exchange.feature.tradingBots": "Trading Bots",
+    
+    // Blog Posts
+    "blog.post1.title": "Top 5 DeFi dApps on XRPL in 2026",
+    "blog.post1.excerpt": "Discover the leading decentralized finance protocols bringing yield and liquidity to the XRP Ledger this year.",
+    "blog.post1.category": "Ecosystem",
+    "blog.post2.title": "Understanding AMM Staking Rewards",
+    "blog.post2.excerpt": "A comprehensive guide to the Automated Market Maker (AMM) functionality on XRPL and how to earn passive income.",
+    "blog.post2.category": "Guides",
+    "blog.post3.title": "Security Best Practices for Self-Custody",
+    "blog.post3.excerpt": "Protect your digital assets with these essential security tips for hardware and software wallet users.",
+    "blog.post3.category": "Security",
+    "blog.post4.title": "NFT Marketplaces on XRPL: Complete Guide",
+    "blog.post4.excerpt": "Explore the growing NFT ecosystem on the XRP Ledger, including top marketplaces and how to mint your first NFT.",
+    "blog.post4.category": "NFTs",
+    "blog.post5.title": "XRPL Sidechains Explained",
+    "blog.post5.excerpt": "Learn how sidechains extend the capabilities of the XRP Ledger and enable new use cases like smart contracts.",
+    "blog.post5.category": "Technology",
+    "blog.post6.title": "Tokenizing Real World Assets on XRPL",
+    "blog.post6.excerpt": "How institutions are bringing real estate, stocks, and commodities to the XRP Ledger through tokenization.",
+    "blog.post6.category": "Institutional",
+    
+    // Date/Time Labels
+    "blog.minRead": "min read"
   },
   
   es: {
@@ -239,7 +353,121 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.privacy": "Política de Privacidad",
     "footer.terms": "Términos de Servicio",
     "footer.disclaimer": "No es consejo financiero. Haz tu propia investigación.",
-    "footer.rssFeed": "Canal RSS"
+    "footer.rssFeed": "Canal RSS",
+    
+    // Wallet Section Header
+    "wallets.sectionTitle": "Mejores Billeteras XRP",
+    "wallets.sectionSubtitle": "Protege tu XRP con las billeteras más confiables de la industria. Las hemos probado todas para ti.",
+    
+    // Wallet Types
+    "wallet.type.mobileApp": "App Móvil",
+    "wallet.type.hardware": "Hardware",
+    "wallet.type.browserExt": "Extensión",
+    "wallet.type.hardwareCard": "Tarjeta Hardware",
+    "wallet.type.webWallet": "Billetera Web",
+    
+    // Wallet Fees
+    "wallet.fees.free": "Gratis",
+    "wallet.fees.standard": "Estándar",
+    "wallet.fees.low": "Bajo",
+    "wallet.fees.none": "Sin comisión",
+    
+    // Wallet Features
+    "wallet.feature.selfCustody": "Auto-Custodia",
+    "wallet.feature.dappBrowser": "Navegador dApp",
+    "wallet.feature.biometricAuth": "Auth Biométrica",
+    "wallet.feature.fiatOnramp": "Compra con Fiat",
+    "wallet.feature.coldStorage": "Almacenamiento Frío",
+    "wallet.feature.bluetooth": "Bluetooth",
+    "wallet.feature.multiCurrency": "Multi-Moneda",
+    "wallet.feature.highSecurity": "Alta Seguridad",
+    "wallet.feature.web3Auth": "Auth Web3",
+    "wallet.feature.multiNetwork": "Multi-Red",
+    "wallet.feature.developerFriendly": "Para Desarrolladores",
+    "wallet.feature.lightweight": "Ligero",
+    "wallet.feature.nfcSupport": "Soporte NFC",
+    "wallet.feature.waterproof": "Resistente al Agua",
+    "wallet.feature.noBattery": "Sin Batería",
+    "wallet.feature.easySetup": "Fácil Configuración",
+    "wallet.feature.privacyFocused": "Enfocado en Privacidad",
+    "wallet.feature.noTracking": "Sin Rastreo",
+    "wallet.feature.multiChain": "Multi-Cadena",
+    "wallet.feature.users70m": "70M+ Usuarios",
+    "wallet.feature.staking": "Staking",
+    "wallet.feature.fiatGateway": "Pasarela Fiat",
+    "wallet.feature.multisig": "Multifirma",
+    "wallet.feature.trading": "Trading",
+    "wallet.feature.theftCover": "Seguro Antirrobo",
+    "wallet.feature.airGapped": "Sin Conexión",
+    "wallet.feature.qrOnly": "Solo QR",
+    "wallet.feature.militaryGrade": "Grado Militar",
+    "wallet.feature.antiTamper": "Anti-Manipulación",
+    "wallet.feature.openSource": "Código Abierto",
+    "wallet.feature.secureElement": "Elemento Seguro",
+    "wallet.feature.budgetFriendly": "Económico",
+    "wallet.feature.trusted": "Confiable",
+    
+    // Wallet Badges
+    "wallet.badge.topFreeXRPL": "Mejor Billetera XRPL Gratis",
+    "wallet.badge.topChoice": "Mejor Opción",
+    
+    // Complementary Wallets
+    "wallet.complementary.tangemBackup": "Tangem Card (Respaldo)",
+    "wallet.complementary.ledgerCold": "Ledger (Almacenamiento Frío)",
+    
+    // Exchange Bonuses
+    "exchange.bonus.btc20": "$20 Bono BTC",
+    "exchange.bonus.xrp1000": "1000 XRP Airdrop",
+    "exchange.bonus.lowFee": "Trading con Bajas Comisiones",
+    "exchange.bonus.crypto10": "$10 Cripto Gratis",
+    "exchange.bonus.volume": "Descuentos por Volumen",
+    "exchange.bonus.signup25": "$25 Bono de Registro",
+    "exchange.bonus.welcome": "Bono de Bienvenida",
+    
+    // Exchange Features
+    "exchange.feature.bestForXRP": "Mejor para XRP",
+    "exchange.feature.fiatOnRamp": "Compra con Fiat",
+    "exchange.feature.instantTrade": "Trading Instantáneo",
+    "exchange.feature.xrpBasePairs": "Pares Base XRP",
+    "exchange.feature.powerPiggy": "Staking Power Piggy",
+    "exchange.feature.lowFees": "Bajas Comisiones",
+    "exchange.feature.highSecurity": "Alta Seguridad",
+    "exchange.feature.deepLiquidity": "Alta Liquidez",
+    "exchange.feature.proTools": "Herramientas Pro",
+    "exchange.feature.mostTrusted": "Más Confiable",
+    "exchange.feature.beginnerFriendly": "Fácil para Principiantes",
+    "exchange.feature.usBased": "Con Base en EE.UU.",
+    "exchange.feature.since2011": "Desde 2011",
+    "exchange.feature.euRegulated": "Regulado en UE",
+    "exchange.feature.highLiquidity": "Alta Liquidez",
+    "exchange.feature.visaCard": "Tarjeta Visa",
+    "exchange.feature.earnInterest": "Gana Intereses",
+    "exchange.feature.coins250": "250+ Monedas",
+    "exchange.feature.coins800": "800+ Monedas",
+    "exchange.feature.tradingBots": "Bots de Trading",
+    
+    // Blog Posts
+    "blog.post1.title": "Los 5 Mejores dApps DeFi en XRPL en 2026",
+    "blog.post1.excerpt": "Descubre los principales protocolos de finanzas descentralizadas que traen rendimiento y liquidez al XRP Ledger este año.",
+    "blog.post1.category": "Ecosistema",
+    "blog.post2.title": "Entendiendo las Recompensas de Staking AMM",
+    "blog.post2.excerpt": "Una guía completa sobre la funcionalidad del Automated Market Maker (AMM) en XRPL y cómo ganar ingresos pasivos.",
+    "blog.post2.category": "Guías",
+    "blog.post3.title": "Mejores Prácticas de Seguridad para Auto-Custodia",
+    "blog.post3.excerpt": "Protege tus activos digitales con estos consejos esenciales de seguridad para usuarios de billeteras hardware y software.",
+    "blog.post3.category": "Seguridad",
+    "blog.post4.title": "Mercados NFT en XRPL: Guía Completa",
+    "blog.post4.excerpt": "Explora el creciente ecosistema NFT en el XRP Ledger, incluyendo los mejores mercados y cómo crear tu primer NFT.",
+    "blog.post4.category": "NFTs",
+    "blog.post5.title": "Sidechains de XRPL Explicadas",
+    "blog.post5.excerpt": "Aprende cómo las sidechains extienden las capacidades del XRP Ledger y habilitan nuevos casos de uso como contratos inteligentes.",
+    "blog.post5.category": "Tecnología",
+    "blog.post6.title": "Tokenización de Activos Reales en XRPL",
+    "blog.post6.excerpt": "Cómo las instituciones están trayendo bienes raíces, acciones y commodities al XRP Ledger a través de la tokenización.",
+    "blog.post6.category": "Institucional",
+    
+    // Date/Time Labels
+    "blog.minRead": "min de lectura"
   },
   
   zh: {
@@ -354,7 +582,121 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.privacy": "隐私政策",
     "footer.terms": "服务条款",
     "footer.disclaimer": "非财务建议。请自行研究。",
-    "footer.rssFeed": "RSS订阅"
+    "footer.rssFeed": "RSS订阅",
+    
+    // Wallet Section Header
+    "wallets.sectionTitle": "顶级XRP钱包",
+    "wallets.sectionSubtitle": "使用行业内最受信赖的钱包保护您的XRP。我们已经为您测试了所有钱包。",
+    
+    // Wallet Types
+    "wallet.type.mobileApp": "手机应用",
+    "wallet.type.hardware": "硬件",
+    "wallet.type.browserExt": "浏览器扩展",
+    "wallet.type.hardwareCard": "硬件卡",
+    "wallet.type.webWallet": "网页钱包",
+    
+    // Wallet Fees
+    "wallet.fees.free": "免费",
+    "wallet.fees.standard": "标准",
+    "wallet.fees.low": "低",
+    "wallet.fees.none": "无",
+    
+    // Wallet Features
+    "wallet.feature.selfCustody": "自托管",
+    "wallet.feature.dappBrowser": "dApp浏览器",
+    "wallet.feature.biometricAuth": "生物识别",
+    "wallet.feature.fiatOnramp": "法币入金",
+    "wallet.feature.coldStorage": "冷存储",
+    "wallet.feature.bluetooth": "蓝牙",
+    "wallet.feature.multiCurrency": "多币种",
+    "wallet.feature.highSecurity": "高安全性",
+    "wallet.feature.web3Auth": "Web3认证",
+    "wallet.feature.multiNetwork": "多网络",
+    "wallet.feature.developerFriendly": "开发者友好",
+    "wallet.feature.lightweight": "轻量级",
+    "wallet.feature.nfcSupport": "NFC支持",
+    "wallet.feature.waterproof": "防水",
+    "wallet.feature.noBattery": "无需电池",
+    "wallet.feature.easySetup": "简易设置",
+    "wallet.feature.privacyFocused": "注重隐私",
+    "wallet.feature.noTracking": "无追踪",
+    "wallet.feature.multiChain": "多链",
+    "wallet.feature.users70m": "7000万+用户",
+    "wallet.feature.staking": "质押",
+    "wallet.feature.fiatGateway": "法币通道",
+    "wallet.feature.multisig": "多签",
+    "wallet.feature.trading": "交易",
+    "wallet.feature.theftCover": "防盗保障",
+    "wallet.feature.airGapped": "气隙隔离",
+    "wallet.feature.qrOnly": "仅QR码",
+    "wallet.feature.militaryGrade": "军用级别",
+    "wallet.feature.antiTamper": "防篡改",
+    "wallet.feature.openSource": "开源",
+    "wallet.feature.secureElement": "安全元件",
+    "wallet.feature.budgetFriendly": "经济实惠",
+    "wallet.feature.trusted": "可信赖",
+    
+    // Wallet Badges
+    "wallet.badge.topFreeXRPL": "最佳免费XRPL钱包",
+    "wallet.badge.topChoice": "首选",
+    
+    // Complementary Wallets
+    "wallet.complementary.tangemBackup": "Tangem卡（备份）",
+    "wallet.complementary.ledgerCold": "Ledger（冷存储）",
+    
+    // Exchange Bonuses
+    "exchange.bonus.btc20": "$20 BTC奖励",
+    "exchange.bonus.xrp1000": "1000 XRP空投",
+    "exchange.bonus.lowFee": "低手续费交易",
+    "exchange.bonus.crypto10": "$10免费加密货币",
+    "exchange.bonus.volume": "交易量折扣",
+    "exchange.bonus.signup25": "$25注册奖励",
+    "exchange.bonus.welcome": "欢迎奖励",
+    
+    // Exchange Features
+    "exchange.feature.bestForXRP": "最适合XRP",
+    "exchange.feature.fiatOnRamp": "法币入金",
+    "exchange.feature.instantTrade": "即时交易",
+    "exchange.feature.xrpBasePairs": "XRP交易对",
+    "exchange.feature.powerPiggy": "Power Piggy质押",
+    "exchange.feature.lowFees": "低手续费",
+    "exchange.feature.highSecurity": "高安全性",
+    "exchange.feature.deepLiquidity": "深度流动性",
+    "exchange.feature.proTools": "专业工具",
+    "exchange.feature.mostTrusted": "最受信赖",
+    "exchange.feature.beginnerFriendly": "新手友好",
+    "exchange.feature.usBased": "美国公司",
+    "exchange.feature.since2011": "始于2011",
+    "exchange.feature.euRegulated": "欧盟监管",
+    "exchange.feature.highLiquidity": "高流动性",
+    "exchange.feature.visaCard": "Visa卡",
+    "exchange.feature.earnInterest": "赚取利息",
+    "exchange.feature.coins250": "250+币种",
+    "exchange.feature.coins800": "800+币种",
+    "exchange.feature.tradingBots": "交易机器人",
+    
+    // Blog Posts
+    "blog.post1.title": "2026年XRPL上的5大DeFi dApp",
+    "blog.post1.excerpt": "发现今年为XRP Ledger带来收益和流动性的领先去中心化金融协议。",
+    "blog.post1.category": "生态系统",
+    "blog.post2.title": "了解AMM质押奖励",
+    "blog.post2.excerpt": "关于XRPL上自动化做市商（AMM）功能以及如何赚取被动收入的全面指南。",
+    "blog.post2.category": "指南",
+    "blog.post3.title": "自托管最佳安全实践",
+    "blog.post3.excerpt": "使用这些必要的安全技巧保护您的数字资产，适用于硬件和软件钱包用户。",
+    "blog.post3.category": "安全",
+    "blog.post4.title": "XRPL上的NFT市场：完整指南",
+    "blog.post4.excerpt": "探索XRP Ledger上不断增长的NFT生态系统，包括顶级市场以及如何铸造您的第一个NFT。",
+    "blog.post4.category": "NFT",
+    "blog.post5.title": "XRPL侧链解析",
+    "blog.post5.excerpt": "了解侧链如何扩展XRP Ledger的功能并实现智能合约等新用例。",
+    "blog.post5.category": "技术",
+    "blog.post6.title": "在XRPL上代币化实体资产",
+    "blog.post6.excerpt": "机构如何通过代币化将房地产、股票和大宗商品带入XRP Ledger。",
+    "blog.post6.category": "机构",
+    
+    // Date/Time Labels
+    "blog.minRead": "分钟阅读"
   },
   
   ja: {
@@ -469,7 +811,121 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.privacy": "プライバシーポリシー",
     "footer.terms": "利用規約",
     "footer.disclaimer": "投資アドバイスではありません。ご自身で調査してください。",
-    "footer.rssFeed": "RSSフィード"
+    "footer.rssFeed": "RSSフィード",
+    
+    // Wallet Section Header
+    "wallets.sectionTitle": "トップXRPウォレット",
+    "wallets.sectionSubtitle": "業界で最も信頼されるウォレットでXRPを保護。すべてテスト済みです。",
+    
+    // Wallet Types
+    "wallet.type.mobileApp": "モバイルアプリ",
+    "wallet.type.hardware": "ハードウェア",
+    "wallet.type.browserExt": "ブラウザ拡張",
+    "wallet.type.hardwareCard": "ハードウェアカード",
+    "wallet.type.webWallet": "ウェブウォレット",
+    
+    // Wallet Fees
+    "wallet.fees.free": "無料",
+    "wallet.fees.standard": "標準",
+    "wallet.fees.low": "低",
+    "wallet.fees.none": "なし",
+    
+    // Wallet Features
+    "wallet.feature.selfCustody": "自己管理",
+    "wallet.feature.dappBrowser": "dAppブラウザ",
+    "wallet.feature.biometricAuth": "生体認証",
+    "wallet.feature.fiatOnramp": "法定通貨入金",
+    "wallet.feature.coldStorage": "コールドストレージ",
+    "wallet.feature.bluetooth": "Bluetooth",
+    "wallet.feature.multiCurrency": "マルチ通貨",
+    "wallet.feature.highSecurity": "高セキュリティ",
+    "wallet.feature.web3Auth": "Web3認証",
+    "wallet.feature.multiNetwork": "マルチネットワーク",
+    "wallet.feature.developerFriendly": "開発者向け",
+    "wallet.feature.lightweight": "軽量",
+    "wallet.feature.nfcSupport": "NFC対応",
+    "wallet.feature.waterproof": "防水",
+    "wallet.feature.noBattery": "電池不要",
+    "wallet.feature.easySetup": "簡単設定",
+    "wallet.feature.privacyFocused": "プライバシー重視",
+    "wallet.feature.noTracking": "追跡なし",
+    "wallet.feature.multiChain": "マルチチェーン",
+    "wallet.feature.users70m": "7000万+ユーザー",
+    "wallet.feature.staking": "ステーキング",
+    "wallet.feature.fiatGateway": "法定通貨ゲートウェイ",
+    "wallet.feature.multisig": "マルチシグ",
+    "wallet.feature.trading": "取引",
+    "wallet.feature.theftCover": "盗難補償",
+    "wallet.feature.airGapped": "エアギャップ",
+    "wallet.feature.qrOnly": "QRのみ",
+    "wallet.feature.militaryGrade": "軍用グレード",
+    "wallet.feature.antiTamper": "改ざん防止",
+    "wallet.feature.openSource": "オープンソース",
+    "wallet.feature.secureElement": "セキュアエレメント",
+    "wallet.feature.budgetFriendly": "お手頃価格",
+    "wallet.feature.trusted": "信頼性",
+    
+    // Wallet Badges
+    "wallet.badge.topFreeXRPL": "トップ無料XRPLウォレット",
+    "wallet.badge.topChoice": "トップチョイス",
+    
+    // Complementary Wallets
+    "wallet.complementary.tangemBackup": "Tangemカード（バックアップ）",
+    "wallet.complementary.ledgerCold": "Ledger（コールドストレージ）",
+    
+    // Exchange Bonuses
+    "exchange.bonus.btc20": "$20 BTCボーナス",
+    "exchange.bonus.xrp1000": "1000 XRPエアドロップ",
+    "exchange.bonus.lowFee": "低手数料取引",
+    "exchange.bonus.crypto10": "$10無料暗号通貨",
+    "exchange.bonus.volume": "ボリューム割引",
+    "exchange.bonus.signup25": "$25登録ボーナス",
+    "exchange.bonus.welcome": "ウェルカムボーナス",
+    
+    // Exchange Features
+    "exchange.feature.bestForXRP": "XRPに最適",
+    "exchange.feature.fiatOnRamp": "法定通貨入金",
+    "exchange.feature.instantTrade": "即時取引",
+    "exchange.feature.xrpBasePairs": "XRPベースペア",
+    "exchange.feature.powerPiggy": "Power Piggyステーキング",
+    "exchange.feature.lowFees": "低手数料",
+    "exchange.feature.highSecurity": "高セキュリティ",
+    "exchange.feature.deepLiquidity": "深い流動性",
+    "exchange.feature.proTools": "プロツール",
+    "exchange.feature.mostTrusted": "最も信頼",
+    "exchange.feature.beginnerFriendly": "初心者向け",
+    "exchange.feature.usBased": "米国拠点",
+    "exchange.feature.since2011": "2011年から",
+    "exchange.feature.euRegulated": "EU規制",
+    "exchange.feature.highLiquidity": "高流動性",
+    "exchange.feature.visaCard": "Visaカード",
+    "exchange.feature.earnInterest": "利息を稼ぐ",
+    "exchange.feature.coins250": "250+コイン",
+    "exchange.feature.coins800": "800+コイン",
+    "exchange.feature.tradingBots": "取引ボット",
+    
+    // Blog Posts
+    "blog.post1.title": "2026年XRPLのトップ5 DeFi dApp",
+    "blog.post1.excerpt": "今年XRP Ledgerに収益と流動性をもたらす主要な分散型金融プロトコルを発見。",
+    "blog.post1.category": "エコシステム",
+    "blog.post2.title": "AMMステーキング報酬の理解",
+    "blog.post2.excerpt": "XRPLのAMM機能とパッシブインカムの稼ぎ方についての包括的ガイド。",
+    "blog.post2.category": "ガイド",
+    "blog.post3.title": "自己管理のセキュリティベストプラクティス",
+    "blog.post3.excerpt": "ハードウェアおよびソフトウェアウォレットユーザー向けの必須セキュリティヒントで資産を保護。",
+    "blog.post3.category": "セキュリティ",
+    "blog.post4.title": "XRPLのNFTマーケットプレイス：完全ガイド",
+    "blog.post4.excerpt": "XRP Ledgerの成長するNFTエコシステムを探索、トップマーケットプレイスと初NFTの作成方法を含む。",
+    "blog.post4.category": "NFT",
+    "blog.post5.title": "XRPLサイドチェーン解説",
+    "blog.post5.excerpt": "サイドチェーンがXRP Ledgerの機能を拡張し、スマートコントラクトなどの新しいユースケースを可能にする方法を学ぶ。",
+    "blog.post5.category": "テクノロジー",
+    "blog.post6.title": "XRPLでの実物資産のトークン化",
+    "blog.post6.excerpt": "機関がトークン化を通じて不動産、株式、商品をXRP Ledgerに導入する方法。",
+    "blog.post6.category": "機関投資家",
+    
+    // Date/Time Labels
+    "blog.minRead": "分で読める"
   },
   
   ko: {
@@ -584,7 +1040,121 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.privacy": "개인정보 처리방침",
     "footer.terms": "이용약관",
     "footer.disclaimer": "투자 조언이 아닙니다. 직접 조사하세요.",
-    "footer.rssFeed": "RSS 피드"
+    "footer.rssFeed": "RSS 피드",
+    
+    // Wallet Section Header
+    "wallets.sectionTitle": "최고의 XRP 지갑",
+    "wallets.sectionSubtitle": "업계에서 가장 신뢰받는 지갑으로 XRP를 보호하세요. 모든 것을 테스트했습니다.",
+    
+    // Wallet Types
+    "wallet.type.mobileApp": "모바일 앱",
+    "wallet.type.hardware": "하드웨어",
+    "wallet.type.browserExt": "브라우저 확장",
+    "wallet.type.hardwareCard": "하드웨어 카드",
+    "wallet.type.webWallet": "웹 지갑",
+    
+    // Wallet Fees
+    "wallet.fees.free": "무료",
+    "wallet.fees.standard": "표준",
+    "wallet.fees.low": "낮음",
+    "wallet.fees.none": "없음",
+    
+    // Wallet Features
+    "wallet.feature.selfCustody": "자체 보관",
+    "wallet.feature.dappBrowser": "dApp 브라우저",
+    "wallet.feature.biometricAuth": "생체 인증",
+    "wallet.feature.fiatOnramp": "법정화폐 입금",
+    "wallet.feature.coldStorage": "콜드 스토리지",
+    "wallet.feature.bluetooth": "블루투스",
+    "wallet.feature.multiCurrency": "다중 통화",
+    "wallet.feature.highSecurity": "높은 보안",
+    "wallet.feature.web3Auth": "Web3 인증",
+    "wallet.feature.multiNetwork": "다중 네트워크",
+    "wallet.feature.developerFriendly": "개발자 친화적",
+    "wallet.feature.lightweight": "경량",
+    "wallet.feature.nfcSupport": "NFC 지원",
+    "wallet.feature.waterproof": "방수",
+    "wallet.feature.noBattery": "배터리 불필요",
+    "wallet.feature.easySetup": "쉬운 설정",
+    "wallet.feature.privacyFocused": "프라이버시 중심",
+    "wallet.feature.noTracking": "추적 없음",
+    "wallet.feature.multiChain": "다중 체인",
+    "wallet.feature.users70m": "7천만+ 사용자",
+    "wallet.feature.staking": "스테이킹",
+    "wallet.feature.fiatGateway": "법정화폐 게이트웨이",
+    "wallet.feature.multisig": "다중 서명",
+    "wallet.feature.trading": "거래",
+    "wallet.feature.theftCover": "도난 보상",
+    "wallet.feature.airGapped": "에어갭",
+    "wallet.feature.qrOnly": "QR만",
+    "wallet.feature.militaryGrade": "군용 등급",
+    "wallet.feature.antiTamper": "변조 방지",
+    "wallet.feature.openSource": "오픈 소스",
+    "wallet.feature.secureElement": "보안 요소",
+    "wallet.feature.budgetFriendly": "저예산",
+    "wallet.feature.trusted": "신뢰성",
+    
+    // Wallet Badges
+    "wallet.badge.topFreeXRPL": "최고의 무료 XRPL 지갑",
+    "wallet.badge.topChoice": "최고의 선택",
+    
+    // Complementary Wallets
+    "wallet.complementary.tangemBackup": "Tangem 카드 (백업)",
+    "wallet.complementary.ledgerCold": "Ledger (콜드 스토리지)",
+    
+    // Exchange Bonuses
+    "exchange.bonus.btc20": "$20 BTC 보너스",
+    "exchange.bonus.xrp1000": "1000 XRP 에어드롭",
+    "exchange.bonus.lowFee": "낮은 수수료 거래",
+    "exchange.bonus.crypto10": "$10 무료 암호화폐",
+    "exchange.bonus.volume": "거래량 할인",
+    "exchange.bonus.signup25": "$25 가입 보너스",
+    "exchange.bonus.welcome": "웰컴 보너스",
+    
+    // Exchange Features
+    "exchange.feature.bestForXRP": "XRP에 최적",
+    "exchange.feature.fiatOnRamp": "법정화폐 입금",
+    "exchange.feature.instantTrade": "즉시 거래",
+    "exchange.feature.xrpBasePairs": "XRP 기반 페어",
+    "exchange.feature.powerPiggy": "Power Piggy 스테이킹",
+    "exchange.feature.lowFees": "낮은 수수료",
+    "exchange.feature.highSecurity": "높은 보안",
+    "exchange.feature.deepLiquidity": "깊은 유동성",
+    "exchange.feature.proTools": "전문 도구",
+    "exchange.feature.mostTrusted": "가장 신뢰받는",
+    "exchange.feature.beginnerFriendly": "초보자 친화적",
+    "exchange.feature.usBased": "미국 기반",
+    "exchange.feature.since2011": "2011년부터",
+    "exchange.feature.euRegulated": "EU 규제",
+    "exchange.feature.highLiquidity": "높은 유동성",
+    "exchange.feature.visaCard": "Visa 카드",
+    "exchange.feature.earnInterest": "이자 수익",
+    "exchange.feature.coins250": "250+ 코인",
+    "exchange.feature.coins800": "800+ 코인",
+    "exchange.feature.tradingBots": "거래 봇",
+    
+    // Blog Posts
+    "blog.post1.title": "2026년 XRPL 최고의 DeFi dApp 5개",
+    "blog.post1.excerpt": "올해 XRP Ledger에 수익과 유동성을 가져다주는 주요 분산 금융 프로토콜을 발견하세요.",
+    "blog.post1.category": "생태계",
+    "blog.post2.title": "AMM 스테이킹 보상 이해하기",
+    "blog.post2.excerpt": "XRPL의 AMM 기능과 수동 소득을 얻는 방법에 대한 포괄적인 가이드.",
+    "blog.post2.category": "가이드",
+    "blog.post3.title": "자체 보관 보안 모범 사례",
+    "blog.post3.excerpt": "하드웨어 및 소프트웨어 지갑 사용자를 위한 필수 보안 팁으로 디지털 자산을 보호하세요.",
+    "blog.post3.category": "보안",
+    "blog.post4.title": "XRPL의 NFT 마켓플레이스: 완전 가이드",
+    "blog.post4.excerpt": "XRP Ledger의 성장하는 NFT 생태계를 탐색하고, 최고의 마켓플레이스와 첫 NFT를 발행하는 방법을 알아보세요.",
+    "blog.post4.category": "NFT",
+    "blog.post5.title": "XRPL 사이드체인 설명",
+    "blog.post5.excerpt": "사이드체인이 XRP Ledger의 기능을 확장하고 스마트 계약과 같은 새로운 사용 사례를 가능하게 하는 방법을 알아보세요.",
+    "blog.post5.category": "기술",
+    "blog.post6.title": "XRPL에서 실물 자산 토큰화",
+    "blog.post6.excerpt": "기관들이 토큰화를 통해 부동산, 주식, 상품을 XRP Ledger에 가져오는 방법.",
+    "blog.post6.category": "기관",
+    
+    // Date/Time Labels
+    "blog.minRead": "분 읽기"
   },
   
   pt: {
@@ -699,7 +1269,121 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.privacy": "Política de Privacidade",
     "footer.terms": "Termos de Serviço",
     "footer.disclaimer": "Não é aconselhamento financeiro. Faça sua própria pesquisa.",
-    "footer.rssFeed": "Feed RSS"
+    "footer.rssFeed": "Feed RSS",
+    
+    // Wallet Section Header
+    "wallets.sectionTitle": "Melhores Carteiras XRP",
+    "wallets.sectionSubtitle": "Proteja seu XRP com as carteiras mais confiáveis da indústria. Testamos todas para você.",
+    
+    // Wallet Types
+    "wallet.type.mobileApp": "App Móvel",
+    "wallet.type.hardware": "Hardware",
+    "wallet.type.browserExt": "Extensão",
+    "wallet.type.hardwareCard": "Cartão Hardware",
+    "wallet.type.webWallet": "Carteira Web",
+    
+    // Wallet Fees
+    "wallet.fees.free": "Grátis",
+    "wallet.fees.standard": "Padrão",
+    "wallet.fees.low": "Baixo",
+    "wallet.fees.none": "Nenhum",
+    
+    // Wallet Features
+    "wallet.feature.selfCustody": "Auto-Custódia",
+    "wallet.feature.dappBrowser": "Navegador dApp",
+    "wallet.feature.biometricAuth": "Auth Biométrica",
+    "wallet.feature.fiatOnramp": "Compra com Fiat",
+    "wallet.feature.coldStorage": "Armazenamento Frio",
+    "wallet.feature.bluetooth": "Bluetooth",
+    "wallet.feature.multiCurrency": "Multi-Moeda",
+    "wallet.feature.highSecurity": "Alta Segurança",
+    "wallet.feature.web3Auth": "Auth Web3",
+    "wallet.feature.multiNetwork": "Multi-Rede",
+    "wallet.feature.developerFriendly": "Para Desenvolvedores",
+    "wallet.feature.lightweight": "Leve",
+    "wallet.feature.nfcSupport": "Suporte NFC",
+    "wallet.feature.waterproof": "À Prova d'Água",
+    "wallet.feature.noBattery": "Sem Bateria",
+    "wallet.feature.easySetup": "Fácil Configuração",
+    "wallet.feature.privacyFocused": "Foco em Privacidade",
+    "wallet.feature.noTracking": "Sem Rastreamento",
+    "wallet.feature.multiChain": "Multi-Chain",
+    "wallet.feature.users70m": "70M+ Usuários",
+    "wallet.feature.staking": "Staking",
+    "wallet.feature.fiatGateway": "Gateway Fiat",
+    "wallet.feature.multisig": "Multisig",
+    "wallet.feature.trading": "Trading",
+    "wallet.feature.theftCover": "Cobertura Antifurto",
+    "wallet.feature.airGapped": "Air-Gapped",
+    "wallet.feature.qrOnly": "Apenas QR",
+    "wallet.feature.militaryGrade": "Grau Militar",
+    "wallet.feature.antiTamper": "Anti-Adulteração",
+    "wallet.feature.openSource": "Código Aberto",
+    "wallet.feature.secureElement": "Elemento Seguro",
+    "wallet.feature.budgetFriendly": "Econômico",
+    "wallet.feature.trusted": "Confiável",
+    
+    // Wallet Badges
+    "wallet.badge.topFreeXRPL": "Melhor Carteira XRPL Grátis",
+    "wallet.badge.topChoice": "Melhor Escolha",
+    
+    // Complementary Wallets
+    "wallet.complementary.tangemBackup": "Tangem Card (Backup)",
+    "wallet.complementary.ledgerCold": "Ledger (Armazenamento Frio)",
+    
+    // Exchange Bonuses
+    "exchange.bonus.btc20": "$20 Bônus BTC",
+    "exchange.bonus.xrp1000": "1000 XRP Airdrop",
+    "exchange.bonus.lowFee": "Trading com Taxas Baixas",
+    "exchange.bonus.crypto10": "$10 Cripto Grátis",
+    "exchange.bonus.volume": "Descontos por Volume",
+    "exchange.bonus.signup25": "$25 Bônus de Cadastro",
+    "exchange.bonus.welcome": "Bônus de Boas-vindas",
+    
+    // Exchange Features
+    "exchange.feature.bestForXRP": "Melhor para XRP",
+    "exchange.feature.fiatOnRamp": "Compra com Fiat",
+    "exchange.feature.instantTrade": "Trading Instantâneo",
+    "exchange.feature.xrpBasePairs": "Pares Base XRP",
+    "exchange.feature.powerPiggy": "Staking Power Piggy",
+    "exchange.feature.lowFees": "Taxas Baixas",
+    "exchange.feature.highSecurity": "Alta Segurança",
+    "exchange.feature.deepLiquidity": "Alta Liquidez",
+    "exchange.feature.proTools": "Ferramentas Pro",
+    "exchange.feature.mostTrusted": "Mais Confiável",
+    "exchange.feature.beginnerFriendly": "Fácil para Iniciantes",
+    "exchange.feature.usBased": "Sediada nos EUA",
+    "exchange.feature.since2011": "Desde 2011",
+    "exchange.feature.euRegulated": "Regulada na UE",
+    "exchange.feature.highLiquidity": "Alta Liquidez",
+    "exchange.feature.visaCard": "Cartão Visa",
+    "exchange.feature.earnInterest": "Ganhe Juros",
+    "exchange.feature.coins250": "250+ Moedas",
+    "exchange.feature.coins800": "800+ Moedas",
+    "exchange.feature.tradingBots": "Bots de Trading",
+    
+    // Blog Posts
+    "blog.post1.title": "Top 5 dApps DeFi no XRPL em 2026",
+    "blog.post1.excerpt": "Descubra os principais protocolos de finanças descentralizadas trazendo rendimento e liquidez ao XRP Ledger este ano.",
+    "blog.post1.category": "Ecossistema",
+    "blog.post2.title": "Entendendo Recompensas de Staking AMM",
+    "blog.post2.excerpt": "Um guia completo sobre a funcionalidade do AMM no XRPL e como ganhar renda passiva.",
+    "blog.post2.category": "Guias",
+    "blog.post3.title": "Melhores Práticas de Segurança para Auto-Custódia",
+    "blog.post3.excerpt": "Proteja seus ativos digitais com estas dicas essenciais de segurança para usuários de carteiras hardware e software.",
+    "blog.post3.category": "Segurança",
+    "blog.post4.title": "Marketplaces NFT no XRPL: Guia Completo",
+    "blog.post4.excerpt": "Explore o crescente ecossistema NFT no XRP Ledger, incluindo os melhores marketplaces e como criar seu primeiro NFT.",
+    "blog.post4.category": "NFTs",
+    "blog.post5.title": "Sidechains XRPL Explicadas",
+    "blog.post5.excerpt": "Aprenda como sidechains estendem as capacidades do XRP Ledger e permitem novos casos de uso como smart contracts.",
+    "blog.post5.category": "Tecnologia",
+    "blog.post6.title": "Tokenização de Ativos Reais no XRPL",
+    "blog.post6.excerpt": "Como instituições estão trazendo imóveis, ações e commodities para o XRP Ledger através da tokenização.",
+    "blog.post6.category": "Institucional",
+    
+    // Date/Time Labels
+    "blog.minRead": "min de leitura"
   },
   
   de: {
@@ -814,7 +1498,121 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.privacy": "Datenschutzrichtlinie",
     "footer.terms": "Nutzungsbedingungen",
     "footer.disclaimer": "Keine Finanzberatung. Recherchieren Sie selbst.",
-    "footer.rssFeed": "RSS-Feed"
+    "footer.rssFeed": "RSS-Feed",
+    
+    // Wallet Section Header
+    "wallets.sectionTitle": "Top XRP Wallets",
+    "wallets.sectionSubtitle": "Sichern Sie Ihr XRP mit den vertrauenswürdigsten Wallets der Branche. Wir haben alle getestet.",
+    
+    // Wallet Types
+    "wallet.type.mobileApp": "Mobile App",
+    "wallet.type.hardware": "Hardware",
+    "wallet.type.browserExt": "Browser-Erw.",
+    "wallet.type.hardwareCard": "Hardware-Karte",
+    "wallet.type.webWallet": "Web Wallet",
+    
+    // Wallet Fees
+    "wallet.fees.free": "Kostenlos",
+    "wallet.fees.standard": "Standard",
+    "wallet.fees.low": "Niedrig",
+    "wallet.fees.none": "Keine",
+    
+    // Wallet Features
+    "wallet.feature.selfCustody": "Selbstverwahrung",
+    "wallet.feature.dappBrowser": "dApp Browser",
+    "wallet.feature.biometricAuth": "Biometrisch",
+    "wallet.feature.fiatOnramp": "Fiat-Einzahlung",
+    "wallet.feature.coldStorage": "Cold Storage",
+    "wallet.feature.bluetooth": "Bluetooth",
+    "wallet.feature.multiCurrency": "Multi-Währung",
+    "wallet.feature.highSecurity": "Hohe Sicherheit",
+    "wallet.feature.web3Auth": "Web3 Auth",
+    "wallet.feature.multiNetwork": "Multi-Netzwerk",
+    "wallet.feature.developerFriendly": "Entwicklerfreundlich",
+    "wallet.feature.lightweight": "Leichtgewichtig",
+    "wallet.feature.nfcSupport": "NFC-Unterstützung",
+    "wallet.feature.waterproof": "Wasserdicht",
+    "wallet.feature.noBattery": "Ohne Batterie",
+    "wallet.feature.easySetup": "Einfache Einrichtung",
+    "wallet.feature.privacyFocused": "Datenschutz-fokussiert",
+    "wallet.feature.noTracking": "Kein Tracking",
+    "wallet.feature.multiChain": "Multi-Chain",
+    "wallet.feature.users70m": "70M+ Nutzer",
+    "wallet.feature.staking": "Staking",
+    "wallet.feature.fiatGateway": "Fiat Gateway",
+    "wallet.feature.multisig": "Multisig",
+    "wallet.feature.trading": "Trading",
+    "wallet.feature.theftCover": "Diebstahlschutz",
+    "wallet.feature.airGapped": "Air-Gapped",
+    "wallet.feature.qrOnly": "Nur QR",
+    "wallet.feature.militaryGrade": "Militärqualität",
+    "wallet.feature.antiTamper": "Manipulationsschutz",
+    "wallet.feature.openSource": "Open Source",
+    "wallet.feature.secureElement": "Sicheres Element",
+    "wallet.feature.budgetFriendly": "Budgetfreundlich",
+    "wallet.feature.trusted": "Vertrauenswürdig",
+    
+    // Wallet Badges
+    "wallet.badge.topFreeXRPL": "Beste kostenlose XRPL Wallet",
+    "wallet.badge.topChoice": "Beste Wahl",
+    
+    // Complementary Wallets
+    "wallet.complementary.tangemBackup": "Tangem Karte (Backup)",
+    "wallet.complementary.ledgerCold": "Ledger (Cold Storage)",
+    
+    // Exchange Bonuses
+    "exchange.bonus.btc20": "$20 BTC Bonus",
+    "exchange.bonus.xrp1000": "1000 XRP Airdrop",
+    "exchange.bonus.lowFee": "Niedrige Handelsgebühren",
+    "exchange.bonus.crypto10": "$10 Gratis Krypto",
+    "exchange.bonus.volume": "Volumenrabatte",
+    "exchange.bonus.signup25": "$25 Anmeldebonus",
+    "exchange.bonus.welcome": "Willkommensbonus",
+    
+    // Exchange Features
+    "exchange.feature.bestForXRP": "Beste für XRP",
+    "exchange.feature.fiatOnRamp": "Fiat-Einzahlung",
+    "exchange.feature.instantTrade": "Sofortiger Handel",
+    "exchange.feature.xrpBasePairs": "XRP Basispaare",
+    "exchange.feature.powerPiggy": "Power Piggy Staking",
+    "exchange.feature.lowFees": "Niedrige Gebühren",
+    "exchange.feature.highSecurity": "Hohe Sicherheit",
+    "exchange.feature.deepLiquidity": "Tiefe Liquidität",
+    "exchange.feature.proTools": "Profi-Tools",
+    "exchange.feature.mostTrusted": "Am vertrauenswürdigsten",
+    "exchange.feature.beginnerFriendly": "Anfängerfreundlich",
+    "exchange.feature.usBased": "US-basiert",
+    "exchange.feature.since2011": "Seit 2011",
+    "exchange.feature.euRegulated": "EU reguliert",
+    "exchange.feature.highLiquidity": "Hohe Liquidität",
+    "exchange.feature.visaCard": "Visa Karte",
+    "exchange.feature.earnInterest": "Zinsen verdienen",
+    "exchange.feature.coins250": "250+ Coins",
+    "exchange.feature.coins800": "800+ Coins",
+    "exchange.feature.tradingBots": "Trading Bots",
+    
+    // Blog Posts
+    "blog.post1.title": "Top 5 DeFi dApps auf XRPL 2026",
+    "blog.post1.excerpt": "Entdecken Sie die führenden dezentralen Finanzprotokolle, die Rendite und Liquidität zum XRP Ledger bringen.",
+    "blog.post1.category": "Ökosystem",
+    "blog.post2.title": "AMM Staking Rewards verstehen",
+    "blog.post2.excerpt": "Ein umfassender Leitfaden zur AMM-Funktionalität auf XRPL und wie man passives Einkommen verdient.",
+    "blog.post2.category": "Anleitungen",
+    "blog.post3.title": "Sicherheits-Best Practices für Selbstverwahrung",
+    "blog.post3.excerpt": "Schützen Sie Ihre digitalen Assets mit diesen essentiellen Sicherheitstipps für Hardware- und Software-Wallet-Nutzer.",
+    "blog.post3.category": "Sicherheit",
+    "blog.post4.title": "NFT-Marktplätze auf XRPL: Kompletter Leitfaden",
+    "blog.post4.excerpt": "Erkunden Sie das wachsende NFT-Ökosystem auf dem XRP Ledger, einschließlich Top-Marktplätze und wie Sie Ihr erstes NFT erstellen.",
+    "blog.post4.category": "NFTs",
+    "blog.post5.title": "XRPL Sidechains erklärt",
+    "blog.post5.excerpt": "Erfahren Sie, wie Sidechains die Fähigkeiten des XRP Ledgers erweitern und neue Anwendungsfälle wie Smart Contracts ermöglichen.",
+    "blog.post5.category": "Technologie",
+    "blog.post6.title": "Tokenisierung realer Vermögenswerte auf XRPL",
+    "blog.post6.excerpt": "Wie Institutionen Immobilien, Aktien und Rohstoffe durch Tokenisierung auf das XRP Ledger bringen.",
+    "blog.post6.category": "Institutionell",
+    
+    // Date/Time Labels
+    "blog.minRead": "Min. Lesezeit"
   },
   
   fr: {
@@ -929,6 +1727,120 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.privacy": "Politique de confidentialité",
     "footer.terms": "Conditions d'utilisation",
     "footer.disclaimer": "Ce n'est pas un conseil financier. Faites vos propres recherches.",
-    "footer.rssFeed": "Flux RSS"
+    "footer.rssFeed": "Flux RSS",
+    
+    // Wallet Section Header
+    "wallets.sectionTitle": "Meilleurs Portefeuilles XRP",
+    "wallets.sectionSubtitle": "Sécurisez votre XRP avec les portefeuilles les plus fiables de l'industrie. Nous les avons tous testés pour vous.",
+    
+    // Wallet Types
+    "wallet.type.mobileApp": "App Mobile",
+    "wallet.type.hardware": "Hardware",
+    "wallet.type.browserExt": "Extension",
+    "wallet.type.hardwareCard": "Carte Hardware",
+    "wallet.type.webWallet": "Portefeuille Web",
+    
+    // Wallet Fees
+    "wallet.fees.free": "Gratuit",
+    "wallet.fees.standard": "Standard",
+    "wallet.fees.low": "Bas",
+    "wallet.fees.none": "Aucun",
+    
+    // Wallet Features
+    "wallet.feature.selfCustody": "Auto-Garde",
+    "wallet.feature.dappBrowser": "Navigateur dApp",
+    "wallet.feature.biometricAuth": "Auth Biométrique",
+    "wallet.feature.fiatOnramp": "Achat en Fiat",
+    "wallet.feature.coldStorage": "Stockage Froid",
+    "wallet.feature.bluetooth": "Bluetooth",
+    "wallet.feature.multiCurrency": "Multi-Devise",
+    "wallet.feature.highSecurity": "Haute Sécurité",
+    "wallet.feature.web3Auth": "Auth Web3",
+    "wallet.feature.multiNetwork": "Multi-Réseau",
+    "wallet.feature.developerFriendly": "Pour Développeurs",
+    "wallet.feature.lightweight": "Léger",
+    "wallet.feature.nfcSupport": "Support NFC",
+    "wallet.feature.waterproof": "Étanche",
+    "wallet.feature.noBattery": "Sans Batterie",
+    "wallet.feature.easySetup": "Configuration Facile",
+    "wallet.feature.privacyFocused": "Axé sur la Vie Privée",
+    "wallet.feature.noTracking": "Sans Traçage",
+    "wallet.feature.multiChain": "Multi-Chain",
+    "wallet.feature.users70m": "70M+ Utilisateurs",
+    "wallet.feature.staking": "Staking",
+    "wallet.feature.fiatGateway": "Passerelle Fiat",
+    "wallet.feature.multisig": "Multisig",
+    "wallet.feature.trading": "Trading",
+    "wallet.feature.theftCover": "Protection Vol",
+    "wallet.feature.airGapped": "Air-Gapped",
+    "wallet.feature.qrOnly": "QR Uniquement",
+    "wallet.feature.militaryGrade": "Qualité Militaire",
+    "wallet.feature.antiTamper": "Anti-Falsification",
+    "wallet.feature.openSource": "Open Source",
+    "wallet.feature.secureElement": "Élément Sécurisé",
+    "wallet.feature.budgetFriendly": "Économique",
+    "wallet.feature.trusted": "Fiable",
+    
+    // Wallet Badges
+    "wallet.badge.topFreeXRPL": "Meilleur Portefeuille XRPL Gratuit",
+    "wallet.badge.topChoice": "Meilleur Choix",
+    
+    // Complementary Wallets
+    "wallet.complementary.tangemBackup": "Carte Tangem (Sauvegarde)",
+    "wallet.complementary.ledgerCold": "Ledger (Stockage Froid)",
+    
+    // Exchange Bonuses
+    "exchange.bonus.btc20": "Bonus $20 BTC",
+    "exchange.bonus.xrp1000": "Airdrop 1000 XRP",
+    "exchange.bonus.lowFee": "Trading à Frais Réduits",
+    "exchange.bonus.crypto10": "$10 Crypto Gratuit",
+    "exchange.bonus.volume": "Remises Volume",
+    "exchange.bonus.signup25": "Bonus Inscription $25",
+    "exchange.bonus.welcome": "Bonus de Bienvenue",
+    
+    // Exchange Features
+    "exchange.feature.bestForXRP": "Meilleur pour XRP",
+    "exchange.feature.fiatOnRamp": "Achat en Fiat",
+    "exchange.feature.instantTrade": "Trading Instantané",
+    "exchange.feature.xrpBasePairs": "Paires Base XRP",
+    "exchange.feature.powerPiggy": "Staking Power Piggy",
+    "exchange.feature.lowFees": "Frais Bas",
+    "exchange.feature.highSecurity": "Haute Sécurité",
+    "exchange.feature.deepLiquidity": "Liquidité Profonde",
+    "exchange.feature.proTools": "Outils Pro",
+    "exchange.feature.mostTrusted": "Le Plus Fiable",
+    "exchange.feature.beginnerFriendly": "Facile pour Débutants",
+    "exchange.feature.usBased": "Basé aux USA",
+    "exchange.feature.since2011": "Depuis 2011",
+    "exchange.feature.euRegulated": "Régulé UE",
+    "exchange.feature.highLiquidity": "Haute Liquidité",
+    "exchange.feature.visaCard": "Carte Visa",
+    "exchange.feature.earnInterest": "Gagnez des Intérêts",
+    "exchange.feature.coins250": "250+ Coins",
+    "exchange.feature.coins800": "800+ Coins",
+    "exchange.feature.tradingBots": "Bots de Trading",
+    
+    // Blog Posts
+    "blog.post1.title": "Top 5 dApps DeFi sur XRPL en 2026",
+    "blog.post1.excerpt": "Découvrez les principaux protocoles de finance décentralisée apportant rendement et liquidité au XRP Ledger cette année.",
+    "blog.post1.category": "Écosystème",
+    "blog.post2.title": "Comprendre les Récompenses de Staking AMM",
+    "blog.post2.excerpt": "Un guide complet sur la fonctionnalité AMM sur XRPL et comment gagner un revenu passif.",
+    "blog.post2.category": "Guides",
+    "blog.post3.title": "Meilleures Pratiques de Sécurité pour l'Auto-Garde",
+    "blog.post3.excerpt": "Protégez vos actifs numériques avec ces conseils de sécurité essentiels pour les utilisateurs de portefeuilles hardware et logiciels.",
+    "blog.post3.category": "Sécurité",
+    "blog.post4.title": "Marketplaces NFT sur XRPL : Guide Complet",
+    "blog.post4.excerpt": "Explorez l'écosystème NFT en croissance sur le XRP Ledger, incluant les meilleures marketplaces et comment créer votre premier NFT.",
+    "blog.post4.category": "NFTs",
+    "blog.post5.title": "Sidechains XRPL Expliquées",
+    "blog.post5.excerpt": "Apprenez comment les sidechains étendent les capacités du XRP Ledger et permettent de nouveaux cas d'usage comme les smart contracts.",
+    "blog.post5.category": "Technologie",
+    "blog.post6.title": "Tokenisation d'Actifs Réels sur XRPL",
+    "blog.post6.excerpt": "Comment les institutions apportent l'immobilier, les actions et les matières premières au XRP Ledger via la tokenisation.",
+    "blog.post6.category": "Institutionnel",
+    
+    // Date/Time Labels
+    "blog.minRead": "min de lecture"
   }
 };

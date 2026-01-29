@@ -75,13 +75,26 @@ The site supports 8 languages: English (en), Spanish (es), Chinese (zh), Japanes
 - Navigation (header and mobile menu)
 - Hero section
 - Deal of the Week
-- Wallet cards (labels: score, visit site, read review)
-- Exchange section (title, subtitle, claim bonus buttons)
+- **Wallet section**: Section headers, wallet type labels (Mobile App, Hardware, etc.), fees (Free, Standard, Low, None), 30+ feature badges (Self-Custody, dApp Browser, Biometric Auth, etc.), complementary wallet suggestions
+- **Exchange section**: Section headers, bonus text (e.g., "$20 BTC Bonus", "1000 XRP Airdrop"), 20+ feature badges (Best for XRP, Low Fees, High Security, etc.)
+- **Blog section**: Full translation of 6 blog post titles, excerpts, and categories across all languages
 - Features section (security, yield, guides)
-- Blog section (title, subtitle)
 - Newsletter CTA
 - Footer (all links, disclaimers, RSS feed)
 
+### Translation Key Structure
+- `wallets.sectionTitle/sectionSubtitle`: Wallet section headers
+- `wallet.type.*`: Wallet types (mobileApp, hardware, browserExt, hardwareCard, webWallet)
+- `wallet.fees.*`: Fee labels (free, standard, low, none)
+- `wallet.feature.*`: Feature badges (30+ keys like selfCustody, dappBrowser, etc.)
+- `wallet.badge.*`: Badge text (topFreeXRPL, topChoice)
+- `exchange.bonus.*`: Exchange bonus text (btc20, xrp1000, lowFee, etc.)
+- `exchange.feature.*`: Exchange features (bestForXRP, fiatOnRamp, etc.)
+- `blog.post[1-6].*`: Blog content (title, excerpt, category for each post)
+- `blog.minRead`: Read time label
+
 ### Content Notes
-- Brand names (wallet/exchange names) remain untranslated as they are proper nouns
-- Blog post content and detailed descriptions are in English (would require CMS for full content translation)
+- Brand names (wallet/exchange names like "Xaman", "Ledger", "Uphold") remain untranslated as proper nouns
+- Prices with dollar amounts (e.g., "$169", "$79") remain in original format
+- Dates remain in English format ("Jan 24, 2026") - could be localized in future if needed
+- Data structures in Home.tsx use translation keys (typeKey, feesKey, featureKeys, bonusKey, titleKey, etc.) for dynamic content
