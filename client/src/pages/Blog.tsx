@@ -3,214 +3,244 @@ import { Link } from "wouter";
 import { useState } from "react";
 import { ArrowRight, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-const categories = ["All", "Ecosystem", "Guides", "Security", "NFTs", "Technology", "Institutional", "DeFi"];
+const categoryKeys = [
+  { key: "all", labelKey: "blog.category.all" },
+  { key: "ecosystem", labelKey: "blog.category.ecosystem" },
+  { key: "guides", labelKey: "blog.category.guides" },
+  { key: "security", labelKey: "blog.category.security" },
+  { key: "nfts", labelKey: "blog.category.nfts" },
+  { key: "technology", labelKey: "blog.category.technology" },
+  { key: "institutional", labelKey: "blog.category.institutional" },
+  { key: "defi", labelKey: "blog.category.defi" }
+];
 
 const blogPosts = [
   {
     id: 1,
-    title: "Top 5 DeFi dApps on XRPL in 2026",
-    excerpt: "Discover the leading decentralized finance protocols bringing yield and liquidity to the XRP Ledger this year.",
-    category: "Ecosystem",
+    titleKey: "blog.post1.title",
+    excerptKey: "blog.post1.excerpt",
+    categoryKey: "ecosystem",
+    categoryLabelKey: "blog.post1.category",
     date: "Jan 24, 2026",
-    readTime: "5 min read",
+    readTimeKey: "blog.readTime.5min",
     image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop"
   },
   {
     id: 2,
-    title: "Understanding AMM Staking Rewards",
-    excerpt: "A comprehensive guide to the Automated Market Maker (AMM) functionality on XRPL and how to earn passive income.",
-    category: "Guides",
+    titleKey: "blog.post2.title",
+    excerptKey: "blog.post2.excerpt",
+    categoryKey: "guides",
+    categoryLabelKey: "blog.post2.category",
     date: "Jan 20, 2026",
-    readTime: "8 min read",
+    readTimeKey: "blog.readTime.8min",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop"
   },
   {
     id: 3,
-    title: "Security Best Practices for Self-Custody",
-    excerpt: "Protect your digital assets with these essential security tips for hardware and software wallet users.",
-    category: "Security",
+    titleKey: "blog.post3.title",
+    excerptKey: "blog.post3.excerpt",
+    categoryKey: "security",
+    categoryLabelKey: "blog.post3.category",
     date: "Jan 15, 2026",
-    readTime: "4 min read",
+    readTimeKey: "blog.readTime.4min",
     image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop"
   },
   {
     id: 4,
-    title: "NFT Marketplaces on XRPL: Complete Guide",
-    excerpt: "Explore the growing NFT ecosystem on the XRP Ledger, including top marketplaces and how to mint your first NFT.",
-    category: "NFTs",
+    titleKey: "blog.post4.title",
+    excerptKey: "blog.post4.excerpt",
+    categoryKey: "nfts",
+    categoryLabelKey: "blog.post4.category",
     date: "Jan 12, 2026",
-    readTime: "6 min read",
+    readTimeKey: "blog.readTime.6min",
     image: "https://images.unsplash.com/photo-1643101809204-6fb869816dbe?w=800&auto=format&fit=crop"
   },
   {
     id: 5,
-    title: "XRPL Sidechains Explained",
-    excerpt: "Learn how sidechains extend the capabilities of the XRP Ledger and enable new use cases like smart contracts.",
-    category: "Technology",
+    titleKey: "blog.post5.title",
+    excerptKey: "blog.post5.excerpt",
+    categoryKey: "technology",
+    categoryLabelKey: "blog.post5.category",
     date: "Jan 8, 2026",
-    readTime: "7 min read",
+    readTimeKey: "blog.readTime.7min",
     image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop"
   },
   {
     id: 6,
-    title: "Tokenizing Real World Assets on XRPL",
-    excerpt: "How institutions are bringing real estate, stocks, and commodities to the XRP Ledger through tokenization.",
-    category: "Institutional",
+    titleKey: "blog.post6.title",
+    excerptKey: "blog.post6.excerpt",
+    categoryKey: "institutional",
+    categoryLabelKey: "blog.post6.category",
     date: "Jan 5, 2026",
-    readTime: "9 min read",
+    readTimeKey: "blog.readTime.9min",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop"
   },
   {
     id: 7,
-    title: "XRPL Hooks: Programmable Smart Logic",
-    excerpt: "An introduction to Hooks, the XRPL's native smart contract-like functionality for custom transaction logic.",
-    category: "Technology",
+    titleKey: "blog.post7.title",
+    excerptKey: "blog.post7.excerpt",
+    categoryKey: "technology",
+    categoryLabelKey: "blog.post7.category",
     date: "Jan 2, 2026",
-    readTime: "10 min read",
+    readTimeKey: "blog.readTime.10min",
     image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&fit=crop"
   },
   {
     id: 8,
-    title: "Choosing Between Hot and Cold Wallets",
-    excerpt: "When to use software wallets vs hardware wallets, and how to balance convenience with security.",
-    category: "Security",
+    titleKey: "blog.post8.title",
+    excerptKey: "blog.post8.excerpt",
+    categoryKey: "security",
+    categoryLabelKey: "blog.post8.category",
     date: "Dec 28, 2025",
-    readTime: "5 min read",
+    readTimeKey: "blog.readTime.5min",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop"
   },
   {
     id: 9,
-    title: "Cross-Border Payments with XRP",
-    excerpt: "How Ripple and other companies are using XRP to revolutionize international money transfers.",
-    category: "Institutional",
+    titleKey: "blog.post9.title",
+    excerptKey: "blog.post9.excerpt",
+    categoryKey: "institutional",
+    categoryLabelKey: "blog.post9.category",
     date: "Dec 22, 2025",
-    readTime: "7 min read",
+    readTimeKey: "blog.readTime.7min",
     image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&auto=format&fit=crop"
   },
   {
     id: 10,
-    title: "How to Set Up Trustlines on XRPL",
-    excerpt: "A step-by-step guide to enabling trustlines and holding issued tokens on the XRP Ledger.",
-    category: "Guides",
+    titleKey: "blog.post10.title",
+    excerptKey: "blog.post10.excerpt",
+    categoryKey: "guides",
+    categoryLabelKey: "blog.post10.category",
     date: "Dec 18, 2025",
-    readTime: "6 min read",
+    readTimeKey: "blog.readTime.6min",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop"
   },
   {
     id: 11,
-    title: "Protecting Against Phishing Attacks",
-    excerpt: "Learn how to identify and avoid common crypto scams targeting XRP holders and XRPL users.",
-    category: "Security",
+    titleKey: "blog.post11.title",
+    excerptKey: "blog.post11.excerpt",
+    categoryKey: "security",
+    categoryLabelKey: "blog.post11.category",
     date: "Dec 15, 2025",
-    readTime: "5 min read",
+    readTimeKey: "blog.readTime.5min",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop"
   },
   {
     id: 12,
-    title: "XRP Ledger vs Ethereum: Key Differences",
-    excerpt: "A detailed comparison of XRPL and Ethereum, from consensus mechanisms to transaction costs.",
-    category: "Technology",
+    titleKey: "blog.post12.title",
+    excerptKey: "blog.post12.excerpt",
+    categoryKey: "technology",
+    categoryLabelKey: "blog.post12.category",
     date: "Dec 10, 2025",
-    readTime: "8 min read",
+    readTimeKey: "blog.readTime.8min",
     image: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=800&auto=format&fit=crop"
   },
   {
     id: 13,
-    title: "The Rise of XRPL Gaming",
-    excerpt: "Exploring the growing gaming ecosystem on XRPL, from play-to-earn to NFT-based games.",
-    category: "Ecosystem",
+    titleKey: "blog.post13.title",
+    excerptKey: "blog.post13.excerpt",
+    categoryKey: "ecosystem",
+    categoryLabelKey: "blog.post13.category",
     date: "Dec 5, 2025",
-    readTime: "6 min read",
+    readTimeKey: "blog.readTime.6min",
     image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&auto=format&fit=crop"
   },
   {
     id: 14,
-    title: "Minting Your First NFT on XRPL",
-    excerpt: "A beginner-friendly tutorial on creating and listing your own NFTs on the XRP Ledger.",
-    category: "NFTs",
+    titleKey: "blog.post14.title",
+    excerptKey: "blog.post14.excerpt",
+    categoryKey: "nfts",
+    categoryLabelKey: "blog.post14.category",
     date: "Dec 1, 2025",
-    readTime: "7 min read",
+    readTimeKey: "blog.readTime.7min",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop"
   },
   {
     id: 15,
-    title: "XRP Tax Guide for 2026",
-    excerpt: "Everything you need to know about reporting XRP gains, losses, and staking rewards on your taxes.",
-    category: "Guides",
+    titleKey: "blog.post15.title",
+    excerptKey: "blog.post15.excerpt",
+    categoryKey: "guides",
+    categoryLabelKey: "blog.post15.category",
     date: "Nov 28, 2025",
-    readTime: "10 min read",
+    readTimeKey: "blog.readTime.10min",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&auto=format&fit=crop"
   },
   {
     id: 16,
-    title: "XRPL EVM Sidechain: Complete Guide",
-    excerpt: "Everything you need to know about the new Ethereum-compatible sidechain launched on XRPL in 2025, enabling Solidity smart contracts.",
-    category: "Technology",
+    titleKey: "blog.post16.title",
+    excerptKey: "blog.post16.excerpt",
+    categoryKey: "technology",
+    categoryLabelKey: "blog.post16.category",
     date: "Jan 26, 2026",
-    readTime: "12 min read",
+    readTimeKey: "blog.readTime.12min",
     image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop"
   },
   {
     id: 17,
-    title: "AMM Liquidity Pools: How to Earn Passive Income",
-    excerpt: "A step-by-step guide to providing liquidity on XRPL's native Automated Market Maker and earning trading fees.",
-    category: "DeFi",
+    titleKey: "blog.post17.title",
+    excerptKey: "blog.post17.excerpt",
+    categoryKey: "defi",
+    categoryLabelKey: "blog.post17.category",
     date: "Jan 25, 2026",
-    readTime: "9 min read",
+    readTimeKey: "blog.readTime.9min",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop"
   },
   {
     id: 18,
-    title: "Multi-Purpose Tokens (MPT) Explained",
-    excerpt: "Understanding the new MPT standard on XRPL that enables advanced tokenization for real-world assets and compliance features.",
-    category: "Technology",
+    titleKey: "blog.post18.title",
+    excerptKey: "blog.post18.excerpt",
+    categoryKey: "technology",
+    categoryLabelKey: "blog.post18.category",
     date: "Jan 24, 2026",
-    readTime: "8 min read",
+    readTimeKey: "blog.readTime.8min",
     image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop"
   },
   {
     id: 19,
-    title: "XRPL NFTs: XLS-20 Standard Deep Dive",
-    excerpt: "A comprehensive look at native NFTs on the XRP Ledger, including minting, trading, and the advantages over other chains.",
-    category: "NFTs",
+    titleKey: "blog.post19.title",
+    excerptKey: "blog.post19.excerpt",
+    categoryKey: "nfts",
+    categoryLabelKey: "blog.post19.category",
     date: "Jan 23, 2026",
-    readTime: "10 min read",
+    readTimeKey: "blog.readTime.10min",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop"
   }
 ];
 
 export default function Blog() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const { t } = useLanguage();
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const filteredPosts = selectedCategory === "All" 
+  const filteredPosts = selectedCategory === "all" 
     ? blogPosts 
-    : blogPosts.filter(post => post.category === selectedCategory);
+    : blogPosts.filter(post => post.categoryKey === selectedCategory);
 
   return (
     <Layout>
       <div className="container mx-auto px-4 py-24">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-black font-display mb-4">XRPL Insights</h1>
+          <h1 className="text-4xl md:text-5xl font-black font-display mb-4">{t("blog.pageTitle")}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Guides, news, and analysis from the XRP Ledger ecosystem
+            {t("blog.pageSubtitle")}
           </p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {categories.map((category) => (
+          {categoryKeys.map((cat) => (
             <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              data-testid={`filter-${category.toLowerCase()}`}
+              key={cat.key}
+              onClick={() => setSelectedCategory(cat.key)}
+              data-testid={`filter-${cat.key}`}
               className={cn(
                 "px-4 py-2 rounded-full text-sm font-medium transition-colors",
-                selectedCategory === category
+                selectedCategory === cat.key
                   ? "bg-primary text-white"
                   : "bg-card/50 text-muted-foreground hover:bg-card hover:text-white"
               )}
             >
-              {category}
+              {t(cat.labelKey)}
             </button>
           ))}
         </div>
@@ -227,30 +257,30 @@ export default function Blog() {
                 <div className="aspect-video overflow-hidden">
                   <img 
                     src={post.image} 
-                    alt={post.title}
+                    alt={t(post.titleKey)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
                     <span className="px-2 py-1 rounded-full bg-primary/20 text-primary">
-                      {post.category}
+                      {t(post.categoryLabelKey)}
                     </span>
                     <span className="flex items-center gap-1">
                       <Clock className="h-3 w-3" />
-                      {post.readTime}
+                      {t(post.readTimeKey)}
                     </span>
                   </div>
                   <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                    {post.title}
+                    {t(post.titleKey)}
                   </h3>
                   <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                    {post.excerpt}
+                    {t(post.excerptKey)}
                   </p>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">{post.date}</span>
                     <span className="text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Read <ArrowRight className="h-4 w-4" />
+                      {t("blog.readMore")} <ArrowRight className="h-4 w-4" />
                     </span>
                   </div>
                 </div>
@@ -261,7 +291,7 @@ export default function Blog() {
 
         {filteredPosts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No articles found in this category.</p>
+            <p className="text-muted-foreground">{t("blog.noArticles")}</p>
           </div>
         )}
       </div>
