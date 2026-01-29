@@ -51,9 +51,12 @@ export function NewsletterPopup() {
 
     setIsLoading(true);
     try {
-      const response = await fetch("/api/subscribe", {
+      const response = await fetch("https://formspree.io/f/mzdrkdre", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
         body: JSON.stringify({ email }),
       });
 
@@ -64,10 +67,9 @@ export function NewsletterPopup() {
         });
         handleClose();
       } else {
-        const data = await response.json();
         toast({
           title: "Error",
-          description: data.error || "Failed to subscribe",
+          description: "Failed to subscribe. Please try again.",
           variant: "destructive",
         });
       }
