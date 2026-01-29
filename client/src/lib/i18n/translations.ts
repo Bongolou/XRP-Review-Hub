@@ -26,12 +26,13 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "Contact",
     
     // Hero Section
-    "hero.badge": "Your Trusted XRPL Resource",
-    "hero.title1": "Your Gateway to",
-    "hero.title2": "XRP Ledger",
-    "hero.subtitle": "Discover the best wallets, exchanges, and DeFi opportunities in the XRP Ledger ecosystem. Unbiased reviews and expert insights to help you navigate the world of XRP.",
+    "hero.badge": "XRPL Ecosystem Intelligence",
+    "hero.title1": "NAVIGATE THE",
+    "hero.title2": "XRP LEDGER",
+    "hero.subtitle": "Your definitive guide to the best wallets, dApps, and DeFi tools on the XRPL. Secure your assets and maximize your yield with our expert reviews.",
     "hero.cta.start": "Get Started",
     "hero.cta.compare": "Compare Wallets",
+    "hero.cta.quiz": "Find Your Perfect Wallet",
     
     // Features
     "features.security.title": "Security First",
@@ -87,12 +88,13 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "Contacto",
     
     // Hero Section
-    "hero.badge": "Tu Recurso XRPL de Confianza",
-    "hero.title1": "Tu Puerta de Entrada a",
-    "hero.title2": "XRP Ledger",
-    "hero.subtitle": "Descubre las mejores billeteras, exchanges y oportunidades DeFi en el ecosistema XRP Ledger. Reseñas imparciales y opiniones expertas para ayudarte a navegar el mundo de XRP.",
+    "hero.badge": "Inteligencia del Ecosistema XRPL",
+    "hero.title1": "NAVEGA EL",
+    "hero.title2": "XRP LEDGER",
+    "hero.subtitle": "Tu guía definitiva para las mejores billeteras, dApps y herramientas DeFi en XRPL. Asegura tus activos y maximiza tu rendimiento con nuestras reseñas expertas.",
     "hero.cta.start": "Comenzar",
     "hero.cta.compare": "Comparar Billeteras",
+    "hero.cta.quiz": "Encuentra Tu Billetera Ideal",
     
     // Features
     "features.security.title": "Seguridad Primero",
@@ -148,12 +150,13 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "联系我们",
     
     // Hero Section
-    "hero.badge": "您信赖的XRPL资源",
-    "hero.title1": "您通往",
-    "hero.title2": "XRP Ledger的门户",
-    "hero.subtitle": "发现XRP Ledger生态系统中最好的钱包、交易所和DeFi机会。公正的评论和专家见解，帮助您在XRP世界中导航。",
+    "hero.badge": "XRPL生态系统情报",
+    "hero.title1": "导航",
+    "hero.title2": "XRP LEDGER",
+    "hero.subtitle": "您的XRPL最佳钱包、dApps和DeFi工具权威指南。通过我们的专业评测保护您的资产并最大化收益。",
     "hero.cta.start": "开始使用",
     "hero.cta.compare": "比较钱包",
+    "hero.cta.quiz": "找到您的理想钱包",
     
     // Features
     "features.security.title": "安全第一",
@@ -209,12 +212,13 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "お問い合わせ",
     
     // Hero Section
-    "hero.badge": "信頼のXRPLリソース",
-    "hero.title1": "あなたの",
-    "hero.title2": "XRP Ledgerへのゲートウェイ",
-    "hero.subtitle": "XRP Ledgerエコシステムで最高のウォレット、取引所、DeFi機会を発見。公平なレビューと専門家の洞察で、XRPの世界をナビゲート。",
+    "hero.badge": "XRPLエコシステム・インテリジェンス",
+    "hero.title1": "ナビゲート",
+    "hero.title2": "XRP LEDGER",
+    "hero.subtitle": "XRPLの最高のウォレット、dApps、DeFiツールへの決定版ガイド。専門家のレビューで資産を守り、収益を最大化。",
     "hero.cta.start": "始める",
     "hero.cta.compare": "ウォレットを比較",
+    "hero.cta.quiz": "最適なウォレットを見つける",
     
     // Features
     "features.security.title": "セキュリティ第一",
@@ -270,12 +274,13 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "문의",
     
     // Hero Section
-    "hero.badge": "신뢰할 수 있는 XRPL 리소스",
-    "hero.title1": "당신의",
-    "hero.title2": "XRP Ledger 게이트웨이",
-    "hero.subtitle": "XRP Ledger 생태계에서 최고의 지갑, 거래소, DeFi 기회를 발견하세요. 공정한 리뷰와 전문가 인사이트로 XRP 세계를 탐색하세요.",
+    "hero.badge": "XRPL 생태계 인텔리전스",
+    "hero.title1": "탐색하세요",
+    "hero.title2": "XRP LEDGER",
+    "hero.subtitle": "XRPL 최고의 지갑, dApps, DeFi 도구에 대한 결정적 가이드. 전문가 리뷰로 자산을 보호하고 수익을 극대화하세요.",
     "hero.cta.start": "시작하기",
     "hero.cta.compare": "지갑 비교",
+    "hero.cta.quiz": "나만의 완벽한 지갑 찾기",
     
     // Features
     "features.security.title": "보안 우선",
@@ -331,12 +336,13 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "Contato",
     
     // Hero Section
-    "hero.badge": "Seu Recurso XRPL Confiável",
-    "hero.title1": "Sua Porta de Entrada para",
-    "hero.title2": "XRP Ledger",
-    "hero.subtitle": "Descubra as melhores carteiras, exchanges e oportunidades DeFi no ecossistema XRP Ledger. Avaliações imparciais e insights especializados para navegar no mundo do XRP.",
+    "hero.badge": "Inteligência do Ecossistema XRPL",
+    "hero.title1": "NAVEGUE O",
+    "hero.title2": "XRP LEDGER",
+    "hero.subtitle": "Seu guia definitivo para as melhores carteiras, dApps e ferramentas DeFi no XRPL. Proteja seus ativos e maximize seus rendimentos com nossas avaliações especializadas.",
     "hero.cta.start": "Começar",
     "hero.cta.compare": "Comparar Carteiras",
+    "hero.cta.quiz": "Encontre Sua Carteira Ideal",
     
     // Features
     "features.security.title": "Segurança em Primeiro",
@@ -392,12 +398,13 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "Kontakt",
     
     // Hero Section
-    "hero.badge": "Ihre vertrauenswürdige XRPL-Ressource",
-    "hero.title1": "Ihr Tor zum",
-    "hero.title2": "XRP Ledger",
-    "hero.subtitle": "Entdecken Sie die besten Wallets, Börsen und DeFi-Möglichkeiten im XRP Ledger-Ökosystem. Unvoreingenommene Bewertungen und Experteneinblicke.",
+    "hero.badge": "XRPL-Ökosystem-Intelligenz",
+    "hero.title1": "NAVIGIEREN SIE DAS",
+    "hero.title2": "XRP LEDGER",
+    "hero.subtitle": "Ihr definitiver Leitfaden zu den besten Wallets, dApps und DeFi-Tools im XRPL. Sichern Sie Ihre Assets und maximieren Sie Ihre Rendite mit unseren Expertenbewertungen.",
     "hero.cta.start": "Loslegen",
     "hero.cta.compare": "Wallets vergleichen",
+    "hero.cta.quiz": "Finden Sie Ihre perfekte Wallet",
     
     // Features
     "features.security.title": "Sicherheit zuerst",
@@ -453,12 +460,13 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "Contact",
     
     // Hero Section
-    "hero.badge": "Votre ressource XRPL de confiance",
-    "hero.title1": "Votre portail vers",
-    "hero.title2": "XRP Ledger",
-    "hero.subtitle": "Découvrez les meilleurs portefeuilles, échanges et opportunités DeFi dans l'écosystème XRP Ledger. Avis impartiaux et conseils d'experts.",
+    "hero.badge": "Intelligence de l'écosystème XRPL",
+    "hero.title1": "NAVIGUEZ LE",
+    "hero.title2": "XRP LEDGER",
+    "hero.subtitle": "Votre guide définitif des meilleurs portefeuilles, dApps et outils DeFi sur XRPL. Sécurisez vos actifs et maximisez vos rendements avec nos avis d'experts.",
     "hero.cta.start": "Commencer",
     "hero.cta.compare": "Comparer les portefeuilles",
+    "hero.cta.quiz": "Trouvez votre portefeuille idéal",
     
     // Features
     "features.security.title": "Sécurité d'abord",

@@ -23,10 +23,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary selection:text-primary-foreground">
       
-      <div className="bg-primary/10 border-b border-primary/20 py-1.5">
-        <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="bg-primary/10 border-b border-primary/20 py-1.5 relative z-[60]">
+        <div className="container mx-auto px-4 flex items-center justify-between overflow-visible">
           <PriceTicker />
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 overflow-visible">
             <SocialLinks />
             <div className="hidden sm:block h-4 w-px bg-white/20 mx-2" />
             <LanguageSelector />

@@ -296,14 +296,25 @@ export default function Home() {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden border-b border-white/5">
-        {/* Video Background */}
+        {/* Video Background - with mobile fallback */}
         <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* Static image fallback for mobile/reduced motion */}
+          <div 
+            className="absolute inset-0 md:hidden opacity-50"
+            style={{ 
+              backgroundImage: `url(${heroBg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+          {/* Video for desktop */}
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-50"
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover opacity-50 hidden md:block"
             poster={heroBg}
           >
             <source src="/videos/hero-crypto-flow.mp4" type="video/mp4" />
@@ -326,7 +337,7 @@ export default function Home() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              XRPL Ecosystem Intelligence
+              {t("hero.badge")}
             </Badge>
           </motion.div>
           
@@ -336,7 +347,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-black font-display tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 glow-text"
           >
-            NAVIGATE THE<br/>XRP LEDGER
+            {t("hero.title1")}<br/>{t("hero.title2")}
           </motion.h1>
           
           <motion.p 
@@ -345,8 +356,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
           >
-            Your definitive guide to the best wallets, dApps, and DeFi tools on the XRPL. 
-            Secure your assets and maximize your yield with our expert reviews.
+            {t("hero.subtitle")}
           </motion.p>
           
           <motion.div 
@@ -357,12 +367,12 @@ export default function Home() {
           >
             <Link href="/#wallets">
               <Button size="lg" className="h-14 px-8 text-base bg-primary hover:bg-primary/90 text-white font-bold tracking-wide shadow-[0_0_30px_-10px_theme('colors.primary.DEFAULT')]">
-                Compare Wallets
+                {t("hero.cta.compare")}
               </Button>
             </Link>
             <Link href="/wallet-quiz">
               <Button size="lg" variant="outline" className="h-14 px-8 text-base border-white/20 bg-white/5 hover:bg-white/10 hover:text-white backdrop-blur-sm">
-                Find Your Perfect Wallet
+                {t("hero.cta.quiz")}
               </Button>
             </Link>
           </motion.div>

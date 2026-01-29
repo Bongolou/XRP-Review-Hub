@@ -39,20 +39,21 @@ export function LanguageSelector() {
 
       {isOpen && (
         <>
-          <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
-          <div className="absolute right-0 top-full mt-2 w-44 bg-card border border-white/10 rounded-lg shadow-xl z-50 overflow-hidden max-h-80 overflow-y-auto">
+          <div className="fixed inset-0 z-[70]" onClick={() => setIsOpen(false)} />
+          <div className="absolute right-0 top-full mt-2 w-48 bg-card border border-white/10 rounded-lg shadow-2xl z-[80] py-1" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
             {availableLanguages.map(lang => (
               <button
                 key={lang}
                 onClick={() => handleSelect(lang)}
                 className={cn(
-                  "w-full flex items-center gap-3 px-4 py-2 hover:bg-white/10 transition-colors text-left text-sm",
-                  language === lang && "bg-primary/20 text-primary"
+                  "w-full flex items-center gap-3 px-4 py-2.5 hover:bg-white/10 transition-colors text-left text-sm",
+                  language === lang && "bg-primary/20 text-primary font-medium"
                 )}
                 data-testid={`lang-${lang}`}
               >
-                <span>{languageFlags[lang]}</span>
+                <span className="text-base">{languageFlags[lang]}</span>
                 <span>{languageNames[lang]}</span>
+                {language === lang && <span className="ml-auto text-primary">✓</span>}
               </button>
             ))}
           </div>
