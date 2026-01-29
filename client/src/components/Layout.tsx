@@ -60,7 +60,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               {t("nav.blog")}
             </Link>
             <Link href="/wallet-quiz" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/wallet-quiz' ? 'text-primary' : 'text-muted-foreground'}`}>
-              Quiz
+              {t("footer.walletQuiz")}
             </Link>
             <button 
               onClick={search.open}
@@ -84,8 +84,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Link href="/#wallets" className="text-lg font-medium hover:text-primary">{t("nav.wallets")}</Link>
                 <Link href="/getting-started" className="text-lg font-medium hover:text-primary">{t("nav.gettingStarted")}</Link>
                 <Link href="/blog" className="text-lg font-medium hover:text-primary">{t("nav.blog")}</Link>
-                <Link href="/wallet-quiz" className="text-lg font-medium hover:text-primary">Wallet Quiz</Link>
-                <Link href="/faq" className="text-lg font-medium hover:text-primary">FAQ</Link>
+                <Link href="/wallet-quiz" className="text-lg font-medium hover:text-primary">{t("footer.walletQuiz")}</Link>
+                <Link href="/faq" className="text-lg font-medium hover:text-primary">{t("footer.faq")}</Link>
                 <Link href="/contact" className="text-lg font-medium hover:text-primary">{t("nav.contact")}</Link>
                 <Link href="/disclosure" className="text-lg font-medium hover:text-primary">{t("common.affiliate")}</Link>
               </nav>
@@ -122,8 +122,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/wallet/ledger" className="hover:text-primary transition-colors">Ledger {t("common.review")}</Link></li>
                 <li><Link href="/wallet/bifrost" className="hover:text-primary transition-colors">Bifrost {t("common.review")}</Link></li>
                 <li><Link href="/wallet/trezor" className="hover:text-primary transition-colors">Trezor {t("common.review")}</Link></li>
-                <li><Link href="/wallet-quiz" className="hover:text-primary transition-colors">Wallet Quiz</Link></li>
-                <li><Link href="/#wallets" className="hover:text-primary transition-colors font-medium text-primary">View All Wallets →</Link></li>
+                <li><Link href="/wallet-quiz" className="hover:text-primary transition-colors">{t("footer.walletQuiz")}</Link></li>
+                <li><Link href="/#wallets" className="hover:text-primary transition-colors font-medium text-primary">{t("footer.viewAllWallets")} →</Link></li>
               </ul>
             </div>
 
@@ -135,7 +135,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/exchange/kraken" className="hover:text-primary transition-colors">Kraken {t("common.review")}</Link></li>
                 <li><Link href="/exchange/bitstamp" className="hover:text-primary transition-colors">Bitstamp {t("common.review")}</Link></li>
                 <li><Link href="/exchange/cryptocom" className="hover:text-primary transition-colors">Crypto.com {t("common.review")}</Link></li>
-                <li><Link href="/#exchanges" className="hover:text-primary transition-colors font-medium text-primary">View All Exchanges →</Link></li>
+                <li><Link href="/#exchanges" className="hover:text-primary transition-colors font-medium text-primary">{t("footer.viewAllExchanges")} →</Link></li>
               </ul>
             </div>
 
@@ -144,8 +144,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><Link href="/getting-started" className="hover:text-primary transition-colors">{t("nav.gettingStarted")}</Link></li>
                 <li><Link href="/blog" className="hover:text-primary transition-colors">{t("nav.blog")}</Link></li>
-                <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
-                <li><a href="/rss.xml" className="hover:text-primary transition-colors">RSS Feed</a></li>
+                <li><Link href="/faq" className="hover:text-primary transition-colors">{t("footer.faq")}</Link></li>
+                <li><a href="/rss.xml" className="hover:text-primary transition-colors">{t("footer.rssFeed")}</a></li>
               </ul>
             </div>
 
@@ -155,15 +155,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/about" className="hover:text-primary transition-colors">{t("nav.about")}</Link></li>
                 <li><Link href="/contact" className="hover:text-primary transition-colors">{t("nav.contact")}</Link></li>
                 <li><Link href="/disclosure" className="hover:text-primary transition-colors">{t("common.affiliate")}</Link></li>
-                <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link></li>
+                <li><Link href="/privacy" className="hover:text-primary transition-colors">{t("footer.privacy")}</Link></li>
+                <li><Link href="/terms" className="hover:text-primary transition-colors">{t("footer.terms")}</Link></li>
               </ul>
             </div>
           </div>
           
           <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
             <p>&copy; {new Date().getFullYear()} All Things XRPL. {t("footer.rights")}</p>
-            <p>Not financial advice. Do your own research.</p>
+            <p>{t("footer.disclaimer")}</p>
           </div>
         </div>
       </footer>

@@ -71,7 +71,60 @@ export const translations: Record<Language, Record<string, string>> = {
     "common.getStarted": "Get Started",
     "common.compare": "Compare",
     "common.review": "Review",
-    "common.affiliate": "Affiliate Disclosure"
+    "common.affiliate": "Affiliate Disclosure",
+    
+    // Deal of the Week
+    "deal.title": "Deal of the Week",
+    "deal.off": "OFF",
+    "deal.expires": "Expires in",
+    "deal.days": "days",
+    "deal.claimDeal": "Claim Deal",
+    "deal.tangem.title": "Tangem Hardware Wallet",
+    "deal.tangem.description": "Get the most portable hardware wallet with our exclusive discount. Perfect for secure XRP storage on the go.",
+    
+    // Wallet Cards
+    "wallets.wallet": "Wallet",
+    "wallets.fees": "Fees",
+    "wallets.visitSite": "Visit Site",
+    "wallets.readReview": "Read Review",
+    "wallets.score": "Score",
+    "wallets.maximizeSecurity": "Maximize Security with:",
+    "wallets.takeQuiz": "Not sure which wallet? Take the Quiz",
+    
+    // Exchange Section
+    "exchanges.badge": "Partner Offers",
+    "exchanges.title": "Top Exchanges for XRP",
+    "exchanges.subtitle": "Get the best sign-up bonuses and lowest fees with our partner exchanges.",
+    "exchanges.claimBonus": "Claim Bonus",
+    "exchanges.readReview": "Read Review",
+    "exchanges.partnerTitle": "Partner with All Things XRPL",
+    "exchanges.partnerDesc": "Are you a project builder or service provider? Connect with our audience.",
+    "exchanges.becomePartner": "Become a Partner",
+    
+    // Features Section
+    "features.security.link": "Learn about wallet security",
+    "features.yield.link": "Explore staking options",
+    "features.deep.link": "Read our articles",
+    
+    // Blog Section
+    "blog.title": "Latest Insights",
+    "blog.subtitle": "Stay ahead of the curve with our latest research on the XRP Ledger ecosystem.",
+    "blog.viewAll": "View All Articles",
+    "blog.readArticle": "Read Article",
+    
+    // Newsletter CTA
+    "newsletter.ctaTitle": "Join All Things XRPL",
+    "newsletter.ctaSubtitle": "Get the latest wallet reviews, security alerts, and dApp opportunities delivered straight to your inbox.",
+    
+    // Footer Links
+    "footer.viewAllWallets": "View All Wallets",
+    "footer.viewAllExchanges": "View All Exchanges",
+    "footer.walletQuiz": "Wallet Quiz",
+    "footer.faq": "FAQ",
+    "footer.privacy": "Privacy Policy",
+    "footer.terms": "Terms of Service",
+    "footer.disclaimer": "Not financial advice. Do your own research.",
+    "footer.rssFeed": "RSS Feed"
   },
   
   es: {
@@ -133,7 +186,60 @@ export const translations: Record<Language, Record<string, string>> = {
     "common.getStarted": "Comenzar",
     "common.compare": "Comparar",
     "common.review": "Reseña",
-    "common.affiliate": "Divulgación de Afiliados"
+    "common.affiliate": "Divulgación de Afiliados",
+    
+    // Deal of the Week
+    "deal.title": "Oferta de la Semana",
+    "deal.off": "DESC.",
+    "deal.expires": "Expira en",
+    "deal.days": "días",
+    "deal.claimDeal": "Obtener Oferta",
+    "deal.tangem.title": "Billetera Tangem",
+    "deal.tangem.description": "Obtén la billetera hardware más portátil con nuestro descuento exclusivo. Perfecta para almacenar XRP de forma segura.",
+    
+    // Wallet Cards
+    "wallets.wallet": "Billetera",
+    "wallets.fees": "Comisiones",
+    "wallets.visitSite": "Visitar Sitio",
+    "wallets.readReview": "Leer Reseña",
+    "wallets.score": "Puntaje",
+    "wallets.maximizeSecurity": "Maximiza tu Seguridad con:",
+    "wallets.takeQuiz": "¿No sabes cuál elegir? Haz el Quiz",
+    
+    // Exchange Section
+    "exchanges.badge": "Ofertas de Partners",
+    "exchanges.title": "Mejores Exchanges para XRP",
+    "exchanges.subtitle": "Obtén los mejores bonos de registro y las comisiones más bajas con nuestros exchanges asociados.",
+    "exchanges.claimBonus": "Obtener Bono",
+    "exchanges.readReview": "Leer Reseña",
+    "exchanges.partnerTitle": "Asóciate con All Things XRPL",
+    "exchanges.partnerDesc": "¿Eres desarrollador o proveedor de servicios? Conecta con nuestra audiencia.",
+    "exchanges.becomePartner": "Ser Partner",
+    
+    // Features Section
+    "features.security.link": "Aprende sobre seguridad de billeteras",
+    "features.yield.link": "Explora opciones de staking",
+    "features.deep.link": "Lee nuestros artículos",
+    
+    // Blog Section
+    "blog.title": "Últimos Insights",
+    "blog.subtitle": "Mantente al día con nuestra investigación sobre el ecosistema XRP Ledger.",
+    "blog.viewAll": "Ver Todos los Artículos",
+    "blog.readArticle": "Leer Artículo",
+    
+    // Newsletter CTA
+    "newsletter.ctaTitle": "Únete a All Things XRPL",
+    "newsletter.ctaSubtitle": "Recibe las últimas reseñas de billeteras, alertas de seguridad y oportunidades dApp directamente en tu correo.",
+    
+    // Footer Links
+    "footer.viewAllWallets": "Ver Todas las Billeteras",
+    "footer.viewAllExchanges": "Ver Todos los Exchanges",
+    "footer.walletQuiz": "Quiz de Billeteras",
+    "footer.faq": "Preguntas Frecuentes",
+    "footer.privacy": "Política de Privacidad",
+    "footer.terms": "Términos de Servicio",
+    "footer.disclaimer": "No es consejo financiero. Haz tu propia investigación.",
+    "footer.rssFeed": "Canal RSS"
   },
   
   zh: {
@@ -195,7 +301,60 @@ export const translations: Record<Language, Record<string, string>> = {
     "common.getStarted": "开始使用",
     "common.compare": "比较",
     "common.review": "评测",
-    "common.affiliate": "联盟披露"
+    "common.affiliate": "联盟披露",
+    
+    // Deal of the Week
+    "deal.title": "本周优惠",
+    "deal.off": "折扣",
+    "deal.expires": "剩余",
+    "deal.days": "天",
+    "deal.claimDeal": "领取优惠",
+    "deal.tangem.title": "Tangem硬件钱包",
+    "deal.tangem.description": "使用我们的独家折扣获取最便携的硬件钱包。非常适合安全存储XRP。",
+    
+    // Wallet Cards
+    "wallets.wallet": "钱包",
+    "wallets.fees": "费用",
+    "wallets.visitSite": "访问网站",
+    "wallets.readReview": "阅读评测",
+    "wallets.score": "评分",
+    "wallets.maximizeSecurity": "最大化安全性：",
+    "wallets.takeQuiz": "不确定选哪个？参加测验",
+    
+    // Exchange Section
+    "exchanges.badge": "合作伙伴优惠",
+    "exchanges.title": "XRP最佳交易所",
+    "exchanges.subtitle": "通过我们的合作交易所获取最佳注册奖励和最低费用。",
+    "exchanges.claimBonus": "领取奖励",
+    "exchanges.readReview": "阅读评测",
+    "exchanges.partnerTitle": "与All Things XRPL合作",
+    "exchanges.partnerDesc": "您是项目开发者或服务提供商吗？与我们的受众建立联系。",
+    "exchanges.becomePartner": "成为合作伙伴",
+    
+    // Features Section
+    "features.security.link": "了解钱包安全",
+    "features.yield.link": "探索质押选项",
+    "features.deep.link": "阅读我们的文章",
+    
+    // Blog Section
+    "blog.title": "最新洞察",
+    "blog.subtitle": "通过我们对XRP Ledger生态系统的最新研究保持领先。",
+    "blog.viewAll": "查看所有文章",
+    "blog.readArticle": "阅读文章",
+    
+    // Newsletter CTA
+    "newsletter.ctaTitle": "加入All Things XRPL",
+    "newsletter.ctaSubtitle": "将最新的钱包评测、安全警报和dApp机会直接发送到您的邮箱。",
+    
+    // Footer Links
+    "footer.viewAllWallets": "查看所有钱包",
+    "footer.viewAllExchanges": "查看所有交易所",
+    "footer.walletQuiz": "钱包测验",
+    "footer.faq": "常见问题",
+    "footer.privacy": "隐私政策",
+    "footer.terms": "服务条款",
+    "footer.disclaimer": "非财务建议。请自行研究。",
+    "footer.rssFeed": "RSS订阅"
   },
   
   ja: {
@@ -257,7 +416,60 @@ export const translations: Record<Language, Record<string, string>> = {
     "common.getStarted": "始める",
     "common.compare": "比較",
     "common.review": "レビュー",
-    "common.affiliate": "アフィリエイト開示"
+    "common.affiliate": "アフィリエイト開示",
+    
+    // Deal of the Week
+    "deal.title": "今週のお得情報",
+    "deal.off": "オフ",
+    "deal.expires": "残り",
+    "deal.days": "日",
+    "deal.claimDeal": "特典を獲得",
+    "deal.tangem.title": "Tangemハードウェアウォレット",
+    "deal.tangem.description": "限定割引で最もポータブルなハードウェアウォレットを手に入れましょう。安全なXRP保管に最適。",
+    
+    // Wallet Cards
+    "wallets.wallet": "ウォレット",
+    "wallets.fees": "手数料",
+    "wallets.visitSite": "サイトを訪問",
+    "wallets.readReview": "レビューを読む",
+    "wallets.score": "スコア",
+    "wallets.maximizeSecurity": "セキュリティを最大化:",
+    "wallets.takeQuiz": "どれが最適？クイズに挑戦",
+    
+    // Exchange Section
+    "exchanges.badge": "パートナー特典",
+    "exchanges.title": "XRP取引所トップ",
+    "exchanges.subtitle": "パートナー取引所で最高のサインアップボーナスと最低手数料を獲得。",
+    "exchanges.claimBonus": "ボーナスを獲得",
+    "exchanges.readReview": "レビューを読む",
+    "exchanges.partnerTitle": "All Things XRPLと提携",
+    "exchanges.partnerDesc": "プロジェクト開発者またはサービスプロバイダーですか？当社のオーディエンスとつながりましょう。",
+    "exchanges.becomePartner": "パートナーになる",
+    
+    // Features Section
+    "features.security.link": "ウォレットセキュリティについて学ぶ",
+    "features.yield.link": "ステーキングオプションを探る",
+    "features.deep.link": "記事を読む",
+    
+    // Blog Section
+    "blog.title": "最新インサイト",
+    "blog.subtitle": "XRP Ledgerエコシステムに関する最新の調査で先を行く。",
+    "blog.viewAll": "すべての記事を見る",
+    "blog.readArticle": "記事を読む",
+    
+    // Newsletter CTA
+    "newsletter.ctaTitle": "All Things XRPLに参加",
+    "newsletter.ctaSubtitle": "最新のウォレットレビュー、セキュリティアラート、dApp機会をメールでお届け。",
+    
+    // Footer Links
+    "footer.viewAllWallets": "すべてのウォレットを見る",
+    "footer.viewAllExchanges": "すべての取引所を見る",
+    "footer.walletQuiz": "ウォレットクイズ",
+    "footer.faq": "よくある質問",
+    "footer.privacy": "プライバシーポリシー",
+    "footer.terms": "利用規約",
+    "footer.disclaimer": "投資アドバイスではありません。ご自身で調査してください。",
+    "footer.rssFeed": "RSSフィード"
   },
   
   ko: {
@@ -319,7 +531,60 @@ export const translations: Record<Language, Record<string, string>> = {
     "common.getStarted": "시작하기",
     "common.compare": "비교",
     "common.review": "리뷰",
-    "common.affiliate": "제휴 공개"
+    "common.affiliate": "제휴 공개",
+    
+    // Deal of the Week
+    "deal.title": "이번 주 특가",
+    "deal.off": "할인",
+    "deal.expires": "남은 기간",
+    "deal.days": "일",
+    "deal.claimDeal": "특가 받기",
+    "deal.tangem.title": "Tangem 하드웨어 지갑",
+    "deal.tangem.description": "독점 할인으로 가장 휴대하기 좋은 하드웨어 지갑을 받으세요. 안전한 XRP 보관에 완벽합니다.",
+    
+    // Wallet Cards
+    "wallets.wallet": "지갑",
+    "wallets.fees": "수수료",
+    "wallets.visitSite": "사이트 방문",
+    "wallets.readReview": "리뷰 읽기",
+    "wallets.score": "점수",
+    "wallets.maximizeSecurity": "보안 극대화:",
+    "wallets.takeQuiz": "어떤 지갑이 좋을지 모르겠나요? 퀴즈 풀기",
+    
+    // Exchange Section
+    "exchanges.badge": "파트너 혜택",
+    "exchanges.title": "XRP 최고 거래소",
+    "exchanges.subtitle": "파트너 거래소에서 최고의 가입 보너스와 최저 수수료를 받으세요.",
+    "exchanges.claimBonus": "보너스 받기",
+    "exchanges.readReview": "리뷰 읽기",
+    "exchanges.partnerTitle": "All Things XRPL과 파트너 되기",
+    "exchanges.partnerDesc": "프로젝트 개발자나 서비스 제공자인가요? 저희 청중과 연결하세요.",
+    "exchanges.becomePartner": "파트너 되기",
+    
+    // Features Section
+    "features.security.link": "지갑 보안에 대해 알아보기",
+    "features.yield.link": "스테이킹 옵션 살펴보기",
+    "features.deep.link": "기사 읽기",
+    
+    // Blog Section
+    "blog.title": "최신 인사이트",
+    "blog.subtitle": "XRP Ledger 생태계에 대한 최신 연구로 앞서가세요.",
+    "blog.viewAll": "모든 기사 보기",
+    "blog.readArticle": "기사 읽기",
+    
+    // Newsletter CTA
+    "newsletter.ctaTitle": "All Things XRPL 가입하기",
+    "newsletter.ctaSubtitle": "최신 지갑 리뷰, 보안 알림, dApp 기회를 이메일로 받아보세요.",
+    
+    // Footer Links
+    "footer.viewAllWallets": "모든 지갑 보기",
+    "footer.viewAllExchanges": "모든 거래소 보기",
+    "footer.walletQuiz": "지갑 퀴즈",
+    "footer.faq": "자주 묻는 질문",
+    "footer.privacy": "개인정보 처리방침",
+    "footer.terms": "이용약관",
+    "footer.disclaimer": "투자 조언이 아닙니다. 직접 조사하세요.",
+    "footer.rssFeed": "RSS 피드"
   },
   
   pt: {
@@ -381,7 +646,60 @@ export const translations: Record<Language, Record<string, string>> = {
     "common.getStarted": "Começar",
     "common.compare": "Comparar",
     "common.review": "Avaliação",
-    "common.affiliate": "Divulgação de Afiliados"
+    "common.affiliate": "Divulgação de Afiliados",
+    
+    // Deal of the Week
+    "deal.title": "Oferta da Semana",
+    "deal.off": "DESC.",
+    "deal.expires": "Expira em",
+    "deal.days": "dias",
+    "deal.claimDeal": "Obter Oferta",
+    "deal.tangem.title": "Carteira Tangem",
+    "deal.tangem.description": "Obtenha a carteira hardware mais portátil com nosso desconto exclusivo. Perfeita para armazenar XRP com segurança.",
+    
+    // Wallet Cards
+    "wallets.wallet": "Carteira",
+    "wallets.fees": "Taxas",
+    "wallets.visitSite": "Visitar Site",
+    "wallets.readReview": "Ler Avaliação",
+    "wallets.score": "Pontuação",
+    "wallets.maximizeSecurity": "Maximize sua Segurança com:",
+    "wallets.takeQuiz": "Não sabe qual escolher? Faça o Quiz",
+    
+    // Exchange Section
+    "exchanges.badge": "Ofertas de Parceiros",
+    "exchanges.title": "Melhores Exchanges para XRP",
+    "exchanges.subtitle": "Obtenha os melhores bônus de cadastro e taxas mais baixas com nossas exchanges parceiras.",
+    "exchanges.claimBonus": "Obter Bônus",
+    "exchanges.readReview": "Ler Avaliação",
+    "exchanges.partnerTitle": "Seja Parceiro do All Things XRPL",
+    "exchanges.partnerDesc": "Você é desenvolvedor ou prestador de serviços? Conecte-se com nossa audiência.",
+    "exchanges.becomePartner": "Ser Parceiro",
+    
+    // Features Section
+    "features.security.link": "Saiba sobre segurança de carteiras",
+    "features.yield.link": "Explore opções de staking",
+    "features.deep.link": "Leia nossos artigos",
+    
+    // Blog Section
+    "blog.title": "Últimos Insights",
+    "blog.subtitle": "Fique à frente com nossa pesquisa sobre o ecossistema XRP Ledger.",
+    "blog.viewAll": "Ver Todos os Artigos",
+    "blog.readArticle": "Ler Artigo",
+    
+    // Newsletter CTA
+    "newsletter.ctaTitle": "Junte-se ao All Things XRPL",
+    "newsletter.ctaSubtitle": "Receba as últimas avaliações de carteiras, alertas de segurança e oportunidades dApp direto no seu email.",
+    
+    // Footer Links
+    "footer.viewAllWallets": "Ver Todas as Carteiras",
+    "footer.viewAllExchanges": "Ver Todas as Exchanges",
+    "footer.walletQuiz": "Quiz de Carteiras",
+    "footer.faq": "Perguntas Frequentes",
+    "footer.privacy": "Política de Privacidade",
+    "footer.terms": "Termos de Serviço",
+    "footer.disclaimer": "Não é aconselhamento financeiro. Faça sua própria pesquisa.",
+    "footer.rssFeed": "Feed RSS"
   },
   
   de: {
@@ -443,7 +761,60 @@ export const translations: Record<Language, Record<string, string>> = {
     "common.getStarted": "Loslegen",
     "common.compare": "Vergleichen",
     "common.review": "Bewertung",
-    "common.affiliate": "Affiliate-Offenlegung"
+    "common.affiliate": "Affiliate-Offenlegung",
+    
+    // Deal of the Week
+    "deal.title": "Angebot der Woche",
+    "deal.off": "RABATT",
+    "deal.expires": "Läuft ab in",
+    "deal.days": "Tagen",
+    "deal.claimDeal": "Angebot sichern",
+    "deal.tangem.title": "Tangem Hardware Wallet",
+    "deal.tangem.description": "Holen Sie sich die tragbarste Hardware-Wallet mit unserem exklusiven Rabatt. Perfekt für sichere XRP-Speicherung.",
+    
+    // Wallet Cards
+    "wallets.wallet": "Wallet",
+    "wallets.fees": "Gebühren",
+    "wallets.visitSite": "Website besuchen",
+    "wallets.readReview": "Bewertung lesen",
+    "wallets.score": "Bewertung",
+    "wallets.maximizeSecurity": "Sicherheit maximieren mit:",
+    "wallets.takeQuiz": "Unsicher welche Wallet? Quiz machen",
+    
+    // Exchange Section
+    "exchanges.badge": "Partner-Angebote",
+    "exchanges.title": "Top-Börsen für XRP",
+    "exchanges.subtitle": "Erhalten Sie die besten Anmeldeboni und niedrigsten Gebühren bei unseren Partner-Börsen.",
+    "exchanges.claimBonus": "Bonus sichern",
+    "exchanges.readReview": "Bewertung lesen",
+    "exchanges.partnerTitle": "Partner von All Things XRPL werden",
+    "exchanges.partnerDesc": "Sind Sie Projektentwickler oder Dienstleister? Verbinden Sie sich mit unserem Publikum.",
+    "exchanges.becomePartner": "Partner werden",
+    
+    // Features Section
+    "features.security.link": "Über Wallet-Sicherheit lernen",
+    "features.yield.link": "Staking-Optionen erkunden",
+    "features.deep.link": "Unsere Artikel lesen",
+    
+    // Blog Section
+    "blog.title": "Neueste Einblicke",
+    "blog.subtitle": "Bleiben Sie mit unserer aktuellen XRP Ledger Ökosystem-Forschung voraus.",
+    "blog.viewAll": "Alle Artikel anzeigen",
+    "blog.readArticle": "Artikel lesen",
+    
+    // Newsletter CTA
+    "newsletter.ctaTitle": "All Things XRPL beitreten",
+    "newsletter.ctaSubtitle": "Erhalten Sie die neuesten Wallet-Bewertungen, Sicherheitswarnungen und dApp-Möglichkeiten direkt in Ihr Postfach.",
+    
+    // Footer Links
+    "footer.viewAllWallets": "Alle Wallets anzeigen",
+    "footer.viewAllExchanges": "Alle Börsen anzeigen",
+    "footer.walletQuiz": "Wallet Quiz",
+    "footer.faq": "Häufige Fragen",
+    "footer.privacy": "Datenschutzrichtlinie",
+    "footer.terms": "Nutzungsbedingungen",
+    "footer.disclaimer": "Keine Finanzberatung. Recherchieren Sie selbst.",
+    "footer.rssFeed": "RSS-Feed"
   },
   
   fr: {
@@ -505,6 +876,59 @@ export const translations: Record<Language, Record<string, string>> = {
     "common.getStarted": "Commencer",
     "common.compare": "Comparer",
     "common.review": "Avis",
-    "common.affiliate": "Divulgation d'affiliation"
+    "common.affiliate": "Divulgation d'affiliation",
+    
+    // Deal of the Week
+    "deal.title": "Offre de la Semaine",
+    "deal.off": "RÉDUC.",
+    "deal.expires": "Expire dans",
+    "deal.days": "jours",
+    "deal.claimDeal": "Obtenir l'offre",
+    "deal.tangem.title": "Portefeuille Tangem",
+    "deal.tangem.description": "Obtenez le portefeuille matériel le plus portable avec notre réduction exclusive. Parfait pour stocker vos XRP en toute sécurité.",
+    
+    // Wallet Cards
+    "wallets.wallet": "Portefeuille",
+    "wallets.fees": "Frais",
+    "wallets.visitSite": "Visiter le site",
+    "wallets.readReview": "Lire l'avis",
+    "wallets.score": "Note",
+    "wallets.maximizeSecurity": "Maximisez votre sécurité avec :",
+    "wallets.takeQuiz": "Pas sûr du choix ? Faites le Quiz",
+    
+    // Exchange Section
+    "exchanges.badge": "Offres Partenaires",
+    "exchanges.title": "Meilleures Plateformes pour XRP",
+    "exchanges.subtitle": "Obtenez les meilleurs bonus d'inscription et les frais les plus bas avec nos plateformes partenaires.",
+    "exchanges.claimBonus": "Obtenir le bonus",
+    "exchanges.readReview": "Lire l'avis",
+    "exchanges.partnerTitle": "Devenez partenaire de All Things XRPL",
+    "exchanges.partnerDesc": "Êtes-vous développeur de projet ou fournisseur de services ? Connectez-vous avec notre audience.",
+    "exchanges.becomePartner": "Devenir partenaire",
+    
+    // Features Section
+    "features.security.link": "En savoir plus sur la sécurité des portefeuilles",
+    "features.yield.link": "Explorer les options de staking",
+    "features.deep.link": "Lire nos articles",
+    
+    // Blog Section
+    "blog.title": "Dernières Analyses",
+    "blog.subtitle": "Restez en avance avec nos dernières recherches sur l'écosystème XRP Ledger.",
+    "blog.viewAll": "Voir tous les articles",
+    "blog.readArticle": "Lire l'article",
+    
+    // Newsletter CTA
+    "newsletter.ctaTitle": "Rejoignez All Things XRPL",
+    "newsletter.ctaSubtitle": "Recevez les derniers avis sur les portefeuilles, alertes de sécurité et opportunités dApp directement dans votre boîte mail.",
+    
+    // Footer Links
+    "footer.viewAllWallets": "Voir tous les portefeuilles",
+    "footer.viewAllExchanges": "Voir toutes les plateformes",
+    "footer.walletQuiz": "Quiz Portefeuille",
+    "footer.faq": "FAQ",
+    "footer.privacy": "Politique de confidentialité",
+    "footer.terms": "Conditions d'utilisation",
+    "footer.disclaimer": "Ce n'est pas un conseil financier. Faites vos propres recherches.",
+    "footer.rssFeed": "Flux RSS"
   }
 };

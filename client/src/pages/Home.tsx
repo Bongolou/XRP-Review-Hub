@@ -424,7 +424,7 @@ export default function Home() {
                         </Badge>
                       )}
                     </div>
-                    <p className="text-sm text-muted-foreground mb-3">{wallet.type} Wallet • {wallet.fees} Fees</p>
+                    <p className="text-sm text-muted-foreground mb-3">{wallet.type} {t("wallets.wallet")} • {wallet.fees} {t("wallets.fees")}</p>
                     
                     <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-3">
                       {wallet.features.map((feature, i) => (
@@ -436,7 +436,7 @@ export default function Home() {
                     
                     {wallet.complementary && (
                       <div className="p-3 bg-white/5 rounded-lg border border-white/10 text-xs">
-                        <span className="text-muted-foreground block mb-2 font-medium">Maximize Security with:</span>
+                        <span className="text-muted-foreground block mb-2 font-medium">{t("wallets.maximizeSecurity")}</span>
                         <div className="flex flex-wrap gap-2">
                           {wallet.complementary.map((tool, tIdx) => (
                             <a 
@@ -456,20 +456,20 @@ export default function Home() {
 
                   <div className="flex flex-col items-center gap-2 flex-shrink-0 self-center md:self-start md:pt-1">
                     <div className="text-3xl font-black font-display text-primary">{wallet.rating}</div>
-                    <div className="text-xs text-muted-foreground uppercase tracking-widest">Score</div>
+                    <div className="text-xs text-muted-foreground uppercase tracking-widest">{t("wallets.score")}</div>
                   </div>
 
                   <div className="flex flex-col gap-3 flex-shrink-0 w-full md:w-[140px] self-center md:self-start md:pt-1">
                     <Button asChild className="w-full relative group overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
                       <a href={wallet.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
-                        <span className="relative z-10">Visit Site</span>
+                        <span className="relative z-10">{t("wallets.visitSite")}</span>
                         <ExternalLink className="ml-2 h-4 w-4 relative z-10" />
                       </a>
                     </Button>
                     {wallet.slug && (
                       <Link href={`/wallet/${wallet.slug}`}>
                         <Button variant="ghost" className="w-full text-sm text-muted-foreground hover:text-primary border border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all duration-300">
-                          Read Review <ArrowRight className="ml-2 h-4 w-4" />
+                          {t("wallets.readReview")} <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                       </Link>
                     )}
@@ -500,7 +500,7 @@ export default function Home() {
           </div>
           <Link href="/wallet-quiz">
             <Button size="lg" className="bg-gradient-to-r from-primary/20 to-blue-400/20 border border-primary/50 text-primary hover:from-primary/30 hover:to-blue-400/30 hover:shadow-[0_0_20px_-5px_rgba(59,130,246,0.4)] transition-all duration-300">
-              Not sure which wallet? Take the Quiz <ArrowRight className="ml-2 h-4 w-4" />
+              {t("wallets.takeQuiz")} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>
@@ -515,10 +515,10 @@ export default function Home() {
       <section className="py-24 bg-card/10 border-y border-white/5 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/30 border-primary/50">Partner Offers</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">Top Exchanges for XRP</h2>
+            <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/30 border-primary/50">{t("exchanges.badge")}</Badge>
+            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">{t("exchanges.title")}</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Get the best sign-up bonuses and lowest fees with our partner exchanges.
+              {t("exchanges.subtitle")}
             </p>
           </div>
 
@@ -557,12 +557,12 @@ export default function Home() {
                   <div className="flex flex-col gap-3">
                     <Button asChild className="w-full relative overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
                       <a href={exchange.link} target="_blank" rel="noopener noreferrer">
-                        Claim Bonus <ArrowRight className="ml-2 h-4 w-4" />
+                        {t("exchanges.claimBonus")} <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
                     </Button>
                     <Link href={`/exchange/${exchange.slug}`}>
                       <Button variant="ghost" className="w-full text-sm text-muted-foreground hover:text-primary border border-transparent hover:border-primary/30 hover:bg-primary/5 transition-all duration-300">
-                        Read Review <ArrowRight className="ml-2 h-4 w-4" />
+                        {t("exchanges.readReview")} <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </Link>
                   </div>
@@ -573,12 +573,12 @@ export default function Home() {
 
           <div className="mt-16 p-8 rounded-2xl border border-white/10 bg-gradient-to-r from-card/50 to-transparent flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-              <h3 className="text-xl font-bold font-display mb-2">Partner with All Things XRPL</h3>
-              <p className="text-muted-foreground">Are you a project builder or service provider? Connect with our audience.</p>
+              <h3 className="text-xl font-bold font-display mb-2">{t("exchanges.partnerTitle")}</h3>
+              <p className="text-muted-foreground">{t("exchanges.partnerDesc")}</p>
             </div>
             <Link href="/contact">
               <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10">
-                Become a Partner
+                {t("exchanges.becomePartner")}
               </Button>
             </Link>
           </div>
@@ -596,12 +596,12 @@ export default function Home() {
                 <div className="bg-primary/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-primary/30 group-hover:scale-110 transition-transform">
                   <Lock className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-primary transition-colors">Security First</h3>
+                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-primary transition-colors">{t("features.security.title")}</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  We prioritize security above all else. Our reviews focus heavily on auditing standards, key management, and track records.
+                  {t("features.security.desc")}
                 </p>
                 <span className="text-sm text-primary flex items-center gap-1">
-                  Learn about wallet security <ArrowRight className="h-4 w-4" />
+                  {t("features.security.link")} <ArrowRight className="h-4 w-4" />
                 </span>
               </div>
             </Link>
@@ -610,12 +610,12 @@ export default function Home() {
                 <div className="bg-green-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-green-500/30 group-hover:scale-110 transition-transform">
                   <TrendingUp className="h-6 w-6 text-green-400" />
                 </div>
-                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-green-400 transition-colors">Yield Opportunities</h3>
+                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-green-400 transition-colors">{t("features.yield.title")}</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Discover the best places to stake your XRP and participate in AMM pools to earn passive income on your holdings.
+                  {t("features.yield.desc")}
                 </p>
                 <span className="text-sm text-green-400 flex items-center gap-1">
-                  Explore staking options <ArrowRight className="h-4 w-4" />
+                  {t("features.yield.link")} <ArrowRight className="h-4 w-4" />
                 </span>
               </div>
             </Link>
@@ -624,12 +624,12 @@ export default function Home() {
                 <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-purple-500/30 group-hover:scale-110 transition-transform">
                   <Layers className="h-6 w-6 text-purple-400" />
                 </div>
-                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-purple-400 transition-colors">Deep Dives</h3>
+                <h3 className="text-xl font-bold font-display mb-3 group-hover:text-purple-400 transition-colors">{t("features.deep.title")}</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  We go beyond surface-level features. Our team tests every dApp and wallet to give you the real user experience.
+                  {t("features.deep.desc")}
                 </p>
                 <span className="text-sm text-purple-400 flex items-center gap-1">
-                  Read our articles <ArrowRight className="h-4 w-4" />
+                  {t("features.deep.link")} <ArrowRight className="h-4 w-4" />
                 </span>
               </div>
             </Link>
@@ -641,14 +641,14 @@ export default function Home() {
       <section id="blog" className="py-24 container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-xl">
-            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">Latest Insights</h2>
+            <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">{t("blog.title")}</h2>
             <p className="text-muted-foreground text-lg">
-              Stay ahead of the curve with our latest research on the XRP Ledger ecosystem.
+              {t("blog.subtitle")}
             </p>
           </div>
           <Link href="/blog">
             <Button variant="outline" className="border-white/20 hover:bg-white/10">
-              View All Articles <ArrowRight className="ml-2 h-4 w-4" />
+              {t("blog.viewAll")} <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>
@@ -680,7 +680,7 @@ export default function Home() {
                     {post.excerpt}
                   </p>
                   <div className="flex items-center text-sm font-medium text-white group-hover:translate-x-1 transition-transform">
-                    Read Article <ArrowRight className="ml-2 h-4 w-4" />
+                    {t("blog.readArticle")} <ArrowRight className="ml-2 h-4 w-4" />
                   </div>
                 </div>
               </div>
@@ -694,13 +694,13 @@ export default function Home() {
         <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 p-12 text-center">
           <div className="absolute inset-0 grid-bg opacity-30" />
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">Join All Things XRPL</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">{t("newsletter.ctaTitle")}</h2>
             <p className="text-muted-foreground mb-8 text-lg">
-              Get the latest wallet reviews, security alerts, and dApp opportunities delivered straight to your inbox.
+              {t("newsletter.ctaSubtitle")}
             </p>
             <NewsletterForm />
             <p className="mt-4 text-xs text-muted-foreground">
-              We respect your privacy. Unsubscribe at any time.
+              {t("newsletter.privacy")}
             </p>
           </div>
         </div>
