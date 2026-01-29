@@ -79,24 +79,44 @@
   }
 }
 
-/* Light mode overrides */
+/* Light mode overrides - use :root.light to ensure CSS specificity */
+:root.light,
 .light {
-  --color-background: hsl(0 0% 100%);
-  --color-foreground: hsl(222 47% 11%);
-  --color-card: hsl(210 40% 96%);
-  --color-card-foreground: hsl(222 47% 11%);
-  --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(222 47% 11%);
-  --color-primary: hsl(210 100% 45%);
-  --color-primary-foreground: hsl(0 0% 100%);
-  --color-secondary: hsl(180 100% 30%);
-  --color-secondary-foreground: hsl(0 0% 100%);
-  --color-muted: hsl(210 40% 96%);
-  --color-muted-foreground: hsl(215 20% 45%);
-  --color-accent: hsl(210 40% 96%);
-  --color-accent-foreground: hsl(222 47% 11%);
-  --color-border: hsl(214 32% 91%);
-  --color-input: hsl(214 32% 91%);
+  --color-background: hsl(210 20% 98%) !important;
+  --color-foreground: hsl(222 47% 11%) !important;
+  --color-card: hsl(210 20% 95%) !important;
+  --color-card-foreground: hsl(222 47% 11%) !important;
+  --color-popover: hsl(0 0% 100%) !important;
+  --color-popover-foreground: hsl(222 47% 11%) !important;
+  --color-primary: hsl(210 100% 45%) !important;
+  --color-primary-foreground: hsl(0 0% 100%) !important;
+  --color-secondary: hsl(180 100% 30%) !important;
+  --color-secondary-foreground: hsl(0 0% 100%) !important;
+  --color-muted: hsl(210 20% 92%) !important;
+  --color-muted-foreground: hsl(215 20% 40%) !important;
+  --color-accent: hsl(210 20% 94%) !important;
+  --color-accent-foreground: hsl(222 47% 11%) !important;
+  --color-border: hsl(214 32% 85%) !important;
+  --color-input: hsl(214 32% 88%) !important;
+  --color-ring: hsl(210 100% 45%) !important;
+}
+
+/* Light mode additional text and element styling */
+.light .text-white {
+  color: hsl(222 47% 11%);
+}
+
+.light .bg-white\/5,
+.light .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.light .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light .bg-card\/30 {
+  background-color: rgba(240, 245, 250, 0.8);
 }
 
 .light .grid-bg {
