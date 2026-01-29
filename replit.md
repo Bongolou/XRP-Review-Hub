@@ -59,3 +59,29 @@ Preferred communication style: Simple, everyday language.
 
 ### Fonts (External)
 - Google Fonts: Inter (body text) and Orbitron (display/headings)
+
+## Internationalization (i18n)
+
+### Language Support
+The site supports 8 languages: English (en), Spanish (es), Chinese (zh), Japanese (ja), Korean (ko), Portuguese (pt), German (de), and French (fr).
+
+### Translation System
+- **Context Provider**: `client/src/lib/i18n/LanguageContext.tsx` provides the `useLanguage` hook
+- **Translation Data**: `client/src/lib/i18n/translations.ts` contains all translation keys for all languages
+- **Language Selector**: `client/src/components/LanguageSelector.tsx` allows users to switch languages
+- **Usage Pattern**: Components use `const { t } = useLanguage()` and call `t("key.name")` for translated text
+
+### Translated Sections
+- Navigation (header and mobile menu)
+- Hero section
+- Deal of the Week
+- Wallet cards (labels: score, visit site, read review)
+- Exchange section (title, subtitle, claim bonus buttons)
+- Features section (security, yield, guides)
+- Blog section (title, subtitle)
+- Newsletter CTA
+- Footer (all links, disclaimers, RSS feed)
+
+### Content Notes
+- Brand names (wallet/exchange names) remain untranslated as they are proper nouns
+- Blog post content and detailed descriptions are in English (would require CMS for full content translation)
