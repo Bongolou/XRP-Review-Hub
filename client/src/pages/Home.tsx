@@ -296,15 +296,19 @@ export default function Home() {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden border-b border-white/5">
-        {/* Background Overlay */}
-        <div 
-          className="absolute inset-0 z-0 opacity-40 mix-blend-screen"
-          style={{ 
-            backgroundImage: `url(${heroBg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-50"
+            poster={heroBg}
+          >
+            <source src="/videos/hero-crypto-flow.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div className="absolute inset-0 z-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
         <div className="absolute inset-0 z-0 bg-gradient-to-r from-background via-transparent to-background/50" />
         
