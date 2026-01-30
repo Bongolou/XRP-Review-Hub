@@ -22,6 +22,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary selection:text-primary-foreground">
+      {/* Trezor Impression Tracking Pixel */}
+      <img 
+        src="https://affil.trezor.io/aff_i?offer_id=169&aff_id=36959" 
+        width="0" 
+        height="0" 
+        style={{ position: 'absolute', visibility: 'hidden' }} 
+        alt="" 
+      />
       
       <div className="bg-primary/10 border-b border-primary/20 py-1.5 relative z-[60]">
         <div className="container mx-auto px-4 flex items-center justify-between overflow-visible">
