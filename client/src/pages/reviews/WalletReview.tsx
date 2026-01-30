@@ -408,7 +408,7 @@ const walletData: Record<string, {
     price: "$79",
     platforms: ["Windows", "macOS", "Linux"],
     website: "trezor.io",
-    affiliateLink: "https://trezor.io/?ref=allthingsxrpl",
+    affiliateLink: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
     descriptionKey: "walletDetail.trezor.description",
     featureKeys: [
       "walletDetail.trezor.feature1",

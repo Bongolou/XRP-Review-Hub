@@ -147,7 +147,7 @@ const walletsData = [
     fees: "$79",
     featureKeys: ["wallet.feature.openSource", "wallet.feature.secureElement", "wallet.feature.budgetFriendly", "wallet.feature.trusted"],
     popular: false,
-    link: "https://trezor.io/?ref=allthingsxrpl",
+    link: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
     logo: trezorLogo
   }
 ];
