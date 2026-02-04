@@ -81,6 +81,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "deal.claimDeal": "Claim Deal",
     "deal.tangem.title": "Tangem Hardware Wallet",
     "deal.tangem.description": "Get the most portable hardware wallet with our exclusive discount. Perfect for secure XRP storage on the go.",
+    "deal.trezor.title": "Trezor Safe 3",
+    "deal.trezor.description": "Get the most trusted open-source hardware wallet with our exclusive discount. Bank-grade security for your XRP.",
     
     // Wallet Cards
     "wallets.wallet": "Wallet",
@@ -975,6 +977,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "deal.claimDeal": "Obtener Oferta",
     "deal.tangem.title": "Billetera Tangem",
     "deal.tangem.description": "Obtén la billetera hardware más portátil con nuestro descuento exclusivo. Perfecta para almacenar XRP de forma segura.",
+    "deal.trezor.title": "Trezor Safe 3",
+    "deal.trezor.description": "Obtén la billetera hardware de código abierto más confiable con nuestro descuento exclusivo. Seguridad bancaria para tu XRP.",
     
     // Wallet Cards
     "wallets.wallet": "Billetera",
@@ -1868,6 +1872,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "deal.claimDeal": "领取优惠",
     "deal.tangem.title": "Tangem硬件钱包",
     "deal.tangem.description": "使用我们的独家折扣获取最便携的硬件钱包。非常适合安全存储XRP。",
+    "deal.trezor.title": "Trezor Safe 3",
+    "deal.trezor.description": "使用我们的独家折扣获取最受信赖的开源硬件钱包。为您的XRP提供银行级安全保护。",
     
     // Wallet Cards
     "wallets.wallet": "钱包",
@@ -2761,6 +2767,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "deal.claimDeal": "特典を獲得",
     "deal.tangem.title": "Tangemハードウェアウォレット",
     "deal.tangem.description": "限定割引で最もポータブルなハードウェアウォレットを手に入れましょう。安全なXRP保管に最適。",
+    "deal.trezor.title": "Trezor Safe 3",
+    "deal.trezor.description": "限定割引で最も信頼されるオープンソースハードウェアウォレットを入手。XRPを銀行レベルのセキュリティで保護。",
     
     // Wallet Cards
     "wallets.wallet": "ウォレット",
@@ -3654,6 +3662,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "deal.claimDeal": "특가 받기",
     "deal.tangem.title": "Tangem 하드웨어 지갑",
     "deal.tangem.description": "독점 할인으로 가장 휴대하기 좋은 하드웨어 지갑을 받으세요. 안전한 XRP 보관에 완벽합니다.",
+    "deal.trezor.title": "Trezor Safe 3",
+    "deal.trezor.description": "독점 할인으로 가장 신뢰받는 오픈소스 하드웨어 지갑을 받으세요. XRP를 은행급 보안으로 보호하세요.",
     
     // Wallet Cards
     "wallets.wallet": "지갑",
@@ -4547,6 +4557,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "deal.claimDeal": "Obter Oferta",
     "deal.tangem.title": "Carteira Tangem",
     "deal.tangem.description": "Obtenha a carteira hardware mais portátil com nosso desconto exclusivo. Perfeita para armazenar XRP com segurança.",
+    "deal.trezor.title": "Trezor Safe 3",
+    "deal.trezor.description": "Obtenha a carteira hardware de código aberto mais confiável com nosso desconto exclusivo. Segurança de nível bancário para seu XRP.",
     
     // Wallet Cards
     "wallets.wallet": "Carteira",
@@ -5440,6 +5452,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "deal.claimDeal": "Angebot sichern",
     "deal.tangem.title": "Tangem Hardware Wallet",
     "deal.tangem.description": "Holen Sie sich die tragbarste Hardware-Wallet mit unserem exklusiven Rabatt. Perfekt für sichere XRP-Speicherung.",
+    "deal.trezor.title": "Trezor Safe 3",
+    "deal.trezor.description": "Holen Sie sich die vertrauenswürdigste Open-Source Hardware-Wallet mit unserem exklusiven Rabatt. Bankensicherheit für Ihr XRP.",
     
     // Wallet Cards
     "wallets.wallet": "Wallet",
@@ -6333,6 +6347,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "deal.claimDeal": "Obtenir l'offre",
     "deal.tangem.title": "Portefeuille Tangem",
     "deal.tangem.description": "Obtenez le portefeuille matériel le plus portable avec notre réduction exclusive. Parfait pour stocker vos XRP en toute sécurité.",
+    "deal.trezor.title": "Trezor Safe 3",
+    "deal.trezor.description": "Obtenez le portefeuille matériel open-source le plus fiable avec notre réduction exclusive. Sécurité bancaire pour vos XRP.",
     
     // Wallet Cards
     "wallets.wallet": "Portefeuille",

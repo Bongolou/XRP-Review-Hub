@@ -1,7 +1,7 @@
 import { ExternalLink, Clock, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackAffiliateClick } from "@/lib/tracking";
-import tangemLogo from "@/assets/logos/tangem-logo.webp";
+import trezorLogo from "@/assets/logos/trezor-logo.webp";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface Deal {
@@ -15,13 +15,13 @@ interface Deal {
 }
 
 const currentDeal: Deal = {
-  titleKey: "deal.tangem.title",
-  descriptionKey: "deal.tangem.description",
-  discount: "10%",
-  link: "https://tangem.com/?promocode=ALLTHINGSXRPL",
-  partner: "tangem",
-  expiresIn: 3,
-  logo: tangemLogo
+  titleKey: "deal.trezor.title",
+  descriptionKey: "deal.trezor.description",
+  discount: "15%",
+  link: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
+  partner: "trezor",
+  expiresIn: 5,
+  logo: trezorLogo
 };
 
 export function DealOfTheWeek() {
