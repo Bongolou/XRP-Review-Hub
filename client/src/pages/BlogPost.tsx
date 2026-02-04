@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
 import { Link } from "wouter";
+import { BlogComments } from "@/components/BlogComments";
+import { BannerAd } from "@/components/BannerAd";
 
 function TwitterIcon({ className }: { className?: string }) {
   return (
@@ -28,8 +30,6 @@ function TikTokIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-import { BlogComments } from "@/components/BlogComments";
-import { BannerAd } from "@/components/BannerAd";
 
 export default function BlogPost() {
   const { id } = useParams();

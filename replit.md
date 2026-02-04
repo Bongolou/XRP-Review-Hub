@@ -77,7 +77,7 @@ The site supports 8 languages: English (en), Spanish (es), Chinese (zh), Japanes
 - Deal of the Week
 - **Wallet section**: Section headers, wallet type labels (Mobile App, Hardware, etc.), fees (Free, Standard, Low, None), 30+ feature badges (Self-Custody, dApp Browser, Biometric Auth, etc.), complementary wallet suggestions
 - **Exchange section**: Section headers, bonus text (e.g., "$20 BTC Bonus", "1000 XRP Airdrop"), 20+ feature badges (Best for XRP, Low Fees, High Security, etc.)
-- **Blog section**: Full translation of 6 blog post titles, excerpts, and categories across all languages
+- **Knowledge Hub (formerly Blog)**: Full translation of 19 article titles, excerpts, and categories across all languages. Social sharing buttons (X, Facebook, TikTok, Copy Link) on all articles.
 - Features section (security, yield, guides)
 - Newsletter CTA
 - Footer (all links, disclaimers, RSS feed)
@@ -96,7 +96,7 @@ The site supports 8 languages: English (en), Spanish (es), Chinese (zh), Japanes
 - `wallet.badge.*`: Badge text (topFreeXRPL, topChoice)
 - `exchange.bonus.*`: Exchange bonus text (btc20, xrp1000, lowFee, etc.)
 - `exchange.feature.*`: Exchange features (bestForXRP, fiatOnRamp, etc.)
-- `blog.post[1-6].*`: Blog content (title, excerpt, category for each post)
+- `blog.post[1-19].*`: Knowledge Hub content (title, excerpt, category for each post)
 - `blog.minRead`: Read time label
 
 ### Content Notes
@@ -104,3 +104,18 @@ The site supports 8 languages: English (en), Spanish (es), Chinese (zh), Japanes
 - Prices with dollar amounts (e.g., "$169", "$79") remain in original format
 - Dates remain in English format ("Jan 24, 2026") - could be localized in future if needed
 - Data structures in Home.tsx use translation keys (typeKey, feesKey, featureKeys, bonusKey, titleKey, etc.) for dynamic content
+
+## Performance Optimizations (Feb 2026)
+
+### Image Optimization
+- All logo images converted from PNG (700KB-1.1MB each) to WebP format (2-10KB each) - 99%+ size reduction
+- Images resized from 1024x1024 to 256x256 for web display
+- WebP files located in `client/src/assets/logos/` with `.webp` extension
+
+### SEO
+- robots.txt added at `client/public/robots.txt` with "Allow: /" and sitemap reference
+- Comprehensive meta tags in `client/index.html` for social sharing
+
+### Navigation
+- ScrollToSection component in Layout.tsx handles smooth scrolling to anchor sections
+- Hero CTA button scrolls to wallets section via onClick handler
