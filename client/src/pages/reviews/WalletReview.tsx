@@ -12,14 +12,14 @@ import {
   ExternalLink,
   ArrowLeft
 } from "lucide-react";
-import xamanLogo from "@/assets/logos/xaman-logo.png";
-import ledgerLogo from "@/assets/logos/ledger-logo.png";
-import crossmarkLogo from "@/assets/logos/crossmark-logo.png";
-import bifrostLogo from "@/assets/logos/bifrost-logo.png";
-import gatehubLogo from "@/assets/logos/gatehub-logo.png";
-import trustwalletLogo from "@/assets/logos/trustwallet-logo.png";
-import ellipalLogo from "@/assets/logos/ellipal-logo.png";
-import trezorLogo from "@/assets/logos/trezor-logo.png";
+import xamanLogo from "@/assets/logos/xaman-logo.webp";
+import ledgerLogo from "@/assets/logos/ledger-logo.webp";
+import crossmarkLogo from "@/assets/logos/crossmark-logo.webp";
+import bifrostLogo from "@/assets/logos/bifrost-logo.webp";
+import gatehubLogo from "@/assets/logos/gatehub-logo.webp";
+import trustwalletLogo from "@/assets/logos/trustwallet-logo.webp";
+import ellipalLogo from "@/assets/logos/ellipal-logo.webp";
+import trezorLogo from "@/assets/logos/trezor-logo.webp";
 
 const logoMap: Record<string, string> = {
   xaman: xamanLogo,

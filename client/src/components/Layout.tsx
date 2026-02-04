@@ -9,7 +9,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSelector } from "./LanguageSelector";
 import { useSearch } from "./SearchDialog";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import siteLogo from "@/assets/logos/allthingsxrpl-logo.png";
+import siteLogo from "@/assets/logos/allthingsxrpl-logo.webp";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();

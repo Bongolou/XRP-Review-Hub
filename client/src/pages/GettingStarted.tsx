@@ -10,10 +10,10 @@ import {
   AlertTriangle,
   ExternalLink
 } from "lucide-react";
-import upholdLogo from "@/assets/logos/uphold-logo.png";
-import bitrueLogo from "@/assets/logos/bitrue-logo.png";
-import krakenLogo from "@/assets/logos/kraken-logo.png";
-import xamanLogo from "@/assets/logos/xaman-logo.png";
+import upholdLogo from "@/assets/logos/uphold-logo.webp";
+import bitrueLogo from "@/assets/logos/bitrue-logo.webp";
+import krakenLogo from "@/assets/logos/kraken-logo.webp";
+import xamanLogo from "@/assets/logos/xaman-logo.webp";
 
 export default function GettingStarted() {
   const { t } = useLanguage();

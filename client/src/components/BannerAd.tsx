@@ -1,7 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import { trackAffiliateClick } from "@/lib/tracking";
-import upholdLogo from "@/assets/logos/uphold-logo.png";
-import ledgerLogo from "@/assets/logos/ledger-logo.png";
+import upholdLogo from "@/assets/logos/uphold-logo.webp";
+import ledgerLogo from "@/assets/logos/ledger-logo.webp";
 
 interface BannerAdProps {
   variant?: "horizontal" | "sidebar";

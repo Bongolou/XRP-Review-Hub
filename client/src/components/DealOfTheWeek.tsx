@@ -1,7 +1,7 @@
 import { ExternalLink, Clock, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackAffiliateClick } from "@/lib/tracking";
-import tangemLogo from "@/assets/logos/tangem-logo.png";
+import tangemLogo from "@/assets/logos/tangem-logo.webp";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface Deal {

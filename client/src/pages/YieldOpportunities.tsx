@@ -12,9 +12,9 @@ import {
   Waves
 } from "lucide-react";
 import { Link } from "wouter";
-import upholdLogo from "@/assets/logos/uphold-logo.png";
-import bitrueLogo from "@/assets/logos/bitrue-logo.png";
-import krakenLogo from "@/assets/logos/kraken-logo.png";
+import upholdLogo from "@/assets/logos/uphold-logo.webp";
+import bitrueLogo from "@/assets/logos/bitrue-logo.webp";
+import krakenLogo from "@/assets/logos/kraken-logo.webp";
 
 const stakingOptions = [
   {

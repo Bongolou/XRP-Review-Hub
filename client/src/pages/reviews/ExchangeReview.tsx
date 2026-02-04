@@ -13,13 +13,13 @@ import {
   ArrowLeft,
   Gift
 } from "lucide-react";
-import upholdLogo from "@/assets/logos/uphold-logo.png";
-import bitrueLogo from "@/assets/logos/bitrue-logo.png";
-import krakenLogo from "@/assets/logos/kraken-logo.png";
-import bitstampLogo from "@/assets/logos/bitstamp-logo.png";
-import coinbaseLogo from "@/assets/logos/coinbase-logo.png";
-import cryptocomLogo from "@/assets/logos/cryptocom-logo.png";
-import kucoinLogo from "@/assets/logos/kucoin-logo.png";
+import upholdLogo from "@/assets/logos/uphold-logo.webp";
+import bitrueLogo from "@/assets/logos/bitrue-logo.webp";
+import krakenLogo from "@/assets/logos/kraken-logo.webp";
+import bitstampLogo from "@/assets/logos/bitstamp-logo.webp";
+import coinbaseLogo from "@/assets/logos/coinbase-logo.webp";
+import cryptocomLogo from "@/assets/logos/cryptocom-logo.webp";
+import kucoinLogo from "@/assets/logos/kucoin-logo.webp";
 
 const logoMap: Record<string, string> = {
   uphold: upholdLogo,
