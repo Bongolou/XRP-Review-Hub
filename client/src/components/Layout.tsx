@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu, Search } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { PriceTicker } from "./PriceTicker";
 import { SocialLinks } from "./SocialLinks";
 import { ThemeToggle } from "./ThemeToggle";
@@ -10,6 +10,28 @@ import { LanguageSelector } from "./LanguageSelector";
 import { useSearch } from "./SearchDialog";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import siteLogo from "@/assets/logos/allthingsxrpl-logo.webp";
+
+function ScrollToSection({ id, children, className }: { id: string; children: React.ReactNode; className?: string }) {
+  const [location, setLocation] = useLocation();
+  
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location === '/') {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setLocation('/');
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [location, setLocation, id]);
+  
+  return (
+    <a href={`/#${id}`} onClick={handleClick} className={className}>
+      {children}
+    </a>
+  );
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -58,9 +80,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/' ? 'text-primary' : 'text-muted-foreground'}`}>
               {t("nav.home")}
             </Link>
-            <Link href="/#wallets" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+            <ScrollToSection id="wallets" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary cursor-pointer">
               {t("nav.wallets")}
-            </Link>
+            </ScrollToSection>
             <Link href="/getting-started" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/getting-started' ? 'text-primary' : 'text-muted-foreground'}`}>
               {t("nav.gettingStarted")}
             </Link>
@@ -89,7 +111,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <SheetContent side="right" className="bg-card border-l border-white/10">
               <nav className="flex flex-col gap-4 mt-10">
                 <Link href="/" className="text-lg font-medium hover:text-primary">{t("nav.home")}</Link>
-                <Link href="/#wallets" className="text-lg font-medium hover:text-primary">{t("nav.wallets")}</Link>
+                <ScrollToSection id="wallets" className="text-lg font-medium hover:text-primary cursor-pointer">{t("nav.wallets")}</ScrollToSection>
                 <Link href="/getting-started" className="text-lg font-medium hover:text-primary">{t("nav.gettingStarted")}</Link>
                 <Link href="/blog" className="text-lg font-medium hover:text-primary">{t("nav.blog")}</Link>
                 <Link href="/wallet-quiz" className="text-lg font-medium hover:text-primary">{t("footer.walletQuiz")}</Link>
@@ -131,7 +153,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/wallet/bifrost" className="hover:text-primary transition-colors">Bifrost {t("common.review")}</Link></li>
                 <li><Link href="/wallet/trezor" className="hover:text-primary transition-colors">Trezor {t("common.review")}</Link></li>
                 <li><Link href="/wallet-quiz" className="hover:text-primary transition-colors">{t("footer.walletQuiz")}</Link></li>
-                <li><Link href="/#wallets" className="hover:text-primary transition-colors font-medium text-primary">{t("footer.viewAllWallets")} →</Link></li>
+                <li><ScrollToSection id="wallets" className="hover:text-primary transition-colors font-medium text-primary cursor-pointer">{t("footer.viewAllWallets")} →</ScrollToSection></li>
               </ul>
             </div>
 
@@ -143,7 +165,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/exchange/kraken" className="hover:text-primary transition-colors">Kraken {t("common.review")}</Link></li>
                 <li><Link href="/exchange/bitstamp" className="hover:text-primary transition-colors">Bitstamp {t("common.review")}</Link></li>
                 <li><Link href="/exchange/cryptocom" className="hover:text-primary transition-colors">Crypto.com {t("common.review")}</Link></li>
-                <li><Link href="/#exchanges" className="hover:text-primary transition-colors font-medium text-primary">{t("footer.viewAllExchanges")} →</Link></li>
+                <li><ScrollToSection id="exchanges" className="hover:text-primary transition-colors font-medium text-primary cursor-pointer">{t("footer.viewAllExchanges")} →</ScrollToSection></li>
               </ul>
             </div>
 

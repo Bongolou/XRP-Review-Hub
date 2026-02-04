@@ -367,11 +367,13 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Link href="/#wallets">
-              <Button size="lg" className="h-14 px-8 text-base bg-primary hover:bg-primary/90 text-white font-bold tracking-wide shadow-[0_0_30px_-10px_theme('colors.primary.DEFAULT')]">
-                {t("hero.cta.compare")}
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              className="h-14 px-8 text-base bg-primary hover:bg-primary/90 text-white font-bold tracking-wide shadow-[0_0_30px_-10px_theme('colors.primary.DEFAULT')]"
+              onClick={() => document.getElementById('wallets')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              {t("hero.cta.compare")}
+            </Button>
             <Link href="/wallet-quiz">
               <Button size="lg" variant="outline" className="h-14 px-8 text-base border-white/20 bg-white/5 hover:bg-white/10 hover:text-white backdrop-blur-sm">
                 {t("hero.cta.quiz")}
