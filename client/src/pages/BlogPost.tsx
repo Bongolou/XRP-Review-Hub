@@ -960,7 +960,7 @@ export default function BlogPost() {
               </div>
 
               <div 
-                className="prose prose-invert prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary prose-img:rounded-xl"
+                className="article-content"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
 
