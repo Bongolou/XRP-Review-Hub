@@ -128,7 +128,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <footer className="border-t border-white/10 bg-card/30 backdrop-blur-sm mt-20">
+      <footer className="border-t border-white/10 bg-card/30 backdrop-blur-sm mt-32">
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             <div className="col-span-2 md:col-span-1 space-y-4">
