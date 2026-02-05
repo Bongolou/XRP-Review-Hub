@@ -484,7 +484,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="text-center mt-12 space-y-6">
+        <div className="text-center mt-16 space-y-8">
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/compare/xaman-vs-ledger">
               <Button variant="outline" className="border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/30 text-sm transition-all duration-300">
@@ -511,12 +511,12 @@ export default function Home() {
       </section>
 
       {/* Sponsored Banner */}
-      <section className="container mx-auto px-4 py-6">
+      <section className="container mx-auto px-4 py-12 mt-8">
         <BannerAd variant="horizontal" />
       </section>
 
       {/* Top Exchanges Section */}
-      <section className="py-24 bg-card/10 border-y border-white/5 relative">
+      <section className="py-24 mt-8 bg-card/10 border-y border-white/5 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/30 border-primary/50">{t("exchanges.badge")}</Badge>
