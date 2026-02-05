@@ -11,7 +11,7 @@ import {
   Layers,
   TrendingUp
 } from "lucide-react";
-import heroBg from "@/assets/hero-bg.png";
+import heroBg from "@/assets/hero-bg.webp";
 import xamanLogo from "@/assets/logos/xaman-logo.webp";
 import ledgerLogo from "@/assets/logos/ledger-logo.webp";
 import crossmarkLogo from "@/assets/logos/crossmark-logo.webp";
@@ -242,7 +242,7 @@ const blogPostsData = [
     categoryKey: "blog.post1.category",
     date: "Jan 24, 2026",
     readTimeNum: 5,
-    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&auto=format&fit=crop"
   },
   {
     id: 2,
@@ -251,7 +251,7 @@ const blogPostsData = [
     categoryKey: "blog.post2.category",
     date: "Jan 20, 2026",
     readTimeNum: 8,
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop"
   },
   {
     id: 3,
@@ -260,7 +260,7 @@ const blogPostsData = [
     categoryKey: "blog.post3.category",
     date: "Jan 15, 2026",
     readTimeNum: 4,
-    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=400&auto=format&fit=crop"
   },
   {
     id: 4,
@@ -269,7 +269,7 @@ const blogPostsData = [
     categoryKey: "blog.post4.category",
     date: "Jan 12, 2026",
     readTimeNum: 6,
-    image: "https://images.unsplash.com/photo-1643101809204-6fb869816dbe?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1643101809204-6fb869816dbe?w=400&auto=format&fit=crop"
   },
   {
     id: 5,
@@ -278,7 +278,7 @@ const blogPostsData = [
     categoryKey: "blog.post5.category",
     date: "Jan 8, 2026",
     readTimeNum: 7,
-    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&auto=format&fit=crop"
   },
   {
     id: 6,
@@ -287,7 +287,7 @@ const blogPostsData = [
     categoryKey: "blog.post6.category",
     date: "Jan 5, 2026",
     readTimeNum: 9,
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&auto=format&fit=crop"
   }
 ];
 
@@ -318,6 +318,8 @@ export default function Home() {
             preload="auto"
             className="absolute inset-0 w-full h-full object-cover opacity-50 hidden md:block"
             poster={heroBg}
+            // @ts-ignore
+            fetchpriority="high"
           >
             <source src="/videos/hero-crypto-flow.mp4" type="video/mp4" />
           </video>
@@ -416,7 +418,7 @@ export default function Home() {
                 
                 <div className="flex flex-col md:flex-row items-start gap-6 relative z-10">
                   <div className="flex-shrink-0 rounded-xl overflow-hidden self-center md:self-start">
-                    <img src={wallet.logo} alt={`${wallet.name} logo`} className="w-14 h-14 object-cover rounded-xl" />
+                    <img src={wallet.logo} alt={`${wallet.name} logo`} className="w-14 h-14 object-cover rounded-xl" width={56} height={56} loading="lazy" />
                   </div>
                   
                   <div className="flex-1 min-w-0 text-center md:text-left">
@@ -465,7 +467,7 @@ export default function Home() {
 
                   <div className="flex flex-col gap-3 flex-shrink-0 w-full md:w-[140px] self-center md:self-start md:pt-1">
                     <Button asChild className="w-full relative group overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
-                      <a href={wallet.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                      <a href={wallet.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center" aria-label={`Visit ${wallet.name} website`}>
                         <span className="relative z-10">{t("wallets.visitSite")}</span>
                         <ExternalLink className="ml-2 h-4 w-4 relative z-10" />
                       </a>
@@ -519,7 +521,7 @@ export default function Home() {
       <section className="py-24 mt-8 bg-card/10 border-y border-white/5 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/30 border-primary/50">{t("exchanges.badge")}</Badge>
+            <Badge className="mb-4 bg-primary/20 text-white hover:bg-primary/30 border-primary/50">{t("exchanges.badge")}</Badge>
             <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">{t("exchanges.title")}</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               {t("exchanges.subtitle")}
@@ -540,7 +542,7 @@ export default function Home() {
                 <div className="p-8 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] h-full flex flex-col">
                   <div className="flex justify-between items-start mb-6">
                     <div className="w-14 h-14 rounded-xl overflow-hidden">
-                      <img src={exchange.logo} alt={`${exchange.name} logo`} className="w-full h-full object-cover" />
+                      <img src={exchange.logo} alt={`${exchange.name} logo`} className="w-full h-full object-cover" width={56} height={56} loading="lazy" />
                     </div>
                     <Badge variant="outline" className="border-green-500/50 text-green-400 bg-green-500/10">
                       {t(exchange.bonusKey)}
@@ -560,7 +562,7 @@ export default function Home() {
 
                   <div className="flex flex-col gap-3">
                     <Button asChild className="w-full relative overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
-                      <a href={exchange.link} target="_blank" rel="noopener noreferrer">
+                      <a href={exchange.link} target="_blank" rel="noopener noreferrer" aria-label={`Claim bonus at ${exchange.name}`}>
                         {t("exchanges.claimBonus")} <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
                     </Button>

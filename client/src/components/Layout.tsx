@@ -146,47 +146,47 @@ export function Layout({ children }: { children: React.ReactNode }) {
             
             <div>
               <h3 className="font-display font-bold mb-4">{t("nav.wallets")}</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/wallet/xaman" className="hover:text-primary transition-colors">Xaman {t("common.review")}</Link></li>
-                <li><Link href="/wallet/tangem" className="hover:text-primary transition-colors">Tangem {t("common.review")}</Link></li>
-                <li><Link href="/wallet/ledger" className="hover:text-primary transition-colors">Ledger {t("common.review")}</Link></li>
-                <li><Link href="/wallet/bifrost" className="hover:text-primary transition-colors">Bifrost {t("common.review")}</Link></li>
-                <li><Link href="/wallet/trezor" className="hover:text-primary transition-colors">Trezor {t("common.review")}</Link></li>
-                <li><Link href="/wallet-quiz" className="hover:text-primary transition-colors">{t("footer.walletQuiz")}</Link></li>
-                <li><ScrollToSection id="wallets" className="hover:text-primary transition-colors font-medium text-primary cursor-pointer">{t("footer.viewAllWallets")} →</ScrollToSection></li>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li><Link href="/wallet/xaman" className="hover:text-primary transition-colors inline-block py-1">Xaman {t("common.review")}</Link></li>
+                <li><Link href="/wallet/tangem" className="hover:text-primary transition-colors inline-block py-1">Tangem {t("common.review")}</Link></li>
+                <li><Link href="/wallet/ledger" className="hover:text-primary transition-colors inline-block py-1">Ledger {t("common.review")}</Link></li>
+                <li><Link href="/wallet/bifrost" className="hover:text-primary transition-colors inline-block py-1">Bifrost {t("common.review")}</Link></li>
+                <li><Link href="/wallet/trezor" className="hover:text-primary transition-colors inline-block py-1">Trezor {t("common.review")}</Link></li>
+                <li><Link href="/wallet-quiz" className="hover:text-primary transition-colors inline-block py-1">{t("footer.walletQuiz")}</Link></li>
+                <li><ScrollToSection id="wallets" className="hover:text-primary transition-colors font-medium text-primary cursor-pointer inline-block py-1">{t("footer.viewAllWallets")} →</ScrollToSection></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-display font-bold mb-4">{t("nav.exchanges")}</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/exchange/uphold" className="hover:text-primary transition-colors">Uphold {t("common.review")}</Link></li>
-                <li><Link href="/exchange/coinbase" className="hover:text-primary transition-colors">Coinbase {t("common.review")}</Link></li>
-                <li><Link href="/exchange/kraken" className="hover:text-primary transition-colors">Kraken {t("common.review")}</Link></li>
-                <li><Link href="/exchange/bitstamp" className="hover:text-primary transition-colors">Bitstamp {t("common.review")}</Link></li>
-                <li><Link href="/exchange/cryptocom" className="hover:text-primary transition-colors">Crypto.com {t("common.review")}</Link></li>
-                <li><ScrollToSection id="exchanges" className="hover:text-primary transition-colors font-medium text-primary cursor-pointer">{t("footer.viewAllExchanges")} →</ScrollToSection></li>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li><Link href="/exchange/uphold" className="hover:text-primary transition-colors inline-block py-1">Uphold {t("common.review")}</Link></li>
+                <li><Link href="/exchange/coinbase" className="hover:text-primary transition-colors inline-block py-1">Coinbase {t("common.review")}</Link></li>
+                <li><Link href="/exchange/kraken" className="hover:text-primary transition-colors inline-block py-1">Kraken {t("common.review")}</Link></li>
+                <li><Link href="/exchange/bitstamp" className="hover:text-primary transition-colors inline-block py-1">Bitstamp {t("common.review")}</Link></li>
+                <li><Link href="/exchange/cryptocom" className="hover:text-primary transition-colors inline-block py-1">Crypto.com {t("common.review")}</Link></li>
+                <li><ScrollToSection id="exchanges" className="hover:text-primary transition-colors font-medium text-primary cursor-pointer inline-block py-1">{t("footer.viewAllExchanges")} →</ScrollToSection></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-display font-bold mb-4">{t("footer.resources")}</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/getting-started" className="hover:text-primary transition-colors">{t("nav.gettingStarted")}</Link></li>
-                <li><Link href="/blog" className="hover:text-primary transition-colors">{t("nav.blog")}</Link></li>
-                <li><Link href="/faq" className="hover:text-primary transition-colors">{t("footer.faq")}</Link></li>
-                <li><a href="/rss.xml" className="hover:text-primary transition-colors">{t("footer.rssFeed")}</a></li>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li><Link href="/getting-started" className="hover:text-primary transition-colors inline-block py-1">{t("nav.gettingStarted")}</Link></li>
+                <li><Link href="/blog" className="hover:text-primary transition-colors inline-block py-1">{t("nav.blog")}</Link></li>
+                <li><Link href="/faq" className="hover:text-primary transition-colors inline-block py-1">{t("footer.faq")}</Link></li>
+                <li><a href="/rss.xml" className="hover:text-primary transition-colors inline-block py-1">{t("footer.rssFeed")}</a></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-display font-bold mb-4">{t("footer.company")}</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/about" className="hover:text-primary transition-colors">{t("nav.about")}</Link></li>
-                <li><Link href="/contact" className="hover:text-primary transition-colors">{t("nav.contact")}</Link></li>
-                <li><Link href="/disclosure" className="hover:text-primary transition-colors">{t("common.affiliate")}</Link></li>
-                <li><Link href="/privacy" className="hover:text-primary transition-colors">{t("footer.privacy")}</Link></li>
-                <li><Link href="/terms" className="hover:text-primary transition-colors">{t("footer.terms")}</Link></li>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li><Link href="/about" className="hover:text-primary transition-colors inline-block py-1">{t("nav.about")}</Link></li>
+                <li><Link href="/contact" className="hover:text-primary transition-colors inline-block py-1">{t("nav.contact")}</Link></li>
+                <li><Link href="/disclosure" className="hover:text-primary transition-colors inline-block py-1">{t("common.affiliate")}</Link></li>
+                <li><Link href="/privacy" className="hover:text-primary transition-colors inline-block py-1">{t("footer.privacy")}</Link></li>
+                <li><Link href="/terms" className="hover:text-primary transition-colors inline-block py-1">{t("footer.terms")}</Link></li>
               </ul>
             </div>
           </div>

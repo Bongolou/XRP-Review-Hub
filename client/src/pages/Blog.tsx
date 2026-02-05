@@ -25,7 +25,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post1.category",
     date: "Jan 24, 2026",
     readTimeKey: "blog.readTime.5min",
-    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&auto=format&fit=crop"
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post2.category",
     date: "Jan 20, 2026",
     readTimeKey: "blog.readTime.8min",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop"
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post3.category",
     date: "Jan 15, 2026",
     readTimeKey: "blog.readTime.4min",
-    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=400&auto=format&fit=crop"
   },
   {
     id: 4,
@@ -55,7 +55,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post4.category",
     date: "Jan 12, 2026",
     readTimeKey: "blog.readTime.6min",
-    image: "https://images.unsplash.com/photo-1643101809204-6fb869816dbe?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1643101809204-6fb869816dbe?w=400&auto=format&fit=crop"
   },
   {
     id: 5,
@@ -65,7 +65,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post5.category",
     date: "Jan 8, 2026",
     readTimeKey: "blog.readTime.7min",
-    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&auto=format&fit=crop"
   },
   {
     id: 6,
@@ -75,7 +75,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post6.category",
     date: "Jan 5, 2026",
     readTimeKey: "blog.readTime.9min",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&auto=format&fit=crop"
   },
   {
     id: 7,
@@ -85,7 +85,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post7.category",
     date: "Jan 2, 2026",
     readTimeKey: "blog.readTime.10min",
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&auto=format&fit=crop"
   },
   {
     id: 8,
@@ -95,7 +95,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post8.category",
     date: "Dec 28, 2025",
     readTimeKey: "blog.readTime.5min",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&auto=format&fit=crop"
   },
   {
     id: 9,
@@ -105,7 +105,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post9.category",
     date: "Dec 22, 2025",
     readTimeKey: "blog.readTime.7min",
-    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400&auto=format&fit=crop"
   },
   {
     id: 10,
@@ -115,7 +115,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post10.category",
     date: "Dec 18, 2025",
     readTimeKey: "blog.readTime.6min",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&auto=format&fit=crop"
   },
   {
     id: 11,
@@ -125,7 +125,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post11.category",
     date: "Dec 15, 2025",
     readTimeKey: "blog.readTime.5min",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&auto=format&fit=crop"
   },
   {
     id: 12,
@@ -135,7 +135,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post12.category",
     date: "Dec 10, 2025",
     readTimeKey: "blog.readTime.8min",
-    image: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=400&auto=format&fit=crop"
   },
   {
     id: 13,
@@ -145,7 +145,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post13.category",
     date: "Dec 5, 2025",
     readTimeKey: "blog.readTime.6min",
-    image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&auto=format&fit=crop"
   },
   {
     id: 14,
@@ -155,7 +155,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post14.category",
     date: "Dec 1, 2025",
     readTimeKey: "blog.readTime.7min",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop"
   },
   {
     id: 15,
@@ -165,7 +165,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post15.category",
     date: "Nov 28, 2025",
     readTimeKey: "blog.readTime.10min",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&auto=format&fit=crop"
   },
   {
     id: 16,
@@ -175,7 +175,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post16.category",
     date: "Jan 26, 2026",
     readTimeKey: "blog.readTime.12min",
-    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&auto=format&fit=crop"
   },
   {
     id: 17,
@@ -185,7 +185,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post17.category",
     date: "Jan 25, 2026",
     readTimeKey: "blog.readTime.9min",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop"
   },
   {
     id: 18,
@@ -195,7 +195,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post18.category",
     date: "Jan 24, 2026",
     readTimeKey: "blog.readTime.8min",
-    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&auto=format&fit=crop"
   },
   {
     id: 19,
@@ -205,7 +205,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post19.category",
     date: "Jan 23, 2026",
     readTimeKey: "blog.readTime.10min",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop"
   }
 ];
 

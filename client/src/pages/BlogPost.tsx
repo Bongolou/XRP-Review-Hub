@@ -42,7 +42,7 @@ const blogPostsData = [
     readTime: "5 min read",
     author: "Alex Crypto",
     authorRole: "Senior Analyst",
-    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&auto=format&fit=crop",
     content: `
       <p>The XRP Ledger (XRPL) has evolved significantly over the past year, moving far beyond simple payments to become a robust ecosystem for Decentralized Finance (DeFi). With the introduction of the native Automated Market Maker (AMM) and sidechains, the landscape is more vibrant than ever.</p>
       
@@ -81,7 +81,7 @@ const blogPostsData = [
     readTime: "8 min read",
     author: "Maya Chen",
     authorRole: "DeFi Researcher",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop",
     content: `
       <p>The XRP Ledger's native Automated Market Maker (AMM) functionality has opened up new possibilities for earning passive income. This guide will walk you through everything you need to know about AMM staking rewards.</p>
       
@@ -118,7 +118,7 @@ const blogPostsData = [
     readTime: "4 min read",
     author: "Security Team",
     authorRole: "Cybersecurity Experts",
-    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=400&auto=format&fit=crop",
     content: `
       <p>Protecting your digital assets requires a multi-layered approach. Whether you're using a hardware wallet or software wallet, these security practices will help keep your crypto safe.</p>
       
@@ -158,7 +158,7 @@ const blogPostsData = [
     readTime: "6 min read",
     author: "NFT Weekly",
     authorRole: "Digital Art Correspondent",
-    image: "https://images.unsplash.com/photo-1643101809204-6fb869816dbe?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1643101809204-6fb869816dbe?w=400&auto=format&fit=crop",
     content: `
       <p>The NFT ecosystem on the XRP Ledger has grown tremendously since the introduction of native NFT support. This guide covers everything you need to know about NFT marketplaces on XRPL.</p>
       
@@ -198,7 +198,7 @@ const blogPostsData = [
     readTime: "7 min read",
     author: "Tech Deep Dive",
     authorRole: "Blockchain Developer",
-    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&auto=format&fit=crop",
     content: `
       <p>XRPL sidechains represent a major evolution in the ecosystem's capabilities, enabling smart contracts and new use cases while maintaining connection to the main ledger.</p>
       
@@ -237,7 +237,7 @@ const blogPostsData = [
     readTime: "9 min read",
     author: "Institutional Desk",
     authorRole: "Enterprise Analyst",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&auto=format&fit=crop",
     content: `
       <p>Real World Asset (RWA) tokenization is transforming how institutions interact with the XRP Ledger. From real estate to commodities, the XRPL is becoming a platform for digitizing traditional assets.</p>
       
@@ -279,7 +279,7 @@ const blogPostsData = [
     readTime: "10 min read",
     author: "Dev Team",
     authorRole: "Protocol Engineers",
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&auto=format&fit=crop",
     content: `
       <p>Hooks bring programmable smart logic to the XRP Ledger without compromising its speed and efficiency. This introduction explains what Hooks are and how they work.</p>
       
@@ -325,7 +325,7 @@ const blogPostsData = [
     readTime: "5 min read",
     author: "Wallet Guide",
     authorRole: "Product Reviewer",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&auto=format&fit=crop",
     content: `
       <p>Choosing between hot (software) and cold (hardware) wallets is one of the most important decisions for crypto holders. This guide helps you understand when to use each type.</p>
       
@@ -373,7 +373,7 @@ const blogPostsData = [
     readTime: "7 min read",
     author: "Banking Desk",
     authorRole: "Financial Correspondent",
-    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400&auto=format&fit=crop",
     content: `
       <p>Central Bank Digital Currencies (CBDCs) represent a major trend in digital finance, and the XRP Ledger is positioning itself as ideal infrastructure for their issuance and management.</p>
       
@@ -411,7 +411,7 @@ const blogPostsData = [
     readTime: "6 min read",
     author: "Tax Guide",
     authorRole: "Crypto Tax Specialist",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&auto=format&fit=crop",
     content: `
       <p>Understanding the tax implications of your crypto transactions is essential. This guide covers the basics of crypto taxation and how to stay compliant.</p>
       
@@ -456,7 +456,7 @@ const blogPostsData = [
     readTime: "5 min read",
     author: "Security Watch",
     authorRole: "Threat Analyst",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&auto=format&fit=crop",
     content: `
       <p>Phishing attacks remain one of the biggest threats to crypto holders. Learn how to identify and avoid these scams that target XRPL users.</p>
       
@@ -499,7 +499,7 @@ const blogPostsData = [
     readTime: "8 min read",
     author: "Protocol Team",
     authorRole: "Network Engineer",
-    image: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=400&auto=format&fit=crop",
     content: `
       <p>The XRPL uses a unique consensus mechanism that differs significantly from both Proof of Work and Proof of Stake. Understanding how it works helps appreciate the network's design choices.</p>
       
@@ -542,7 +542,7 @@ const blogPostsData = [
     readTime: "6 min read",
     author: "Ripple Watcher",
     authorRole: "Industry Analyst",
-    image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&auto=format&fit=crop",
     content: `
       <p>Ripple and the XRP Ledger, while closely associated, are distinct entities. Understanding their relationship helps clarify common misconceptions.</p>
       
@@ -581,7 +581,7 @@ const blogPostsData = [
     readTime: "7 min read",
     author: "Artist Spotlight",
     authorRole: "NFT Curator",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop",
     content: `
       <p>Creating NFTs on the XRP Ledger is straightforward and affordable. This step-by-step guide will walk you through minting your first NFT.</p>
       
@@ -625,7 +625,7 @@ const blogPostsData = [
     readTime: "10 min read",
     author: "Investment Team",
     authorRole: "Portfolio Analyst",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&auto=format&fit=crop",
     content: `
       <p>Building a diversified crypto portfolio involves more than just buying Bitcoin. This guide covers strategies for allocating across different crypto assets.</p>
       
@@ -667,7 +667,7 @@ const blogPostsData = [
     readTime: "12 min read",
     author: "DeFi Lab",
     authorRole: "Smart Contract Researcher",
-    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&auto=format&fit=crop",
     content: `
       <p>Automated Market Makers revolutionized decentralized trading. This comprehensive guide explains how AMMs work and the various models used across DeFi.</p>
       
@@ -711,7 +711,7 @@ const blogPostsData = [
     readTime: "9 min read",
     author: "Risk Analyst",
     authorRole: "DeFi Security Expert",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop",
     content: `
       <p>Impermanent loss is one of the most misunderstood concepts in DeFi. This guide breaks down what it is, when it matters, and how to manage it.</p>
       
@@ -760,7 +760,7 @@ const blogPostsData = [
     readTime: "8 min read",
     author: "Yield Farmers",
     authorRole: "DeFi Strategist",
-    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&auto=format&fit=crop",
     content: `
       <p>Liquidity provision is a key way to earn passive income in DeFi. This beginner's guide covers everything you need to know to get started.</p>
       
@@ -808,7 +808,7 @@ const blogPostsData = [
     readTime: "10 min read",
     author: "NFT Technical",
     authorRole: "Protocol Developer",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop",
     content: `
       <p>The XLS-20 standard brought native NFT support to the XRP Ledger. This deep dive explores the technical implementation and advantages of XRPL NFTs.</p>
       
