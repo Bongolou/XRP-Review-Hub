@@ -4,6 +4,8 @@ deployment:
     - export DEPLOYPATH=/home1/happilyc/public_html/allthingsxrpl.com/
     - /bin/cp index.html $DEPLOYPATH
     - /bin/cp robots.txt $DEPLOYPATH
+    - /bin/cp sitemap.xml $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp favicon.png $DEPLOYPATH
     - /bin/cp opengraph.jpg $DEPLOYPATH
     - /bin/cp -r assets $DEPLOYPATH
