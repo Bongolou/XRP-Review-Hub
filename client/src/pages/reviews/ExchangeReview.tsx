@@ -430,14 +430,14 @@ export default function ExchangeReview() {
             href={exchange.affiliateLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 h-12 px-8 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 h-12 !px-12 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"
             data-testid={`button-signup-${slug}`}
           >
             {t("exchangeReview.signUp")} {exchange.name} <ExternalLink className="h-4 w-4" />
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 mt-4">
           <div className="bg-card/30 border border-white/10 rounded-2xl p-6">
             <h2 className="text-xl font-bold font-display mb-4 flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-400" />
@@ -526,17 +526,17 @@ export default function ExchangeReview() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 rounded-2xl p-6 mb-8">
+        <div className="bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 rounded-2xl p-6 mb-12">
           <h2 className="text-xl font-bold font-display mb-2">{t("exchangeReview.bestFor")}</h2>
           <p className="text-muted-foreground">{t(exchange.bestForKey)}</p>
         </div>
 
-        <div className="text-center">
+        <div className="text-center pb-8">
           <a 
             href={exchange.affiliateLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 h-14 px-10 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 h-14 !px-12 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-lg transition-colors"
           >
             {t("exchangeReview.signUp")} {exchange.name} <ExternalLink className="h-5 w-5" />
           </a>
