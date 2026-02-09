@@ -3,7 +3,7 @@ import { Layout } from "@/components/Layout";
 export default function Privacy() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-24 max-w-4xl">
+      <div className="container mx-auto px-4 py-32 max-w-4xl">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-black font-display mb-4">Privacy Policy</h1>
           <p className="text-muted-foreground">Last updated: January 25, 2026</p>

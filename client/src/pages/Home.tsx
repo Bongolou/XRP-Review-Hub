@@ -325,8 +325,8 @@ function LatestNewsPreview({ t }: { t: (key: string) => string }) {
   if (!isLoading && news.length === 0) return null;
 
   return (
-    <section className="py-24 container mx-auto px-4">
-      <div className="text-center mb-12">
+    <section className="py-32 container mx-auto px-4">
+      <div className="text-center mb-16">
         <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm border-primary/50 text-primary bg-primary/10">
           <Newspaper className="h-3.5 w-3.5 mr-2" />
           {t("news.live")}
@@ -497,7 +497,7 @@ export default function Home() {
       </section>
 
       {/* Wallet Comparison Section */}
-      <section id="wallets" className="py-24 container mx-auto px-4 relative">
+      <section id="wallets" className="py-32 container mx-auto px-4 relative">
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="text-center mb-16 relative z-10">
@@ -616,12 +616,12 @@ export default function Home() {
       </section>
 
       {/* Sponsored Banner */}
-      <section className="container mx-auto px-4 py-12 mt-8">
+      <section className="container mx-auto px-4 py-16 mt-12">
         <BannerAd variant="horizontal" />
       </section>
 
       {/* Top Exchanges Section */}
-      <section className="py-24 mt-8 bg-card/10 border-y border-white/5 relative">
+      <section className="py-32 mt-4 bg-card/10 border-y border-white/5 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/20 text-white hover:bg-primary/30 border-primary/50">{t("exchanges.badge")}</Badge>
@@ -695,7 +695,7 @@ export default function Home() {
       </section>
 
       {/* Feature Grid */}
-      <section className="py-24 bg-card/20 border-y border-white/5 relative overflow-hidden">
+      <section className="py-32 bg-card/20 border-y border-white/5 relative overflow-hidden">
         <div className="absolute -right-40 top-20 w-96 h-96 bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="container mx-auto px-4">
@@ -747,7 +747,7 @@ export default function Home() {
       </section>
 
       {/* Blog/Insights Section */}
-      <section id="blog" className="py-24 container mx-auto px-4">
+      <section id="blog" className="py-32 container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-xl">
             <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">{t("blog.title")}</h2>
@@ -802,7 +802,7 @@ export default function Home() {
       <LatestNewsPreview t={t} />
 
       {/* Newsletter CTA */}
-      <section className="py-24 container mx-auto px-4">
+      <section className="py-32 container mx-auto px-4">
         <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 p-12 text-center">
           <div className="absolute inset-0 grid-bg opacity-30" />
           <div className="relative z-10 max-w-2xl mx-auto">

@@ -261,7 +261,7 @@ const categories = ["All", "Yield", "DeFi", "DEX", "NFT/Trading", "Analytics", "
 export default function DApps() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-24">
+      <div className="container mx-auto px-4 py-32">
         <div className="text-center mb-16">
           <Badge className="mb-4 bg-purple-500/20 text-purple-400 hover:bg-purple-500/30 border-purple-500/50">
             Decentralized Applications

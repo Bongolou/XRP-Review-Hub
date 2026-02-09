@@ -670,7 +670,7 @@ export default function Compare() {
   if (!comparison) {
     return (
       <Layout>
-        <div className="container mx-auto px-4 py-24 text-center">
+        <div className="container mx-auto px-4 py-32 text-center">
           <h1 className="text-4xl font-bold mb-4">Wallet Comparisons</h1>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             In-depth, side-by-side comparisons to help you choose the right wallet or exchange for your needs.
@@ -692,7 +692,7 @@ export default function Compare() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-24 max-w-5xl">
+      <div className="container mx-auto px-4 py-32 max-w-5xl">
         <Link href="/#wallets" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="h-4 w-4" />
           Back to Wallets

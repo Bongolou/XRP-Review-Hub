@@ -4,7 +4,7 @@ import { Link } from "wouter";
 export default function Disclosure() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-24 max-w-4xl">
+      <div className="container mx-auto px-4 py-32 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-black font-display mb-8">Affiliate Disclosure</h1>
         
         <div className="prose prose-invert prose-lg max-w-none text-muted-foreground">

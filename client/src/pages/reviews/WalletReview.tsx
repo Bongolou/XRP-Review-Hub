@@ -454,7 +454,7 @@ export default function WalletReview() {
   if (!wallet) {
     return (
       <Layout>
-        <div className="container mx-auto px-4 py-24 text-center">
+        <div className="container mx-auto px-4 py-32 text-center">
           <h1 className="text-4xl font-bold mb-4">{t("walletReview.notFound")}</h1>
           <p className="text-muted-foreground mb-8">{t("walletReview.notFoundDesc")}</p>
           <Button asChild>
@@ -467,7 +467,7 @@ export default function WalletReview() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-24 max-w-4xl">
+      <div className="container mx-auto px-4 py-32 max-w-4xl">
         <Link href="/#wallets" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="h-4 w-4" />
           {t("walletReview.backToComparison")}

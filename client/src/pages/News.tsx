@@ -5,6 +5,7 @@ import { ExternalLink, Clock, Newspaper, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 interface NewsItem {
   title: string;
@@ -43,6 +44,56 @@ function getSourceColor(source: string): string {
   return "border-primary/50 text-primary bg-primary/10";
 }
 
+function getSourceGradient(source: string): string {
+  const s = source.toLowerCase();
+  if (s.includes("cointelegraph")) return "from-yellow-600/30 via-amber-800/20 to-yellow-900/30";
+  if (s.includes("coindesk")) return "from-blue-600/30 via-blue-800/20 to-indigo-900/30";
+  if (s.includes("decrypt")) return "from-green-600/30 via-emerald-800/20 to-green-900/30";
+  if (s.includes("cryptoslate")) return "from-purple-600/30 via-violet-800/20 to-purple-900/30";
+  if (s.includes("u.today")) return "from-orange-600/30 via-orange-800/20 to-red-900/30";
+  if (s.includes("daily hodl")) return "from-cyan-600/30 via-teal-800/20 to-cyan-900/30";
+  if (s.includes("pymnts")) return "from-rose-600/30 via-pink-800/20 to-rose-900/30";
+  if (s.includes("forbes")) return "from-slate-600/30 via-gray-800/20 to-slate-900/30";
+  return "from-primary/30 via-blue-800/20 to-cyan-900/30";
+}
+
+function NewsImageFallback({ source }: { source: string }) {
+  const gradient = getSourceGradient(source);
+  return (
+    <div className={`aspect-video bg-gradient-to-br ${gradient} flex items-center justify-center relative overflow-hidden`}>
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-3 right-3 w-20 h-20 border border-white/20 rounded-full" />
+        <div className="absolute bottom-4 left-4 w-12 h-12 border border-white/20 rounded-full" />
+        <div className="absolute top-1/2 left-1/3 w-32 h-32 border border-white/10 rounded-full" />
+      </div>
+      <div className="text-center relative z-10">
+        <Newspaper className="h-8 w-8 text-white/40 mx-auto mb-2" />
+        <span className="text-xs font-semibold text-white/50 uppercase tracking-wider">{source}</span>
+      </div>
+    </div>
+  );
+}
+
+function NewsImage({ src, source }: { src?: string; source: string }) {
+  const [failed, setFailed] = useState(false);
+
+  if (!src || failed) {
+    return <NewsImageFallback source={source} />;
+  }
+
+  return (
+    <div className="aspect-video overflow-hidden bg-white/5">
+      <img
+        src={src}
+        alt=""
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        loading="lazy"
+        onError={() => setFailed(true)}
+      />
+    </div>
+  );
+}
+
 export default function News() {
   const { t } = useLanguage();
 
@@ -61,8 +112,8 @@ export default function News() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-24">
-        <div className="text-center mb-16">
+      <div className="container mx-auto px-4 py-32">
+        <div className="text-center mb-20">
           <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm border-primary/50 text-primary bg-primary/10">
             <span className="relative flex h-2 w-2 mr-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -129,17 +180,7 @@ export default function News() {
                 data-testid={`card-news-${idx}`}
               >
                 <div className="h-full bg-card/30 rounded-xl border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] overflow-hidden flex flex-col">
-                  {item.imageUrl && (
-                    <div className="aspect-video overflow-hidden bg-white/5">
-                      <img
-                        src={item.imageUrl}
-                        alt=""
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        loading="lazy"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                      />
-                    </div>
-                  )}
+                  <NewsImage src={item.imageUrl} source={item.source} />
                   <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center justify-between mb-3">
                       <Badge variant="outline" className={`text-xs ${getSourceColor(item.source)}`}>

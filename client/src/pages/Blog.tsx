@@ -219,7 +219,7 @@ export default function Blog() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-24">
+      <div className="container mx-auto px-4 py-32">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-black font-display mb-4">{t("blog.pageTitle")}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
