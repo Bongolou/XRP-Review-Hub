@@ -87,6 +87,7 @@ The site supports 8 languages: English (en), Spanish (es), Chinese (zh), Japanes
 - **Getting Started page**: 5-step guide with titles, descriptions, tips, warnings, and CTA buttons translated across all 8 languages
 - **Wallet detail pages**: UI elements (buttons, labels, section headers) translated; detailed content in English with UI fallback pattern
 - **Exchange detail pages**: UI elements translated; detailed content in English with UI fallback pattern
+- **News page**: Page title, subtitle, live feed badge, refresh button, read more, error/empty states, and home page preview section translated across all 8 languages
 
 ### Translation Key Structure
 - `wallets.sectionTitle/sectionSubtitle`: Wallet section headers
@@ -98,6 +99,7 @@ The site supports 8 languages: English (en), Spanish (es), Chinese (zh), Japanes
 - `exchange.feature.*`: Exchange features (bestForXRP, fiatOnRamp, etc.)
 - `blog.post[1-19].*`: Knowledge Hub content (title, excerpt, category for each post)
 - `blog.minRead`: Read time label
+- `news.*`: News page content (title, subtitle, live, refresh, readMore, error, tryAgain, noArticles, latestTitle, latestSubtitle, viewAll)
 
 ### Content Notes
 - Brand names (wallet/exchange names like "Xaman", "Ledger", "Uphold") remain untranslated as proper nouns
@@ -119,3 +121,18 @@ The site supports 8 languages: English (en), Spanish (es), Chinese (zh), Japanes
 ### Navigation
 - ScrollToSection component in Layout.tsx handles smooth scrolling to anchor sections
 - Hero CTA button scrolls to wallets section via onClick handler
+
+## News Feed (Feb 2026)
+
+### Architecture
+- **Backend**: `/api/news` endpoint in `server/routes.ts` fetches RSS feeds from Google News, CoinTelegraph, and CryptoSlate
+- **Filtering**: Articles filtered by XRP/XRPL/Ripple keywords, deduplicated by title similarity
+- **Caching**: 15-minute TTL server-side cache to avoid excessive upstream requests
+- **Parsing**: Regex-based XML parsing (no external RSS library dependency)
+- **Timeout**: 8-second fetch timeout per feed source
+
+### Frontend
+- **News Page**: `client/src/pages/News.tsx` - Full news feed with 3-column grid, source badges, time-ago formatting, thumbnails, loading skeletons, error states
+- **Home Preview**: `LatestNewsPreview` component in `Home.tsx` showing 4 latest headlines in 2-column grid with "View All News" CTA
+- **Route**: `/news` registered in `App.tsx`
+- **Navigation**: News link in header nav, mobile menu, and footer Resources section
