@@ -325,7 +325,7 @@ function LatestNewsPreview({ t }: { t: (key: string) => string }) {
   if (!isLoading && news.length === 0) return null;
 
   return (
-    <section className="py-32 container mx-auto px-4">
+    <section className="py-32 mt-8 container mx-auto px-4">
       <div className="text-center mb-16">
         <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm border-primary/50 text-primary bg-primary/10">
           <Newspaper className="h-3.5 w-3.5 mr-2" />
@@ -492,12 +492,12 @@ export default function Home() {
       </section>
 
       {/* Deal of the Week */}
-      <section className="container mx-auto px-4 py-12 -mt-12 relative z-20">
+      <section className="container mx-auto px-4 pt-16 pb-8 relative z-20">
         <DealOfTheWeek />
       </section>
 
       {/* Wallet Comparison Section */}
-      <section id="wallets" className="py-32 container mx-auto px-4 relative">
+      <section id="wallets" className="pt-24 pb-32 mt-8 container mx-auto px-4 relative">
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="text-center mb-16 relative z-10">
@@ -616,12 +616,12 @@ export default function Home() {
       </section>
 
       {/* Sponsored Banner */}
-      <section className="container mx-auto px-4 py-16 mt-12">
+      <section className="container mx-auto px-4 py-20 mt-16 mb-8">
         <BannerAd variant="horizontal" />
       </section>
 
       {/* Top Exchanges Section */}
-      <section className="py-32 mt-4 bg-card/10 border-y border-white/5 relative">
+      <section className="py-32 mt-8 bg-card/10 border-y border-white/5 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/20 text-white hover:bg-primary/30 border-primary/50">{t("exchanges.badge")}</Badge>
