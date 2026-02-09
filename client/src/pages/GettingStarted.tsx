@@ -28,7 +28,7 @@ export default function GettingStarted() {
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
           {/* Step 1: Choose an Exchange */}
           <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
             <div className="flex items-start gap-4 mb-6">
