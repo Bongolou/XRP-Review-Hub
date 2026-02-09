@@ -156,7 +156,7 @@ export default function WalletQuiz() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 pt-20 pb-32 max-w-2xl">
+      <div className="container mx-auto px-4 max-w-2xl">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-black font-display mb-4">Find Your Perfect Wallet</h1>
           <p className="text-muted-foreground text-lg">

@@ -115,7 +115,7 @@ const xrplNativeOptions = [
 export default function YieldOpportunities() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 pt-20 pb-32">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <Badge className="mb-4 bg-secondary/20 text-secondary hover:bg-secondary/30 border-secondary/50">
             Earn Passive Income

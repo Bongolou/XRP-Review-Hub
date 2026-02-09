@@ -3,7 +3,7 @@ import { Layout } from "@/components/Layout";
 export default function Terms() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 pt-20 pb-32 max-w-4xl">
+      <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-black font-display mb-4">Terms of Service</h1>
           <p className="text-muted-foreground">Last updated: January 25, 2026</p>
