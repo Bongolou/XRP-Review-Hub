@@ -125,7 +125,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main className="flex-1 relative">
+      <main className="flex-1 relative" style={{ paddingTop: '6rem' }}>
         {children}
       </main>
 
