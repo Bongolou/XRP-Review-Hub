@@ -9,8 +9,11 @@ import {
   Lock,
   Zap,
   Layers,
-  TrendingUp
+  TrendingUp,
+  Clock,
+  Newspaper
 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import heroBg from "@/assets/hero-bg.webp";
 import xamanLogo from "@/assets/logos/xaman-logo.webp";
 import ledgerLogo from "@/assets/logos/ledger-logo.webp";
@@ -290,6 +293,106 @@ const blogPostsData = [
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&auto=format&fit=crop"
   }
 ];
+
+function formatTimeAgo(dateStr: string): string {
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return "";
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMs / 3600000);
+  const diffDays = Math.floor(diffMs / 86400000);
+  if (diffMins < 1) return "Just now";
+  if (diffMins < 60) return `${diffMins}m ago`;
+  if (diffHours < 24) return `${diffHours}h ago`;
+  if (diffDays < 7) return `${diffDays}d ago`;
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+function LatestNewsPreview({ t }: { t: (key: string) => string }) {
+  const { data, isLoading } = useQuery<{ items: { title: string; link: string; pubDate: string; source: string }[] }>({
+    queryKey: ["/api/news"],
+    queryFn: async () => {
+      const res = await fetch("/api/news?limit=4");
+      if (!res.ok) throw new Error("Failed");
+      return res.json();
+    },
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+  });
+
+  const news = data?.items?.slice(0, 4) || [];
+  if (!isLoading && news.length === 0) return null;
+
+  return (
+    <section className="py-24 container mx-auto px-4">
+      <div className="text-center mb-12">
+        <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm border-primary/50 text-primary bg-primary/10">
+          <Newspaper className="h-3.5 w-3.5 mr-2" />
+          {t("news.live")}
+        </Badge>
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-3">{t("news.latestTitle")}</h2>
+        <p className="text-muted-foreground text-lg">{t("news.latestSubtitle")}</p>
+      </div>
+
+      {isLoading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-card/30 rounded-xl border border-white/10 p-5 animate-pulse">
+              <div className="h-3 bg-white/10 rounded w-20 mb-3"></div>
+              <div className="h-4 bg-white/10 rounded w-full mb-2"></div>
+              <div className="h-4 bg-white/10 rounded w-3/4"></div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-8">
+            {news.map((item, idx) => (
+              <motion.a
+                key={item.link}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="group block"
+                data-testid={`card-home-news-${idx}`}
+              >
+                <div className="bg-card/30 rounded-xl border border-white/10 hover:border-primary/50 transition-all duration-300 p-5 h-full flex flex-col">
+                  <div className="flex items-center justify-between mb-2.5">
+                    <span className="text-xs text-primary font-medium">{item.source}</span>
+                    {item.pubDate && (
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        {formatTimeAgo(item.pubDate)}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2 flex-1">
+                    {item.title}
+                  </h3>
+                  <div className="flex items-center text-xs text-primary/70 font-medium mt-3">
+                    {t("news.readMore")} <ExternalLink className="ml-1 h-3 w-3" />
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link href="/news">
+              <Button variant="outline" className="border-white/10 bg-white/5 hover:bg-white/10" data-testid="button-view-all-news">
+                {t("news.viewAll")} <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </>
+      )}
+    </section>
+  );
+}
 
 export default function Home() {
   const { t } = useLanguage();
@@ -694,6 +797,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Latest News Preview */}
+      <LatestNewsPreview t={t} />
 
       {/* Newsletter CTA */}
       <section className="py-24 container mx-auto px-4">

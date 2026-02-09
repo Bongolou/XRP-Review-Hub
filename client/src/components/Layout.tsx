@@ -89,8 +89,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/blog" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/blog' ? 'text-primary' : 'text-muted-foreground'}`}>
               {t("nav.blog")}
             </Link>
-            <Link href="/wallet-quiz" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/wallet-quiz' ? 'text-primary' : 'text-muted-foreground'}`}>
-              {t("footer.walletQuiz")}
+            <Link href="/news" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/news' ? 'text-primary' : 'text-muted-foreground'}`}>
+              {t("nav.news")}
             </Link>
             <button 
               onClick={search.open}
@@ -114,6 +114,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <ScrollToSection id="wallets" className="text-lg font-medium hover:text-primary cursor-pointer">{t("nav.wallets")}</ScrollToSection>
                 <Link href="/getting-started" className="text-lg font-medium hover:text-primary">{t("nav.gettingStarted")}</Link>
                 <Link href="/blog" className="text-lg font-medium hover:text-primary">{t("nav.blog")}</Link>
+                <Link href="/news" className="text-lg font-medium hover:text-primary">{t("nav.news")}</Link>
                 <Link href="/wallet-quiz" className="text-lg font-medium hover:text-primary">{t("footer.walletQuiz")}</Link>
                 <Link href="/faq" className="text-lg font-medium hover:text-primary">{t("footer.faq")}</Link>
                 <Link href="/contact" className="text-lg font-medium hover:text-primary">{t("nav.contact")}</Link>
@@ -174,6 +175,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li><Link href="/getting-started" className="hover:text-primary transition-colors inline-block py-1">{t("nav.gettingStarted")}</Link></li>
                 <li><Link href="/blog" className="hover:text-primary transition-colors inline-block py-1">{t("nav.blog")}</Link></li>
+                <li><Link href="/news" className="hover:text-primary transition-colors inline-block py-1">{t("nav.news")}</Link></li>
                 <li><Link href="/faq" className="hover:text-primary transition-colors inline-block py-1">{t("footer.faq")}</Link></li>
                 <li><a href="/rss.xml" className="hover:text-primary transition-colors inline-block py-1">{t("footer.rssFeed")}</a></li>
               </ul>

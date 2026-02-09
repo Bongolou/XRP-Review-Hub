@@ -24,6 +24,7 @@ import ExchangeReview from "@/pages/reviews/ExchangeReview";
 import Compare from "@/pages/Compare";
 import YieldOpportunities from "@/pages/YieldOpportunities";
 import DApps from "@/pages/DApps";
+import News from "@/pages/News";
 
 function Router() {
   return (
@@ -39,6 +40,7 @@ function Router() {
       <Route path="/yield" component={YieldOpportunities} />
       <Route path="/dapps" component={DApps} />
       <Route path="/blog" component={Blog} />
+      <Route path="/news" component={News} />
       <Route path="/blog/:id" component={BlogPost} />
       <Route path="/wallet-quiz" component={WalletQuiz} />
       <Route path="/wallet/:slug" component={WalletReview} />

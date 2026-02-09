@@ -20,6 +20,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.dapps": "DApps",
     "nav.yield": "Yield",
     "nav.blog": "Knowledge Hub",
+    "nav.news": "News",
     "nav.gettingStarted": "Getting Started",
     "nav.compare": "Compare",
     "nav.about": "About",
@@ -306,6 +307,19 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Date/Time Labels
     "blog.minRead": "min read",
+    
+    // News Page
+    "news.title": "XRP & XRPL News",
+    "news.subtitle": "Stay up to date with the latest news and developments from the XRP Ledger ecosystem",
+    "news.live": "Live Feed",
+    "news.refresh": "Refresh",
+    "news.readMore": "Read Full Article",
+    "news.error": "Unable to load news right now. Please try again.",
+    "news.tryAgain": "Try Again",
+    "news.noArticles": "No XRP news articles available right now. Check back soon!",
+    "news.latestTitle": "Latest XRP News",
+    "news.latestSubtitle": "Stay informed with the latest developments",
+    "news.viewAll": "View All News",
     
     // Wallet Review Page
     "walletReview.backToComparison": "Back to Wallet Comparison",
@@ -916,6 +930,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.dapps": "DApps",
     "nav.yield": "Rendimiento",
     "nav.blog": "Centro de Conocimiento",
+    "nav.news": "Noticias",
     "nav.gettingStarted": "Comenzar",
     "nav.compare": "Comparar",
     "nav.about": "Nosotros",
@@ -1202,6 +1217,19 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Date/Time Labels
     "blog.minRead": "min de lectura",
+    
+    // News Page
+    "news.title": "Noticias de XRP y XRPL",
+    "news.subtitle": "Mantente al día con las últimas noticias y desarrollos del ecosistema XRP Ledger",
+    "news.live": "En Vivo",
+    "news.refresh": "Actualizar",
+    "news.readMore": "Leer Artículo Completo",
+    "news.error": "No se pueden cargar las noticias en este momento. Inténtalo de nuevo.",
+    "news.tryAgain": "Intentar de Nuevo",
+    "news.noArticles": "No hay noticias de XRP disponibles en este momento. ¡Vuelve pronto!",
+    "news.latestTitle": "Últimas Noticias de XRP",
+    "news.latestSubtitle": "Mantente informado con los últimos desarrollos",
+    "news.viewAll": "Ver Todas las Noticias",
     
     // Wallet Review Page
     "walletReview.backToComparison": "Volver a Comparación de Billeteras",
@@ -1811,6 +1839,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.dapps": "DApps",
     "nav.yield": "收益",
     "nav.blog": "知识中心",
+    "nav.news": "新闻",
     "nav.gettingStarted": "入门指南",
     "nav.compare": "比较",
     "nav.about": "关于我们",
@@ -2097,6 +2126,19 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Date/Time Labels
     "blog.minRead": "分钟阅读",
+    
+    // News Page
+    "news.title": "XRP 和 XRPL 新闻",
+    "news.subtitle": "了解 XRP Ledger 生态系统的最新新闻和发展动态",
+    "news.live": "实时资讯",
+    "news.refresh": "刷新",
+    "news.readMore": "阅读全文",
+    "news.error": "暂时无法加载新闻，请重试。",
+    "news.tryAgain": "重试",
+    "news.noArticles": "目前没有 XRP 新闻文章，请稍后再来！",
+    "news.latestTitle": "最新 XRP 新闻",
+    "news.latestSubtitle": "了解最新发展动态",
+    "news.viewAll": "查看所有新闻",
     
     // Wallet Review Page
     "walletReview.backToComparison": "返回钱包对比",
@@ -2706,6 +2748,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.dapps": "DApps",
     "nav.yield": "利回り",
     "nav.blog": "ナレッジハブ",
+    "nav.news": "ニュース",
     "nav.gettingStarted": "はじめに",
     "nav.compare": "比較",
     "nav.about": "について",
@@ -2992,6 +3035,19 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Date/Time Labels
     "blog.minRead": "分で読める",
+    
+    // News Page
+    "news.title": "XRP & XRPL ニュース",
+    "news.subtitle": "XRP Ledgerエコシステムの最新ニュースと開発情報をお届けします",
+    "news.live": "ライブフィード",
+    "news.refresh": "更新",
+    "news.readMore": "記事全文を読む",
+    "news.error": "現在ニュースを読み込めません。もう一度お試しください。",
+    "news.tryAgain": "再試行",
+    "news.noArticles": "現在XRPニュース記事はありません。また後でお確かめください！",
+    "news.latestTitle": "最新XRPニュース",
+    "news.latestSubtitle": "最新の開発情報をチェック",
+    "news.viewAll": "すべてのニュースを見る",
     
     // Wallet Review Page
     "walletReview.backToComparison": "ウォレット比較に戻る",
@@ -3601,6 +3657,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.dapps": "DApps",
     "nav.yield": "수익",
     "nav.blog": "지식 허브",
+    "nav.news": "뉴스",
     "nav.gettingStarted": "시작하기",
     "nav.compare": "비교",
     "nav.about": "소개",
@@ -3887,6 +3944,19 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Date/Time Labels
     "blog.minRead": "분 읽기",
+    
+    // News Page
+    "news.title": "XRP & XRPL 뉴스",
+    "news.subtitle": "XRP Ledger 생태계의 최신 뉴스와 개발 소식을 확인하세요",
+    "news.live": "실시간 피드",
+    "news.refresh": "새로고침",
+    "news.readMore": "전체 기사 읽기",
+    "news.error": "현재 뉴스를 불러올 수 없습니다. 다시 시도해주세요.",
+    "news.tryAgain": "다시 시도",
+    "news.noArticles": "현재 이용 가능한 XRP 뉴스가 없습니다. 곧 다시 확인해주세요!",
+    "news.latestTitle": "최신 XRP 뉴스",
+    "news.latestSubtitle": "최신 개발 소식을 확인하세요",
+    "news.viewAll": "모든 뉴스 보기",
     
     // Wallet Review Page
     "walletReview.backToComparison": "지갑 비교로 돌아가기",
@@ -4496,6 +4566,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.dapps": "DApps",
     "nav.yield": "Rendimento",
     "nav.blog": "Central de Conhecimento",
+    "nav.news": "Notícias",
     "nav.gettingStarted": "Começar",
     "nav.compare": "Comparar",
     "nav.about": "Sobre",
@@ -4782,6 +4853,19 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Date/Time Labels
     "blog.minRead": "min de leitura",
+    
+    // News Page
+    "news.title": "Notícias XRP e XRPL",
+    "news.subtitle": "Fique por dentro das últimas notícias e desenvolvimentos do ecossistema XRP Ledger",
+    "news.live": "Ao Vivo",
+    "news.refresh": "Atualizar",
+    "news.readMore": "Ler Artigo Completo",
+    "news.error": "Não foi possível carregar as notícias. Tente novamente.",
+    "news.tryAgain": "Tentar Novamente",
+    "news.noArticles": "Nenhuma notícia sobre XRP disponível no momento. Volte em breve!",
+    "news.latestTitle": "Últimas Notícias XRP",
+    "news.latestSubtitle": "Fique informado com os últimos desenvolvimentos",
+    "news.viewAll": "Ver Todas as Notícias",
     
     // Wallet Review Page
     "walletReview.backToComparison": "Voltar para Comparação de Carteiras",
@@ -5391,6 +5475,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.dapps": "DApps",
     "nav.yield": "Rendite",
     "nav.blog": "Wissenszentrum",
+    "nav.news": "Nachrichten",
     "nav.gettingStarted": "Erste Schritte",
     "nav.compare": "Vergleichen",
     "nav.about": "Über uns",
@@ -5677,6 +5762,19 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Date/Time Labels
     "blog.minRead": "Min. Lesezeit",
+    
+    // News Page
+    "news.title": "XRP & XRPL Nachrichten",
+    "news.subtitle": "Bleiben Sie über die neuesten Nachrichten und Entwicklungen im XRP Ledger-Ökosystem informiert",
+    "news.live": "Live-Feed",
+    "news.refresh": "Aktualisieren",
+    "news.readMore": "Vollständigen Artikel lesen",
+    "news.error": "Nachrichten können derzeit nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "news.tryAgain": "Erneut versuchen",
+    "news.noArticles": "Derzeit keine XRP-Nachrichten verfügbar. Schauen Sie bald wieder vorbei!",
+    "news.latestTitle": "Neueste XRP Nachrichten",
+    "news.latestSubtitle": "Bleiben Sie über die neuesten Entwicklungen informiert",
+    "news.viewAll": "Alle Nachrichten anzeigen",
     
     // Wallet Review Page
     "walletReview.backToComparison": "Zurück zum Wallet-Vergleich",
@@ -6286,6 +6384,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.dapps": "DApps",
     "nav.yield": "Rendement",
     "nav.blog": "Centre de Savoir",
+    "nav.news": "Actualités",
     "nav.gettingStarted": "Commencer",
     "nav.compare": "Comparer",
     "nav.about": "À propos",
@@ -6572,6 +6671,19 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Date/Time Labels
     "blog.minRead": "min de lecture",
+    
+    // News Page
+    "news.title": "Actualités XRP et XRPL",
+    "news.subtitle": "Restez informé des dernières nouvelles et développements de l'écosystème XRP Ledger",
+    "news.live": "En Direct",
+    "news.refresh": "Actualiser",
+    "news.readMore": "Lire l'Article Complet",
+    "news.error": "Impossible de charger les actualités pour le moment. Veuillez réessayer.",
+    "news.tryAgain": "Réessayer",
+    "news.noArticles": "Aucun article sur XRP disponible en ce moment. Revenez bientôt !",
+    "news.latestTitle": "Dernières Actualités XRP",
+    "news.latestSubtitle": "Restez informé des derniers développements",
+    "news.viewAll": "Voir Toutes les Actualités",
     
     // Wallet Review Page
     "walletReview.backToComparison": "Retour à la Comparaison des Portefeuilles",
