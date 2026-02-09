@@ -325,7 +325,7 @@ function LatestNewsPreview({ t }: { t: (key: string) => string }) {
   if (!isLoading && news.length === 0) return null;
 
   return (
-    <section className="py-32 mt-8 container mx-auto px-4">
+    <section className="py-32 container mx-auto px-4">
       <div className="text-center mb-16">
         <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm border-primary/50 text-primary bg-primary/10">
           <Newspaper className="h-3.5 w-3.5 mr-2" />
@@ -492,12 +492,14 @@ export default function Home() {
       </section>
 
       {/* Deal of the Week */}
-      <section className="container mx-auto px-4 pt-16 pb-8 relative z-20">
+      <section className="container mx-auto px-4 pt-16 relative z-20">
         <DealOfTheWeek />
       </section>
 
+      <div className="h-24" aria-hidden="true" />
+
       {/* Wallet Comparison Section */}
-      <section id="wallets" className="pt-24 pb-32 mt-8 container mx-auto px-4 relative">
+      <section id="wallets" className="pt-16 pb-32 container mx-auto px-4 relative">
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="text-center mb-16 relative z-10">
@@ -615,13 +617,17 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="h-20" aria-hidden="true" />
+
       {/* Sponsored Banner */}
-      <section className="container mx-auto px-4 py-20 mt-16 mb-8">
+      <section className="container mx-auto px-4 py-12">
         <BannerAd variant="horizontal" />
       </section>
 
+      <div className="h-20" aria-hidden="true" />
+
       {/* Top Exchanges Section */}
-      <section className="py-32 mt-8 bg-card/10 border-y border-white/5 relative">
+      <section className="py-32 bg-card/10 border-y border-white/5 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/20 text-white hover:bg-primary/30 border-primary/50">{t("exchanges.badge")}</Badge>
@@ -694,6 +700,8 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="h-16" aria-hidden="true" />
+
       {/* Feature Grid */}
       <section className="py-32 bg-card/20 border-y border-white/5 relative overflow-hidden">
         <div className="absolute -right-40 top-20 w-96 h-96 bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
@@ -745,6 +753,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="h-16" aria-hidden="true" />
 
       {/* Blog/Insights Section */}
       <section id="blog" className="py-32 container mx-auto px-4">
@@ -798,8 +808,12 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="h-16" aria-hidden="true" />
+
       {/* Latest News Preview */}
       <LatestNewsPreview t={t} />
+
+      <div className="h-16" aria-hidden="true" />
 
       {/* Newsletter CTA */}
       <section className="py-32 container mx-auto px-4">
