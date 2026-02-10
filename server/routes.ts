@@ -112,6 +112,8 @@ async function fetchAllNews(): Promise<NewsItem[]> {
     return true;
   });
 
+  allItems = allItems.filter(item => item.imageUrl);
+
   allItems.sort((a, b) => {
     const da = new Date(a.pubDate).getTime();
     const db = new Date(b.pubDate).getTime();
