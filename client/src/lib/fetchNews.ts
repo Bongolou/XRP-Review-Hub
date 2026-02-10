@@ -40,7 +40,7 @@ function extractImageFromHtml(html: string): string | undefined {
 
 async function fetchFeed(feedUrl: string, sourceName: string): Promise<NewsItem[]> {
   try {
-    const apiUrl = `${RSS2JSON_API}?rss_url=${encodeURIComponent(feedUrl)}&count=30`;
+    const apiUrl = `${RSS2JSON_API}?rss_url=${encodeURIComponent(feedUrl)}`;
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
     const res = await fetch(apiUrl, { signal: controller.signal });
