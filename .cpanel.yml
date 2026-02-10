@@ -2,11 +2,11 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home1/happilyc/public_html/allthingsxrpl.com/
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp robots.txt $DEPLOYPATH
-    - /bin/cp sitemap.xml $DEPLOYPATH
+    - /bin/cp dist/public/index.html $DEPLOYPATH
+    - /bin/cp dist/public/robots.txt $DEPLOYPATH
+    - /bin/cp dist/public/sitemap.xml $DEPLOYPATH
     - /bin/cp .htaccess $DEPLOYPATH
-    - /bin/cp favicon.png $DEPLOYPATH
-    - /bin/cp opengraph.jpg $DEPLOYPATH
-    - /bin/cp -r assets $DEPLOYPATH
-    - /bin/cp -r videos $DEPLOYPATH
+    - /bin/cp dist/public/favicon.png $DEPLOYPATH
+    - /bin/cp dist/public/opengraph.jpg $DEPLOYPATH
+    - /bin/cp -r dist/public/assets $DEPLOYPATH
+    - /bin/cp -r dist/public/videos $DEPLOYPATH
