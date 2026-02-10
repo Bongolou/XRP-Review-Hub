@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { fetchAllNews } from "@/lib/fetchNews";
 
 interface NewsItem {
   title: string;
@@ -97,18 +98,14 @@ function NewsImage({ src, source }: { src?: string; source: string }) {
 export default function News() {
   const { t } = useLanguage();
 
-  const { data, isLoading, error, refetch, isFetching } = useQuery<{ items: NewsItem[] }>({
-    queryKey: ["/api/news"],
-    queryFn: async () => {
-      const res = await fetch("/api/news?limit=30");
-      if (!res.ok) throw new Error("Failed to fetch news");
-      return res.json();
-    },
+  const { data, isLoading, error, refetch, isFetching } = useQuery<NewsItem[]>({
+    queryKey: ["news-feed"],
+    queryFn: fetchAllNews,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
   });
 
-  const news = data?.items || [];
+  const news = data || [];
 
   return (
     <Layout>

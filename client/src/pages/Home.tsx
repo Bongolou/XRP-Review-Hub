@@ -14,6 +14,7 @@ import {
   Newspaper
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { fetchAllNews } from "@/lib/fetchNews";
 import heroBg from "@/assets/hero-bg.webp";
 import xamanLogo from "@/assets/logos/xaman-logo.webp";
 import ledgerLogo from "@/assets/logos/ledger-logo.webp";
@@ -310,18 +311,14 @@ function formatTimeAgo(dateStr: string): string {
 }
 
 function LatestNewsPreview({ t }: { t: (key: string) => string }) {
-  const { data, isLoading } = useQuery<{ items: { title: string; link: string; pubDate: string; source: string }[] }>({
-    queryKey: ["/api/news"],
-    queryFn: async () => {
-      const res = await fetch("/api/news?limit=4");
-      if (!res.ok) throw new Error("Failed");
-      return res.json();
-    },
+  const { data, isLoading } = useQuery({
+    queryKey: ["news-feed"],
+    queryFn: fetchAllNews,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
   });
 
-  const news = data?.items?.slice(0, 4) || [];
+  const news = (data || []).slice(0, 4);
   if (!isLoading && news.length === 0) return null;
 
   return (
