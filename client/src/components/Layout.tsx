@@ -177,7 +177,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/blog" className="hover:text-primary transition-colors inline-block py-1">{t("nav.blog")}</Link></li>
                 <li><Link href="/news" className="hover:text-primary transition-colors inline-block py-1">{t("nav.news")}</Link></li>
                 <li><Link href="/faq" className="hover:text-primary transition-colors inline-block py-1">{t("footer.faq")}</Link></li>
-                <li><a href="/rss.xml" className="hover:text-primary transition-colors inline-block py-1">{t("footer.rssFeed")}</a></li>
+
               </ul>
             </div>
 
