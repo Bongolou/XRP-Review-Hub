@@ -25,6 +25,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post1.category",
     date: "Jan 24, 2026",
     readTimeKey: "blog.readTime.5min",
+    author: "Alex Crypto",
     image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&auto=format&fit=crop"
   },
   {
@@ -35,6 +36,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post2.category",
     date: "Jan 20, 2026",
     readTimeKey: "blog.readTime.8min",
+    author: "Maya Chen",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop"
   },
   {
@@ -45,6 +47,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post3.category",
     date: "Jan 15, 2026",
     readTimeKey: "blog.readTime.4min",
+    author: "Security Team",
     image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=400&auto=format&fit=crop"
   },
   {
@@ -55,6 +58,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post4.category",
     date: "Jan 12, 2026",
     readTimeKey: "blog.readTime.6min",
+    author: "NFT Weekly",
     image: "https://images.unsplash.com/photo-1643101809204-6fb869816dbe?w=400&auto=format&fit=crop"
   },
   {
@@ -65,6 +69,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post5.category",
     date: "Jan 8, 2026",
     readTimeKey: "blog.readTime.7min",
+    author: "Tech Deep Dive",
     image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&auto=format&fit=crop"
   },
   {
@@ -75,6 +80,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post6.category",
     date: "Jan 5, 2026",
     readTimeKey: "blog.readTime.9min",
+    author: "Institutional Desk",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&auto=format&fit=crop"
   },
   {
@@ -85,6 +91,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post7.category",
     date: "Jan 2, 2026",
     readTimeKey: "blog.readTime.10min",
+    author: "Dev Team",
     image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&auto=format&fit=crop"
   },
   {
@@ -95,6 +102,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post8.category",
     date: "Dec 28, 2025",
     readTimeKey: "blog.readTime.5min",
+    author: "Wallet Guide",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&auto=format&fit=crop"
   },
   {
@@ -105,6 +113,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post9.category",
     date: "Dec 22, 2025",
     readTimeKey: "blog.readTime.7min",
+    author: "Banking Desk",
     image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400&auto=format&fit=crop"
   },
   {
@@ -115,6 +124,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post10.category",
     date: "Dec 18, 2025",
     readTimeKey: "blog.readTime.6min",
+    author: "Tax Guide",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&auto=format&fit=crop"
   },
   {
@@ -125,6 +135,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post11.category",
     date: "Dec 15, 2025",
     readTimeKey: "blog.readTime.5min",
+    author: "Security Watch",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&auto=format&fit=crop"
   },
   {
@@ -135,6 +146,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post12.category",
     date: "Dec 10, 2025",
     readTimeKey: "blog.readTime.8min",
+    author: "Protocol Team",
     image: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=400&auto=format&fit=crop"
   },
   {
@@ -145,6 +157,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post13.category",
     date: "Dec 5, 2025",
     readTimeKey: "blog.readTime.6min",
+    author: "Ripple Watcher",
     image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&auto=format&fit=crop"
   },
   {
@@ -155,6 +168,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post14.category",
     date: "Dec 1, 2025",
     readTimeKey: "blog.readTime.7min",
+    author: "Artist Spotlight",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop"
   },
   {
@@ -165,6 +179,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post15.category",
     date: "Nov 28, 2025",
     readTimeKey: "blog.readTime.10min",
+    author: "Investment Team",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&auto=format&fit=crop"
   },
   {
@@ -175,6 +190,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post16.category",
     date: "Jan 26, 2026",
     readTimeKey: "blog.readTime.12min",
+    author: "DeFi Lab",
     image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&auto=format&fit=crop"
   },
   {
@@ -185,6 +201,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post17.category",
     date: "Jan 25, 2026",
     readTimeKey: "blog.readTime.9min",
+    author: "Risk Analyst",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop"
   },
   {
@@ -195,6 +212,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post18.category",
     date: "Jan 24, 2026",
     readTimeKey: "blog.readTime.8min",
+    author: "Yield Farmers",
     image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&auto=format&fit=crop"
   },
   {
@@ -205,6 +223,7 @@ const blogPosts = [
     categoryLabelKey: "blog.post19.category",
     date: "Jan 23, 2026",
     readTimeKey: "blog.readTime.10min",
+    author: "NFT Technical",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop"
   }
 ];
@@ -278,7 +297,12 @@ export default function Blog() {
                     {t(post.excerptKey)}
                   </p>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">{post.date}</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center text-white text-[10px] font-bold">
+                        {post.author.charAt(0)}
+                      </div>
+                      <span className="text-muted-foreground">{post.author}</span>
+                    </div>
                     <span className="text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
                       {t("blog.readMore")} <ArrowRight className="h-4 w-4" />
                     </span>
