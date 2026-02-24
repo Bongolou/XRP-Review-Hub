@@ -3,11 +3,12 @@
   <head>
     <script>
       window.addEventListener('error', function(e) {
-        if (e.filename && !e.filename.includes(location.host)) { e.preventDefault(); }
-      });
+        if (!e.filename || !e.filename.includes(location.host)) { e.preventDefault(); e.stopImmediatePropagation(); return false; }
+      }, true);
       window.addEventListener('unhandledrejection', function(e) {
-        if (e.reason && typeof e.reason === 'string' && (e.reason.includes('Timeout') || e.reason.includes('ezoic') || e.reason.includes('bridging'))) { e.preventDefault(); }
-      });
+        var r = e.reason;
+        if (!r || !(r instanceof Error) || (r.stack && !r.stack.includes(location.host))) { e.preventDefault(); e.stopImmediatePropagation(); return false; }
+      }, true);
     </script>
     <!-- Ezoic Privacy Scripts (must load before header script) -->
     <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
