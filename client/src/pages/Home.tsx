@@ -548,7 +548,7 @@ export default function Home() {
                         </Badge>
                       )}
                     </div>
-                    <p className="text-sm text-muted-foreground mb-3">{t(wallet.typeKey)} {t("wallets.wallet")} • {wallet.fees || t(wallet.feesKey)} {t("wallets.fees")}</p>
+                    <p className="text-sm text-muted-foreground mb-3">{t(wallet.typeKey)} {t("wallets.wallet")} • {wallet.fees || t(wallet.feesKey || "")} {t("wallets.fees")}</p>
                     
                     <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-3">
                       {wallet.featureKeys.map((featureKey, i) => (
