@@ -1,54 +1,88 @@
 import { Layout } from "@/components/Layout";
-import { Link } from "wouter";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function Disclosure() {
+  const { t } = useLanguage();
+
   return (
     <Layout>
       <div className="container mx-auto px-4 max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-black font-display mb-8">Affiliate Disclosure</h1>
+        <h1 className="text-4xl md:text-5xl font-black font-display mb-8" data-testid="text-disclosure-title">{t("disclosure.title")}</h1>
         
         <div className="prose prose-invert prose-lg max-w-none text-muted-foreground">
-          <p className="lead text-xl text-white mb-8">
-            Transparency is a core value at All Things XRPL. We believe in being open about how we fund our operations and content creation.
+          <p className="lead text-xl text-white mb-8" data-testid="text-disclosure-intro">
+            {t("disclosure.intro")}
           </p>
 
           <div className="p-6 rounded-xl bg-card border border-white/10 mb-10">
-            <h3 className="text-white font-display font-bold mt-0">In Short</h3>
-            <p className="mb-0">
-              Some of the links on this website are affiliate links. This means that if you click on a link and purchase a product or service, we may receive a small commission at no extra cost to you. This helps support our work in researching and reviewing the XRP ecosystem.
+            <h3 className="text-white font-display font-bold mt-0">{t("disclosure.summary.title")}</h3>
+            <p className="mb-0" data-testid="text-disclosure-summary">
+              {t("disclosure.summary.text")}
             </p>
           </div>
 
-          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">How We Review</h2>
-          <p>
-            Our reviews are based on our own independent research and testing. We do not accept payments to write positive reviews. If a product has flaws or security risks, we will highlight them regardless of any affiliate relationship.
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.methodology.title")}</h2>
+          <p data-testid="text-disclosure-methodology-p1">
+            {t("disclosure.methodology.p1")}
           </p>
           <p>
-            We primarily review:
+            {t("disclosure.methodology.p2")}
           </p>
-          <ul className="list-disc pl-6 space-y-2 mb-8">
-            <li>Hardware wallets (security, usability, build quality)</li>
-            <li>Software wallets (interface, features, private key management)</li>
-            <li>DeFi applications (smart contract safety, liquidity, utility)</li>
-            <li>Exchange services (fees, speed, support)</li>
-          </ul>
-
-          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">Why We Use Affiliate Links</h2>
           <p>
-            Running a high-quality review site requires time, effort, and resources. We need to purchase hardware wallets, pay for server hosting, and compensate our writers and researchers. Affiliate links allow us to earn revenue without cluttering the site with intrusive display ads or putting our content behind a paywall.
+            {t("disclosure.methodology.p3")}
           </p>
 
-          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">Our Promise to You</h2>
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.testing.title")}</h2>
+          <p data-testid="text-disclosure-testing-p1">
+            {t("disclosure.testing.p1")}
+          </p>
           <p>
-            We will never recommend a product that we wouldn't use ourselves or recommend to a friend. The safety of your assets is our top priority. If a wallet or service has a history of security breaches or poor business practices, we will not recommend it, period.
+            {t("disclosure.testing.p2")}
+          </p>
+          <p>
+            {t("disclosure.testing.p3")}
+          </p>
+
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.selection.title")}</h2>
+          <p data-testid="text-disclosure-selection-p1">
+            {t("disclosure.selection.p1")}
+          </p>
+          <p>
+            {t("disclosure.selection.p2")}
+          </p>
+
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.conflict.title")}</h2>
+          <p data-testid="text-disclosure-conflict-p1">
+            {t("disclosure.conflict.p1")}
+          </p>
+          <p>
+            {t("disclosure.conflict.p2")}
+          </p>
+
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.ftc.title")}</h2>
+          <p data-testid="text-disclosure-ftc-p1">
+            {t("disclosure.ftc.p1")}
+          </p>
+          <p>
+            {t("disclosure.ftc.p2")}
+          </p>
+
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.whyaffiliate.title")}</h2>
+          <p data-testid="text-disclosure-whyaffiliate">
+            {t("disclosure.whyaffiliate.text")}
+          </p>
+
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.promise.title")}</h2>
+          <p data-testid="text-disclosure-promise">
+            {t("disclosure.promise.text")}
           </p>
           
           <div className="mt-12 pt-12 border-t border-white/10 text-sm">
             <p>
-              If you have any questions about our affiliate relationships or review process, please don't hesitate to contact us.
+              {t("disclosure.contact")}
             </p>
-            <p className="mt-4">
-              Last updated: January 25, 2026
+            <p className="mt-4" data-testid="text-disclosure-updated">
+              {t("disclosure.updated")}
             </p>
           </div>
         </div>

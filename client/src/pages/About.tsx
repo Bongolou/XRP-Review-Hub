@@ -1,6 +1,6 @@
 import { Layout } from "@/components/Layout";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { Shield, Users, Target, Heart } from "lucide-react";
+import { Shield, Users, Target, Heart, BookOpen, Search, RefreshCw, Award } from "lucide-react";
 
 export default function About() {
   const { t } = useLanguage();
@@ -9,7 +9,7 @@ export default function About() {
     <Layout>
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-black font-display mb-4">{t("about.title")}</h1>
+          <h1 className="text-4xl md:text-5xl font-black font-display mb-4" data-testid="text-about-title">{t("about.title")}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             {t("about.subtitle")}
           </p>
@@ -67,6 +67,66 @@ export default function About() {
         </div>
 
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center border border-primary/30">
+              <BookOpen className="h-5 w-5 text-primary" />
+            </div>
+            <h2 className="text-2xl font-bold font-display" data-testid="text-about-story-title">{t("about.story.title")}</h2>
+          </div>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+            {t("about.story.p1")}
+          </p>
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            {t("about.story.p2")}
+          </p>
+        </div>
+
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="bg-secondary/20 w-10 h-10 rounded-lg flex items-center justify-center border border-secondary/30">
+              <Target className="h-5 w-5 text-secondary" />
+            </div>
+            <h2 className="text-2xl font-bold font-display" data-testid="text-about-methodology-title">{t("about.methodology.title")}</h2>
+          </div>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+            {t("about.methodology.p1")}
+          </p>
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            {t("about.methodology.p2")}
+          </p>
+        </div>
+
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="bg-purple-500/20 w-10 h-10 rounded-lg flex items-center justify-center border border-purple-500/30">
+              <Search className="h-5 w-5 text-purple-400" />
+            </div>
+            <h2 className="text-2xl font-bold font-display" data-testid="text-about-reviews-title">{t("about.reviews.title")}</h2>
+          </div>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+            {t("about.reviews.p1")}
+          </p>
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            {t("about.reviews.p2")}
+          </p>
+        </div>
+
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="bg-green-500/20 w-10 h-10 rounded-lg flex items-center justify-center border border-green-500/30">
+              <RefreshCw className="h-5 w-5 text-green-400" />
+            </div>
+            <h2 className="text-2xl font-bold font-display" data-testid="text-about-updates-title">{t("about.updates.title")}</h2>
+          </div>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+            {t("about.updates.p1")}
+          </p>
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            {t("about.updates.p2")}
+          </p>
+        </div>
+
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-12">
           <h2 className="text-2xl font-bold font-display mb-6">{t("about.disclosure.title")}</h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
             {t("about.disclosure.desc")}
@@ -78,6 +138,7 @@ export default function About() {
           <a 
             href="/contact" 
             className="inline-flex items-center justify-center h-12 px-8 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"
+            data-testid="link-contact"
           >
             {t("contact.title")}
           </a>

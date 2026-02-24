@@ -53,6 +53,7 @@ const exchangeData: Record<string, {
   };
   paymentMethodKeys: string[];
   supportedCountriesKey: string;
+  review: { heading: string; paragraphs: string[] }[];
 }> = {
   uphold: {
     name: "Uphold",
@@ -96,7 +97,37 @@ const exchangeData: Record<string, {
       withdrawal: "Network fees only"
     },
     paymentMethodKeys: ["exchangeDetail.payment.bankTransfer", "exchangeDetail.payment.debitCard", "exchangeDetail.payment.wire", "exchangeDetail.payment.crypto"],
-    supportedCountriesKey: "exchangeDetail.uphold.countries"
+    supportedCountriesKey: "exchangeDetail.uphold.countries",
+    review: [
+      {
+        heading: "Overview and Platform History",
+        paragraphs: [
+          "Uphold has carved out a unique position in the cryptocurrency exchange landscape, particularly for XRP holders in the United States. While many US-based exchanges delisted XRP during the SEC lawsuit against Ripple, Uphold maintained continuous XRP trading throughout — a decision that earned it significant loyalty from the XRP community. Founded in 2015 and headquartered in New York, Uphold operates as a regulated money services business and holds licenses in multiple US states and international jurisdictions.",
+          "The platform positions itself as a multi-asset platform rather than a pure cryptocurrency exchange. In addition to over 250 cryptocurrencies, Uphold supports trading in precious metals, US equities, and environmental assets. This breadth makes it appealing for users who want a single platform for diversified investing, though the core user base remains primarily cryptocurrency-focused."
+        ]
+      },
+      {
+        heading: "Trading Experience and Fees",
+        paragraphs: [
+          "Uphold's trading interface takes an unconventional approach: instead of traditional order books with maker-taker fees, the platform uses a spread-based pricing model. When you buy or sell XRP, the quoted price includes a spread that serves as Uphold's fee. This spread typically ranges from 0.8% to 1.2% for XRP, which is higher than the maker-taker fees on exchanges like Kraken or Coinbase Pro, but the simplicity appeals to users who prefer knowing the exact cost upfront.",
+          "One of Uphold's standout features is the Anything-to-Anything trading engine. You can convert directly between any two supported assets without needing to go through a base pair. This means you can swap XRP for gold, or Bitcoin for Apple stock, in a single transaction. For XRP traders, the platform also supports automated recurring purchases and price alerts, making it easy to dollar-cost-average into your position over time."
+        ]
+      },
+      {
+        heading: "Security and Regulation",
+        paragraphs: [
+          "Uphold maintains a transparent reserve model, publishing quarterly attestations that verify the platform holds sufficient assets to cover all customer balances. This level of transparency is uncommon among exchanges and addresses one of the primary concerns users have about centralized platforms. The company implements industry-standard security practices including cold storage for the majority of assets, two-factor authentication, and regular third-party security audits.",
+          "As a US-regulated entity, Uphold complies with KYC and AML requirements, which means you will need to verify your identity before trading. The platform also offers a debit card in select regions that allows you to spend your crypto holdings directly, though availability varies by jurisdiction. Customer support has historically been a point of criticism, with some users reporting slow response times during peak periods."
+        ]
+      },
+      {
+        heading: "Who Should Use Uphold",
+        paragraphs: [
+          "Uphold is the strongest choice for US-based XRP buyers who want a straightforward, regulated platform that has consistently supported XRP. If your primary goal is to buy and hold XRP with fiat currency, Uphold makes the process simple and transparent. The multi-asset support is a bonus for users interested in diversifying beyond cryptocurrency. The platform's $20 BTC welcome bonus for new users provides a small incentive to try the service.",
+          "Where Uphold falls short is for advanced traders who want low fees, deep liquidity, and traditional order book functionality. The spread-based pricing model costs more than competitors like Kraken or Coinbase for frequent trading. If you plan to actively trade XRP rather than buy and hold, you may find better pricing elsewhere. For buy-and-hold investors, however, Uphold's simplicity, regulation, and XRP loyalty make it a compelling choice."
+        ]
+      }
+    ]
   },
   bitrue: {
     name: "Bitrue",
@@ -140,7 +171,37 @@ const exchangeData: Record<string, {
       withdrawal: "0.25 XRP"
     },
     paymentMethodKeys: ["exchangeDetail.payment.crypto", "exchangeDetail.payment.creditCard", "exchangeDetail.payment.p2p"],
-    supportedCountriesKey: "exchangeDetail.bitrue.countries"
+    supportedCountriesKey: "exchangeDetail.bitrue.countries",
+    review: [
+      {
+        heading: "Overview and XRP Community Ties",
+        paragraphs: [
+          "Bitrue has built its reputation squarely around the XRP community. Based in Singapore with operations since 2018, Bitrue was among the earliest exchanges to aggressively support XRP and XRPL-based tokens, offering trading pairs and staking rewards that few other platforms matched. This early commitment earned Bitrue a dedicated following among XRP enthusiasts, and the platform continues to position itself as the most XRP-friendly exchange in the market.",
+          "The exchange lists over 700 cryptocurrencies with more than 800 trading pairs, but its XRP offerings are the headline act. Bitrue supports a wide range of XRPL-issued tokens and has historically been quick to list new XRPL projects. The platform also ran a significant XRP airdrop program and offers yield farming products specifically designed for XRP holders, giving the community additional reasons to choose Bitrue over larger but less XRP-focused competitors."
+        ]
+      },
+      {
+        heading: "Trading Features and Yield Products",
+        paragraphs: [
+          "Bitrue offers a full-featured trading experience with spot markets, futures trading (up to 150x leverage), and an OTC desk for large orders. The trading interface is functional and well-organized, with real-time order books, charting tools powered by TradingView, and multiple order types including limit, market, and stop-loss orders. Fees start at 0.098% for spot trading, which is competitive with major exchanges.",
+          "The platform's yield products are a major draw. Power Piggy, Bitrue's flexible staking service, offers daily interest payments on XRP and other supported assets. Yield farming pools provide higher returns in exchange for locking tokens for specified periods. While the APY rates have fluctuated over time, Bitrue consistently offers some of the most attractive XRP yield opportunities in the centralized exchange space. It is important to understand that staking on a centralized exchange means trusting the platform with custody of your assets."
+        ]
+      },
+      {
+        heading: "Security and Reliability",
+        paragraphs: [
+          "Bitrue experienced a security breach in 2019 where approximately $4.2 million in XRP and ADA was stolen. Since that incident, the platform has invested significantly in its security infrastructure, implementing multi-signature cold storage, real-time risk monitoring, and enhanced withdrawal security protocols. The exchange now maintains insurance coverage for digital assets and publishes regular security updates.",
+          "As a Singapore-based exchange, Bitrue operates under the Monetary Authority of Singapore's regulatory framework. The platform requires KYC verification for full access to trading and withdrawal features. Customer support is available via ticket system and social media, though response times can vary during high-volume periods."
+        ]
+      },
+      {
+        heading: "Who Should Use Bitrue",
+        paragraphs: [
+          "Bitrue is the natural choice for XRP enthusiasts who want an exchange that actively supports the XRPL ecosystem. The combination of extensive XRP trading pairs, yield products, and early token listings makes it a hub for the XRP community. If you want to earn yield on your XRP holdings or get early access to new XRPL tokens, Bitrue offers opportunities that larger exchanges typically do not.",
+          "The trade-offs include being a smaller platform with less liquidity than Tier 1 exchanges, the history of a security breach (though remediated), and the counterparty risk inherent in staking on a centralized platform. For users who prioritize yield and ecosystem support over absolute security, Bitrue fills a valuable niche."
+        ]
+      }
+    ]
   },
   kraken: {
     name: "Kraken",
@@ -184,7 +245,37 @@ const exchangeData: Record<string, {
       withdrawal: "0.02 XRP"
     },
     paymentMethodKeys: ["exchangeDetail.payment.wire", "exchangeDetail.payment.ach", "exchangeDetail.payment.sepa", "exchangeDetail.payment.crypto", "exchangeDetail.payment.applePay", "exchangeDetail.payment.googlePay"],
-    supportedCountriesKey: "exchangeDetail.kraken.countries"
+    supportedCountriesKey: "exchangeDetail.kraken.countries",
+    review: [
+      {
+        heading: "Overview and Industry Standing",
+        paragraphs: [
+          "Kraken is one of the most established and respected cryptocurrency exchanges in the world. Founded in 2011 by Jesse Powell in San Francisco, Kraken has operated continuously for over a decade without a major security breach — a remarkable track record in an industry plagued by exchange hacks. The platform serves millions of users across more than 190 countries and has been consistently rated among the top exchanges for security, reliability, and trading volume.",
+          "For XRP traders, Kraken offers deep liquidity, competitive fees, and a professional-grade trading environment. The exchange maintained XRP trading in many jurisdictions throughout the Ripple-SEC dispute and has been a reliable venue for XRP price discovery. Kraken's combination of institutional-grade infrastructure and retail-friendly features makes it a strong all-around choice for serious cryptocurrency traders."
+        ]
+      },
+      {
+        heading: "Trading Platform and Features",
+        paragraphs: [
+          "Kraken offers two main trading interfaces: a simple buy/sell screen for beginners and Kraken Pro for advanced traders. The Pro interface features full order book visibility, TradingView-powered charting, multiple order types (market, limit, stop-loss, take-profit, trailing stop), and margin trading with up to 5x leverage on XRP. The platform also supports futures trading through a dedicated derivatives platform for institutional and professional users.",
+          "Fee-wise, Kraken uses a maker-taker model with rates starting at 0.16% maker and 0.26% taker for most users, with volume discounts available up to 0.00% maker for high-volume traders. These rates are competitive with the industry's best, and significantly lower than spread-based platforms like Uphold. Kraken also offers staking services for select cryptocurrencies, though regulatory constraints have limited this feature in some jurisdictions."
+        ]
+      },
+      {
+        heading: "Security and Compliance",
+        paragraphs: [
+          "Security is Kraken's defining characteristic. The exchange stores 95% of deposits in air-gapped cold storage, employs full-reserve accounting, and undergoes regular proof-of-reserves audits. The platform supports comprehensive two-factor authentication options, address whitelisting, configurable account lock timers, and a dedicated security team that monitors for suspicious activity around the clock.",
+          "Kraken holds licenses and registrations in multiple jurisdictions, including FinCEN registration in the United States, FCA registration in the United Kingdom, and various state money transmitter licenses. The platform's compliance infrastructure is built for institutional-grade requirements, which adds friction through KYC verification but provides legal certainty that smaller exchanges cannot match."
+        ]
+      },
+      {
+        heading: "Who Should Use Kraken",
+        paragraphs: [
+          "Kraken is the ideal exchange for users who prioritize security, low fees, and a mature trading platform. If you are a frequent XRP trader who wants reliable execution, deep order books, and professional charting tools, Kraken delivers an institutional-quality experience at competitive prices. The platform's decade-long security track record provides confidence that few exchanges can match.",
+          "The main drawbacks are the verification process (which can take time), the less intuitive interface for complete beginners, and the limited availability of some features in certain regions due to regulatory compliance. If you want the simplest possible buying experience and are willing to pay higher fees for it, Uphold may be more suitable. For everyone else, Kraken represents one of the best risk-adjusted choices in the exchange market."
+        ]
+      }
+    ]
   },
   bitstamp: {
     name: "Bitstamp",
@@ -228,7 +319,37 @@ const exchangeData: Record<string, {
       withdrawal: "0.02 XRP"
     },
     paymentMethodKeys: ["exchangeDetail.payment.sepa", "exchangeDetail.payment.wire", "exchangeDetail.payment.creditCard", "exchangeDetail.payment.crypto"],
-    supportedCountriesKey: "exchangeDetail.bitstamp.countries"
+    supportedCountriesKey: "exchangeDetail.bitstamp.countries",
+    review: [
+      {
+        heading: "Overview and Heritage",
+        paragraphs: [
+          "Bitstamp holds the distinction of being one of the oldest cryptocurrency exchanges still in operation. Founded in 2011 in Slovenia and now headquartered in Luxembourg, Bitstamp has weathered multiple market cycles, regulatory changes, and industry upheavals while maintaining a reputation for reliability and compliance. The exchange was one of the first to obtain a Payment Institution license under EU regulations, setting a standard for regulatory legitimacy that many newer exchanges have tried to follow.",
+          "Bitstamp's approach has always been conservative and compliance-first, which appeals to institutional investors and security-conscious retail users. The exchange supports a curated selection of major cryptocurrencies including XRP, focusing on quality and regulatory clarity rather than listing every token that appears. This selectivity means fewer options but greater confidence in the legitimacy and compliance of each listed asset."
+        ]
+      },
+      {
+        heading: "Trading and Platform Experience",
+        paragraphs: [
+          "Bitstamp's trading interface strikes a balance between professional functionality and accessibility. The platform offers both a simplified buy/sell interface and an advanced trading view with TradingView charting, full order book visibility, and multiple order types. Trading fees follow a volume-based schedule starting at 0.30% for spot trades, decreasing to 0.00% for monthly volumes exceeding $20 billion — competitive for institutional traders though slightly higher than some competitors at lower volumes.",
+          "For XRP specifically, Bitstamp provides multiple trading pairs including XRP/USD, XRP/EUR, and XRP/BTC. The platform's liquidity is solid for major pairs, and the execution quality is consistent. Bitstamp also supports automated trading via a well-documented API, making it popular with algorithmic traders and institutional desks. The mobile app mirrors the desktop experience with a clean, functional design."
+        ]
+      },
+      {
+        heading: "Security Track Record",
+        paragraphs: [
+          "Bitstamp suffered a notable security breach in 2015 when 19,000 BTC were stolen due to a social engineering attack targeting employees. Since then, the exchange completely overhauled its security infrastructure, partnering with BitGo for institutional-grade cold storage and implementing comprehensive security protocols. The platform now stores the vast majority of assets in multi-signature cold storage and maintains insurance coverage for digital assets held on the platform.",
+          "The exchange's EU licensing requires compliance with strict data protection, capital adequacy, and operational security standards. Bitstamp regularly undergoes SOC 2 Type II audits, providing independent verification of its security controls. For users who value institutional-grade security and regulatory oversight, Bitstamp's post-2015 security posture is among the strongest in the industry."
+        ]
+      },
+      {
+        heading: "Who Should Use Bitstamp",
+        paragraphs: [
+          "Bitstamp is best suited for users who prioritize regulatory compliance, institutional security, and a proven track record over cutting-edge features or the lowest possible fees. European users benefit from SEPA integration and EU regulatory protections, while institutional investors appreciate the platform's API, OTC desk, and compliance infrastructure.",
+          "Bitstamp is less suitable for users who want a wide variety of altcoins, advanced DeFi features, or the lowest possible trading fees. Its conservative listing approach means many smaller tokens are not available. For XRP holders specifically, Bitstamp provides a reliable, well-regulated venue for buying, selling, and holding — but with fewer community-specific features than platforms like Bitrue."
+        ]
+      }
+    ]
   },
   coinbase: {
     name: "Coinbase",
@@ -272,7 +393,37 @@ const exchangeData: Record<string, {
       withdrawal: "Network fees"
     },
     paymentMethodKeys: ["exchangeDetail.payment.ach", "exchangeDetail.payment.wire", "exchangeDetail.payment.debitCard", "exchangeDetail.payment.paypal", "exchangeDetail.payment.crypto"],
-    supportedCountriesKey: "exchangeDetail.coinbase.countries"
+    supportedCountriesKey: "exchangeDetail.coinbase.countries",
+    review: [
+      {
+        heading: "Overview and Market Position",
+        paragraphs: [
+          "Coinbase is the largest publicly traded cryptocurrency exchange in the United States and one of the most recognizable names in the industry. Founded in 2012 by Brian Armstrong and Fred Ehrsam, the platform went public on NASDAQ in April 2021 and serves as many investors' first introduction to cryptocurrency. With over 110 million verified users and a presence in over 100 countries, Coinbase's scale and brand recognition are unmatched in the US market.",
+          "Coinbase's relationship with XRP has been complicated. The exchange delisted XRP in January 2021 in response to the SEC's lawsuit against Ripple, and did not relist it until the case reached a favorable resolution. This period left many XRP holders frustrated with the platform. Now that XRP is back on Coinbase, the exchange offers a familiar, highly accessible way to buy and sell XRP — though the trust deficit from the delisting period remains a consideration for some community members."
+        ]
+      },
+      {
+        heading: "User Experience and Product Suite",
+        paragraphs: [
+          "Coinbase's primary interface is designed for simplicity above all else. Buying XRP takes just a few taps: link a bank account or card, enter an amount, and confirm the purchase. This ease of use is Coinbase's greatest strength and the reason it continues to attract new users. For more sophisticated traders, Coinbase Advanced Trade (which replaced the separate Coinbase Pro platform) offers real-time order books, TradingView charting, and advanced order types within the main Coinbase app.",
+          "Beyond trading, Coinbase offers a broad ecosystem: Coinbase Wallet (a separate self-custody app), Coinbase NFT marketplace, staking services, a Visa debit card for spending crypto, and educational rewards programs that pay users in cryptocurrency for watching short videos. The Coinbase Learn program is particularly valuable for newcomers who want to understand the basics of blockchain and cryptocurrency before investing."
+        ]
+      },
+      {
+        heading: "Fees and Cost Considerations",
+        paragraphs: [
+          "Coinbase's fee structure has been a persistent point of criticism. The simple buy/sell interface charges a spread of approximately 0.50% plus a flat transaction fee that varies by payment method and region. These costs can add up significantly for frequent traders. The Advanced Trade interface offers lower fees starting at 0.40% maker and 0.60% taker, decreasing with volume — still higher than Kraken's rates but more competitive than the simple interface.",
+          "Payment method costs also vary: ACH bank transfers are typically free for deposits, debit card purchases incur a 3.99% fee, and wire transfers carry flat fees. For XRP buyers who plan to make regular purchases, the difference between Coinbase's fees and a lower-cost exchange like Kraken can amount to meaningful savings over time. The trade-off is Coinbase's unmatched ease of use and brand trust."
+        ]
+      },
+      {
+        heading: "Who Should Use Coinbase",
+        paragraphs: [
+          "Coinbase is the right exchange for users who value simplicity, brand trust, and regulatory certainty above all else. As a publicly traded company subject to SEC oversight and quarterly financial reporting, Coinbase operates with a level of transparency and accountability that private exchanges cannot match. For first-time crypto buyers, the platform's intuitive interface and educational resources provide a gentle on-ramp to the XRP ecosystem.",
+          "Coinbase is less suitable for cost-sensitive frequent traders, XRP community loyalists who remember the delisting, or users who want access to a wide range of XRPL tokens beyond XRP itself. If keeping fees low is your priority, Kraken or Bitrue will save you money. If community alignment matters, Uphold or Bitrue have stronger track records of XRP support. But for mainstream accessibility and institutional credibility, Coinbase remains difficult to beat."
+        ]
+      }
+    ]
   },
   cryptocom: {
     name: "Crypto.com",
@@ -316,7 +467,37 @@ const exchangeData: Record<string, {
       withdrawal: "0.25 XRP"
     },
     paymentMethodKeys: ["exchangeDetail.payment.creditCard", "exchangeDetail.payment.bankTransfer", "exchangeDetail.payment.crypto", "exchangeDetail.payment.applePay", "exchangeDetail.payment.googlePay"],
-    supportedCountriesKey: "exchangeDetail.cryptocom.countries"
+    supportedCountriesKey: "exchangeDetail.cryptocom.countries",
+    review: [
+      {
+        heading: "Overview and Brand Growth",
+        paragraphs: [
+          "Crypto.com has grown from a relatively unknown startup to one of the most visible brands in cryptocurrency, largely through aggressive marketing campaigns including naming rights to the former Staples Center in Los Angeles (now Crypto.com Arena) and partnerships with major sports leagues. Founded in 2016 and headquartered in Singapore, the platform serves over 80 million users worldwide and offers a comprehensive suite of products that extends well beyond basic exchange services.",
+          "For XRP holders, Crypto.com provides a full-featured experience with spot trading, staking, a Visa debit card that can be loaded with XRP, and DeFi wallet integration. The platform's breadth of services makes it appealing for users who want an all-in-one crypto ecosystem rather than using separate platforms for trading, storing, and spending their assets."
+        ]
+      },
+      {
+        heading: "Product Ecosystem",
+        paragraphs: [
+          "Crypto.com's product lineup is one of the most extensive in the industry. The main app provides simple buy/sell functionality, while the Crypto.com Exchange offers professional trading features with real-time order books, margin trading, and derivatives. The Crypto.com Visa Card is a standout product — users can stake CRO (the platform's native token) to earn cashback on purchases at rates ranging from 1% to 5% depending on the stake tier. XRP can be loaded onto the card and spent anywhere Visa is accepted.",
+          "Additional products include Crypto Earn (where you can deposit XRP and other assets to earn interest), a DeFi wallet for self-custody with cross-chain access, an NFT marketplace, and crypto-backed lending. The sheer scope of the ecosystem means you can buy XRP, earn yield on it, spend it with a card, and manage it in a self-custody wallet — all within the Crypto.com family of products."
+        ]
+      },
+      {
+        heading: "Fee Structure and CRO Token",
+        paragraphs: [
+          "Crypto.com's fee structure is intertwined with its CRO token staking system. Base trading fees start at 0.075% maker and 0.075% taker on the exchange — very competitive rates — but achieving the best fee tiers and card benefits requires staking significant amounts of CRO. This creates an incentive loop that benefits heavy platform users but adds complexity for those who simply want to buy and sell XRP.",
+          "The main app's buy/sell spread is less transparent than the exchange's order book fees, and can be higher for smaller transactions. Crypto withdrawal fees vary by network and asset. For XRP users who want competitive trading fees without the CRO staking commitment, the exchange platform offers reasonable rates even at the base tier. The card's cashback rewards can partially offset trading costs for users who spend crypto regularly."
+        ]
+      },
+      {
+        heading: "Who Should Use Crypto.com",
+        paragraphs: [
+          "Crypto.com is ideal for users who want a complete crypto ecosystem in one place — trading, earning, spending, and self-custody. The Visa card integration is particularly compelling for users who want to use their XRP for everyday purchases. The platform's global reach and multi-product approach make it suitable for users who plan to engage deeply with the cryptocurrency economy rather than simply buying and holding.",
+          "The platform is less suitable for users who want the simplest possible experience or those who are uncomfortable with the CRO staking mechanics that underpin many of the best benefits. The complexity of the product ecosystem can be overwhelming for newcomers, and some users have reported customer support challenges during peak periods. For straightforward XRP purchases, simpler platforms like Uphold or Coinbase may be easier starting points."
+        ]
+      }
+    ]
   },
   kucoin: {
     name: "KuCoin",
@@ -360,7 +541,37 @@ const exchangeData: Record<string, {
       withdrawal: "0.25 XRP"
     },
     paymentMethodKeys: ["exchangeDetail.payment.creditCard", "exchangeDetail.payment.bankTransfer", "exchangeDetail.payment.p2p", "exchangeDetail.payment.crypto", "exchangeDetail.payment.applePay"],
-    supportedCountriesKey: "exchangeDetail.kucoin.countries"
+    supportedCountriesKey: "exchangeDetail.kucoin.countries",
+    review: [
+      {
+        heading: "Overview and Market Niche",
+        paragraphs: [
+          "KuCoin has earned the nickname 'The People's Exchange' by focusing on listing a vast array of cryptocurrencies — over 800 coins and 1,200 trading pairs — that often appear on KuCoin before they are available on larger platforms like Coinbase or Kraken. Founded in 2017 and based in the Seychelles, KuCoin has grown to serve over 30 million users in more than 200 countries and territories. The exchange's willingness to list emerging projects early has made it a go-to platform for crypto enthusiasts looking for the next opportunity.",
+          "For XRP users, KuCoin provides a comprehensive trading experience with multiple XRP trading pairs, competitive fees, and advanced features including margin trading, futures, and lending. The platform's strength lies in its combination of deep feature sets and broad asset selection, offering capabilities that rival major exchanges while providing access to a much wider range of tokens."
+        ]
+      },
+      {
+        heading: "Trading Features and Innovation",
+        paragraphs: [
+          "KuCoin's trading platform is feature-rich. The spot exchange offers a professional interface with TradingView charts, multiple order types, and real-time depth visualization. Beyond spot trading, KuCoin provides futures contracts with up to 100x leverage, margin trading, crypto lending (where you can earn interest by lending your idle assets), and a trading bot marketplace where you can deploy automated strategies including grid trading, DCA bots, and smart rebalancing.",
+          "The KuCoin trading bot feature deserves special mention — it is one of the few exchanges that offers built-in, free automated trading tools. For XRP holders who want to implement strategies like buying dips automatically or maintaining a balanced portfolio, these bots provide functionality that would otherwise require third-party software. The exchange also runs regular trading competitions and promotions that offer bonus rewards for active traders."
+        ]
+      },
+      {
+        heading: "Security and Considerations",
+        paragraphs: [
+          "KuCoin experienced a significant security breach in September 2020 when hackers compromised hot wallets containing approximately $280 million in various cryptocurrencies. The exchange responded effectively, recovering the majority of stolen funds through collaboration with law enforcement, blockchain analysis firms, and partner exchanges that froze the stolen assets. KuCoin's insurance fund covered user losses, and no customer funds were permanently lost.",
+          "Since the breach, KuCoin has implemented enhanced security measures including improved hot wallet architecture, micro-withdrawal monitoring, and advanced risk management systems. The exchange supports Google Authenticator and SMS-based two-factor authentication, trading passwords, and anti-phishing codes. One important consideration is that KuCoin operates without licenses in some jurisdictions, which means regulatory protections may be limited depending on your location."
+        ]
+      },
+      {
+        heading: "Who Should Use KuCoin",
+        paragraphs: [
+          "KuCoin is best for experienced crypto users who want access to a wide range of assets and advanced trading features at competitive prices. The platform's low fees (starting at 0.1% for spot trades), extensive altcoin listings, and built-in trading bots make it appealing for active traders who want professional tools without the fee premiums of US-regulated exchanges.",
+          "KuCoin is less suitable for beginners who might be overwhelmed by the feature density, or for US users who prefer the regulatory clarity of licensed platforms like Coinbase or Kraken. The exchange's offshore registration means fewer formal protections in case of disputes. For XRP specifically, KuCoin offers a solid trading experience, but the community-specific benefits of platforms like Bitrue (XRP staking, XRPL token listings) may be more compelling for dedicated XRP holders."
+        ]
+      }
+    ]
   }
 };
 
@@ -436,6 +647,22 @@ export default function ExchangeReview() {
             {t("exchangeReview.signUp")} {exchange.name} <ExternalLink className="h-4 w-4" />
           </a>
         </div>
+
+        {exchange.review && exchange.review.length > 0 && (
+          <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8" data-testid={`section-review-${slug}`}>
+            <h2 className="text-2xl font-bold font-display mb-8">In-Depth Review</h2>
+            {exchange.review.map((section, idx) => (
+              <div key={idx} className="mb-8 last:mb-0">
+                <h3 className="text-xl font-bold font-display mb-4 text-primary">{section.heading}</h3>
+                {section.paragraphs.map((paragraph, pIdx) => (
+                  <p key={pIdx} className="text-muted-foreground leading-relaxed mb-4 last:mb-0">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 mt-4">
           <div className="bg-card/30 border border-white/10 rounded-2xl p-6">

@@ -49,6 +49,7 @@ const walletsData = [
     rating: 9.9,
     feesKey: "wallet.fees.free",
     featureKeys: ["wallet.feature.selfCustody", "wallet.feature.dappBrowser", "wallet.feature.biometricAuth", "wallet.feature.fiatOnramp"],
+    blurbKey: "wallet.blurb.xaman",
     popular: true,
     badgeKey: "wallet.badge.topFreeXRPL",
     link: "https://xumm.app/?ref=allthingsxrpl",
@@ -66,6 +67,7 @@ const walletsData = [
     rating: 9.9,
     feesKey: "wallet.fees.standard",
     featureKeys: ["wallet.feature.coldStorage", "wallet.feature.bluetooth", "wallet.feature.multiCurrency", "wallet.feature.highSecurity"],
+    blurbKey: "wallet.blurb.ledger",
     popular: false,
     link: "https://shop.ledger.com/?r=5d81f18905fe",
     logo: ledgerLogo
@@ -78,6 +80,7 @@ const walletsData = [
     rating: 9.5,
     feesKey: "wallet.fees.low",
     featureKeys: ["wallet.feature.web3Auth", "wallet.feature.multiNetwork", "wallet.feature.developerFriendly", "wallet.feature.lightweight"],
+    blurbKey: "wallet.blurb.crossmark",
     popular: false,
     link: "https://crossmark.io/?ref=allthingsxrpl",
     logo: crossmarkLogo
@@ -90,6 +93,7 @@ const walletsData = [
     rating: 9.4,
     feesKey: "wallet.fees.none",
     featureKeys: ["wallet.feature.nfcSupport", "wallet.feature.waterproof", "wallet.feature.noBattery", "wallet.feature.easySetup"],
+    blurbKey: "wallet.blurb.tangem",
     popular: false,
     link: "https://tangem.com/?promocode=ALLTHINGSXRPL",
     logo: tangemLogo
@@ -102,6 +106,7 @@ const walletsData = [
     rating: 9.2,
     feesKey: "wallet.fees.free",
     featureKeys: ["wallet.feature.privacyFocused", "wallet.feature.dappBrowser", "wallet.feature.noTracking", "wallet.feature.multiChain"],
+    blurbKey: "wallet.blurb.bifrost",
     popular: false,
     link: "https://bifrostwallet.com/?ref=allthingsxrpl",
     logo: bifrostLogo
@@ -114,6 +119,7 @@ const walletsData = [
     rating: 9.0,
     feesKey: "wallet.fees.free",
     featureKeys: ["wallet.feature.users70m", "wallet.feature.multiChain", "wallet.feature.dappBrowser", "wallet.feature.staking"],
+    blurbKey: "wallet.blurb.trustwallet",
     popular: false,
     link: "https://trustwallet.com/?ref=allthingsxrpl",
     logo: trustwalletLogo
@@ -126,6 +132,7 @@ const walletsData = [
     rating: 8.8,
     feesKey: "wallet.fees.low",
     featureKeys: ["wallet.feature.fiatGateway", "wallet.feature.multisig", "wallet.feature.trading", "wallet.feature.theftCover"],
+    blurbKey: "wallet.blurb.gatehub",
     popular: false,
     link: "https://gatehub.net/?ref=allthingsxrpl",
     logo: gatehubLogo
@@ -138,6 +145,7 @@ const walletsData = [
     rating: 9.4,
     fees: "$169",
     featureKeys: ["wallet.feature.airGapped", "wallet.feature.qrOnly", "wallet.feature.militaryGrade", "wallet.feature.antiTamper"],
+    blurbKey: "wallet.blurb.ellipal",
     popular: false,
     link: "https://www.ellipal.com/?rfsn=8973243.bbfab69",
     logo: ellipalLogo
@@ -150,6 +158,7 @@ const walletsData = [
     rating: 9.2,
     fees: "$79",
     featureKeys: ["wallet.feature.openSource", "wallet.feature.secureElement", "wallet.feature.budgetFriendly", "wallet.feature.trusted"],
+    blurbKey: "wallet.blurb.trezor",
     popular: false,
     link: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
     logo: trezorLogo
@@ -163,6 +172,7 @@ const exchangesData = [
     name: "Uphold",
     slug: "uphold",
     bonusKey: "exchange.bonus.btc20",
+    blurbKey: "exchange.blurb.uphold",
     featureKeys: ["exchange.feature.bestForXRP", "exchange.feature.fiatOnRamp", "exchange.feature.instantTrade"],
     link: "https://uphold.com/signup?referral=allthingsxrpl",
     color: "text-green-500",
@@ -174,6 +184,7 @@ const exchangesData = [
     name: "Bitrue",
     slug: "bitrue",
     bonusKey: "exchange.bonus.xrp1000",
+    blurbKey: "exchange.blurb.bitrue",
     featureKeys: ["exchange.feature.xrpBasePairs", "exchange.feature.powerPiggy", "exchange.feature.lowFees"],
     link: "https://bitrue.com/user/register?inviteCode=allthingsxrpl",
     color: "text-blue-500",
@@ -185,6 +196,7 @@ const exchangesData = [
     name: "Kraken",
     slug: "kraken",
     bonusKey: "exchange.bonus.lowFee",
+    blurbKey: "exchange.blurb.kraken",
     featureKeys: ["exchange.feature.highSecurity", "exchange.feature.deepLiquidity", "exchange.feature.proTools"],
     link: "https://kraken.com/sign-up?r=allthingsxrpl",
     color: "text-purple-500",
@@ -196,6 +208,7 @@ const exchangesData = [
     name: "Coinbase",
     slug: "coinbase",
     bonusKey: "exchange.bonus.crypto10",
+    blurbKey: "exchange.blurb.coinbase",
     featureKeys: ["exchange.feature.mostTrusted", "exchange.feature.beginnerFriendly", "exchange.feature.usBased"],
     link: "https://www.coinbase.com/join?ref=allthingsxrpl",
     color: "text-blue-400",
@@ -207,6 +220,7 @@ const exchangesData = [
     name: "Bitstamp",
     slug: "bitstamp",
     bonusKey: "exchange.bonus.volume",
+    blurbKey: "exchange.blurb.bitstamp",
     featureKeys: ["exchange.feature.since2011", "exchange.feature.euRegulated", "exchange.feature.highLiquidity"],
     link: "https://www.bitstamp.net/?ref=allthingsxrpl",
     color: "text-emerald-500",
@@ -218,6 +232,7 @@ const exchangesData = [
     name: "Crypto.com",
     slug: "cryptocom",
     bonusKey: "exchange.bonus.signup25",
+    blurbKey: "exchange.blurb.cryptocom",
     featureKeys: ["exchange.feature.visaCard", "exchange.feature.earnInterest", "exchange.feature.coins250"],
     link: "https://crypto.com/app?ref=allthingsxrpl",
     color: "text-indigo-400",
@@ -229,6 +244,7 @@ const exchangesData = [
     name: "KuCoin",
     slug: "kucoin",
     bonusKey: "exchange.bonus.welcome",
+    blurbKey: "exchange.blurb.kucoin",
     featureKeys: ["exchange.feature.coins800", "exchange.feature.tradingBots", "exchange.feature.lowFees"],
     link: "https://www.kucoin.com/r?ref=allthingsxrpl",
     color: "text-teal-500",
@@ -541,6 +557,12 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
+
+                    {wallet.blurbKey && (
+                      <p className="text-xs text-muted-foreground/80 italic mb-3 leading-relaxed" data-testid={`blurb-wallet-${wallet.slug}`}>
+                        {t(wallet.blurbKey)}
+                      </p>
+                    )}
                     
                     {wallet.complementary && (
                       <div className="p-3 bg-white/5 rounded-lg border border-white/10 text-xs">
@@ -657,7 +679,7 @@ export default function Home() {
                   
                   <h3 className="text-2xl font-bold font-display mb-4">{exchange.name}</h3>
                   
-                  <ul className="space-y-3 mb-8 flex-1">
+                  <ul className="space-y-3 mb-4 flex-1">
                     {exchange.featureKeys.map((featureKey, i) => (
                       <li key={i} className="flex items-center text-sm text-muted-foreground">
                         <Check className="h-4 w-4 text-primary mr-2" />
@@ -665,6 +687,12 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
+
+                  {exchange.blurbKey && (
+                    <p className="text-xs text-muted-foreground/80 italic mb-4 leading-relaxed" data-testid={`blurb-exchange-${exchange.slug}`}>
+                      {t(exchange.blurbKey)}
+                    </p>
+                  )}
 
                   <div className="flex flex-col gap-3">
                     <Button asChild className="w-full relative overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
