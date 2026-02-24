@@ -121,7 +121,7 @@ export default function FAQ() {
         <div className="space-y-8">
           {faqs.map((category) => (
             <div key={category.categoryKey} className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
-              <h2 className="text-xl font-bold font-display mb-4 text-primary">{t(category.categoryKey)}</h2>
+              <h2 className="text-xl font-bold font-display mb-6 text-primary">{t(category.categoryKey)}</h2>
               <div>
                 {category.questions.map((faq) => (
                   <FAQItem key={faq.qKey} questionKey={faq.qKey} answerKey={faq.aKey} t={t} />

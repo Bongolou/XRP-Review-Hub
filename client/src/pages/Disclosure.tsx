@@ -21,7 +21,7 @@ export default function Disclosure() {
             </p>
           </div>
 
-          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.methodology.title")}</h2>
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-6">{t("disclosure.methodology.title")}</h2>
           <p data-testid="text-disclosure-methodology-p1">
             {t("disclosure.methodology.p1")}
           </p>
@@ -32,7 +32,7 @@ export default function Disclosure() {
             {t("disclosure.methodology.p3")}
           </p>
 
-          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.testing.title")}</h2>
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-6">{t("disclosure.testing.title")}</h2>
           <p data-testid="text-disclosure-testing-p1">
             {t("disclosure.testing.p1")}
           </p>
@@ -43,7 +43,7 @@ export default function Disclosure() {
             {t("disclosure.testing.p3")}
           </p>
 
-          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.selection.title")}</h2>
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-6">{t("disclosure.selection.title")}</h2>
           <p data-testid="text-disclosure-selection-p1">
             {t("disclosure.selection.p1")}
           </p>
@@ -51,7 +51,7 @@ export default function Disclosure() {
             {t("disclosure.selection.p2")}
           </p>
 
-          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.conflict.title")}</h2>
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-6">{t("disclosure.conflict.title")}</h2>
           <p data-testid="text-disclosure-conflict-p1">
             {t("disclosure.conflict.p1")}
           </p>
@@ -59,7 +59,7 @@ export default function Disclosure() {
             {t("disclosure.conflict.p2")}
           </p>
 
-          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.ftc.title")}</h2>
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-6">{t("disclosure.ftc.title")}</h2>
           <p data-testid="text-disclosure-ftc-p1">
             {t("disclosure.ftc.p1")}
           </p>
@@ -67,12 +67,12 @@ export default function Disclosure() {
             {t("disclosure.ftc.p2")}
           </p>
 
-          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.whyaffiliate.title")}</h2>
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-6">{t("disclosure.whyaffiliate.title")}</h2>
           <p data-testid="text-disclosure-whyaffiliate">
             {t("disclosure.whyaffiliate.text")}
           </p>
 
-          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-4">{t("disclosure.promise.title")}</h2>
+          <h2 className="text-white font-display font-bold text-2xl mt-12 mb-6">{t("disclosure.promise.title")}</h2>
           <p data-testid="text-disclosure-promise">
             {t("disclosure.promise.text")}
           </p>
