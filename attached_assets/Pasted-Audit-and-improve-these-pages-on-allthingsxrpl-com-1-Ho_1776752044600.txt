@@ -1,0 +1,37 @@
+Audit and improve these pages on allthingsxrpl.com:
+1. Homepage
+2. Ledger review page
+3. Tangem review page
+4. Xaman vs Ledger comparison page
+
+Main problem to fix:
+The homepage snippet looks relevant, but the Ledger, Tangem, and Xaman vs Ledger pages still appear to use generic sitewide language like “trusted source for wallet reviews” or “compare the best XRP wallets” instead of page-specific messaging. Each page needs unique metadata, intro copy, and CTA framing so Google and users can immediately tell what the page is about. [web:5][web:12][web:15][web:18]
+
+Global instructions:
+1. Make every important page have a unique title tag and meta description.
+2. Make every page’s first visible heading and intro paragraph match the page intent.
+3. Add a specific recommendation/verdict near the top of each page.
+4. Add stronger CTA blocks near the top and near the end.
+5. Add internal links between homepage, reviews, comparisons, and best-for pages.
+6. Keep the writing clear, practical, trustworthy, and non-hypey.
+7. Add “last updated” text on all money pages.
+8. Make review pages feel like reviews and comparison pages feel like comparisons, not copies of the homepage.
+
+Homepage fixes:
+1. Keep the homepage focused on “Best XRP Wallets 2026” and XRPL tools because that snippet is already commercially strong. [web:5]
+2. Tighten the hero so it clearly helps users choose a wallet fast.
+3. Add or improve a top comparison table for Xaman, Ledger, Tangem, Trezor, and ELLIPAL because those are already the wallets associated with the site’s public positioning. [web:6]
+4. Add clear use-case buttons: beginner, cold storage, DeFi/NFT, mobile, large holdings.
+5. Add a “Why trust us” block explaining evaluation criteria.
+6. Add internal links to Ledger review, Tangem review, Xaman vs Ledger, and best-for pages.
+7. Add a visible email capture block for an XRPL Wallet Starter Kit.
+
+Homepage metadata target:
+- Title example: Best XRP Wallets 2026 | Compare Xaman, Ledger, Tangem & More
+- Meta description example: Compare the best XRP wallets for 2026 including Xaman, Ledger, Tangem, Trezor, and ELLIPAL. Find the best wallet for security, DeFi, mobile use, and long-term storage.
+
+Ledger review page fixes:
+1. Make the page clearly about Ledger Nano X for XRP users.
+2. Replace generic sitewide intro copy with a Ledger-specific intro.
+3. Add a verdict box near the top: who Ledger is best for, who should avoid it, and whether it is good for XRP holders.
+4. Add sections for XRP compatibility, security, ease of use, DeFi limitati
