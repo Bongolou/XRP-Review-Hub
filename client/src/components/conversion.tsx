@@ -221,7 +221,7 @@ export function FastCompareTable({
               <th className="px-5 py-4 font-semibold">{t("fastCompare.colPrice") || "Price"}</th>
               <th className="px-5 py-4 font-semibold">{t("fastCompare.colBestFor") || "Best for"}</th>
               <th className="px-5 py-4 font-semibold">{t("fastCompare.colRating") || "Score"}</th>
-              <th className="px-5 py-4 font-semibold text-right">Action</th>
+              <th className="px-5 py-4 font-semibold text-right">{t("fastCompare.colAction") || "Action"}</th>
             </tr>
           </thead>
           <tbody>
@@ -296,11 +296,11 @@ export function FastCompareTable({
               <div className="text-right">
                 <div className="text-2xl font-display font-bold text-primary">{r.rating}</div>
                 <div className="text-[10px] uppercase text-muted-foreground tracking-widest">
-                  Score
+                  {t("fastCompare.score") || "Score"}
                 </div>
               </div>
             </div>
-            <p className="text-xs text-muted-foreground mb-3">Best for: {r.bestFor}</p>
+            <p className="text-xs text-muted-foreground mb-3">{t("fastCompare.bestForLabel") || "Best for"}: {r.bestFor}</p>
             <div className="flex gap-2">
               {r.reviewSlug && (
                 <Link href={`/wallet/${r.reviewSlug}`} className="flex-1">
@@ -562,6 +562,7 @@ export function FAQAccordion({
 }
 
 export function LastUpdated({ date }: { date: string }) {
+  const { t } = useLanguage();
   return (
     <div
       className="inline-flex items-center gap-2 text-xs text-muted-foreground"
@@ -569,8 +570,9 @@ export function LastUpdated({ date }: { date: string }) {
     >
       <Clock className="h-3 w-3" />
       <span>
-        Last updated <span className="text-white/80 font-medium">{date}</span> by the All Things
-        XRPL editorial team
+        {t("lastUpdated.prefix") || "Last updated"}{" "}
+        <span className="text-white/80 font-medium">{date}</span>{" "}
+        {t("lastUpdated.suffix") || "by the All Things XRPL editorial team"}
       </span>
     </div>
   );
@@ -670,7 +672,7 @@ export function EmailCaptureBlock({
         ) : (
           <form onSubmit={submit} className="space-y-3">
             <label htmlFor={`lead-email-${source}`} className="sr-only">
-              Email address
+              {t("emailCapture.emailLabel") || "Email address"}
             </label>
             <input
               id={`lead-email-${source}`}
@@ -678,8 +680,8 @@ export function EmailCaptureBlock({
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              aria-label="Email address"
+              placeholder={t("emailCapture.emailPlaceholder") || "you@example.com"}
+              aria-label={t("emailCapture.emailLabel") || "Email address"}
               data-testid={`input-lead-email-${source}`}
               className="w-full h-12 px-4 rounded-lg bg-background/60 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-white placeholder:text-muted-foreground/70"
             />
@@ -728,6 +730,7 @@ export function ReviewSummaryCard({
   reviewSlug: string;
   type: string;
 }) {
+  const { t } = useLanguage();
   return (
     <div className="rounded-2xl border border-white/10 bg-card/40 backdrop-blur-md p-6 hover:border-primary/40 transition-all flex flex-col h-full">
       <div className="flex items-start justify-between mb-3">
@@ -737,11 +740,11 @@ export function ReviewSummaryCard({
         </div>
         <div className="text-right">
           <div className="text-2xl font-display font-bold text-primary">{rating}</div>
-          <div className="text-[10px] uppercase text-muted-foreground tracking-widest">Score</div>
+          <div className="text-[10px] uppercase text-muted-foreground tracking-widest">{t("fastCompare.score") || "Score"}</div>
         </div>
       </div>
       <p className="text-sm text-muted-foreground mb-4">
-        <span className="text-white font-medium">Best for: </span>
+        <span className="text-white font-medium">{t("fastCompare.bestForLabel") || "Best for"}: </span>
         {bestFor}
       </p>
       <ul className="space-y-2 mb-5 flex-1">
@@ -755,12 +758,12 @@ export function ReviewSummaryCard({
       <div className="flex flex-col gap-2">
         <a href={affiliateUrl} target="_blank" rel="noopener noreferrer">
           <Button className="w-full bg-primary hover:bg-primary/90 text-white font-bold">
-            Get {name} <ExternalLink className="ml-2 h-4 w-4" />
+            {t("verdict.get") || "Get"} {name} <ExternalLink className="ml-2 h-4 w-4" />
           </Button>
         </a>
         <Link href={`/wallet/${reviewSlug}`}>
           <Button variant="ghost" className="w-full text-sm text-muted-foreground hover:text-primary">
-            Read review <ArrowRight className="ml-2 h-3 w-3" />
+            {t("walletReview.readReview") || "Read review"} <ArrowRight className="ml-2 h-3 w-3" />
           </Button>
         </Link>
       </div>
