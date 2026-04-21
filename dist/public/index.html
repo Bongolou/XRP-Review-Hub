@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      window.addEventListener('error', function(e) {
+        if (!e.filename || !e.filename.includes(location.host)) { e.preventDefault(); e.stopImmediatePropagation(); return false; }
+      }, true);
+      window.addEventListener('unhandledrejection', function(e) {
+        var r = e.reason;
+        if (!r || !(r instanceof Error) || (r.stack && !r.stack.includes(location.host))) { e.preventDefault(); e.stopImmediatePropagation(); return false; }
+      }, true);
+    </script>
     <!-- Ezoic Privacy Scripts (must load before header script) -->
     <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
     <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
@@ -190,8 +199,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-Cr0LZ0Ji.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Dci1tjuG.css">
+    <script type="module" crossorigin src="/assets/index-ZOcUflLP.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Neg8Gew7.css">
   </head>
   <body>
     <div id="root">

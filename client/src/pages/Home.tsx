@@ -38,6 +38,57 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { DealOfTheWeek } from "@/components/DealOfTheWeek";
 import { BannerAd } from "@/components/BannerAd";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import {
+  TrustStrip,
+  UseCaseSelector,
+  FastCompareTable,
+  EmailCaptureBlock,
+  type FastCompareRow,
+} from "@/components/conversion";
+
+const homepageCompareRows: FastCompareRow[] = [
+  {
+    id: "xaman",
+    name: "Xaman (XUMM)",
+    type: "Mobile · Software",
+    price: "Free",
+    bestFor: "Daily use, DEX, NFTs",
+    rating: "9.9",
+    reviewSlug: "xaman",
+    affiliateUrl: "https://xumm.app/?ref=allthingsxrpl",
+    highlight: true,
+  },
+  {
+    id: "ledger",
+    name: "Ledger Nano X",
+    type: "Hardware",
+    price: "$149",
+    bestFor: "Cold storage",
+    rating: "9.9",
+    reviewSlug: "ledger",
+    affiliateUrl: "https://shop.ledger.com/?r=5d81f18905fe",
+  },
+  {
+    id: "tangem",
+    name: "Tangem",
+    type: "Hardware (Card)",
+    price: "$54.90",
+    bestFor: "Portable hardware",
+    rating: "9.4",
+    reviewSlug: "tangem",
+    affiliateUrl: "https://tangem.com/?promocode=ALLTHINGSXRPL",
+  },
+  {
+    id: "crossmark",
+    name: "Crossmark",
+    type: "Browser ext.",
+    price: "Free",
+    bestFor: "Web3 / dApp logins",
+    rating: "9.5",
+    reviewSlug: "crossmark",
+    affiliateUrl: "https://crossmark.io/?ref=allthingsxrpl",
+  },
+];
 
 // Wallet data with translation keys
 const walletsData = [
@@ -504,8 +555,19 @@ export default function Home() {
         <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-background to-transparent z-10" />
       </section>
 
+      {/* Trust strip */}
+      <div className="relative z-20">
+        <TrustStrip />
+      </div>
+
+      {/* Use-case decision selector — primary funnel entry */}
+      <UseCaseSelector />
+
+      {/* Fast compare table — top picks at a glance */}
+      <FastCompareTable rows={homepageCompareRows} />
+
       {/* Deal of the Week */}
-      <section className="container mx-auto px-4 pt-16 relative z-20">
+      <section className="container mx-auto px-4 pt-8 relative z-20">
         <DealOfTheWeek />
       </section>
 
@@ -834,6 +896,11 @@ export default function Home() {
       </section>
 
       <div className="h-16" aria-hidden="true" />
+
+      {/* Lead magnet email capture */}
+      <section className="container mx-auto px-4 py-8">
+        <EmailCaptureBlock source="homepage" />
+      </section>
 
       {/* Latest News Preview */}
       <LatestNewsPreview t={t} />

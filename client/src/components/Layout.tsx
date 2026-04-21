@@ -80,6 +80,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/' ? 'text-primary' : 'text-muted-foreground'}`}>
               {t("nav.home")}
             </Link>
+            <Link href="/best-xrp-wallets" className={`text-sm font-medium transition-colors hover:text-primary ${location === '/best-xrp-wallets' ? 'text-primary' : 'text-muted-foreground'}`}>
+              Best Wallets
+            </Link>
             <ScrollToSection id="wallets" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary cursor-pointer">
               {t("nav.wallets")}
             </ScrollToSection>
@@ -111,6 +114,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <SheetContent side="right" className="bg-card border-l border-white/10">
               <nav className="flex flex-col gap-4 mt-10">
                 <Link href="/" className="text-lg font-medium hover:text-primary">{t("nav.home")}</Link>
+                <Link href="/best-xrp-wallets" className="text-lg font-medium hover:text-primary">Best XRP Wallets</Link>
+                <Link href="/best-for/beginners" className="text-base text-muted-foreground hover:text-primary pl-4">— For Beginners</Link>
+                <Link href="/best-for/hardware" className="text-base text-muted-foreground hover:text-primary pl-4">— Hardware Wallets</Link>
+                <Link href="/best-for/cold-storage" className="text-base text-muted-foreground hover:text-primary pl-4">— Cold Storage</Link>
+                <Link href="/best-for/defi" className="text-base text-muted-foreground hover:text-primary pl-4">— XRPL DeFi</Link>
                 <ScrollToSection id="wallets" className="text-lg font-medium hover:text-primary cursor-pointer">{t("nav.wallets")}</ScrollToSection>
                 <Link href="/getting-started" className="text-lg font-medium hover:text-primary">{t("nav.gettingStarted")}</Link>
                 <Link href="/blog" className="text-lg font-medium hover:text-primary">{t("nav.blog")}</Link>
@@ -171,13 +179,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="font-display font-bold mb-4">{t("footer.resources")}</h3>
+              <h3 className="font-display font-bold mb-4">Best for…</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
+                <li><Link href="/best-xrp-wallets" className="hover:text-primary transition-colors inline-block py-1">Best XRP Wallets 2026</Link></li>
+                <li><Link href="/best-for/beginners" className="hover:text-primary transition-colors inline-block py-1">Best for Beginners</Link></li>
+                <li><Link href="/best-for/hardware" className="hover:text-primary transition-colors inline-block py-1">Best Hardware Wallets</Link></li>
+                <li><Link href="/best-for/cold-storage" className="hover:text-primary transition-colors inline-block py-1">Best Cold-Storage Setup</Link></li>
+                <li><Link href="/best-for/defi" className="hover:text-primary transition-colors inline-block py-1">Best for XRPL DeFi</Link></li>
+                <li><Link href="/best-for/safest" className="hover:text-primary transition-colors inline-block py-1">Safest Pick</Link></li>
                 <li><Link href="/getting-started" className="hover:text-primary transition-colors inline-block py-1">{t("nav.gettingStarted")}</Link></li>
                 <li><Link href="/blog" className="hover:text-primary transition-colors inline-block py-1">{t("nav.blog")}</Link></li>
                 <li><Link href="/news" className="hover:text-primary transition-colors inline-block py-1">{t("nav.news")}</Link></li>
                 <li><Link href="/faq" className="hover:text-primary transition-colors inline-block py-1">{t("footer.faq")}</Link></li>
-
               </ul>
             </div>
 
