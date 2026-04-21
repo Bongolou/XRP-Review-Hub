@@ -617,7 +617,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
           >
             Find your match in 60 seconds. Hands-on reviews of every major XRP wallet, exchange, and dApp — ranked by use case, security, and price.
           </motion.p>
@@ -626,17 +626,17 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-5"
           >
             <Button 
               size="lg" 
-              className="h-14 !px-12 text-base bg-primary hover:bg-primary/90 text-white font-bold tracking-wide shadow-[0_0_30px_-10px_theme('colors.primary.DEFAULT')]"
+              className="h-16 !px-16 text-base bg-primary hover:bg-primary/90 text-white font-bold tracking-wide shadow-[0_0_30px_-10px_theme('colors.primary.DEFAULT')]"
               onClick={() => document.getElementById('wallets')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t("hero.cta.compare")}
             </Button>
             <Link href="/wallet-quiz">
-              <Button size="lg" variant="outline" className="h-14 !px-12 text-base border-white/20 bg-white/5 hover:bg-white/10 hover:text-white backdrop-blur-sm">
+              <Button size="lg" variant="outline" className="h-16 !px-16 text-base border-white/20 bg-white/5 hover:bg-white/10 hover:text-white backdrop-blur-sm">
                 {t("hero.cta.quiz")}
               </Button>
             </Link>

@@ -216,12 +216,12 @@ export function FastCompareTable({
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-xs uppercase tracking-wider text-muted-foreground border-b border-white/10">
-              <th className="px-6 py-5 font-semibold">{t("fastCompare.colWallet") || "Wallet"}</th>
-              <th className="px-6 py-5 font-semibold">{t("fastCompare.colType") || "Type"}</th>
-              <th className="px-6 py-5 font-semibold">{t("fastCompare.colPrice") || "Price"}</th>
-              <th className="px-6 py-5 font-semibold">{t("fastCompare.colBestFor") || "Best for"}</th>
-              <th className="px-6 py-5 font-semibold">{t("fastCompare.colRating") || "Score"}</th>
-              <th className="px-6 py-5 font-semibold text-right">{t("fastCompare.colAction") || "Action"}</th>
+              <th className="px-6 py-6 font-semibold">{t("fastCompare.colWallet") || "Wallet"}</th>
+              <th className="px-6 py-6 font-semibold">{t("fastCompare.colType") || "Type"}</th>
+              <th className="px-6 py-6 font-semibold">{t("fastCompare.colPrice") || "Price"}</th>
+              <th className="px-6 py-6 font-semibold">{t("fastCompare.colBestFor") || "Best for"}</th>
+              <th className="px-6 py-6 font-semibold">{t("fastCompare.colRating") || "Score"}</th>
+              <th className="px-6 py-6 font-semibold text-right">{t("fastCompare.colAction") || "Action"}</th>
             </tr>
           </thead>
           <tbody>
@@ -233,7 +233,7 @@ export function FastCompareTable({
                 }`}
                 data-testid={`compare-row-${r.id}`}
               >
-                <td className="px-6 py-5">
+                <td className="px-6 py-6">
                   <div className="flex items-center gap-3">
                     <span className="font-display font-bold text-white">{r.name}</span>
                     {r.highlight && (
@@ -243,18 +243,18 @@ export function FastCompareTable({
                     )}
                   </div>
                 </td>
-                <td className="px-6 py-5 text-muted-foreground">{r.type}</td>
-                <td className="px-6 py-5 text-muted-foreground">{r.price}</td>
-                <td className="px-6 py-5 text-muted-foreground">{r.bestFor}</td>
-                <td className="px-6 py-5 font-display font-bold text-primary">{r.rating}</td>
-                <td className="px-6 py-5">
-                  <div className="flex items-center justify-end gap-2">
+                <td className="px-6 py-6 text-muted-foreground">{r.type}</td>
+                <td className="px-6 py-6 text-muted-foreground">{r.price}</td>
+                <td className="px-6 py-6 text-muted-foreground">{r.bestFor}</td>
+                <td className="px-6 py-6 font-display font-bold text-primary">{r.rating}</td>
+                <td className="px-6 py-6">
+                  <div className="flex items-center justify-end gap-3">
                     {r.reviewSlug && (
                       <Link href={`/wallet/${r.reviewSlug}`}>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="text-xs hover:text-primary"
+                          className="text-sm hover:text-primary h-10 px-4"
                         >
                           {t("fastCompare.review") || "Review"}
                         </Button>
@@ -263,9 +263,9 @@ export function FastCompareTable({
                     <a href={r.affiliateUrl} target="_blank" rel="noopener noreferrer">
                       <Button
                         size="sm"
-                        className="bg-primary hover:bg-primary/90 text-white text-xs h-8"
+                        className="bg-primary hover:bg-primary/90 text-white text-sm h-10 px-5"
                       >
-                        {resolvedCta} <ExternalLink className="ml-1 h-3 w-3" />
+                        {resolvedCta} <ExternalLink className="ml-2 h-3.5 w-3.5" />
                       </Button>
                     </a>
                   </div>
