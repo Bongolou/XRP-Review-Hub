@@ -670,7 +670,172 @@ const comparisons: Record<string, ComparisonData> = {
       { name: "xApps Ecosystem", wallet1: false, wallet2: true, explanation: "xApps are exclusive to Xaman." }
     ],
     bottomLine: "Are you an XRP enthusiast who wants full access to everything the XRP Ledger offers? Xaman is your wallet. Do you hold XRP alongside Bitcoin, Ethereum, and other assets? Trust Wallet's multi-chain convenience makes more sense. The best choice depends on whether XRP is your focus or just part of a larger portfolio."
-  }
+  },
+  "trezor-vs-tangem": {
+    wallet1: { name: "Trezor Safe 3", slug: "trezor", type: "Hardware", price: "$79", link: "https://trezor.io/?ref=allthingsxrpl" },
+    wallet2: { name: "Tangem", slug: "tangem", type: "Hardware (NFC card)", price: "$54.90", link: "https://tangem.com/?ref=allthingsxrpl" },
+    metaDescription: "Trezor Safe 3 vs Tangem for XRP cold storage: open-source recovery seed vs seedless NFC tap-to-sign cards.",
+    introduction: "Trezor and Tangem represent two very different philosophies of hardware security. Trezor is the classic seed-phrase, USB-connected device backed by open-source firmware. Tangem skips the seed phrase entirely with an NFC card you tap against your phone to sign transactions. Both are excellent for XRP cold storage — the right pick depends on whether you trust paper backups or prefer ditching them entirely.",
+    winner: "Tangem",
+    winnerReason: "If you mainly hold XRP and want the simplest cold-storage experience, Tangem's tap-to-sign card removes the #1 source of crypto loss: the lost or photographed seed phrase.",
+    detailedVerdict: "Trezor Safe 3 is the better all-rounder if you also hold BTC, ETH and want to use third-party software like Electrum. Tangem wins on pure simplicity and on resistance to seed-phrase theft, since there is no seed to steal in the first place — just buy a 3-card set, keep the spares somewhere safe, and you have full recovery without ever writing 24 words on paper.",
+    securityAnalysis: {
+      title: "Open-source seeds vs seedless NFC",
+      content: "Trezor uses a 12/24-word recovery seed protected by a PIN and (optionally) a passphrase. Tangem generates and stores the private key inside an EAL6+ certified secure chip on the card itself; recovery is by registering 2-3 cards in the same set rather than by writing down words.",
+      wallet1Security: "Open-source firmware that can be independently audited, but you must protect the seed phrase from theft, fire, and accidental disclosure forever.",
+      wallet2Security: "Seedless model removes the most common loss vector. Trade-off: you cannot import the key into another wallet — recovery requires another Tangem card from the same set.",
+    },
+    useCases: [
+      { scenario: "First-time hardware buyer holding only XRP", recommendation: "Tangem's tap-to-sign workflow is dramatically easier.", winner: "Tangem" },
+      { scenario: "Multi-chain holder (BTC, ETH, XRP)", recommendation: "Trezor supports far more coins and integrates with more wallets.", winner: "Trezor" },
+      { scenario: "Wants open-source firmware they can audit", recommendation: "Trezor publishes its full firmware on GitHub.", winner: "Trezor" },
+      { scenario: "Travels frequently and worries about losing devices", recommendation: "Tangem cards fit in a wallet and use card redundancy for recovery.", winner: "Tangem" },
+    ],
+    wallet1Pros: ["Open-source firmware", "Industry-standard 24-word seed for full portability", "Wide third-party software support", "Affordable at $79"],
+    wallet1Cons: ["You must safely store a paper seed phrase", "USB cable connection is less convenient on mobile", "Not as approachable for total beginners"],
+    wallet2Pros: ["No seed phrase to lose or photograph", "EAL6+ secure element", "NFC tap-to-sign on phone — no cables", "Card form factor is durable and discreet"],
+    wallet2Cons: ["Closed-source firmware", "Recovery only works with cards from the same set", "Smaller third-party software ecosystem"],
+    features: [
+      { name: "Price", wallet1: "$79", wallet2: "$54.90 (3-card set)" },
+      { name: "Recovery model", wallet1: "Seed phrase", wallet2: "Card redundancy" },
+      { name: "Open source", wallet1: true, wallet2: false },
+      { name: "Mobile-friendly", wallet1: "Limited", wallet2: "Native NFC" },
+      { name: "Coins supported", wallet1: "1,000+", wallet2: "6,000+" },
+    ],
+    bottomLine: "For a single-coin XRP holder who values simplicity and resistance to seed-phrase mistakes, Tangem is the friendlier pick. For multi-chain holders who want auditable, open-source security, Trezor remains the safer all-rounder.",
+  },
+  "ellipal-vs-trezor": {
+    wallet1: { name: "ELLIPAL Titan", slug: "ellipal", type: "Hardware (air-gapped)", price: "$169", link: "https://ellipal.com/?ref=allthingsxrpl" },
+    wallet2: { name: "Trezor Safe 3", slug: "trezor", type: "Hardware (USB)", price: "$79", link: "https://trezor.io/?ref=allthingsxrpl" },
+    metaDescription: "ELLIPAL Titan vs Trezor Safe 3: 100% air-gapped QR signing vs open-source USB hardware wallet for XRP cold storage.",
+    introduction: "ELLIPAL Titan and Trezor Safe 3 both protect your XRP with a dedicated secure element, but they take opposite approaches to connectivity. ELLIPAL is fully air-gapped — no USB, no Bluetooth, no Wi-Fi — and signs every transaction by scanning QR codes between the device and your phone. Trezor uses a tried-and-true USB connection with open-source firmware that has been audited for over a decade.",
+    winner: "ELLIPAL Titan",
+    winnerReason: "If your goal is the largest possible attack-surface reduction for long-term XRP cold storage, ELLIPAL's air-gapped design is the more conservative choice.",
+    detailedVerdict: "Pick ELLIPAL when paranoia is the point: it cannot be hacked over a USB port that does not exist. Pick Trezor when you want the best balance of price, convenience, and open-source auditability for a wallet you will actually use frequently.",
+    securityAnalysis: {
+      title: "Air-gap vs open-source",
+      content: "ELLIPAL's CC EAL5+ secure element handles all signing internally; the device communicates with the outside world only via a camera reading QR codes. Trezor uses a USB data link to a host computer, so its security model relies on the host not being compromised.",
+      wallet1Security: "Strongest known protection against remote and supply-chain attacks; physical access is the only realistic threat vector.",
+      wallet2Security: "Excellent open-source security with passphrase support, but a malicious host computer can still trick the user about transaction details.",
+    },
+    useCases: [
+      { scenario: "Long-term cold storage of significant XRP", recommendation: "ELLIPAL's air-gap is the gold standard.", winner: "ELLIPAL" },
+      { scenario: "Frequent use across many coins on a desktop", recommendation: "Trezor is faster and cheaper for daily use.", winner: "Trezor" },
+      { scenario: "Privacy-conscious user who avoids cloud apps", recommendation: "Both qualify; ELLIPAL has a stronger isolation story.", winner: "ELLIPAL" },
+      { scenario: "Tight budget", recommendation: "Trezor Safe 3 is less than half the price.", winner: "Trezor" },
+    ],
+    wallet1Pros: ["100% air-gapped — no USB, Bluetooth, or Wi-Fi", "CC EAL5+ secure element", "Tamper-detection self-destructs the keys", "Large 4-inch touchscreen"],
+    wallet1Cons: ["Significantly more expensive at $169", "Slower workflow due to QR scanning", "Companion app required"],
+    wallet2Pros: ["Open-source firmware", "Established 10-year security track record", "Passphrase support for hidden wallets", "Affordable at $79"],
+    wallet2Cons: ["USB connection introduces a software attack surface", "Smaller display", "Relies on the host computer for signing context"],
+    features: [
+      { name: "Price", wallet1: "$169", wallet2: "$79" },
+      { name: "Connectivity", wallet1: "QR only (air-gap)", wallet2: "USB" },
+      { name: "Open source", wallet1: false, wallet2: true },
+      { name: "Display", wallet1: '4" touchscreen', wallet2: "Small mono" },
+      { name: "Tamper protection", wallet1: "Self-destruct", wallet2: "PIN/passphrase" },
+    ],
+    bottomLine: "ELLIPAL is the conservative cold-storage pick for XRP holders who value isolation above all else. Trezor offers stronger value and open-source assurance for everyone else.",
+  },
+  "bifrost-vs-crossmark": {
+    wallet1: { name: "Bifrost Wallet", slug: "bifrost", type: "Mobile App", price: "Free", link: "https://bifrostwallet.com/?ref=allthingsxrpl" },
+    wallet2: { name: "Crossmark", slug: "crossmark", type: "Browser Extension", price: "Free", link: "https://crossmark.io/?ref=allthingsxrpl" },
+    metaDescription: "Bifrost vs Crossmark for XRPL: mobile-first multi-chain experience vs MetaMask-style desktop browser extension.",
+    introduction: "Bifrost and Crossmark are both free, modern wallets aimed at active XRP Ledger users — but they live on opposite devices. Bifrost is a polished iOS and Android app that adds Cosmos and Polkadot ecosystems alongside XRPL. Crossmark is a Chrome and Brave browser extension that gives the XRPL the same drop-in dApp connection model that MetaMask gave Ethereum.",
+    winner: "Both",
+    winnerReason: "They are complementary, not competitive: keep funds in Bifrost on mobile, install Crossmark on the desktop you use to interact with XRPL dApps.",
+    detailedVerdict: "If you mostly transact on your phone and value a clean multi-chain UI, Bifrost is the obvious daily driver. If you spend time on XRPL DEX front-ends, NFT marketplaces, or DeFi dashboards from a laptop, Crossmark is the missing piece. The best setup is to use both, keeping the same XRPL secret in each.",
+    securityAnalysis: {
+      title: "Mobile keys vs browser-extension keys",
+      content: "Both are non-custodial software wallets that store encrypted keys on your device. Bifrost protects keys with biometric unlock on the phone secure enclave; Crossmark encrypts keys in browser storage protected by a password and per-transaction approval.",
+      wallet1Security: "Biometric-gated keys on the phone secure enclave; recovery via standard family seed.",
+      wallet2Security: "Password-protected keys in the browser; pair with a hardware wallet for serious holdings.",
+    },
+    useCases: [
+      { scenario: "Daily XRP payments and small DEX trades from phone", recommendation: "Bifrost's mobile UX is faster.", winner: "Bifrost" },
+      { scenario: "Connecting to XRPL dApps from a laptop", recommendation: "Crossmark is the standard XRPL extension.", winner: "Crossmark" },
+      { scenario: "Holding multi-chain assets in one app", recommendation: "Bifrost adds Cosmos and Polkadot natively.", winner: "Bifrost" },
+      { scenario: "Browser-based NFT minting on the XRPL", recommendation: "Crossmark integrates with marketplace front-ends.", winner: "Crossmark" },
+    ],
+    wallet1Pros: ["Beautiful, modern mobile UI", "Multi-chain (XRPL, Cosmos, Polkadot)", "Free with no ads or premium tier", "Active development"],
+    wallet1Cons: ["No browser extension", "Smaller xApp ecosystem than Xaman", "Not yet a household name on the XRPL"],
+    wallet2Pros: ["First-class XRPL browser extension", "Drop-in dApp connection like MetaMask", "Free and open-source", "Works in any Chromium browser"],
+    wallet2Cons: ["Desktop-only", "No NFT gallery built in", "Smaller user base than mobile wallets"],
+    features: [
+      { name: "Price", wallet1: "Free", wallet2: "Free" },
+      { name: "Form factor", wallet1: "iOS/Android", wallet2: "Chrome/Brave" },
+      { name: "dApp connection", wallet1: "WalletConnect", wallet2: "Native injection" },
+      { name: "Multi-chain", wallet1: true, wallet2: false },
+      { name: "Open source", wallet1: "Partial", wallet2: true },
+    ],
+    bottomLine: "Bifrost is the better mobile daily driver; Crossmark is the better desktop dApp wallet. Most active XRPL users will benefit from running both.",
+  },
+  "gatehub-vs-xaman": {
+    wallet1: { name: "GateHub", slug: "gatehub", type: "Web Wallet", price: "Free", link: "https://gatehub.net/?ref=allthingsxrpl" },
+    wallet2: { name: "Xaman (XUMM)", slug: "xaman", type: "Mobile App", price: "Free", link: "https://xaman.app/?ref=allthingsxrpl" },
+    metaDescription: "GateHub vs Xaman for XRP: regulated web wallet with fiat on-ramp vs self-custody mobile wallet from XRPL Labs.",
+    introduction: "GateHub and Xaman are both XRP-focused wallets but they sit at opposite ends of the custody spectrum. GateHub is a regulated UK service that holds the keys for you and lets you fund your XRP wallet by bank transfer or card. Xaman is a self-custody mobile app from XRPL Labs where you and only you ever see the family seed.",
+    winner: "Xaman",
+    winnerReason: "For anyone serious about long-term XRP ownership, self-custody is non-negotiable, and Xaman is the most fully-featured XRPL self-custody wallet available.",
+    detailedVerdict: "Use GateHub when your priority is buying XRP with fiat in a regulated environment, or when you simply do not want the responsibility of managing keys. Move to Xaman the moment your holdings cross the threshold where 'not your keys, not your coins' starts to matter.",
+    securityAnalysis: {
+      title: "Custodial fiat gateway vs self-custody mobile",
+      content: "GateHub is a custodian: your XRP is held in their accounts, protected by their security operations and your account credentials. Xaman is non-custodial: your encrypted keys live only on your phone, protected by biometrics and the device secure enclave.",
+      wallet1Security: "Backed by a regulated entity with insurance and 2FA, but vulnerable to account compromise and exchange-style risks.",
+      wallet2Security: "True self-custody — even XRPL Labs cannot move your funds. Pair with a hardware wallet for the largest holdings.",
+    },
+    useCases: [
+      { scenario: "Buying your first XRP with a UK/EU bank transfer", recommendation: "GateHub's fiat rails are the easiest path.", winner: "GateHub" },
+      { scenario: "Holding XRP for the long term", recommendation: "Xaman keeps the keys in your hands.", winner: "Xaman" },
+      { scenario: "Using XRPL DEX, AMMs, NFTs", recommendation: "Xaman has the deepest XRPL feature set.", winner: "Xaman" },
+      { scenario: "Sending small amounts via desktop browser", recommendation: "GateHub works in any browser.", winner: "GateHub" },
+    ],
+    wallet1Pros: ["Regulated UK provider", "Built-in fiat on-ramp", "Works in any browser", "Familiar account-based UX"],
+    wallet1Cons: ["Custodial — you do not hold the keys", "Subject to account-freeze and KYC processes", "Limited XRPL DeFi integration"],
+    wallet2Pros: ["True self-custody, secret never leaves device", "Built by XRPL Labs (core protocol contributors)", "Full XRPL DEX, AMM, and NFT support", "Free with active xApp ecosystem"],
+    wallet2Cons: ["No native fiat on-ramp", "Mobile only", "Responsibility for the seed is yours"],
+    features: [
+      { name: "Custody", wallet1: "Custodial", wallet2: "Self-custody" },
+      { name: "Fiat on-ramp", wallet1: true, wallet2: false },
+      { name: "XRPL DEX", wallet1: "Limited", wallet2: "Full" },
+      { name: "Form factor", wallet1: "Web", wallet2: "iOS/Android" },
+      { name: "Regulated entity", wallet1: true, wallet2: false },
+    ],
+    bottomLine: "GateHub is a useful on-ramp but should not be your final destination. Buy XRP there if it is convenient, then move it to Xaman or a hardware wallet for actual custody.",
+  },
+  "gatehub-vs-ledger": {
+    wallet1: { name: "GateHub", slug: "gatehub", type: "Web Wallet", price: "Free", link: "https://gatehub.net/?ref=allthingsxrpl" },
+    wallet2: { name: "Ledger Nano X", slug: "ledger", type: "Hardware", price: "$149", link: "https://shop.ledger.com/?r=5d81f18905fe" },
+    metaDescription: "GateHub vs Ledger Nano X: custodial web wallet with fiat on-ramp vs industry-standard hardware cold storage for XRP.",
+    introduction: "GateHub and Ledger represent the two extremes of XRP storage. GateHub is a regulated custodial service that takes the security burden off your shoulders. Ledger is a hardware device that gives you total control — and total responsibility — for your private keys.",
+    winner: "Ledger Nano X",
+    winnerReason: "For any XRP balance you would be unhappy to lose, Ledger's hardware cold storage is the right answer. Use GateHub only as a temporary on-ramp.",
+    detailedVerdict: "Treat GateHub like a bank account you use to buy XRP, then sweep funds to Ledger for long-term cold storage. The combination — GateHub for the fiat rail, Ledger for the vault — is the pattern most experienced XRP holders end up settling on.",
+    securityAnalysis: {
+      title: "Custodial accounts vs hardware secure element",
+      content: "GateHub stores your XRP under their control, protected by KYC and 2FA. Ledger stores your keys in a CC EAL5+ secure element that is never connected to the internet, signing transactions inside a tamper-resistant chip.",
+      wallet1Security: "Centralised custody risks (account compromise, regulatory action) but no key-management burden on you.",
+      wallet2Security: "True cold storage — even a fully compromised computer cannot extract your keys.",
+    },
+    useCases: [
+      { scenario: "Buying your first XRP with fiat", recommendation: "GateHub's bank integration wins.", winner: "GateHub" },
+      { scenario: "Long-term storage of larger XRP holdings", recommendation: "Ledger's secure element is the gold standard.", winner: "Ledger" },
+      { scenario: "Diversifying into other crypto", recommendation: "Ledger supports 5,500+ coins; GateHub focuses on XRPL.", winner: "Ledger" },
+      { scenario: "Browser-based daily use", recommendation: "GateHub works in any browser without extensions.", winner: "GateHub" },
+    ],
+    wallet1Pros: ["Regulated UK service with fiat rails", "No hardware to buy", "Works in any browser", "Familiar account UX"],
+    wallet1Cons: ["Custodial — not your keys", "Subject to regulatory and account-level freezes", "Vulnerable to credential theft"],
+    wallet2Pros: ["CC EAL5+ secure element keeps keys offline", "Supports 5,500+ assets", "Bluetooth for mobile use", "Industry-standard cold storage"],
+    wallet2Cons: ["$149 upfront", "Requires Ledger Live software", "You are responsible for the recovery seed"],
+    features: [
+      { name: "Custody", wallet1: "Custodial", wallet2: "Self-custody (cold)" },
+      { name: "Fiat on-ramp", wallet1: true, wallet2: false },
+      { name: "Hardware key isolation", wallet1: false, wallet2: true },
+      { name: "Coins supported", wallet1: "XRPL focus", wallet2: "5,500+" },
+      { name: "Price", wallet1: "Free", wallet2: "$149" },
+    ],
+    bottomLine: "Use GateHub to buy XRP with fiat. Use Ledger to keep it. The two together are stronger than either alone.",
+  },
 };
 
 export default function Compare() {
@@ -728,11 +893,11 @@ export default function Compare() {
                 ? comparison.wallet2.link
                 : comparison.wallet1.link
             }
-            reviewSlug={
+            reviewHref={routeFor(
               comparison.winner === comparison.wallet2.name
-                ? comparison.wallet2.slug
-                : comparison.wallet1.slug
-            }
+                ? comparison.wallet2
+                : comparison.wallet1
+            )}
             runnerUp={{
               name: comparison.winner === comparison.wallet2.name ? comparison.wallet1.name : comparison.wallet2.name,
               reason: "Strong runner-up — see the full breakdown below.",

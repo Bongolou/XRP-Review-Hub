@@ -332,6 +332,8 @@ export function VerdictBox({
   pickReason,
   affiliateUrl,
   reviewSlug,
+  reviewKind = "wallet",
+  reviewHref,
   runnerUp,
   pros,
   cons,
@@ -340,10 +342,13 @@ export function VerdictBox({
   pickReason: string;
   affiliateUrl: string;
   reviewSlug?: string;
+  reviewKind?: "wallet" | "exchange";
+  reviewHref?: string;
   runnerUp?: { name: string; reason: string; href: string };
   pros?: string[];
   cons?: string[];
 }) {
+  const computedReviewHref = reviewHref ?? (reviewSlug ? `/${reviewKind}/${reviewSlug}` : undefined);
   return (
     <div
       className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent p-6 md:p-8"
@@ -408,8 +413,8 @@ export function VerdictBox({
             Get {pickName} <ExternalLink className="ml-2 h-4 w-4" />
           </Button>
         </a>
-        {reviewSlug && (
-          <Link href={`/wallet/${reviewSlug}`}>
+        {computedReviewHref && (
+          <Link href={computedReviewHref}>
             <Button variant="outline" size="lg" className="border-white/20">
               Read full review
             </Button>

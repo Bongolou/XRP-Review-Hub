@@ -12,6 +12,11 @@ const EXISTING_COMPARISONS = [
   "trezor-vs-ledger",
   "bifrost-vs-xaman",
   "trustwallet-vs-xaman",
+  "trezor-vs-tangem",
+  "ellipal-vs-trezor",
+  "bifrost-vs-crossmark",
+  "gatehub-vs-xaman",
+  "gatehub-vs-ledger",
 ];
 
 function findComparison(slugA: string, slugB: string): string | null {
@@ -38,23 +43,23 @@ const WALLET_LINK_MAP: Record<string, { alternatives: string[]; comparisons: str
   },
   trezor: {
     alternatives: ["ledger", "ellipal"],
-    comparisons: ["trezor-vs-ledger"],
+    comparisons: ["trezor-vs-ledger", "trezor-vs-tangem", "ellipal-vs-trezor"],
   },
   ellipal: {
     alternatives: ["ledger", "trezor"],
-    comparisons: ["ellipal-vs-ledger"],
+    comparisons: ["ellipal-vs-ledger", "ellipal-vs-trezor"],
   },
   crossmark: {
     alternatives: ["xaman", "bifrost"],
-    comparisons: ["xaman-vs-ledger", "bifrost-vs-xaman"],
+    comparisons: ["bifrost-vs-crossmark", "bifrost-vs-xaman", "xaman-vs-ledger"],
   },
   bifrost: {
     alternatives: ["xaman", "crossmark"],
-    comparisons: ["bifrost-vs-xaman"],
+    comparisons: ["bifrost-vs-xaman", "bifrost-vs-crossmark"],
   },
   gatehub: {
     alternatives: ["xaman", "ledger"],
-    comparisons: ["xaman-vs-ledger"],
+    comparisons: ["gatehub-vs-xaman", "gatehub-vs-ledger"],
   },
   trustwallet: {
     alternatives: ["xaman", "ledger"],
