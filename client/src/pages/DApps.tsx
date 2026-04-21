@@ -478,7 +478,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
 export default function DApps() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-5xl">
+      <div className="container mx-auto px-4 max-w-5xl py-12 md:py-20">
         <div className="mb-6">
           <Badge className="mb-4 bg-purple-500/20 text-purple-400 hover:bg-purple-500/30 border-purple-500/50">
             XRPL DeFi & Tools

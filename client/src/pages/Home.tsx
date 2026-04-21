@@ -663,7 +663,7 @@ export default function Home() {
       <FastCompareTable rows={homepageCompareRows} />
 
       {/* Deal of the Week */}
-      <section className="container mx-auto px-4 pt-8 relative z-20">
+      <section className="container mx-auto px-4 pt-20 pb-8 relative z-20">
         <DealOfTheWeek />
       </section>
 
@@ -797,11 +797,11 @@ export default function Home() {
       <div className="h-20" aria-hidden="true" />
 
       {/* Sponsored Banner */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 py-20">
         <BannerAd variant="horizontal" />
       </section>
 
-      <div className="h-20" aria-hidden="true" />
+      <div className="h-24" aria-hidden="true" />
 
       {/* Top Exchanges Section */}
       <section className="py-32 bg-card/10 border-y border-white/5 relative">
@@ -991,10 +991,10 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="h-16" aria-hidden="true" />
+      <div className="h-24" aria-hidden="true" />
 
       {/* Why trust us */}
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 py-20">
         <div className="max-w-5xl mx-auto rounded-2xl border border-white/10 bg-card/30 p-8 md:p-10">
           <div className="text-xs uppercase tracking-widest text-primary font-display mb-3">{t("home.whyTrust.eyebrow")}</div>
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">{t("home.whyTrust.title")}</h2>
@@ -1035,7 +1035,7 @@ export default function Home() {
       </section>
 
       {/* Best-for guides + XRPL DeFi & tools entry block */}
-      <section className="container mx-auto px-4 pb-12">
+      <section className="container mx-auto px-4 pt-12 pb-20">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold font-display mb-2">{t("home.guides.title")}</h2>
           <p className="text-muted-foreground mb-6">{t("home.guides.subtitle")}</p>
@@ -1051,14 +1051,16 @@ export default function Home() {
       </section>
 
       {/* Lead magnet email capture */}
-      <section className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 py-20">
         <EmailCaptureBlock source="homepage" />
       </section>
+
+      <div className="h-12" aria-hidden="true" />
 
       {/* Latest News Preview */}
       <LatestNewsPreview t={t} />
 
-      <div className="h-16" aria-hidden="true" />
+      <div className="h-24" aria-hidden="true" />
 
       {/* Newsletter CTA */}
       <section className="py-32 container mx-auto px-4">

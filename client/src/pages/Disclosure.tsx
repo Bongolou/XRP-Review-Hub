@@ -6,7 +6,7 @@ export default function Disclosure() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-4xl">
+      <div className="container mx-auto px-4 max-w-4xl py-12 md:py-20">
         <h1 className="text-4xl md:text-5xl font-black font-display mb-8" data-testid="text-disclosure-title">{t("disclosure.title")}</h1>
         
         <div className="prose prose-invert prose-lg max-w-none text-muted-foreground">

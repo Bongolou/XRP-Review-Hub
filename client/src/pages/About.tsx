@@ -7,7 +7,7 @@ export default function About() {
   
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-4xl">
+      <div className="container mx-auto px-4 max-w-4xl py-12 md:py-20">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-black font-display mb-4" data-testid="text-about-title">{t("about.title")}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
