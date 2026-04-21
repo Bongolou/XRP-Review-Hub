@@ -349,6 +349,8 @@ export function VerdictBox({
   cons?: string[];
 }) {
   const computedReviewHref = reviewHref ?? (reviewSlug ? `/${reviewKind}/${reviewSlug}` : undefined);
+  const { t: tT } = useLanguage();
+  const tVerdict = (k: string) => tT(`verdict.${k}`);
   return (
     <div
       className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent p-6 md:p-8"
@@ -360,7 +362,7 @@ export function VerdictBox({
         </div>
         <div>
           <div className="text-xs uppercase tracking-widest text-primary font-display">
-            Our pick
+            {tVerdict("ourPick")}
           </div>
           <h3 className="text-2xl font-bold font-display">{pickName}</h3>
         </div>
@@ -373,7 +375,7 @@ export function VerdictBox({
           {pros && (
             <div className="rounded-xl bg-white/5 border border-white/10 p-4">
               <div className="text-xs uppercase tracking-widest text-green-400 font-display mb-3">
-                Why it wins
+                {tVerdict("whyItWins")}
               </div>
               <ul className="space-y-2">
                 {pros.map((p, i) => (
@@ -388,7 +390,7 @@ export function VerdictBox({
           {cons && (
             <div className="rounded-xl bg-white/5 border border-white/10 p-4">
               <div className="text-xs uppercase tracking-widest text-orange-400 font-display mb-3">
-                Watch out for
+                {tVerdict("watchOutFor")}
               </div>
               <ul className="space-y-2">
                 {cons.map((p, i) => (
@@ -410,13 +412,13 @@ export function VerdictBox({
             className="bg-primary hover:bg-primary/90 text-white font-bold"
             data-testid="button-verdict-cta"
           >
-            Get {pickName} <ExternalLink className="ml-2 h-4 w-4" />
+            {tVerdict("get")} {pickName} <ExternalLink className="ml-2 h-4 w-4" />
           </Button>
         </a>
         {computedReviewHref && (
           <Link href={computedReviewHref}>
             <Button variant="outline" size="lg" className="border-white/20">
-              Read full review
+              {tVerdict("readReview")}
             </Button>
           </Link>
         )}
@@ -425,7 +427,7 @@ export function VerdictBox({
       {runnerUp && (
         <div className="mt-6 pt-6 border-t border-white/10">
           <div className="text-xs uppercase tracking-widest text-muted-foreground font-display mb-2">
-            Also great
+            {tVerdict("alsoGreat")}
           </div>
           <p className="text-sm text-muted-foreground mb-3">
             <span className="font-bold text-white">{runnerUp.name}</span> — {runnerUp.reason}
@@ -434,7 +436,7 @@ export function VerdictBox({
             href={runnerUp.href}
             className="text-sm text-primary hover:underline inline-flex items-center gap-1"
           >
-            See {runnerUp.name} <ArrowRight className="h-3 w-3" />
+            {tVerdict("see")} {runnerUp.name} <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
       )}

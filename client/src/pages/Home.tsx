@@ -81,16 +81,6 @@ const homepageCompareRows: FastCompareRow[] = [
     affiliateUrl: "https://tangem.com/?promocode=ALLTHINGSXRPL",
   },
   {
-    id: "crossmark",
-    name: "Crossmark",
-    type: "Browser ext.",
-    price: "Free",
-    bestFor: "Web3 / dApp logins",
-    rating: "9.5",
-    reviewSlug: "crossmark",
-    affiliateUrl: "https://crossmark.io/?ref=allthingsxrpl",
-  },
-  {
     id: "trezor",
     name: "Trezor Safe 5",
     type: "Hardware",
