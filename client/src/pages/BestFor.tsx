@@ -172,7 +172,7 @@ export default function BestFor() {
           subtitle={t("bf.shortlistSubtitle")}
         />
 
-        <section className="my-12 max-w-3xl">
+        <section className="my-20 max-w-3xl">
           <h2 className="text-2xl font-bold font-display mb-4">{t("bf.whyHeading")}</h2>
           <div
             className="text-muted-foreground leading-relaxed space-y-4"
@@ -180,7 +180,7 @@ export default function BestFor() {
           />
         </section>
 
-        <section className="my-12 grid md:grid-cols-3 gap-4">
+        <section className="my-20 grid md:grid-cols-3 gap-4">
           <Link
             href="/best-xrp-wallets"
             className="p-4 rounded-xl border border-white/10 bg-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all"
@@ -210,11 +210,11 @@ export default function BestFor() {
           </Link>
         </section>
 
-        <section className="my-16">
+        <section className="my-24">
           <EmailCaptureBlock source={`best-for-${slug}`} />
         </section>
 
-        <section className="my-16">
+        <section className="my-24">
           <h2 className="text-3xl font-bold font-display mb-6">{t("bf.faqHeading")}</h2>
           <FAQAccordion items={faqs} />
         </section>

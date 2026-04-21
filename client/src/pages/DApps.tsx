@@ -518,7 +518,7 @@ export default function DApps() {
 
         <FastCompareTable rows={dappCompareRows} />
 
-        <section className="my-16">
+        <section className="my-24">
           <h2 className="text-3xl font-bold font-display mb-2">Our top XRPL dApp picks</h2>
           <p className="text-muted-foreground mb-8">
             The apps we&apos;d actually tell a friend to start with — each paired with the wallet that works best for it.
@@ -569,7 +569,7 @@ export default function DApps() {
           </div>
         </section>
 
-        <section className="my-16 grid md:grid-cols-2 gap-6">
+        <section className="my-24 grid md:grid-cols-2 gap-6">
           <BestForCallout
             label="Need a wallet first?"
             href="/best-xrp-wallets"
@@ -582,7 +582,7 @@ export default function DApps() {
           />
         </section>
 
-        <section className="my-16 -mx-4">
+        <section className="my-24 -mx-4">
           <div className="px-4">
             <h2 className="text-3xl font-bold font-display mb-2">Every XRPL dApp worth knowing</h2>
             <p className="text-muted-foreground mb-8">
@@ -656,7 +656,7 @@ export default function DApps() {
           </div>
         </section>
 
-        <section className="my-16">
+        <section className="my-24">
           <EmailCaptureBlock
             source="best-xrpl-defi"
             title="Get the XRPL DeFi starter kit"
@@ -670,12 +670,12 @@ export default function DApps() {
           />
         </section>
 
-        <section className="my-16">
+        <section className="my-24">
           <h2 className="text-3xl font-bold font-display mb-6">XRPL DeFi & dApps FAQ</h2>
           <FAQAccordion items={faqs} />
         </section>
 
-        <section className="my-16 grid md:grid-cols-2 gap-6">
+        <section className="my-24 grid md:grid-cols-2 gap-6">
           <Link
             href="/"
             className="p-6 rounded-2xl border border-white/10 bg-card/40 hover:border-primary/40 transition-all group"
