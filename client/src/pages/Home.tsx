@@ -689,7 +689,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-card/40 backdrop-blur-md p-6 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]">
+              <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-card/40 backdrop-blur-md p-8 md:p-10 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 
                 <div className="flex flex-col md:flex-row items-start gap-6 relative z-10">
@@ -825,7 +825,7 @@ export default function Home() {
                 className="group relative"
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-2xl -z-10" />
-                <div className="p-8 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] h-full flex flex-col">
+                <div className="p-10 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] h-full flex flex-col">
                   <div className="flex justify-between items-start mb-6">
                     <div className="w-14 h-14 rounded-xl overflow-hidden">
                       <img src={exchange.logo} alt={`${exchange.name} logo`} className="w-full h-full object-cover" width={56} height={56} loading="lazy" />
@@ -869,7 +869,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-16 p-8 rounded-2xl border border-white/10 bg-gradient-to-r from-card/50 to-transparent flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="mt-16 p-10 rounded-2xl border border-white/10 bg-gradient-to-r from-card/50 to-transparent flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
               <h3 className="text-xl font-bold font-display mb-2">{t("exchanges.partnerTitle")}</h3>
               <p className="text-muted-foreground">{t("exchanges.partnerDesc")}</p>
@@ -995,35 +995,35 @@ export default function Home() {
 
       {/* Why trust us */}
       <section className="container mx-auto px-4 pt-20 pb-12">
-        <div className="max-w-5xl mx-auto rounded-2xl border border-white/10 bg-card/30 p-8 md:p-10">
+        <div className="max-w-5xl mx-auto rounded-2xl border border-white/10 bg-card/30 p-10 md:p-14">
           <div className="text-xs uppercase tracking-widest text-primary font-display mb-3">{t("home.whyTrust.eyebrow")}</div>
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">{t("home.whyTrust.title")}</h2>
           <p className="text-muted-foreground leading-relaxed mb-6 max-w-3xl">
             {t("home.whyTrust.body")}
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="flex items-start gap-3 p-5 rounded-xl bg-background/40 border border-white/10">
+            <div className="flex items-start gap-3 p-6 rounded-xl bg-background/40 border border-white/10">
               <ShieldIcon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <div className="text-sm font-bold">{t("home.whyTrust.point1.title")}</div>
                 <div className="text-xs text-muted-foreground">{t("home.whyTrust.point1.body")}</div>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-5 rounded-xl bg-background/40 border border-white/10">
+            <div className="flex items-start gap-3 p-6 rounded-xl bg-background/40 border border-white/10">
               <BookOpen className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <div className="text-sm font-bold">{t("home.whyTrust.point2.title")}</div>
                 <div className="text-xs text-muted-foreground">{t("home.whyTrust.point2.body")}</div>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-5 rounded-xl bg-background/40 border border-white/10">
+            <div className="flex items-start gap-3 p-6 rounded-xl bg-background/40 border border-white/10">
               <Coins className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <div className="text-sm font-bold">{t("home.whyTrust.point3.title")}</div>
                 <div className="text-xs text-muted-foreground">{t("home.whyTrust.point3.body")}</div>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-5 rounded-xl bg-background/40 border border-white/10">
+            <div className="flex items-start gap-3 p-6 rounded-xl bg-background/40 border border-white/10">
               <ZapIcon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <div className="text-sm font-bold">{t("home.whyTrust.point4.title")}</div>
