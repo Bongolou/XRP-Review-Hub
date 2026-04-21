@@ -824,8 +824,7 @@ export default function WalletReview() {
     );
   }
 
-  const topTrafficSlugs = ["xaman", "ledger", "tangem", "trezor"];
-  const showStickyCta = !!slug && topTrafficSlugs.includes(slug);
+  const showStickyCta = !!slug;
 
   return (
     <Layout>

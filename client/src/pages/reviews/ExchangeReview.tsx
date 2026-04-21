@@ -605,8 +605,7 @@ export default function ExchangeReview() {
     );
   }
 
-  const topTrafficSlugs = ["uphold", "bitrue"];
-  const showStickyCta = !!slug && topTrafficSlugs.includes(slug);
+  const showStickyCta = !!slug;
 
   return (
     <Layout>
