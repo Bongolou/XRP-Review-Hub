@@ -89,12 +89,6 @@ export default function GettingStarted() {
                   <div className="text-sm text-muted-foreground">{t("gettingStarted.step1.krakenDesc")}</div>
                 </a>
               </div>
-              <div className="flex items-start gap-2 p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
-                <AlertTriangle className="h-5 w-5 text-yellow-500 shrink-0 mt-0.5" />
-                <p className="text-sm text-yellow-200/80">
-                  {t("gettingStarted.step1.warning")}
-                </p>
-              </div>
             </div>
           </div>
 
