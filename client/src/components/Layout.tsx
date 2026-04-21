@@ -53,7 +53,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         alt="" 
       />
       
-      <div className="bg-primary/10 border-b border-primary/20 py-1.5 relative z-[60]">
+      <div className="bg-primary/10 border-b border-primary/20 py-2 relative z-[60]">
         <div className="container mx-auto px-4 flex items-center justify-between overflow-visible">
           <PriceTicker />
           <div className="flex items-center gap-2 overflow-visible">
@@ -112,7 +112,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="bg-card border-l border-white/10">
-              <nav className="flex flex-col gap-4 mt-10">
+              <nav className="flex flex-col gap-5 mt-10">
                 <Link href="/" className="text-lg font-medium hover:text-primary">{t("nav.home")}</Link>
                 <Link href="/best-xrp-wallets" className="text-lg font-medium hover:text-primary">{t("nav.bestXrpWallets")}</Link>
                 <Link href="/best-for/beginners" className="text-base text-muted-foreground hover:text-primary pl-4">— {t("nav.bestForBeginnersShort")}</Link>
@@ -133,14 +133,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main className="flex-1 relative" style={{ paddingTop: '6rem' }}>
+      <main className="flex-1 relative" style={{ paddingTop: '7rem' }}>
         {children}
       </main>
 
-      <footer className="border-t border-white/10 bg-card/30 backdrop-blur-sm" style={{ marginTop: '8rem' }}>
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-            <div className="col-span-2 md:col-span-1 space-y-4">
+      <footer className="border-t border-white/10 bg-card/30 backdrop-blur-sm" style={{ marginTop: '10rem' }}>
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-12">
+            <div className="col-span-2 md:col-span-1 space-y-5">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl overflow-hidden shadow-[0_0_20px_-3px_rgba(59,130,246,0.6)] border-2 border-primary/40 bg-gradient-to-br from-primary/20 to-transparent">
                   <img src={siteLogo} alt="All Things XRPL" className="w-full h-full object-cover scale-150" />
@@ -154,8 +154,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
             
             <div>
-              <h3 className="font-display font-bold mb-4">{t("nav.wallets")}</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
+              <h3 className="font-display font-bold mb-5">{t("nav.wallets")}</h3>
+              <ul className="space-y-4 text-sm text-muted-foreground">
                 <li><Link href="/wallet/xaman" className="hover:text-primary transition-colors inline-block py-1">Xaman {t("common.review")}</Link></li>
                 <li><Link href="/wallet/tangem" className="hover:text-primary transition-colors inline-block py-1">Tangem {t("common.review")}</Link></li>
                 <li><Link href="/wallet/ledger" className="hover:text-primary transition-colors inline-block py-1">Ledger {t("common.review")}</Link></li>
@@ -167,8 +167,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="font-display font-bold mb-4">{t("nav.exchanges")}</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
+              <h3 className="font-display font-bold mb-5">{t("nav.exchanges")}</h3>
+              <ul className="space-y-4 text-sm text-muted-foreground">
                 <li><Link href="/exchange/uphold" className="hover:text-primary transition-colors inline-block py-1">Uphold {t("common.review")}</Link></li>
                 <li><Link href="/exchange/coinbase" className="hover:text-primary transition-colors inline-block py-1">Coinbase {t("common.review")}</Link></li>
                 <li><Link href="/exchange/kraken" className="hover:text-primary transition-colors inline-block py-1">Kraken {t("common.review")}</Link></li>
@@ -179,8 +179,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="font-display font-bold mb-4">{t("footer.bestForHeading")}</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
+              <h3 className="font-display font-bold mb-5">{t("footer.bestForHeading")}</h3>
+              <ul className="space-y-4 text-sm text-muted-foreground">
                 <li><Link href="/best-xrp-wallets" className="hover:text-primary transition-colors inline-block py-1">{t("footer.bestXrpWallets")}</Link></li>
                 <li><Link href="/best-for/beginners" className="hover:text-primary transition-colors inline-block py-1">{t("footer.bestForBeginners")}</Link></li>
                 <li><Link href="/best-for/hardware" className="hover:text-primary transition-colors inline-block py-1">{t("footer.bestForHardware")}</Link></li>
@@ -195,8 +195,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h3 className="font-display font-bold mb-4">{t("footer.company")}</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
+              <h3 className="font-display font-bold mb-5">{t("footer.company")}</h3>
+              <ul className="space-y-4 text-sm text-muted-foreground">
                 <li><Link href="/about" className="hover:text-primary transition-colors inline-block py-1">{t("nav.about")}</Link></li>
                 <li><Link href="/contact" className="hover:text-primary transition-colors inline-block py-1">{t("nav.contact")}</Link></li>
                 <li><Link href="/disclosure" className="hover:text-primary transition-colors inline-block py-1">{t("common.affiliate")}</Link></li>
@@ -206,7 +206,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           
-          <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+          <div className="mt-16 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
             <p>&copy; {new Date().getFullYear()} All Things XRPL. {t("footer.rights")}</p>
             <p>{t("footer.disclaimer")}</p>
           </div>

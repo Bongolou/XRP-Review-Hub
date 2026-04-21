@@ -58,8 +58,8 @@ export function TrustStrip() {
   ];
   return (
     <div className="border-y border-white/10 bg-card/20 backdrop-blur-sm">
-      <div className="container mx-auto px-4 py-5">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="container mx-auto px-4 py-8 md:py-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {items.map((it) => {
             const Icon = it.icon;
             return (
@@ -152,12 +152,12 @@ export function UseCaseSelector({
   const resolvedTitle = title ?? t("useCase.title");
   const resolvedSubtitle = subtitle ?? t("useCase.subtitle");
   return (
-    <section className="container mx-auto px-4 py-16" data-testid="section-use-case-selector">
-      <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-4xl font-bold font-display mb-3">{resolvedTitle}</h2>
+    <section className="container mx-auto px-4 py-20 md:py-24" data-testid="section-use-case-selector">
+      <div className="text-center mb-12 md:mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">{resolvedTitle}</h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{resolvedSubtitle}</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
         {cases.map((c) => {
           const Icon = c.icon;
           return (
@@ -167,16 +167,16 @@ export function UseCaseSelector({
               className="group block"
               data-testid={`usecase-${c.id}`}
             >
-              <div className="h-full p-5 rounded-2xl border border-white/10 bg-card/40 backdrop-blur-md hover:border-primary/50 transition-all duration-300 flex flex-col hover:-translate-y-0.5">
+              <div className="h-full p-6 md:p-7 rounded-2xl border border-white/10 bg-card/40 backdrop-blur-md hover:border-primary/50 transition-all duration-300 flex flex-col hover:-translate-y-0.5">
                 <div
-                  className={`bg-gradient-to-br ${c.accent} w-11 h-11 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                  className={`bg-gradient-to-br ${c.accent} w-11 h-11 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}
                 >
                   <Icon className="h-5 w-5 text-white" />
                 </div>
-                <h3 className="font-display font-bold text-lg mb-2 group-hover:text-primary transition-colors leading-tight">
+                <h3 className="font-display font-bold text-lg mb-3 group-hover:text-primary transition-colors leading-tight">
                   {c.title}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4 flex-1">{c.description}</p>
+                <p className="text-sm text-muted-foreground mb-5 flex-1 leading-relaxed">{c.description}</p>
                 <span className="inline-flex items-center gap-1 text-sm text-primary font-medium">
                   {c.cta} <ArrowRight className="h-3.5 w-3.5" />
                 </span>
@@ -205,9 +205,9 @@ export function FastCompareTable({
   const resolvedSubtitle = subtitle ?? t("fastCompare.subtitle");
   const resolvedCta = ctaLabel ?? t("fastCompare.get");
   return (
-    <section className="container mx-auto px-4 py-16" data-testid="section-fast-compare">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold font-display mb-3">{resolvedTitle}</h2>
+    <section className="container mx-auto px-4 py-20 md:py-24" data-testid="section-fast-compare">
+      <div className="text-center mb-12 md:mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">{resolvedTitle}</h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{resolvedSubtitle}</p>
       </div>
 
@@ -216,12 +216,12 @@ export function FastCompareTable({
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-xs uppercase tracking-wider text-muted-foreground border-b border-white/10">
-              <th className="px-5 py-4 font-semibold">{t("fastCompare.colWallet") || "Wallet"}</th>
-              <th className="px-5 py-4 font-semibold">{t("fastCompare.colType") || "Type"}</th>
-              <th className="px-5 py-4 font-semibold">{t("fastCompare.colPrice") || "Price"}</th>
-              <th className="px-5 py-4 font-semibold">{t("fastCompare.colBestFor") || "Best for"}</th>
-              <th className="px-5 py-4 font-semibold">{t("fastCompare.colRating") || "Score"}</th>
-              <th className="px-5 py-4 font-semibold text-right">{t("fastCompare.colAction") || "Action"}</th>
+              <th className="px-6 py-5 font-semibold">{t("fastCompare.colWallet") || "Wallet"}</th>
+              <th className="px-6 py-5 font-semibold">{t("fastCompare.colType") || "Type"}</th>
+              <th className="px-6 py-5 font-semibold">{t("fastCompare.colPrice") || "Price"}</th>
+              <th className="px-6 py-5 font-semibold">{t("fastCompare.colBestFor") || "Best for"}</th>
+              <th className="px-6 py-5 font-semibold">{t("fastCompare.colRating") || "Score"}</th>
+              <th className="px-6 py-5 font-semibold text-right">{t("fastCompare.colAction") || "Action"}</th>
             </tr>
           </thead>
           <tbody>
@@ -233,7 +233,7 @@ export function FastCompareTable({
                 }`}
                 data-testid={`compare-row-${r.id}`}
               >
-                <td className="px-5 py-4">
+                <td className="px-6 py-5">
                   <div className="flex items-center gap-3">
                     <span className="font-display font-bold text-white">{r.name}</span>
                     {r.highlight && (
@@ -243,11 +243,11 @@ export function FastCompareTable({
                     )}
                   </div>
                 </td>
-                <td className="px-5 py-4 text-muted-foreground">{r.type}</td>
-                <td className="px-5 py-4 text-muted-foreground">{r.price}</td>
-                <td className="px-5 py-4 text-muted-foreground">{r.bestFor}</td>
-                <td className="px-5 py-4 font-display font-bold text-primary">{r.rating}</td>
-                <td className="px-5 py-4">
+                <td className="px-6 py-5 text-muted-foreground">{r.type}</td>
+                <td className="px-6 py-5 text-muted-foreground">{r.price}</td>
+                <td className="px-6 py-5 text-muted-foreground">{r.bestFor}</td>
+                <td className="px-6 py-5 font-display font-bold text-primary">{r.rating}</td>
+                <td className="px-6 py-5">
                   <div className="flex items-center justify-end gap-2">
                     {r.reviewSlug && (
                       <Link href={`/wallet/${r.reviewSlug}`}>
@@ -277,16 +277,16 @@ export function FastCompareTable({
       </div>
 
       {/* Mobile cards */}
-      <div className="md:hidden space-y-3">
+      <div className="md:hidden space-y-4">
         {rows.map((r) => (
           <div
             key={r.id}
-            className={`p-4 rounded-xl border bg-card/40 backdrop-blur-md ${
+            className={`p-5 rounded-xl border bg-card/40 backdrop-blur-md ${
               r.highlight ? "border-primary/40" : "border-white/10"
             }`}
             data-testid={`compare-card-${r.id}`}
           >
-            <div className="flex items-start justify-between mb-2">
+            <div className="flex items-start justify-between mb-3">
               <div>
                 <div className="font-display font-bold">{r.name}</div>
                 <div className="text-xs text-muted-foreground">
@@ -300,8 +300,8 @@ export function FastCompareTable({
                 </div>
               </div>
             </div>
-            <p className="text-xs text-muted-foreground mb-3">{t("fastCompare.bestForLabel") || "Best for"}: {r.bestFor}</p>
-            <div className="flex gap-2">
+            <p className="text-xs text-muted-foreground mb-4">{t("fastCompare.bestForLabel") || "Best for"}: {r.bestFor}</p>
+            <div className="flex gap-3">
               {r.reviewSlug && (
                 <Link href={`/wallet/${r.reviewSlug}`} className="flex-1">
                   <Button variant="outline" className="w-full border-white/10 text-xs h-9">
@@ -353,10 +353,10 @@ export function VerdictBox({
   const tVerdict = (k: string) => tT(`verdict.${k}`);
   return (
     <div
-      className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent p-6 md:p-8"
+      className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent p-7 md:p-10"
       data-testid="verdict-box"
     >
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-3 mb-5">
         <div className="w-10 h-10 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
           <Trophy className="h-5 w-5 text-primary" />
         </div>
@@ -368,16 +368,16 @@ export function VerdictBox({
         </div>
       </div>
 
-      <p className="text-muted-foreground leading-relaxed mb-6">{pickReason}</p>
+      <p className="text-muted-foreground leading-relaxed mb-8">{pickReason}</p>
 
       {(pros || cons) && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {pros && (
-            <div className="rounded-xl bg-white/5 border border-white/10 p-4">
-              <div className="text-xs uppercase tracking-widest text-green-400 font-display mb-3">
+            <div className="rounded-xl bg-white/5 border border-white/10 p-5 md:p-6">
+              <div className="text-xs uppercase tracking-widest text-green-400 font-display mb-4">
                 {tVerdict("whyItWins")}
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {pros.map((p, i) => (
                   <li key={i} className="flex gap-2 text-sm">
                     <Check className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
@@ -388,11 +388,11 @@ export function VerdictBox({
             </div>
           )}
           {cons && (
-            <div className="rounded-xl bg-white/5 border border-white/10 p-4">
-              <div className="text-xs uppercase tracking-widest text-orange-400 font-display mb-3">
+            <div className="rounded-xl bg-white/5 border border-white/10 p-5 md:p-6">
+              <div className="text-xs uppercase tracking-widest text-orange-400 font-display mb-4">
                 {tVerdict("watchOutFor")}
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {cons.map((p, i) => (
                   <li key={i} className="flex gap-2 text-sm">
                     <X className="h-4 w-4 text-orange-400 flex-shrink-0 mt-0.5" />
@@ -425,11 +425,11 @@ export function VerdictBox({
       </div>
 
       {runnerUp && (
-        <div className="mt-6 pt-6 border-t border-white/10">
-          <div className="text-xs uppercase tracking-widest text-muted-foreground font-display mb-2">
+        <div className="mt-8 pt-8 border-t border-white/10">
+          <div className="text-xs uppercase tracking-widest text-muted-foreground font-display mb-3">
             {tVerdict("alsoGreat")}
           </div>
-          <p className="text-sm text-muted-foreground mb-3">
+          <p className="text-sm text-muted-foreground mb-4">
             <span className="font-bold text-white">{runnerUp.name}</span> — {runnerUp.reason}
           </p>
           <Link
@@ -456,7 +456,7 @@ export function BestForCallout({
   return (
     <Link
       href={href}
-      className="block p-4 rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 hover:bg-primary/5 transition-all group"
+      className="block p-5 rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 hover:bg-primary/5 transition-all group"
       data-testid={`callout-${label.toLowerCase().replace(/\s+/g, "-")}`}
     >
       <div className="flex items-center justify-between">
@@ -488,10 +488,10 @@ export function CTABlock({
   secondaryHref?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-primary/15 to-secondary/15 p-6 md:p-8 text-center">
-      <h3 className="text-xl md:text-2xl font-bold font-display mb-2">{title}</h3>
+    <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-primary/15 to-secondary/15 p-8 md:p-10 text-center">
+      <h3 className="text-xl md:text-2xl font-bold font-display mb-3">{title}</h3>
       {description && (
-        <p className="text-muted-foreground mb-6 max-w-xl mx-auto">{description}</p>
+        <p className="text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">{description}</p>
       )}
       <div className="flex flex-wrap justify-center gap-3">
         <a href={primaryUrl} target="_blank" rel="noopener noreferrer">
@@ -518,7 +518,7 @@ export function FAQAccordion({
 }) {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <div className="space-y-3" data-testid="faq-accordion">
+    <div className="space-y-4" data-testid="faq-accordion">
       {items.map((item, idx) => {
         const isOpen = open === idx;
         const panelId = `faq-panel-${idx}`;
@@ -533,7 +533,7 @@ export function FAQAccordion({
               onClick={() => setOpen(isOpen ? null : idx)}
               aria-expanded={isOpen}
               aria-controls={panelId}
-              className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
+              className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
               data-testid={`faq-question-${idx}`}
             >
               <span className="font-display font-bold pr-4">{item.q}</span>
@@ -548,7 +548,7 @@ export function FAQAccordion({
                 id={panelId}
                 role="region"
                 aria-labelledby={buttonId}
-                className="px-5 pb-5 text-muted-foreground leading-relaxed text-sm"
+                className="px-6 pb-6 pt-1 text-muted-foreground leading-relaxed text-sm"
                 data-testid={`faq-answer-${idx}`}
               >
                 {item.a}
@@ -627,19 +627,19 @@ export function EmailCaptureBlock({
 
   return (
     <div
-      className="rounded-2xl border border-secondary/30 bg-gradient-to-br from-secondary/15 via-card/40 to-transparent p-6 md:p-8"
+      className="rounded-2xl border border-secondary/30 bg-gradient-to-br from-secondary/15 via-card/40 to-transparent p-7 md:p-10"
       data-testid={`email-capture-${source}`}
     >
-      <div className="grid md:grid-cols-2 gap-6 items-center">
+      <div className="grid md:grid-cols-2 gap-8 items-center">
         <div>
           <div className="inline-flex items-center gap-1 text-xs uppercase tracking-widest text-secondary font-display mb-3">
             <Sparkles className="h-3 w-3" /> {t("emailCapture.badge") || "Free download"}
           </div>
-          <h3 className="text-2xl font-bold font-display mb-3">{resolvedTitle}</h3>
+          <h3 className="text-2xl font-bold font-display mb-4">{resolvedTitle}</h3>
           {description && (
-            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{description}</p>
+            <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{description}</p>
           )}
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {resolvedBullets.map((b, i) => (
               <li key={i} className="flex gap-2 text-sm text-muted-foreground">
                 <Check className="h-4 w-4 text-secondary flex-shrink-0 mt-0.5" />

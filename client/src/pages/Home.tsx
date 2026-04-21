@@ -412,9 +412,9 @@ function LatestNewsPreview({ t }: { t: (key: string) => string }) {
       </div>
 
       {isLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-card/30 rounded-xl border border-white/10 p-5 animate-pulse">
+            <div key={i} className="bg-card/30 rounded-xl border border-white/10 p-6 animate-pulse">
               <div className="h-3 bg-white/10 rounded w-20 mb-3"></div>
               <div className="h-4 bg-white/10 rounded w-full mb-2"></div>
               <div className="h-4 bg-white/10 rounded w-3/4"></div>
@@ -423,7 +423,7 @@ function LatestNewsPreview({ t }: { t: (key: string) => string }) {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
             {news.map((item, idx) => (
               <motion.a
                 key={item.link}
@@ -437,7 +437,7 @@ function LatestNewsPreview({ t }: { t: (key: string) => string }) {
                 className="group block"
                 data-testid={`card-home-news-${idx}`}
               >
-                <div className="bg-card/30 rounded-xl border border-white/10 hover:border-primary/50 transition-all duration-300 p-5 h-full flex flex-col">
+                <div className="bg-card/30 rounded-xl border border-white/10 hover:border-primary/50 transition-all duration-300 p-6 h-full flex flex-col">
                   <div className="flex items-center justify-between mb-2.5">
                     <span className="text-xs text-primary font-medium">{item.source}</span>
                     {item.pubDate && (
@@ -917,29 +917,29 @@ export default function Home() {
           <p className="text-muted-foreground leading-relaxed mb-6 max-w-3xl">
             {t("home.whyTrust.body")}
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="flex items-start gap-3 p-4 rounded-xl bg-background/40 border border-white/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="flex items-start gap-3 p-5 rounded-xl bg-background/40 border border-white/10">
               <ShieldIcon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <div className="text-sm font-bold">{t("home.whyTrust.point1.title")}</div>
                 <div className="text-xs text-muted-foreground">{t("home.whyTrust.point1.body")}</div>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-4 rounded-xl bg-background/40 border border-white/10">
+            <div className="flex items-start gap-3 p-5 rounded-xl bg-background/40 border border-white/10">
               <BookOpen className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <div className="text-sm font-bold">{t("home.whyTrust.point2.title")}</div>
                 <div className="text-xs text-muted-foreground">{t("home.whyTrust.point2.body")}</div>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-4 rounded-xl bg-background/40 border border-white/10">
+            <div className="flex items-start gap-3 p-5 rounded-xl bg-background/40 border border-white/10">
               <Coins className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <div className="text-sm font-bold">{t("home.whyTrust.point3.title")}</div>
                 <div className="text-xs text-muted-foreground">{t("home.whyTrust.point3.body")}</div>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-4 rounded-xl bg-background/40 border border-white/10">
+            <div className="flex items-start gap-3 p-5 rounded-xl bg-background/40 border border-white/10">
               <ZapIcon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
               <div>
                 <div className="text-sm font-bold">{t("home.whyTrust.point4.title")}</div>
