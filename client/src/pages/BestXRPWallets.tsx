@@ -186,7 +186,7 @@ export default function BestXRPWallets() {
           </div>
         </section>
 
-        <section className="my-16 grid md:grid-cols-2 gap-6">
+        <section className="mt-24 mb-20 grid md:grid-cols-2 gap-6">
           <Link
             href="/best-for/beginners"
             className="p-6 rounded-2xl border border-white/10 bg-card/40 hover:border-primary/40 transition-all group"
@@ -217,12 +217,12 @@ export default function BestXRPWallets() {
           </Link>
         </section>
 
-        <section className="my-16">
+        <section className="my-20">
           <EmailCaptureBlock source="best-xrp-wallets" />
         </section>
 
-        <section className="my-16">
-          <h2 className="text-3xl font-bold font-display mb-6">{t("bxw.faqHeading")}</h2>
+        <section className="mt-24 mb-32">
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-8">{t("bxw.faqHeading")}</h2>
           <FAQAccordion items={faqs} />
         </section>
       </div>
