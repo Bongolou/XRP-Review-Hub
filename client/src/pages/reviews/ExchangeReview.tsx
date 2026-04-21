@@ -2,6 +2,7 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { VerdictBox, BestForCallout, LastUpdated } from "@/components/conversion";
 import { 
   Star, 
   Shield, 
@@ -633,9 +634,11 @@ export default function ExchangeReview() {
             </div>
           )}
 
-          <p className="text-lg text-muted-foreground leading-relaxed mb-10">
+          <p className="text-lg text-muted-foreground leading-relaxed mb-6">
             {t(exchange.descriptionKey)}
           </p>
+
+          <div className="mb-6"><LastUpdated date="April 2026" /></div>
 
           <a 
             href={exchange.affiliateLink}
@@ -646,6 +649,31 @@ export default function ExchangeReview() {
           >
             {t("exchangeReview.signUp")} {exchange.name} <ExternalLink className="h-4 w-4" />
           </a>
+        </div>
+
+        {/* Editor's verdict */}
+        <div className="mb-8">
+          <VerdictBox
+            pickName={exchange.name}
+            pickReason={t(exchange.bestForKey)}
+            affiliateUrl={exchange.affiliateLink}
+            pros={exchange.proKeys.slice(0, 3).map((k) => t(k))}
+            cons={exchange.conKeys.slice(0, 2).map((k) => t(k))}
+          />
+        </div>
+
+        {/* Cross-link to wallet roundup + use-case guides */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10">
+          <BestForCallout
+            label="Pair with a wallet"
+            href="/best-xrp-wallets"
+            description="Move XRP off-exchange — see our top wallet picks."
+          />
+          <BestForCallout
+            label="Best for cold storage"
+            href="/best-for/cold-storage"
+            description="The Ledger + Xaman setup we recommend."
+          />
         </div>
 
         {exchange.review && exchange.review.length > 0 && (

@@ -2,6 +2,7 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { VerdictBox, BestForCallout, LastUpdated } from "@/components/conversion";
 import { 
   Star, 
   Shield, 
@@ -776,9 +777,11 @@ export default function WalletReview() {
             ))}
           </div>
 
-          <p className="text-lg text-muted-foreground leading-relaxed mb-10">
+          <p className="text-lg text-muted-foreground leading-relaxed mb-6">
             {t(wallet.descriptionKey)}
           </p>
+
+          <div className="mb-6"><LastUpdated date="April 2026" /></div>
 
           <a 
             href={wallet.affiliateLink}
@@ -789,6 +792,32 @@ export default function WalletReview() {
           >
             {t("walletReview.get")} {wallet.name} <ExternalLink className="h-4 w-4" />
           </a>
+        </div>
+
+        {/* Editor's verdict — above the fold for conversion */}
+        <div className="mb-8">
+          <VerdictBox
+            pickName={wallet.name}
+            pickReason={t(wallet.bestForKey)}
+            affiliateUrl={wallet.affiliateLink}
+            reviewSlug={undefined}
+            pros={wallet.proKeys.slice(0, 3).map((k) => t(k))}
+            cons={wallet.conKeys.slice(0, 2).map((k) => t(k))}
+          />
+        </div>
+
+        {/* Cross-link to roundup + best-for guides */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10">
+          <BestForCallout
+            label="Compare all XRP wallets"
+            href="/best-xrp-wallets"
+            description="Our full ranked shortlist with picks, runner-ups, and verdicts."
+          />
+          <BestForCallout
+            label="Find your perfect setup"
+            href="/best-for/beginners"
+            description="Browse our best-for guides by use case."
+          />
         </div>
 
         {wallet.review && wallet.review.length > 0 && (

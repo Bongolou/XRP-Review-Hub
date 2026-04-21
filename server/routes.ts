@@ -233,14 +233,18 @@ ${blogPosts.map(post => `    <item>
   app.post("/api/subscribe", async (req, res) => {
     try {
       const data = insertSubscriberSchema.parse(req.body);
-      
-      // Check if email already exists
+
+      // Check if email already exists — log re-engagement source if present
       const existing = await storage.getSubscriberByEmail(data.email);
       if (existing) {
-        return res.status(400).json({ error: "Email already subscribed" });
+        if (data.source || data.leadMagnet) {
+          console.log(`[Subscribe] Existing subscriber re-engaged: ${data.email} via source=${data.source || "n/a"} magnet=${data.leadMagnet || "n/a"}`);
+        }
+        return res.status(200).json({ success: true, message: "You're already subscribed — thanks!" });
       }
-      
+
       const subscriber = await storage.createSubscriber(data);
+      console.log(`[Subscribe] New subscriber: ${data.email} source=${data.source || "n/a"} magnet=${data.leadMagnet || "n/a"}`);
       res.status(201).json({ success: true, message: "Successfully subscribed!" });
     } catch (error) {
       if (error instanceof z.ZodError) {

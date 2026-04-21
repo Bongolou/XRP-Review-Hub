@@ -6,6 +6,8 @@ import { z } from "zod";
 export const subscribers = pgTable("subscribers", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
+  source: text("source"),
+  leadMagnet: text("lead_magnet"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -20,6 +22,8 @@ export const contactSubmissions = pgTable("contact_submissions", {
 
 export const insertSubscriberSchema = createInsertSchema(subscribers).pick({
   email: true,
+  source: true,
+  leadMagnet: true,
 });
 
 export const insertContactSchema = createInsertSchema(contactSubmissions).pick({

@@ -2,6 +2,7 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import { Check, X, ExternalLink, ArrowLeft, Trophy, Shield, Zap, Users, AlertTriangle, ThumbsUp, ThumbsDown } from "lucide-react";
+import { VerdictBox, BestForCallout, LastUpdated } from "@/components/conversion";
 
 type ComparisonData = {
   wallet1: {
@@ -698,13 +699,61 @@ export default function Compare() {
           Back to Wallets
         </Link>
 
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h1 className="text-3xl md:text-5xl font-black font-display mb-4">
             {comparison.wallet1.name} vs {comparison.wallet2.name}
           </h1>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
             {comparison.metaDescription}
           </p>
+          <div className="mt-4 flex justify-center"><LastUpdated date="April 2026" /></div>
+        </div>
+
+        {/* Editor's verdict — at top of page for conversion */}
+        <div className="mb-10">
+          <VerdictBox
+            pickName={comparison.winner === "Both" ? `${comparison.wallet1.name} + ${comparison.wallet2.name}` : comparison.winner}
+            pickReason={comparison.winnerReason}
+            affiliateUrl={
+              comparison.winner === comparison.wallet2.name
+                ? comparison.wallet2.link
+                : comparison.wallet1.link
+            }
+            reviewSlug={
+              comparison.winner === comparison.wallet2.name
+                ? comparison.wallet2.slug
+                : comparison.wallet1.slug
+            }
+            runnerUp={{
+              name: comparison.winner === comparison.wallet2.name ? comparison.wallet1.name : comparison.wallet2.name,
+              reason: "Strong runner-up — see the full breakdown below.",
+              href: `/wallet/${comparison.winner === comparison.wallet2.name ? comparison.wallet1.slug : comparison.wallet2.slug}`,
+            }}
+            pros={comparison.wallet1Pros.slice(0, 3)}
+            cons={comparison.wallet2Cons.slice(0, 2)}
+          />
+        </div>
+
+        {/* Twin affiliate CTAs */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10">
+          <a
+            href={comparison.wallet1.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 h-12 rounded-lg bg-primary hover:bg-primary/90 text-white font-bold transition-colors"
+            data-testid={`button-cta-${comparison.wallet1.slug}`}
+          >
+            Get {comparison.wallet1.name} <ExternalLink className="h-4 w-4" />
+          </a>
+          <a
+            href={comparison.wallet2.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 h-12 rounded-lg bg-secondary hover:bg-secondary/90 text-white font-bold transition-colors"
+            data-testid={`button-cta-${comparison.wallet2.slug}`}
+          >
+            Get {comparison.wallet2.name} <ExternalLink className="h-4 w-4" />
+          </a>
         </div>
 
         {/* Introduction */}
@@ -712,6 +761,12 @@ export default function Compare() {
           <p className="text-lg leading-relaxed text-muted-foreground">
             {comparison.introduction}
           </p>
+        </div>
+
+        {/* Cross-link to roundups */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-12">
+          <BestForCallout label="See all top XRP wallets" href="/best-xrp-wallets" description="Our full ranked shortlist." />
+          <BestForCallout label="Browse use-case guides" href="/best-for/beginners" description="Find the right wallet by need." />
         </div>
 
         {/* Quick Verdict */}

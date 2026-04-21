@@ -43,8 +43,10 @@ import {
   UseCaseSelector,
   FastCompareTable,
   EmailCaptureBlock,
+  BestForCallout,
   type FastCompareRow,
 } from "@/components/conversion";
+import { Shield as ShieldIcon, BookOpen, Coins, Zap as ZapIcon } from "lucide-react";
 
 const homepageCompareRows: FastCompareRow[] = [
   {
@@ -87,6 +89,26 @@ const homepageCompareRows: FastCompareRow[] = [
     rating: "9.5",
     reviewSlug: "crossmark",
     affiliateUrl: "https://crossmark.io/?ref=allthingsxrpl",
+  },
+  {
+    id: "trezor",
+    name: "Trezor Safe 5",
+    type: "Hardware",
+    price: "$169",
+    bestFor: "Open-source hardware",
+    rating: "9.3",
+    reviewSlug: "trezor",
+    affiliateUrl: "https://trezor.io/?offer_id=133&aff_id=allthingsxrpl",
+  },
+  {
+    id: "ellipal",
+    name: "ELLIPAL Titan 2.0",
+    type: "Air-gapped hardware",
+    price: "$169",
+    bestFor: "Maximum isolation",
+    rating: "9.2",
+    reviewSlug: "ellipal",
+    affiliateUrl: "https://www.ellipal.com/?ref=allthingsxrpl",
   },
 ];
 
@@ -896,6 +918,63 @@ export default function Home() {
       </section>
 
       <div className="h-16" aria-hidden="true" />
+
+      {/* Why trust us */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="max-w-5xl mx-auto rounded-2xl border border-white/10 bg-card/30 p-8 md:p-10">
+          <div className="text-xs uppercase tracking-widest text-primary font-display mb-3">{t("home.whyTrust.eyebrow")}</div>
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">{t("home.whyTrust.title")}</h2>
+          <p className="text-muted-foreground leading-relaxed mb-6 max-w-3xl">
+            {t("home.whyTrust.body")}
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-background/40 border border-white/10">
+              <ShieldIcon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <div>
+                <div className="text-sm font-bold">{t("home.whyTrust.point1.title")}</div>
+                <div className="text-xs text-muted-foreground">{t("home.whyTrust.point1.body")}</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-background/40 border border-white/10">
+              <BookOpen className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <div>
+                <div className="text-sm font-bold">{t("home.whyTrust.point2.title")}</div>
+                <div className="text-xs text-muted-foreground">{t("home.whyTrust.point2.body")}</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-background/40 border border-white/10">
+              <Coins className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <div>
+                <div className="text-sm font-bold">{t("home.whyTrust.point3.title")}</div>
+                <div className="text-xs text-muted-foreground">{t("home.whyTrust.point3.body")}</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-background/40 border border-white/10">
+              <ZapIcon className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <div>
+                <div className="text-sm font-bold">{t("home.whyTrust.point4.title")}</div>
+                <div className="text-xs text-muted-foreground">{t("home.whyTrust.point4.body")}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Best-for guides + XRPL DeFi & tools entry block */}
+      <section className="container mx-auto px-4 pb-12">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold font-display mb-2">{t("home.guides.title")}</h2>
+          <p className="text-muted-foreground mb-6">{t("home.guides.subtitle")}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <BestForCallout label="Best for Beginners" href="/best-for/beginners" description="Free, friendly, fast to set up." />
+            <BestForCallout label="Best Hardware Wallets" href="/best-for/hardware" description="Cold-storage picks, ranked." />
+            <BestForCallout label="Best Cold-Storage Setup" href="/best-for/cold-storage" description="Ledger + Xaman blueprint." />
+            <BestForCallout label="Best for XRPL DeFi" href="/best-for/defi" description="DEX, AMMs, dApp browsing." />
+            <BestForCallout label="Safest Pick" href="/best-for/safest" description="If in doubt, start here." />
+            <BestForCallout label="XRPL DeFi & Tools" href="/dapps" description="Sologenic, AMMs, tokenization." />
+          </div>
+        </div>
+      </section>
 
       {/* Lead magnet email capture */}
       <section className="container mx-auto px-4 py-8">

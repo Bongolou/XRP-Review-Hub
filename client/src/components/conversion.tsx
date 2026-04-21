@@ -581,10 +581,10 @@ export function EmailCaptureBlock({
     if (!email) return;
     setStatus("loading");
     try {
-      const res = await fetch("https://formspree.io/f/mzdrkdre", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ email, source, _subject: `Lead Magnet: ${source}` }),
+        body: JSON.stringify({ email, source, leadMagnet: title }),
       });
       setStatus(res.ok ? "ok" : "err");
       if (res.ok) setEmail("");

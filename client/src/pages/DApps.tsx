@@ -18,6 +18,14 @@ import {
   Code
 } from "lucide-react";
 import { Link } from "wouter";
+import { VerdictBox, BestForCallout, EmailCaptureBlock, FastCompareTable, LastUpdated, type FastCompareRow } from "@/components/conversion";
+
+const dappCompareRows: FastCompareRow[] = [
+  { id: "magnetic", name: "Magnetic", type: "Yield optimizer", price: "Free", bestFor: "Passive XRPL yield", rating: "9.4", affiliateUrl: "https://www.magnetic.app/?ref=allthingsxrpl", highlight: true },
+  { id: "sologenic", name: "Sologenic", type: "Tokenized assets DEX", price: "Free", bestFor: "Trading tokenized stocks", rating: "9.2", affiliateUrl: "https://sologenic.com/?ref=allthingsxrpl" },
+  { id: "xpmarket", name: "XPMarket", type: "NFT & token marketplace", price: "Free", bestFor: "XRPL NFTs", rating: "9.0", affiliateUrl: "https://xpmarket.com/?ref=allthingsxrpl" },
+  { id: "orchestra", name: "Orchestra Finance", type: "Cross-chain DeFi hub", price: "Free", bestFor: "Bridging + multi-chain yield", rating: "8.8", affiliateUrl: "https://orchestra.finance/?ref=allthingsxrpl" },
+];
 
 const dapps = [
   {
@@ -262,14 +270,49 @@ export default function DApps() {
   return (
     <Layout>
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <Badge className="mb-4 bg-purple-500/20 text-purple-400 hover:bg-purple-500/30 border-purple-500/50">
-            Decentralized Applications
+            XRPL DeFi & Tools
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-black font-display mb-4">XRPL DApps</h1>
+          <h1 className="text-4xl md:text-5xl font-black font-display mb-4">Best XRPL DeFi & dApps in 2026</h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Explore the best decentralized applications built on the XRP Ledger. From DeFi yield opportunities to NFT marketplaces, discover the XRPL ecosystem.
+            We tested the leading XRPL DeFi protocols, NFT marketplaces, and developer tools to find the ones actually worth your time and capital.
           </p>
+          <div className="mt-4 flex justify-center"><LastUpdated date="April 2026" /></div>
+        </div>
+
+        {/* Editor's verdict for the dApp roundup */}
+        <div className="mb-10">
+          <VerdictBox
+            pickName="Magnetic"
+            pickReason="The most polished yield-optimizer on XRPL right now — real APYs, audited contracts, and a UI that hides the complexity."
+            affiliateUrl="https://www.magnetic.app/?ref=allthingsxrpl"
+            runnerUp={{
+              name: "Sologenic",
+              reason: "Best for trading tokenized real-world assets directly on the XRPL DEX.",
+              href: "https://sologenic.com/?ref=allthingsxrpl",
+            }}
+            pros={[
+              "Native XRPL — no bridges or wrapped tokens",
+              "Auto-compounding pools and clear APY breakdowns",
+              "Pairs cleanly with Xaman and Crossmark sign-in",
+            ]}
+            cons={[
+              "Smart-contract risk applies — never deposit more than you can lose",
+              "APYs vary with liquidity, not a fixed product",
+            ]}
+          />
+        </div>
+
+        {/* Wallet pairing callouts */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-12">
+          <BestForCallout label="You'll need a wallet first" href="/best-xrp-wallets" description="Start with Xaman or Crossmark to sign in." />
+          <BestForCallout label="Best for XRPL DeFi" href="/best-for/defi" description="Our DeFi-ready wallet picks." />
+        </div>
+
+        {/* Fast compare table */}
+        <div className="mb-16 -mx-4">
+          <FastCompareTable rows={dappCompareRows} />
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 mb-12">
