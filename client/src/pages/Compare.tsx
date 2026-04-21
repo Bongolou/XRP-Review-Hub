@@ -11,6 +11,7 @@ type ComparisonData = {
     type: string;
     price: string;
     link: string;
+    kind?: "wallet" | "exchange";
   };
   wallet2: {
     name: string;
@@ -18,6 +19,7 @@ type ComparisonData = {
     type: string;
     price: string;
     link: string;
+    kind?: "wallet" | "exchange";
   };
   metaDescription: string;
   introduction: string;
@@ -47,6 +49,11 @@ type ComparisonData = {
   }[];
   bottomLine: string;
 };
+
+
+function routeFor(entity: { kind?: "wallet" | "exchange"; slug: string }): string {
+  return `/${entity.kind ?? "wallet"}/${entity.slug}`;
+}
 
 const comparisons: Record<string, ComparisonData> = {
   "xaman-vs-ledger": {
@@ -506,6 +513,7 @@ const comparisons: Record<string, ComparisonData> = {
   "coinbase-vs-kraken": {
     wallet1: {
       name: "Coinbase",
+      kind: "exchange",
       slug: "coinbase",
       type: "Exchange",
       price: "Free to join",
@@ -513,6 +521,7 @@ const comparisons: Record<string, ComparisonData> = {
     },
     wallet2: {
       name: "Kraken",
+      kind: "exchange",
       slug: "kraken",
       type: "Exchange",
       price: "Free to join",
@@ -727,7 +736,7 @@ export default function Compare() {
             runnerUp={{
               name: comparison.winner === comparison.wallet2.name ? comparison.wallet1.name : comparison.wallet2.name,
               reason: "Strong runner-up — see the full breakdown below.",
-              href: `/wallet/${comparison.winner === comparison.wallet2.name ? comparison.wallet1.slug : comparison.wallet2.slug}`,
+              href: `${routeFor(comparison.winner === comparison.wallet2.name ? comparison.wallet1 : comparison.wallet2)}`,
             }}
             pros={comparison.wallet1Pros.slice(0, 3)}
             cons={comparison.wallet2Cons.slice(0, 2)}
@@ -965,7 +974,7 @@ export default function Compare() {
                   Get {comparison.wallet1.name} <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </a>
-              <Link href={`/wallet/${comparison.wallet1.slug}`}>
+              <Link href={routeFor(comparison.wallet1)}>
                 <Button variant="outline" className="w-full">Read Full Review</Button>
               </Link>
             </div>
@@ -980,7 +989,7 @@ export default function Compare() {
                   Get {comparison.wallet2.name} <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </a>
-              <Link href={`/wallet/${comparison.wallet2.slug}`}>
+              <Link href={routeFor(comparison.wallet2)}>
                 <Button variant="outline" className="w-full">Read Full Review</Button>
               </Link>
             </div>

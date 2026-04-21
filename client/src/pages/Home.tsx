@@ -966,12 +966,12 @@ export default function Home() {
           <h2 className="text-2xl md:text-3xl font-bold font-display mb-2">{t("home.guides.title")}</h2>
           <p className="text-muted-foreground mb-6">{t("home.guides.subtitle")}</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <BestForCallout label="Best for Beginners" href="/best-for/beginners" description="Free, friendly, fast to set up." />
-            <BestForCallout label="Best Hardware Wallets" href="/best-for/hardware" description="Cold-storage picks, ranked." />
-            <BestForCallout label="Best Cold-Storage Setup" href="/best-for/cold-storage" description="Ledger + Xaman blueprint." />
-            <BestForCallout label="Best for XRPL DeFi" href="/best-for/defi" description="DEX, AMMs, dApp browsing." />
-            <BestForCallout label="Safest Pick" href="/best-for/safest" description="If in doubt, start here." />
-            <BestForCallout label="XRPL DeFi & Tools" href="/dapps" description="Sologenic, AMMs, tokenization." />
+            <BestForCallout label={t("footer.bestForBeginners")} href="/best-for/beginners" description={t("home.bestForBeginnersDesc")} />
+            <BestForCallout label={t("footer.bestForHardware")} href="/best-for/hardware" description={t("home.bestForHardwareDesc")} />
+            <BestForCallout label={t("footer.bestForColdStorage")} href="/best-for/cold-storage" description={t("home.bestForColdStorageDesc")} />
+            <BestForCallout label={t("footer.bestForDefi")} href="/best-for/defi" description={t("home.bestForDefiDesc")} />
+            <BestForCallout label={t("footer.bestForSafest")} href="/best-for/safest" description={t("home.bestForSafestDesc")} />
+            <BestForCallout label={t("footer.bestForDapps")} href="/dapps" description={t("home.bestForDappsDesc")} />
           </div>
         </div>
       </section>

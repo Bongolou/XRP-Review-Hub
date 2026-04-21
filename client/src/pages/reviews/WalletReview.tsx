@@ -19,6 +19,48 @@ function findComparison(slugA: string, slugB: string): string | null {
   if (EXISTING_COMPARISONS.includes(`${slugB}-vs-${slugA}`)) return `${slugB}-vs-${slugA}`;
   return null;
 }
+
+// Per-wallet curated picks: 2 alternatives + comparisons that are guaranteed
+// to exist in Compare.tsx. This guarantees every review renders the required
+// internal links.
+const WALLET_LINK_MAP: Record<string, { alternatives: string[]; comparisons: string[] }> = {
+  xaman: {
+    alternatives: ["ledger", "crossmark"],
+    comparisons: ["xaman-vs-ledger", "xaman-vs-tangem", "bifrost-vs-xaman"],
+  },
+  ledger: {
+    alternatives: ["trezor", "tangem"],
+    comparisons: ["xaman-vs-ledger", "ledger-vs-tangem", "trezor-vs-ledger", "ellipal-vs-ledger"],
+  },
+  tangem: {
+    alternatives: ["ledger", "trezor"],
+    comparisons: ["xaman-vs-tangem", "ledger-vs-tangem"],
+  },
+  trezor: {
+    alternatives: ["ledger", "ellipal"],
+    comparisons: ["trezor-vs-ledger"],
+  },
+  ellipal: {
+    alternatives: ["ledger", "trezor"],
+    comparisons: ["ellipal-vs-ledger"],
+  },
+  crossmark: {
+    alternatives: ["xaman", "bifrost"],
+    comparisons: ["xaman-vs-ledger", "bifrost-vs-xaman"],
+  },
+  bifrost: {
+    alternatives: ["xaman", "crossmark"],
+    comparisons: ["bifrost-vs-xaman"],
+  },
+  gatehub: {
+    alternatives: ["xaman", "ledger"],
+    comparisons: ["xaman-vs-ledger"],
+  },
+  trustwallet: {
+    alternatives: ["xaman", "ledger"],
+    comparisons: ["trustwallet-vs-xaman", "xaman-vs-ledger"],
+  },
+};
 import { 
   Star, 
   Shield, 
@@ -854,14 +896,16 @@ export default function WalletReview() {
 
         {/* Alternatives — strong contextual internal linking */}
         {(() => {
-          const alternativeSlugs = Object.keys(walletData)
-            .filter((s) => s !== slug)
-            .slice(0, 2);
+          const linkMap = (slug && WALLET_LINK_MAP[slug]) || {
+            alternatives: Object.keys(walletData).filter((s) => s !== slug).slice(0, 2),
+            comparisons: [],
+          };
+          const alternativeSlugs = linkMap.alternatives.filter((s) => walletData[s]);
           if (alternativeSlugs.length === 0) return null;
           return (
             <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 mb-8" data-testid={`section-alternatives-${slug}`}>
-              <h2 className="text-2xl font-bold font-display mb-2">Alternatives to {wallet.name}</h2>
-              <p className="text-muted-foreground mb-6">If {wallet.name} is not quite right for your setup, here are the two closest alternatives we'd recommend.</p>
+              <h2 className="text-2xl font-bold font-display mb-2">{t("walletReview.alternativesTitle")} {wallet.name}</h2>
+              <p className="text-muted-foreground mb-6">{t("walletReview.alternativesSubtitle")}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {alternativeSlugs.map((altSlug) => {
                   const alt = walletData[altSlug];
@@ -879,7 +923,7 @@ export default function WalletReview() {
                       <p className="text-sm text-muted-foreground mb-3 leading-relaxed">{t(alt.bestForKey)}</p>
                       <div className="flex gap-2">
                         <Link href={`/wallet/${altSlug}`} className="text-sm text-primary hover:underline" data-testid={`link-alternative-${altSlug}`}>
-                          Read {alt.name} review →
+                          {t("walletReview.readReview")}: {alt.name} →
                         </Link>
                       </div>
                     </div>
@@ -887,23 +931,30 @@ export default function WalletReview() {
                 })}
               </div>
               {(() => {
-                const validCompares = alternativeSlugs
-                  .map((altSlug) => ({ altSlug, compareSlug: findComparison(slug || "", altSlug) }))
-                  .filter((x) => x.compareSlug !== null);
-                if (validCompares.length === 0) return null;
+                const compareSlugs = linkMap.comparisons.length > 0
+                  ? linkMap.comparisons
+                  : alternativeSlugs
+                      .map((altSlug) => findComparison(slug || "", altSlug))
+                      .filter((x): x is string => x !== null);
+                if (compareSlugs.length === 0) return null;
                 return (
                   <div className="mt-6 flex flex-wrap gap-3 text-sm">
-                    <span className="text-muted-foreground">Compare directly:</span>
-                    {validCompares.map(({ altSlug, compareSlug }) => (
-                      <Link
-                        key={altSlug}
-                        href={`/compare/${compareSlug}`}
-                        className="text-primary hover:underline"
-                        data-testid={`link-compare-${slug}-${altSlug}`}
-                      >
-                        {wallet.name.split(" ")[0]} vs {walletData[altSlug].name.split(" ")[0]}
-                      </Link>
-                    ))}
+                    <span className="text-muted-foreground">{t("walletReview.compareDirectly")}</span>
+                    {compareSlugs.map((compareSlug) => {
+                      const [a, , b] = compareSlug.split("-");
+                      const labelA = walletData[a]?.name.split(" ")[0] ?? a;
+                      const labelB = walletData[b]?.name.split(" ")[0] ?? b;
+                      return (
+                        <Link
+                          key={compareSlug}
+                          href={`/compare/${compareSlug}`}
+                          className="text-primary hover:underline"
+                          data-testid={`link-compare-${compareSlug}`}
+                        >
+                          {labelA} vs {labelB}
+                        </Link>
+                      );
+                    })}
                   </div>
                 );
               })()}
