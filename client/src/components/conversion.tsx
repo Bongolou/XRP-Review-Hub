@@ -2,6 +2,9 @@ import { ReactNode, useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+
+export const LEAD_MAGNET_ASSET_URL = "/xrpl-wallet-starter-kit.md";
 import {
   ArrowRight,
   ExternalLink,
@@ -46,11 +49,12 @@ export type FastCompareRow = {
 };
 
 export function TrustStrip() {
+  const { t } = useLanguage();
   const items = [
-    { icon: Shield, label: "Editorially Independent" },
-    { icon: Star, label: "9 Wallets, 7 Exchanges Tested" },
-    { icon: Clock, label: "Updated Monthly" },
-    { icon: Users, label: "Trusted by XRPL Holders" },
+    { icon: Shield, label: t("trustStrip.editorial"), key: "editorial" },
+    { icon: Star, label: t("trustStrip.tested"), key: "tested" },
+    { icon: Clock, label: t("trustStrip.updated"), key: "updated" },
+    { icon: Users, label: t("trustStrip.trusted"), key: "trusted" },
   ];
   return (
     <div className="border-y border-white/10 bg-card/20 backdrop-blur-sm">
@@ -60,9 +64,9 @@ export function TrustStrip() {
             const Icon = it.icon;
             return (
               <div
-                key={it.label}
+                key={it.key}
                 className="flex items-center gap-3 text-sm text-muted-foreground"
-                data-testid={`trust-${it.label.toLowerCase().replace(/\s+/g, "-")}`}
+                data-testid={`trust-${it.key}`}
               >
                 <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
                   <Icon className="h-4 w-4 text-primary" />
@@ -136,19 +140,22 @@ const defaultUseCases: UseCase[] = [
 ];
 
 export function UseCaseSelector({
-  title = "What are you trying to do?",
-  subtitle = "Pick the path that matches you and we'll send you straight to the right wallet.",
+  title,
+  subtitle,
   cases = defaultUseCases,
 }: {
   title?: string;
   subtitle?: string;
   cases?: UseCase[];
 }) {
+  const { t } = useLanguage();
+  const resolvedTitle = title ?? t("useCase.title");
+  const resolvedSubtitle = subtitle ?? t("useCase.subtitle");
   return (
     <section className="container mx-auto px-4 py-16" data-testid="section-use-case-selector">
       <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-4xl font-bold font-display mb-3">{title}</h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{subtitle}</p>
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-3">{resolvedTitle}</h2>
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{resolvedSubtitle}</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         {cases.map((c) => {
@@ -183,21 +190,25 @@ export function UseCaseSelector({
 }
 
 export function FastCompareTable({
-  title = "Top XRP wallets at a glance",
-  subtitle = "The shortlist most readers choose from. Tap any wallet for the full review.",
+  title,
+  subtitle,
   rows,
-  ctaLabel = "Visit",
+  ctaLabel,
 }: {
   title?: string;
   subtitle?: string;
   rows: FastCompareRow[];
   ctaLabel?: string;
 }) {
+  const { t } = useLanguage();
+  const resolvedTitle = title ?? t("fastCompare.title");
+  const resolvedSubtitle = subtitle ?? t("fastCompare.subtitle");
+  const resolvedCta = ctaLabel ?? t("fastCompare.get");
   return (
     <section className="container mx-auto px-4 py-16" data-testid="section-fast-compare">
       <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold font-display mb-3">{title}</h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{subtitle}</p>
+        <h2 className="text-3xl md:text-4xl font-bold font-display mb-3">{resolvedTitle}</h2>
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{resolvedSubtitle}</p>
       </div>
 
       {/* Desktop table */}
@@ -205,11 +216,11 @@ export function FastCompareTable({
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-xs uppercase tracking-wider text-muted-foreground border-b border-white/10">
-              <th className="px-5 py-4 font-semibold">Wallet</th>
-              <th className="px-5 py-4 font-semibold">Type</th>
-              <th className="px-5 py-4 font-semibold">Price</th>
-              <th className="px-5 py-4 font-semibold">Best for</th>
-              <th className="px-5 py-4 font-semibold">Score</th>
+              <th className="px-5 py-4 font-semibold">{t("fastCompare.colWallet") || "Wallet"}</th>
+              <th className="px-5 py-4 font-semibold">{t("fastCompare.colType") || "Type"}</th>
+              <th className="px-5 py-4 font-semibold">{t("fastCompare.colPrice") || "Price"}</th>
+              <th className="px-5 py-4 font-semibold">{t("fastCompare.colBestFor") || "Best for"}</th>
+              <th className="px-5 py-4 font-semibold">{t("fastCompare.colRating") || "Score"}</th>
               <th className="px-5 py-4 font-semibold text-right">Action</th>
             </tr>
           </thead>
@@ -227,7 +238,7 @@ export function FastCompareTable({
                     <span className="font-display font-bold text-white">{r.name}</span>
                     {r.highlight && (
                       <Badge className="bg-secondary/20 text-secondary border-secondary/50">
-                        Top pick
+                        {t("verdict.ourPick") || "Top pick"}
                       </Badge>
                     )}
                   </div>
@@ -245,7 +256,7 @@ export function FastCompareTable({
                           size="sm"
                           className="text-xs hover:text-primary"
                         >
-                          Review
+                          {t("fastCompare.review") || "Review"}
                         </Button>
                       </Link>
                     )}
@@ -254,7 +265,7 @@ export function FastCompareTable({
                         size="sm"
                         className="bg-primary hover:bg-primary/90 text-white text-xs h-8"
                       >
-                        {ctaLabel} <ExternalLink className="ml-1 h-3 w-3" />
+                        {resolvedCta} <ExternalLink className="ml-1 h-3 w-3" />
                       </Button>
                     </a>
                   </div>
@@ -294,7 +305,7 @@ export function FastCompareTable({
               {r.reviewSlug && (
                 <Link href={`/wallet/${r.reviewSlug}`} className="flex-1">
                   <Button variant="outline" className="w-full border-white/10 text-xs h-9">
-                    Review
+                    {t("fastCompare.review") || "Review"}
                   </Button>
                 </Link>
               )}
@@ -305,7 +316,7 @@ export function FastCompareTable({
                 className="flex-1"
               >
                 <Button className="w-full bg-primary text-white text-xs h-9">
-                  {ctaLabel} <ExternalLink className="ml-1 h-3 w-3" />
+                  {resolvedCta} <ExternalLink className="ml-1 h-3 w-3" />
                 </Button>
               </a>
             </div>
@@ -560,19 +571,31 @@ export function LastUpdated({ date }: { date: string }) {
 
 export function EmailCaptureBlock({
   source = "site",
-  title = "Free: XRPL Wallet Starter Kit",
-  bullets = [
-    "Step-by-step Xaman setup checklist",
-    "Hardware wallet buying guide (PDF)",
-    "5 mistakes new XRP holders make",
-  ],
-  cta = "Send me the kit",
+  title,
+  description,
+  bullets,
+  cta,
+  leadMagnet,
+  assetUrl = LEAD_MAGNET_ASSET_URL,
 }: {
   source?: string;
   title?: string;
+  description?: string;
   bullets?: string[];
   cta?: string;
+  leadMagnet?: string;
+  assetUrl?: string;
 }) {
+  const { t } = useLanguage();
+  const resolvedTitle = title ?? t("emailCapture.title");
+  const resolvedCta = cta ?? t("emailCapture.cta");
+  const resolvedBullets = bullets ?? [
+    t("emailCapture.bullet1"),
+    t("emailCapture.bullet2"),
+    t("emailCapture.bullet3"),
+  ];
+  const resolvedLeadMagnet = leadMagnet ?? "wallet_starter_kit";
+
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "err">("idle");
 
@@ -584,7 +607,7 @@ export function EmailCaptureBlock({
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ email, source, leadMagnet: title }),
+        body: JSON.stringify({ email, source, leadMagnet: resolvedLeadMagnet }),
       });
       setStatus(res.ok ? "ok" : "err");
       if (res.ok) setEmail("");
@@ -601,11 +624,14 @@ export function EmailCaptureBlock({
       <div className="grid md:grid-cols-2 gap-6 items-center">
         <div>
           <div className="inline-flex items-center gap-1 text-xs uppercase tracking-widest text-secondary font-display mb-3">
-            <Sparkles className="h-3 w-3" /> Free download
+            <Sparkles className="h-3 w-3" /> {t("emailCapture.badge") || "Free download"}
           </div>
-          <h3 className="text-2xl font-bold font-display mb-3">{title}</h3>
+          <h3 className="text-2xl font-bold font-display mb-3">{resolvedTitle}</h3>
+          {description && (
+            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{description}</p>
+          )}
           <ul className="space-y-2">
-            {bullets.map((b, i) => (
+            {resolvedBullets.map((b, i) => (
               <li key={i} className="flex gap-2 text-sm text-muted-foreground">
                 <Check className="h-4 w-4 text-secondary flex-shrink-0 mt-0.5" />
                 {b}
@@ -613,41 +639,66 @@ export function EmailCaptureBlock({
             ))}
           </ul>
         </div>
-        <form onSubmit={submit} className="space-y-3">
-          <label htmlFor={`lead-email-${source}`} className="sr-only">
-            Email address
-          </label>
-          <input
-            id={`lead-email-${source}`}
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-            aria-label="Email address"
-            data-testid={`input-lead-email-${source}`}
-            className="w-full h-12 px-4 rounded-lg bg-background/60 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-white placeholder:text-muted-foreground/70"
-          />
-          <Button
-            type="submit"
-            disabled={status === "loading"}
-            data-testid={`button-lead-submit-${source}`}
-            className="w-full h-12 bg-secondary hover:bg-secondary/90 text-white font-bold"
+        {status === "ok" ? (
+          <div
+            className="rounded-xl bg-green-500/10 border border-green-500/30 p-5 text-center"
+            data-testid={`email-capture-success-${source}`}
           >
-            {status === "loading" ? "Sending..." : cta}
-          </Button>
-          <div role="status" aria-live="polite" className="min-h-[1rem]">
-            {status === "ok" && (
-              <p className="text-xs text-green-400">Check your inbox — your kit is on the way.</p>
-            )}
-            {status === "err" && (
-              <p className="text-xs text-red-400">Something went wrong. Try again.</p>
-            )}
+            <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-green-500/20 flex items-center justify-center">
+              <Check className="h-6 w-6 text-green-400" />
+            </div>
+            <h4 className="font-display font-bold text-lg mb-1">
+              {t("emailCapture.successTitle") || "You're in!"}
+            </h4>
+            <p className="text-sm text-muted-foreground mb-4">
+              {t("emailCapture.successBody") ||
+                "We've sent the kit to your inbox. You can also download it now."}
+            </p>
+            <a href={assetUrl} download data-testid={`button-lead-download-${source}`}>
+              <Button className="bg-secondary hover:bg-secondary/90 text-white font-bold">
+                {t("emailCapture.download") || "Download your kit"}
+              </Button>
+            </a>
           </div>
-          <p className="text-[11px] text-muted-foreground">
-            No spam. Unsubscribe anytime. We never sell your email.
-          </p>
-        </form>
+        ) : (
+          <form onSubmit={submit} className="space-y-3">
+            <label htmlFor={`lead-email-${source}`} className="sr-only">
+              Email address
+            </label>
+            <input
+              id={`lead-email-${source}`}
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              aria-label="Email address"
+              data-testid={`input-lead-email-${source}`}
+              className="w-full h-12 px-4 rounded-lg bg-background/60 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-white placeholder:text-muted-foreground/70"
+            />
+            <Button
+              type="submit"
+              disabled={status === "loading"}
+              data-testid={`button-lead-submit-${source}`}
+              className="w-full h-12 bg-secondary hover:bg-secondary/90 text-white font-bold"
+            >
+              {status === "loading"
+                ? t("emailCapture.sending") || "Sending..."
+                : resolvedCta}
+            </Button>
+            <div role="status" aria-live="polite" className="min-h-[1rem]">
+              {status === "err" && (
+                <p className="text-xs text-red-400">
+                  {t("emailCapture.error") || "Something went wrong. Try again."}
+                </p>
+              )}
+            </div>
+            <p className="text-[11px] text-muted-foreground">
+              {t("emailCapture.privacy") ||
+                "No spam. Unsubscribe anytime. We never sell your email."}
+            </p>
+          </form>
+        )}
       </div>
     </div>
   );
