@@ -959,6 +959,27 @@ export default function Compare() {
 
         {/* Introduction */}
         <div className="prose prose-invert max-w-none mb-12">
+          {slug === "xaman-vs-ledger" && (
+            <>
+              <h2 className="text-2xl md:text-3xl font-bold font-display mb-4 text-white">
+                Which is better for XRP — Xaman or Ledger Nano X?
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6 not-prose">
+                <div className="rounded-lg border border-white/10 bg-card/40 p-4" data-testid="decision-choose-xaman">
+                  <div className="text-sm uppercase tracking-wider text-primary font-display mb-1">Choose Xaman</div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">If you're active on the XRPL — DEX, AMMs, NFTs, dApps — and want a free, mobile-first wallet built specifically for XRP.</p>
+                </div>
+                <div className="rounded-lg border border-white/10 bg-card/40 p-4" data-testid="decision-choose-ledger">
+                  <div className="text-sm uppercase tracking-wider text-emerald-400 font-display mb-1">Choose Ledger</div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">If your XRP is meaningful capital you want offline. The Nano X is the conservative cold-storage pick for long-term holders.</p>
+                </div>
+                <div className="rounded-lg border border-white/10 bg-card/40 p-4" data-testid="decision-use-both">
+                  <div className="text-sm uppercase tracking-wider text-amber-400 font-display mb-1">Use both</div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">Our recommended blueprint: Ledger holds the keys, Xaman is the XRPL UI. You get hardware security and full XRPL DeFi access.</p>
+                </div>
+              </div>
+            </>
+          )}
           <p className="text-lg leading-relaxed text-muted-foreground">
             {comparison.introduction}
           </p>

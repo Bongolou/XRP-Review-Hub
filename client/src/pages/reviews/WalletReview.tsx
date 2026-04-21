@@ -6,6 +6,54 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 
+type EditorialSection = { heading: string; body: string };
+const SLUG_EDITORIAL: Record<string, EditorialSection[]> = {
+  ledger: [
+    {
+      heading: "XRPL compatibility",
+      body: "Ledger Nano X has full native XRP Ledger support through the official XRP app in Ledger Live. You can send, receive, and hold XRP directly, view your XRPL address and reserve, and sign transactions on-device. Trustlines, the XRPL DEX, and AMM pools are not first-class citizens in Ledger Live, so for active XRPL DeFi you'll typically pair the Nano X with Xaman or Crossmark and use the Ledger as the signer.",
+    },
+    {
+      heading: "Security model",
+      body: "The Nano X uses a CC EAL5+ Secure Element with Ledger's proprietary BOLOS OS. Your 24-word seed never leaves the device, and every transaction is reviewed and approved on the small hardware screen — meaning malware on your phone or laptop cannot silently move your XRP. Bluetooth is opt-in and all communication with the device is end-to-end encrypted.",
+    },
+    {
+      heading: "User experience",
+      body: "Setup takes about 10 minutes: initialise the device, write down the recovery phrase, install the XRP app from Ledger Live, and add an XRP account. Day-to-day use is via Ledger Live on desktop or mobile. The Bluetooth-enabled mobile flow is the main UX upgrade over the cheaper Nano S Plus and is genuinely useful for travelling with the device.",
+    },
+    {
+      heading: "Limitations for XRP holders",
+      body: "Ledger Live's XRP support is intentionally conservative — it does not expose trustlines, AMMs, NFTs, or DEX trading. The 2020 customer-data breach also remains a real concern for some users, even though it did not affect device security. If those features matter, treat the Nano X as a signer behind a richer XRPL wallet rather than a one-stop app.",
+    },
+    {
+      heading: "Alternatives worth considering",
+      body: "If you want a more XRP-native cold-storage experience, Tangem offers a card-form-factor with no seed phrase. If open-source firmware matters more than Bluetooth and broad coin support, Trezor Safe 3 is the obvious cross-shop. For active XRPL DeFi without a hardware wallet, Xaman remains the strongest mobile choice.",
+    },
+  ],
+  tangem: [
+    {
+      heading: "XRPL compatibility",
+      body: "Tangem supports XRP natively in the Tangem app and stores your XRP address and balance directly on the card. Sending and receiving XRP is straightforward: pick the asset, enter the amount, and tap the card to your phone to sign. Trustlines and XRPL DEX trading are not exposed in the Tangem app, so power-users typically pair the card with Xaman for advanced XRPL features.",
+    },
+    {
+      heading: "Security model",
+      body: "Each Tangem card contains an EAL6+ certified secure element that generates and stores private keys on-device. There is no seed phrase by default — instead you buy a 2- or 3-card set, and any card in the set can recover the wallet. Transactions are signed inside the chip after an NFC tap, so keys never touch your phone or the internet.",
+    },
+    {
+      heading: "User experience",
+      body: "Setup is the fastest in the hardware-wallet space: scan a card, set a passcode, and you're done in under three minutes. The card-style form factor is waterproof, dust-proof, and survives being carried in a wallet. The trade-off is that signing requires your phone — there is no standalone screen on the card to confirm transaction details, so you rely on the Tangem app's UI.",
+    },
+    {
+      heading: "Security trade-offs",
+      body: "Going seedless removes the single biggest cause of self-custody losses (lost or stolen recovery phrases) but it also means your backup strategy is physical: you must keep at least one extra card in a separate, safe location. The lack of an on-device screen also means you should treat the Tangem app on a clean, trusted phone as part of your security model.",
+    },
+    {
+      heading: "Who it's best for",
+      body: "Tangem is the best pick for XRP holders who want true cold storage without managing a 24-word seed, and who are comfortable making your phone part of the security chain. If you want a screen-equipped device or full XRPL DEX/AMM workflows in the same app, Ledger Nano X paired with Xaman is the better blueprint.",
+    },
+  ],
+};
+
 const WALLET_SEO: Record<string, { title: string; description: string }> = {
   xaman: {
     title: "Xaman (XUMM) Review 2026 | Best Mobile XRP Wallet for XRPL DeFi",
@@ -915,6 +963,17 @@ export default function WalletReview() {
           <p className="text-lg text-muted-foreground leading-relaxed mb-6">
             {t(wallet.descriptionKey)}
           </p>
+
+          {SLUG_EDITORIAL[slug || ""] && (
+            <div className="prose prose-invert max-w-none mb-6 space-y-5 text-muted-foreground">
+              {SLUG_EDITORIAL[slug || ""].map((section) => (
+                <div key={section.heading}>
+                  <h2 className="text-xl md:text-2xl font-bold font-display text-white mb-2">{section.heading}</h2>
+                  <p className="leading-relaxed">{section.body}</p>
+                </div>
+              ))}
+            </div>
+          )}
 
           <div className="mb-6"><LastUpdated date="April 2026" /></div>
 
