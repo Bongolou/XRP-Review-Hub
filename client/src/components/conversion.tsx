@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-export const LEAD_MAGNET_ASSET_URL = "/xrpl-wallet-starter-kit.md";
+export const LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-wallet-starter-kit.md";
 import {
   ArrowRight,
   ExternalLink,

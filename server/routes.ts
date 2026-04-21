@@ -1,8 +1,21 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import fs from "fs";
+import path from "path";
 import { storage } from "./storage";
 import { insertSubscriberSchema, insertContactSchema } from "@shared/schema";
 import { z } from "zod";
+
+function resolveLeadMagnetPath(): string | null {
+  const candidates = [
+    path.resolve(process.cwd(), "dist/public/xrpl-wallet-starter-kit.md"),
+    path.resolve(process.cwd(), "client/public/xrpl-wallet-starter-kit.md"),
+  ];
+  for (const p of candidates) {
+    if (fs.existsSync(p)) return p;
+  }
+  return null;
+}
 
 interface NewsItem {
   title: string;
@@ -140,6 +153,25 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+
+  // Lead magnet download — explicit headers so browsers always save the file
+  // with the correct name and MIME type instead of falling through to the SPA
+  // fallback (which would return index.html and cause Safari to save it as
+  // "xrpl-wallet-starter-kit.md.html").
+  app.get("/downloads/xrpl-wallet-starter-kit.md", (_req, res) => {
+    const filePath = resolveLeadMagnetPath();
+    if (!filePath) {
+      res.status(404).type("text/plain").send("Starter kit file not found");
+      return;
+    }
+    res.setHeader("Content-Type", "text/markdown; charset=utf-8");
+    res.setHeader(
+      "Content-Disposition",
+      'attachment; filename="xrpl-wallet-starter-kit.md"'
+    );
+    res.setHeader("Cache-Control", "public, max-age=300");
+    res.sendFile(filePath);
+  });
 
   // Sitemap XML
   app.get("/sitemap.xml", (req, res) => {
