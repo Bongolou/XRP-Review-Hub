@@ -1,8 +1,20 @@
+import { Fragment, ReactNode } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
+
+function renderTemplate(template: string, replacements: Record<string, ReactNode>): ReactNode[] {
+  const parts = template.split(/(\{[A-Z0-9_]+\})/);
+  return parts.map((part, i) => {
+    const m = part.match(/^\{([A-Z0-9_]+)\}$/);
+    if (m && replacements[m[1]] !== undefined) {
+      return <Fragment key={i}>{replacements[m[1]]}</Fragment>;
+    }
+    return <Fragment key={i}>{part}</Fragment>;
+  });
+}
 
 const EXISTING_COMPARISONS = [
   "xaman-vs-ledger",
@@ -28,16 +40,16 @@ function findComparison(slugA: string, slugB: string): string | null {
 // Per-wallet curated picks: 2 alternatives + comparisons that are guaranteed
 // to exist in Compare.tsx. This guarantees every review renders the required
 // internal links.
-const WALLET_BEST_FOR_MAP: Record<string, { slug: string; label: string; description: string }> = {
-  xaman: { slug: "defi", label: "Best wallets for XRPL DeFi", description: "DEX, AMMs and dApps — all from one mobile app." },
-  ledger: { slug: "hardware", label: "Best hardware wallets for XRP", description: "See where the Nano X ranks against rivals." },
-  tangem: { slug: "hardware", label: "Best hardware wallets for XRP", description: "Compare Tangem against Ledger, Trezor and more." },
-  trezor: { slug: "hardware", label: "Best hardware wallets for XRP", description: "How Trezor stacks up in our hardware roundup." },
-  ellipal: { slug: "cold-storage", label: "Best for cold storage", description: "Air-gapped setups for long-term XRP holders." },
-  crossmark: { slug: "defi", label: "Best wallets for XRPL DeFi", description: "Browser-extension wallets for the XRPL DEX." },
-  bifrost: { slug: "defi", label: "Best wallets for XRPL DeFi", description: "Compare desktop XRPL DeFi wallets." },
-  gatehub: { slug: "beginners", label: "Best wallets for beginners", description: "Web-first picks that are easy to start with." },
-  trustwallet: { slug: "beginners", label: "Best wallets for beginners", description: "Multi-chain picks for first-time XRP holders." },
+const WALLET_BEST_FOR_MAP: Record<string, { slug: string; labelKey: string; descKey: string }> = {
+  xaman: { slug: "defi", labelKey: "walletReview.bestFor.defi.label", descKey: "walletReview.bestFor.defi.desc.xaman" },
+  ledger: { slug: "hardware", labelKey: "walletReview.bestFor.hardware.label", descKey: "walletReview.bestFor.hardware.desc.ledger" },
+  tangem: { slug: "hardware", labelKey: "walletReview.bestFor.hardware.label", descKey: "walletReview.bestFor.hardware.desc.tangem" },
+  trezor: { slug: "hardware", labelKey: "walletReview.bestFor.hardware.label", descKey: "walletReview.bestFor.hardware.desc.trezor" },
+  ellipal: { slug: "cold-storage", labelKey: "walletReview.bestFor.coldStorage.label", descKey: "walletReview.bestFor.coldStorage.desc" },
+  crossmark: { slug: "defi", labelKey: "walletReview.bestFor.defi.label", descKey: "walletReview.bestFor.defi.desc.crossmark" },
+  bifrost: { slug: "defi", labelKey: "walletReview.bestFor.defi.label", descKey: "walletReview.bestFor.defi.desc.bifrost" },
+  gatehub: { slug: "beginners", labelKey: "walletReview.bestFor.beginners.label", descKey: "walletReview.bestFor.beginners.desc.gatehub" },
+  trustwallet: { slug: "beginners", labelKey: "walletReview.bestFor.beginners.label", descKey: "walletReview.bestFor.beginners.desc.trustwallet" },
 };
 
 const WALLET_LINK_MAP: Record<string, { alternatives: string[]; comparisons: string[] }> = {
@@ -888,22 +900,22 @@ export default function WalletReview() {
         {(() => {
           const bestFor = (slug && WALLET_BEST_FOR_MAP[slug]) || {
             slug: "beginners",
-            label: "Find your perfect setup",
-            description: "Browse our best-for guides by use case.",
+            labelKey: "walletReview.bestFor.beginners.label",
+            descKey: "walletReview.bestFor.beginners.desc.gatehub",
           };
           return (
             <div className="mb-10" data-testid={`section-compare-alternatives-${slug}`}>
-              <h2 className="text-xl font-bold font-display mb-3">Compare alternatives</h2>
+              <h2 className="text-xl font-bold font-display mb-3">{t("walletReview.compareAlternatives")}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <BestForCallout
-                  label="Compare all XRP wallets"
+                  label={t("walletReview.compareAllLabel")}
                   href="/best-xrp-wallets"
-                  description="Our full ranked shortlist with picks, runner-ups, and verdicts."
+                  description={t("walletReview.compareAllDesc")}
                 />
                 <BestForCallout
-                  label={bestFor.label}
+                  label={t(bestFor.labelKey)}
                   href={`/best-for/${bestFor.slug}`}
-                  description={bestFor.description}
+                  description={t(bestFor.descKey)}
                 />
               </div>
             </div>
@@ -912,13 +924,13 @@ export default function WalletReview() {
 
         {wallet.review && wallet.review.length > 0 && (
           <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8" data-testid={`section-review-${slug}`}>
-            <h2 className="text-2xl font-bold font-display mb-10">In-Depth Review</h2>
+            <h2 className="text-2xl font-bold font-display mb-10">{t("walletReview.inDepthReview")}</h2>
             {wallet.review.map((section, idx) => (
               <div key={idx} className="mb-10 last:mb-0">
-                <h3 className="text-xl font-bold font-display mb-5 text-primary">{section.heading}</h3>
-                {section.paragraphs.map((paragraph, pIdx) => (
+                <h3 className="text-xl font-bold font-display mb-5 text-primary">{t(`walletDetail.${slug}.review.s${idx}.h`)}</h3>
+                {section.paragraphs.map((_paragraph, pIdx) => (
                   <p key={pIdx} className="text-muted-foreground leading-relaxed mb-4 last:mb-0">
-                    {paragraph}
+                    {t(`walletDetail.${slug}.review.s${idx}.p${pIdx}`)}
                   </p>
                 ))}
               </div>
@@ -996,37 +1008,50 @@ export default function WalletReview() {
 
         {/* FAQ — adds unique long-form content per page */}
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 mb-8" data-testid={`section-faq-${slug}`}>
-          <h2 className="text-2xl font-bold font-display mb-6">Frequently Asked Questions about {wallet.name}</h2>
+          <h2 className="text-2xl font-bold font-display mb-6">{t("walletReview.faqHeading")} {wallet.name}</h2>
           <div className="space-y-6">
             <div>
-              <h3 className="font-bold text-lg mb-2">Is {wallet.name} safe to use for storing XRP?</h3>
+              <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q1").replace(/\{NAME\}/g, wallet.name)}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                {wallet.name} uses industry-standard security practices including encrypted local key storage, biometric or PIN authentication, and regular security audits. As with any cryptocurrency wallet, your safety also depends on your own operational security — keep your seed phrase offline, never share it with anyone, and download the wallet only from official sources. For very large holdings we always recommend pairing any software wallet with a hardware wallet for cold storage.
+                {t("walletReview.faq.a1").replace(/\{NAME\}/g, wallet.name)}
               </p>
             </div>
             <div>
-              <h3 className="font-bold text-lg mb-2">Does {wallet.name} support the XRPL DEX, AMM, and NFTs?</h3>
+              <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q2").replace(/\{NAME\}/g, wallet.name)}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                The features supported by {wallet.name} are listed in the Key Features section above. Native XRPL wallets typically include DEX trading, trustlines, AMM pool participation, and NFT support, while multi-chain or hardware wallets often focus on send/receive plus account management. If full XRPL ecosystem access is critical for you, see our <Link href="/best-for/defi" className="text-primary hover:underline">best wallet for XRPL DeFi</Link> roundup.
+                {renderTemplate(t("walletReview.faq.a2"), {
+                  NAME: wallet.name,
+                  LINK: <Link href="/best-for/defi" className="text-primary hover:underline">{t("walletReview.bestFor.defi.label")}</Link>,
+                })}
               </p>
             </div>
             <div>
-              <h3 className="font-bold text-lg mb-2">How much does {wallet.name} cost?</h3>
+              <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q3").replace(/\{NAME\}/g, wallet.name)}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                {wallet.name} is priced at <strong>{wallet.price}</strong>. Software wallets are typically free to download and use — you only pay XRPL network fees (a fraction of a cent per transaction). Hardware wallets have a one-time purchase cost but no recurring fees. There are no subscription costs to use {wallet.name}.
+                {renderTemplate(t("walletReview.faq.a3"), {
+                  NAME: wallet.name,
+                  PRICE: <strong>{wallet.price}</strong>,
+                })}
               </p>
             </div>
             <div>
-              <h3 className="font-bold text-lg mb-2">Can I recover my XRP if I lose access to {wallet.name}?</h3>
+              <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q4").replace(/\{NAME\}/g, wallet.name)}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Yes — provided you have backed up your recovery phrase, secret numbers, or backup card (depending on the wallet's backup model) when you set up the wallet. {wallet.name} is non-custodial, which means {wallet.name} itself does not have access to your keys and cannot recover your account on your behalf. Your backup is the only way to restore access if your device is lost, stolen, or damaged.
+                {t("walletReview.faq.a4").replace(/\{NAME\}/g, wallet.name)}
               </p>
             </div>
             <div>
-              <h3 className="font-bold text-lg mb-2">Is {wallet.name} the best XRP wallet for me?</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                It depends on your specific needs. See our <Link href="/best-xrp-wallets" className="text-primary hover:underline">full ranked roundup of the best XRP wallets</Link>, or jump straight to a use-case guide: <Link href="/best-for/beginners" className="text-primary hover:underline">beginners</Link>, <Link href="/best-for/cold-storage" className="text-primary hover:underline">cold storage</Link>, <Link href="/best-for/defi" className="text-primary hover:underline">XRPL DeFi</Link>, or <Link href="/best-for/hardware" className="text-primary hover:underline">hardware wallets</Link>.
+              <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q5").replace(/\{NAME\}/g, wallet.name)}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-3">
+                {t("walletReview.faq.a5").replace(/\{NAME\}/g, wallet.name)}
               </p>
+              <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                <Link href="/best-xrp-wallets" className="text-primary hover:underline">→ {t("walletReview.compareAllLabel")}</Link>
+                <Link href="/best-for/beginners" className="text-primary hover:underline">→ {t("walletReview.bestFor.beginners.label")}</Link>
+                <Link href="/best-for/cold-storage" className="text-primary hover:underline">→ {t("walletReview.bestFor.coldStorage.label")}</Link>
+                <Link href="/best-for/defi" className="text-primary hover:underline">→ {t("walletReview.bestFor.defi.label")}</Link>
+                <Link href="/best-for/hardware" className="text-primary hover:underline">→ {t("walletReview.bestFor.hardware.label")}</Link>
+              </div>
             </div>
           </div>
         </div>
@@ -1100,8 +1125,8 @@ export default function WalletReview() {
         {/* In-article lead magnet */}
         <div className="mb-12">
           <EmailCaptureBlock
-            title="Free: XRPL Wallet Starter Kit"
-            description={`Get our setup checklist, security tips, and the same shortlist we'd give a friend asking about ${wallet.name}.`}
+            title={t("walletReview.emailCapture.title")}
+            description={t("walletReview.emailCapture.desc").replace(/\{NAME\}/g, wallet.name)}
             source={`wallet_review_${slug}`}
             leadMagnet="wallet_starter_kit"
           />
