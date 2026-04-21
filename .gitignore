@@ -3,3 +3,21 @@ node_modules
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Build output
+dist
+.cache
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# Replit-specific local state
+.local
+.config
+.upm
+
+# Editor
+.vscode
+.idea
