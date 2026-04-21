@@ -11,8 +11,14 @@ import {
   Layers,
   TrendingUp,
   Clock,
-  Newspaper
+  Newspaper,
+  Smartphone,
+  Briefcase,
+  Sparkles,
+  Shield,
+  Target,
 } from "lucide-react";
+import type { UseCase } from "@/components/conversion";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllNews } from "@/lib/fetchNews";
 import heroBg from "@/assets/hero-bg.webp";
@@ -49,6 +55,72 @@ import {
 } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { Shield as ShieldIcon, BookOpen, Coins, Zap as ZapIcon } from "lucide-react";
+
+const homepageUseCases: UseCase[] = [
+  {
+    id: "beginner",
+    title: "I'm new to XRP",
+    description: "Start with a free, simple wallet built for the XRPL.",
+    icon: Sparkles,
+    href: "/best-for/beginners",
+    cta: "Best wallets for beginners",
+    accent: "from-blue-500 to-cyan-500",
+  },
+  {
+    id: "mobile",
+    title: "I want it on my phone",
+    description: "The best mobile XRP wallets for daily use, payments, and DeFi on the go.",
+    icon: Smartphone,
+    href: "/best-for/defi",
+    cta: "Best mobile XRP wallets",
+    accent: "from-cyan-500 to-blue-500",
+  },
+  {
+    id: "hardware",
+    title: "I want maximum security",
+    description: "Hardware wallets keep your XRP offline and safe.",
+    icon: Shield,
+    href: "/best-for/hardware",
+    cta: "Best hardware wallets",
+    accent: "from-emerald-500 to-green-500",
+  },
+  {
+    id: "large",
+    title: "I'm holding a large amount",
+    description: "Cold-storage setups for serious XRP holders — Ledger + Xaman is our blueprint.",
+    icon: Briefcase,
+    href: "/best-for/cold-storage",
+    cta: "Best for large holdings",
+    accent: "from-amber-500 to-orange-500",
+  },
+  {
+    id: "cold",
+    title: "I'm storing for the long term",
+    description: "Cold-storage setups for serious XRP holders.",
+    icon: Lock,
+    href: "/best-for/cold-storage",
+    cta: "Best cold-storage setup",
+    accent: "from-purple-500 to-indigo-500",
+  },
+  {
+    id: "defi",
+    title: "I want to use XRPL DeFi",
+    description: "Wallets and dApps for AMMs, NFTs and the DEX.",
+    icon: Zap,
+    href: "/best-for/defi",
+    cta: "Best wallets for DeFi",
+    accent: "from-orange-500 to-pink-500",
+  },
+  {
+    id: "safest",
+    title: "I just want the safest pick",
+    description: "The single wallet we recommend most often.",
+    icon: Target,
+    href: "/best-for/safest",
+    cta: "See our top pick",
+    accent: "from-primary to-blue-400",
+  },
+];
 
 const homepageCompareRows: FastCompareRow[] = [
   {
@@ -538,7 +610,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-black font-display tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 glow-text"
           >
-            {t("hero.title1")}<br/>{t("hero.title2")}
+            Best XRP Wallets<br/>2026
           </motion.h1>
           
           <motion.p 
@@ -547,7 +619,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
           >
-            {t("hero.subtitle")}
+            Find your match in 60 seconds. Hands-on reviews of every major XRP wallet, exchange, and dApp — ranked by use case, security, and price.
           </motion.p>
           
           <motion.div 
@@ -585,7 +657,7 @@ export default function Home() {
       </div>
 
       {/* Use-case decision selector — primary funnel entry */}
-      <UseCaseSelector />
+      <UseCaseSelector cases={homepageUseCases} />
 
       {/* Fast compare table — top picks at a glance */}
       <FastCompareTable rows={homepageCompareRows} />

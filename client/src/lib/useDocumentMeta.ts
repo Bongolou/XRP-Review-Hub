@@ -6,94 +6,129 @@ type Meta = {
   canonicalPath?: string;
 };
 
-function setMetaTag(selector: string, attr: "name" | "property", key: string, content: string) {
-  let el = document.head.querySelector<HTMLMetaElement>(selector);
+type SnapshotEntry = {
+  selector: string;
+  attr: "name" | "property";
+  key: string;
+  prevContent: string | null;
+  createdByHook: boolean;
+};
+
+function snapshotMetaTag(
+  selector: string,
+  attr: "name" | "property",
+  key: string,
+): SnapshotEntry {
+  const el = document.head.querySelector<HTMLMetaElement>(selector);
+  return {
+    selector,
+    attr,
+    key,
+    prevContent: el ? el.getAttribute("content") : null,
+    createdByHook: false,
+  };
+}
+
+function setMetaTagAndTrack(entry: SnapshotEntry, content: string) {
+  let el = document.head.querySelector<HTMLMetaElement>(entry.selector);
   if (!el) {
     el = document.createElement("meta");
-    el.setAttribute(attr, key);
+    el.setAttribute(entry.attr, entry.key);
     document.head.appendChild(el);
+    entry.createdByHook = true;
   }
   el.setAttribute("content", content);
 }
 
-function setLink(rel: string, href: string) {
-  let el = document.head.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
-  if (!el) {
-    el = document.createElement("link");
-    el.setAttribute("rel", rel);
-    document.head.appendChild(el);
+function restoreMetaTag(entry: SnapshotEntry) {
+  const el = document.head.querySelector<HTMLMetaElement>(entry.selector);
+  if (!el) return;
+  if (entry.createdByHook && entry.prevContent === null) {
+    el.parentNode?.removeChild(el);
+  } else if (entry.prevContent !== null) {
+    el.setAttribute("content", entry.prevContent);
   }
-  el.setAttribute("href", href);
 }
 
 export function useDocumentMeta({ title, description, canonicalPath }: Meta) {
   useEffect(() => {
     const prevTitle = document.title;
-    const prevDesc = document.head
-      .querySelector<HTMLMetaElement>('meta[name="description"]')
-      ?.getAttribute("content");
-    const prevOgTitle = document.head
-      .querySelector<HTMLMetaElement>('meta[property="og:title"]')
-      ?.getAttribute("content");
-    const prevOgDesc = document.head
-      .querySelector<HTMLMetaElement>('meta[property="og:description"]')
-      ?.getAttribute("content");
-    const prevTwTitle = document.head
-      .querySelector<HTMLMetaElement>('meta[name="twitter:title"]')
-      ?.getAttribute("content");
-    const prevTwDesc = document.head
-      .querySelector<HTMLMetaElement>('meta[name="twitter:description"]')
-      ?.getAttribute("content");
-    const prevCanonical = document.head
-      .querySelector<HTMLLinkElement>('link[rel="canonical"]')
-      ?.getAttribute("href");
+
+    const titleSnaps: SnapshotEntry[] = title
+      ? [
+          snapshotMetaTag('meta[name="title"]', "name", "title"),
+          snapshotMetaTag('meta[property="og:title"]', "property", "og:title"),
+          snapshotMetaTag('meta[name="twitter:title"]', "name", "twitter:title"),
+        ]
+      : [];
+
+    const descSnaps: SnapshotEntry[] = description
+      ? [
+          snapshotMetaTag('meta[name="description"]', "name", "description"),
+          snapshotMetaTag(
+            'meta[property="og:description"]',
+            "property",
+            "og:description",
+          ),
+          snapshotMetaTag(
+            'meta[name="twitter:description"]',
+            "name",
+            "twitter:description",
+          ),
+        ]
+      : [];
+
+    let canonicalSnap: {
+      prevHref: string | null;
+      createdByHook: boolean;
+    } | null = null;
+    if (canonicalPath) {
+      const existing = document.head.querySelector<HTMLLinkElement>(
+        'link[rel="canonical"]',
+      );
+      canonicalSnap = {
+        prevHref: existing ? existing.getAttribute("href") : null,
+        createdByHook: false,
+      };
+    }
 
     if (title) {
       document.title = title;
-      setMetaTag('meta[name="title"]', "name", "title", title);
-      setMetaTag('meta[property="og:title"]', "property", "og:title", title);
-      setMetaTag('meta[name="twitter:title"]', "name", "twitter:title", title);
+      titleSnaps.forEach((s) => setMetaTagAndTrack(s, title));
     }
     if (description) {
-      setMetaTag('meta[name="description"]', "name", "description", description);
-      setMetaTag('meta[property="og:description"]', "property", "og:description", description);
-      setMetaTag('meta[name="twitter:description"]', "name", "twitter:description", description);
+      descSnaps.forEach((s) => setMetaTagAndTrack(s, description));
     }
-    if (canonicalPath) {
+    if (canonicalPath && canonicalSnap) {
+      let el = document.head.querySelector<HTMLLinkElement>(
+        'link[rel="canonical"]',
+      );
+      if (!el) {
+        el = document.createElement("link");
+        el.setAttribute("rel", "canonical");
+        document.head.appendChild(el);
+        canonicalSnap.createdByHook = true;
+      }
       const origin =
         typeof window !== "undefined" ? window.location.origin : "";
-      setLink("canonical", `${origin}${canonicalPath}`);
+      el.setAttribute("href", `${origin}${canonicalPath}`);
     }
 
     return () => {
       if (title) document.title = prevTitle;
-      if (description && prevDesc) {
-        setMetaTag('meta[name="description"]', "name", "description", prevDesc);
-      }
-      if (title && prevOgTitle) {
-        setMetaTag('meta[property="og:title"]', "property", "og:title", prevOgTitle);
-      }
-      if (description && prevOgDesc) {
-        setMetaTag(
-          'meta[property="og:description"]',
-          "property",
-          "og:description",
-          prevOgDesc,
+      titleSnaps.forEach(restoreMetaTag);
+      descSnaps.forEach(restoreMetaTag);
+      if (canonicalSnap) {
+        const el = document.head.querySelector<HTMLLinkElement>(
+          'link[rel="canonical"]',
         );
-      }
-      if (title && prevTwTitle) {
-        setMetaTag('meta[name="twitter:title"]', "name", "twitter:title", prevTwTitle);
-      }
-      if (description && prevTwDesc) {
-        setMetaTag(
-          'meta[name="twitter:description"]',
-          "name",
-          "twitter:description",
-          prevTwDesc,
-        );
-      }
-      if (canonicalPath && prevCanonical) {
-        setLink("canonical", prevCanonical);
+        if (el) {
+          if (canonicalSnap.createdByHook && canonicalSnap.prevHref === null) {
+            el.parentNode?.removeChild(el);
+          } else if (canonicalSnap.prevHref !== null) {
+            el.setAttribute("href", canonicalSnap.prevHref);
+          }
+        }
       }
     };
   }, [title, description, canonicalPath]);

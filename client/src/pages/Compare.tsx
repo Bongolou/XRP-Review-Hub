@@ -7,8 +7,8 @@ import { useDocumentMeta } from "@/lib/useDocumentMeta";
 
 const COMPARE_SEO: Record<string, { title: string; description: string }> = {
   "xaman-vs-ledger": {
-    title: "Xaman vs Ledger 2026 | XRP Software vs Hardware Wallet Compared",
-    description: "Xaman vs Ledger Nano X for XRP in 2026. Hands-on comparison of mobile XRPL software vs Secure Element hardware cold storage — fees, security, DeFi, and the verdict.",
+    title: "Xaman vs Ledger Nano X for XRP (2026) | Side-by-Side Comparison",
+    description: "Xaman vs Ledger Nano X for XRP holders: fees, security, XRPL features, DeFi/AMM access, and which wallet wins for beginners vs long-term storage.",
   },
   "xaman-vs-tangem": {
     title: "Xaman vs Tangem 2026 | XRPL Mobile Wallet vs NFC Hardware Card",

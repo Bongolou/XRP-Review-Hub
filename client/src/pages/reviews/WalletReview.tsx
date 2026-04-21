@@ -12,12 +12,12 @@ const WALLET_SEO: Record<string, { title: string; description: string }> = {
     description: "Hands-on Xaman (XUMM) review for 2026. The best mobile XRP wallet for XRPL DEX, AMM and NFTs — features, security, fees and how it compares to Ledger.",
   },
   ledger: {
-    title: "Ledger Nano X Review 2026 | Best Hardware Wallet for XRP Cold Storage",
-    description: "In-depth Ledger Nano X review for 2026. Secure Element cold storage for XRP and 5,500+ coins. Pros, cons, fees and how it stacks up against Tangem and Trezor.",
+    title: "Ledger Nano X Review for XRP Holders (2026) | All Things XRPL",
+    description: "Hands-on Ledger Nano X review for XRP holders: XRPL compatibility, security, ease of use, DeFi limitations, and who should buy it in 2026.",
   },
   tangem: {
-    title: "Tangem Wallet Review 2026 | NFC Hardware Card for XRP",
-    description: "Tangem review for 2026. A credit-card-sized NFC hardware wallet for XRP — EAL6+ secure element, no seed phrase, waterproof. Compared to Ledger and Trezor.",
+    title: "Tangem Wallet Review for XRP (2026) | Card-Style Cold Storage | All Things XRPL",
+    description: "Is Tangem a safe XRP wallet? Our hands-on Tangem review covers XRPL support, NFC tap-to-sign UX, security trade-offs, and who it's best for.",
   },
   trezor: {
     title: "Trezor Safe 3 Review 2026 | Open-Source Hardware Wallet for XRP",
