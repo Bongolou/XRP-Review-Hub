@@ -1,0 +1,74 @@
+Scan the entire site and standardize all spacing using a 4px spacing system with reusable design tokens.
+
+Global spacing standard:
+- All margin, padding, gap, row-gap, column-gap, inset, top, bottom, left, right, width, height, max-width spacing values should use a spacing scale based on multiples of 4px.
+- Allowed spacing values: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128.
+- Replace arbitrary spacing values like 7px, 13px, 18px, 22px, 27px, 35px, etc. with the nearest spacing token unless there is a very strong reason not to.
+- Prefer rem units in CSS variables so spacing scales better with accessibility settings.
+- Create spacing tokens in a global CSS file or design system layer and refactor the site to use them consistently.
+
+Create these CSS variables:
+:root {
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+  --space-24: 6rem;    /* 96px */
+  --space-32: 8rem;    /* 128px */
+}
+
+Spacing rules to enforce sitewide:
+1. Every section must use consistent vertical padding.
+2. Every card type must use one standard internal padding value.
+3. Every button size must use consistent horizontal and vertical padding.
+4. Every list/grid must use consistent gap spacing.
+5. Every heading must have consistent margin below it.
+6. Every paragraph block must have consistent spacing below it.
+7. Form fields, labels, and buttons must use consistent spacing rules.
+8. Navbar, footer, sidebar, cards, tables, and CTA blocks must all follow the same spacing scale.
+9. Do not use random one-off spacing values unless absolutely necessary.
+10. Internal spacing inside components should generally be less than or equal to the spacing between components.
+
+Recommended defaults:
+- Tiny spacing: 4px, 8px
+- Small component spacing: 12px, 16px
+- Standard card padding: 24px or 32px
+- Section gaps between content blocks: 24px, 32px, or 40px
+- Section vertical padding: 48px to 96px depending on importance
+- Mobile page padding: 16px
+- Desktop page padding: 24px to 32px
+
+Audit tasks:
+1. Scan all CSS, Tailwind classes, inline styles, and component files for spacing values.
+2. Identify inconsistent margin, padding, and gap values.
+3. Replace them with spacing tokens.
+4. Standardize repeated patterns into reusable utility classes or shared component styles.
+5. Fix visual rhythm issues where sections feel too cramped or too loose.
+6. Make sure spacing is consistent on both mobile and desktop.
+7. Do a full pass on homepage, review pages, comparison pages, header, footer, cards, forms, tables, and CTA sections.
+8. Preserve functionality and layout while improving visual consistency.
+
+Responsive spacing rules:
+- Mobile should generally use tighter spacing than desktop.
+- Use a simple responsive pattern like:
+  mobile section padding: 24px to 48px
+  tablet section padding: 32px to 64px
+  desktop section padding: 48px to 96px
+- Use clamp() where helpful for smooth scaling, especially for major section padding.
+
+Code quality rules:
+- Centralize spacing tokens in one place.
+- Remove duplicated spacing logic.
+- Prefer gap over ad hoc margins when using flex or grid.
+- Avoid margin-top hacks when spacing can be controlled by parent layout containers.
+- Keep the result clean, systematic, and easy to maintain.
+
+Final deliverable:
+Return a cleaned-up site with a consistent spacing system across all pages and components, plus a short summary of what spacing inconsistencies were found and how they were standardized.
