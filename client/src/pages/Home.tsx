@@ -994,7 +994,7 @@ export default function Home() {
       <div className="h-24" aria-hidden="true" />
 
       {/* Why trust us */}
-      <section className="container mx-auto px-4 py-20">
+      <section className="container mx-auto px-4 pt-20 pb-12">
         <div className="max-w-5xl mx-auto rounded-2xl border border-white/10 bg-card/30 p-8 md:p-10">
           <div className="text-xs uppercase tracking-widest text-primary font-display mb-3">{t("home.whyTrust.eyebrow")}</div>
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">{t("home.whyTrust.title")}</h2>
@@ -1034,12 +1034,14 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="h-16" aria-hidden="true" />
+
       {/* Best-for guides + XRPL DeFi & tools entry block */}
-      <section className="container mx-auto px-4 pt-12 pb-20">
+      <section className="container mx-auto px-4 py-20">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold font-display mb-2">{t("home.guides.title")}</h2>
-          <p className="text-muted-foreground mb-6">{t("home.guides.subtitle")}</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <h2 className="text-2xl md:text-3xl font-bold font-display mb-3">{t("home.guides.title")}</h2>
+          <p className="text-muted-foreground mb-10">{t("home.guides.subtitle")}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <BestForCallout label={t("footer.bestForBeginners")} href="/best-for/beginners" description={t("home.bestForBeginnersDesc")} />
             <BestForCallout label={t("footer.bestForHardware")} href="/best-for/hardware" description={t("home.bestForHardwareDesc")} />
             <BestForCallout label={t("footer.bestForColdStorage")} href="/best-for/cold-storage" description={t("home.bestForColdStorageDesc")} />
@@ -1050,12 +1052,14 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="h-20" aria-hidden="true" />
+
       {/* Lead magnet email capture */}
       <section className="container mx-auto px-4 py-20">
         <EmailCaptureBlock source="homepage" />
       </section>
 
-      <div className="h-12" aria-hidden="true" />
+      <div className="h-24" aria-hidden="true" />
 
       {/* Latest News Preview */}
       <LatestNewsPreview t={t} />
