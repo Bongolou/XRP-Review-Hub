@@ -2,7 +2,23 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { VerdictBox, BestForCallout, LastUpdated } from "@/components/conversion";
+import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
+
+const EXISTING_COMPARISONS = [
+  "xaman-vs-ledger",
+  "xaman-vs-tangem",
+  "ledger-vs-tangem",
+  "ellipal-vs-ledger",
+  "trezor-vs-ledger",
+  "bifrost-vs-xaman",
+  "trustwallet-vs-xaman",
+];
+
+function findComparison(slugA: string, slugB: string): string | null {
+  if (EXISTING_COMPARISONS.includes(`${slugA}-vs-${slugB}`)) return `${slugA}-vs-${slugB}`;
+  if (EXISTING_COMPARISONS.includes(`${slugB}-vs-${slugA}`)) return `${slugB}-vs-${slugA}`;
+  return null;
+}
 import { 
   Star, 
   Shield, 
@@ -870,19 +886,27 @@ export default function WalletReview() {
                   );
                 })}
               </div>
-              <div className="mt-6 flex flex-wrap gap-3 text-sm">
-                <span className="text-muted-foreground">Compare directly:</span>
-                {alternativeSlugs.map((altSlug) => (
-                  <Link
-                    key={altSlug}
-                    href={`/compare/${slug}-vs-${altSlug}`}
-                    className="text-primary hover:underline"
-                    data-testid={`link-compare-${slug}-${altSlug}`}
-                  >
-                    {wallet.name.split(" ")[0]} vs {walletData[altSlug].name.split(" ")[0]}
-                  </Link>
-                ))}
-              </div>
+              {(() => {
+                const validCompares = alternativeSlugs
+                  .map((altSlug) => ({ altSlug, compareSlug: findComparison(slug || "", altSlug) }))
+                  .filter((x) => x.compareSlug !== null);
+                if (validCompares.length === 0) return null;
+                return (
+                  <div className="mt-6 flex flex-wrap gap-3 text-sm">
+                    <span className="text-muted-foreground">Compare directly:</span>
+                    {validCompares.map(({ altSlug, compareSlug }) => (
+                      <Link
+                        key={altSlug}
+                        href={`/compare/${compareSlug}`}
+                        className="text-primary hover:underline"
+                        data-testid={`link-compare-${slug}-${altSlug}`}
+                      >
+                        {wallet.name.split(" ")[0]} vs {walletData[altSlug].name.split(" ")[0]}
+                      </Link>
+                    ))}
+                  </div>
+                );
+              })()}
             </div>
           );
         })()}
@@ -988,6 +1012,16 @@ export default function WalletReview() {
         <div className="bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 rounded-2xl p-6 mb-12">
           <h2 className="text-xl font-bold font-display mb-2">{t("walletReview.bestFor")}</h2>
           <p className="text-muted-foreground">{t(wallet.bestForKey)}</p>
+        </div>
+
+        {/* In-article lead magnet */}
+        <div className="mb-12">
+          <EmailCaptureBlock
+            title="Free: XRPL Wallet Starter Kit"
+            description={`Get our setup checklist, security tips, and the same shortlist we'd give a friend asking about ${wallet.name}.`}
+            source={`wallet_review_${slug}`}
+            leadMagnet="wallet_starter_kit"
+          />
         </div>
 
         <div className="text-center pb-8">

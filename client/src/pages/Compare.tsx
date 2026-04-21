@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import { Check, X, ExternalLink, ArrowLeft, Trophy, Shield, Zap, Users, AlertTriangle, ThumbsUp, ThumbsDown } from "lucide-react";
-import { VerdictBox, BestForCallout, LastUpdated } from "@/components/conversion";
+import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
 
 type ComparisonData = {
   wallet1: {
@@ -985,6 +985,16 @@ export default function Compare() {
               </Link>
             </div>
           </div>
+        </div>
+
+        {/* In-article lead magnet */}
+        <div className="mb-12">
+          <EmailCaptureBlock
+            title="Still deciding? Get our 1-page wallet shortlist"
+            description="We'll email you the same comparison cheat-sheet we'd give a friend choosing between these two."
+            source={`compare_${slug}`}
+            leadMagnet="wallet_shortlist"
+          />
         </div>
 
         {/* FAQ block */}
