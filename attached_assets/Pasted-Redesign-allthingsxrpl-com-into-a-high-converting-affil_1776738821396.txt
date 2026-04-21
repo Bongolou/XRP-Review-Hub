@@ -1,0 +1,120 @@
+Redesign allthingsxrpl.com into a high-converting affiliate and lead-generation website focused on XRP wallets, XRPL tools, XRPL DeFi, AMM staking, NFT marketplaces, and wallet comparisons. The site already targets “Best XRP Wallets 2026” and pages like Xaman vs Ledger, plus wallet pages for Ledger and Tangem, so preserve that SEO/topic focus while making the site far more conversion-oriented. [web:5][web:15][web:12][web:18]
+
+Primary goals:
+1. Increase affiliate clicks for wallets, exchanges, and related XRPL tools. [web:5][web:12]
+2. Increase email signups with a lead magnet like “XRPL Wallet Starter Kit.”
+3. Turn the homepage into a decision funnel, not just a content hub. [web:5]
+4. Improve internal linking between homepage, reviews, comparisons, and best-for pages. [web:15]
+5. Make the site trustworthy, beginner-friendly, security-aware, and easy to scan.
+
+Target audience:
+1. People searching for the best XRP wallet. [web:5]
+2. People comparing Xaman, Ledger, Tangem, Trezor, and ELLIPAL. [web:5][web:15]
+3. Users interested in XRPL DeFi, AMMs, NFTs, and secure XRP storage. [web:5]
+4. Beginners who need help choosing the safest or easiest XRP setup.
+
+Homepage requirements:
+1. Hero section with headline like “Find the best XRP wallet for your needs.”
+2. Subheadline explaining the main comparison categories: security, DeFi access, mobile use, long-term storage.
+3. Primary CTA: “Compare top XRP wallets.”
+4. Secondary CTA: “See best wallet by use case.”
+5. A trust strip: “Updated for 2026,” “Security-focused reviews,” “XRPL-specific picks.” [web:5]
+6. A use-case selector with buttons for beginner, cold storage, DeFi/NFT, mobile, and large holdings.
+7. A fast comparison table near the top featuring Xaman, Ledger, Tangem, Trezor, and ELLIPAL. [web:5]
+8. A “Why trust us” section explaining how wallets are evaluated.
+9. A featured comparisons section linking to pages like Xaman vs Ledger. [web:15]
+10. A “best-for” guides section.
+11. An XRPL tools / DeFi tools section.
+12. An email capture block for the XRPL Wallet Starter Kit.
+13. Strong internal links to the site’s top money pages.
+
+Wallet comparison table requirements:
+- Columns: Wallet, Best For, Type, Strength, CTA.
+- Include Xaman, Ledger, Tangem, Trezor, and ELLIPAL because those are already part of the site’s visible wallet positioning. [web:5]
+- Each row should have a short “best for” label and a clear CTA like “View review” or “Check price.”
+
+Page templates to create:
+1. Homepage template
+2. Review page template
+3. Comparison page template
+4. Best-for page template
+5. XRPL tools / DeFi roundup template
+
+Review page template must include:
+- Verdict box near the top
+- Best-for summary
+- Pros and cons
+- XRP/XRPL compatibility
+- Security notes
+- Ease-of-use notes
+- Alternatives section
+- FAQ
+- CTA above the fold and near the end
+
+Comparison page template must include:
+- Quick winner summary at the top
+- “Best for beginners,” “Best for security,” and “Best for DeFi” callouts
+- Side-by-side comparison table
+- CTA buttons for both products
+- FAQ
+- Links to both full reviews
+Use Xaman vs Ledger as the model comparison page to improve first. [web:15]
+
+Best-for pages to build or improve:
+- Best XRP wallet for beginners
+- Best hardware wallet for XRP
+- Best XRP wallet for cold storage
+- Best XRP wallet for DeFi
+- Safest way to store XRP
+These should target narrow, high-intent search traffic. Similar wallet guides across the market are organized heavily by use case, so that structure should be mirrored here. [web:31][web:33][web:34]
+
+XRPL tools / monetization expansion:
+- Add sections/pages for best XRPL DeFi apps, AMM staking tools, NFT marketplaces, and best exchange to buy XRP. The homepage already signals those topics publicly, so they should become stronger monetization paths. [web:5][web:6]
+
+Internal linking rules:
+- Homepage links to top reviews, top comparisons, and best-for pages.
+- Every review page links to 2–3 comparisons and at least 2 alternatives.
+- Every comparison page links to both full reviews and at least one roundup page.
+- Informational XRPL pages should link contextually to relevant wallet/tool money pages.
+- Footer should include monetization categories, not just generic navigation.
+
+Copy/tone rules:
+- Use plain English.
+- Avoid hypey crypto marketing language.
+- Keep paragraphs short and scannable.
+- Put the recommendation early.
+- Use clear “best for” labels.
+- Add trust and tradeoff language, not just praise.
+- Add “last updated” text on money pages.
+- Make the content feel credible, practical, and security-aware.
+
+CTA rules:
+Use consistent CTA copy such as:
+- Compare top XRP wallets
+- View Xaman review
+- Check Ledger price
+- Compare Xaman vs Ledger
+- See the best wallet for beginners
+- Explore XRPL DeFi tools
+- Get the XRPL Wallet Starter Kit
+
+Design/development rules:
+- Build mobile-first.
+- Make the site feel premium and modern, not like a generic blog.
+- Keep the layout highly scannable with strong visual hierarchy.
+- Use reusable components for hero blocks, comparison tables, CTA blocks, trust sections, review summaries, and email capture.
+- Make all copy easy to edit.
+- Preserve or improve existing SEO metadata, slugs, headings, and internal linking where possible.
+- Optimize for speed and clarity.
+
+Priority order for implementation:
+1. Rebuild homepage as the main conversion hub. [web:5]
+2. Upgrade the Best XRP Wallets page. [web:5]
+3. Upgrade the Xaman vs Ledger comparison page. [web:15]
+4. Upgrade Ledger and Tangem review pages. [web:12][web:18]
+5. Build best-for wallet pages.
+6. Build XRPL DeFi and tools roundups.
+7. Add email lead magnet and signup flow.
+
+Main objective:
+Transform allthingsxrpl.com from a useful XRPL content site into a focused affiliate decision engine that earns more per visitor while keeping trust high and staying tightly aligned with XRP/XRPL search intent. [web:5][web:15]
