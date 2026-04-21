@@ -44,8 +44,10 @@ import {
   FastCompareTable,
   EmailCaptureBlock,
   BestForCallout,
+  LastUpdated,
   type FastCompareRow,
 } from "@/components/conversion";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { Shield as ShieldIcon, BookOpen, Coins, Zap as ZapIcon } from "lucide-react";
 
 const homepageCompareRows: FastCompareRow[] = [
@@ -472,6 +474,12 @@ function LatestNewsPreview({ t }: { t: (key: string) => string }) {
 
 export default function Home() {
   const { t } = useLanguage();
+  useDocumentMeta({
+    title: "Best XRP Wallets 2026 | Compare Xaman, Ledger, Tangem & More",
+    description:
+      "Hands-on reviews of the best XRP wallets for 2026. Compare Xaman, Ledger Nano X, Tangem, Trezor and more — by use case, security, fees and price. Updated April 2026.",
+    canonicalPath: "/",
+  });
   
   return (
     <Layout>
@@ -570,6 +578,10 @@ export default function Home() {
       {/* Trust strip */}
       <div className="relative z-20">
         <TrustStrip />
+      </div>
+
+      <div className="container mx-auto px-4 -mt-2 mb-4 flex justify-center relative z-20">
+        <LastUpdated date="April 2026" />
       </div>
 
       {/* Use-case decision selector — primary funnel entry */}

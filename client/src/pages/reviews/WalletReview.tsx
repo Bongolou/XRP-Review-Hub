@@ -4,6 +4,46 @@ import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+
+const WALLET_SEO: Record<string, { title: string; description: string }> = {
+  xaman: {
+    title: "Xaman (XUMM) Review 2026 | Best Mobile XRP Wallet for XRPL DeFi",
+    description: "Hands-on Xaman (XUMM) review for 2026. The best mobile XRP wallet for XRPL DEX, AMM and NFTs — features, security, fees and how it compares to Ledger.",
+  },
+  ledger: {
+    title: "Ledger Nano X Review 2026 | Best Hardware Wallet for XRP Cold Storage",
+    description: "In-depth Ledger Nano X review for 2026. Secure Element cold storage for XRP and 5,500+ coins. Pros, cons, fees and how it stacks up against Tangem and Trezor.",
+  },
+  tangem: {
+    title: "Tangem Wallet Review 2026 | NFC Hardware Card for XRP",
+    description: "Tangem review for 2026. A credit-card-sized NFC hardware wallet for XRP — EAL6+ secure element, no seed phrase, waterproof. Compared to Ledger and Trezor.",
+  },
+  trezor: {
+    title: "Trezor Safe 3 Review 2026 | Open-Source Hardware Wallet for XRP",
+    description: "Trezor Safe 3 review for 2026. Open-source hardware wallet with secure element — XRP support, fees, security model and head-to-head with Ledger Nano X.",
+  },
+  ellipal: {
+    title: "ELLIPAL Titan Review 2026 | Air-Gapped Cold Storage for XRP",
+    description: "ELLIPAL Titan review for 2026. Fully air-gapped, QR-only XRP cold storage — security model, setup, fees and how it compares to Ledger and Trezor.",
+  },
+  crossmark: {
+    title: "Crossmark Wallet Review 2026 | Browser Extension Wallet for XRPL",
+    description: "Crossmark review for 2026. A MetaMask-style browser extension wallet for the XRP Ledger — DEX access, security, and how it compares to Xaman and Bifrost.",
+  },
+  bifrost: {
+    title: "Bifrost Wallet Review 2026 | Multi-Chain XRPL DEX Mobile Wallet",
+    description: "Bifrost Wallet review for 2026. Multi-chain mobile wallet with native XRPL DEX support — features, security, fees and how it compares to Xaman.",
+  },
+  gatehub: {
+    title: "GateHub Review 2026 | EU-Regulated XRP Web Wallet & Fiat On-Ramp",
+    description: "GateHub review for 2026. EU-regulated XRP web wallet with SEPA fiat on-ramp — fees, custody model, security, and how it compares to Xaman and Ledger.",
+  },
+  trustwallet: {
+    title: "Trust Wallet XRP Review 2026 | Multi-Chain Mobile Wallet",
+    description: "Trust Wallet XRP review for 2026. The Binance-backed multi-chain mobile wallet with basic XRP support — features, limitations, and Xaman alternatives.",
+  },
+};
 
 function renderTemplate(template: string, replacements: Record<string, ReactNode>): ReactNode[] {
   const parts = template.split(/(\{[A-Z0-9_]+\})/);
@@ -809,6 +849,12 @@ export default function WalletReview() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useLanguage();
   const wallet = walletData[slug || ""];
+  const seo = (slug && WALLET_SEO[slug]) || undefined;
+  useDocumentMeta({
+    title: seo?.title,
+    description: seo?.description,
+    canonicalPath: slug ? `/wallet/${slug}` : undefined,
+  });
 
   if (!wallet) {
     return (
