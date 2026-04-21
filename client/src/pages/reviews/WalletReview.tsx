@@ -28,6 +28,18 @@ function findComparison(slugA: string, slugB: string): string | null {
 // Per-wallet curated picks: 2 alternatives + comparisons that are guaranteed
 // to exist in Compare.tsx. This guarantees every review renders the required
 // internal links.
+const WALLET_BEST_FOR_MAP: Record<string, { slug: string; label: string; description: string }> = {
+  xaman: { slug: "defi", label: "Best wallets for XRPL DeFi", description: "DEX, AMMs and dApps — all from one mobile app." },
+  ledger: { slug: "hardware", label: "Best hardware wallets for XRP", description: "See where the Nano X ranks against rivals." },
+  tangem: { slug: "hardware", label: "Best hardware wallets for XRP", description: "Compare Tangem against Ledger, Trezor and more." },
+  trezor: { slug: "hardware", label: "Best hardware wallets for XRP", description: "How Trezor stacks up in our hardware roundup." },
+  ellipal: { slug: "cold-storage", label: "Best for cold storage", description: "Air-gapped setups for long-term XRP holders." },
+  crossmark: { slug: "defi", label: "Best wallets for XRPL DeFi", description: "Browser-extension wallets for the XRPL DEX." },
+  bifrost: { slug: "defi", label: "Best wallets for XRPL DeFi", description: "Compare desktop XRPL DeFi wallets." },
+  gatehub: { slug: "beginners", label: "Best wallets for beginners", description: "Web-first picks that are easy to start with." },
+  trustwallet: { slug: "beginners", label: "Best wallets for beginners", description: "Multi-chain picks for first-time XRP holders." },
+};
+
 const WALLET_LINK_MAP: Record<string, { alternatives: string[]; comparisons: string[] }> = {
   xaman: {
     alternatives: ["ledger", "crossmark"],
@@ -800,9 +812,12 @@ export default function WalletReview() {
     );
   }
 
+  const topTrafficSlugs = ["xaman", "ledger", "tangem", "trezor"];
+  const showStickyCta = !!slug && topTrafficSlugs.includes(slug);
+
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-4xl">
+      <div className={`container mx-auto px-4 max-w-4xl ${showStickyCta ? "pb-24 md:pb-8" : ""}`}>
         <Link href="/#wallets" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="h-4 w-4" />
           {t("walletReview.backToComparison")}
@@ -869,19 +884,31 @@ export default function WalletReview() {
           />
         </div>
 
-        {/* Cross-link to roundup + best-for guides */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10">
-          <BestForCallout
-            label="Compare all XRP wallets"
-            href="/best-xrp-wallets"
-            description="Our full ranked shortlist with picks, runner-ups, and verdicts."
-          />
-          <BestForCallout
-            label="Find your perfect setup"
-            href="/best-for/beginners"
-            description="Browse our best-for guides by use case."
-          />
-        </div>
+        {/* Compare alternatives — roundup + most relevant best-for guide */}
+        {(() => {
+          const bestFor = (slug && WALLET_BEST_FOR_MAP[slug]) || {
+            slug: "beginners",
+            label: "Find your perfect setup",
+            description: "Browse our best-for guides by use case.",
+          };
+          return (
+            <div className="mb-10" data-testid={`section-compare-alternatives-${slug}`}>
+              <h2 className="text-xl font-bold font-display mb-3">Compare alternatives</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <BestForCallout
+                  label="Compare all XRP wallets"
+                  href="/best-xrp-wallets"
+                  description="Our full ranked shortlist with picks, runner-ups, and verdicts."
+                />
+                <BestForCallout
+                  label={bestFor.label}
+                  href={`/best-for/${bestFor.slug}`}
+                  description={bestFor.description}
+                />
+              </div>
+            </div>
+          );
+        })()}
 
         {wallet.review && wallet.review.length > 0 && (
           <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8" data-testid={`section-review-${slug}`}>
@@ -1094,6 +1121,35 @@ export default function WalletReview() {
           </p>
         </div>
       </div>
+
+      {showStickyCta && (
+        <div
+          className="fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-background/95 backdrop-blur-md md:hidden"
+          data-testid={`sticky-cta-${slug}`}
+        >
+          <div className="container mx-auto px-4 py-3 flex items-center gap-3">
+            {logoMap[slug || ""] && (
+              <img src={logoMap[slug || ""]} alt={wallet.name} className="w-9 h-9 rounded-lg object-cover flex-shrink-0" />
+            )}
+            <div className="min-w-0 flex-1">
+              <div className="text-sm font-display font-bold truncate">{wallet.name}</div>
+              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
+                {wallet.rating}/5 · {wallet.price}
+              </div>
+            </div>
+            <a
+              href={wallet.affiliateLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 h-10 px-4 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg transition-colors flex-shrink-0"
+              data-testid={`button-sticky-cta-${slug}`}
+            >
+              {t("walletReview.get")} <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
+        </div>
+      )}
     </Layout>
   );
 }

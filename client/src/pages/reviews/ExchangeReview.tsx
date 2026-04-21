@@ -22,6 +22,16 @@ import coinbaseLogo from "@/assets/logos/coinbase-logo.webp";
 import cryptocomLogo from "@/assets/logos/cryptocom-logo.webp";
 import kucoinLogo from "@/assets/logos/kucoin-logo.webp";
 
+const EXCHANGE_BEST_FOR_MAP: Record<string, { slug: string; label: string; description: string }> = {
+  uphold: { slug: "safest", label: "Best for buy-and-hold investors", description: "US-friendly platforms with continuous XRP support." },
+  bitrue: { slug: "defi", label: "Best wallets for XRPL DeFi", description: "Compare yield, DEX and ecosystem-friendly options." },
+  kraken: { slug: "safest", label: "Best for buy-and-hold investors", description: "Battle-tested exchanges with deep liquidity." },
+  bitstamp: { slug: "safest", label: "Best for buy-and-hold investors", description: "EU-regulated venues for long-term XRP holders." },
+  coinbase: { slug: "beginners", label: "Best wallets for beginners", description: "Pair Coinbase with the easiest XRPL wallets." },
+  cryptocom: { slug: "beginners", label: "Best wallets for beginners", description: "Mobile-first picks to start your XRP journey." },
+  kucoin: { slug: "defi", label: "Best wallets for XRPL DeFi", description: "Wallets that match KuCoin's altcoin breadth." },
+};
+
 const logoMap: Record<string, string> = {
   uphold: upholdLogo,
   bitrue: bitrueLogo,
@@ -595,9 +605,12 @@ export default function ExchangeReview() {
     );
   }
 
+  const topTrafficSlugs = ["uphold", "bitrue"];
+  const showStickyCta = !!slug && topTrafficSlugs.includes(slug);
+
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-4xl">
+      <div className={`container mx-auto px-4 max-w-4xl ${showStickyCta ? "pb-24 md:pb-8" : ""}`}>
         <Link href="/#exchanges" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="h-4 w-4" />
           {t("exchangeReview.backToPartners")}
@@ -662,19 +675,31 @@ export default function ExchangeReview() {
           />
         </div>
 
-        {/* Cross-link to wallet roundup + use-case guides */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10">
-          <BestForCallout
-            label="Pair with a wallet"
-            href="/best-xrp-wallets"
-            description="Move XRP off-exchange — see our top wallet picks."
-          />
-          <BestForCallout
-            label="Best for cold storage"
-            href="/best-for/cold-storage"
-            description="The Ledger + Xaman setup we recommend."
-          />
-        </div>
+        {/* Compare alternatives — wallet roundup + most relevant best-for guide */}
+        {(() => {
+          const bestFor = (slug && EXCHANGE_BEST_FOR_MAP[slug]) || {
+            slug: "cold-storage",
+            label: "Best for cold storage",
+            description: "The Ledger + Xaman setup we recommend.",
+          };
+          return (
+            <div className="mb-10" data-testid={`section-compare-alternatives-${slug}`}>
+              <h2 className="text-xl font-bold font-display mb-3">Compare alternatives</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <BestForCallout
+                  label="Pair with a wallet"
+                  href="/best-xrp-wallets"
+                  description="Move XRP off-exchange — see our top wallet picks."
+                />
+                <BestForCallout
+                  label={bestFor.label}
+                  href={`/best-for/${bestFor.slug}`}
+                  description={bestFor.description}
+                />
+              </div>
+            </div>
+          );
+        })()}
 
         {exchange.review && exchange.review.length > 0 && (
           <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8" data-testid={`section-review-${slug}`}>
@@ -800,6 +825,35 @@ export default function ExchangeReview() {
           </p>
         </div>
       </div>
+
+      {showStickyCta && (
+        <div
+          className="fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-background/95 backdrop-blur-md md:hidden"
+          data-testid={`sticky-cta-${slug}`}
+        >
+          <div className="container mx-auto px-4 py-3 flex items-center gap-3">
+            {logoMap[slug || ""] && (
+              <img src={logoMap[slug || ""]} alt={exchange.name} className="w-9 h-9 rounded-lg object-cover flex-shrink-0" />
+            )}
+            <div className="min-w-0 flex-1">
+              <div className="text-sm font-display font-bold truncate">{exchange.name}</div>
+              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
+                {exchange.rating}/5 · Est. {exchange.founded}
+              </div>
+            </div>
+            <a
+              href={exchange.affiliateLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 h-10 px-4 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg transition-colors flex-shrink-0"
+              data-testid={`button-sticky-cta-${slug}`}
+            >
+              {t("exchangeReview.signUp")} <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
+        </div>
+      )}
     </Layout>
   );
 }
