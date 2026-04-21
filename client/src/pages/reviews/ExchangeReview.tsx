@@ -609,7 +609,7 @@ export default function ExchangeReview() {
 
   return (
     <Layout>
-      <div className={`container mx-auto px-4 max-w-4xl ${showStickyCta ? "pb-24 md:pb-8" : ""}`}>
+      <div className={`container mx-auto px-4 max-w-4xl ${showStickyCta ? "pb-24 md:pb-28" : ""}`}>
         <Link href="/#exchanges" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="h-4 w-4" />
           {t("exchangeReview.backToPartners")}
@@ -827,10 +827,10 @@ export default function ExchangeReview() {
 
       {showStickyCta && (
         <div
-          className="fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-background/95 backdrop-blur-md md:hidden"
+          className="fixed z-40 bg-background/95 backdrop-blur-md border-white/10 bottom-0 inset-x-0 border-t md:bottom-4 md:inset-x-0 md:mx-auto md:max-w-2xl md:rounded-xl md:border md:shadow-2xl md:shadow-black/40"
           data-testid={`sticky-cta-${slug}`}
         >
-          <div className="container mx-auto px-4 py-3 flex items-center gap-3">
+          <div className="container mx-auto px-4 py-3 md:px-5 md:py-3 flex items-center gap-3">
             {logoMap[slug || ""] && (
               <img src={logoMap[slug || ""]} alt={exchange.name} className="w-9 h-9 rounded-lg object-cover flex-shrink-0" />
             )}
