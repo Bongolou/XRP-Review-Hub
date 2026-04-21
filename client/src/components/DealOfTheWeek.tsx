@@ -32,7 +32,7 @@ export function DealOfTheWeek() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border-2 border-yellow-500/40 bg-gradient-to-r from-yellow-500/10 via-orange-500/10 to-red-500/10 p-6 md:p-8">
+    <div className="relative overflow-hidden rounded-2xl border-2 border-yellow-500/40 bg-gradient-to-r from-yellow-500/10 via-orange-500/10 to-red-500/10 p-8 md:p-10">
       <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-500/20 rounded-full blur-[60px] pointer-events-none" />
       <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-orange-500/20 rounded-full blur-[50px] pointer-events-none" />
       
