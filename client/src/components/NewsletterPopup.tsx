@@ -51,13 +51,13 @@ export function NewsletterPopup() {
 
     setIsLoading(true);
     try {
-      const response = await fetch("https://formspree.io/f/mzdrkdre", {
+      const response = await fetch("/api/subscribe", {
         method: "POST",
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source: "exit_intent_popup", leadMagnet: "newsletter" }),
       });
 
       if (response.ok) {

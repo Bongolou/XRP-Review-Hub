@@ -836,6 +836,94 @@ export default function WalletReview() {
           </div>
         )}
 
+        {/* Alternatives — strong contextual internal linking */}
+        {(() => {
+          const alternativeSlugs = Object.keys(walletData)
+            .filter((s) => s !== slug)
+            .slice(0, 2);
+          if (alternativeSlugs.length === 0) return null;
+          return (
+            <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 mb-8" data-testid={`section-alternatives-${slug}`}>
+              <h2 className="text-2xl font-bold font-display mb-2">Alternatives to {wallet.name}</h2>
+              <p className="text-muted-foreground mb-6">If {wallet.name} is not quite right for your setup, here are the two closest alternatives we'd recommend.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {alternativeSlugs.map((altSlug) => {
+                  const alt = walletData[altSlug];
+                  return (
+                    <div key={altSlug} className="p-5 rounded-xl bg-background/40 border border-white/10 hover:border-primary/40 transition-colors">
+                      <div className="flex items-center gap-3 mb-2">
+                        {logoMap[altSlug] && (
+                          <img src={logoMap[altSlug]} alt={alt.name} className="w-10 h-10 rounded-lg object-cover" />
+                        )}
+                        <div>
+                          <div className="font-bold">{alt.name}</div>
+                          <div className="text-xs text-muted-foreground">{t(alt.typeKey)} · {alt.price}</div>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-3 leading-relaxed">{t(alt.bestForKey)}</p>
+                      <div className="flex gap-2">
+                        <Link href={`/wallet/${altSlug}`} className="text-sm text-primary hover:underline" data-testid={`link-alternative-${altSlug}`}>
+                          Read {alt.name} review →
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-6 flex flex-wrap gap-3 text-sm">
+                <span className="text-muted-foreground">Compare directly:</span>
+                {alternativeSlugs.map((altSlug) => (
+                  <Link
+                    key={altSlug}
+                    href={`/compare/${slug}-vs-${altSlug}`}
+                    className="text-primary hover:underline"
+                    data-testid={`link-compare-${slug}-${altSlug}`}
+                  >
+                    {wallet.name.split(" ")[0]} vs {walletData[altSlug].name.split(" ")[0]}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* FAQ — adds unique long-form content per page */}
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 mb-8" data-testid={`section-faq-${slug}`}>
+          <h2 className="text-2xl font-bold font-display mb-6">Frequently Asked Questions about {wallet.name}</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-bold text-lg mb-2">Is {wallet.name} safe to use for storing XRP?</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {wallet.name} uses industry-standard security practices including encrypted local key storage, biometric or PIN authentication, and regular security audits. As with any cryptocurrency wallet, your safety also depends on your own operational security — keep your seed phrase offline, never share it with anyone, and download the wallet only from official sources. For very large holdings we always recommend pairing any software wallet with a hardware wallet for cold storage.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-2">Does {wallet.name} support the XRPL DEX, AMM, and NFTs?</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                The features supported by {wallet.name} are listed in the Key Features section above. Native XRPL wallets typically include DEX trading, trustlines, AMM pool participation, and NFT support, while multi-chain or hardware wallets often focus on send/receive plus account management. If full XRPL ecosystem access is critical for you, see our <Link href="/best-for/defi" className="text-primary hover:underline">best wallet for XRPL DeFi</Link> roundup.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-2">How much does {wallet.name} cost?</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                {wallet.name} is priced at <strong>{wallet.price}</strong>. Software wallets are typically free to download and use — you only pay XRPL network fees (a fraction of a cent per transaction). Hardware wallets have a one-time purchase cost but no recurring fees. There are no subscription costs to use {wallet.name}.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-2">Can I recover my XRP if I lose access to {wallet.name}?</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Yes — provided you have backed up your recovery phrase, secret numbers, or backup card (depending on the wallet's backup model) when you set up the wallet. {wallet.name} is non-custodial, which means {wallet.name} itself does not have access to your keys and cannot recover your account on your behalf. Your backup is the only way to restore access if your device is lost, stolen, or damaged.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-2">Is {wallet.name} the best XRP wallet for me?</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                It depends on your specific needs. See our <Link href="/best-xrp-wallets" className="text-primary hover:underline">full ranked roundup of the best XRP wallets</Link>, or jump straight to a use-case guide: <Link href="/best-for/beginners" className="text-primary hover:underline">beginners</Link>, <Link href="/best-for/cold-storage" className="text-primary hover:underline">cold storage</Link>, <Link href="/best-for/defi" className="text-primary hover:underline">XRPL DeFi</Link>, or <Link href="/best-for/hardware" className="text-primary hover:underline">hardware wallets</Link>.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 mt-4">
           <div className="bg-card/30 border border-white/10 rounded-2xl p-6">
             <h2 className="text-xl font-bold font-display mb-4 flex items-center gap-2">

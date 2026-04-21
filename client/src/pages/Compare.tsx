@@ -987,6 +987,44 @@ export default function Compare() {
           </div>
         </div>
 
+        {/* FAQ block */}
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 mb-12" data-testid={`section-compare-faq-${slug}`}>
+          <h2 className="text-2xl font-bold font-display mb-6">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-bold text-lg mb-2">Which is better for beginners — {comparison.wallet1.name} or {comparison.wallet2.name}?</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                For most newcomers to XRP we recommend starting with the simpler of the two interfaces and graduating to a hardware solution once your holdings grow. Read the verdict above for our specific pick in this matchup, and see our <Link href="/best-for/beginners" className="text-primary hover:underline">best XRP wallet for beginners</Link> guide for a step-by-step setup.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-2">Can I use both {comparison.wallet1.name} and {comparison.wallet2.name} together?</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Yes — and many serious XRP holders do exactly that. A common setup is to use a feature-rich software wallet for daily XRPL DEX, NFT, and AMM activity, and a hardware wallet to cold-store the bulk of your XRP. Pairing them gives you everyday convenience without sacrificing long-term security.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-2">Which one is safer for large XRP holdings?</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Hardware wallets and air-gapped devices are always the safer choice for cold storage of significant amounts. Software and browser wallets are appropriate for active trading and dApp interaction, but should not hold your entire portfolio. See our <Link href="/best-for/cold-storage" className="text-primary hover:underline">best cold-storage setup</Link> recommendations for a full breakdown.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-lg mb-2">Are these wallets compatible with the XRPL DEX, AMM, and NFTs?</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Native XRPL software wallets like Xaman and Crossmark provide the deepest support for the DEX, AMM pools, and XRPL NFTs. Hardware wallets generally handle send/receive and trustlines but rely on a software wallet for richer ecosystem features. The comparison table above lists exactly which features each wallet in this matchup supports.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Best-for callouts */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-12">
+          <BestForCallout label="Best for beginners" href="/best-for/beginners" description="Easiest setup and friendliest UI." />
+          <BestForCallout label="Best for security" href="/best-for/cold-storage" description="Hardware-first cold storage picks." />
+          <BestForCallout label="Best for XRPL DeFi" href="/best-for/defi" description="Wallets that unlock DEX + AMM." />
+        </div>
+
         {/* More Comparisons */}
         <div className="text-center">
           <p className="text-muted-foreground mb-4">Explore more comparisons</p>
