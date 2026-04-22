@@ -2,6 +2,8 @@ import type { Language } from "./translations";
 
 export const dappsTranslations: Record<Language, Record<string, string>> = {
   en: {
+    "dapps.metaTitle": "Best XRPL DeFi & dApps in 2026 | All Things XRPL",
+    "dapps.metaDescription": "We tested the leading XRPL DeFi protocols, AMM pools, NFT marketplaces, and developer tools to find the ones actually worth your time and capital in 2026.",
     "dapps.badge": "XRPL DeFi & Tools",
     "dapps.title": "Best XRPL DeFi & dApps in 2026",
     "dapps.subtitle": "We tested the leading XRPL DeFi protocols, AMM pools, NFT marketplaces, and developer tools to find the ones actually worth your time and capital.",
@@ -202,6 +204,8 @@ export const dappsTranslations: Record<Language, Record<string, string>> = {
     "dapps.d.16.f4": "Familiar exchange UI",
   },
   es: {
+    "dapps.metaTitle": "Las mejores DeFi y dApps de XRPL en 2026 | All Things XRPL",
+    "dapps.metaDescription": "Probamos los principales protocolos DeFi de XRPL, pools AMM, mercados NFT y herramientas para desarrolladores para encontrar los que realmente valen tu tiempo y capital en 2026.",
     "dapps.badge": "DeFi y herramientas de XRPL",
     "dapps.title": "Las mejores DeFi y dApps de XRPL en 2026",
     "dapps.subtitle": "Probamos los principales protocolos DeFi de XRPL, pools AMM, mercados NFT y herramientas para desarrolladores para encontrar los que realmente valen tu tiempo y capital.",
@@ -403,6 +407,8 @@ export const dappsTranslations: Record<Language, Record<string, string>> = {
   },
   zh: {
     "dapps.badge": "XRPL DeFi 与工具",
+    "dapps.metaTitle": "2026 年最佳 XRPL DeFi 与 dApp | All Things XRPL",
+    "dapps.metaDescription": "我们测试了主流的 XRPL DeFi 协议、AMM 资金池、NFT 市场以及开发者工具，挑出 2026 年真正值得投入时间和资金的项目。",
     "dapps.title": "2026 年最佳 XRPL DeFi 与 dApp",
     "dapps.subtitle": "我们测试了主流的 XRPL DeFi 协议、AMM 资金池、NFT 市场以及开发者工具，挑出真正值得投入时间和资金的项目。",
     "dapps.lastUpdated": "2026 年 4 月",
@@ -603,6 +609,8 @@ export const dappsTranslations: Record<Language, Record<string, string>> = {
   },
   ja: {
     "dapps.badge": "XRPL DeFi & ツール",
+    "dapps.metaTitle": "2026年のおすすめXRPL DeFi & dApp | All Things XRPL",
+    "dapps.metaDescription": "主要なXRPLのDeFiプロトコル、AMMプール、NFTマーケットプレイス、開発者向けツールを実際にテストし、2026年に本当に時間と資金を投じる価値のあるものを厳選しました。",
     "dapps.title": "2026年のおすすめXRPL DeFi & dApp",
     "dapps.subtitle": "主要なXRPLのDeFiプロトコル、AMMプール、NFTマーケットプレイス、開発者向けツールを実際にテストし、本当に時間と資金を投じる価値のあるものを厳選しました。",
     "dapps.lastUpdated": "2026年4月",
@@ -803,6 +811,8 @@ export const dappsTranslations: Record<Language, Record<string, string>> = {
   },
   ko: {
     "dapps.badge": "XRPL DeFi & 도구",
+    "dapps.metaTitle": "2026년 최고의 XRPL DeFi & dApp | All Things XRPL",
+    "dapps.metaDescription": "주요 XRPL DeFi 프로토콜, AMM 풀, NFT 마켓플레이스, 개발자 도구를 직접 테스트해 2026년 정말 시간과 자본을 들일 가치가 있는 것만 골랐습니다.",
     "dapps.title": "2026년 최고의 XRPL DeFi & dApp",
     "dapps.subtitle": "주요 XRPL DeFi 프로토콜, AMM 풀, NFT 마켓플레이스, 개발자 도구를 직접 테스트해 정말 시간과 자본을 들일 가치가 있는 것만 골랐습니다.",
     "dapps.lastUpdated": "2026년 4월",
@@ -1003,6 +1013,8 @@ export const dappsTranslations: Record<Language, Record<string, string>> = {
   },
   pt: {
     "dapps.badge": "DeFi e Ferramentas XRPL",
+    "dapps.metaTitle": "Melhores DeFi e dApps do XRPL em 2026 | All Things XRPL",
+    "dapps.metaDescription": "Testamos os principais protocolos DeFi do XRPL, pools AMM, mercados de NFT e ferramentas para desenvolvedores para encontrar os que realmente valem seu tempo e capital em 2026.",
     "dapps.title": "Melhores DeFi e dApps do XRPL em 2026",
     "dapps.subtitle": "Testamos os principais protocolos DeFi do XRPL, pools AMM, mercados de NFT e ferramentas para desenvolvedores para encontrar os que realmente valem seu tempo e capital.",
     "dapps.lastUpdated": "Abril de 2026",
@@ -1203,6 +1215,8 @@ export const dappsTranslations: Record<Language, Record<string, string>> = {
   },
   de: {
     "dapps.badge": "XRPL DeFi & Tools",
+    "dapps.metaTitle": "Beste XRPL DeFi & dApps 2026 | All Things XRPL",
+    "dapps.metaDescription": "Wir haben die führenden XRPL-DeFi-Protokolle, AMM-Pools, NFT-Marktplätze und Entwicklerwerkzeuge getestet, um die zu finden, die deine Zeit und dein Kapital 2026 wirklich wert sind.",
     "dapps.title": "Beste XRPL DeFi & dApps 2026",
     "dapps.subtitle": "Wir haben die führenden XRPL-DeFi-Protokolle, AMM-Pools, NFT-Marktplätze und Entwicklerwerkzeuge getestet, um die zu finden, die deine Zeit und dein Kapital wirklich wert sind.",
     "dapps.lastUpdated": "April 2026",
@@ -1403,6 +1417,8 @@ export const dappsTranslations: Record<Language, Record<string, string>> = {
   },
   fr: {
     "dapps.badge": "DeFi & outils XRPL",
+    "dapps.metaTitle": "Meilleures DeFi & dApps XRPL en 2026 | All Things XRPL",
+    "dapps.metaDescription": "Nous avons testé les principaux protocoles DeFi du XRPL, les pools AMM, les marketplaces NFT et les outils pour développeurs afin de retenir ceux qui méritent vraiment votre temps et votre capital en 2026.",
     "dapps.title": "Meilleures DeFi & dApps XRPL en 2026",
     "dapps.subtitle": "Nous avons testé les principaux protocoles DeFi du XRPL, les pools AMM, les marketplaces NFT et les outils pour développeurs afin de retenir ceux qui méritent vraiment votre temps et votre capital.",
     "dapps.lastUpdated": "Avril 2026",

@@ -30,6 +30,7 @@ import {
   type FastCompareRow,
 } from "@/components/conversion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
 
 type TopPick = {
   name: string;
@@ -323,6 +324,12 @@ const categoryKeys = [
 
 export default function DApps() {
   const { t } = useLanguage();
+
+  useDocumentMeta({
+    title: t("dapps.metaTitle"),
+    description: t("dapps.metaDescription"),
+    canonicalPath: "/dapps",
+  });
 
   const dappCompareRows: FastCompareRow[] = [
     { id: "magnetic", name: "Magnetic", type: t("dapps.row.magnetic.type"), price: t("dapps.row.priceFree"), bestFor: t("dapps.row.magnetic.bestFor"), rating: "9.4", affiliateUrl: "https://www.magnetic.app/?ref=allthingsxrpl", highlight: true },
