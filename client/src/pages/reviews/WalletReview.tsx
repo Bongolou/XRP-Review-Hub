@@ -1,4 +1,4 @@
-import { Fragment, ReactNode } from "react";
+import { Fragment, ReactNode, useEffect, useState } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
@@ -186,7 +186,8 @@ import {
   CheckCircle2,
   XCircle,
   ExternalLink,
-  ArrowLeft
+  ArrowLeft,
+  X
 } from "lucide-react";
 import xamanLogo from "@/assets/logos/xaman-logo.webp";
 import ledgerLogo from "@/assets/logos/ledger-logo.webp";
@@ -904,6 +905,31 @@ export default function WalletReview() {
     canonicalPath: slug ? `/wallet/${slug}` : undefined,
   });
 
+  const [stickyCtaDismissed, setStickyCtaDismissed] = useState(false);
+
+  useEffect(() => {
+    if (!slug) return;
+    try {
+      if (sessionStorage.getItem(`sticky-cta-dismissed:wallet:${slug}`) === "1") {
+        setStickyCtaDismissed(true);
+      } else {
+        setStickyCtaDismissed(false);
+      }
+    } catch {
+      // sessionStorage unavailable; keep CTA visible
+    }
+  }, [slug]);
+
+  const dismissStickyCta = () => {
+    setStickyCtaDismissed(true);
+    if (!slug) return;
+    try {
+      sessionStorage.setItem(`sticky-cta-dismissed:wallet:${slug}`, "1");
+    } catch {
+      // ignore
+    }
+  };
+
   if (!wallet) {
     return (
       <Layout>
@@ -918,7 +944,7 @@ export default function WalletReview() {
     );
   }
 
-  const showStickyCta = !!slug;
+  const showStickyCta = !!slug && !stickyCtaDismissed;
 
   return (
     <Layout>
@@ -1276,6 +1302,16 @@ export default function WalletReview() {
             >
               {t("walletReview.get")} <ExternalLink className="h-3 w-3" />
             </a>
+            <button
+              type="button"
+              onClick={dismissStickyCta}
+              aria-label="Dismiss"
+              className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 -mr-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
+              data-testid={`button-dismiss-sticky-cta-${slug}`}
+            >
+              <X className="h-4 w-4" />
+              <span className="sr-only">Dismiss</span>
+            </button>
           </div>
         </div>
       )}

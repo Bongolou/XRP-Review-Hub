@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
@@ -12,7 +13,8 @@ import {
   XCircle,
   ExternalLink,
   ArrowLeft,
-  Gift
+  Gift,
+  X
 } from "lucide-react";
 import upholdLogo from "@/assets/logos/uphold-logo.webp";
 import bitrueLogo from "@/assets/logos/bitrue-logo.webp";
@@ -591,6 +593,31 @@ export default function ExchangeReview() {
   const { t } = useLanguage();
   const exchange = exchangeData[slug || ""];
 
+  const [stickyCtaDismissed, setStickyCtaDismissed] = useState(false);
+
+  useEffect(() => {
+    if (!slug) return;
+    try {
+      if (sessionStorage.getItem(`sticky-cta-dismissed:exchange:${slug}`) === "1") {
+        setStickyCtaDismissed(true);
+      } else {
+        setStickyCtaDismissed(false);
+      }
+    } catch {
+      // sessionStorage unavailable; keep CTA visible
+    }
+  }, [slug]);
+
+  const dismissStickyCta = () => {
+    setStickyCtaDismissed(true);
+    if (!slug) return;
+    try {
+      sessionStorage.setItem(`sticky-cta-dismissed:exchange:${slug}`, "1");
+    } catch {
+      // ignore
+    }
+  };
+
   if (!exchange) {
     return (
       <Layout>
@@ -605,7 +632,7 @@ export default function ExchangeReview() {
     );
   }
 
-  const showStickyCta = !!slug;
+  const showStickyCta = !!slug && !stickyCtaDismissed;
 
   return (
     <Layout>
@@ -860,6 +887,16 @@ export default function ExchangeReview() {
             >
               {t("exchangeReview.signUp")} <ExternalLink className="h-3 w-3" />
             </a>
+            <button
+              type="button"
+              onClick={dismissStickyCta}
+              aria-label="Dismiss"
+              className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 -mr-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
+              data-testid={`button-dismiss-sticky-cta-${slug}`}
+            >
+              <X className="h-4 w-4" />
+              <span className="sr-only">Dismiss</span>
+            </button>
           </div>
         </div>
       )}
