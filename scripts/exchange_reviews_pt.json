@@ -1,0 +1,156 @@
+{
+  "uphold": [
+    { "h": "Visão geral e história da plataforma",
+      "p": [
+        "A Uphold conquistou uma posição única no cenário das exchanges de criptomoedas, em particular para os holders de XRP nos Estados Unidos. Enquanto muitas exchanges sediadas nos EUA deslistaram XRP durante o processo da SEC contra a Ripple, a Uphold manteve a negociação contínua de XRP — uma decisão que lhe rendeu uma lealdade significativa por parte da comunidade XRP. Fundada em 2015 e com sede em Nova York, a Uphold opera como um negócio regulado de serviços monetários e detém licenças em vários estados dos EUA e em jurisdições internacionais.",
+        "A plataforma se posiciona como uma plataforma multiativos, e não como uma exchange exclusivamente de criptomoedas. Além de mais de 250 criptomoedas, a Uphold permite negociar metais preciosos, ações dos EUA e ativos ambientais. Essa amplitude a torna atraente para usuários que querem uma única plataforma para investimento diversificado, embora a base principal de usuários continue voltada essencialmente para o universo cripto."
+      ]},
+    { "h": "Experiência de negociação e taxas",
+      "p": [
+        "A interface de negociação da Uphold adota uma abordagem pouco convencional: em vez dos tradicionais livros de ordens com taxas maker/taker, a plataforma usa um modelo de preços baseado em spread. Quando você compra ou vende XRP, o preço cotado já inclui um spread que serve como a taxa da Uphold. Esse spread costuma variar entre 0,8% e 1,2% para o XRP, valor superior às taxas maker/taker de exchanges como Kraken ou Coinbase Pro, mas a simplicidade agrada quem prefere saber o custo exato com antecedência.",
+        "Um dos recursos de destaque da Uphold é o motor de negociação 'Anything-to-Anything'. Você pode converter diretamente entre dois ativos suportados quaisquer, sem precisar passar por um par base. Isso significa que dá para trocar XRP por ouro, ou Bitcoin por ações da Apple, em uma única transação. Para os traders de XRP, a plataforma também oferece compras recorrentes automáticas e alertas de preço, facilitando aplicar a estratégia de preço médio (DCA) na sua posição ao longo do tempo."
+      ]},
+    { "h": "Segurança e regulação",
+      "p": [
+        "A Uphold mantém um modelo transparente de reservas, publicando atestados trimestrais que verificam que a plataforma possui ativos suficientes para cobrir todos os saldos dos clientes. Esse nível de transparência é incomum entre exchanges e responde a uma das principais preocupações dos usuários em relação a plataformas centralizadas. A empresa adota práticas de segurança padrão do setor, incluindo cold storage para a maior parte dos ativos, autenticação de dois fatores e auditorias de segurança regulares por terceiros.",
+        "Como entidade regulada nos EUA, a Uphold cumpre exigências de KYC e AML, o que significa que você precisará verificar sua identidade antes de operar. A plataforma também oferece um cartão de débito em regiões selecionadas, que permite gastar suas posições em cripto diretamente, mas a disponibilidade varia conforme a jurisdição. O suporte ao cliente foi historicamente alvo de críticas, com alguns usuários relatando tempos de resposta lentos em períodos de pico."
+      ]},
+    { "h": "Para quem é a Uphold",
+      "p": [
+        "A Uphold é a opção mais forte para compradores de XRP nos EUA que querem uma plataforma simples, regulada e que apoiou XRP de forma consistente. Se seu objetivo principal é comprar e manter XRP usando moeda fiduciária, a Uphold torna o processo simples e transparente. O suporte multiativos é um bônus para quem deseja diversificar para além das criptomoedas. O bônus de boas-vindas de US$ 20 em BTC para novos usuários funciona como um pequeno incentivo para experimentar o serviço.",
+        "Onde a Uphold deixa a desejar é para traders avançados que buscam taxas baixas, liquidez profunda e a funcionalidade tradicional de um livro de ordens. O modelo baseado em spread custa mais que concorrentes como Kraken ou Coinbase para quem opera com frequência. Se você pretende negociar XRP de forma ativa em vez de comprar e segurar, é provável que encontre preços melhores em outro lugar. Para investidores buy-and-hold, no entanto, a simplicidade da Uphold, sua regulação e seu apoio a XRP fazem dela uma escolha muito atrativa."
+      ]}
+  ],
+  "bitrue": [
+    { "h": "Visão geral e laços com a comunidade XRP",
+      "p": [
+        "A Bitrue construiu sua reputação claramente em torno da comunidade XRP. Sediada em Singapura e em operação desde 2018, a Bitrue foi uma das primeiras exchanges a apoiar de forma agressiva o XRP e os tokens baseados na XRPL, oferecendo pares de negociação e recompensas de staking que poucas plataformas igualavam. Esse compromisso inicial conquistou para a Bitrue um público fiel entre os entusiastas de XRP, e a plataforma continua se posicionando como a exchange mais XRP-friendly do mercado.",
+        "A exchange lista mais de 700 criptomoedas com mais de 800 pares de negociação, mas suas ofertas de XRP são o destaque principal. A Bitrue suporta uma ampla gama de tokens emitidos na XRPL e, historicamente, foi rápida em listar novos projetos da XRPL. A plataforma também rodou um programa significativo de airdrop de XRP e oferece produtos de yield farming projetados especificamente para holders de XRP, dando à comunidade motivos adicionais para escolher a Bitrue em vez de concorrentes maiores, mas menos focados em XRP."
+      ]},
+    { "h": "Funcionalidades de negociação e produtos de rendimento",
+      "p": [
+        "A Bitrue oferece uma experiência de negociação completa, com mercados spot, negociação de futuros (com até 150x de alavancagem) e uma mesa OTC para grandes ordens. A interface de negociação é funcional e bem organizada, com livros de ordens em tempo real, ferramentas gráficas com tecnologia TradingView e diversos tipos de ordens, incluindo limit, market e stop-loss. As taxas começam em 0,098% para spot, valor competitivo em relação às principais exchanges.",
+        "Os produtos de rendimento da plataforma são um grande atrativo. O Power Piggy, serviço de staking flexível da Bitrue, paga juros diários sobre XRP e outros ativos suportados. Pools de yield farming oferecem retornos mais altos em troca de bloquear tokens por períodos definidos. Embora as taxas de APY tenham oscilado ao longo do tempo, a Bitrue oferece de forma consistente algumas das oportunidades de rendimento em XRP mais atraentes no espaço das exchanges centralizadas. É importante entender que fazer staking em uma exchange centralizada significa confiar a custódia dos seus ativos à plataforma."
+      ]},
+    { "h": "Segurança e confiabilidade",
+      "p": [
+        "A Bitrue sofreu uma violação de segurança em 2019, na qual aproximadamente US$ 4,2 milhões em XRP e ADA foram roubados. Desde aquele incidente, a plataforma investiu de forma significativa em sua infraestrutura de segurança, implementando cold storage com multiassinatura, monitoramento de risco em tempo real e protocolos reforçados para a segurança de saques. A exchange agora mantém cobertura de seguro para ativos digitais e publica atualizações de segurança periódicas.",
+        "Como exchange sediada em Singapura, a Bitrue opera sob a estrutura regulatória da Autoridade Monetária de Singapura. A plataforma exige verificação KYC para acesso completo às funções de negociação e saque. O suporte ao cliente está disponível por sistema de tickets e redes sociais, embora os tempos de resposta possam variar em períodos de alto volume."
+      ]},
+    { "h": "Para quem é a Bitrue",
+      "p": [
+        "A Bitrue é a escolha natural para entusiastas de XRP que querem uma exchange que apoie ativamente o ecossistema XRPL. A combinação de amplos pares de negociação de XRP, produtos de rendimento e listagens iniciais de tokens a tornam um polo para a comunidade XRP. Se você quer ganhar rendimento sobre seu XRP ou ter acesso antecipado a novos tokens da XRPL, a Bitrue oferece oportunidades que normalmente não são encontradas em exchanges maiores.",
+        "As contrapartidas incluem ser uma plataforma menor com menos liquidez do que as exchanges Tier 1, o histórico de uma violação de segurança (já remediada) e o risco de contraparte inerente ao staking em uma plataforma centralizada. Para usuários que priorizam rendimento e suporte ao ecossistema em vez de segurança absoluta, a Bitrue ocupa um nicho valioso."
+      ]}
+  ],
+  "kraken": [
+    { "h": "Visão geral e posição no setor",
+      "p": [
+        "A Kraken é uma das exchanges de criptomoedas mais estabelecidas e respeitadas do mundo. Fundada em 2011 por Jesse Powell em San Francisco, a Kraken opera continuamente há mais de uma década sem nenhuma grande violação de segurança — um histórico notável em uma indústria marcada por hacks de exchanges. A plataforma atende milhões de usuários em mais de 190 países e é avaliada de forma consistente entre as melhores exchanges em segurança, confiabilidade e volume de negociação.",
+        "Para os traders de XRP, a Kraken oferece liquidez profunda, taxas competitivas e um ambiente de negociação de nível profissional. A exchange manteve a negociação de XRP em muitas jurisdições durante toda a disputa Ripple-SEC e tem sido um espaço confiável para a descoberta de preço do XRP. A combinação de infraestrutura de nível institucional com recursos pensados também para o público de varejo torna a Kraken uma opção sólida e completa para traders sérios de criptomoedas."
+      ]},
+    { "h": "Plataforma de negociação e funcionalidades",
+      "p": [
+        "A Kraken oferece duas interfaces principais de negociação: uma tela simples de compra/venda para iniciantes e o Kraken Pro para traders avançados. A interface Pro conta com visibilidade completa do livro de ordens, gráficos com tecnologia TradingView, múltiplos tipos de ordens (mercado, limite, stop-loss, take-profit, trailing stop) e negociação com margem com até 5x de alavancagem em XRP. A plataforma também suporta negociação de futuros por meio de uma plataforma de derivativos dedicada para usuários institucionais e profissionais.",
+        "Em relação a taxas, a Kraken usa um modelo maker-taker com tarifas a partir de 0,16% maker e 0,26% taker para a maioria dos usuários, com descontos por volume disponíveis até 0,00% maker para traders de alto volume. Essas taxas são competitivas em relação às melhores do setor e significativamente menores do que plataformas baseadas em spread como a Uphold. A Kraken também oferece serviços de staking para certas criptomoedas, embora restrições regulatórias tenham limitado essa funcionalidade em algumas jurisdições."
+      ]},
+    { "h": "Segurança e conformidade",
+      "p": [
+        "A segurança é a característica que define a Kraken. A exchange armazena 95% dos depósitos em cold storage isolado fisicamente (air-gapped), adota contabilidade de reservas integrais e passa por auditorias regulares de proof-of-reserves. A plataforma oferece amplas opções de autenticação de dois fatores, whitelisting de endereços, temporizadores configuráveis para bloqueio de conta e uma equipe de segurança dedicada que monitora atividades suspeitas 24 horas por dia.",
+        "A Kraken mantém licenças e registros em várias jurisdições, incluindo registro junto à FinCEN nos EUA, registro junto à FCA no Reino Unido e diversas licenças estaduais de transmissor de dinheiro. A infraestrutura de conformidade da plataforma foi construída para atender requisitos de nível institucional, o que adiciona algum atrito por meio da verificação KYC, mas oferece uma segurança jurídica que exchanges menores não conseguem igualar."
+      ]},
+    { "h": "Para quem é a Kraken",
+      "p": [
+        "A Kraken é a exchange ideal para usuários que priorizam segurança, taxas baixas e uma plataforma de negociação madura. Se você é um trader frequente de XRP que deseja execução confiável, livros de ordens profundos e ferramentas gráficas profissionais, a Kraken entrega uma experiência de qualidade institucional a preços competitivos. O histórico de uma década em segurança gera uma confiança que poucas exchanges conseguem alcançar.",
+        "As principais desvantagens são o processo de verificação (que pode demorar), a interface menos intuitiva para iniciantes absolutos e a disponibilidade limitada de algumas funções em determinadas regiões devido à conformidade regulatória. Se você quer a experiência de compra mais simples possível e está disposto a pagar taxas mais altas por isso, a Uphold pode ser mais adequada. Para todos os demais, a Kraken representa uma das melhores opções ajustadas ao risco no mercado de exchanges."
+      ]}
+  ],
+  "bitstamp": [
+    { "h": "Visão geral e tradição",
+      "p": [
+        "A Bitstamp tem o mérito de ser uma das exchanges de criptomoedas mais antigas ainda em operação. Fundada em 2011 na Eslovênia e atualmente sediada em Luxemburgo, a Bitstamp atravessou vários ciclos de mercado, mudanças regulatórias e turbulências do setor mantendo uma reputação de confiabilidade e conformidade. A exchange foi uma das primeiras a obter uma licença de Instituição de Pagamento sob a regulação europeia, definindo um padrão de legitimidade regulatória que muitas exchanges mais novas tentaram seguir.",
+        "A abordagem da Bitstamp sempre foi conservadora e focada em conformidade, o que atrai investidores institucionais e usuários de varejo preocupados com segurança. A exchange suporta uma seleção criteriosa das principais criptomoedas, incluindo XRP, focando em qualidade e clareza regulatória em vez de listar cada token que aparece. Essa seletividade significa menos opções, mas maior confiança na legitimidade e na conformidade de cada ativo listado."
+      ]},
+    { "h": "Negociação e experiência de plataforma",
+      "p": [
+        "A interface de negociação da Bitstamp equilibra funcionalidade profissional e acessibilidade. A plataforma oferece tanto uma interface simplificada de compra/venda quanto uma visualização avançada de negociação com gráficos da TradingView, visibilidade completa do livro de ordens e múltiplos tipos de ordens. As taxas de negociação seguem uma escala baseada em volume, começando em 0,30% para operações spot e caindo para 0,00% para volumes mensais acima de US$ 20 bilhões — competitivas para traders institucionais, mas ligeiramente acima de alguns concorrentes em volumes menores.",
+        "Especificamente para XRP, a Bitstamp oferece vários pares de negociação, incluindo XRP/USD, XRP/EUR e XRP/BTC. A liquidez da plataforma é sólida nos principais pares e a qualidade de execução é consistente. A Bitstamp também suporta negociação automatizada por meio de uma API bem documentada, o que a torna popular entre traders algorítmicos e mesas institucionais. O aplicativo móvel reproduz a experiência do desktop, com design limpo e funcional."
+      ]},
+    { "h": "Histórico de segurança",
+      "p": [
+        "A Bitstamp sofreu uma violação de segurança notável em 2015, quando 19.000 BTC foram roubados em decorrência de um ataque de engenharia social direcionado a funcionários. Desde então, a exchange reformulou completamente sua infraestrutura de segurança, fazendo parceria com a BitGo para cold storage de nível institucional e implementando protocolos abrangentes de segurança. A plataforma agora mantém a maioria dos ativos em cold storage com multiassinatura e mantém cobertura de seguro para os ativos digitais custodiados na plataforma.",
+        "A licença europeia da exchange exige conformidade com padrões rigorosos de proteção de dados, adequação de capital e segurança operacional. A Bitstamp passa regularmente por auditorias SOC 2 Type II, fornecendo verificação independente de seus controles de segurança. Para usuários que valorizam segurança de nível institucional e supervisão regulatória, a postura de segurança da Bitstamp pós-2015 está entre as mais sólidas do setor."
+      ]},
+    { "h": "Para quem é a Bitstamp",
+      "p": [
+        "A Bitstamp é mais adequada para usuários que priorizam conformidade regulatória, segurança institucional e um histórico comprovado em vez de funcionalidades de ponta ou as menores taxas possíveis. Usuários europeus se beneficiam da integração com SEPA e das proteções regulatórias da UE, enquanto investidores institucionais valorizam a API, a mesa OTC e a infraestrutura de conformidade da plataforma.",
+        "A Bitstamp é menos adequada para usuários que buscam uma grande variedade de altcoins, recursos avançados de DeFi ou as menores taxas de negociação possíveis. Sua abordagem conservadora de listagem significa que muitos tokens menores não estão disponíveis. Para holders de XRP, a Bitstamp oferece um ambiente confiável e bem regulado para comprar, vender e manter — mas com menos recursos específicos para a comunidade do que plataformas como a Bitrue."
+      ]}
+  ],
+  "coinbase": [
+    { "h": "Visão geral e posição no mercado",
+      "p": [
+        "A Coinbase é a maior exchange de criptomoedas listada em bolsa nos Estados Unidos e um dos nomes mais reconhecíveis do setor. Fundada em 2012 por Brian Armstrong e Fred Ehrsam, a plataforma abriu capital na NASDAQ em abril de 2021 e funciona como a primeira porta de entrada para muitos investidores no universo cripto. Com mais de 110 milhões de usuários verificados e presença em mais de 100 países, a escala e o reconhecimento de marca da Coinbase não têm rivais no mercado dos EUA.",
+        "A relação da Coinbase com o XRP foi conturbada. A exchange deslistou o XRP em janeiro de 2021 em resposta ao processo da SEC contra a Ripple, e só voltou a listá-lo após o caso ter um desfecho favorável. Esse período deixou muitos holders de XRP frustrados com a plataforma. Agora que o XRP está de volta à Coinbase, a exchange oferece uma forma familiar e altamente acessível de comprar e vender XRP — mas o déficit de confiança gerado durante o período de deslistagem ainda é uma consideração para alguns membros da comunidade."
+      ]},
+    { "h": "Experiência do usuário e portfólio de produtos",
+      "p": [
+        "A interface principal da Coinbase é projetada acima de tudo para a simplicidade. Comprar XRP exige apenas alguns toques: vincule uma conta bancária ou cartão, informe o valor e confirme a compra. Essa facilidade de uso é o maior ponto forte da Coinbase e o motivo pelo qual ela continua atraindo novos usuários. Para traders mais sofisticados, o Coinbase Advanced Trade (que substituiu a plataforma separada Coinbase Pro) oferece livros de ordens em tempo real, gráficos da TradingView e tipos de ordens avançadas dentro do próprio aplicativo principal da Coinbase.",
+        "Além da negociação, a Coinbase oferece um ecossistema amplo: a Coinbase Wallet (um app separado de autocustódia), o marketplace Coinbase NFT, serviços de staking, um cartão de débito Visa para gastar criptomoedas e programas de recompensas educativas que pagam aos usuários em cripto por assistirem a vídeos curtos. O programa Coinbase Learn é especialmente valioso para iniciantes que querem entender o básico sobre blockchain e criptomoedas antes de investir."
+      ]},
+    { "h": "Taxas e considerações sobre custo",
+      "p": [
+        "A estrutura de taxas da Coinbase é alvo de críticas constantes. A interface simples de compra/venda cobra um spread de aproximadamente 0,50% mais uma taxa fixa de transação que varia conforme o método de pagamento e a região. Esses custos podem se acumular de forma significativa para traders frequentes. A interface Advanced Trade oferece taxas mais baixas a partir de 0,40% maker e 0,60% taker, diminuindo conforme o volume — ainda mais altas que as da Kraken, mas mais competitivas do que a interface simples.",
+        "Os custos por método de pagamento também variam: transferências bancárias ACH costumam ser gratuitas para depósitos, compras com cartão de débito têm taxa de 3,99% e transferências bancárias internacionais possuem taxas fixas. Para compradores de XRP que planejam realizar compras regulares, a diferença entre as taxas da Coinbase e de uma exchange de menor custo, como a Kraken, pode representar uma economia significativa ao longo do tempo. A contrapartida é a facilidade de uso e a confiança de marca incomparáveis da Coinbase."
+      ]},
+    { "h": "Para quem é a Coinbase",
+      "p": [
+        "A Coinbase é a exchange certa para usuários que valorizam, acima de tudo, simplicidade, confiança na marca e segurança regulatória. Como empresa de capital aberto sujeita à supervisão da SEC e a relatórios financeiros trimestrais, a Coinbase opera com um nível de transparência e responsabilidade que exchanges privadas não conseguem alcançar. Para quem está comprando cripto pela primeira vez, a interface intuitiva e os recursos educativos oferecem uma rampa de entrada suave para o ecossistema XRP.",
+        "A Coinbase é menos adequada para traders frequentes sensíveis a custos, para fãs leais da comunidade XRP que se lembram da deslistagem ou para usuários que querem acesso a uma ampla gama de tokens da XRPL além do próprio XRP. Se manter as taxas baixas é prioridade, Kraken ou Bitrue trarão economia. Se o alinhamento com a comunidade importa, Uphold ou Bitrue têm um histórico mais consistente de apoio ao XRP. Mas em acessibilidade mainstream e credibilidade institucional, a Coinbase continua difícil de superar."
+      ]}
+  ],
+  "cryptocom": [
+    { "h": "Visão geral e crescimento da marca",
+      "p": [
+        "A Crypto.com saiu de uma startup relativamente desconhecida para se tornar uma das marcas mais visíveis do setor cripto, em grande parte graças a campanhas de marketing agressivas, incluindo os naming rights do antigo Staples Center em Los Angeles (atual Crypto.com Arena) e parcerias com grandes ligas esportivas. Fundada em 2016 e com sede em Singapura, a plataforma atende mais de 80 milhões de usuários em todo o mundo e oferece um conjunto abrangente de produtos que vai muito além dos serviços básicos de uma exchange.",
+        "Para holders de XRP, a Crypto.com proporciona uma experiência completa, com negociação spot, staking, um cartão Visa que pode ser carregado com XRP e integração com sua carteira DeFi. A amplitude de serviços da plataforma a torna atraente para usuários que querem um ecossistema cripto tudo-em-um, em vez de utilizar plataformas separadas para negociar, armazenar e gastar seus ativos."
+      ]},
+    { "h": "Ecossistema de produtos",
+      "p": [
+        "A linha de produtos da Crypto.com é uma das mais amplas do setor. O aplicativo principal oferece funções simples de compra/venda, enquanto a Crypto.com Exchange disponibiliza recursos profissionais de negociação, com livros de ordens em tempo real, negociação com margem e derivativos. O Crypto.com Visa Card é um produto de destaque — usuários podem fazer staking de CRO (token nativo da plataforma) para obter cashback em compras a taxas que vão de 1% a 5%, dependendo do tier de stake. O XRP pode ser carregado no cartão e gasto em qualquer estabelecimento que aceite Visa.",
+        "Outros produtos incluem o Crypto Earn (no qual você deposita XRP e outros ativos para ganhar juros), uma carteira DeFi de autocustódia com acesso multichain, um marketplace de NFTs e empréstimos lastreados em cripto. A magnitude do ecossistema significa que você pode comprar XRP, obter rendimento, gastar com cartão e gerenciar tudo em uma carteira de autocustódia — tudo dentro da família de produtos da Crypto.com."
+      ]},
+    { "h": "Estrutura de taxas e o token CRO",
+      "p": [
+        "A estrutura de taxas da Crypto.com está intimamente ligada ao seu sistema de staking de CRO. As taxas base de negociação começam em 0,075% maker e 0,075% taker na exchange — taxas muito competitivas — mas atingir os melhores tiers de taxas e benefícios do cartão exige fazer staking de quantidades expressivas de CRO. Isso cria um ciclo de incentivos que beneficia usuários intensos da plataforma, mas adiciona complexidade para quem quer apenas comprar e vender XRP.",
+        "O spread de compra/venda no aplicativo principal é menos transparente que as taxas de livro de ordens da exchange e pode ser maior em transações pequenas. As taxas de saque de cripto variam conforme a rede e o ativo. Para usuários de XRP que querem taxas competitivas sem o compromisso de fazer staking de CRO, a plataforma da exchange oferece tarifas razoáveis mesmo no tier base. As recompensas de cashback do cartão podem compensar parcialmente os custos de negociação para quem gasta cripto regularmente."
+      ]},
+    { "h": "Para quem é a Crypto.com",
+      "p": [
+        "A Crypto.com é ideal para usuários que querem um ecossistema cripto completo em um só lugar — negociar, render, gastar e fazer autocustódia. A integração com o cartão Visa é especialmente interessante para quem quer usar o XRP em compras do dia a dia. O alcance global da plataforma e sua abordagem multiproduto a tornam adequada para usuários que pretendem se envolver profundamente com a economia cripto, em vez de apenas comprar e segurar.",
+        "A plataforma é menos adequada para usuários que querem a experiência mais simples possível ou que se sentem desconfortáveis com a mecânica de staking de CRO que sustenta muitos dos melhores benefícios. A complexidade do ecossistema de produtos pode ser intimidante para iniciantes, e alguns usuários relataram dificuldades com o suporte ao cliente em períodos de pico. Para compras diretas de XRP, plataformas mais simples como Uphold ou Coinbase podem ser pontos de partida mais fáceis."
+      ]}
+  ],
+  "kucoin": [
+    { "h": "Visão geral e nicho de mercado",
+      "p": [
+        "A KuCoin ganhou o apelido de 'A Exchange do Povo' por focar em listar uma enorme variedade de criptomoedas — mais de 800 moedas e 1.200 pares de negociação — que muitas vezes aparecem na KuCoin antes de estarem disponíveis em plataformas maiores como Coinbase ou Kraken. Fundada em 2017 e baseada em Seychelles, a KuCoin cresceu até atender mais de 30 milhões de usuários em mais de 200 países e territórios. A disposição da exchange para listar projetos emergentes de forma antecipada fez dela uma plataforma de referência para entusiastas de cripto em busca da próxima oportunidade.",
+        "Para usuários de XRP, a KuCoin proporciona uma experiência de negociação completa com vários pares de XRP, taxas competitivas e recursos avançados, incluindo negociação com margem, futuros e empréstimos. O ponto forte da plataforma está na combinação de um conjunto profundo de funcionalidades com uma ampla seleção de ativos, oferecendo capacidades que rivalizam com as grandes exchanges enquanto disponibilizam acesso a uma gama muito maior de tokens."
+      ]},
+    { "h": "Funcionalidades de negociação e inovação",
+      "p": [
+        "A plataforma de negociação da KuCoin é rica em recursos. A exchange spot oferece uma interface profissional com gráficos da TradingView, múltiplos tipos de ordens e visualização em tempo real da profundidade do livro. Além do spot, a KuCoin oferece contratos futuros com até 100x de alavancagem, negociação com margem, empréstimos cripto (nos quais você pode obter juros emprestando seus ativos ociosos) e um marketplace de bots de negociação onde dá para implantar estratégias automatizadas, incluindo grid trading, bots DCA e rebalanceamento inteligente.",
+        "A funcionalidade de bots de negociação da KuCoin merece destaque — é uma das poucas exchanges que oferece ferramentas de negociação automatizada gratuitas e nativas. Para holders de XRP que querem implementar estratégias como comprar quedas automaticamente ou manter um portfólio equilibrado, esses bots fornecem uma funcionalidade que, de outra forma, exigiria software de terceiros. A exchange também realiza competições de negociação e promoções regulares que oferecem recompensas extras para traders ativos."
+      ]},
+    { "h": "Segurança e considerações",
+      "p": [
+        "A KuCoin sofreu uma grande violação de segurança em setembro de 2020, quando hackers comprometeram hot wallets que continham aproximadamente US$ 280 milhões em diversas criptomoedas. A exchange respondeu de forma eficaz, recuperando a maior parte dos fundos roubados por meio da colaboração com forças policiais, empresas de análise blockchain e exchanges parceiras que congelaram os ativos roubados. O fundo de seguro da KuCoin cobriu as perdas dos usuários e nenhum recurso de cliente foi perdido permanentemente.",
+        "Após a violação, a KuCoin implementou medidas de segurança aprimoradas, incluindo arquitetura aperfeiçoada para hot wallets, monitoramento de microsaques e sistemas avançados de gestão de risco. A exchange suporta autenticação de dois fatores via Google Authenticator e SMS, senhas de negociação e códigos antiphishing. Uma consideração importante é que a KuCoin opera sem licenças em algumas jurisdições, o que significa que as proteções regulatórias podem ser limitadas dependendo da sua localização."
+      ]},
+    { "h": "Para quem é a KuCoin",
+      "p": [
+        "A KuCoin é mais indicada para usuários experientes de cripto que querem acesso a uma ampla gama de ativos e funcionalidades avançadas de negociação a preços competitivos. As taxas baixas da plataforma (a partir de 0,1% para operações spot), a vasta listagem de altcoins e os bots de negociação integrados a tornam atraente para traders ativos que querem ferramentas profissionais sem o prêmio de taxas das exchanges reguladas nos EUA.",
+        "A KuCoin é menos adequada para iniciantes, que podem se sentir sobrecarregados com a densidade de funcionalidades, ou para usuários nos EUA que preferem a clareza regulatória de plataformas licenciadas como Coinbase ou Kraken. O registro offshore da exchange significa menos proteções formais em caso de disputas. Especificamente para XRP, a KuCoin oferece uma experiência sólida de negociação, mas os benefícios específicos de comunidade de plataformas como a Bitrue (staking de XRP, listagens de tokens da XRPL) podem ser mais atraentes para holders dedicados de XRP."
+      ]}
+  ]
+}
