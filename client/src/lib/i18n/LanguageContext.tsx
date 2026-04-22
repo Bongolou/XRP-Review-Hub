@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { Language, translations, languageNames } from "./translations";
+import { dappsTranslations } from "./dappsTranslations";
 
 interface LanguageContextType {
   language: Language;
@@ -39,7 +40,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [language]);
 
   const t = (key: string): string => {
-    return translations[language][key] || translations["en"][key] || key;
+    return (
+      translations[language][key] ||
+      dappsTranslations[language]?.[key] ||
+      translations["en"][key] ||
+      dappsTranslations["en"]?.[key] ||
+      key
+    );
   };
 
   const availableLanguages: Language[] = ["en", "es", "zh", "ja", "ko", "pt", "de", "fr"];
