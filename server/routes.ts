@@ -147,7 +147,39 @@ const blogPosts = [
   { id: 4, title: "NFT Marketplaces on XRPL: Complete Guide", date: "2026-01-12", category: "NFTs" },
   { id: 5, title: "XRPL Sidechains Explained", date: "2026-01-08", category: "Technology" },
   { id: 6, title: "Tokenizing Real World Assets on XRPL", date: "2026-01-05", category: "Institutional" },
+  { id: 7, title: "How to Stake XRP Safely in 2026", date: "2026-01-02", category: "Guides" },
+  { id: 8, title: "XRPL vs Ethereum: Fees, Speed and Use Cases", date: "2025-12-28", category: "Analysis" },
+  { id: 9, title: "Choosing Between Hot and Cold Wallets", date: "2025-12-22", category: "Security" },
+  { id: 10, title: "XRPL AMM Deep Dive for Liquidity Providers", date: "2025-12-18", category: "DeFi" },
+  { id: 11, title: "Beginner's Guide to Buying XRP", date: "2025-12-15", category: "Guides" },
+  { id: 12, title: "Top XRPL Tax Tools and Reporting Tips", date: "2025-12-10", category: "Guides" },
+  { id: 13, title: "How XRPL Hooks Will Change Smart Contracts", date: "2025-12-05", category: "Technology" },
+  { id: 14, title: "Cross-Border Payments Powered by XRPL", date: "2025-12-01", category: "Use Cases" },
+  { id: 15, title: "Setting Up Your First XRPL Trustline", date: "2025-11-28", category: "Guides" },
+  { id: 16, title: "Hardware Wallet Buying Guide for XRP Holders", date: "2026-01-26", category: "Hardware" },
+  { id: 17, title: "Avoiding Common XRP Phishing Scams", date: "2026-01-25", category: "Security" },
+  { id: 18, title: "XRPL Validator Network Explained", date: "2026-01-24", category: "Technology" },
+  { id: 19, title: "How to Track XRPL Wallet Activity", date: "2026-01-23", category: "Guides" },
 ];
+
+const walletSlugs = [
+  "xaman", "ledger", "crossmark", "tangem", "bifrost",
+  "trustwallet", "gatehub", "ellipal", "trezor",
+];
+
+const exchangeSlugs = [
+  "uphold", "bitrue", "kraken", "coinbase", "bitstamp", "cryptocom", "kucoin",
+];
+
+const compareSlugs = [
+  "xaman-vs-ledger", "xaman-vs-tangem", "ledger-vs-tangem",
+  "ellipal-vs-ledger", "trezor-vs-ledger", "bifrost-vs-xaman",
+  "coinbase-vs-kraken", "trustwallet-vs-xaman", "trezor-vs-tangem",
+  "ellipal-vs-trezor", "bifrost-vs-crossmark", "gatehub-vs-xaman",
+  "gatehub-vs-ledger",
+];
+
+const bestForSlugs = ["beginners", "hardware", "cold-storage", "defi", "safest"];
 
 export async function registerRoutes(
   httpServer: Server,
@@ -179,23 +211,25 @@ export async function registerRoutes(
     });
   }
 
-  // Sitemap XML
-  app.get("/sitemap.xml", (req, res) => {
+  // Sitemap XML — generated dynamically from the route source of truth so it
+  // stays in sync with App.tsx as new wallets, exchanges, comparisons, best-for
+  // hubs and blog posts are added.
+  app.get("/sitemap.xml", (_req, res) => {
     const baseUrl = "https://allthingsxrpl.com";
-    const pages = [
+    const today = new Date().toISOString().slice(0, 10);
+
+    type Entry = { url: string; priority: string; changefreq: string; lastmod?: string };
+
+    const staticPages: Entry[] = [
       { url: "/", priority: "1.0", changefreq: "daily" },
+      { url: "/best-xrp-wallets", priority: "0.9", changefreq: "weekly" },
       { url: "/getting-started", priority: "0.9", changefreq: "weekly" },
       { url: "/wallet-quiz", priority: "0.9", changefreq: "weekly" },
       { url: "/blog", priority: "0.8", changefreq: "daily" },
       { url: "/news", priority: "0.8", changefreq: "hourly" },
+      { url: "/dapps", priority: "0.7", changefreq: "weekly" },
+      { url: "/yield", priority: "0.7", changefreq: "weekly" },
       { url: "/faq", priority: "0.7", changefreq: "weekly" },
-      { url: "/wallet/xaman", priority: "0.8", changefreq: "weekly" },
-      { url: "/wallet/ledger", priority: "0.8", changefreq: "weekly" },
-      { url: "/wallet/tangem", priority: "0.8", changefreq: "weekly" },
-      { url: "/exchange/uphold", priority: "0.8", changefreq: "weekly" },
-      { url: "/exchange/bitrue", priority: "0.8", changefreq: "weekly" },
-      { url: "/exchange/kraken", priority: "0.8", changefreq: "weekly" },
-      { url: "/compare/xaman-vs-ledger", priority: "0.7", changefreq: "weekly" },
       { url: "/about", priority: "0.5", changefreq: "monthly" },
       { url: "/contact", priority: "0.5", changefreq: "monthly" },
       { url: "/disclosure", priority: "0.3", changefreq: "yearly" },
@@ -203,22 +237,42 @@ export async function registerRoutes(
       { url: "/terms", priority: "0.3", changefreq: "yearly" },
     ];
 
+    const walletPages: Entry[] = walletSlugs.map(slug => ({
+      url: `/wallet/${slug}`, priority: "0.8", changefreq: "weekly",
+    }));
+    const exchangePages: Entry[] = exchangeSlugs.map(slug => ({
+      url: `/exchange/${slug}`, priority: "0.8", changefreq: "weekly",
+    }));
+    const comparePages: Entry[] = compareSlugs.map(slug => ({
+      url: `/compare/${slug}`, priority: "0.7", changefreq: "monthly",
+    }));
+    const bestForPages: Entry[] = bestForSlugs.map(slug => ({
+      url: `/best-for/${slug}`, priority: "0.8", changefreq: "weekly",
+    }));
+    const blogPages: Entry[] = blogPosts.map(p => ({
+      url: `/blog/${p.id}`, priority: "0.6", changefreq: "monthly", lastmod: p.date,
+    }));
+
+    const allPages: Entry[] = [
+      ...staticPages,
+      ...walletPages,
+      ...exchangePages,
+      ...comparePages,
+      ...bestForPages,
+      ...blogPages,
+    ];
+
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages.map(p => `  <url>
+${allPages.map(p => `  <url>
     <loc>${baseUrl}${p.url}</loc>
+    <lastmod>${p.lastmod ?? today}</lastmod>
     <changefreq>${p.changefreq}</changefreq>
     <priority>${p.priority}</priority>
   </url>`).join("\n")}
-${blogPosts.map(post => `  <url>
-    <loc>${baseUrl}/blog/${post.id}</loc>
-    <lastmod>${post.date}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>`).join("\n")}
 </urlset>`;
 
-    res.header("Content-Type", "application/xml");
+    res.header("Content-Type", "application/xml; charset=utf-8");
     res.send(xml);
   });
 
