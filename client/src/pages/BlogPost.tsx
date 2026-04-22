@@ -7,6 +7,7 @@ import { Link } from "wouter";
 import { BlogComments } from "@/components/BlogComments";
 import { BannerAd } from "@/components/BannerAd";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
 
 function TwitterIcon({ className }: { className?: string }) {
   return (
@@ -1269,7 +1270,15 @@ export default function BlogPost() {
   
   const postId = parseInt(id || "1");
   const post = blogPostsData.find(p => p.id === postId);
-  
+
+  const postTitle = post ? t(post.titleKey) : undefined;
+  const postExcerpt = post ? t(post.excerptKey) : undefined;
+  useDocumentMeta({
+    title: postTitle ? `${postTitle} | All Things XRPL` : undefined,
+    description: postExcerpt,
+    canonicalPath: post ? `/blog/${post.id}` : undefined,
+  });
+
   if (!post) {
     return <Redirect to="/blog" />;
   }

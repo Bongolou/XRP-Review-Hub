@@ -14,9 +14,13 @@ import upholdLogo from "@/assets/logos/uphold-logo.webp";
 import bitrueLogo from "@/assets/logos/bitrue-logo.webp";
 import krakenLogo from "@/assets/logos/kraken-logo.webp";
 import xamanLogo from "@/assets/logos/xaman-logo.webp";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 export default function GettingStarted() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const seo = getStaticPageSeo(language, "gettingStarted");
+  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/getting-started" });
 
   return (
     <Layout>

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { ArrowRight, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 const categoryKeys = [
   { key: "all", labelKey: "blog.category.all" },
@@ -229,7 +231,9 @@ const blogPosts = [
 ];
 
 export default function Blog() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const seo = getStaticPageSeo(language, "blog");
+  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/blog" });
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const filteredPosts = selectedCategory === "all" 

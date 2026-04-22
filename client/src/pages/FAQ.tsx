@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 const faqs = [
   {
@@ -106,7 +108,9 @@ function FAQItem({ questionKey, answerKey, t }: { questionKey: string; answerKey
 }
 
 export default function FAQ() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const seo = getStaticPageSeo(language, "faq");
+  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/faq" });
   
   return (
     <Layout>

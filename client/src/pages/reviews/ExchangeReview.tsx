@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { VerdictBox, BestForCallout, LastUpdated } from "@/components/conversion";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getExchangeSeo } from "@/lib/i18n/pageSeo";
 import { 
   Star, 
   Shield, 
@@ -590,8 +592,14 @@ const exchangeData: Record<string, {
 
 export default function ExchangeReview() {
   const { slug } = useParams<{ slug: string }>();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const exchange = exchangeData[slug || ""];
+  const seo = slug ? getExchangeSeo(language, slug) : undefined;
+  useDocumentMeta({
+    title: seo?.title,
+    description: seo?.description,
+    canonicalPath: slug ? `/exchange/${slug}` : undefined,
+  });
 
   const [stickyCtaDismissed, setStickyCtaDismissed] = useState(false);
 

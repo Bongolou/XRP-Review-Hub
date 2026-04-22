@@ -1,8 +1,12 @@
 import { Layout } from "@/components/Layout";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 export default function Disclosure() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const seo = getStaticPageSeo(language, "disclosure");
+  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/disclosure" });
 
   return (
     <Layout>
