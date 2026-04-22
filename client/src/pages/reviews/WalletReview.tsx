@@ -5,6 +5,7 @@ import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getSeoEntry } from "@/lib/i18n/seoTranslations";
 
 type EditorialSection = { heading: string; body: string };
 const SLUG_EDITORIAL: Record<string, EditorialSection[]> = {
@@ -52,45 +53,6 @@ const SLUG_EDITORIAL: Record<string, EditorialSection[]> = {
       body: "Tangem is the best pick for XRP holders who want true cold storage without managing a 24-word seed, and who are comfortable making your phone part of the security chain. If you want a screen-equipped device or full XRPL DEX/AMM workflows in the same app, Ledger Nano X paired with Xaman is the better blueprint.",
     },
   ],
-};
-
-const WALLET_SEO: Record<string, { title: string; description: string }> = {
-  xaman: {
-    title: "Xaman (XUMM) Review 2026 | Best Mobile XRP Wallet for XRPL DeFi",
-    description: "Hands-on Xaman (XUMM) review for 2026. The best mobile XRP wallet for XRPL DEX, AMM and NFTs — features, security, fees and how it compares to Ledger.",
-  },
-  ledger: {
-    title: "Ledger Nano X Review for XRP Holders (2026) | All Things XRPL",
-    description: "Hands-on Ledger Nano X review for XRP holders: XRPL compatibility, security, ease of use, DeFi limitations, and who should buy it in 2026.",
-  },
-  tangem: {
-    title: "Tangem Wallet Review for XRP (2026) | Card-Style Cold Storage | All Things XRPL",
-    description: "Is Tangem a safe XRP wallet? Our hands-on Tangem review covers XRPL support, NFC tap-to-sign UX, security trade-offs, and who it's best for.",
-  },
-  trezor: {
-    title: "Trezor Safe 3 Review 2026 | Open-Source Hardware Wallet for XRP",
-    description: "Trezor Safe 3 review for 2026. Open-source hardware wallet with secure element — XRP support, fees, security model and head-to-head with Ledger Nano X.",
-  },
-  ellipal: {
-    title: "ELLIPAL Titan Review 2026 | Air-Gapped Cold Storage for XRP",
-    description: "ELLIPAL Titan review for 2026. Fully air-gapped, QR-only XRP cold storage — security model, setup, fees and how it compares to Ledger and Trezor.",
-  },
-  crossmark: {
-    title: "Crossmark Wallet Review 2026 | Browser Extension Wallet for XRPL",
-    description: "Crossmark review for 2026. A MetaMask-style browser extension wallet for the XRP Ledger — DEX access, security, and how it compares to Xaman and Bifrost.",
-  },
-  bifrost: {
-    title: "Bifrost Wallet Review 2026 | Multi-Chain XRPL DEX Mobile Wallet",
-    description: "Bifrost Wallet review for 2026. Multi-chain mobile wallet with native XRPL DEX support — features, security, fees and how it compares to Xaman.",
-  },
-  gatehub: {
-    title: "GateHub Review 2026 | EU-Regulated XRP Web Wallet & Fiat On-Ramp",
-    description: "GateHub review for 2026. EU-regulated XRP web wallet with SEPA fiat on-ramp — fees, custody model, security, and how it compares to Xaman and Ledger.",
-  },
-  trustwallet: {
-    title: "Trust Wallet XRP Review 2026 | Multi-Chain Mobile Wallet",
-    description: "Trust Wallet XRP review for 2026. The Binance-backed multi-chain mobile wallet with basic XRP support — features, limitations, and Xaman alternatives.",
-  },
 };
 
 function renderTemplate(template: string, replacements: Record<string, ReactNode>): ReactNode[] {
@@ -896,9 +858,9 @@ const walletData: Record<string, {
 
 export default function WalletReview() {
   const { slug } = useParams<{ slug: string }>();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const wallet = walletData[slug || ""];
-  const seo = (slug && WALLET_SEO[slug]) || undefined;
+  const seo = slug ? getSeoEntry(language, "wallet", slug) : undefined;
   useDocumentMeta({
     title: seo?.title,
     description: seo?.description,

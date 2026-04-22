@@ -54,6 +54,7 @@ import {
   type FastCompareRow,
 } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getHomeSeo } from "@/lib/i18n/seoTranslations";
 import { Shield as ShieldIcon, BookOpen, Coins, Zap as ZapIcon } from "lucide-react";
 
 const homepageUseCases: UseCase[] = [
@@ -545,11 +546,11 @@ function LatestNewsPreview({ t }: { t: (key: string) => string }) {
 }
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const homeSeo = getHomeSeo(language);
   useDocumentMeta({
-    title: "Best XRP Wallets 2026 | Compare Xaman, Ledger, Tangem & More",
-    description:
-      "Hands-on reviews of the best XRP wallets for 2026. Compare Xaman, Ledger Nano X, Tangem, Trezor and more — by use case, security, fees and price. Updated April 2026.",
+    title: homeSeo.title,
+    description: homeSeo.description,
     canonicalPath: "/",
   });
   

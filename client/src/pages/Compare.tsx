@@ -4,21 +4,8 @@ import { useParams, Link } from "wouter";
 import { Check, X, ExternalLink, ArrowLeft, Trophy, Shield, Zap, Users, AlertTriangle, ThumbsUp, ThumbsDown } from "lucide-react";
 import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
-
-const COMPARE_SEO: Record<string, { title: string; description: string }> = {
-  "xaman-vs-ledger": {
-    title: "Xaman vs Ledger Nano X for XRP (2026) | Side-by-Side Comparison",
-    description: "Xaman vs Ledger Nano X for XRP holders: fees, security, XRPL features, DeFi/AMM access, and which wallet wins for beginners vs long-term storage.",
-  },
-  "xaman-vs-tangem": {
-    title: "Xaman vs Tangem 2026 | XRPL Mobile Wallet vs NFC Hardware Card",
-    description: "Xaman vs Tangem for XRP in 2026. Compare mobile XRPL DeFi access vs an NFC hardware card — features, security, fees and which combo we recommend.",
-  },
-  "ledger-vs-tangem": {
-    title: "Ledger vs Tangem 2026 | XRP Hardware Wallet Comparison",
-    description: "Ledger Nano X vs Tangem for XRP cold storage in 2026. Secure Element vs EAL6+ NFC card — security, price, portability and the verdict for XRP holders.",
-  },
-};
+import { getSeoEntry } from "@/lib/i18n/seoTranslations";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 type ComparisonData = {
   wallet1: {
@@ -856,8 +843,10 @@ const comparisons: Record<string, ComparisonData> = {
 
 export default function Compare() {
   const { slug } = useParams<{ slug: string }>();
+  const { language } = useLanguage();
   const comparison = comparisons[slug || ""];
-  const seo = (slug && COMPARE_SEO[slug]) || (comparison
+  const translatedSeo = slug ? getSeoEntry(language, "compare", slug) : undefined;
+  const seo = translatedSeo || (comparison
     ? {
         title: `${comparison.wallet1.name} vs ${comparison.wallet2.name} 2026 | XRP Wallet Comparison`,
         description: comparison.metaDescription,
