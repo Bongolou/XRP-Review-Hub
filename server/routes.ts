@@ -190,21 +190,30 @@ export async function registerRoutes(
   // with the correct name and MIME type instead of falling through to the SPA
   // fallback (which would return index.html and cause Safari to save it as
   // "xrpl-wallet-starter-kit.md.html").
-  const leadMagnets: Array<{ route: string; filename: string }> = [
-    { route: "/downloads/xrpl-wallet-starter-kit.md", filename: "xrpl-wallet-starter-kit.md" },
-    { route: "/downloads/xrpl-defi-starter-kit.md", filename: "xrpl-defi-starter-kit.md" },
+  const leadMagnets: Array<{ route: string; filename: string; contentType: string }> = [
+    {
+      route: "/downloads/xrpl-wallet-starter-kit.md",
+      filename: "xrpl-wallet-starter-kit.md",
+      contentType: "text/markdown; charset=utf-8",
+    },
+    {
+      route: "/downloads/xrpl-defi-starter-kit.pdf",
+      filename: "downloads/xrpl-defi-starter-kit.pdf",
+      contentType: "application/pdf",
+    },
   ];
-  for (const { route, filename } of leadMagnets) {
+  for (const { route, filename, contentType } of leadMagnets) {
     app.get(route, (_req, res) => {
       const filePath = resolveLeadMagnetPath(filename);
       if (!filePath) {
         res.status(404).type("text/plain").send("Starter kit file not found");
         return;
       }
-      res.setHeader("Content-Type", "text/markdown; charset=utf-8");
+      const downloadName = filename.split("/").pop() ?? filename;
+      res.setHeader("Content-Type", contentType);
       res.setHeader(
         "Content-Disposition",
-        `attachment; filename="${filename}"`
+        `attachment; filename="${downloadName}"`
       );
       res.setHeader("Cache-Control", "public, max-age=300");
       res.sendFile(filePath);
