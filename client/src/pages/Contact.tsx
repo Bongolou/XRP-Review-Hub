@@ -56,7 +56,7 @@ export default function Contact() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-4xl py-12 md:py-20">
+      <div className="container mx-auto px-4 max-w-4xl py-20 md:py-24">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-black font-display mb-4">{t("contact.title")}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -95,7 +95,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12">
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
           <h2 className="text-2xl font-bold font-display mb-8">{t("contact.form.submit")}</h2>
           
           <form onSubmit={handleSubmit} className="space-y-6">

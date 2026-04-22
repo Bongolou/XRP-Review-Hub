@@ -115,7 +115,7 @@ const xrplNativeOptions = [
 export default function YieldOpportunities() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-12 md:py-20">
+      <div className="container mx-auto px-4 py-20 md:py-24">
         <div className="text-center mb-16">
           <Badge className="mb-4 bg-secondary/20 text-secondary hover:bg-secondary/30 border-secondary/50">
             Earn Passive Income
@@ -248,7 +248,7 @@ export default function YieldOpportunities() {
           </div>
         </section>
 
-        <section className="bg-gradient-to-r from-secondary/20 to-primary/20 border border-white/10 rounded-2xl p-8 text-center">
+        <section className="bg-gradient-to-r from-secondary/20 to-primary/20 border border-white/10 rounded-2xl p-6 md:p-8 text-center">
           <h2 className="text-2xl font-bold font-display mb-4">Not Sure Where to Start?</h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
             New to staking? We recommend starting with Bitrue Power Piggy for its flexibility and ease of use. 

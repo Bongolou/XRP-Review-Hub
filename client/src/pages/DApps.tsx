@@ -373,7 +373,7 @@ export default function DApps() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-5xl py-12 md:py-20">
+      <div className="container mx-auto px-4 max-w-5xl py-20 md:py-24">
         <div className="mb-6">
           <Badge className="mb-4 bg-purple-500/20 text-purple-400 hover:bg-purple-500/30 border-purple-500/50">
             {t("dapps.badge")}
@@ -605,7 +605,7 @@ export default function DApps() {
           </Link>
         </section>
 
-        <section className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-white/10 rounded-2xl p-8 text-center mb-12">
+        <section className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-white/10 rounded-2xl p-6 md:p-8 text-center mb-12">
           <h2 className="text-2xl font-bold font-display mb-4">{t("dapps.partner.title")}</h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
             {t("dapps.partner.desc")}

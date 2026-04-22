@@ -1293,7 +1293,7 @@ export default function BlogPost() {
               <ArrowLeft className="mr-2 h-4 w-4" /> {t("blog.backToInsights") || "Back to Knowledge Hub"}
             </Link>
             
-            <div className="bg-card/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl">
+            <div className="bg-card/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl">
               <div className="flex items-center gap-4 mb-6">
                 <Badge variant="outline" className="border-primary/50 text-primary bg-primary/10">
                   {t(post.categoryKey)}

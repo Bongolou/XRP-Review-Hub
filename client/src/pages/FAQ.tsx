@@ -110,7 +110,7 @@ export default function FAQ() {
   
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-4xl py-12 md:py-20">
+      <div className="container mx-auto px-4 max-w-4xl py-20 md:py-24">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-black font-display mb-4">{t("faq.title")}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -131,7 +131,7 @@ export default function FAQ() {
           ))}
         </div>
 
-        <div className="mt-16 text-center bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 rounded-2xl p-8">
+        <div className="mt-16 text-center bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 rounded-2xl p-6 md:p-8">
           <h2 className="text-2xl font-bold font-display mb-4">{t("faq.stillHaveQuestions")}</h2>
           <p className="text-muted-foreground mb-6">
             {t("faq.stillHaveQuestionsDesc")}

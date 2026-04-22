@@ -180,10 +180,10 @@ export default function BestFor() {
           />
         </section>
 
-        <section className="my-20 grid md:grid-cols-3 gap-4">
+        <section className="my-20 grid md:grid-cols-3 gap-6 md:gap-8">
           <Link
             href="/best-xrp-wallets"
-            className="p-4 rounded-xl border border-white/10 bg-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all"
+            className="p-6 md:p-8 rounded-xl border border-white/10 bg-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all"
           >
             <div className="text-xs uppercase tracking-widest text-primary font-display mb-1">
               {t("bf.crossAllEyebrow")}
@@ -192,7 +192,7 @@ export default function BestFor() {
           </Link>
           <Link
             href="/best-for/cold-storage"
-            className="p-4 rounded-xl border border-white/10 bg-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all"
+            className="p-6 md:p-8 rounded-xl border border-white/10 bg-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all"
           >
             <div className="text-xs uppercase tracking-widest text-primary font-display mb-1">
               {t("bf.crossColdEyebrow")}
@@ -201,7 +201,7 @@ export default function BestFor() {
           </Link>
           <Link
             href="/best-for/defi"
-            className="p-4 rounded-xl border border-white/10 bg-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all"
+            className="p-6 md:p-8 rounded-xl border border-white/10 bg-white/5 hover:border-primary/40 hover:bg-primary/5 transition-all"
           >
             <div className="text-xs uppercase tracking-widest text-primary font-display mb-1">
               {t("bf.crossDefiEyebrow")}

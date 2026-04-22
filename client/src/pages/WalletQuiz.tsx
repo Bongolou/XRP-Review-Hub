@@ -156,7 +156,7 @@ export default function WalletQuiz() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-2xl py-12 md:py-20">
+      <div className="container mx-auto px-4 max-w-2xl py-20 md:py-24">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-black font-display mb-4">Find Your Perfect Wallet</h1>
           <p className="text-muted-foreground text-lg">
@@ -165,7 +165,7 @@ export default function WalletQuiz() {
         </div>
 
         {!showResults ? (
-          <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
+          <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
             <div className="flex items-center justify-between mb-8">
               <span className="text-sm text-muted-foreground">
                 Question {currentQuestion + 1} of {questions.length}
@@ -211,7 +211,7 @@ export default function WalletQuiz() {
           </div>
         ) : recommendation && (
           <div className="space-y-6">
-            <div className="bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-2xl p-8">
+            <div className="bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-2xl p-6 md:p-8">
               <div className="text-sm text-primary font-display mb-2">Our Recommendation</div>
               <h2 className="text-3xl font-bold font-display mb-4">{recommendation.primary.name}</h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">

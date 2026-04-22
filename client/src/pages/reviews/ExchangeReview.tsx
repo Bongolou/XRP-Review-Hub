@@ -615,7 +615,7 @@ export default function ExchangeReview() {
           {t("exchangeReview.backToPartners")}
         </Link>
 
-        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8">
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-8">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
             <div className="flex items-start gap-5">
               {logoMap[slug || ""] && (
@@ -701,7 +701,7 @@ export default function ExchangeReview() {
         })()}
 
         {exchange.review && exchange.review.length > 0 && (
-          <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8" data-testid={`section-review-${slug}`}>
+          <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-8" data-testid={`section-review-${slug}`}>
             <h2 className="text-2xl font-bold font-display mb-10">In-Depth Review</h2>
             {exchange.review.map((section, idx) => (
               <div key={idx} className="mb-10 last:mb-0">

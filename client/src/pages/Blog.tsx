@@ -238,15 +238,15 @@ export default function Blog() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+      <div className="container mx-auto px-4 py-20 md:py-24">
+        <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-black font-display mb-4">{t("blog.pageTitle")}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             {t("blog.pageSubtitle")}
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categoryKeys.map((cat) => (
             <button
               key={cat.key}
@@ -264,7 +264,7 @@ export default function Blog() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredPosts.map((post) => (
             <Link 
               key={post.id} 

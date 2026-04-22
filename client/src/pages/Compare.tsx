@@ -894,7 +894,7 @@ export default function Compare() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-5xl py-12 md:py-20">
+      <div className="container mx-auto px-4 max-w-5xl py-20 md:py-24">
         <Link href="/#wallets" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="h-4 w-4" />
           Back to Wallets
@@ -1168,7 +1168,7 @@ export default function Compare() {
         </div>
 
         {/* Bottom Line */}
-        <div className="bg-gradient-to-r from-card/50 to-primary/5 border border-white/10 rounded-2xl p-8 mb-12">
+        <div className="bg-gradient-to-r from-card/50 to-primary/5 border border-white/10 rounded-2xl p-6 md:p-8 mb-12">
           <div className="flex items-center gap-3 mb-4">
             <AlertTriangle className="h-6 w-6 text-yellow-400" />
             <h2 className="text-xl font-bold font-display">The Bottom Line</h2>
@@ -1220,9 +1220,9 @@ export default function Compare() {
         </div>
 
         {/* FAQ block */}
-        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 mb-12" data-testid={`section-compare-faq-${slug}`}>
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-12" data-testid={`section-compare-faq-${slug}`}>
           <h2 className="text-2xl font-bold font-display mb-6">Frequently Asked Questions</h2>
-          <div className="space-y-6">
+          <div className="space-y-4">
             <div>
               <h3 className="font-bold text-lg mb-2">Which is better for beginners — {comparison.wallet1.name} or {comparison.wallet2.name}?</h3>
               <p className="text-muted-foreground leading-relaxed">

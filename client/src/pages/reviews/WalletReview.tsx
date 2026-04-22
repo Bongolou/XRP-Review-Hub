@@ -928,7 +928,7 @@ export default function WalletReview() {
           {t("walletReview.backToComparison")}
         </Link>
 
-        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8">
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-8">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
             <div className="flex items-start gap-5">
               {logoMap[slug || ""] && (
@@ -1027,7 +1027,7 @@ export default function WalletReview() {
         })()}
 
         {wallet.review && wallet.review.length > 0 && (
-          <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 mb-8" data-testid={`section-review-${slug}`}>
+          <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-8" data-testid={`section-review-${slug}`}>
             <h2 className="text-2xl font-bold font-display mb-10">{t("walletReview.inDepthReview")}</h2>
             {wallet.review.map((section, idx) => (
               <div key={idx} className="mb-10 last:mb-0">
@@ -1051,7 +1051,7 @@ export default function WalletReview() {
           const alternativeSlugs = linkMap.alternatives.filter((s) => walletData[s]);
           if (alternativeSlugs.length === 0) return null;
           return (
-            <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 mb-8" data-testid={`section-alternatives-${slug}`}>
+            <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-8" data-testid={`section-alternatives-${slug}`}>
               <h2 className="text-2xl font-bold font-display mb-2">{t("walletReview.alternativesTitle")} {wallet.name}</h2>
               <p className="text-muted-foreground mb-6">{t("walletReview.alternativesSubtitle")}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1111,9 +1111,9 @@ export default function WalletReview() {
         })()}
 
         {/* FAQ — adds unique long-form content per page */}
-        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 mb-8" data-testid={`section-faq-${slug}`}>
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-8" data-testid={`section-faq-${slug}`}>
           <h2 className="text-2xl font-bold font-display mb-6">{t("walletReview.faqHeading")} {wallet.name}</h2>
-          <div className="space-y-6">
+          <div className="space-y-4">
             <div>
               <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q1").replace(/\{NAME\}/g, wallet.name)}</h3>
               <p className="text-muted-foreground leading-relaxed">

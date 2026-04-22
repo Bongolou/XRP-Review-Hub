@@ -3,13 +3,13 @@ import { Layout } from "@/components/Layout";
 export default function Terms() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 max-w-4xl py-12 md:py-20">
+      <div className="container mx-auto px-4 max-w-4xl py-20 md:py-24">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-black font-display mb-4">Terms of Service</h1>
           <p className="text-muted-foreground">Last updated: January 25, 2026</p>
         </div>
 
-        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12">
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
           <div className="prose prose-invert max-w-none space-y-8">
             <section>
               <h2 className="text-xl font-bold font-display mb-4 text-white">1. Acceptance of Terms</h2>
