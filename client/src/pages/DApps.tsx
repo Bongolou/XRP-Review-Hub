@@ -23,7 +23,7 @@ import {
   VerdictBox,
   BestForCallout,
   EmailCaptureBlock,
-  DEFI_LEAD_MAGNET_ASSET_URL,
+  getDefiLeadMagnetAssetUrl,
   FastCompareTable,
   FAQAccordion,
   LastUpdated,
@@ -323,7 +323,7 @@ const categoryKeys = [
 ];
 
 export default function DApps() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useDocumentMeta({
     title: t("dapps.metaTitle"),
@@ -570,7 +570,7 @@ export default function DApps() {
             ]}
             cta={t("dapps.email.cta")}
             leadMagnet="xrpl_defi_starter_kit"
-            assetUrl={DEFI_LEAD_MAGNET_ASSET_URL}
+            assetUrl={getDefiLeadMagnetAssetUrl(language)}
           />
         </section>
 

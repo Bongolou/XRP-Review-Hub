@@ -3,9 +3,25 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import type { Language } from "@/lib/i18n/translations";
 
 export const LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-wallet-starter-kit.md";
 export const DEFI_LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-defi-starter-kit.pdf";
+
+const DEFI_LEAD_MAGNET_LOCALIZED: Record<Language, string> = {
+  en: "/downloads/xrpl-defi-starter-kit.pdf",
+  es: "/downloads/xrpl-defi-starter-kit.es.md",
+  zh: "/downloads/xrpl-defi-starter-kit.zh.md",
+  ja: "/downloads/xrpl-defi-starter-kit.ja.md",
+  ko: "/downloads/xrpl-defi-starter-kit.ko.md",
+  pt: "/downloads/xrpl-defi-starter-kit.pt.md",
+  de: "/downloads/xrpl-defi-starter-kit.de.md",
+  fr: "/downloads/xrpl-defi-starter-kit.fr.md",
+};
+
+export function getDefiLeadMagnetAssetUrl(language: Language): string {
+  return DEFI_LEAD_MAGNET_LOCALIZED[language] ?? DEFI_LEAD_MAGNET_ASSET_URL;
+}
 import {
   ArrowRight,
   ExternalLink,

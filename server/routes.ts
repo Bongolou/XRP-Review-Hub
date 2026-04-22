@@ -202,6 +202,15 @@ export async function registerRoutes(
       contentType: "application/pdf",
     },
   ];
+
+  for (const lang of ["es", "zh", "ja", "ko", "pt", "de", "fr"]) {
+    const fname = `xrpl-defi-starter-kit.${lang}.md`;
+    leadMagnets.push({
+      route: `/downloads/${fname}`,
+      filename: fname,
+      contentType: "text/markdown; charset=utf-8",
+    });
+  }
   for (const { route, filename, contentType } of leadMagnets) {
     app.get(route, (_req, res) => {
       const filePath = resolveLeadMagnetPath(filename);
