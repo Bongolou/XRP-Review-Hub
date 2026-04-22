@@ -25,7 +25,7 @@ function TikTokIcon({ className }: { className?: string }) {
 
 const socials = [
   { name: "X", icon: XIcon, url: "https://x.com/allthingsxrpl", color: "hover:text-white" },
-  { name: "Facebook", icon: FacebookIcon, url: "https://facebook.com/allthingsxrpl", color: "hover:text-blue-500" },
+  { name: "Facebook", icon: FacebookIcon, url: "https://www.facebook.com/allthingsxrpl", color: "hover:text-blue-500" },
   { name: "TikTok", icon: TikTokIcon, url: "https://tiktok.com/@all.things.xrpl", color: "hover:text-pink-400" }
 ];
 

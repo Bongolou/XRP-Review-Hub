@@ -162,7 +162,7 @@ const homepageCompareRows: FastCompareRow[] = [
     bestFor: "Open-source hardware",
     rating: "9.3",
     reviewSlug: "trezor",
-    affiliateUrl: "https://trezor.io/?offer_id=133&aff_id=allthingsxrpl",
+    affiliateUrl: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
   },
   {
     id: "ellipal",
@@ -371,7 +371,7 @@ const exchangesData = [
     bonusKey: "exchange.bonus.signup25",
     blurbKey: "exchange.blurb.cryptocom",
     featureKeys: ["exchange.feature.visaCard", "exchange.feature.earnInterest", "exchange.feature.coins250"],
-    link: "https://crypto.com/app?ref=allthingsxrpl",
+    link: "https://crypto.com/app",
     color: "text-indigo-400",
     bgColor: "bg-indigo-400/20",
     logo: cryptocomLogo

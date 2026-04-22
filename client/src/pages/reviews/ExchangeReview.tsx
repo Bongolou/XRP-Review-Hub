@@ -444,7 +444,7 @@ const exchangeData: Record<string, {
     founded: "2016",
     headquarters: "Singapore",
     website: "crypto.com",
-    affiliateLink: "https://crypto.com/app?ref=allthingsxrpl",
+    affiliateLink: "https://crypto.com/app",
     bonusKey: "exchangeDetail.cryptocom.bonus",
     descriptionKey: "exchangeDetail.cryptocom.description",
     featureKeys: [
