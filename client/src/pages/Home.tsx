@@ -476,7 +476,7 @@ function LatestNewsPreview({ t }: { t: (key: string) => string }) {
   if (!isLoading && news.length === 0) return null;
 
   return (
-    <section className="py-32 container mx-auto px-4">
+    <section className="py-20 md:py-24 container mx-auto px-4">
       <div className="text-center mb-16">
         <Badge variant="outline" className="mb-4 px-4 py-1.5 text-sm border-primary/50 text-primary bg-primary/10">
           <Newspaper className="h-3.5 w-3.5 mr-2" />
@@ -671,7 +671,7 @@ export default function Home() {
       <div className="h-24" aria-hidden="true" />
 
       {/* Wallet Comparison Section */}
-      <section id="wallets" className="pt-16 pb-32 container mx-auto px-4 relative">
+      <section id="wallets" className="py-20 md:py-24 container mx-auto px-4 relative">
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="text-center mb-16 relative z-10">
@@ -690,7 +690,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-card/40 backdrop-blur-md p-8 md:p-10 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]">
+              <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-card/40 backdrop-blur-md p-6 md:p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 
                 <div className="flex flex-col md:flex-row items-start gap-6 relative z-10">
@@ -805,7 +805,7 @@ export default function Home() {
       <div className="h-24" aria-hidden="true" />
 
       {/* Top Exchanges Section */}
-      <section className="py-32 bg-card/10 border-y border-white/5 relative">
+      <section className="py-20 md:py-24 bg-card/10 border-y border-white/5 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/20 text-white hover:bg-primary/30 border-primary/50">{t("exchanges.badge")}</Badge>
@@ -815,7 +815,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {exchangesData.map((exchange, idx) => (
               <motion.div
                 key={exchange.id}
@@ -826,7 +826,7 @@ export default function Home() {
                 className="group relative"
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-2xl -z-10" />
-                <div className="p-10 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] h-full flex flex-col">
+                <div className="p-6 md:p-8 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] h-full flex flex-col">
                   <div className="flex justify-between items-start mb-6">
                     <div className="w-14 h-14 rounded-xl overflow-hidden">
                       <img src={exchange.logo} alt={`${exchange.name} logo`} className="w-full h-full object-cover" width={56} height={56} loading="lazy" />
@@ -870,7 +870,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-16 p-10 rounded-2xl border border-white/10 bg-gradient-to-r from-card/50 to-transparent flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="mt-16 p-6 md:p-8 rounded-2xl border border-white/10 bg-gradient-to-r from-card/50 to-transparent flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
             <div>
               <h3 className="text-xl font-bold font-display mb-2">{t("exchanges.partnerTitle")}</h3>
               <p className="text-muted-foreground">{t("exchanges.partnerDesc")}</p>
@@ -887,13 +887,13 @@ export default function Home() {
       <div className="h-16" aria-hidden="true" />
 
       {/* Feature Grid */}
-      <section className="py-32 bg-card/20 border-y border-white/5 relative overflow-hidden">
+      <section className="py-20 md:py-24 bg-card/20 border-y border-white/5 relative overflow-hidden">
         <div className="absolute -right-40 top-20 w-96 h-96 bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <Link href="/blog/3" className="group">
-              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 cursor-pointer h-full hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]">
+              <div className="p-6 md:p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 cursor-pointer h-full hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)]">
                 <div className="bg-primary/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-primary/30 group-hover:scale-110 transition-transform">
                   <Lock className="h-6 w-6 text-primary" />
                 </div>
@@ -907,7 +907,7 @@ export default function Home() {
               </div>
             </Link>
             <Link href="/yield" className="group">
-              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-green-500/50 transition-all duration-300 cursor-pointer h-full hover:shadow-[0_0_30px_-10px_rgba(34,197,94,0.3)]">
+              <div className="p-6 md:p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-green-500/50 transition-all duration-300 cursor-pointer h-full hover:shadow-[0_0_30px_-10px_rgba(34,197,94,0.3)]">
                 <div className="bg-green-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-green-500/30 group-hover:scale-110 transition-transform">
                   <TrendingUp className="h-6 w-6 text-green-400" />
                 </div>
@@ -921,7 +921,7 @@ export default function Home() {
               </div>
             </Link>
             <Link href="/blog" className="group">
-              <div className="p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300 cursor-pointer h-full hover:shadow-[0_0_30px_-10px_rgba(168,85,247,0.3)]">
+              <div className="p-6 md:p-8 rounded-2xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300 cursor-pointer h-full hover:shadow-[0_0_30px_-10px_rgba(168,85,247,0.3)]">
                 <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-6 border border-purple-500/30 group-hover:scale-110 transition-transform">
                   <Layers className="h-6 w-6 text-purple-400" />
                 </div>
@@ -941,7 +941,7 @@ export default function Home() {
       <div className="h-16" aria-hidden="true" />
 
       {/* Blog/Insights Section */}
-      <section id="blog" className="py-32 container mx-auto px-4">
+      <section id="blog" className="py-20 md:py-24 container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-xl">
             <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">{t("blog.title")}</h2>
@@ -956,7 +956,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {blogPostsData.map((post, idx) => (
             <Link key={post.id} href={`/blog/${post.id}`} className="group block h-full">
               <div className="h-full bg-card/30 rounded-xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-300 flex flex-col">
@@ -995,8 +995,8 @@ export default function Home() {
       <div className="h-24" aria-hidden="true" />
 
       {/* Why trust us */}
-      <section className="container mx-auto px-4 pt-20 pb-12">
-        <div className="max-w-5xl mx-auto rounded-2xl border border-white/10 bg-card/30 p-10 md:p-14">
+      <section className="container mx-auto px-4 py-20 md:py-24">
+        <div className="max-w-5xl mx-auto rounded-2xl border border-white/10 bg-card/30 p-6 md:p-8">
           <div className="text-xs uppercase tracking-widest text-primary font-display mb-3">{t("home.whyTrust.eyebrow")}</div>
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">{t("home.whyTrust.title")}</h2>
           <p className="text-muted-foreground leading-relaxed mb-6 max-w-3xl">
@@ -1068,8 +1068,8 @@ export default function Home() {
       <div className="h-24" aria-hidden="true" />
 
       {/* Newsletter CTA */}
-      <section className="py-32 container mx-auto px-4">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 p-12 text-center">
+      <section className="py-20 md:py-24 container mx-auto px-4">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 p-6 md:p-8 text-center">
           <div className="absolute inset-0 grid-bg opacity-30" />
           <div className="relative z-10 max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">{t("newsletter.ctaTitle")}</h2>
