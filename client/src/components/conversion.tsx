@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-wallet-starter-kit.md";
+export const DEFI_LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-defi-starter-kit.md";
 import {
   ArrowRight,
   ExternalLink,

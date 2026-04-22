@@ -23,6 +23,7 @@ import {
   VerdictBox,
   BestForCallout,
   EmailCaptureBlock,
+  DEFI_LEAD_MAGNET_ASSET_URL,
   FastCompareTable,
   FAQAccordion,
   LastUpdated,
@@ -561,6 +562,8 @@ export default function DApps() {
               t("dapps.email.bullet3"),
             ]}
             cta={t("dapps.email.cta")}
+            leadMagnet="xrpl_defi_starter_kit"
+            assetUrl={DEFI_LEAD_MAGNET_ASSET_URL}
           />
         </section>
 

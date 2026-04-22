@@ -6,10 +6,10 @@ import { storage } from "./storage";
 import { insertSubscriberSchema, insertContactSchema } from "@shared/schema";
 import { z } from "zod";
 
-function resolveLeadMagnetPath(): string | null {
+function resolveLeadMagnetPath(filename: string): string | null {
   const candidates = [
-    path.resolve(process.cwd(), "dist/public/xrpl-wallet-starter-kit.md"),
-    path.resolve(process.cwd(), "client/public/xrpl-wallet-starter-kit.md"),
+    path.resolve(process.cwd(), `dist/public/${filename}`),
+    path.resolve(process.cwd(), `client/public/${filename}`),
   ];
   for (const p of candidates) {
     if (fs.existsSync(p)) return p;
@@ -158,20 +158,26 @@ export async function registerRoutes(
   // with the correct name and MIME type instead of falling through to the SPA
   // fallback (which would return index.html and cause Safari to save it as
   // "xrpl-wallet-starter-kit.md.html").
-  app.get("/downloads/xrpl-wallet-starter-kit.md", (_req, res) => {
-    const filePath = resolveLeadMagnetPath();
-    if (!filePath) {
-      res.status(404).type("text/plain").send("Starter kit file not found");
-      return;
-    }
-    res.setHeader("Content-Type", "text/markdown; charset=utf-8");
-    res.setHeader(
-      "Content-Disposition",
-      'attachment; filename="xrpl-wallet-starter-kit.md"'
-    );
-    res.setHeader("Cache-Control", "public, max-age=300");
-    res.sendFile(filePath);
-  });
+  const leadMagnets: Array<{ route: string; filename: string }> = [
+    { route: "/downloads/xrpl-wallet-starter-kit.md", filename: "xrpl-wallet-starter-kit.md" },
+    { route: "/downloads/xrpl-defi-starter-kit.md", filename: "xrpl-defi-starter-kit.md" },
+  ];
+  for (const { route, filename } of leadMagnets) {
+    app.get(route, (_req, res) => {
+      const filePath = resolveLeadMagnetPath(filename);
+      if (!filePath) {
+        res.status(404).type("text/plain").send("Starter kit file not found");
+        return;
+      }
+      res.setHeader("Content-Type", "text/markdown; charset=utf-8");
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename="${filename}"`
+      );
+      res.setHeader("Cache-Control", "public, max-age=300");
+      res.sendFile(filePath);
+    });
+  }
 
   // Sitemap XML
   app.get("/sitemap.xml", (req, res) => {
