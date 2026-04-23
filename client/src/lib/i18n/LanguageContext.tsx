@@ -17,6 +17,10 @@ const STORAGE_KEY = "allthingsxrpl_language";
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== "undefined") {
+      const urlLang = new URLSearchParams(window.location.search).get("lang");
+      if (urlLang && urlLang in translations) {
+        return urlLang as Language;
+      }
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored && stored in translations) {
         return stored as Language;

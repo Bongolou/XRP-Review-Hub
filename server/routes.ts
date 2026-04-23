@@ -259,13 +259,39 @@ export async function registerRoutes(
       ...blogPages,
     ];
 
+    // hreflang annotations — tell search engines about every language
+    // version of each URL so the right translation surfaces per region.
+    // Languages map to ISO codes Google expects (e.g. zh -> zh-Hans).
+    const hreflangMap: Array<{ lang: string; hreflang: string }> = [
+      { lang: "en", hreflang: "en" },
+      { lang: "es", hreflang: "es" },
+      { lang: "zh", hreflang: "zh-Hans" },
+      { lang: "ja", hreflang: "ja" },
+      { lang: "ko", hreflang: "ko" },
+      { lang: "pt", hreflang: "pt" },
+      { lang: "de", hreflang: "de" },
+      { lang: "fr", hreflang: "fr" },
+    ];
+
+    const buildAlternates = (urlPath: string): string => {
+      const lines = hreflangMap.map(({ lang, hreflang }) => {
+        const href = lang === "en"
+          ? `${baseUrl}${urlPath}`
+          : `${baseUrl}${urlPath}${urlPath.includes("?") ? "&" : "?"}lang=${lang}`;
+        return `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${href}"/>`;
+      });
+      lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${urlPath}"/>`);
+      return lines.join("\n");
+    };
+
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${allPages.map(p => `  <url>
     <loc>${baseUrl}${p.url}</loc>
     <lastmod>${p.lastmod ?? today}</lastmod>
     <changefreq>${p.changefreq}</changefreq>
     <priority>${p.priority}</priority>
+${buildAlternates(p.url)}
   </url>`).join("\n")}
 </urlset>`;
 
