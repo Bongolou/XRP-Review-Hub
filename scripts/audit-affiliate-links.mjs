@@ -6,8 +6,32 @@ import path from "node:path";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 
-const SCAN_ROOTS = ["client/src"];
-const SOURCE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"]);
+// Scan both client-side code and the server-rendered surfaces (route handlers,
+// sitemap/RSS generators, social-meta resolver) plus shared data files like the
+// blog index. This way the weekly audit covers every place we can ship a URL to
+// a visitor, not just the React tree.
+const SCAN_ROOTS = ["client/src", "server", "shared"];
+const SOURCE_EXTENSIONS = new Set([
+  ".ts",
+  ".tsx",
+  ".js",
+  ".jsx",
+  ".mjs",
+  ".cjs",
+  ".json",
+]);
+
+// Extra individual files to scan even though they live outside SCAN_ROOTS or
+// use non-source extensions. These are static assets we still ship to
+// visitors/search engines and that can embed outbound URLs (e.g. the static
+// fallback sitemap, robots files, raw HTML entry points).
+const EXTRA_FILES = [
+  "sitemap.xml",
+  "robots.txt",
+  "index.html",
+  "client/index.html",
+  "client/public/robots.txt",
+];
 
 const URL_PATTERN = /https?:\/\/[^\s"'`<>)]+/g;
 
@@ -25,6 +49,15 @@ const SKIP_URL_SUBSTRINGS = [
   "news.google.com/rss",
   "cointelegraph.com/rss",
   "cryptoslate.com/feed",
+  // XML/spec namespace URIs that show up in server-rendered SVG, sitemap and
+  // RSS output. They are identifiers, not visitor-clickable links, and several
+  // of them either 404 or have no canonical landing page.
+  "www.w3.org/",
+  "www.sitemaps.org/",
+  "www.google.com/schemas/",
+  // `new URL(path, "http://x")` is a parsing helper inside socialMeta — not a
+  // real outbound link.
+  "http://x",
 ];
 
 const BOT_BLOCK_HOSTS = new Set([
@@ -78,6 +111,9 @@ async function collectUrls() {
   const files = [];
   for (const rel of SCAN_ROOTS) {
     await walkSources(path.join(root, rel), files);
+  }
+  for (const rel of EXTRA_FILES) {
+    files.push(path.join(root, rel));
   }
   files.sort();
 
@@ -232,6 +268,7 @@ function formatReport(results) {
   const lines = [];
   lines.push(`Affiliate Link Audit — ${new Date().toISOString()}`);
   lines.push("=".repeat(64));
+  lines.push(`Scanned roots: ${SCAN_ROOTS.join(", ")}`);
   lines.push(`Total checked: ${results.length}`);
   lines.push(`OK (200, no redirect):     ${ok.length}`);
   lines.push(`Redirected (3xx -> 2xx):   ${redirected.length}`);
