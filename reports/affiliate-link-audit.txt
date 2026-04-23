@@ -1,53 +1,99 @@
-Affiliate Link Audit — 2026-04-23T02:57:17.197Z
+Affiliate Link Audit — 2026-04-23T15:39:05.287Z
 ================================================================
-Total checked: 24
-OK (200, no redirect):     17
-Redirected (3xx -> 2xx):   7
-Broken / non-2xx:          0
+Total checked: 47
+OK (200, no redirect):     31
+Redirected (3xx -> 2xx):   11
+Broken / non-2xx:          5
 Ignored (known bot block): 0
+
+BROKEN / NEEDS ATTENTION (non-2xx, network errors)
+----------------------------------------------------------------
+[HTTP 403] https://firstledger.net/?ref=allthingsxrpl
+    in client/src/pages/DApps.tsx
+[HTTP 404] https://uphold.com/earn
+    in client/src/pages/YieldOpportunities.tsx
+[HTTP 404] https://uphold.com/sign-up?referral=allthingsxrpl
+    in client/src/pages/GettingStarted.tsx
+[HTTP 403] https://www.bitrue.com/staking
+    in client/src/pages/YieldOpportunities.tsx
+[HTTP 404] https://www.coinbase.com/join?ref=allthingsxrpl
+    in client/src/pages/Compare.tsx
 
 REDIRECTED (lands on 2xx after a 3xx — verify destination)
 ----------------------------------------------------------------
-[200] https://tangem.com/?promocode=ALLTHINGSXRPL
-    -> https://tangem.com/en/?promocode=ALLTHINGSXRPL
-    in client/src/pages/Home.tsx
-[200] https://uphold.com/signup?referral=allthingsxrpl
-    -> https://wallet.uphold.com/signup?referral=allthingsxrpl
-    in client/src/pages/Home.tsx
-    in client/src/pages/reviews/ExchangeReview.tsx
 [200] https://bitrue.com/user/register?inviteCode=allthingsxrpl
     -> https://www.bitrue.com/user/register?inviteCode=allthingsxrpl
-    in client/src/pages/Home.tsx
-[200] https://kraken.com/sign-up?r=allthingsxrpl
-    -> https://www.kraken.com/sign-up?r=allthingsxrpl
     in client/src/pages/Home.tsx
 [200] https://crypto.com/
     -> https://crypto.com/us
     in client/src/pages/Home.tsx
     in client/src/pages/reviews/ExchangeReview.tsx
+[200] https://ellipal.com/?ref=allthingsxrpl
+    -> https://www.ellipal.com/?ref=allthingsxrpl
+    in client/src/pages/Compare.tsx
+[200] https://kraken.com/sign-up?r=allthingsxrpl
+    -> https://www.kraken.com/sign-up?r=allthingsxrpl
+    in client/src/pages/Compare.tsx
+    in client/src/pages/Home.tsx
+[200] https://sologenic.com/?ref=allthingsxrpl
+    -> https://www.sologenic.com/?ref=allthingsxrpl
+    in client/src/pages/DApps.tsx
+[200] https://tangem.com/?promocode=ALLTHINGSXRPL
+    -> https://tangem.com/en/?promocode=ALLTHINGSXRPL
+    in client/src/pages/BestFor.tsx
+    in client/src/pages/BestXRPWallets.tsx
+    in client/src/pages/Home.tsx
 [200] https://tangem.com/?ref=allthingsxrpl
     -> https://tangem.com/en/?ref=allthingsxrpl
+    in client/src/pages/Compare.tsx
+    in client/src/pages/WalletQuiz.tsx
     in client/src/pages/reviews/WalletReview.tsx
 [200] https://tiktok.com/@all.things.xrpl
     -> https://www.tiktok.com/@all.things.xrpl
     in client/src/components/SocialLinks.tsx
+[200] https://uphold.com/signup?referral=allthingsxrpl
+    -> https://wallet.uphold.com/signup?referral=allthingsxrpl
+    in client/src/components/BannerAd.tsx
+    in client/src/pages/Home.tsx
+    in client/src/pages/YieldOpportunities.tsx
+    in client/src/pages/reviews/ExchangeReview.tsx
+[200] https://www.kraken.com/features/staking-coins
+    -> https://www.kraken.com/features/staking
+    in client/src/pages/YieldOpportunities.tsx
+[200] https://xrplorer.com/?ref=allthingsxrpl
+    -> https://inftf.org/
+    in client/src/pages/DApps.tsx
 
 OK
 ----------------------------------------------------------------
-[200] https://xumm.app/?ref=allthingsxrpl
-[200] https://shop.ledger.com/?r=5d81f18905fe
 [200] https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959
-[200] https://www.ellipal.com/?ref=allthingsxrpl
-[200] https://crossmark.io/?ref=allthingsxrpl
+[200] https://affil.trezor.io/aff_i?offer_id=169&aff_id=36959
+[200] https://anodos.finance/?ref=allthingsxrpl
 [200] https://bifrostwallet.com/?ref=allthingsxrpl
-[200] https://trustwallet.com/?ref=allthingsxrpl
+[200] https://crossmark.io/?ref=allthingsxrpl
 [200] https://gatehub.net/?ref=allthingsxrpl
-[200] https://www.ellipal.com/?rfsn=8973243.bbfab69
-[200] https://www.coinbase.com/join/allthingsxrpl
-[200] https://www.bitstamp.net/?ref=allthingsxrpl
-[200] https://www.kucoin.com/r?ref=allthingsxrpl
+[200] https://onthedex.live/?ref=allthingsxrpl
+[200] https://orchestra.finance/?ref=allthingsxrpl
+[200] https://shop.ledger.com/?r=5d81f18905fe
+[200] https://sologenic.org/?ref=allthingsxrpl
+[200] https://sologenic.org/trade?ref=allthingsxrpl
+[200] https://trezor.io/?ref=allthingsxrpl
+[200] https://trustwallet.com/?ref=allthingsxrpl
+[200] https://www.bitrue.com/activity/landing-page/?cn=900000&_channel=allthingsxrpl
 [200] https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL
-[200] https://www.kraken.com/sign-up?clickid=allthingsxrpl
-[200] https://xaman.app/?ref=allthingsxrpl
-[200] https://x.com/allthingsxrpl
+[200] https://www.bitstamp.net/?ref=allthingsxrpl
+[200] https://www.coinbase.com/join/allthingsxrpl
+[200] https://www.ellipal.com/?ref=allthingsxrpl
+[200] https://www.ellipal.com/?rfsn=8973243.bbfab69
 [200] https://www.facebook.com/allthingsxrpl
+[200] https://www.kraken.com/sign-up?clickid=allthingsxrpl
+[200] https://www.kucoin.com/r?ref=allthingsxrpl
+[200] https://www.magnetic.app/?ref=allthingsxrpl
+[200] https://www.xrplevm.org/?ref=allthingsxrpl
+[200] https://x.com/allthingsxrpl
+[200] https://xahau.network/?ref=allthingsxrpl
+[200] https://xaman.app/?ref=allthingsxrpl
+[200] https://xpmarket.com/?ref=allthingsxrpl
+[200] https://xrpl.services/?ref=allthingsxrpl
+[200] https://xrplwin.com/?ref=allthingsxrpl
+[200] https://xumm.app/?ref=allthingsxrpl

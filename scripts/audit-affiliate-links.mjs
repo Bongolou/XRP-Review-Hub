@@ -1,20 +1,31 @@
 #!/usr/bin/env node
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 
-const SOURCE_FILES = [
-  "client/src/pages/Home.tsx",
-  "client/src/pages/reviews/ExchangeReview.tsx",
-  "client/src/pages/reviews/WalletReview.tsx",
-  "client/src/components/SocialLinks.tsx",
-];
+const SCAN_ROOTS = ["client/src"];
+const SOURCE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"]);
 
-const KEY_PATTERN =
-  /(?:affiliateUrl|affiliateLink|url|link)\s*:\s*["'`](https?:\/\/[^"'`\s]+)["'`]/g;
+const URL_PATTERN = /https?:\/\/[^\s"'`<>)]+/g;
+
+const SKIP_URL_SUBSTRINGS = [
+  "images.unsplash.com",
+  "schema.org",
+  "localhost",
+  "127.0.0.1",
+  // Backend/API endpoints that the app calls programmatically — not
+  // visitor-clickable outbound links, and they intentionally 4xx on a bare
+  // GET/HEAD.
+  "api.coingecko.com",
+  "api.rss2json.com",
+  "formspree.io",
+  "news.google.com/rss",
+  "cointelegraph.com/rss",
+  "cryptoslate.com/feed",
+];
 
 const BOT_BLOCK_HOSTS = new Set([
   "tangem.com",
@@ -31,29 +42,68 @@ const MAX_REDIRECT_HOPS = 5;
 const USER_AGENT =
   "Mozilla/5.0 (compatible; AllThingsXRPL-LinkAudit/1.0; +https://allthingsxrpl.com)";
 
+async function walkSources(dir, acc) {
+  let entries;
+  try {
+    entries = await readdir(dir, { withFileTypes: true });
+  } catch {
+    return acc;
+  }
+  for (const entry of entries) {
+    if (entry.name.startsWith(".")) continue;
+    if (entry.name === "node_modules") continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      await walkSources(full, acc);
+    } else if (entry.isFile() && SOURCE_EXTENSIONS.has(path.extname(entry.name))) {
+      acc.push(full);
+    }
+  }
+  return acc;
+}
+
+function cleanUrl(raw) {
+  // Strip trailing punctuation that the regex may have captured.
+  let url = raw.replace(/[),.;:!?]+$/, "");
+  // Skip URLs that contain template-literal interpolation — they are dynamic
+  // and not a real, checkable URL.
+  if (url.includes("${")) return null;
+  for (const skip of SKIP_URL_SUBSTRINGS) {
+    if (url.includes(skip)) return null;
+  }
+  return url;
+}
+
 async function collectUrls() {
+  const files = [];
+  for (const rel of SCAN_ROOTS) {
+    await walkSources(path.join(root, rel), files);
+  }
+  files.sort();
+
   const map = new Map();
-  for (const rel of SOURCE_FILES) {
-    const full = path.join(root, rel);
+  for (const full of files) {
+    const rel = path.relative(root, full);
     let body;
     try {
       body = await readFile(full, "utf8");
     } catch {
-      console.warn(`! Skipping missing file: ${rel}`);
+      console.warn(`! Skipping unreadable file: ${rel}`);
       continue;
     }
-    for (const match of body.matchAll(KEY_PATTERN)) {
-      const url = match[1];
-      if (!/^https?:\/\//.test(url)) continue;
-      if (url.includes("images.unsplash.com")) continue;
+    for (const match of body.matchAll(URL_PATTERN)) {
+      const url = cleanUrl(match[0]);
+      if (!url) continue;
       if (!map.has(url)) map.set(url, new Set());
       map.get(url).add(rel);
     }
   }
-  return [...map.entries()].map(([url, files]) => ({
-    url,
-    files: [...files],
-  }));
+  return [...map.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([url, files]) => ({
+      url,
+      files: [...files].sort(),
+    }));
 }
 
 function buildHeaders() {
