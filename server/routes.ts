@@ -6,7 +6,68 @@ import { storage } from "./storage";
 import { insertSubscriberSchema, insertContactSchema, insertProductReviewSchema } from "@shared/schema";
 import { blogPosts } from "@shared/blog";
 import { resolveOgImageForPath } from "./socialMeta";
+import { Resvg } from "@resvg/resvg-js";
 import { z } from "zod";
+
+const escapeOgXml = (s: string): string =>
+  s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+
+const truncateOg = (s: string, n: number): string =>
+  s.length > n ? s.slice(0, n - 1) + "…" : s;
+
+function buildPageOgSvg(rawTitle: string): string {
+  const title = escapeOgXml(truncateOg(rawTitle, 40));
+  const w = 1200;
+  const h = 630;
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="url(#bg)"/>
+  <text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
+  <text x="${w / 2}" y="${h / 2 + 30}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="120" font-weight="800" fill="#ffffff">${title}</text>
+  <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">Best XRP Wallets · XRPL DeFi · 2026</text>
+</svg>`;
+}
+
+function buildCompareOgSvg(rawW1: string, rawW2: string): string {
+  const w1 = escapeOgXml(truncateOg(rawW1, 24));
+  const w2 = escapeOgXml(truncateOg(rawW2, 24));
+  const w = 1200;
+  const h = 630;
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="url(#bg)"/>
+  <text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
+  <text x="${w / 2}" y="${h / 2 - 40}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff">${w1}</text>
+  <text x="${w / 2}" y="${h / 2 + 40}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="64" font-weight="700" fill="#fbbf24">vs</text>
+  <text x="${w / 2}" y="${h / 2 + 140}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff">${w2}</text>
+  <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">XRP Wallet Comparison · 2026</text>
+</svg>`;
+}
+
+function renderSvgToPng(svg: string): Buffer {
+  const resvg = new Resvg(svg, {
+    fitTo: { mode: "width", value: 1200 },
+    font: { loadSystemFonts: true },
+  });
+  return resvg.render().asPng();
+}
 
 function resolveLeadMagnetPath(filename: string): string | null {
   const candidates = [
@@ -236,34 +297,25 @@ export async function registerRoutes(
   // Getting Started, Disclosure, News, etc.). The page title comes from the
   // ?title= query param so we don't have to keep two copies of the title list.
   app.get("/og/page.svg", (req, res) => {
-    const escapeXml = (s: string): string =>
-      s
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&apos;");
-    const truncate = (s: string, n: number): string =>
-      s.length > n ? s.slice(0, n - 1) + "…" : s;
-    const title = escapeXml(truncate(String(req.query.title ?? "All Things XRPL"), 40));
-    const w = 1200;
-    const h = 630;
-    const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b1220"/>
-      <stop offset="100%" stop-color="#1e3a8a"/>
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="url(#bg)"/>
-  <text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
-  <text x="${w / 2}" y="${h / 2 + 30}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="120" font-weight="800" fill="#ffffff">${title}</text>
-  <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">Best XRP Wallets · XRPL DeFi · 2026</text>
-</svg>`;
+    const svg = buildPageOgSvg(String(req.query.title ?? "All Things XRPL"));
     res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
     res.setHeader("Cache-Control", "public, max-age=86400");
     res.send(svg);
+  });
+
+  // PNG version of the page card so Twitter/X and Facebook (which don't render
+  // SVG OG images) can show the branded share card instead of the fallback.
+  app.get("/og/page.png", (req, res) => {
+    try {
+      const svg = buildPageOgSvg(String(req.query.title ?? "All Things XRPL"));
+      const png = renderSvgToPng(svg);
+      res.setHeader("Content-Type", "image/png");
+      res.setHeader("Cache-Control", "public, max-age=86400");
+      res.send(png);
+    } catch (err) {
+      console.error("Failed to render /og/page.png:", err);
+      res.status(500).type("text/plain").send("Failed to render OG image");
+    }
   });
 
   // Open Graph image for comparison pages — generated as a real SVG URL so
@@ -271,37 +323,30 @@ export async function registerRoutes(
   // it. Names come from query params so we don't duplicate the comparison
   // data on the server.
   app.get("/og/compare.svg", (req, res) => {
-    const escapeXml = (s: string): string =>
-      s
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&apos;");
-    const truncate = (s: string, n: number): string =>
-      s.length > n ? s.slice(0, n - 1) + "…" : s;
-    const w1 = escapeXml(truncate(String(req.query.w1 ?? "Wallet 1"), 24));
-    const w2 = escapeXml(truncate(String(req.query.w2 ?? "Wallet 2"), 24));
-    const w = 1200;
-    const h = 630;
-    const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b1220"/>
-      <stop offset="100%" stop-color="#1e3a8a"/>
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="url(#bg)"/>
-  <text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
-  <text x="${w / 2}" y="${h / 2 - 40}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff">${w1}</text>
-  <text x="${w / 2}" y="${h / 2 + 40}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="64" font-weight="700" fill="#fbbf24">vs</text>
-  <text x="${w / 2}" y="${h / 2 + 140}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff">${w2}</text>
-  <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">XRP Wallet Comparison · 2026</text>
-</svg>`;
+    const svg = buildCompareOgSvg(
+      String(req.query.w1 ?? "Wallet 1"),
+      String(req.query.w2 ?? "Wallet 2"),
+    );
     res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
     res.setHeader("Cache-Control", "public, max-age=86400");
     res.send(svg);
+  });
+
+  // PNG version of the compare card for Twitter/X and Facebook crawlers.
+  app.get("/og/compare.png", (req, res) => {
+    try {
+      const svg = buildCompareOgSvg(
+        String(req.query.w1 ?? "Wallet 1"),
+        String(req.query.w2 ?? "Wallet 2"),
+      );
+      const png = renderSvgToPng(svg);
+      res.setHeader("Content-Type", "image/png");
+      res.setHeader("Cache-Control", "public, max-age=86400");
+      res.send(png);
+    } catch (err) {
+      console.error("Failed to render /og/compare.png:", err);
+      res.status(500).type("text/plain").send("Failed to render OG image");
+    }
   });
 
   // Sitemap XML — generated dynamically from the route source of truth so it
@@ -344,7 +389,7 @@ export async function registerRoutes(
       const parts = slug.split("-vs-");
       const image =
         parts.length === 2
-          ? `/og/compare.svg?w1=${encodeURIComponent(capitalize(parts[0]))}&w2=${encodeURIComponent(capitalize(parts[1]))}`
+          ? `/og/compare.png?w1=${encodeURIComponent(capitalize(parts[0]))}&w2=${encodeURIComponent(capitalize(parts[1]))}`
           : undefined;
       return { url: `/compare/${slug}`, priority: "0.7", changefreq: "monthly", image };
     });
@@ -407,7 +452,7 @@ export async function registerRoutes(
     // page.svg generator keyed by their resolved SEO title.
     const buildImage = (entry: Entry): string => {
       const img =
-        entry.image ?? resolveOgImageForPath(entry.url) ?? "/og/page.svg?title=All%20Things%20XRPL";
+        entry.image ?? resolveOgImageForPath(entry.url) ?? "/og/page.png?title=All%20Things%20XRPL";
       const absolute = /^https?:\/\//i.test(img) ? img : `${baseUrl}${img}`;
       return `    <image:image><image:loc>${escapeXmlAttr(absolute)}</image:loc></image:image>`;
     };

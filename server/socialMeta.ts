@@ -55,7 +55,7 @@ function logoUrl(slug: string): string {
 
 function pageOg(title: string): string {
   const params = new URLSearchParams({ title });
-  return `/og/page.svg?${params.toString()}`;
+  return `/og/page.png?${params.toString()}`;
 }
 
 function capitalize(s: string): string {
@@ -107,7 +107,7 @@ export function resolveMetaForPath(
         w1: capitalize(parts[0]),
         w2: capitalize(parts[1]),
       });
-      image = `/og/compare.svg?${params.toString()}`;
+      image = `/og/compare.png?${params.toString()}`;
     }
     if (seo) return { title: seo.title, description: seo.description, image };
   }

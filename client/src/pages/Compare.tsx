@@ -62,7 +62,7 @@ function routeFor(entity: { kind?: "wallet" | "exchange"; slug: string }): strin
 function buildCompareOgImage(name1: string, name2: string): string {
   if (typeof window === "undefined") return "";
   const params = new URLSearchParams({ w1: name1, w2: name2 });
-  return `${window.location.origin}/og/compare.svg?${params.toString()}`;
+  return `${window.location.origin}/og/compare.png?${params.toString()}`;
 }
 
 const comparisons: Record<string, ComparisonData> = {
