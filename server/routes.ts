@@ -5,6 +5,7 @@ import path from "path";
 import { storage } from "./storage";
 import { insertSubscriberSchema, insertContactSchema, insertProductReviewSchema } from "@shared/schema";
 import { blogPosts } from "@shared/blog";
+import { resolveOgImageForPath } from "./socialMeta";
 import { z } from "zod";
 
 function resolveLeadMagnetPath(filename: string): string | null {
@@ -310,7 +311,7 @@ export async function registerRoutes(
     const baseUrl = "https://allthingsxrpl.com";
     const today = new Date().toISOString().slice(0, 10);
 
-    type Entry = { url: string; priority: string; changefreq: string; lastmod?: string };
+    type Entry = { url: string; priority: string; changefreq: string; lastmod?: string; image?: string };
 
     const staticPages: Entry[] = [
       { url: "/", priority: "1.0", changefreq: "daily" },
@@ -329,20 +330,30 @@ export async function registerRoutes(
       { url: "/terms", priority: "0.3", changefreq: "yearly" },
     ];
 
+    const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
     const walletPages: Entry[] = walletSlugs.map(slug => ({
       url: `/wallet/${slug}`, priority: "0.8", changefreq: "weekly",
+      image: `/logos/${slug}-logo.png`,
     }));
     const exchangePages: Entry[] = exchangeSlugs.map(slug => ({
       url: `/exchange/${slug}`, priority: "0.8", changefreq: "weekly",
+      image: `/logos/${slug}-logo.png`,
     }));
-    const comparePages: Entry[] = compareSlugs.map(slug => ({
-      url: `/compare/${slug}`, priority: "0.7", changefreq: "monthly",
-    }));
+    const comparePages: Entry[] = compareSlugs.map(slug => {
+      const parts = slug.split("-vs-");
+      const image =
+        parts.length === 2
+          ? `/og/compare.svg?w1=${encodeURIComponent(capitalize(parts[0]))}&w2=${encodeURIComponent(capitalize(parts[1]))}`
+          : undefined;
+      return { url: `/compare/${slug}`, priority: "0.7", changefreq: "monthly", image };
+    });
     const bestForPages: Entry[] = bestForSlugs.map(slug => ({
       url: `/best-for/${slug}`, priority: "0.8", changefreq: "weekly",
     }));
     const blogPages: Entry[] = blogPosts.map(p => ({
       url: `/blog/${p.id}`, priority: "0.6", changefreq: "monthly", lastmod: p.dateIso,
+      image: p.image,
     }));
 
     const allPages: Entry[] = [
@@ -379,14 +390,37 @@ export async function registerRoutes(
       return lines.join("\n");
     };
 
+    // Escape XML entities in URLs (notably & in query strings) so the sitemap
+    // remains valid against the sitemaps.org schema.
+    const escapeXmlAttr = (s: string): string =>
+      s
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
+
+    // Resolve the page's primary image (Open Graph hero) so Google Images and
+    // Discover can surface our wallet/exchange/comparison/blog visuals next to
+    // organic results. Wallet/exchange/comparison/blog entries already carry a
+    // page-specific image; static and best-for pages fall back to the shared
+    // page.svg generator keyed by their resolved SEO title.
+    const buildImage = (entry: Entry): string => {
+      const img =
+        entry.image ?? resolveOgImageForPath(entry.url) ?? "/og/page.svg?title=All%20Things%20XRPL";
+      const absolute = /^https?:\/\//i.test(img) ? img : `${baseUrl}${img}`;
+      return `    <image:image><image:loc>${escapeXmlAttr(absolute)}</image:loc></image:image>`;
+    };
+
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${allPages.map(p => `  <url>
     <loc>${baseUrl}${p.url}</loc>
     <lastmod>${p.lastmod ?? today}</lastmod>
     <changefreq>${p.changefreq}</changefreq>
     <priority>${p.priority}</priority>
 ${buildAlternates(p.url)}
+${buildImage(p)}
   </url>`).join("\n")}
 </urlset>`;
 
