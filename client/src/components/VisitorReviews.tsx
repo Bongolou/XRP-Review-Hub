@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Star, MessageSquare, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { apiRequest } from "@/lib/queryClient";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import type { ProductReview } from "@shared/schema";
 
 export interface ReviewsResponse {
@@ -27,6 +28,12 @@ function formatDate(value: string | Date): string {
   });
 }
 
+function fillTemplate(template: string, values: Record<string, string | number>): string {
+  return template.replace(/\{(\w+)\}/g, (_, key) =>
+    key in values ? String(values[key]) : `{${key}}`,
+  );
+}
+
 function StarRow({ value, max = 5 }: { value: number; max?: number }) {
   return (
     <div className="inline-flex items-center gap-0.5">
@@ -41,6 +48,7 @@ function StarRow({ value, max = 5 }: { value: number; max?: number }) {
 }
 
 export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorReviewsProps) {
+  const { t } = useLanguage();
   const queryKey = ["/api/reviews", targetKind, targetSlug];
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery<ReviewsResponse>({ queryKey });
@@ -64,7 +72,7 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
       return res.json();
     },
     onSuccess: () => {
-      setSuccessMessage("Thanks — your review has been posted.");
+      setSuccessMessage(t("reviews.successPosted"));
       setErrorMessage(null);
       setRating(0);
       setHoverRating(0);
@@ -76,9 +84,9 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
       const msg = err.message.includes(":") ? err.message.split(":").slice(1).join(":").trim() : err.message;
       try {
         const parsed = JSON.parse(msg);
-        setErrorMessage(parsed.error ?? "Something went wrong submitting your review.");
+        setErrorMessage(parsed.error ?? t("reviews.errorGeneric"));
       } catch {
-        setErrorMessage(msg || "Something went wrong submitting your review.");
+        setErrorMessage(msg || t("reviews.errorGeneric"));
       }
       setSuccessMessage(null);
     },
@@ -97,19 +105,21 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
     setErrorMessage(null);
     setSuccessMessage(null);
     if (rating < 1 || rating > 5) {
-      setErrorMessage("Please choose a star rating between 1 and 5.");
+      setErrorMessage(t("reviews.errorRating"));
       return;
     }
     if (authorName.trim().length < 2) {
-      setErrorMessage("Please enter your name (at least 2 characters).");
+      setErrorMessage(t("reviews.errorName"));
       return;
     }
     if (body.trim().length < 20) {
-      setErrorMessage("Reviews must be at least 20 characters long.");
+      setErrorMessage(t("reviews.errorBody"));
       return;
     }
     mutation.mutate();
   };
+
+  const basedOnTemplate = count === 1 ? t("reviews.basedOn.one") : t("reviews.basedOn.other");
 
   return (
     <div
@@ -118,7 +128,7 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
     >
       <div className="flex items-center gap-3 mb-6">
         <MessageSquare className="h-6 w-6 text-primary" />
-        <h2 className="text-2xl font-bold font-display">Visitor reviews</h2>
+        <h2 className="text-2xl font-bold font-display">{t("reviews.heading")}</h2>
       </div>
 
       <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -128,19 +138,19 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
             <div>
               <StarRow value={Math.round(averageRounded)} />
               <div className="text-sm text-muted-foreground">
-                Based on {count} visitor {count === 1 ? "review" : "reviews"}
+                {fillTemplate(basedOnTemplate, { count })}
               </div>
             </div>
           </div>
         ) : (
           <div className="text-muted-foreground" data-testid={`text-visitor-rating-empty-${targetSlug}`}>
-            No visitor reviews yet — be the first to share your experience with {targetName}.
+            {fillTemplate(t("reviews.empty"), { name: targetName })}
           </div>
         )}
       </div>
 
       {isLoading ? (
-        <div className="text-muted-foreground mb-8">Loading reviews…</div>
+        <div className="text-muted-foreground mb-8">{t("reviews.loading")}</div>
       ) : reviews.length > 0 ? (
         <div className="space-y-4 mb-10">
           {reviews.map((r) => (
@@ -174,13 +184,15 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
       ) : null}
 
       <form onSubmit={handleSubmit} className="space-y-4" data-testid={`form-review-${targetSlug}`}>
-        <h3 className="font-bold text-lg">Leave a review</h3>
+        <h3 className="font-bold text-lg">{t("reviews.formHeading")}</h3>
 
         <div>
-          <label className="block text-sm text-muted-foreground mb-2">Your rating</label>
+          <label className="block text-sm text-muted-foreground mb-2">{t("reviews.yourRating")}</label>
           <div className="flex items-center gap-1" data-testid={`rating-picker-${targetSlug}`}>
             {[1, 2, 3, 4, 5].map((value) => {
               const active = (hoverRating || rating) >= value;
+              const ariaLabel =
+                value === 1 ? t("reviews.rateOne") : fillTemplate(t("reviews.rateMany"), { n: value });
               return (
                 <button
                   key={value}
@@ -188,7 +200,7 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
                   onClick={() => setRating(value)}
                   onMouseEnter={() => setHoverRating(value)}
                   onMouseLeave={() => setHoverRating(0)}
-                  aria-label={`Rate ${value} star${value === 1 ? "" : "s"}`}
+                  aria-label={ariaLabel}
                   className="p-1 rounded hover:bg-white/5 transition-colors"
                   data-testid={`button-rating-${value}`}
                 >
@@ -205,7 +217,7 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
           type="text"
           value={authorName}
           onChange={(e) => setAuthorName(e.target.value)}
-          placeholder="Your name"
+          placeholder={t("reviews.namePlaceholder")}
           maxLength={60}
           required
           data-testid={`input-review-name-${targetSlug}`}
@@ -215,7 +227,7 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          placeholder={`Share your experience with ${targetName}…`}
+          placeholder={fillTemplate(t("reviews.bodyPlaceholder"), { name: targetName })}
           rows={4}
           maxLength={1000}
           required
@@ -225,7 +237,7 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
 
         <div className="flex items-center justify-between gap-3">
           <div className="text-xs text-muted-foreground">
-            {body.length}/1000 · please keep it civil and avoid links
+            {body.length}/1000 · {t("reviews.helpText")}
           </div>
           <Button
             type="submit"
@@ -233,7 +245,7 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
             data-testid={`button-submit-review-${targetSlug}`}
             className="bg-primary hover:bg-primary/90"
           >
-            {mutation.isPending ? "Posting…" : "Post review"}
+            {mutation.isPending ? t("reviews.submitting") : t("reviews.submit")}
           </Button>
         </div>
 
