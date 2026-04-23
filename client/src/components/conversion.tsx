@@ -248,12 +248,12 @@ export function FastCompareTable({
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-xs uppercase tracking-wider text-muted-foreground border-b border-white/10">
-              <th className="pl-12 pr-6 py-6 font-semibold">{t("fastCompare.colWallet") || "Wallet"}</th>
-              <th className="px-6 py-6 font-semibold">{t("fastCompare.colType") || "Type"}</th>
-              <th className="px-6 py-6 font-semibold">{t("fastCompare.colPrice") || "Price"}</th>
-              <th className="px-6 py-6 font-semibold">{t("fastCompare.colBestFor") || "Best for"}</th>
+              <th className="pl-12 pr-6 py-6 font-semibold">{t("fastCompare.colWallet")}</th>
+              <th className="px-6 py-6 font-semibold">{t("fastCompare.colType")}</th>
+              <th className="px-6 py-6 font-semibold">{t("fastCompare.colPrice")}</th>
+              <th className="px-6 py-6 font-semibold">{t("fastCompare.colBestFor")}</th>
               <th className="px-6 py-6 font-semibold">{t("fastCompare.colRating")}</th>
-              <th className="pl-6 pr-12 py-6 font-semibold text-right">{t("fastCompare.colAction") || "Action"}</th>
+              <th className="pl-6 pr-12 py-6 font-semibold text-right">{t("fastCompare.colAction")}</th>
             </tr>
           </thead>
           <tbody>
@@ -332,7 +332,7 @@ export function FastCompareTable({
                 </div>
               </div>
             </div>
-            <p className="text-xs text-muted-foreground mb-4">{t("fastCompare.bestForLabel") || "Best for"}: {r.bestFor}</p>
+            <p className="text-xs text-muted-foreground mb-4">{t("fastCompare.bestForLabel")}: {r.bestFor}</p>
             <div className="flex gap-3">
               {r.reviewSlug && (
                 <Link href={`/wallet/${r.reviewSlug}`} className="flex-1">
@@ -776,7 +776,7 @@ export function ReviewSummaryCard({
         </div>
       </div>
       <p className="text-sm text-muted-foreground mb-4">
-        <span className="text-white font-medium">{t("fastCompare.bestForLabel") || "Best for"}: </span>
+        <span className="text-white font-medium">{t("fastCompare.bestForLabel")}: </span>
         {bestFor}
       </p>
       <ul className="space-y-2 mb-5 flex-1">
