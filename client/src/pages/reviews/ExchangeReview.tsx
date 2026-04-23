@@ -641,6 +641,18 @@ export default function ExchangeReview() {
           { name: "Exchanges", path: "/#exchanges" },
           { name: exchange.name, path: `/exchange/${slug}` },
         ]),
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [1, 2, 3, 4, 5].map((idx) => ({
+            "@type": "Question",
+            name: t(`exchangeDetail.${slug}.faq.q${idx}.q`),
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: t(`exchangeDetail.${slug}.faq.q${idx}.a`),
+            },
+          })),
+        },
       ]
     : null;
   useJsonLd(`exchange-review:${slug ?? "none"}`, jsonLdNodes);
