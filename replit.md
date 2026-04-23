@@ -33,6 +33,7 @@ Preferred communication style: Simple, everyday language.
 - **Tables**: 
   - `subscribers` - Newsletter email subscriptions
   - `contactSubmissions` - Contact form submissions
+  - `productReviews` - Visitor-submitted star ratings + reviews for wallets/exchanges (with `hiddenAt` for editorial moderation)
 - **Migrations**: Drizzle Kit with `db:push` command
 
 ### Build System

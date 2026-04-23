@@ -49,6 +49,7 @@ export const productReviews = pgTable(
     rating: integer("rating").notNull(),
     body: text("body").notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
+    hiddenAt: timestamp("hidden_at"),
   },
   (table) => ({
     targetIdx: index("product_reviews_target_idx").on(table.targetKind, table.targetSlug),

@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import fs from "fs";
 import path from "path";
@@ -502,6 +502,90 @@ ${blogPosts.map(post => `    <item>
       }
       console.error("[Reviews] Create error:", error);
       res.status(500).json({ error: "Failed to submit review" });
+    }
+  });
+
+  // Admin moderation — requires ADMIN_TOKEN as Bearer token (or x-admin-token).
+  // Lets editors list every visitor review (including hidden ones), hide a
+  // review (excluded from the public list and aggregateRating), unhide it, or
+  // delete it permanently.
+  function requireAdmin(req: Request, res: Response): boolean {
+    const expected = process.env.ADMIN_TOKEN;
+    if (!expected) {
+      res.status(503).json({ error: "Admin moderation is not configured (missing ADMIN_TOKEN)." });
+      return false;
+    }
+    const header = String(req.headers["authorization"] ?? "");
+    const bearer = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
+    const fallback = String(req.headers["x-admin-token"] ?? "").trim();
+    const provided = bearer || fallback;
+    if (!provided || provided !== expected) {
+      res.status(401).json({ error: "Unauthorized" });
+      return false;
+    }
+    return true;
+  }
+
+  app.get("/api/admin/reviews", async (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    try {
+      const limit = Math.min(parseInt(String(req.query.limit ?? "")) || 100, 500);
+      const reviews = await storage.listAllProductReviews(limit);
+      res.json({ reviews });
+    } catch (error) {
+      console.error("[Admin Reviews] List error:", error);
+      res.status(500).json({ error: "Failed to load reviews" });
+    }
+  });
+
+  app.post("/api/admin/reviews/:id/hide", async (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (!Number.isFinite(id) || id <= 0) {
+        return res.status(400).json({ error: "Invalid review id" });
+      }
+      const review = await storage.hideProductReview(id);
+      if (!review) return res.status(404).json({ error: "Review not found" });
+      console.log(`[Admin Reviews] Hidden review #${id}`);
+      res.json({ success: true, review });
+    } catch (error) {
+      console.error("[Admin Reviews] Hide error:", error);
+      res.status(500).json({ error: "Failed to hide review" });
+    }
+  });
+
+  app.post("/api/admin/reviews/:id/unhide", async (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (!Number.isFinite(id) || id <= 0) {
+        return res.status(400).json({ error: "Invalid review id" });
+      }
+      const review = await storage.unhideProductReview(id);
+      if (!review) return res.status(404).json({ error: "Review not found" });
+      console.log(`[Admin Reviews] Restored review #${id}`);
+      res.json({ success: true, review });
+    } catch (error) {
+      console.error("[Admin Reviews] Unhide error:", error);
+      res.status(500).json({ error: "Failed to restore review" });
+    }
+  });
+
+  app.delete("/api/admin/reviews/:id", async (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (!Number.isFinite(id) || id <= 0) {
+        return res.status(400).json({ error: "Invalid review id" });
+      }
+      const ok = await storage.deleteProductReview(id);
+      if (!ok) return res.status(404).json({ error: "Review not found" });
+      console.log(`[Admin Reviews] Deleted review #${id}`);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("[Admin Reviews] Delete error:", error);
+      res.status(500).json({ error: "Failed to delete review" });
     }
   });
 

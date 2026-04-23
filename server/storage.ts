@@ -10,7 +10,7 @@ import {
   productReviews,
 } from "@shared/schema";
 import { db } from "./db";
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, isNull, sql } from "drizzle-orm";
 
 export interface ReviewSummary {
   count: number;
@@ -38,6 +38,10 @@ export interface IStorage {
     targetKind: string,
     targetSlug: string,
   ): Promise<ReviewSummary>;
+  listAllProductReviews(limit?: number): Promise<ProductReview[]>;
+  hideProductReview(id: number): Promise<ProductReview | undefined>;
+  unhideProductReview(id: number): Promise<ProductReview | undefined>;
+  deleteProductReview(id: number): Promise<boolean>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -81,6 +85,7 @@ export class DatabaseStorage implements IStorage {
         and(
           eq(productReviews.targetKind, targetKind),
           eq(productReviews.targetSlug, targetSlug),
+          isNull(productReviews.hiddenAt),
         ),
       )
       .orderBy(desc(productReviews.createdAt))
@@ -101,12 +106,47 @@ export class DatabaseStorage implements IStorage {
         and(
           eq(productReviews.targetKind, targetKind),
           eq(productReviews.targetSlug, targetSlug),
+          isNull(productReviews.hiddenAt),
         ),
       );
     return {
       count: row?.count ?? 0,
       average: row?.average ?? null,
     };
+  }
+
+  async listAllProductReviews(limit = 100): Promise<ProductReview[]> {
+    return db
+      .select()
+      .from(productReviews)
+      .orderBy(desc(productReviews.createdAt))
+      .limit(limit);
+  }
+
+  async hideProductReview(id: number): Promise<ProductReview | undefined> {
+    const [row] = await db
+      .update(productReviews)
+      .set({ hiddenAt: new Date() })
+      .where(eq(productReviews.id, id))
+      .returning();
+    return row;
+  }
+
+  async unhideProductReview(id: number): Promise<ProductReview | undefined> {
+    const [row] = await db
+      .update(productReviews)
+      .set({ hiddenAt: null })
+      .where(eq(productReviews.id, id))
+      .returning();
+    return row;
+  }
+
+  async deleteProductReview(id: number): Promise<boolean> {
+    const rows = await db
+      .delete(productReviews)
+      .where(eq(productReviews.id, id))
+      .returning({ id: productReviews.id });
+    return rows.length > 0;
   }
 }
 

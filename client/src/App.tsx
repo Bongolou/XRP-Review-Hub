@@ -27,6 +27,7 @@ import DApps from "@/pages/DApps";
 import News from "@/pages/News";
 import BestXRPWallets from "@/pages/BestXRPWallets";
 import BestFor from "@/pages/BestFor";
+import AdminReviews from "@/pages/AdminReviews";
 
 function Router() {
   return (
@@ -50,6 +51,7 @@ function Router() {
       <Route path="/compare/:slug" component={Compare} />
       <Route path="/best-xrp-wallets" component={BestXRPWallets} />
       <Route path="/best-for/:slug" component={BestFor} />
+      <Route path="/admin/reviews" component={AdminReviews} />
       <Route component={NotFound} />
     </Switch>
   );
