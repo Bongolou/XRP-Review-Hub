@@ -16,7 +16,10 @@ const categoryKeys = [
   { key: "nfts", labelKey: "blog.category.nfts" },
   { key: "technology", labelKey: "blog.category.technology" },
   { key: "institutional", labelKey: "blog.category.institutional" },
-  { key: "defi", labelKey: "blog.category.defi" }
+  { key: "defi", labelKey: "blog.category.defi" },
+  { key: "analysis", labelKey: "blog.category.analysis" },
+  { key: "use-cases", labelKey: "blog.category.useCases" },
+  { key: "hardware", labelKey: "blog.category.hardware" }
 ];
 
 export default function Blog() {
