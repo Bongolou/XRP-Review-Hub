@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { VerdictBox, BestForCallout, LastUpdated } from "@/components/conversion";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getExchangeSeo } from "@/lib/i18n/pageSeo";
@@ -914,18 +915,28 @@ export default function ExchangeReview() {
         {/* FAQ — adds unique long-form content per page */}
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-12" data-testid={`section-faq-${slug}`}>
           <h2 className="text-2xl font-bold font-display mb-6">{t("exchangeReview.faqHeading")} {exchange.name}</h2>
-          <div className="space-y-4">
+          <Accordion type="multiple" className="w-full">
             {[1, 2, 3, 4, 5].map((idx) => (
-              <div key={idx} data-testid={`faq-item-${slug}-${idx}`}>
-                <h3 className="font-bold text-lg mb-2" data-testid={`text-faq-question-${slug}-${idx}`}>
-                  {t(`exchangeDetail.${slug}.faq.q${idx}.q`)}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed" data-testid={`text-faq-answer-${slug}-${idx}`}>
+              <AccordionItem
+                key={idx}
+                value={`faq-${idx}`}
+                className="border-b border-white/10 last:border-b-0"
+                data-testid={`faq-item-${slug}-${idx}`}
+              >
+                <AccordionTrigger
+                  className="text-left text-lg font-bold hover:no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm py-4"
+                  data-testid={`button-faq-toggle-${slug}-${idx}`}
+                >
+                  <span data-testid={`text-faq-question-${slug}-${idx}`}>
+                    {t(`exchangeDetail.${slug}.faq.q${idx}.q`)}
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed text-base" data-testid={`text-faq-answer-${slug}-${idx}`}>
                   {t(`exchangeDetail.${slug}.faq.q${idx}.a`)}
-                </p>
-              </div>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
 
         <div className="text-center pb-8">

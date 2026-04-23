@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getSeoEntry } from "@/lib/i18n/seoTranslations";
@@ -1154,51 +1155,72 @@ export default function WalletReview() {
         {/* FAQ — adds unique long-form content per page */}
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-8" data-testid={`section-faq-${slug}`}>
           <h2 className="text-2xl font-bold font-display mb-6">{t("walletReview.faqHeading")} {wallet.name}</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q1").replace(/\{NAME\}/g, wallet.name)}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {t("walletReview.faq.a1").replace(/\{NAME\}/g, wallet.name)}
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q2").replace(/\{NAME\}/g, wallet.name)}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {renderTemplate(t("walletReview.faq.a2"), {
+          {(() => {
+            const items: { question: ReactNode; answer: ReactNode }[] = [
+              {
+                question: t("walletReview.faq.q1").replace(/\{NAME\}/g, wallet.name),
+                answer: t("walletReview.faq.a1").replace(/\{NAME\}/g, wallet.name),
+              },
+              {
+                question: t("walletReview.faq.q2").replace(/\{NAME\}/g, wallet.name),
+                answer: renderTemplate(t("walletReview.faq.a2"), {
                   NAME: wallet.name,
                   LINK: <Link href="/best-for/defi" className="text-primary hover:underline">{t("walletReview.bestFor.defi.label")}</Link>,
-                })}
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q3").replace(/\{NAME\}/g, wallet.name)}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {renderTemplate(t("walletReview.faq.a3"), {
+                }),
+              },
+              {
+                question: t("walletReview.faq.q3").replace(/\{NAME\}/g, wallet.name),
+                answer: renderTemplate(t("walletReview.faq.a3"), {
                   NAME: wallet.name,
                   PRICE: <strong>{wallet.price}</strong>,
+                }),
+              },
+              {
+                question: t("walletReview.faq.q4").replace(/\{NAME\}/g, wallet.name),
+                answer: t("walletReview.faq.a4").replace(/\{NAME\}/g, wallet.name),
+              },
+              {
+                question: t("walletReview.faq.q5").replace(/\{NAME\}/g, wallet.name),
+                answer: (
+                  <>
+                    <p className="mb-3">{t("walletReview.faq.a5").replace(/\{NAME\}/g, wallet.name)}</p>
+                    <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                      <Link href="/best-xrp-wallets" className="text-primary hover:underline">→ {t("walletReview.compareAllLabel")}</Link>
+                      <Link href="/best-for/beginners" className="text-primary hover:underline">→ {t("walletReview.bestFor.beginners.label")}</Link>
+                      <Link href="/best-for/cold-storage" className="text-primary hover:underline">→ {t("walletReview.bestFor.coldStorage.label")}</Link>
+                      <Link href="/best-for/defi" className="text-primary hover:underline">→ {t("walletReview.bestFor.defi.label")}</Link>
+                      <Link href="/best-for/hardware" className="text-primary hover:underline">→ {t("walletReview.bestFor.hardware.label")}</Link>
+                    </div>
+                  </>
+                ),
+              },
+            ];
+            return (
+              <Accordion type="multiple" className="w-full">
+                {items.map((item, i) => {
+                  const idx = i + 1;
+                  return (
+                    <AccordionItem
+                      key={idx}
+                      value={`faq-${idx}`}
+                      className="border-b border-white/10 last:border-b-0"
+                      data-testid={`faq-item-${slug}-${idx}`}
+                    >
+                      <AccordionTrigger
+                        className="text-left text-lg font-bold hover:no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm py-4"
+                        data-testid={`button-faq-toggle-${slug}-${idx}`}
+                      >
+                        <span data-testid={`text-faq-question-${slug}-${idx}`}>{item.question}</span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground leading-relaxed text-base" data-testid={`text-faq-answer-${slug}-${idx}`}>
+                        {item.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
                 })}
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q4").replace(/\{NAME\}/g, wallet.name)}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {t("walletReview.faq.a4").replace(/\{NAME\}/g, wallet.name)}
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-2">{t("walletReview.faq.q5").replace(/\{NAME\}/g, wallet.name)}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-3">
-                {t("walletReview.faq.a5").replace(/\{NAME\}/g, wallet.name)}
-              </p>
-              <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                <Link href="/best-xrp-wallets" className="text-primary hover:underline">→ {t("walletReview.compareAllLabel")}</Link>
-                <Link href="/best-for/beginners" className="text-primary hover:underline">→ {t("walletReview.bestFor.beginners.label")}</Link>
-                <Link href="/best-for/cold-storage" className="text-primary hover:underline">→ {t("walletReview.bestFor.coldStorage.label")}</Link>
-                <Link href="/best-for/defi" className="text-primary hover:underline">→ {t("walletReview.bestFor.defi.label")}</Link>
-                <Link href="/best-for/hardware" className="text-primary hover:underline">→ {t("walletReview.bestFor.hardware.label")}</Link>
-              </div>
-            </div>
-          </div>
+              </Accordion>
+            );
+          })()}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 mt-4">
