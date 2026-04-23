@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams } from "wouter";
@@ -9,6 +10,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getExchangeSeo } from "@/lib/i18n/pageSeo";
+import { VisitorReviews, type ReviewsResponse } from "@/components/VisitorReviews";
 import { 
   Star, 
   Shield, 
@@ -607,6 +609,19 @@ export default function ExchangeReview() {
     image: slug && logoMap[slug] ? `${origin}/logos/${slug}-logo.png` : undefined,
   });
 
+  const reviewsQuery = useQuery<ReviewsResponse>({
+    queryKey: ["/api/reviews", "exchange", slug ?? ""],
+    enabled: !!slug,
+  });
+
+  // Aggregate rating reflects only real visitor reviews. Editorial score
+  // stays as a separate Review node and is omitted from aggregateRating
+  // entirely when there are no visitor reviews yet.
+  const visitorCount = reviewsQuery.data?.count ?? 0;
+  const visitorAvg = reviewsQuery.data?.average ?? null;
+  const visitorAvgRounded =
+    visitorAvg === null ? null : Math.round(visitorAvg * 10) / 10;
+
   const jsonLdNodes = exchange && slug
     ? [
         {
@@ -617,26 +632,44 @@ export default function ExchangeReview() {
           image: logoMap[slug] ? `${origin}${logoMap[slug]}` : undefined,
           brand: { "@type": "Brand", name: exchange.name },
           url: `${origin}/exchange/${slug}`,
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: exchange.rating,
-            bestRating: 5,
-            worstRating: 1,
-            ratingCount: 1,
-            reviewCount: 1,
-          },
-          review: {
-            "@type": "Review",
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: exchange.rating,
-              bestRating: 5,
-              worstRating: 1,
+          ...(visitorCount > 0 && visitorAvgRounded !== null
+            ? {
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: visitorAvgRounded,
+                  bestRating: 5,
+                  worstRating: 1,
+                  ratingCount: visitorCount,
+                  reviewCount: visitorCount,
+                },
+              }
+            : {}),
+          review: [
+            {
+              "@type": "Review",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: exchange.rating,
+                bestRating: 5,
+                worstRating: 1,
+              },
+              author: { "@type": "Organization", name: "All Things XRPL" },
+              name: seo?.title || `${exchange.name} Review`,
+              reviewBody: t(exchange.descriptionKey),
             },
-            author: { "@type": "Organization", name: "All Things XRPL" },
-            name: seo?.title || `${exchange.name} Review`,
-            reviewBody: t(exchange.descriptionKey),
-          },
+            ...(reviewsQuery.data?.reviews ?? []).map((r) => ({
+              "@type": "Review",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: r.rating,
+                bestRating: 5,
+                worstRating: 1,
+              },
+              author: { "@type": "Person", name: r.authorName },
+              datePublished: new Date(r.createdAt as unknown as string).toISOString().slice(0, 10),
+              reviewBody: r.body,
+            })),
+          ],
         },
         buildBreadcrumbList([
           { name: "Home", path: "/" },
@@ -723,10 +756,29 @@ export default function ExchangeReview() {
               </div>
             </div>
             <div className="flex flex-col items-start md:items-end gap-2">
-              <div className="flex items-center gap-2">
-                <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-2xl font-bold">{exchange.rating}</span>
-                <span className="text-muted-foreground">/5</span>
+              <div className="flex flex-col items-start md:items-end" data-testid={`rating-display-${slug}`}>
+                {visitorCount > 0 && visitorAvgRounded !== null ? (
+                  <>
+                    <div className="flex items-center gap-2">
+                      <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                      <span className="text-2xl font-bold">{visitorAvgRounded.toFixed(1)}</span>
+                      <span className="text-muted-foreground">/5</span>
+                      <span className="text-sm text-muted-foreground ml-1">
+                        ({visitorCount} {visitorCount === 1 ? "review" : "reviews"})
+                      </span>
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      Editor's score: {exchange.rating}/5
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                    <span className="text-2xl font-bold">{exchange.rating}</span>
+                    <span className="text-muted-foreground">/5</span>
+                    <span className="text-sm text-muted-foreground ml-1">(editor's score)</span>
+                  </div>
+                )}
               </div>
               <div className="text-sm text-muted-foreground">Est. {exchange.founded}</div>
             </div>
@@ -913,6 +965,11 @@ export default function ExchangeReview() {
           <p className="text-muted-foreground">{t(exchange.bestForKey)}</p>
         </div>
 
+        {/* Visitor reviews — real ratings + comments from readers */}
+        {slug && (
+          <VisitorReviews targetKind="exchange" targetSlug={slug} targetName={exchange.name} />
+        )}
+
         {/* FAQ — adds unique long-form content per page */}
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-12" data-testid={`section-faq-${slug}`}>
           <h2 className="text-2xl font-bold font-display mb-6">{t("exchangeReview.faqHeading")} {exchange.name}</h2>
@@ -968,7 +1025,9 @@ export default function ExchangeReview() {
               <div className="text-sm font-display font-bold truncate">{exchange.name}</div>
               <div className="flex items-center gap-1 text-xs text-muted-foreground">
                 <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
-                {exchange.rating}/5 · Est. {exchange.founded}
+                {visitorCount > 0 && visitorAvgRounded !== null
+                  ? `${visitorAvgRounded.toFixed(1)}/5 · ${visitorCount} ${visitorCount === 1 ? "review" : "reviews"}`
+                  : `${exchange.rating}/5 · Est. ${exchange.founded}`}
               </div>
             </div>
             <a

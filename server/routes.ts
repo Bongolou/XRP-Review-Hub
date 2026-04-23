@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import fs from "fs";
 import path from "path";
 import { storage } from "./storage";
-import { insertSubscriberSchema, insertContactSchema } from "@shared/schema";
+import { insertSubscriberSchema, insertContactSchema, insertProductReviewSchema } from "@shared/schema";
 import { blogPosts } from "@shared/blog";
 import { z } from "zod";
 
@@ -425,6 +425,72 @@ ${blogPosts.map(post => `    <item>
     const { partner, placement, timestamp, page } = req.body;
     console.log(`[Affiliate Click] Partner: ${partner}, Placement: ${placement}, Page: ${page}`);
     res.json({ success: true });
+  });
+
+  // Product reviews — visitor-submitted ratings + reviews for wallets/exchanges.
+  // Light spam guard: per-IP throttle keyed by (kind, slug, ip) over a short window.
+  const reviewSubmissions = new Map<string, number>();
+  const REVIEW_THROTTLE_MS = 60 * 1000;
+
+  app.get("/api/reviews/:kind/:slug", async (req, res) => {
+    try {
+      const kind = String(req.params.kind);
+      const slug = String(req.params.slug);
+      if (!["wallet", "exchange"].includes(kind) || !/^[a-z0-9-]{1,64}$/.test(slug)) {
+        return res.status(400).json({ error: "Invalid review target" });
+      }
+      const limit = Math.min(parseInt(String(req.query.limit ?? "")) || 5, 20);
+      const [reviews, summary] = await Promise.all([
+        storage.getProductReviews(kind, slug, limit),
+        storage.getProductReviewSummary(kind, slug),
+      ]);
+      res.json({
+        reviews,
+        count: summary.count,
+        average: summary.average,
+      });
+    } catch (error) {
+      console.error("[Reviews] Get error:", error);
+      res.status(500).json({ error: "Failed to load reviews" });
+    }
+  });
+
+  app.post("/api/reviews", async (req, res) => {
+    try {
+      const data = insertProductReviewSchema.parse(req.body);
+
+      // Spam guard 1: very basic URL/HTML rejection
+      if (/(https?:\/\/|<\s*a\b|<\s*script\b)/i.test(data.body)) {
+        return res
+          .status(400)
+          .json({ error: "Links and HTML aren't allowed in reviews." });
+      }
+
+      // Spam guard 2: per-IP per-target throttle
+      const ip = (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() || req.ip || "unknown";
+      const throttleKey = `${data.targetKind}:${data.targetSlug}:${ip}`;
+      const last = reviewSubmissions.get(throttleKey);
+      const now = Date.now();
+      if (last && now - last < REVIEW_THROTTLE_MS) {
+        return res
+          .status(429)
+          .json({ error: "You just submitted a review — please wait a moment before sending another." });
+      }
+      reviewSubmissions.set(throttleKey, now);
+
+      const review = await storage.createProductReview(data);
+      console.log(
+        `[Reviews] New review for ${data.targetKind}:${data.targetSlug} (${data.rating}★) by ${data.authorName}`,
+      );
+      res.status(201).json({ success: true, review });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const message = error.errors[0]?.message || "Invalid review";
+        return res.status(400).json({ error: message });
+      }
+      console.error("[Reviews] Create error:", error);
+      res.status(500).json({ error: "Failed to submit review" });
+    }
   });
 
   // Newsletter subscription

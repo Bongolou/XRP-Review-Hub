@@ -1,4 +1,5 @@
 import { Fragment, ReactNode, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useParams } from "wouter";
@@ -9,6 +10,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getSeoEntry } from "@/lib/i18n/seoTranslations";
+import { VisitorReviews, type ReviewsResponse } from "@/components/VisitorReviews";
 
 type EditorialSection = { heading: string; body: string };
 const SLUG_EDITORIAL: Record<string, EditorialSection[]> = {
@@ -875,6 +877,21 @@ export default function WalletReview() {
     image: slug && logoMap[slug] ? `${origin}/logos/${slug}-logo.png` : undefined,
   });
 
+  const reviewsQuery = useQuery<ReviewsResponse>({
+    queryKey: ["/api/reviews", "wallet", slug ?? ""],
+    enabled: !!slug,
+  });
+
+  // Aggregate rating reflects only real visitor reviews — the editorial
+  // score is kept separately as a `Review` node and is no longer counted in
+  // aggregateRating. When there are zero visitor reviews we omit
+  // aggregateRating entirely so we never publish a fake "1 review" star
+  // rating to Google.
+  const visitorCount = reviewsQuery.data?.count ?? 0;
+  const visitorAvg = reviewsQuery.data?.average ?? null;
+  const visitorAvgRounded =
+    visitorAvg === null ? null : Math.round(visitorAvg * 10) / 10;
+
   const jsonLdNodes = wallet && slug
     ? [
         {
@@ -892,26 +909,44 @@ export default function WalletReview() {
             url: wallet.affiliateLink,
             availability: "https://schema.org/InStock",
           },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: wallet.rating,
-            bestRating: 5,
-            worstRating: 1,
-            ratingCount: 1,
-            reviewCount: 1,
-          },
-          review: {
-            "@type": "Review",
-            reviewRating: {
-              "@type": "Rating",
-              ratingValue: wallet.rating,
-              bestRating: 5,
-              worstRating: 1,
+          ...(visitorCount > 0 && visitorAvgRounded !== null
+            ? {
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: visitorAvgRounded,
+                  bestRating: 5,
+                  worstRating: 1,
+                  ratingCount: visitorCount,
+                  reviewCount: visitorCount,
+                },
+              }
+            : {}),
+          review: [
+            {
+              "@type": "Review",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: wallet.rating,
+                bestRating: 5,
+                worstRating: 1,
+              },
+              author: { "@type": "Organization", name: "All Things XRPL" },
+              name: seo?.title || `${wallet.name} Review`,
+              reviewBody: t(wallet.descriptionKey),
             },
-            author: { "@type": "Organization", name: "All Things XRPL" },
-            name: seo?.title || `${wallet.name} Review`,
-            reviewBody: t(wallet.descriptionKey),
-          },
+            ...(reviewsQuery.data?.reviews ?? []).map((r) => ({
+              "@type": "Review",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: r.rating,
+                bestRating: 5,
+                worstRating: 1,
+              },
+              author: { "@type": "Person", name: r.authorName },
+              datePublished: new Date(r.createdAt as unknown as string).toISOString().slice(0, 10),
+              reviewBody: r.body,
+            })),
+          ],
         },
         buildBreadcrumbList([
           { name: "Home", path: "/" },
@@ -986,10 +1021,29 @@ export default function WalletReview() {
               </div>
             </div>
             <div className="flex flex-col items-start md:items-end gap-2">
-              <div className="flex items-center gap-2">
-                <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-2xl font-bold">{wallet.rating}</span>
-                <span className="text-muted-foreground">/5</span>
+              <div className="flex flex-col items-start md:items-end" data-testid={`rating-display-${slug}`}>
+                {visitorCount > 0 && visitorAvgRounded !== null ? (
+                  <>
+                    <div className="flex items-center gap-2">
+                      <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                      <span className="text-2xl font-bold">{visitorAvgRounded.toFixed(1)}</span>
+                      <span className="text-muted-foreground">/5</span>
+                      <span className="text-sm text-muted-foreground ml-1">
+                        ({visitorCount} {visitorCount === 1 ? "review" : "reviews"})
+                      </span>
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      Editor's score: {wallet.rating}/5
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                    <span className="text-2xl font-bold">{wallet.rating}</span>
+                    <span className="text-muted-foreground">/5</span>
+                    <span className="text-sm text-muted-foreground ml-1">(editor's score)</span>
+                  </div>
+                )}
               </div>
               <div className="text-2xl font-bold text-primary">{wallet.price}</div>
             </div>
@@ -1152,6 +1206,11 @@ export default function WalletReview() {
             </div>
           );
         })()}
+
+        {/* Visitor reviews — real ratings + comments from readers */}
+        {slug && (
+          <VisitorReviews targetKind="wallet" targetSlug={slug} targetName={wallet.name} />
+        )}
 
         {/* FAQ — adds unique long-form content per page */}
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-8" data-testid={`section-faq-${slug}`}>
@@ -1328,7 +1387,9 @@ export default function WalletReview() {
               <div className="text-sm font-display font-bold truncate">{wallet.name}</div>
               <div className="flex items-center gap-1 text-xs text-muted-foreground">
                 <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
-                {wallet.rating}/5 · {wallet.price}
+                {visitorCount > 0 && visitorAvgRounded !== null
+                  ? `${visitorAvgRounded.toFixed(1)}/5 · ${visitorCount} ${visitorCount === 1 ? "review" : "reviews"}`
+                  : `${wallet.rating}/5 · ${wallet.price}`}
               </div>
             </div>
             <a
