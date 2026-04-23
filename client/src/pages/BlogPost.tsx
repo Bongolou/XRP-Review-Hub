@@ -8,6 +8,7 @@ import { BlogComments } from "@/components/BlogComments";
 import { BannerAd } from "@/components/BannerAd";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { blogPosts } from "@shared/blog";
 
 function TwitterIcon({ className }: { className?: string }) {
@@ -1072,6 +1073,41 @@ export default function BlogPost() {
     description: postExcerpt,
     canonicalPath: post ? `/blog/${post.id}` : undefined,
   });
+
+  const origin =
+    typeof window !== "undefined" ? window.location.origin : "";
+  const jsonLdNodes = post && postTitle
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: postTitle,
+          description: postExcerpt,
+          image: post.image,
+          datePublished: post.dateIso,
+          dateModified: post.dateIso,
+          author: {
+            "@type": "Person",
+            name: post.author,
+            jobTitle: post.authorRole,
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "All Things XRPL",
+          },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `${origin}/blog/${post.id}`,
+          },
+        },
+        buildBreadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: postTitle, path: `/blog/${post.id}` },
+        ]),
+      ]
+    : null;
+  useJsonLd(`blog-post:${post?.id ?? "none"}`, jsonLdNodes);
 
   if (!post) {
     return <Redirect to="/blog" />;

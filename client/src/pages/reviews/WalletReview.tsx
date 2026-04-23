@@ -5,6 +5,7 @@ import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getSeoEntry } from "@/lib/i18n/seoTranslations";
 
 type EditorialSection = { heading: string; body: string };
@@ -866,6 +867,55 @@ export default function WalletReview() {
     description: seo?.description,
     canonicalPath: slug ? `/wallet/${slug}` : undefined,
   });
+
+  const origin =
+    typeof window !== "undefined" ? window.location.origin : "";
+  const jsonLdNodes = wallet && slug
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: wallet.name,
+          description: t(wallet.descriptionKey),
+          image: logoMap[slug] ? `${origin}${logoMap[slug]}` : undefined,
+          brand: { "@type": "Brand", name: wallet.name },
+          url: `${origin}/wallet/${slug}`,
+          offers: {
+            "@type": "Offer",
+            price: wallet.price === "Free" ? "0" : wallet.price.replace(/[^0-9.]/g, ""),
+            priceCurrency: "USD",
+            url: wallet.affiliateLink,
+            availability: "https://schema.org/InStock",
+          },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: wallet.rating,
+            bestRating: 5,
+            worstRating: 1,
+            ratingCount: 1,
+            reviewCount: 1,
+          },
+          review: {
+            "@type": "Review",
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: wallet.rating,
+              bestRating: 5,
+              worstRating: 1,
+            },
+            author: { "@type": "Organization", name: "All Things XRPL" },
+            name: seo?.title || `${wallet.name} Review`,
+            reviewBody: t(wallet.descriptionKey),
+          },
+        },
+        buildBreadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Wallets", path: "/#wallets" },
+          { name: wallet.name, path: `/wallet/${slug}` },
+        ]),
+      ]
+    : null;
+  useJsonLd(`wallet-review:${slug ?? "none"}`, jsonLdNodes);
 
   const [stickyCtaDismissed, setStickyCtaDismissed] = useState(false);
 

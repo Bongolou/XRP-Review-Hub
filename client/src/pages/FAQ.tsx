@@ -4,6 +4,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 const faqs = [
@@ -111,6 +112,29 @@ export default function FAQ() {
   const { t, language } = useLanguage();
   const seo = getStaticPageSeo(language, "faq");
   useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/faq" });
+
+  const allQuestions = faqs.flatMap((c) => c.questions);
+  const stripHtml = (s: string) => s.replace(/<[^>]*>/g, "");
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: allQuestions.map((q) => ({
+      "@type": "Question",
+      name: t(q.qKey),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: stripHtml(t(q.aKey)),
+      },
+    })),
+  };
+  useJsonLd("faq-page", [
+    faqJsonLd,
+    buildBreadcrumbList([
+      { name: "Home", path: "/" },
+      { name: t("faq.title"), path: "/faq" },
+    ]),
+  ]);
+
   
   return (
     <Layout>

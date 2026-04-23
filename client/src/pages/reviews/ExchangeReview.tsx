@@ -5,6 +5,7 @@ import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { VerdictBox, BestForCallout, LastUpdated } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getExchangeSeo } from "@/lib/i18n/pageSeo";
 import { 
   Star, 
@@ -600,6 +601,48 @@ export default function ExchangeReview() {
     description: seo?.description,
     canonicalPath: slug ? `/exchange/${slug}` : undefined,
   });
+
+  const origin =
+    typeof window !== "undefined" ? window.location.origin : "";
+  const jsonLdNodes = exchange && slug
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: exchange.name,
+          description: t(exchange.descriptionKey),
+          image: logoMap[slug] ? `${origin}${logoMap[slug]}` : undefined,
+          brand: { "@type": "Brand", name: exchange.name },
+          url: `${origin}/exchange/${slug}`,
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: exchange.rating,
+            bestRating: 5,
+            worstRating: 1,
+            ratingCount: 1,
+            reviewCount: 1,
+          },
+          review: {
+            "@type": "Review",
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: exchange.rating,
+              bestRating: 5,
+              worstRating: 1,
+            },
+            author: { "@type": "Organization", name: "All Things XRPL" },
+            name: seo?.title || `${exchange.name} Review`,
+            reviewBody: t(exchange.descriptionKey),
+          },
+        },
+        buildBreadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Exchanges", path: "/#exchanges" },
+          { name: exchange.name, path: `/exchange/${slug}` },
+        ]),
+      ]
+    : null;
+  useJsonLd(`exchange-review:${slug ?? "none"}`, jsonLdNodes);
 
   const [stickyCtaDismissed, setStickyCtaDismissed] = useState(false);
 
