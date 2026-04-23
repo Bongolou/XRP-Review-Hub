@@ -111,47 +111,47 @@ export type UseCase = {
 const defaultUseCases: UseCase[] = [
   {
     id: "beginner",
-    title: "I'm new to XRP",
-    description: "Start with a free, simple wallet built for the XRPL.",
+    title: "useCase.beginner.title",
+    description: "useCase.beginner.description",
     icon: Sparkles,
     href: "/best-for/beginners",
-    cta: "Best wallets for beginners",
+    cta: "useCase.beginner.cta",
     accent: "from-blue-500 to-cyan-500",
   },
   {
     id: "hardware",
-    title: "I want maximum security",
-    description: "Hardware wallets keep your XRP offline and safe.",
+    title: "useCase.hardware.title",
+    description: "useCase.hardware.description",
     icon: Shield,
     href: "/best-for/hardware",
-    cta: "Best hardware wallets",
+    cta: "useCase.hardware.cta",
     accent: "from-emerald-500 to-green-500",
   },
   {
     id: "cold",
-    title: "I'm storing for the long term",
-    description: "Cold-storage setups for serious XRP holders.",
+    title: "useCase.cold.title",
+    description: "useCase.cold.description",
     icon: Lock,
     href: "/best-for/cold-storage",
-    cta: "Best cold-storage setup",
+    cta: "useCase.cold.cta",
     accent: "from-purple-500 to-indigo-500",
   },
   {
     id: "defi",
-    title: "I want to use XRPL DeFi",
-    description: "Wallets and dApps for AMMs, NFTs and the DEX.",
+    title: "useCase.defi.title",
+    description: "useCase.defi.description",
     icon: Zap,
     href: "/best-for/defi",
-    cta: "Best wallets for DeFi",
+    cta: "useCase.defi.cta",
     accent: "from-orange-500 to-pink-500",
   },
   {
     id: "safest",
-    title: "I just want the safest pick",
-    description: "The single wallet we recommend most often.",
+    title: "useCase.safest.title",
+    description: "useCase.safest.description",
     icon: Target,
     href: "/best-for/safest",
-    cta: "See our top pick",
+    cta: "useCase.safest.cta",
     accent: "from-primary to-blue-400",
   },
 ];
@@ -191,11 +191,11 @@ export function UseCaseSelector({
                   <Icon className="h-5 w-5 text-white" />
                 </div>
                 <h3 className="font-display font-bold text-lg mb-3 group-hover:text-primary transition-colors leading-tight">
-                  {c.title}
+                  {t(c.title)}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-5 flex-1 leading-relaxed">{c.description}</p>
+                <p className="text-sm text-muted-foreground mb-5 flex-1 leading-relaxed">{t(c.description)}</p>
                 <span className="inline-flex items-center gap-1 text-sm text-primary font-medium">
-                  {c.cta} <ArrowRight className="h-3.5 w-3.5" />
+                  {t(c.cta)} <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </div>
             </Link>
