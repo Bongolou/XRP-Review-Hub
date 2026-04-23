@@ -1,0 +1,58 @@
+Affiliate Link Audit — 2026-04-22T23:41:04.822Z
+================================================================
+Total checked: 25
+OK (200, no redirect):     16
+Redirected (3xx -> 2xx):   6
+Broken / non-2xx:          3
+Ignored (known bot block): 0
+
+BROKEN / NEEDS ATTENTION (non-2xx, network errors)
+----------------------------------------------------------------
+[HTTP 404] https://www.coinbase.com/join?ref=allthingsxrpl
+    in client/src/pages/Home.tsx
+    in client/src/pages/reviews/ExchangeReview.tsx
+[HTTP 404] https://crypto.com/app
+    in client/src/pages/Home.tsx
+    in client/src/pages/reviews/ExchangeReview.tsx
+[HTTP 404] https://uphold.com/sign-up?referral=allthingsxrpl
+    in client/src/pages/reviews/ExchangeReview.tsx
+
+REDIRECTED (lands on 2xx after a 3xx — verify destination)
+----------------------------------------------------------------
+[200] https://tangem.com/?promocode=ALLTHINGSXRPL
+    -> https://tangem.com/en/?promocode=ALLTHINGSXRPL
+    in client/src/pages/Home.tsx
+[200] https://uphold.com/signup?referral=allthingsxrpl
+    -> https://wallet.uphold.com/signup?referral=allthingsxrpl
+    in client/src/pages/Home.tsx
+[200] https://bitrue.com/user/register?inviteCode=allthingsxrpl
+    -> https://www.bitrue.com/user/register?inviteCode=allthingsxrpl
+    in client/src/pages/Home.tsx
+[200] https://kraken.com/sign-up?r=allthingsxrpl
+    -> https://www.kraken.com/sign-up?r=allthingsxrpl
+    in client/src/pages/Home.tsx
+[200] https://tangem.com/?ref=allthingsxrpl
+    -> https://tangem.com/en/?ref=allthingsxrpl
+    in client/src/pages/reviews/WalletReview.tsx
+[200] https://tiktok.com/@all.things.xrpl
+    -> https://www.tiktok.com/@all.things.xrpl
+    in client/src/components/SocialLinks.tsx
+
+OK
+----------------------------------------------------------------
+[200] https://xumm.app/?ref=allthingsxrpl
+[200] https://shop.ledger.com/?r=5d81f18905fe
+[200] https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959
+[200] https://www.ellipal.com/?ref=allthingsxrpl
+[200] https://crossmark.io/?ref=allthingsxrpl
+[200] https://bifrostwallet.com/?ref=allthingsxrpl
+[200] https://trustwallet.com/?ref=allthingsxrpl
+[200] https://gatehub.net/?ref=allthingsxrpl
+[200] https://www.ellipal.com/?rfsn=8973243.bbfab69
+[200] https://www.bitstamp.net/?ref=allthingsxrpl
+[200] https://www.kucoin.com/r?ref=allthingsxrpl
+[200] https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL
+[200] https://www.kraken.com/sign-up?clickid=allthingsxrpl
+[200] https://xaman.app/?ref=allthingsxrpl
+[200] https://x.com/allthingsxrpl
+[200] https://www.facebook.com/allthingsxrpl
