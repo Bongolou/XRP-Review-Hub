@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import type { Language } from "@/lib/i18n/translations";
 
-export const LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-wallet-starter-kit.md";
+export const LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-wallet-starter-kit.pdf";
 export const DEFI_LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-defi-starter-kit.pdf";
 
 const DEFI_LEAD_MAGNET_LOCALIZED: Record<Language, string> = {

@@ -176,6 +176,11 @@ export async function registerRoutes(
       contentType: "text/markdown; charset=utf-8",
     },
     {
+      route: "/downloads/xrpl-wallet-starter-kit.pdf",
+      filename: "downloads/xrpl-wallet-starter-kit.pdf",
+      contentType: "application/pdf",
+    },
+    {
       route: "/downloads/xrpl-defi-starter-kit.pdf",
       filename: "downloads/xrpl-defi-starter-kit.pdf",
       contentType: "application/pdf",
