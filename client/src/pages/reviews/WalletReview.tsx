@@ -953,6 +953,29 @@ export default function WalletReview() {
           { name: "Wallets", path: "/#wallets" },
           { name: wallet.name, path: `/wallet/${slug}` },
         ]),
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: (() => {
+            const fillName = (s: string) => s.replace(/\{NAME\}/g, wallet.name);
+            const defiLabel = t("walletReview.bestFor.defi.label");
+            const answers: string[] = [
+              fillName(t("walletReview.faq.a1")),
+              fillName(t("walletReview.faq.a2")).replace(/\{LINK\}/g, defiLabel),
+              fillName(t("walletReview.faq.a3")).replace(/\{PRICE\}/g, wallet.price),
+              fillName(t("walletReview.faq.a4")),
+              fillName(t("walletReview.faq.a5")),
+            ];
+            return [1, 2, 3, 4, 5].map((idx) => ({
+              "@type": "Question",
+              name: fillName(t(`walletReview.faq.q${idx}`)),
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: answers[idx - 1],
+              },
+            }));
+          })(),
+        },
       ]
     : null;
   useJsonLd(`wallet-review:${slug ?? "none"}`, jsonLdNodes);
