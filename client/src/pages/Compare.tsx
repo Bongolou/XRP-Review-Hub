@@ -527,7 +527,7 @@ const comparisons: Record<string, ComparisonData> = {
       slug: "coinbase",
       type: "Exchange",
       price: "Free to join",
-      link: "https://www.coinbase.com/join?ref=allthingsxrpl"
+      link: "https://www.coinbase.com/join/allthingsxrpl"
     },
     wallet2: {
       name: "Kraken",

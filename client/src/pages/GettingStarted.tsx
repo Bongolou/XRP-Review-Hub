@@ -52,7 +52,7 @@ export default function GettingStarted() {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <a 
-                  href="https://uphold.com/sign-up?referral=allthingsxrpl" 
+                  href="https://uphold.com/signup?referral=allthingsxrpl" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="p-4 rounded-lg bg-card/50 border border-white/10 hover:border-primary/50 transition-colors group"

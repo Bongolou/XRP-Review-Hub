@@ -1,23 +1,10 @@
-Affiliate Link Audit — 2026-04-23T15:39:05.287Z
+Affiliate Link Audit — 2026-04-23T21:51:09.943Z
 ================================================================
-Total checked: 47
+Total checked: 42
 OK (200, no redirect):     31
 Redirected (3xx -> 2xx):   11
-Broken / non-2xx:          5
+Broken / non-2xx:          0
 Ignored (known bot block): 0
-
-BROKEN / NEEDS ATTENTION (non-2xx, network errors)
-----------------------------------------------------------------
-[HTTP 403] https://firstledger.net/?ref=allthingsxrpl
-    in client/src/pages/DApps.tsx
-[HTTP 404] https://uphold.com/earn
-    in client/src/pages/YieldOpportunities.tsx
-[HTTP 404] https://uphold.com/sign-up?referral=allthingsxrpl
-    in client/src/pages/GettingStarted.tsx
-[HTTP 403] https://www.bitrue.com/staking
-    in client/src/pages/YieldOpportunities.tsx
-[HTTP 404] https://www.coinbase.com/join?ref=allthingsxrpl
-    in client/src/pages/Compare.tsx
 
 REDIRECTED (lands on 2xx after a 3xx — verify destination)
 ----------------------------------------------------------------
@@ -54,6 +41,7 @@ REDIRECTED (lands on 2xx after a 3xx — verify destination)
 [200] https://uphold.com/signup?referral=allthingsxrpl
     -> https://wallet.uphold.com/signup?referral=allthingsxrpl
     in client/src/components/BannerAd.tsx
+    in client/src/pages/GettingStarted.tsx
     in client/src/pages/Home.tsx
     in client/src/pages/YieldOpportunities.tsx
     in client/src/pages/reviews/ExchangeReview.tsx
