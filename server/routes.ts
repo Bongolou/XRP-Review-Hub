@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { storage } from "./storage";
 import { insertSubscriberSchema, insertContactSchema } from "@shared/schema";
+import { blogPosts } from "@shared/blog";
 import { z } from "zod";
 
 function resolveLeadMagnetPath(filename: string): string | null {
@@ -140,28 +141,6 @@ async function fetchAllNews(): Promise<NewsItem[]> {
   return allItems;
 }
 
-const blogPosts = [
-  { id: 1, title: "Top 5 DeFi dApps on XRPL in 2026", date: "2026-01-24", category: "Ecosystem" },
-  { id: 2, title: "Understanding AMM Staking Rewards", date: "2026-01-20", category: "Guides" },
-  { id: 3, title: "Security Best Practices for Self-Custody", date: "2026-01-15", category: "Security" },
-  { id: 4, title: "NFT Marketplaces on XRPL: Complete Guide", date: "2026-01-12", category: "NFTs" },
-  { id: 5, title: "XRPL Sidechains Explained", date: "2026-01-08", category: "Technology" },
-  { id: 6, title: "Tokenizing Real World Assets on XRPL", date: "2026-01-05", category: "Institutional" },
-  { id: 7, title: "How to Stake XRP Safely in 2026", date: "2026-01-02", category: "Guides" },
-  { id: 8, title: "XRPL vs Ethereum: Fees, Speed and Use Cases", date: "2025-12-28", category: "Analysis" },
-  { id: 9, title: "Choosing Between Hot and Cold Wallets", date: "2025-12-22", category: "Security" },
-  { id: 10, title: "XRPL AMM Deep Dive for Liquidity Providers", date: "2025-12-18", category: "DeFi" },
-  { id: 11, title: "Beginner's Guide to Buying XRP", date: "2025-12-15", category: "Guides" },
-  { id: 12, title: "Top XRPL Tax Tools and Reporting Tips", date: "2025-12-10", category: "Guides" },
-  { id: 13, title: "How XRPL Hooks Will Change Smart Contracts", date: "2025-12-05", category: "Technology" },
-  { id: 14, title: "Cross-Border Payments Powered by XRPL", date: "2025-12-01", category: "Use Cases" },
-  { id: 15, title: "Setting Up Your First XRPL Trustline", date: "2025-11-28", category: "Guides" },
-  { id: 16, title: "Hardware Wallet Buying Guide for XRP Holders", date: "2026-01-26", category: "Hardware" },
-  { id: 17, title: "Avoiding Common XRP Phishing Scams", date: "2026-01-25", category: "Security" },
-  { id: 18, title: "XRPL Validator Network Explained", date: "2026-01-24", category: "Technology" },
-  { id: 19, title: "How to Track XRPL Wallet Activity", date: "2026-01-23", category: "Guides" },
-];
-
 const walletSlugs = [
   "xaman", "ledger", "crossmark", "tangem", "bifrost",
   "trustwallet", "gatehub", "ellipal", "trezor",
@@ -268,7 +247,7 @@ export async function registerRoutes(
       url: `/best-for/${slug}`, priority: "0.8", changefreq: "weekly",
     }));
     const blogPages: Entry[] = blogPosts.map(p => ({
-      url: `/blog/${p.id}`, priority: "0.6", changefreq: "monthly", lastmod: p.date,
+      url: `/blog/${p.id}`, priority: "0.6", changefreq: "monthly", lastmod: p.dateIso,
     }));
 
     const allPages: Entry[] = [
@@ -310,7 +289,7 @@ ${blogPosts.map(post => `    <item>
       <title>${post.title}</title>
       <link>${baseUrl}/blog/${post.id}</link>
       <guid>${baseUrl}/blog/${post.id}</guid>
-      <pubDate>${new Date(post.date).toUTCString()}</pubDate>
+      <pubDate>${new Date(post.dateIso).toUTCString()}</pubDate>
       <category>${post.category}</category>
     </item>`).join("\n")}
   </channel>

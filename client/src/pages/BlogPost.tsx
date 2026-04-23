@@ -8,6 +8,7 @@ import { BlogComments } from "@/components/BlogComments";
 import { BannerAd } from "@/components/BannerAd";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { blogPosts } from "@shared/blog";
 
 function TwitterIcon({ className }: { className?: string }) {
   return (
@@ -33,18 +34,8 @@ function TikTokIcon({ className }: { className?: string }) {
   );
 }
 
-const blogPostsData = [
-  {
-    id: 1,
-    titleKey: "blog.post1.title",
-    excerptKey: "blog.post1.excerpt",
-    categoryKey: "blog.post1.category",
-    date: "Jan 24, 2026",
-    readTime: "5 min read",
-    author: "Alex Crypto",
-    authorRole: "Senior Analyst",
-    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&auto=format&fit=crop",
-    content: `
+const contentById: Record<number, string> = {
+  1: `
       <p>The XRP Ledger (XRPL) has evolved significantly over the past year, moving far beyond simple payments to become a robust ecosystem for Decentralized Finance (DeFi). With the introduction of the native Automated Market Maker (AMM) and sidechains, the landscape is more vibrant than ever. Developers and entrepreneurs are building sophisticated financial tools that rival what you find on Ethereum or Solana, but with the added benefits of near-zero fees and lightning-fast settlement times.</p>
 
       <p>If you are looking to explore DeFi on the XRPL, here are the top five decentralized applications that should be on your radar heading into 2026.</p>
@@ -100,19 +91,8 @@ const blogPostsData = [
 
       <h2>Conclusion</h2>
       <p>The XRPL DeFi scene is maturing rapidly. While Ethereum and Solana still hold larger total value locked, the efficiency and low cost of the XRPL make it an attractive home for the next generation of financial applications. Each of these five platforms brings something unique to the ecosystem, from advanced trading tools to beginner-friendly experiences. As the XRPL continues to evolve with new features and amendments, expect these dApps and many more to push the boundaries of what is possible in decentralized finance.</p>
-    `
-  },
-  {
-    id: 2,
-    titleKey: "blog.post2.title",
-    excerptKey: "blog.post2.excerpt",
-    categoryKey: "blog.post2.category",
-    date: "Jan 20, 2026",
-    readTime: "5 min read",
-    author: "Maya Chen",
-    authorRole: "DeFi Researcher",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  2: `
       <p>The XRP Ledger's native Automated Market Maker (AMM) functionality has opened up new possibilities for earning passive income. Unlike third-party DeFi protocols built on other chains, the XRPL AMM is implemented directly at the protocol level, making it one of the most secure and efficient ways to earn yield in crypto. This guide will walk you through everything you need to know about AMM staking rewards, from the basics to advanced strategies.</p>
 
       <h2>What is an AMM?</h2>
@@ -164,19 +144,8 @@ const blogPostsData = [
       <p>To start earning AMM rewards, you need a compatible XRPL wallet like Xaman or Crossmark and some XRP plus your chosen pair asset. Connect your wallet to an AMM interface such as Orchestra Finance or the Sologenic DEX. Navigate to the AMM section, select your pool, and specify how much liquidity you want to provide. Confirm the transaction in your wallet, and you will receive LP tokens immediately.</p>
 
       <p>Start with a small amount to get comfortable with the process. Monitor your position for a few days to see how fees accumulate and how the pool's value changes. Once you understand the dynamics, you can increase your position or explore other pools. Remember that withdrawing your liquidity is just as simple as depositing it, so you are never locked in permanently.</p>
-    `
-  },
-  {
-    id: 3,
-    titleKey: "blog.post3.title",
-    excerptKey: "blog.post3.excerpt",
-    categoryKey: "blog.post3.category",
-    date: "Jan 15, 2026",
-    readTime: "5 min read",
-    author: "Security Team",
-    authorRole: "Cybersecurity Experts",
-    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  3: `
       <p>Protecting your digital assets requires a multi-layered approach. Whether you are using a hardware wallet or software wallet, these security practices will help keep your crypto safe. The decentralized nature of cryptocurrency means there is no bank to call if something goes wrong, so the responsibility for security rests entirely on you. By following these best practices, you can significantly reduce the risk of losing your funds to theft, scams, or simple mistakes.</p>
 
       <h2>1. Secure Your Seed Phrase</h2>
@@ -243,19 +212,8 @@ const blogPostsData = [
 
       <h2>Conclusion</h2>
       <p>Security is not a one-time setup but an ongoing practice. Stay vigilant, stay informed, and never rush when making transactions. The time you invest in proper security practices is always worth it compared to the potential loss of your digital assets. Build your security habits gradually, starting with the fundamentals and adding layers as your holdings grow. The most important rule is simple: if something feels wrong or too good to be true, stop and verify before proceeding.</p>
-    `
-  },
-  {
-    id: 4,
-    titleKey: "blog.post4.title",
-    excerptKey: "blog.post4.excerpt",
-    categoryKey: "blog.post4.category",
-    date: "Jan 12, 2026",
-    readTime: "5 min read",
-    author: "NFT Weekly",
-    authorRole: "Digital Art Correspondent",
-    image: "https://images.unsplash.com/photo-1643101809204-6fb869816dbe?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  4: `
       <p>The NFT ecosystem on the XRP Ledger has grown tremendously since the introduction of native NFT support through the XLS-20 standard. Unlike other blockchains where NFTs rely on smart contracts, XRPL NFTs are baked directly into the protocol, providing a level of reliability and efficiency that is hard to match. This guide covers everything you need to know about NFT marketplaces on XRPL, from choosing the right platform to minting your first piece.</p>
 
       <h2>Why XRPL for NFTs?</h2>
@@ -319,19 +277,8 @@ const blogPostsData = [
 
       <h2>The Future of XRPL NFTs</h2>
       <p>The XRPL NFT ecosystem continues to grow with new marketplaces, tools, and creative applications emerging regularly. As more artists and collectors discover the benefits of near-zero fees and protocol-level features, expect the ecosystem to attract increasingly diverse and ambitious projects. From digital art and music to gaming assets and event tickets, XRPL NFTs are finding use cases that extend well beyond simple collectibles.</p>
-    `
-  },
-  {
-    id: 5,
-    titleKey: "blog.post5.title",
-    excerptKey: "blog.post5.excerpt",
-    categoryKey: "blog.post5.category",
-    date: "Jan 8, 2026",
-    readTime: "5 min read",
-    author: "Tech Deep Dive",
-    authorRole: "Blockchain Developer",
-    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  5: `
       <p>XRPL sidechains represent a major evolution in the ecosystem's capabilities, enabling smart contracts and new use cases while maintaining connection to the main ledger. For years, one of the most common criticisms of the XRP Ledger was its lack of programmability compared to Ethereum and other smart contract platforms. Sidechains answer this criticism directly by allowing developers to build virtually anything while still leveraging the speed, cost efficiency, and liquidity of the main XRPL.</p>
 
       <h2>What Are Sidechains?</h2>
@@ -394,19 +341,8 @@ const blogPostsData = [
       <p>Sidechains open doors for DeFi protocols, gaming applications, and enterprise solutions that require more programmability than the main chain offers. As the bridge technology matures and more sidechains come online, the XRPL ecosystem will become a multi-chain network capable of supporting virtually any blockchain use case while maintaining the core strengths that have made the main ledger reliable for over a decade.</p>
 
       <p>The long-term vision is an interconnected web of specialized sidechains, each optimized for different purposes, all sharing liquidity and assets through the bridge protocol. This modular approach means the XRPL ecosystem can grow and adapt to new use cases without ever compromising the stability and performance of the main ledger that underpins it all.</p>
-    `
-  },
-  {
-    id: 6,
-    titleKey: "blog.post6.title",
-    excerptKey: "blog.post6.excerpt",
-    categoryKey: "blog.post6.category",
-    date: "Jan 5, 2026",
-    readTime: "5 min read",
-    author: "Institutional Desk",
-    authorRole: "Enterprise Analyst",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  6: `
       <p>Real World Asset (RWA) tokenization is transforming how institutions interact with the XRP Ledger. From real estate to commodities, the XRPL is becoming a leading platform for digitizing traditional assets and bringing them into the world of blockchain-based finance. This shift represents one of the most significant developments in crypto because it connects digital technology with tangible, real-world value in ways that benefit both institutional players and everyday investors.</p>
 
       <h2>What is Asset Tokenization?</h2>
@@ -453,19 +389,8 @@ const blogPostsData = [
 
       <h2>Conclusion</h2>
       <p>RWA tokenization on XRPL is still in its early stages but is growing rapidly as institutions recognize the benefits of blockchain-based asset management. The combination of low costs, fast settlement, built-in compliance tools, and a proven track record makes the XRP Ledger a compelling platform for bringing traditional assets on-chain. As regulatory frameworks mature and more projects demonstrate successful implementations, expect to see an accelerating wave of real-world assets finding their way onto the ledger in the coming years.</p>
-    `
-  },
-  {
-    id: 7,
-    titleKey: "blog.post7.title",
-    excerptKey: "blog.post7.excerpt",
-    categoryKey: "blog.post7.category",
-    date: "Jan 2, 2026",
-    readTime: "5 min read",
-    author: "Dev Team",
-    authorRole: "Protocol Engineers",
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  7: `
       <p>Hooks bring programmable smart logic to the XRP Ledger without compromising its speed and efficiency. For developers who have been waiting for programmability on XRPL, Hooks represent a carefully designed solution that adds powerful automation capabilities while preserving the network's core strengths of speed, low cost, and reliability. This introduction explains what Hooks are, how they work under the hood, and how you can start building with them today.</p>
 
       <h2>What Are Hooks?</h2>
@@ -514,19 +439,8 @@ const blogPostsData = [
 
       <h2>Current Status</h2>
       <p>Hooks are currently live on the Xahau network, which operates as an independent ledger running XRPL software with the Hooks amendment enabled. Developers can build and deploy production Hooks on Xahau today. The possibility of bringing Hooks to the main XRPL through a future amendment remains under discussion within the community. Regardless of whether Hooks come to the mainnet, the Xahau network provides a fully functional environment for Hook-based applications with its own growing ecosystem of tools and projects.</p>
-    `
-  },
-  {
-    id: 8,
-    titleKey: "blog.post8.title",
-    excerptKey: "blog.post8.excerpt",
-    categoryKey: "blog.post8.category",
-    date: "Dec 28, 2025",
-    readTime: "5 min read",
-    author: "Wallet Guide",
-    authorRole: "Product Reviewer",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  8: `
       <p>Choosing between hot (software) and cold (hardware) wallets is one of the most important decisions for crypto holders. Your wallet is the gateway to your digital assets, and the type you choose directly impacts both your daily experience and the security of your funds. This guide breaks down the differences, compares specific options, and helps you develop a wallet strategy that matches your needs and risk tolerance.</p>
 
       <h2>Hot Wallets (Software)</h2>
@@ -575,19 +489,8 @@ const blogPostsData = [
 
       <h2>Our Recommendation</h2>
       <p>If you hold more than one month's salary in crypto, strongly consider getting a hardware wallet for your main holdings. Start with a Ledger Nano S Plus or a Tangem card set as an affordable entry point into cold storage. Pair it with Xaman on your phone for daily XRPL interactions, and you will have a secure, flexible setup that protects your wealth while keeping your daily crypto life convenient and accessible.</p>
-    `
-  },
-  {
-    id: 9,
-    titleKey: "blog.post9.title",
-    excerptKey: "blog.post9.excerpt",
-    categoryKey: "blog.post9.category",
-    date: "Dec 22, 2025",
-    readTime: "5 min read",
-    author: "Banking Desk",
-    authorRole: "Financial Correspondent",
-    image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  9: `
       <p>Central Bank Digital Currencies (CBDCs) represent one of the most significant trends in digital finance, and the XRP Ledger is positioning itself as ideal infrastructure for their issuance and management. As governments around the world explore how to modernize their monetary systems, the technology underlying CBDCs has become a critical conversation in both financial and technological circles. The XRPL's unique combination of speed, compliance features, and proven reliability makes it a strong candidate for powering the next generation of sovereign digital money.</p>
 
       <h2>What Are CBDCs?</h2>
@@ -630,19 +533,8 @@ const blogPostsData = [
 
       <h2>Looking Ahead</h2>
       <p>As more countries move toward CBDCs, expect to see continued and growing interest in XRPL as infrastructure for these digital currencies. The combination of proven technology, built-in compliance features, energy efficiency, and flexible deployment options makes the XRP Ledger uniquely suited for this use case. Whether through public ledger issuance or private ledger deployments, XRPL technology is well positioned to play a meaningful role in the future of sovereign digital money.</p>
-    `
-  },
-  {
-    id: 10,
-    titleKey: "blog.post10.title",
-    excerptKey: "blog.post10.excerpt",
-    categoryKey: "blog.post10.category",
-    date: "Dec 18, 2025",
-    readTime: "5 min read",
-    author: "Tax Guide",
-    authorRole: "Crypto Tax Specialist",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  10: `
       <p>Understanding the tax implications of your crypto transactions is essential for every investor. Failing to properly report cryptocurrency activity can lead to penalties, interest charges, and unnecessary stress during tax season. This guide covers the fundamentals of crypto taxation, walks through practical examples, addresses DeFi-specific scenarios, and provides tips to help you stay compliant and minimize your tax burden legally.</p>
 
       <h2>Taxable Events</h2>
@@ -699,19 +591,8 @@ const blogPostsData = [
 
       <h2>Professional Advice</h2>
       <p>Tax laws vary by country and change frequently, and the intersection of DeFi, airdrops, and cross-border transactions creates complexity that generic tax software may not fully handle. We strongly recommend consulting with a tax professional who is experienced with cryptocurrency. A knowledgeable advisor can help you choose the optimal cost basis method, identify planning opportunities, and ensure you are fully compliant with your local regulations. The cost of professional tax advice is almost always less than the penalties for incorrect reporting.</p>
-    `
-  },
-  {
-    id: 11,
-    titleKey: "blog.post11.title",
-    excerptKey: "blog.post11.excerpt",
-    categoryKey: "blog.post11.category",
-    date: "Dec 15, 2025",
-    readTime: "5 min read",
-    author: "Security Watch",
-    authorRole: "Threat Analyst",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  11: `
       <p>Phishing attacks remain one of the biggest threats to crypto holders. Every year, millions of dollars are lost to cleverly designed scams that trick users into revealing their private keys, seed phrases, or sending funds to fraudulent addresses. XRPL users are not exempt from these dangers. Learning how to identify and avoid phishing scams is essential for protecting your digital assets and maintaining peace of mind in the crypto space.</p>
       
       <h2>Common Phishing Tactics</h2>
@@ -759,19 +640,8 @@ const blogPostsData = [
 
       <h2>Community Resources</h2>
       <p>The XRPL community maintains several resources to help users stay safe. Follow verified accounts on social media for security advisories. Join official Discord and Telegram groups where moderators actively warn about known scams. Websites like xrpl.org provide up-to-date information about legitimate projects and tools. Staying informed and connected with the community is one of the best defenses against evolving phishing tactics.</p>
-    `
-  },
-  {
-    id: 12,
-    titleKey: "blog.post12.title",
-    excerptKey: "blog.post12.excerpt",
-    categoryKey: "blog.post12.category",
-    date: "Dec 10, 2025",
-    readTime: "5 min read",
-    author: "Protocol Team",
-    authorRole: "Network Engineer",
-    image: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  12: `
       <p>The XRPL uses a unique consensus mechanism that differs significantly from both Proof of Work and Proof of Stake. While Bitcoin relies on energy-intensive mining and Ethereum uses staked capital to secure its network, the XRP Ledger takes a fundamentally different approach based on trust and agreement among validators. Understanding how this consensus protocol works helps appreciate the network's design choices, its strengths, and the trade-offs involved.</p>
       
       <h2>The Federated Byzantine Agreement</h2>
@@ -817,19 +687,8 @@ const blogPostsData = [
 
       <h2>The Amendment Process</h2>
       <p>Changes to the XRPL protocol are governed through an amendment process that requires validator consensus. When a new feature or protocol change is proposed, validators signal their support by including the amendment in their voting. An amendment is enabled only when it receives continuous support from at least 80% of trusted validators over a two-week period. This process ensures that protocol changes are carefully considered and broadly supported before activation, preventing any single party from unilaterally modifying the network's rules.</p>
-    `
-  },
-  {
-    id: 13,
-    titleKey: "blog.post13.title",
-    excerptKey: "blog.post13.excerpt",
-    categoryKey: "blog.post13.category",
-    date: "Dec 5, 2025",
-    readTime: "5 min read",
-    author: "Ripple Watcher",
-    authorRole: "Industry Analyst",
-    image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  13: `
       <p>Ripple and the XRP Ledger, while closely associated, are distinct entities with different purposes, governance structures, and goals. The confusion between Ripple the company and XRP the digital asset has led to widespread misconceptions that affect how people perceive the entire ecosystem. Understanding their relationship is essential for anyone interested in XRPL, whether as an investor, developer, or user.</p>
       
       <h2>What is Ripple?</h2>
@@ -868,19 +727,8 @@ const blogPostsData = [
       <h2>Governance Structure</h2>
       <p>The XRPL does not have a single governing body. Protocol changes are proposed through an amendment process where validators vote on whether to enable new features. This decentralized governance ensures that no single entity can unilaterally change the network's rules. The XRP Ledger Foundation, a non-profit organization, supports the ecosystem through funding, advocacy, and community building, but it does not have the power to modify the protocol without validator consensus.</p>
       <p>Understanding the distinction between Ripple and the XRPL is crucial for making informed decisions about using or investing in the ecosystem. While their histories are intertwined, they serve different purposes and operate under different structures. Ripple is a company pursuing commercial objectives, while the XRPL is a public, decentralized network available to everyone.</p>
-    `
-  },
-  {
-    id: 14,
-    titleKey: "blog.post14.title",
-    excerptKey: "blog.post14.excerpt",
-    categoryKey: "blog.post14.category",
-    date: "Dec 1, 2025",
-    readTime: "5 min read",
-    author: "Artist Spotlight",
-    authorRole: "NFT Curator",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  14: `
       <p>Creating NFTs on the XRP Ledger is straightforward and affordable compared to many other blockchain platforms. Thanks to XRPL's native NFT support through the XLS-20 standard, you can mint digital collectibles without writing smart contracts, paying high gas fees, or dealing with complex tooling. This comprehensive guide will walk you through every step of minting your first NFT on XRPL, from preparing your artwork to marketing your collection.</p>
       
       <h2>Prerequisites</h2>
@@ -935,19 +783,8 @@ const blogPostsData = [
 
       <h2>Legal Considerations</h2>
       <p>When minting NFTs, clearly communicate what buyers are purchasing. In most cases, buying an NFT does not transfer copyright of the underlying artwork. Specify in your description and terms what rights the buyer receives, whether it is personal use, commercial use, or display rights. If you are creating NFTs based on real-world assets or intellectual property, consult with a legal professional to ensure compliance with applicable laws. Tax obligations for NFT sales vary by jurisdiction, so keep detailed records of all your minting costs and sales revenue.</p>
-    `
-  },
-  {
-    id: 15,
-    titleKey: "blog.post15.title",
-    excerptKey: "blog.post15.excerpt",
-    categoryKey: "blog.post15.category",
-    date: "Nov 28, 2025",
-    readTime: "5 min read",
-    author: "Investment Team",
-    authorRole: "Portfolio Analyst",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  15: `
       <p>Building a diversified crypto portfolio involves more than just buying Bitcoin and hoping for the best. The cryptocurrency market offers hundreds of assets across different categories, each with unique risk profiles, use cases, and growth potential. A thoughtful diversification strategy can help you capture upside across multiple sectors while managing downside risk. This guide covers practical strategies for allocating across different crypto assets and maintaining a healthy portfolio over time.</p>
       
       <h2>Portfolio Theory for Crypto</h2>
@@ -993,19 +830,8 @@ const blogPostsData = [
 
       <h2>Risk Management and Exit Strategies</h2>
       <p>Only invest what you can afford to lose entirely. Crypto remains a high-risk asset class, and even the most well-researched portfolio can experience significant drawdowns. Keep an emergency fund in traditional savings that covers at least six months of expenses before investing in crypto. Use cold storage for long-term holdings to protect against exchange hacks. Consider setting price targets for taking partial profits on positions that have appreciated substantially. Having a clear exit strategy for each position prevents you from holding too long and watching gains evaporate during market reversals.</p>
-    `
-  },
-  {
-    id: 16,
-    titleKey: "blog.post16.title",
-    excerptKey: "blog.post16.excerpt",
-    categoryKey: "blog.post16.category",
-    date: "Jan 26, 2026",
-    readTime: "5 min read",
-    author: "DeFi Lab",
-    authorRole: "Smart Contract Researcher",
-    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  16: `
       <p>Automated Market Makers revolutionized decentralized trading by eliminating the need for traditional order books. This guide explains how AMMs work, compares the various models used across DeFi, and helps you understand which approach suits your goals.</p>
       
       <h2>The Problem AMMs Solve</h2>
@@ -1049,19 +875,8 @@ const blogPostsData = [
 
       <h2>Future AMM Innovations</h2>
       <p>The AMM space continues to evolve rapidly. Time-weighted average market makers aim to reduce the impact of sandwich attacks by executing trades over multiple blocks. Dynamic fee models adjust fees automatically based on volatility, increasing fees during high-volatility periods to better protect LPs. Multi-asset pools that hold three or more tokens are gaining traction as a way to reduce impermanent loss through diversification. On the XRPL specifically, ongoing development focuses on improving the auction mechanism and exploring integration with sidechains for cross-chain liquidity.</p>
-    `
-  },
-  {
-    id: 17,
-    titleKey: "blog.post17.title",
-    excerptKey: "blog.post17.excerpt",
-    categoryKey: "blog.post17.category",
-    date: "Jan 25, 2026",
-    readTime: "5 min read",
-    author: "Risk Analyst",
-    authorRole: "DeFi Security Expert",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  17: `
       <p>Impermanent loss is one of the most misunderstood concepts in DeFi. This guide breaks down what it actually is, walks through the math with real examples, and provides actionable strategies to manage it.</p>
       
       <h2>What is Impermanent Loss?</h2>
@@ -1113,19 +928,8 @@ const blogPostsData = [
 
       <h2>Should You Still LP?</h2>
       <p>Absolutely, but with realistic expectations and proper risk management. The key is to ensure that your expected trading fee income, plus any additional rewards, exceeds your estimated impermanent loss over your intended holding period. Start with stable pairs to learn the mechanics without significant risk, track your performance carefully, and gradually explore more volatile pairs as you build confidence in evaluating pool profitability. Many successful LPs treat it as a disciplined strategy, not a passive investment, and their returns reflect that active approach.</p>
-    `
-  },
-  {
-    id: 18,
-    titleKey: "blog.post18.title",
-    excerptKey: "blog.post18.excerpt",
-    categoryKey: "blog.post18.category",
-    date: "Jan 24, 2026",
-    readTime: "5 min read",
-    author: "Yield Farmers",
-    authorRole: "DeFi Strategist",
-    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  18: `
       <p>Liquidity provision is one of the most accessible ways to earn yield in decentralized finance. This beginner's guide covers everything you need to know, from the basics of how it works to practical strategies for maximizing your returns on the XRP Ledger.</p>
       
       <h2>What is a Liquidity Provider?</h2>
@@ -1188,19 +992,8 @@ const blogPostsData = [
 
       <h2>Getting Started</h2>
       <p>Begin with a small amount in a stable pair to learn the mechanics without significant risk. As you gain confidence, gradually explore higher-yielding pairs. Keep records of your deposits, withdrawals, and fee earnings to track actual performance and refine your strategy over time.</p>
-    `
-  },
-  {
-    id: 19,
-    titleKey: "blog.post19.title",
-    excerptKey: "blog.post19.excerpt",
-    categoryKey: "blog.post19.category",
-    date: "Jan 23, 2026",
-    readTime: "5 min read",
-    author: "NFT Technical",
-    authorRole: "Protocol Developer",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop",
-    content: `
+    `,
+  19: `
       <p>The XLS-20 standard brought native NFT support to the XRP Ledger. Unlike other blockchains where NFTs depend on smart contracts, XRPL NFTs are first-class ledger objects with built-in marketplace functionality. This deep dive explores the technical implementation, transaction mechanics, and unique advantages of XRPL NFTs.</p>
       
       <h2>What is XLS-20?</h2>
@@ -1260,16 +1053,17 @@ const blogPostsData = [
 
       <h2>Future Developments</h2>
       <p>Ongoing proposals include batch minting for entire collections in a single transaction, auction-style bidding natively on the ledger, and cross-chain NFT bridging through XRPL sidechains. These enhancements aim to make the XRPL one of the most capable NFT platforms available.</p>
-    `
-  }
-];
+    `,
+};
+
 
 export default function BlogPost() {
   const { id } = useParams();
   const { t } = useLanguage();
   
   const postId = parseInt(id || "1");
-  const post = blogPostsData.find(p => p.id === postId);
+  const meta = blogPosts.find(p => p.id === postId);
+  const post = meta ? { ...meta, categoryKey: meta.categoryLabelKey, content: contentById[postId] ?? "" } : undefined;
 
   const postTitle = post ? t(post.titleKey) : undefined;
   const postExcerpt = post ? t(post.excerptKey) : undefined;
