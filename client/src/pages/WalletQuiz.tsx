@@ -1,5 +1,4 @@
 import { Layout } from "@/components/Layout";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { ArrowRight, ArrowLeft, ExternalLink, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -9,127 +8,136 @@ import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
-const questions = [
+type Question = {
+  id: number;
+  questionKey: string;
+  options: { textKey: string; value: string }[];
+};
+
+const questions: Question[] = [
   {
     id: 1,
-    question: "How much XRP do you plan to hold?",
+    questionKey: "quiz.q1",
     options: [
-      { text: "Less than $500", value: "small" },
-      { text: "$500 - $5,000", value: "medium" },
-      { text: "More than $5,000", value: "large" }
-    ]
+      { textKey: "quiz.q1.opt1", value: "small" },
+      { textKey: "quiz.q1.opt2", value: "medium" },
+      { textKey: "quiz.q1.opt3", value: "large" },
+    ],
   },
   {
     id: 2,
-    question: "What's your primary use case?",
+    questionKey: "quiz.q2",
     options: [
-      { text: "Long-term holding (HODL)", value: "hold" },
-      { text: "Trading & DeFi", value: "defi" },
-      { text: "Everyday transactions", value: "daily" }
-    ]
+      { textKey: "quiz.q2.opt1", value: "hold" },
+      { textKey: "quiz.q2.opt2", value: "defi" },
+      { textKey: "quiz.q2.opt3", value: "daily" },
+    ],
   },
   {
     id: 3,
-    question: "How important is ease of use?",
+    questionKey: "quiz.q3",
     options: [
-      { text: "I'm a beginner, keep it simple", value: "beginner" },
-      { text: "I can handle some complexity", value: "intermediate" },
-      { text: "I want full control and features", value: "advanced" }
-    ]
+      { textKey: "quiz.q3.opt1", value: "beginner" },
+      { textKey: "quiz.q3.opt2", value: "intermediate" },
+      { textKey: "quiz.q3.opt3", value: "advanced" },
+    ],
   },
   {
     id: 4,
-    question: "Do you want a hardware wallet?",
+    questionKey: "quiz.q4",
     options: [
-      { text: "Yes, maximum security", value: "hardware" },
-      { text: "Maybe, if needed", value: "maybe" },
-      { text: "No, mobile/software is fine", value: "software" }
-    ]
+      { textKey: "quiz.q4.opt1", value: "hardware" },
+      { textKey: "quiz.q4.opt2", value: "maybe" },
+      { textKey: "quiz.q4.opt3", value: "software" },
+    ],
   },
   {
     id: 5,
-    question: "Which features matter most?",
+    questionKey: "quiz.q5",
     options: [
-      { text: "NFT support & DeFi", value: "features" },
-      { text: "Simple & secure storage", value: "simple" },
-      { text: "Multi-currency support", value: "multi" }
-    ]
-  }
+      { textKey: "quiz.q5.opt1", value: "features" },
+      { textKey: "quiz.q5.opt2", value: "simple" },
+      { textKey: "quiz.q5.opt3", value: "multi" },
+    ],
+  },
 ];
 
 type Answers = Record<number, string>;
 
-function getRecommendation(answers: Answers): {
-  primary: { name: string; slug: string; description: string; link: string };
-  secondary?: { name: string; slug: string; description: string };
-} {
+type Recommendation = {
+  primary: { name: string; slug: string; descKey: string; link: string };
+  secondary?: { name: string; slug: string; descKey: string };
+};
+
+function getRecommendation(answers: Answers): Recommendation {
   const values = Object.values(answers);
-  
+
   const wantsHardware = values.includes("hardware") || values.includes("large");
-  const wantsSimple = values.includes("beginner") || values.includes("simple");
   const wantsDefi = values.includes("defi") || values.includes("features");
   const wantsPortable = values.includes("daily");
-  
+
   if (wantsHardware && !wantsPortable) {
     return {
       primary: {
         name: "Ledger Nano X",
         slug: "ledger",
-        description: "For your holding size, we recommend hardware security. The Ledger Nano X offers industry-leading protection with Bluetooth convenience.",
-        link: "https://shop.ledger.com/?r=5d81f18905fe"
+        descKey: "quiz.rec.ledger.desc",
+        link: "https://shop.ledger.com/?r=5d81f18905fe",
       },
       secondary: {
         name: "Xaman",
         slug: "xaman",
-        description: "Pair with Xaman for day-to-day transactions and DeFi access."
-      }
+        descKey: "quiz.rec.sec.xamanDaily",
+      },
     };
   }
-  
+
   if (wantsHardware && wantsPortable) {
     return {
       primary: {
         name: "Tangem",
         slug: "tangem",
-        description: "For everyday use with hardware security, Tangem's card format is perfect. It's portable, durable, and taps with your phone.",
-        link: "https://tangem.com/?ref=allthingsxrpl"
+        descKey: "quiz.rec.tangem.desc",
+        link: "https://tangem.com/?ref=allthingsxrpl",
       },
       secondary: {
         name: "Xaman",
         slug: "xaman",
-        description: "Use Xaman for advanced XRPL features like DEX trading."
-      }
+        descKey: "quiz.rec.sec.xamanDex",
+      },
     };
   }
-  
+
   if (wantsDefi || values.includes("advanced")) {
     return {
       primary: {
         name: "Xaman (XUMM)",
         slug: "xaman",
-        description: "For DeFi and advanced features, Xaman is the clear winner. It's the most feature-complete XRPL wallet with full DEX, AMM, and NFT support.",
-        link: "https://xaman.app/?ref=allthingsxrpl"
+        descKey: "quiz.rec.xamanDefi.desc",
+        link: "https://xaman.app/?ref=allthingsxrpl",
       },
-      secondary: values.includes("large") ? {
-        name: "Ledger Nano X",
-        slug: "ledger",
-        description: "Consider adding a Ledger for cold storage of larger holdings."
-      } : undefined
+      secondary: values.includes("large")
+        ? {
+            name: "Ledger Nano X",
+            slug: "ledger",
+            descKey: "quiz.rec.sec.ledgerCold",
+          }
+        : undefined,
     };
   }
-  
+
   return {
     primary: {
       name: "Xaman (XUMM)",
       slug: "xaman",
-      description: "For most users, Xaman is the best choice. It's free, user-friendly, and supports all XRPL features. Start here and add hardware later if needed.",
-      link: "https://xaman.app/?ref=allthingsxrpl"
-    }
+      descKey: "quiz.rec.xaman.desc",
+      link: "https://xaman.app/?ref=allthingsxrpl",
+    },
   };
 }
 
 export default function WalletQuiz() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const seo = getStaticPageSeo(language, "walletQuiz");
   useDocumentMeta({
     title: seo.title,
@@ -144,7 +152,7 @@ export default function WalletQuiz() {
   const handleAnswer = (value: string) => {
     const newAnswers = { ...answers, [questions[currentQuestion].id]: value };
     setAnswers(newAnswers);
-    
+
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
@@ -170,9 +178,9 @@ export default function WalletQuiz() {
     <Layout>
       <div className="container mx-auto px-4 max-w-2xl py-20 md:py-24">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-black font-display mb-4">Find Your Perfect Wallet</h1>
+          <h1 className="text-4xl md:text-5xl font-black font-display mb-4">{t("quiz.title")}</h1>
           <p className="text-muted-foreground text-lg">
-            Answer a few questions to get a personalized wallet recommendation
+            {t("quiz.subtitle")}
           </p>
         </div>
 
@@ -180,7 +188,7 @@ export default function WalletQuiz() {
           <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
             <div className="flex items-center justify-between mb-8">
               <span className="text-sm text-muted-foreground">
-                Question {currentQuestion + 1} of {questions.length}
+                {`${t("quiz.progress.question")} ${currentQuestion + 1} ${t("quiz.progress.of")} ${questions.length}`}
               </span>
               <div className="flex gap-1">
                 {questions.map((_, index) => (
@@ -195,7 +203,7 @@ export default function WalletQuiz() {
               </div>
             </div>
 
-            <h2 className="text-2xl font-bold mb-8">{questions[currentQuestion].question}</h2>
+            <h2 className="text-2xl font-bold mb-8">{t(questions[currentQuestion].questionKey)}</h2>
 
             <div className="space-y-3">
               {questions[currentQuestion].options.map((option) => (
@@ -205,7 +213,7 @@ export default function WalletQuiz() {
                   data-testid={`quiz-option-${option.value}`}
                   className="w-full p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-primary/20 hover:border-primary/50 transition-all text-left flex items-center justify-between group"
                 >
-                  <span>{option.text}</span>
+                  <span>{t(option.textKey)}</span>
                   <ArrowRight className="h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
                 </button>
               ))}
@@ -215,19 +223,20 @@ export default function WalletQuiz() {
               <button
                 onClick={handleBack}
                 className="mt-6 flex items-center gap-2 text-muted-foreground hover:text-white transition-colors"
+                data-testid="button-quiz-back"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t("quiz.back")}
               </button>
             )}
           </div>
         ) : recommendation && (
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-2xl p-6 md:p-8">
-              <div className="text-sm text-primary font-display mb-2">Our Recommendation</div>
+              <div className="text-sm text-primary font-display mb-2">{t("quiz.recommendationLabel")}</div>
               <h2 className="text-3xl font-bold font-display mb-4">{recommendation.primary.name}</h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                {recommendation.primary.description}
+                {t(recommendation.primary.descKey)}
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
@@ -237,27 +246,27 @@ export default function WalletQuiz() {
                   className="inline-flex items-center gap-2 h-12 px-8 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"
                   data-testid="button-get-recommended"
                 >
-                  Get {recommendation.primary.name} <ExternalLink className="h-4 w-4" />
+                  {`${t("quiz.cta.getPrefix")} ${recommendation.primary.name}`} <ExternalLink className="h-4 w-4" />
                 </a>
                 <Link 
                   href={`/wallet/${recommendation.primary.slug}`}
                   className="inline-flex items-center gap-2 h-12 px-8 border border-white/20 hover:bg-white/10 font-bold rounded-lg transition-colors"
                 >
-                  Read Full Review
+                  {t("quiz.cta.readReview")}
                 </Link>
               </div>
             </div>
 
             {recommendation.secondary && (
               <div className="bg-card/30 border border-white/10 rounded-2xl p-6">
-                <div className="text-sm text-muted-foreground mb-2">Also Consider</div>
+                <div className="text-sm text-muted-foreground mb-2">{t("quiz.alsoConsider")}</div>
                 <h3 className="text-xl font-bold mb-2">{recommendation.secondary.name}</h3>
-                <p className="text-muted-foreground mb-4">{recommendation.secondary.description}</p>
+                <p className="text-muted-foreground mb-4">{t(recommendation.secondary.descKey)}</p>
                 <Link 
                   href={`/wallet/${recommendation.secondary.slug}`}
                   className="text-primary hover:underline inline-flex items-center gap-1"
                 >
-                  Read Review <ArrowRight className="h-4 w-4" />
+                  {t("quiz.cta.readReviewShort")} <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             )}
@@ -266,15 +275,16 @@ export default function WalletQuiz() {
               <button
                 onClick={handleRestart}
                 className="inline-flex items-center gap-2 text-muted-foreground hover:text-white transition-colors"
+                data-testid="button-quiz-restart"
               >
                 <RotateCcw className="h-4 w-4" />
-                Start Over
+                {t("quiz.startOver")}
               </button>
             </div>
 
             <p className="text-center text-sm text-muted-foreground">
-              Links include affiliate tracking. See our{" "}
-              <Link href="/disclosure" className="text-primary hover:underline">disclosure</Link>.
+              {t("quiz.disclosure.text")}{" "}
+              <Link href="/disclosure" className="text-primary hover:underline">{t("quiz.disclosure.linkText")}</Link>.
             </p>
           </div>
         )}

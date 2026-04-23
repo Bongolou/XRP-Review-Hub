@@ -20,104 +20,127 @@ import upholdLogo from "@/assets/logos/uphold-logo.webp";
 import bitrueLogo from "@/assets/logos/bitrue-logo.webp";
 import krakenLogo from "@/assets/logos/kraken-logo.webp";
 
-const stakingOptions = [
+type StakingOption = {
+  id: number;
+  nameKey: string;
+  platform: string;
+  logo: string;
+  descKey: string;
+  apy: string;
+  lockPeriodKey: string;
+  featureKeys: string[];
+  riskKey: string;
+  link: string;
+  affiliate: string;
+  color: string;
+};
+
+type NativeOption = {
+  id: number;
+  nameKey: string;
+  descKey: string;
+  apy: string;
+  riskKey: string;
+  featureKeys: string[];
+  learnMoreLink: string;
+  color: string;
+};
+
+const stakingOptions: StakingOption[] = [
   {
     id: 1,
-    name: "Bitrue Power Piggy",
+    nameKey: "yield.option.bitrue.name",
     platform: "Bitrue",
     logo: bitrueLogo,
-    description: "Bitrue's flagship staking product lets you earn daily interest on your XRP and other crypto holdings. No lock-up period required - withdraw anytime.",
-    apy: "Up to 6.5%",
-    minDeposit: "10 XRP",
-    lockPeriod: "Flexible",
-    features: [
-      "Daily interest payouts",
-      "No lock-up required",
-      "Compound earnings automatically",
-      "Multiple asset support"
+    descKey: "yield.option.bitrue.desc",
+    apy: "6.5%",
+    lockPeriodKey: "yield.lockPeriod.flexible",
+    featureKeys: [
+      "yield.option.bitrue.f1",
+      "yield.option.bitrue.f2",
+      "yield.option.bitrue.f3",
+      "yield.option.bitrue.f4",
     ],
-    risk: "Low",
+    riskKey: "yield.risk.low",
     link: "https://www.bitrue.com/staking",
     affiliate: "https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL",
-    color: "from-blue-500 to-cyan-500"
+    color: "from-blue-500 to-cyan-500",
   },
   {
     id: 2,
-    name: "Uphold Staking",
+    nameKey: "yield.option.uphold.name",
     platform: "Uphold",
     logo: upholdLogo,
-    description: "Uphold offers simple, beginner-friendly staking for various cryptocurrencies. While XRP staking isn't available, you can earn on other assets and swap easily.",
-    apy: "Up to 12%",
-    minDeposit: "Varies",
-    lockPeriod: "Flexible",
-    features: [
-      "User-friendly interface",
-      "No minimum for most assets",
-      "Easy fiat on-ramp",
-      "Regulated platform"
+    descKey: "yield.option.uphold.desc",
+    apy: "12%",
+    lockPeriodKey: "yield.lockPeriod.flexible",
+    featureKeys: [
+      "yield.option.uphold.f1",
+      "yield.option.uphold.f2",
+      "yield.option.uphold.f3",
+      "yield.option.uphold.f4",
     ],
-    risk: "Low",
+    riskKey: "yield.risk.low",
     link: "https://uphold.com/earn",
     affiliate: "https://uphold.com/signup?referral=allthingsxrpl",
-    color: "from-green-500 to-emerald-500"
+    color: "from-green-500 to-emerald-500",
   },
   {
     id: 3,
-    name: "Kraken Staking",
+    nameKey: "yield.option.kraken.name",
     platform: "Kraken",
     logo: krakenLogo,
-    description: "Kraken provides institutional-grade staking services with competitive rates. Known for security and reliability, it's trusted by serious investors.",
-    apy: "Up to 8%",
-    minDeposit: "Varies by asset",
-    lockPeriod: "Flexible/Bonded",
-    features: [
-      "High security standards",
-      "Multiple staking options",
-      "On-chain and off-chain",
-      "Professional trading tools"
+    descKey: "yield.option.kraken.desc",
+    apy: "8%",
+    lockPeriodKey: "yield.lockPeriod.flexibleBonded",
+    featureKeys: [
+      "yield.option.kraken.f1",
+      "yield.option.kraken.f2",
+      "yield.option.kraken.f3",
+      "yield.option.kraken.f4",
     ],
-    risk: "Low",
+    riskKey: "yield.risk.low",
     link: "https://www.kraken.com/features/staking-coins",
     affiliate: "https://www.kraken.com/sign-up?clickid=allthingsxrpl",
-    color: "from-purple-500 to-violet-500"
-  }
+    color: "from-purple-500 to-violet-500",
+  },
 ];
 
-const xrplNativeOptions = [
+const xrplNativeOptions: NativeOption[] = [
   {
     id: 1,
-    name: "XRPL AMM Liquidity Provision",
-    description: "Provide liquidity to the native Automated Market Maker (AMM) on the XRP Ledger. Earn trading fees from swaps between token pairs.",
+    nameKey: "yield.native.amm.name",
+    descKey: "yield.native.amm.desc",
     apy: "Variable (3-15%)",
-    risk: "Medium",
-    features: [
-      "Native on-chain yield",
-      "No custodial risk",
-      "Earn trading fees",
-      "Support multiple pairs"
+    riskKey: "yield.risk.medium",
+    featureKeys: [
+      "yield.native.amm.f1",
+      "yield.native.amm.f2",
+      "yield.native.amm.f3",
+      "yield.native.amm.f4",
     ],
     learnMoreLink: "/blog/2",
-    color: "from-primary to-blue-400"
+    color: "from-primary to-blue-400",
   },
   {
     id: 2,
-    name: "Trustline Airdrops",
-    description: "Set trustlines for new tokens on XRPL and potentially receive airdrops. Many projects reward early supporters with free tokens.",
+    nameKey: "yield.native.trustline.name",
+    descKey: "yield.native.trustline.desc",
     apy: "Variable",
-    risk: "Low-Medium",
-    features: [
-      "Free token distributions",
-      "Low barrier to entry",
-      "Support new projects",
-      "Only costs reserve (2 XRP)"
+    riskKey: "yield.risk.lowMedium",
+    featureKeys: [
+      "yield.native.trustline.f1",
+      "yield.native.trustline.f2",
+      "yield.native.trustline.f3",
+      "yield.native.trustline.f4",
     ],
     learnMoreLink: "/blog/10",
-    color: "from-secondary to-orange-400"
-  }
+    color: "from-secondary to-orange-400",
+  },
 ];
 
 export default function YieldOpportunities() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const seo = getStaticPageSeo(language, "yield");
   useDocumentMeta({
     title: seo.title,
@@ -130,11 +153,11 @@ export default function YieldOpportunities() {
       <div className="container mx-auto px-4 py-20 md:py-24">
         <div className="text-center mb-16">
           <Badge className="mb-4 bg-secondary/20 text-secondary hover:bg-secondary/30 border-secondary/50">
-            Earn Passive Income
+            {t("yield.badge")}
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-black font-display mb-4">Yield Opportunities</h1>
+          <h1 className="text-4xl md:text-5xl font-black font-display mb-4">{t("yield.title")}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Discover the best ways to earn passive income on your XRP and other crypto holdings through staking, liquidity provision, and more.
+            {t("yield.subtitle")}
           </p>
         </div>
 
@@ -143,7 +166,7 @@ export default function YieldOpportunities() {
             <div className="bg-secondary/20 w-10 h-10 rounded-lg flex items-center justify-center border border-secondary/30">
               <Coins className="h-5 w-5 text-secondary" />
             </div>
-            <h2 className="text-2xl font-bold font-display">Exchange Staking</h2>
+            <h2 className="text-2xl font-bold font-display">{t("yield.section.exchange")}</h2>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -157,35 +180,35 @@ export default function YieldOpportunities() {
                     <img src={option.logo} alt={option.platform} className="w-full h-full object-cover" />
                   </div>
                   <Badge variant="outline" className="border-green-500/50 text-green-400 bg-green-500/10">
-                    {option.risk} Risk
+                    {t(option.riskKey)}{t("yield.risk.suffix")}
                   </Badge>
                 </div>
 
-                <h3 className="text-xl font-bold font-display mb-2">{option.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4 flex-1">{option.description}</p>
+                <h3 className="text-xl font-bold font-display mb-2">{t(option.nameKey)}</h3>
+                <p className="text-sm text-muted-foreground mb-4 flex-1">{t(option.descKey)}</p>
 
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div className="bg-white/5 rounded-lg p-3 border border-white/10">
                     <div className="flex items-center gap-1 text-xs text-muted-foreground mb-1">
                       <Percent className="h-3 w-3" />
-                      APY
+                      {t("yield.label.apy")}
                     </div>
-                    <div className="font-bold text-secondary">{option.apy}</div>
+                    <div className="font-bold text-secondary">{t("yield.apy.upTo")} {option.apy}</div>
                   </div>
                   <div className="bg-white/5 rounded-lg p-3 border border-white/10">
                     <div className="flex items-center gap-1 text-xs text-muted-foreground mb-1">
                       <Clock className="h-3 w-3" />
-                      Lock Period
+                      {t("yield.label.lockPeriod")}
                     </div>
-                    <div className="font-bold">{option.lockPeriod}</div>
+                    <div className="font-bold">{t(option.lockPeriodKey)}</div>
                   </div>
                 </div>
 
                 <div className="space-y-2 mb-6">
-                  {option.features.map((feature, idx) => (
+                  {option.featureKeys.map((fk, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Shield className="h-3 w-3 text-primary" />
-                      {feature}
+                      {t(fk)}
                     </div>
                   ))}
                 </div>
@@ -193,12 +216,12 @@ export default function YieldOpportunities() {
                 <div className="flex flex-col gap-2 mt-auto">
                   <a href={option.affiliate} target="_blank" rel="noopener noreferrer">
                     <Button className={`w-full bg-gradient-to-r ${option.color} text-white font-bold`}>
-                      Start Earning <ExternalLink className="ml-2 h-4 w-4" />
+                      {t("yield.cta.start")} <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
                   <a href={option.link} target="_blank" rel="noopener noreferrer">
                     <Button variant="ghost" className="w-full text-sm text-muted-foreground hover:text-primary">
-                      Learn More About {option.platform} Staking <ArrowRight className="ml-2 h-4 w-4" />
+                      {t("yield.cta.learnMore").replace("{platform}", option.platform)} <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
                 </div>
@@ -212,7 +235,7 @@ export default function YieldOpportunities() {
             <div className="bg-primary/20 w-10 h-10 rounded-lg flex items-center justify-center border border-primary/30">
               <Waves className="h-5 w-5 text-primary" />
             </div>
-            <h2 className="text-2xl font-bold font-display">XRPL Native Yield</h2>
+            <h2 className="text-2xl font-bold font-display">{t("yield.section.native")}</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -226,33 +249,33 @@ export default function YieldOpportunities() {
                     <TrendingUp className="h-6 w-6 text-white" />
                   </div>
                   <Badge variant="outline" className="border-yellow-500/50 text-yellow-400 bg-yellow-500/10">
-                    {option.risk} Risk
+                    {t(option.riskKey)}{t("yield.risk.suffix")}
                   </Badge>
                 </div>
 
-                <h3 className="text-xl font-bold font-display mb-2">{option.name}</h3>
-                <p className="text-muted-foreground mb-4">{option.description}</p>
+                <h3 className="text-xl font-bold font-display mb-2">{t(option.nameKey)}</h3>
+                <p className="text-muted-foreground mb-4">{t(option.descKey)}</p>
 
                 <div className="bg-white/5 rounded-lg p-3 border border-white/10 mb-4 inline-block">
                   <div className="flex items-center gap-1 text-xs text-muted-foreground mb-1">
                     <Percent className="h-3 w-3" />
-                    Estimated APY
+                    {t("yield.label.estApy")}
                   </div>
-                  <div className="font-bold text-primary">{option.apy}</div>
+                  <div className="font-bold text-primary">{option.apy.replace(/^Variable/, t("yield.apy.variable"))}</div>
                 </div>
 
                 <div className="space-y-2 mb-6">
-                  {option.features.map((feature, idx) => (
+                  {option.featureKeys.map((fk, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Shield className="h-3 w-3 text-secondary" />
-                      {feature}
+                      {t(fk)}
                     </div>
                   ))}
                 </div>
 
                 <Link href={option.learnMoreLink}>
                   <Button variant="outline" className="w-full border-primary/50 text-primary hover:bg-primary/10">
-                    Read Our Guide <ArrowRight className="ml-2 h-4 w-4" />
+                    {t("yield.cta.guide")} <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </div>
@@ -261,20 +284,19 @@ export default function YieldOpportunities() {
         </section>
 
         <section className="bg-gradient-to-r from-secondary/20 to-primary/20 border border-white/10 rounded-2xl p-6 md:p-8 text-center">
-          <h2 className="text-2xl font-bold font-display mb-4">Not Sure Where to Start?</h2>
+          <h2 className="text-2xl font-bold font-display mb-4">{t("yield.bottom.title")}</h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-            New to staking? We recommend starting with Bitrue Power Piggy for its flexibility and ease of use. 
-            No lock-up means you can withdraw anytime.
+            {t("yield.bottom.desc")}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL" target="_blank" rel="noopener noreferrer">
               <Button className="bg-gradient-to-r from-secondary to-orange-500 text-white font-bold">
-                Try Bitrue Power Piggy <ExternalLink className="ml-2 h-4 w-4" />
+                {t("yield.bottom.bitrue")} <ExternalLink className="ml-2 h-4 w-4" />
               </Button>
             </a>
             <Link href="/blog/2">
               <Button variant="outline" className="border-white/20">
-                Learn About AMM Staking <ArrowRight className="ml-2 h-4 w-4" />
+                {t("yield.bottom.amm")} <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
