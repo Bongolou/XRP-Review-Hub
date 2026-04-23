@@ -188,11 +188,17 @@ export async function registerRoutes(
   ];
 
   for (const lang of ["es", "zh", "ja", "ko", "pt", "de", "fr"]) {
-    const fname = `xrpl-defi-starter-kit.${lang}.md`;
+    const mdName = `xrpl-defi-starter-kit.${lang}.md`;
     leadMagnets.push({
-      route: `/downloads/${fname}`,
-      filename: fname,
+      route: `/downloads/${mdName}`,
+      filename: mdName,
       contentType: "text/markdown; charset=utf-8",
+    });
+    const pdfName = `xrpl-defi-starter-kit.${lang}.pdf`;
+    leadMagnets.push({
+      route: `/downloads/${pdfName}`,
+      filename: `downloads/${pdfName}`,
+      contentType: "application/pdf",
     });
   }
   for (const { route, filename, contentType } of leadMagnets) {

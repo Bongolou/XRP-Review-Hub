@@ -10,13 +10,13 @@ export const DEFI_LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-defi-starter-kit.pdf"
 
 const DEFI_LEAD_MAGNET_LOCALIZED: Record<Language, string> = {
   en: "/downloads/xrpl-defi-starter-kit.pdf",
-  es: "/downloads/xrpl-defi-starter-kit.es.md",
-  zh: "/downloads/xrpl-defi-starter-kit.zh.md",
-  ja: "/downloads/xrpl-defi-starter-kit.ja.md",
-  ko: "/downloads/xrpl-defi-starter-kit.ko.md",
-  pt: "/downloads/xrpl-defi-starter-kit.pt.md",
-  de: "/downloads/xrpl-defi-starter-kit.de.md",
-  fr: "/downloads/xrpl-defi-starter-kit.fr.md",
+  es: "/downloads/xrpl-defi-starter-kit.es.pdf",
+  zh: "/downloads/xrpl-defi-starter-kit.zh.pdf",
+  ja: "/downloads/xrpl-defi-starter-kit.ja.pdf",
+  ko: "/downloads/xrpl-defi-starter-kit.ko.pdf",
+  pt: "/downloads/xrpl-defi-starter-kit.pt.pdf",
+  de: "/downloads/xrpl-defi-starter-kit.de.pdf",
+  fr: "/downloads/xrpl-defi-starter-kit.fr.pdf",
 };
 
 export function getDefiLeadMagnetAssetUrl(language: Language): string {
