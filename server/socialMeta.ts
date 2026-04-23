@@ -11,7 +11,7 @@ import {
   type StaticPageKey,
   type BestForSlug,
 } from "../client/src/lib/i18n/pageSeo";
-import type { Language } from "../client/src/lib/i18n/translations";
+import { translations, type Language } from "../client/src/lib/i18n/translations";
 import { dappsTranslations } from "../client/src/lib/i18n/dappsTranslations";
 
 type Meta = { title: string; description: string; image?: string };
@@ -117,9 +117,19 @@ export function resolveMetaForPath(
     const id = parseInt(blogMatch[1], 10);
     const post = blogPosts.find((p) => p.id === id);
     if (post) {
+      const dict = translations[lang] ?? translations.en;
+      const enDict = translations.en;
+      const translatedTitle =
+        dict[post.titleKey] ?? enDict[post.titleKey] ?? post.title;
+      const translatedExcerpt =
+        dict[post.excerptKey] ?? enDict[post.excerptKey];
+      const description =
+        lang === "en" || !translatedExcerpt
+          ? `${translatedTitle} — read this XRPL guide on All Things XRPL.`
+          : translatedExcerpt;
       return {
-        title: `${post.title} | All Things XRPL`,
-        description: `${post.title} — read this XRPL guide on All Things XRPL.`,
+        title: `${translatedTitle} | All Things XRPL`,
+        description,
         image: post.image,
       };
     }
