@@ -52,25 +52,26 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       if (stored && stored in translations) {
         return stored as Language;
       }
-      const browserLang = navigator.language.split("-")[0];
-      if (browserLang in translations) {
-        return browserLang as Language;
-      }
     }
-    return "en";
+    return DEFAULT_LANG;
   });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem(STORAGE_KEY, lang);
+    if (lang === DEFAULT_LANG) {
+      localStorage.removeItem(STORAGE_KEY);
+    } else {
+      localStorage.setItem(STORAGE_KEY, lang);
+    }
     document.documentElement.lang = lang;
     syncLangInUrl(lang, "push");
   };
 
   useEffect(() => {
     document.documentElement.lang = language;
-    // Ensure the URL reflects the language chosen at first render (e.g. from
-    // localStorage or browser locale) so shareable links carry the signal.
+    // Ensure the URL reflects the language chosen at first render (resolved
+    // from the URL param, then localStorage, otherwise English) so shareable
+    // links carry the signal.
     syncLangInUrl(language, "replace");
   }, [language]);
 
