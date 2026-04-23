@@ -4,6 +4,9 @@ import { useState } from "react";
 import { ArrowRight, ArrowLeft, ExternalLink, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "wouter";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 const questions = [
   {
@@ -125,6 +128,13 @@ function getRecommendation(answers: Answers): {
 }
 
 export default function WalletQuiz() {
+  const { language } = useLanguage();
+  const seo = getStaticPageSeo(language, "walletQuiz");
+  useDocumentMeta({
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: "/wallet-quiz",
+  });
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [showResults, setShowResults] = useState(false);

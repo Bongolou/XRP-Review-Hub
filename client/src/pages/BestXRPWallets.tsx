@@ -2,6 +2,8 @@ import { Layout } from "@/components/Layout";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 import {
   FastCompareTable,
   VerdictBox,
@@ -13,7 +15,13 @@ import {
 } from "@/components/conversion";
 
 export default function BestXRPWallets() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const seo = getStaticPageSeo(language, "bestXrpWallets");
+  useDocumentMeta({
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: "/best-xrp-wallets",
+  });
 
   const rows: FastCompareRow[] = [
     {

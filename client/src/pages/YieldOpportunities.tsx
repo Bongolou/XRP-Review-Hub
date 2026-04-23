@@ -12,6 +12,9 @@ import {
   Waves
 } from "lucide-react";
 import { Link } from "wouter";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 import upholdLogo from "@/assets/logos/uphold-logo.webp";
 import bitrueLogo from "@/assets/logos/bitrue-logo.webp";
 import krakenLogo from "@/assets/logos/kraken-logo.webp";
@@ -113,6 +116,13 @@ const xrplNativeOptions = [
 ];
 
 export default function YieldOpportunities() {
+  const { language } = useLanguage();
+  const seo = getStaticPageSeo(language, "yield");
+  useDocumentMeta({
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: "/yield",
+  });
   return (
     <Layout>
       <div className="container mx-auto px-4 py-20 md:py-24">

@@ -8,10 +8,23 @@ export type StaticPageKey =
   | "contact"
   | "faq"
   | "gettingStarted"
-  | "disclosure";
+  | "disclosure"
+  | "bestXrpWallets"
+  | "yield"
+  | "walletQuiz"
+  | "privacy"
+  | "terms";
+
+export type BestForSlug =
+  | "beginners"
+  | "hardware"
+  | "cold-storage"
+  | "defi"
+  | "safest";
 
 type ExchangeSeoMap = Record<string, SeoEntry>;
 type StaticSeoMap = Record<StaticPageKey, SeoEntry>;
+type BestForSeoMap = Record<BestForSlug, SeoEntry>;
 
 export const exchangeSeo: Record<Language, ExchangeSeoMap> = {
   en: {
@@ -349,6 +362,31 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
       description:
         "How All Things XRPL is funded, our editorial standards, affiliate-link policy and the methodology behind our XRP wallet and exchange reviews.",
     },
+    bestXrpWallets: {
+      title: "Best XRP Wallets 2026 | Software, Hardware & Cold Storage Picks",
+      description:
+        "Independent reviews of the best XRP wallets in 2026 — software, hardware, browser and air-gapped picks for daily use, cold storage and XRPL DeFi.",
+    },
+    yield: {
+      title: "XRP Yield Opportunities 2026 | Staking, AMM & Airdrops",
+      description:
+        "Compare the best ways to earn yield on XRP in 2026 — exchange staking with Bitrue, Uphold and Kraken plus the native XRPL AMM and trustline airdrops.",
+    },
+    walletQuiz: {
+      title: "XRP Wallet Quiz | Find Your Perfect XRP Wallet in 60 Seconds",
+      description:
+        "Answer a few quick questions and we'll match you to the best XRP wallet for your needs — beginner, hardware, DeFi or cold storage.",
+    },
+    privacy: {
+      title: "Privacy Policy | All Things XRPL",
+      description:
+        "How All Things XRPL collects, uses and protects your data — cookies, analytics, email signups and your rights under GDPR and CCPA.",
+    },
+    terms: {
+      title: "Terms of Service | All Things XRPL",
+      description:
+        "The terms governing your use of All Things XRPL — content disclaimers, affiliate links, intellectual property and limitation of liability.",
+    },
   },
   es: {
     news: {
@@ -385,6 +423,31 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
       title: "Estándares editoriales y divulgación de afiliados | All Things XRPL",
       description:
         "Cómo se financia All Things XRPL, nuestros estándares editoriales, política de enlaces de afiliados y metodología detrás de nuestras reseñas de carteras y exchanges XRP.",
+    },
+    bestXrpWallets: {
+      title: "Mejores carteras XRP 2026 | Software, hardware y almacenamiento en frío",
+      description:
+        "Reseñas independientes de las mejores carteras XRP en 2026 — opciones de software, hardware, navegador y air-gapped para uso diario, almacenamiento en frío y DeFi en XRPL.",
+    },
+    yield: {
+      title: "Oportunidades de yield en XRP 2026 | Staking, AMM y airdrops",
+      description:
+        "Compara las mejores formas de generar rendimiento con XRP en 2026 — staking en exchanges como Bitrue, Uphold y Kraken, además del AMM nativo de XRPL y airdrops por trustline.",
+    },
+    walletQuiz: {
+      title: "Quiz de carteras XRP | Encuentra tu cartera XRP ideal en 60 segundos",
+      description:
+        "Responde unas preguntas rápidas y te asignaremos la mejor cartera XRP para tus necesidades — principiante, hardware, DeFi o almacenamiento en frío.",
+    },
+    privacy: {
+      title: "Política de privacidad | All Things XRPL",
+      description:
+        "Cómo All Things XRPL recopila, utiliza y protege tus datos — cookies, analítica, suscripciones por email y tus derechos bajo el RGPD y la CCPA.",
+    },
+    terms: {
+      title: "Términos del servicio | All Things XRPL",
+      description:
+        "Los términos que rigen tu uso de All Things XRPL — exenciones de contenido, enlaces de afiliados, propiedad intelectual y limitación de responsabilidad.",
     },
   },
   zh: {
@@ -423,6 +486,31 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
       description:
         "All Things XRPL 的资金来源、编辑准则、联盟链接政策,以及我们 XRP 钱包与交易所评测背后的方法论。",
     },
+    bestXrpWallets: {
+      title: "2026 年最佳 XRP 钱包 | 软件、硬件与冷存储推荐",
+      description:
+        "2026 年最佳 XRP 钱包的独立评测——软件、硬件、浏览器与气隙钱包,覆盖日常使用、冷存储与 XRPL DeFi。",
+    },
+    yield: {
+      title: "2026 年 XRP 收益机会 | 质押、AMM 与空投",
+      description:
+        "比较 2026 年通过 XRP 赚取收益的最佳方式——Bitrue、Uphold 与 Kraken 的交易所质押,以及 XRPL 原生 AMM 与信任线空投。",
+    },
+    walletQuiz: {
+      title: "XRP 钱包小测验 | 60 秒找到你的理想 XRP 钱包",
+      description:
+        "回答几个简短问题,我们将为你匹配最适合的 XRP 钱包——新手、硬件、DeFi 或冷存储。",
+    },
+    privacy: {
+      title: "隐私政策 | All Things XRPL",
+      description:
+        "All Things XRPL 如何收集、使用与保护你的数据——Cookie、分析、邮件订阅,以及你在 GDPR 与 CCPA 下的权利。",
+    },
+    terms: {
+      title: "服务条款 | All Things XRPL",
+      description:
+        "管理你使用 All Things XRPL 的条款——内容免责、联盟链接、知识产权与责任限制。",
+    },
   },
   ja: {
     news: {
@@ -459,6 +547,31 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
       title: "編集方針とアフィリエイト開示 | All Things XRPL",
       description:
         "All Things XRPLの収益源、編集方針、アフィリエイトリンクポリシー、そしてXRPウォレットと取引所レビューの方法論。",
+    },
+    bestXrpWallets: {
+      title: "2026年版 おすすめXRPウォレット | ソフトウェア・ハードウェア・コールドストレージ",
+      description:
+        "2026年のおすすめXRPウォレットを独立レビュー — ソフトウェア、ハードウェア、ブラウザ、エアギャップから、日常使用・コールドストレージ・XRPL DeFi向けの厳選を紹介。",
+    },
+    yield: {
+      title: "XRPの利回り機会 2026 | ステーキング、AMM、エアドロップ",
+      description:
+        "2026年にXRPで利回りを得る最良の方法を比較 — Bitrue、Uphold、Krakenでの取引所ステーキング、XRPLネイティブAMM、トラストラインエアドロップ。",
+    },
+    walletQuiz: {
+      title: "XRPウォレット診断 | 60秒であなたに最適なXRPウォレットが分かる",
+      description:
+        "簡単な質問に答えるだけで、初心者・ハードウェア・DeFi・コールドストレージなど用途に合った最適なXRPウォレットをご提案します。",
+    },
+    privacy: {
+      title: "プライバシーポリシー | All Things XRPL",
+      description:
+        "All Things XRPLによるデータの収集・利用・保護方針 — Cookie、解析、メール登録、GDPR・CCPAに基づくあなたの権利。",
+    },
+    terms: {
+      title: "利用規約 | All Things XRPL",
+      description:
+        "All Things XRPLの利用に関する規約 — コンテンツの免責事項、アフィリエイトリンク、知的財産、責任の制限。",
     },
   },
   ko: {
@@ -497,6 +610,31 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
       description:
         "All Things XRPL의 자금원, 편집 기준, 제휴 링크 정책, 그리고 XRP 지갑과 거래소 리뷰 뒤의 방법론.",
     },
+    bestXrpWallets: {
+      title: "2026년 최고의 XRP 지갑 | 소프트웨어, 하드웨어, 콜드 스토리지 추천",
+      description:
+        "2026년 최고의 XRP 지갑 독립 리뷰 — 소프트웨어, 하드웨어, 브라우저, 에어갭 옵션을 일상 사용, 콜드 스토리지, XRPL DeFi 기준으로 정리.",
+    },
+    yield: {
+      title: "2026년 XRP 수익 기회 | 스테이킹, AMM, 에어드롭",
+      description:
+        "2026년 XRP로 수익을 얻는 최고의 방법 비교 — Bitrue, Uphold, Kraken 거래소 스테이킹과 XRPL 네이티브 AMM, 트러스트라인 에어드롭.",
+    },
+    walletQuiz: {
+      title: "XRP 지갑 퀴즈 | 60초만에 나에게 맞는 XRP 지갑 찾기",
+      description:
+        "몇 가지 짧은 질문에 답하면 초보자, 하드웨어, DeFi, 콜드 스토리지 등 필요에 맞는 최고의 XRP 지갑을 추천해 드립니다.",
+    },
+    privacy: {
+      title: "개인정보 처리방침 | All Things XRPL",
+      description:
+        "All Things XRPL이 데이터를 수집, 사용, 보호하는 방법 — 쿠키, 분석, 이메일 구독, GDPR 및 CCPA에 따른 권리.",
+    },
+    terms: {
+      title: "서비스 약관 | All Things XRPL",
+      description:
+        "All Things XRPL 이용을 규율하는 약관 — 콘텐츠 면책, 제휴 링크, 지적 재산권, 책임 제한.",
+    },
   },
   pt: {
     news: {
@@ -533,6 +671,31 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
       title: "Padrões editoriais e divulgação de afiliados | All Things XRPL",
       description:
         "Como o All Things XRPL é financiado, nossos padrões editoriais, política de links de afiliado e a metodologia por trás das nossas análises de carteiras e exchanges XRP.",
+    },
+    bestXrpWallets: {
+      title: "Melhores carteiras XRP 2026 | Software, hardware e cold storage",
+      description:
+        "Análises independentes das melhores carteiras XRP em 2026 — software, hardware, navegador e air-gapped para uso diário, cold storage e DeFi na XRPL.",
+    },
+    yield: {
+      title: "Oportunidades de yield em XRP 2026 | Staking, AMM e airdrops",
+      description:
+        "Compare as melhores formas de gerar yield com XRP em 2026 — staking em exchanges como Bitrue, Uphold e Kraken, além do AMM nativo da XRPL e airdrops por trustline.",
+    },
+    walletQuiz: {
+      title: "Quiz de carteiras XRP | Encontre sua carteira XRP ideal em 60 segundos",
+      description:
+        "Responda algumas perguntas rápidas e indicaremos a melhor carteira XRP para você — iniciante, hardware, DeFi ou cold storage.",
+    },
+    privacy: {
+      title: "Política de privacidade | All Things XRPL",
+      description:
+        "Como o All Things XRPL coleta, usa e protege seus dados — cookies, análise, inscrições por e-mail e seus direitos sob o GDPR e o CCPA.",
+    },
+    terms: {
+      title: "Termos de uso | All Things XRPL",
+      description:
+        "Os termos que regem o uso do All Things XRPL — isenções de conteúdo, links de afiliados, propriedade intelectual e limitação de responsabilidade.",
     },
   },
   de: {
@@ -571,6 +734,31 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
       description:
         "Wie All Things XRPL finanziert wird, unsere redaktionellen Standards, Affiliate-Link-Richtlinie und Methodik hinter unseren XRP-Wallet- und Börsen-Reviews.",
     },
+    bestXrpWallets: {
+      title: "Beste XRP-Wallets 2026 | Software, Hardware und Cold Storage",
+      description:
+        "Unabhängige Reviews der besten XRP-Wallets 2026 — Software-, Hardware-, Browser- und Air-Gapped-Optionen für den täglichen Gebrauch, Cold Storage und XRPL-DeFi.",
+    },
+    yield: {
+      title: "XRP-Yield-Möglichkeiten 2026 | Staking, AMM und Airdrops",
+      description:
+        "Vergleiche die besten Möglichkeiten, mit XRP 2026 Rendite zu erzielen — Börsen-Staking bei Bitrue, Uphold und Kraken sowie das native XRPL-AMM und Trustline-Airdrops.",
+    },
+    walletQuiz: {
+      title: "XRP-Wallet-Quiz | Finde in 60 Sekunden deine perfekte XRP-Wallet",
+      description:
+        "Beantworte ein paar kurze Fragen und wir empfehlen dir die beste XRP-Wallet für dich — Einsteiger, Hardware, DeFi oder Cold Storage.",
+    },
+    privacy: {
+      title: "Datenschutzerklärung | All Things XRPL",
+      description:
+        "Wie All Things XRPL deine Daten erhebt, nutzt und schützt — Cookies, Analyse, E-Mail-Anmeldungen und deine Rechte gemäß DSGVO und CCPA.",
+    },
+    terms: {
+      title: "Nutzungsbedingungen | All Things XRPL",
+      description:
+        "Die Bedingungen für die Nutzung von All Things XRPL — Inhaltshaftungsausschluss, Affiliate-Links, geistiges Eigentum und Haftungsbeschränkung.",
+    },
   },
   fr: {
     news: {
@@ -608,6 +796,250 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
       description:
         "Comment All Things XRPL est financé, nos normes éditoriales, notre politique de liens d'affiliation et la méthodologie derrière nos avis sur les portefeuilles et plateformes XRP.",
     },
+    bestXrpWallets: {
+      title: "Meilleurs portefeuilles XRP 2026 | Logiciel, matériel et cold storage",
+      description:
+        "Avis indépendants sur les meilleurs portefeuilles XRP en 2026 — logiciel, matériel, navigateur et air-gapped pour l'usage quotidien, le cold storage et la DeFi XRPL.",
+    },
+    yield: {
+      title: "Opportunités de rendement XRP 2026 | Staking, AMM et airdrops",
+      description:
+        "Comparez les meilleures façons d'obtenir du rendement avec XRP en 2026 — staking sur Bitrue, Uphold et Kraken, plus l'AMM natif XRPL et les airdrops par trustline.",
+    },
+    walletQuiz: {
+      title: "Quiz portefeuille XRP | Trouvez votre portefeuille XRP idéal en 60 secondes",
+      description:
+        "Répondez à quelques questions rapides et nous vous recommanderons le meilleur portefeuille XRP pour vous — débutant, matériel, DeFi ou cold storage.",
+    },
+    privacy: {
+      title: "Politique de confidentialité | All Things XRPL",
+      description:
+        "Comment All Things XRPL collecte, utilise et protège vos données — cookies, analyse, inscriptions par e-mail et vos droits au titre du RGPD et du CCPA.",
+    },
+    terms: {
+      title: "Conditions d'utilisation | All Things XRPL",
+      description:
+        "Les conditions régissant votre utilisation d'All Things XRPL — avertissements sur le contenu, liens d'affiliation, propriété intellectuelle et limitation de responsabilité.",
+    },
+  },
+};
+
+export const bestForSeo: Record<Language, BestForSeoMap> = {
+  en: {
+    beginners: {
+      title: "Best XRP Wallets for Beginners (2026) | All Things XRPL",
+      description:
+        "The easiest XRP wallets for first-time buyers in 2026 — free, well-built and beginner-friendly picks that won't trip you up.",
+    },
+    hardware: {
+      title: "Best Hardware Wallets for XRP (2026) | All Things XRPL",
+      description:
+        "The four hardware wallets we trust with our own XRP in 2026 — secure element, air-gapped and NFC options compared head-to-head.",
+    },
+    "cold-storage": {
+      title: "Best XRP Cold Storage Setups (2026) | All Things XRPL",
+      description:
+        "The cold storage setup we trust most for long-term XRP holdings in 2026 — fully offline keys, recovery and operational best practices.",
+    },
+    defi: {
+      title: "Best Wallets for XRPL DeFi (2026) | All Things XRPL",
+      description:
+        "The four wallets that actually let you sign DEX trades, AMM positions and dApp logins on the XRP Ledger in 2026.",
+    },
+    safest: {
+      title: "Safest XRP Wallet (2026) | All Things XRPL",
+      description:
+        "Our safest XRP wallet pick for 2026, ranked by attack surface, hardware certification, recovery options and operational risk — not by features.",
+    },
+  },
+  es: {
+    beginners: {
+      title: "Mejores carteras XRP para principiantes (2026) | All Things XRPL",
+      description:
+        "Las carteras XRP más fáciles para quienes compran por primera vez en 2026 — opciones gratuitas, bien hechas y aptas para principiantes que no te harán tropezar.",
+    },
+    hardware: {
+      title: "Mejores carteras hardware para XRP (2026) | All Things XRPL",
+      description:
+        "Las cuatro carteras hardware en las que confiamos para nuestros propios XRP en 2026 — secure element, air-gapped y NFC, comparadas cara a cara.",
+    },
+    "cold-storage": {
+      title: "Mejores configuraciones de almacenamiento en frío para XRP (2026) | All Things XRPL",
+      description:
+        "La configuración de almacenamiento en frío en la que más confiamos para tenencias de XRP a largo plazo en 2026 — claves totalmente offline, recuperación y mejores prácticas.",
+    },
+    defi: {
+      title: "Mejores carteras para XRPL DeFi (2026) | All Things XRPL",
+      description:
+        "Las cuatro carteras que realmente te permiten firmar operaciones en el DEX, posiciones AMM e inicios de sesión en dApps del XRP Ledger en 2026.",
+    },
+    safest: {
+      title: "Cartera XRP más segura (2026) | All Things XRPL",
+      description:
+        "Nuestra elección de la cartera XRP más segura para 2026, clasificada por superficie de ataque, certificación hardware, opciones de recuperación y riesgo operativo.",
+    },
+  },
+  zh: {
+    beginners: {
+      title: "新手最佳 XRP 钱包(2026)| All Things XRPL",
+      description:
+        "2026 年面向首次购买者最简单的 XRP 钱包——免费、做工出色、对新手友好,不会让你卡壳。",
+    },
+    hardware: {
+      title: "最佳 XRP 硬件钱包(2026)| All Things XRPL",
+      description:
+        "2026 年我们愿意托付自己 XRP 的四款硬件钱包——安全芯片、气隙与 NFC 方案的正面对比。",
+    },
+    "cold-storage": {
+      title: "最佳 XRP 冷存储配置(2026)| All Things XRPL",
+      description:
+        "2026 年我们最信赖的长期 XRP 冷存储配置——完全离线的私钥、恢复方案与运营最佳实践。",
+    },
+    defi: {
+      title: "XRPL DeFi 最佳钱包(2026)| All Things XRPL",
+      description:
+        "2026 年真正能让你在 XRP Ledger 上签署 DEX 交易、AMM 头寸和 dApp 登录的四款钱包。",
+    },
+    safest: {
+      title: "最安全的 XRP 钱包(2026)| All Things XRPL",
+      description:
+        "我们 2026 年评选的最安全 XRP 钱包,按攻击面、硬件认证、恢复选项与运营风险排名,而非按功能。",
+    },
+  },
+  ja: {
+    beginners: {
+      title: "初心者向け最高のXRPウォレット(2026年)| All Things XRPL",
+      description:
+        "2026年に初めてXRPを買う人向けの、最もやさしいウォレット — 無料・しっかり作られた、つまずかせない厳選。",
+    },
+    hardware: {
+      title: "XRPに最適なハードウェアウォレット(2026年)| All Things XRPL",
+      description:
+        "2026年に私たち自身のXRPを任せている4つのハードウェアウォレット — セキュアエレメント、エアギャップ、NFCを正面比較。",
+    },
+    "cold-storage": {
+      title: "XRPに最適なコールドストレージ構成(2026年)| All Things XRPL",
+      description:
+        "2026年の長期XRP保有に最も信頼している構成 — 完全オフラインの鍵、復旧、運用のベストプラクティス。",
+    },
+    defi: {
+      title: "XRPL DeFiに最適なウォレット(2026年)| All Things XRPL",
+      description:
+        "2026年にXRP Ledger上のDEX取引・AMMポジション・dAppログインに本当に署名できる4つのウォレット。",
+    },
+    safest: {
+      title: "最も安全なXRPウォレット(2026年)| All Things XRPL",
+      description:
+        "2026年版の最も安全なXRPウォレット — 機能ではなく、攻撃面・ハードウェア認証・復旧・運用リスクで評価。",
+    },
+  },
+  ko: {
+    beginners: {
+      title: "초보자를 위한 최고의 XRP 지갑 (2026) | All Things XRPL",
+      description:
+        "2026년 처음 XRP를 구매하는 사람을 위한 가장 쉬운 지갑 — 무료이고 잘 만들어졌으며 헷갈리지 않는 엄선.",
+    },
+    hardware: {
+      title: "XRP 최고의 하드웨어 지갑 (2026) | All Things XRPL",
+      description:
+        "2026년 저희 자산을 맡기고 있는 네 가지 하드웨어 지갑 — 시큐어 엘리먼트, 에어갭, NFC 옵션 정면 비교.",
+    },
+    "cold-storage": {
+      title: "최고의 XRP 콜드 스토리지 구성 (2026) | All Things XRPL",
+      description:
+        "2026년 장기 XRP 보유에 가장 신뢰하는 구성 — 완전 오프라인 키, 복구, 운영 모범 사례.",
+    },
+    defi: {
+      title: "XRPL DeFi 최고의 지갑 (2026) | All Things XRPL",
+      description:
+        "2026년 XRP Ledger에서 DEX 거래, AMM 포지션, dApp 로그인에 실제로 서명할 수 있는 네 가지 지갑.",
+    },
+    safest: {
+      title: "가장 안전한 XRP 지갑 (2026) | All Things XRPL",
+      description:
+        "2026년 가장 안전한 XRP 지갑 추천 — 기능이 아니라 공격 표면, 하드웨어 인증, 복구 옵션, 운영 리스크 기준.",
+    },
+  },
+  pt: {
+    beginners: {
+      title: "Melhores carteiras XRP para iniciantes (2026) | All Things XRPL",
+      description:
+        "As carteiras XRP mais fáceis para quem compra pela primeira vez em 2026 — opções gratuitas, bem feitas e amigáveis a iniciantes que não te atrapalham.",
+    },
+    hardware: {
+      title: "Melhores carteiras hardware para XRP (2026) | All Things XRPL",
+      description:
+        "As quatro carteiras hardware nas quais confiamos nossos próprios XRP em 2026 — secure element, air-gapped e NFC comparadas cara a cara.",
+    },
+    "cold-storage": {
+      title: "Melhores configurações de cold storage para XRP (2026) | All Things XRPL",
+      description:
+        "A configuração de cold storage em que mais confiamos para holdings de XRP de longo prazo em 2026 — chaves totalmente offline, recuperação e boas práticas operacionais.",
+    },
+    defi: {
+      title: "Melhores carteiras para XRPL DeFi (2026) | All Things XRPL",
+      description:
+        "As quatro carteiras que realmente permitem assinar trades DEX, posições AMM e logins dApp no XRP Ledger em 2026.",
+    },
+    safest: {
+      title: "Carteira XRP mais segura (2026) | All Things XRPL",
+      description:
+        "Nossa escolha de carteira XRP mais segura para 2026, classificada por superfície de ataque, certificação hardware, opções de recuperação e risco operacional.",
+    },
+  },
+  de: {
+    beginners: {
+      title: "Beste XRP-Wallets für Einsteiger (2026) | All Things XRPL",
+      description:
+        "Die einfachsten XRP-Wallets für Erstkäufer 2026 — kostenlos, gut gebaut und einsteigerfreundlich, ohne dich stolpern zu lassen.",
+    },
+    hardware: {
+      title: "Beste Hardware-Wallets für XRP (2026) | All Things XRPL",
+      description:
+        "Die vier Hardware-Wallets, denen wir 2026 unsere eigenen XRP anvertrauen — Secure Element, Air-Gapped und NFC im direkten Vergleich.",
+    },
+    "cold-storage": {
+      title: "Beste XRP-Cold-Storage-Setups (2026) | All Things XRPL",
+      description:
+        "Das Cold-Storage-Setup, dem wir 2026 für langfristige XRP-Bestände am meisten vertrauen — vollständig offline, Wiederherstellung und Best Practices.",
+    },
+    defi: {
+      title: "Beste Wallets für XRPL-DeFi (2026) | All Things XRPL",
+      description:
+        "Die vier Wallets, mit denen du 2026 tatsächlich DEX-Trades, AMM-Positionen und dApp-Logins auf dem XRP Ledger signieren kannst.",
+    },
+    safest: {
+      title: "Sicherste XRP-Wallet (2026) | All Things XRPL",
+      description:
+        "Unsere Wahl der sichersten XRP-Wallet 2026 — bewertet nach Angriffsfläche, Hardware-Zertifizierung, Wiederherstellung und Betriebsrisiko, nicht nach Funktionen.",
+    },
+  },
+  fr: {
+    beginners: {
+      title: "Meilleurs portefeuilles XRP pour débutants (2026) | All Things XRPL",
+      description:
+        "Les portefeuilles XRP les plus faciles pour les premiers achats en 2026 — gratuits, bien conçus et adaptés aux débutants, sans vous tromper.",
+    },
+    hardware: {
+      title: "Meilleurs portefeuilles matériels pour XRP (2026) | All Things XRPL",
+      description:
+        "Les quatre portefeuilles matériels auxquels nous confions nos propres XRP en 2026 — secure element, air-gapped et NFC comparés tête-à-tête.",
+    },
+    "cold-storage": {
+      title: "Meilleures configurations de cold storage XRP (2026) | All Things XRPL",
+      description:
+        "La configuration de cold storage en laquelle nous avons le plus confiance pour les avoirs XRP à long terme en 2026 — clés totalement hors ligne, récupération et bonnes pratiques.",
+    },
+    defi: {
+      title: "Meilleurs portefeuilles pour la DeFi XRPL (2026) | All Things XRPL",
+      description:
+        "Les quatre portefeuilles qui permettent réellement de signer des trades DEX, des positions AMM et des connexions dApp sur le XRP Ledger en 2026.",
+    },
+    safest: {
+      title: "Portefeuille XRP le plus sûr (2026) | All Things XRPL",
+      description:
+        "Notre choix du portefeuille XRP le plus sûr pour 2026, classé selon la surface d'attaque, la certification matérielle, les options de récupération et le risque opérationnel.",
+    },
   },
 };
 
@@ -617,4 +1049,9 @@ export function getExchangeSeo(language: Language, slug: string): SeoEntry | und
 
 export function getStaticPageSeo(language: Language, key: StaticPageKey): SeoEntry {
   return staticPageSeo[language]?.[key] ?? staticPageSeo.en[key];
+}
+
+export function getBestForSeo(language: Language, slug: string): SeoEntry | undefined {
+  const map = bestForSeo[language] ?? bestForSeo.en;
+  return map[slug as BestForSlug] ?? bestForSeo.en[slug as BestForSlug];
 }

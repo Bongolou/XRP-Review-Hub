@@ -1,6 +1,16 @@
 import { Layout } from "@/components/Layout";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 export default function Terms() {
+  const { language } = useLanguage();
+  const seo = getStaticPageSeo(language, "terms");
+  useDocumentMeta({
+    title: seo.title,
+    description: seo.description,
+    canonicalPath: "/terms",
+  });
   return (
     <Layout>
       <div className="container mx-auto px-4 max-w-4xl py-20 md:py-24">

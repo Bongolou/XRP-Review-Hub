@@ -3,6 +3,8 @@ import { Layout } from "@/components/Layout";
 import { Badge } from "@/components/ui/badge";
 import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getBestForSeo } from "@/lib/i18n/pageSeo";
 import {
   VerdictBox,
   FastCompareTable,
@@ -91,9 +93,16 @@ const pickReviewSlug: Record<string, string> = {
 const validSlugs = ["beginners", "hardware", "cold-storage", "defi", "safest"];
 
 export default function BestFor() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
+
+  const seo = slug && validSlugs.includes(slug) ? getBestForSeo(language, slug) : undefined;
+  useDocumentMeta({
+    title: seo?.title,
+    description: seo?.description,
+    canonicalPath: seo ? `/best-for/${slug}` : undefined,
+  });
 
   if (!slug || !validSlugs.includes(slug)) {
     return (
