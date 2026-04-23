@@ -46,6 +46,7 @@ Preferred communication style: Simple, everyday language.
 - **Script**: `scripts/audit-affiliate-links.mjs`
 - **Run**: `node scripts/audit-affiliate-links.mjs`
 - **What it does**: Extracts every outbound affiliate/social URL from `client/src/pages/Home.tsx`, `client/src/pages/reviews/ExchangeReview.tsx`, `client/src/pages/reviews/WalletReview.tsx`, and `client/src/components/SocialLinks.tsx`, then probes each one (HEAD with GET fallback) and writes `reports/affiliate-link-audit.txt`. Known anti-bot 403 responses from `tangem.com`, `uphold.com`, and `coinbase.com` are filed under "Ignored" so they don't create noise. Exits non-zero when broken links are found, so it can be wired into a weekly cron / CI schedule.
+- **Schedule**: A GitHub Actions workflow at `.github/workflows/affiliate-link-audit.yml` runs the audit every Monday at 12:00 UTC (and is also triggerable manually via `workflow_dispatch`). Every run uploads `reports/affiliate-link-audit.txt` as a downloadable build artifact named `affiliate-link-audit-report`. When the script exits non-zero (broken links found), the workflow opens a GitHub issue labeled `affiliate-audit` (or comments on the existing open one) containing the report and a link to the failing run, then fails the job so the maintainer is notified.
 
 ## External Dependencies
 
