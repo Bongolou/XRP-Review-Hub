@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useParams } from "wouter";
 import { Link } from "@/lib/i18n/LocalizedLink";
 import { Check, X, ExternalLink, ArrowLeft, Trophy, Shield, Zap, Users, AlertTriangle, ThumbsUp, ThumbsDown } from "lucide-react";
-import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
+import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock, getShortlistAssetUrl } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { getSeoEntry } from "@/lib/i18n/seoTranslations";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -1216,6 +1216,7 @@ export default function Compare() {
             description="We'll email you the same comparison cheat-sheet we'd give a friend choosing between these two."
             source={`compare_${slug}`}
             leadMagnet="wallet_shortlist"
+            assetUrl={getShortlistAssetUrl(language)}
           />
         </div>
 

@@ -4,9 +4,29 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import type { Language } from "@/lib/i18n/translations";
+import {
+  ArrowRight,
+  ExternalLink,
+  Check,
+  X,
+  Trophy,
+  Shield,
+  Star,
+  ChevronDown,
+  ChevronUp,
+  Clock,
+  Users,
+  Lock,
+  Zap,
+  Sparkles,
+  Target,
+  Wallet,
+  TrendingUp,
+} from "lucide-react";
 
 export const LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-wallet-starter-kit.pdf";
 export const DEFI_LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-defi-starter-kit.pdf";
+export const SHORTLIST_ASSET_URL = "/downloads/xrpl-wallet-shortlist.pdf";
 
 const LEAD_MAGNET_LOCALIZED: Record<Language, string> = {
   en: "/downloads/xrpl-wallet-starter-kit.pdf",
@@ -37,25 +57,21 @@ const DEFI_LEAD_MAGNET_LOCALIZED: Record<Language, string> = {
 export function getDefiLeadMagnetAssetUrl(language: Language): string {
   return DEFI_LEAD_MAGNET_LOCALIZED[language] ?? DEFI_LEAD_MAGNET_ASSET_URL;
 }
-import {
-  ArrowRight,
-  ExternalLink,
-  Check,
-  X,
-  Trophy,
-  Shield,
-  Star,
-  ChevronDown,
-  ChevronUp,
-  Clock,
-  Users,
-  Lock,
-  Zap,
-  Sparkles,
-  Target,
-  Wallet,
-  TrendingUp,
-} from "lucide-react";
+
+const SHORTLIST_LOCALIZED: Record<Language, string> = {
+  en: "/downloads/xrpl-wallet-shortlist.pdf",
+  es: "/downloads/xrpl-wallet-shortlist.es.pdf",
+  zh: "/downloads/xrpl-wallet-shortlist.zh.pdf",
+  ja: "/downloads/xrpl-wallet-shortlist.ja.pdf",
+  ko: "/downloads/xrpl-wallet-shortlist.ko.pdf",
+  pt: "/downloads/xrpl-wallet-shortlist.pt.pdf",
+  de: "/downloads/xrpl-wallet-shortlist.de.pdf",
+  fr: "/downloads/xrpl-wallet-shortlist.fr.pdf",
+};
+
+export function getShortlistAssetUrl(language: Language): string {
+  return SHORTLIST_LOCALIZED[language] ?? SHORTLIST_ASSET_URL;
+}
 
 export type WalletId =
   | "xaman"

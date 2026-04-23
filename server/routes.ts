@@ -247,6 +247,11 @@ export async function registerRoutes(
       filename: "downloads/xrpl-defi-starter-kit.pdf",
       contentType: "application/pdf",
     },
+    {
+      route: "/downloads/xrpl-wallet-shortlist.pdf",
+      filename: "downloads/xrpl-wallet-shortlist.pdf",
+      contentType: "application/pdf",
+    },
   ];
 
   for (const lang of ["es", "zh", "ja", "ko", "pt", "de", "fr"]) {
@@ -272,6 +277,12 @@ export async function registerRoutes(
     leadMagnets.push({
       route: `/downloads/${walletPdfName}`,
       filename: `downloads/${walletPdfName}`,
+      contentType: "application/pdf",
+    });
+    const shortlistPdfName = `xrpl-wallet-shortlist.${lang}.pdf`;
+    leadMagnets.push({
+      route: `/downloads/${shortlistPdfName}`,
+      filename: `downloads/${shortlistPdfName}`,
       contentType: "application/pdf",
     });
   }
