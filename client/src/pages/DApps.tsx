@@ -18,7 +18,7 @@ import {
   Code,
   Check,
 } from "lucide-react";
-import { Link } from "wouter";
+import { Link } from "@/lib/i18n/LocalizedLink";
 import {
   VerdictBox,
   BestForCallout,

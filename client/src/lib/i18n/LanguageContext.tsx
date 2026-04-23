@@ -13,14 +13,41 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 const STORAGE_KEY = "allthingsxrpl_language";
+const DEFAULT_LANG: Language = "en";
+
+function readLangFromUrl(): Language | null {
+  if (typeof window === "undefined") return null;
+  const urlLang = new URLSearchParams(window.location.search).get("lang");
+  if (urlLang && urlLang in translations) {
+    return urlLang as Language;
+  }
+  return null;
+}
+
+function syncLangInUrl(lang: Language, mode: "push" | "replace") {
+  if (typeof window === "undefined") return;
+  const url = new URL(window.location.href);
+  const currentParam = url.searchParams.get("lang");
+  if (lang === DEFAULT_LANG) {
+    if (currentParam === null) return;
+    url.searchParams.delete("lang");
+  } else {
+    if (currentParam === lang) return;
+    url.searchParams.set("lang", lang);
+  }
+  const newUrl = `${url.pathname}${url.search}${url.hash}`;
+  if (mode === "push") {
+    window.history.pushState(window.history.state, "", newUrl);
+  } else {
+    window.history.replaceState(window.history.state, "", newUrl);
+  }
+}
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== "undefined") {
-      const urlLang = new URLSearchParams(window.location.search).get("lang");
-      if (urlLang && urlLang in translations) {
-        return urlLang as Language;
-      }
+      const urlLang = readLangFromUrl();
+      if (urlLang) return urlLang;
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored && stored in translations) {
         return stored as Language;
@@ -37,11 +64,24 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLanguageState(lang);
     localStorage.setItem(STORAGE_KEY, lang);
     document.documentElement.lang = lang;
+    syncLangInUrl(lang, "push");
   };
 
   useEffect(() => {
     document.documentElement.lang = language;
+    // Ensure the URL reflects the language chosen at first render (e.g. from
+    // localStorage or browser locale) so shareable links carry the signal.
+    syncLangInUrl(language, "replace");
   }, [language]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const urlLang = readLangFromUrl() ?? DEFAULT_LANG;
+      setLanguageState((prev) => (prev === urlLang ? prev : urlLang));
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   const t = (key: string): string => {
     return (

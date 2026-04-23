@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "wouter";
+import { useLocation } from "@/lib/i18n/LocalizedLink";
 import { Search, X, FileText, Wallet, Building2, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 

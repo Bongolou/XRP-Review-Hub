@@ -1,6 +1,6 @@
 import { Layout } from "@/components/Layout";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "wouter";
+import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";

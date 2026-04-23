@@ -38,7 +38,7 @@ import bitstampLogo from "@/assets/logos/bitstamp-logo.webp";
 import coinbaseLogo from "@/assets/logos/coinbase-logo.webp";
 import cryptocomLogo from "@/assets/logos/cryptocom-logo.webp";
 import kucoinLogo from "@/assets/logos/kucoin-logo.webp";
-import { Link } from "wouter";
+import { Link } from "@/lib/i18n/LocalizedLink";
 import { motion } from "framer-motion";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { DealOfTheWeek } from "@/components/DealOfTheWeek";

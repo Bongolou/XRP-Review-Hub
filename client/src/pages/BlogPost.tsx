@@ -3,7 +3,7 @@ import { useParams, Redirect } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
-import { Link } from "wouter";
+import { Link } from "@/lib/i18n/LocalizedLink";
 import { BlogComments } from "@/components/BlogComments";
 import { BannerAd } from "@/components/BannerAd";
 import { useLanguage } from "@/lib/i18n/LanguageContext";

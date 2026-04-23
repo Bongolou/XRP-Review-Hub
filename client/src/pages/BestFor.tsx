@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Layout } from "@/components/Layout";
 import { Badge } from "@/components/ui/badge";
-import { useParams, Link } from "wouter";
+import { useParams } from "wouter";
+import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { getBestForSeo } from "@/lib/i18n/pageSeo";

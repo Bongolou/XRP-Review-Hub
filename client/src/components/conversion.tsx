@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { Link } from "wouter";
+import { Link } from "@/lib/i18n/LocalizedLink";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/i18n/LanguageContext";

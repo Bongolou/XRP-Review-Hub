@@ -11,7 +11,7 @@ import {
   Coins,
   Waves
 } from "lucide-react";
-import { Link } from "wouter";
+import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";

@@ -1,5 +1,5 @@
 import { Layout } from "@/components/Layout";
-import { Link } from "wouter";
+import { Link } from "@/lib/i18n/LocalizedLink";
 import { useState } from "react";
 import { ArrowRight, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
