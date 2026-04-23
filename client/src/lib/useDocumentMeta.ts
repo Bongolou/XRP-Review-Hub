@@ -4,6 +4,7 @@ type Meta = {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  image?: string;
 };
 
 type SnapshotEntry = {
@@ -50,7 +51,7 @@ function restoreMetaTag(entry: SnapshotEntry) {
   }
 }
 
-export function useDocumentMeta({ title, description, canonicalPath }: Meta) {
+export function useDocumentMeta({ title, description, canonicalPath, image }: Meta) {
   useEffect(() => {
     const prevTitle = document.title;
 
@@ -59,6 +60,13 @@ export function useDocumentMeta({ title, description, canonicalPath }: Meta) {
           snapshotMetaTag('meta[name="title"]', "name", "title"),
           snapshotMetaTag('meta[property="og:title"]', "property", "og:title"),
           snapshotMetaTag('meta[name="twitter:title"]', "name", "twitter:title"),
+        ]
+      : [];
+
+    const imageSnaps: SnapshotEntry[] = image
+      ? [
+          snapshotMetaTag('meta[property="og:image"]', "property", "og:image"),
+          snapshotMetaTag('meta[name="twitter:image"]', "name", "twitter:image"),
         ]
       : [];
 
@@ -99,6 +107,9 @@ export function useDocumentMeta({ title, description, canonicalPath }: Meta) {
     if (description) {
       descSnaps.forEach((s) => setMetaTagAndTrack(s, description));
     }
+    if (image) {
+      imageSnaps.forEach((s) => setMetaTagAndTrack(s, image));
+    }
     if (canonicalPath && canonicalSnap) {
       let el = document.head.querySelector<HTMLLinkElement>(
         'link[rel="canonical"]',
@@ -118,6 +129,7 @@ export function useDocumentMeta({ title, description, canonicalPath }: Meta) {
       if (title) document.title = prevTitle;
       titleSnaps.forEach(restoreMetaTag);
       descSnaps.forEach(restoreMetaTag);
+      imageSnaps.forEach(restoreMetaTag);
       if (canonicalSnap) {
         const el = document.head.querySelector<HTMLLinkElement>(
           'link[rel="canonical"]',
@@ -131,5 +143,5 @@ export function useDocumentMeta({ title, description, canonicalPath }: Meta) {
         }
       }
     };
-  }, [title, description, canonicalPath]);
+  }, [title, description, canonicalPath, image]);
 }

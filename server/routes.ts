@@ -208,6 +208,78 @@ export async function registerRoutes(
     });
   }
 
+  // Brand-aligned Open Graph image for static pages (About, FAQ, Contact,
+  // Getting Started, Disclosure, News, etc.). The page title comes from the
+  // ?title= query param so we don't have to keep two copies of the title list.
+  app.get("/og/page.svg", (req, res) => {
+    const escapeXml = (s: string): string =>
+      s
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
+    const truncate = (s: string, n: number): string =>
+      s.length > n ? s.slice(0, n - 1) + "…" : s;
+    const title = escapeXml(truncate(String(req.query.title ?? "All Things XRPL"), 40));
+    const w = 1200;
+    const h = 630;
+    const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="url(#bg)"/>
+  <text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
+  <text x="${w / 2}" y="${h / 2 + 30}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="120" font-weight="800" fill="#ffffff">${title}</text>
+  <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">Best XRP Wallets · XRPL DeFi · 2026</text>
+</svg>`;
+    res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    res.send(svg);
+  });
+
+  // Open Graph image for comparison pages — generated as a real SVG URL so
+  // social-media crawlers (Facebook, X, LinkedIn, Slack, Discord) can fetch
+  // it. Names come from query params so we don't duplicate the comparison
+  // data on the server.
+  app.get("/og/compare.svg", (req, res) => {
+    const escapeXml = (s: string): string =>
+      s
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
+    const truncate = (s: string, n: number): string =>
+      s.length > n ? s.slice(0, n - 1) + "…" : s;
+    const w1 = escapeXml(truncate(String(req.query.w1 ?? "Wallet 1"), 24));
+    const w2 = escapeXml(truncate(String(req.query.w2 ?? "Wallet 2"), 24));
+    const w = 1200;
+    const h = 630;
+    const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="url(#bg)"/>
+  <text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
+  <text x="${w / 2}" y="${h / 2 - 40}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff">${w1}</text>
+  <text x="${w / 2}" y="${h / 2 + 40}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="64" font-weight="700" fill="#fbbf24">vs</text>
+  <text x="${w / 2}" y="${h / 2 + 140}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff">${w2}</text>
+  <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">XRP Wallet Comparison · 2026</text>
+</svg>`;
+    res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    res.send(svg);
+  });
+
   // Sitemap XML — generated dynamically from the route source of truth so it
   // stays in sync with App.tsx as new wallets, exchanges, comparisons, best-for
   // hubs and blog posts are added.

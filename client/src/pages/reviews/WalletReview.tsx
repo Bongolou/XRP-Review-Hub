@@ -160,6 +160,7 @@ import gatehubLogo from "@/assets/logos/gatehub-logo.webp";
 import trustwalletLogo from "@/assets/logos/trustwallet-logo.webp";
 import ellipalLogo from "@/assets/logos/ellipal-logo.webp";
 import trezorLogo from "@/assets/logos/trezor-logo.webp";
+import tangemLogo from "@/assets/logos/tangem-logo.webp";
 
 const logoMap: Record<string, string> = {
   xaman: xamanLogo,
@@ -169,7 +170,8 @@ const logoMap: Record<string, string> = {
   gatehub: gatehubLogo,
   trustwallet: trustwalletLogo,
   ellipal: ellipalLogo,
-  trezor: trezorLogo
+  trezor: trezorLogo,
+  tangem: tangemLogo,
 };
 
 const walletData: Record<string, {
@@ -862,14 +864,15 @@ export default function WalletReview() {
   const { t, language } = useLanguage();
   const wallet = walletData[slug || ""];
   const seo = slug ? getSeoEntry(language, "wallet", slug) : undefined;
+  const origin =
+    typeof window !== "undefined" ? window.location.origin : "";
   useDocumentMeta({
     title: seo?.title,
     description: seo?.description,
     canonicalPath: slug ? `/wallet/${slug}` : undefined,
+    image: slug && logoMap[slug] ? `${origin}/logos/${slug}-logo.png` : undefined,
   });
 
-  const origin =
-    typeof window !== "undefined" ? window.location.origin : "";
   const jsonLdNodes = wallet && slug
     ? [
         {

@@ -58,6 +58,12 @@ function routeFor(entity: { kind?: "wallet" | "exchange"; slug: string }): strin
   return `/${entity.kind ?? "wallet"}/${entity.slug}`;
 }
 
+function buildCompareOgImage(name1: string, name2: string): string {
+  if (typeof window === "undefined") return "";
+  const params = new URLSearchParams({ w1: name1, w2: name2 });
+  return `${window.location.origin}/og/compare.svg?${params.toString()}`;
+}
+
 const comparisons: Record<string, ComparisonData> = {
   "xaman-vs-ledger": {
     wallet1: {
@@ -852,10 +858,14 @@ export default function Compare() {
         description: comparison.metaDescription,
       }
     : undefined);
+  const compareImage = comparison
+    ? buildCompareOgImage(comparison.wallet1.name, comparison.wallet2.name)
+    : undefined;
   useDocumentMeta({
     title: seo?.title,
     description: seo?.description,
     canonicalPath: slug ? `/compare/${slug}` : "/compare",
+    image: compareImage,
   });
 
   if (!comparison) {

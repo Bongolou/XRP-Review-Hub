@@ -5,6 +5,7 @@ import viteConfig from "../vite.config";
 import fs from "fs";
 import path from "path";
 import { nanoid } from "nanoid";
+import { injectSocialMeta } from "./socialMeta";
 
 const viteLogger = createLogger();
 
@@ -48,7 +49,10 @@ export async function setupVite(server: Server, app: Express) {
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`,
       );
-      const page = await vite.transformIndexHtml(url, template);
+      let page = await vite.transformIndexHtml(url, template);
+      const host = req.get("host") ?? "";
+      const protocol = (req.headers["x-forwarded-proto"] as string)?.split(",")[0] || req.protocol;
+      page = injectSocialMeta(page, url, host, protocol);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);

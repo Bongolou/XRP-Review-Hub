@@ -596,14 +596,15 @@ export default function ExchangeReview() {
   const { t, language } = useLanguage();
   const exchange = exchangeData[slug || ""];
   const seo = slug ? getExchangeSeo(language, slug) : undefined;
+  const origin =
+    typeof window !== "undefined" ? window.location.origin : "";
   useDocumentMeta({
     title: seo?.title,
     description: seo?.description,
     canonicalPath: slug ? `/exchange/${slug}` : undefined,
+    image: slug && logoMap[slug] ? `${origin}/logos/${slug}-logo.png` : undefined,
   });
 
-  const origin =
-    typeof window !== "undefined" ? window.location.origin : "";
   const jsonLdNodes = exchange && slug
     ? [
         {

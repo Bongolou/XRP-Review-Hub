@@ -1072,6 +1072,7 @@ export default function BlogPost() {
     title: postTitle ? `${postTitle} | All Things XRPL` : undefined,
     description: postExcerpt,
     canonicalPath: post ? `/blog/${post.id}` : undefined,
+    image: post?.image,
   });
 
   const origin =
