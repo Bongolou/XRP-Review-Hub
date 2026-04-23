@@ -1,92 +1,159 @@
 import { blogPosts } from "@shared/blog";
+import {
+  seoTranslations,
+  getSeoEntry,
+  getHomeSeo,
+} from "../client/src/lib/i18n/seoTranslations";
+import {
+  exchangeSeo,
+  staticPageSeo,
+  bestForSeo,
+  type StaticPageKey,
+  type BestForSlug,
+} from "../client/src/lib/i18n/pageSeo";
+import type { Language } from "../client/src/lib/i18n/translations";
+import { dappsTranslations } from "../client/src/lib/i18n/dappsTranslations";
 
-const WALLET_SLUGS = new Set([
-  "xaman",
-  "ledger",
-  "crossmark",
-  "bifrost",
-  "gatehub",
-  "trustwallet",
-  "ellipal",
-  "trezor",
-  "tangem",
-]);
+type Meta = { title: string; description: string; image?: string };
 
-const STATIC_PAGE_TITLES: Record<string, string> = {
-  "/": "All Things XRPL",
-  "/about": "About",
-  "/faq": "FAQ",
-  "/contact": "Contact",
-  "/getting-started": "Getting Started with XRP",
-  "/disclosure": "Disclosure",
-  "/news": "XRPL News",
-  "/blog": "Blog",
-  "/dapps": "XRPL DApps",
-  "/yield": "Yield Opportunities",
-  "/wallet-quiz": "Wallet Quiz",
-  "/best-xrp-wallets": "Best XRP Wallets",
-  "/privacy": "Privacy Policy",
-  "/terms": "Terms",
+const LANGS: ReadonlyArray<Language> = [
+  "en",
+  "es",
+  "zh",
+  "ja",
+  "ko",
+  "pt",
+  "de",
+  "fr",
+];
+
+function pickLanguage(query: URLSearchParams): Language {
+  const raw = (query.get("lang") || "").toLowerCase();
+  return (LANGS as ReadonlyArray<string>).includes(raw)
+    ? (raw as Language)
+    : "en";
+}
+
+const STATIC_ROUTES: Record<string, StaticPageKey> = {
+  "/about": "about",
+  "/faq": "faq",
+  "/contact": "contact",
+  "/getting-started": "gettingStarted",
+  "/disclosure": "disclosure",
+  "/news": "news",
+  "/blog": "blog",
+  "/yield": "yield",
+  "/wallet-quiz": "walletQuiz",
+  "/best-xrp-wallets": "bestXrpWallets",
+  "/privacy": "privacy",
+  "/terms": "terms",
 };
-
-const EXCHANGE_SLUGS = new Set([
-  "uphold",
-  "bitrue",
-  "kraken",
-  "bitstamp",
-  "coinbase",
-  "cryptocom",
-  "kucoin",
-]);
 
 function logoUrl(slug: string): string {
   return `/logos/${slug}-logo.png`;
 }
 
-export function resolveOgImageForPath(pathname: string): string | undefined {
-  const clean = pathname.split("?")[0].split("#")[0];
+function pageOg(title: string): string {
+  const params = new URLSearchParams({ title });
+  return `/og/page.svg?${params.toString()}`;
+}
 
-  const walletMatch = clean.match(/^\/wallet\/([^/]+)\/?$/);
-  if (walletMatch && WALLET_SLUGS.has(walletMatch[1])) {
-    return logoUrl(walletMatch[1]);
+function capitalize(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+export function resolveMetaForPath(
+  pathname: string,
+  query: URLSearchParams,
+): Meta | undefined {
+  const clean = (pathname.split("?")[0].split("#")[0] || "/").replace(
+    /\/+$/,
+    "",
+  ) || "/";
+  const lang = pickLanguage(query);
+
+  if (clean === "/") {
+    const seo = getHomeSeo(lang);
+    return { title: seo.title, description: seo.description, image: pageOg(seo.title) };
   }
 
-  const exchangeMatch = clean.match(/^\/exchange\/([^/]+)\/?$/);
-  if (exchangeMatch && EXCHANGE_SLUGS.has(exchangeMatch[1])) {
-    return logoUrl(exchangeMatch[1]);
+  const walletMatch = clean.match(/^\/wallet\/([^/]+)$/);
+  if (walletMatch) {
+    const slug = walletMatch[1];
+    const seo = getSeoEntry(lang, "wallet", slug);
+    if (seo) {
+      return { title: seo.title, description: seo.description, image: logoUrl(slug) };
+    }
   }
 
-  const compareMatch = clean.match(/^\/compare\/([^/]+)\/?$/);
+  const exchangeMatch = clean.match(/^\/exchange\/([^/]+)$/);
+  if (exchangeMatch) {
+    const slug = exchangeMatch[1];
+    const seo =
+      exchangeSeo[lang]?.[slug] ?? exchangeSeo.en[slug];
+    if (seo) {
+      return { title: seo.title, description: seo.description, image: logoUrl(slug) };
+    }
+  }
+
+  const compareMatch = clean.match(/^\/compare\/([^/]+)$/);
   if (compareMatch) {
     const slug = compareMatch[1];
+    const seo = getSeoEntry(lang, "compare", slug);
     const parts = slug.split("-vs-");
+    let image: string | undefined;
     if (parts.length === 2) {
       const params = new URLSearchParams({
         w1: capitalize(parts[0]),
         w2: capitalize(parts[1]),
       });
-      return `/og/compare.svg?${params.toString()}`;
+      image = `/og/compare.svg?${params.toString()}`;
     }
+    if (seo) return { title: seo.title, description: seo.description, image };
   }
 
-  const blogMatch = clean.match(/^\/blog\/(\d+)\/?$/);
+  const blogMatch = clean.match(/^\/blog\/(\d+)$/);
   if (blogMatch) {
     const id = parseInt(blogMatch[1], 10);
     const post = blogPosts.find((p) => p.id === id);
-    if (post?.image) return post.image;
+    if (post) {
+      return {
+        title: `${post.title} | All Things XRPL`,
+        description: `${post.title} — read this XRPL guide on All Things XRPL.`,
+        image: post.image,
+      };
+    }
   }
 
-  const staticTitle = STATIC_PAGE_TITLES[clean.replace(/\/$/, "") || "/"];
-  if (staticTitle) {
-    const params = new URLSearchParams({ title: staticTitle });
-    return `/og/page.svg?${params.toString()}`;
+  const bestForMatch = clean.match(/^\/best-for\/([^/]+)$/);
+  if (bestForMatch) {
+    const slug = bestForMatch[1] as BestForSlug;
+    const seo = bestForSeo[lang]?.[slug] ?? bestForSeo.en[slug];
+    if (seo) return { title: seo.title, description: seo.description, image: pageOg(seo.title) };
+  }
+
+  if (clean === "/dapps") {
+    const dict = dappsTranslations[lang] ?? dappsTranslations.en;
+    const enDict = dappsTranslations.en;
+    const title = dict["dapps.metaTitle"] ?? enDict["dapps.metaTitle"];
+    const description =
+      dict["dapps.metaDescription"] ?? enDict["dapps.metaDescription"];
+    return { title, description, image: pageOg(title) };
+  }
+
+  if (clean in STATIC_ROUTES) {
+    const key = STATIC_ROUTES[clean];
+    const seo = staticPageSeo[lang]?.[key] ?? staticPageSeo.en[key];
+    if (seo) return { title: seo.title, description: seo.description, image: pageOg(seo.title) };
   }
 
   return undefined;
 }
 
-function capitalize(s: string): string {
-  return s.charAt(0).toUpperCase() + s.slice(1);
+// Backwards-compatible helper kept for any external callers.
+export function resolveOgImageForPath(pathname: string): string | undefined {
+  const url = new URL(pathname, "http://x");
+  return resolveMetaForPath(url.pathname, url.searchParams)?.image;
 }
 
 function escapeHtmlAttr(s: string): string {
@@ -97,27 +164,80 @@ function escapeHtmlAttr(s: string): string {
     .replace(/>/g, "&gt;");
 }
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 function toAbsolute(image: string, host: string, protocol: string): string {
   if (/^https?:\/\//i.test(image)) return image;
   return `${protocol}://${host}${image}`;
 }
 
+function replaceMetaByName(
+  html: string,
+  name: string,
+  content: string,
+): string {
+  const re = new RegExp(
+    `<meta\\s+name="${name}"\\s+content="[^"]*"\\s*/?>`,
+    "i",
+  );
+  const tag = `<meta name="${name}" content="${content}" />`;
+  return re.test(html) ? html.replace(re, tag) : html.replace(/<\/head>/i, `    ${tag}\n  </head>`);
+}
+
+function replaceMetaByProperty(
+  html: string,
+  property: string,
+  content: string,
+): string {
+  const re = new RegExp(
+    `<meta\\s+property="${property}"\\s+content="[^"]*"\\s*/?>`,
+    "i",
+  );
+  const tag = `<meta property="${property}" content="${content}" />`;
+  return re.test(html) ? html.replace(re, tag) : html.replace(/<\/head>/i, `    ${tag}\n  </head>`);
+}
+
 export function injectSocialMeta(
   html: string,
-  pathname: string,
+  originalUrl: string,
   host: string,
   protocol: string,
 ): string {
-  const image = resolveOgImageForPath(pathname);
-  if (!image) return html;
-  const absolute = escapeHtmlAttr(toAbsolute(image, host, protocol));
-  return html
-    .replace(
-      /<meta property="og:image" content="[^"]*"\s*\/?>/,
-      `<meta property="og:image" content="${absolute}" />`,
-    )
-    .replace(
-      /<meta name="twitter:image" content="[^"]*"\s*\/?>/,
-      `<meta name="twitter:image" content="${absolute}" />`,
-    );
+  const url = new URL(originalUrl, `${protocol}://${host}`);
+  const meta = resolveMetaForPath(url.pathname, url.searchParams);
+  if (!meta) return html;
+
+  const title = escapeHtmlAttr(meta.title);
+  const description = escapeHtmlAttr(meta.description);
+  const canonical = escapeHtmlAttr(`${protocol}://${host}${url.pathname}${url.search}`);
+
+  let out = html;
+  out = out.replace(
+    /<title>[^<]*<\/title>/i,
+    `<title>${escapeHtml(meta.title)}</title>`,
+  );
+  out = replaceMetaByName(out, "title", title);
+  out = replaceMetaByName(out, "description", description);
+  out = replaceMetaByProperty(out, "og:title", title);
+  out = replaceMetaByProperty(out, "og:description", description);
+  out = replaceMetaByProperty(out, "og:url", canonical);
+  out = replaceMetaByName(out, "twitter:title", title);
+  out = replaceMetaByName(out, "twitter:description", description);
+  out = replaceMetaByName(out, "twitter:url", canonical);
+
+  if (meta.image) {
+    const absolute = escapeHtmlAttr(toAbsolute(meta.image, host, protocol));
+    out = replaceMetaByProperty(out, "og:image", absolute);
+    out = replaceMetaByName(out, "twitter:image", absolute);
+  }
+
+  return out;
 }
+
+// Re-export so existing tests / imports keep working.
+export { seoTranslations };
