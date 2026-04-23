@@ -237,7 +237,7 @@ export function FastCompareTable({
               <th className="px-6 py-6 font-semibold">{t("fastCompare.colType") || "Type"}</th>
               <th className="px-6 py-6 font-semibold">{t("fastCompare.colPrice") || "Price"}</th>
               <th className="px-6 py-6 font-semibold">{t("fastCompare.colBestFor") || "Best for"}</th>
-              <th className="px-6 py-6 font-semibold">{t("fastCompare.colRating") || "Score"}</th>
+              <th className="px-6 py-6 font-semibold">{t("fastCompare.colRating")}</th>
               <th className="pl-6 pr-12 py-6 font-semibold text-right">{t("fastCompare.colAction") || "Action"}</th>
             </tr>
           </thead>
@@ -255,7 +255,7 @@ export function FastCompareTable({
                     <span className="font-display font-bold text-white">{r.name}</span>
                     {r.highlight && (
                       <Badge className="bg-secondary/20 text-secondary border-secondary/50">
-                        {t("verdict.ourPick") || "Top pick"}
+                        {t("verdict.ourPick")}
                       </Badge>
                     )}
                   </div>
@@ -273,7 +273,7 @@ export function FastCompareTable({
                           size="sm"
                           className="text-sm hover:text-primary h-10 px-4"
                         >
-                          {t("fastCompare.review") || "Review"}
+                          {t("fastCompare.review")}
                         </Button>
                       </Link>
                     )}
@@ -313,7 +313,7 @@ export function FastCompareTable({
               <div className="text-right">
                 <div className="text-2xl font-display font-bold text-primary">{r.rating}</div>
                 <div className="text-[10px] uppercase text-muted-foreground tracking-widest">
-                  {t("fastCompare.score") || "Score"}
+                  {t("fastCompare.score")}
                 </div>
               </div>
             </div>
@@ -322,7 +322,7 @@ export function FastCompareTable({
               {r.reviewSlug && (
                 <Link href={`/wallet/${r.reviewSlug}`} className="flex-1">
                   <Button variant="outline" className="w-full border-white/10 text-xs h-9">
-                    {t("fastCompare.review") || "Review"}
+                    {t("fastCompare.review")}
                   </Button>
                 </Link>
               )}
@@ -757,7 +757,7 @@ export function ReviewSummaryCard({
         </div>
         <div className="text-right">
           <div className="text-2xl font-display font-bold text-primary">{rating}</div>
-          <div className="text-[10px] uppercase text-muted-foreground tracking-widest">{t("fastCompare.score") || "Score"}</div>
+          <div className="text-[10px] uppercase text-muted-foreground tracking-widest">{t("fastCompare.score")}</div>
         </div>
       </div>
       <p className="text-sm text-muted-foreground mb-4">
