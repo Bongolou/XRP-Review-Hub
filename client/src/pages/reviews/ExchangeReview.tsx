@@ -11,6 +11,7 @@ import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getExchangeSeo } from "@/lib/i18n/pageSeo";
 import { VisitorReviews, type ReviewsResponse } from "@/components/VisitorReviews";
+import { useFaqDeepLink } from "@/hooks/use-faq-deep-link";
 import { 
   Star, 
   Shield, 
@@ -614,6 +615,8 @@ export default function ExchangeReview() {
     enabled: !!slug,
   });
 
+  const faqDeepLink = useFaqDeepLink(slug);
+
   // Aggregate rating reflects only real visitor reviews. Editorial score
   // stays as a separate Review node and is omitted from aggregateRating
   // entirely when there are no visitor reviews yet.
@@ -973,7 +976,7 @@ export default function ExchangeReview() {
         {/* FAQ — adds unique long-form content per page */}
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-12" data-testid={`section-faq-${slug}`}>
           <h2 className="text-2xl font-bold font-display mb-6">{t("exchangeReview.faqHeading")} {exchange.name}</h2>
-          <Accordion type="multiple" className="w-full">
+          <Accordion type="multiple" className="w-full" value={faqDeepLink.openItems} onValueChange={faqDeepLink.onValueChange}>
             {[1, 2, 3, 4, 5].map((idx) => (
               <AccordionItem
                 key={idx}

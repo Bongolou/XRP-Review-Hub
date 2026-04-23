@@ -11,6 +11,7 @@ import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getSeoEntry } from "@/lib/i18n/seoTranslations";
 import { VisitorReviews, type ReviewsResponse } from "@/components/VisitorReviews";
+import { useFaqDeepLink } from "@/hooks/use-faq-deep-link";
 
 type EditorialSection = { heading: string; body: string };
 const SLUG_EDITORIAL: Record<string, EditorialSection[]> = {
@@ -877,6 +878,8 @@ export default function WalletReview() {
     image: slug && logoMap[slug] ? `${origin}/logos/${slug}-logo.png` : undefined,
   });
 
+  const faqDeepLink = useFaqDeepLink(slug);
+
   const reviewsQuery = useQuery<ReviewsResponse>({
     queryKey: ["/api/reviews", "wallet", slug ?? ""],
     enabled: !!slug,
@@ -1279,7 +1282,7 @@ export default function WalletReview() {
               },
             ];
             return (
-              <Accordion type="multiple" className="w-full">
+              <Accordion type="multiple" className="w-full" value={faqDeepLink.openItems} onValueChange={faqDeepLink.onValueChange}>
                 {items.map((item, i) => {
                   const idx = i + 1;
                   return (
