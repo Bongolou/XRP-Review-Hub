@@ -855,6 +855,23 @@ export default function ExchangeReview() {
           <p className="text-muted-foreground">{t(exchange.bestForKey)}</p>
         </div>
 
+        {/* FAQ — adds unique long-form content per page */}
+        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-12" data-testid={`section-faq-${slug}`}>
+          <h2 className="text-2xl font-bold font-display mb-6">{t("exchangeReview.faqHeading")} {exchange.name}</h2>
+          <div className="space-y-4">
+            {[1, 2, 3, 4, 5].map((idx) => (
+              <div key={idx} data-testid={`faq-item-${slug}-${idx}`}>
+                <h3 className="font-bold text-lg mb-2" data-testid={`text-faq-question-${slug}-${idx}`}>
+                  {t(`exchangeDetail.${slug}.faq.q${idx}.q`)}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed" data-testid={`text-faq-answer-${slug}-${idx}`}>
+                  {t(`exchangeDetail.${slug}.faq.q${idx}.a`)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="text-center pb-8">
           <a 
             href={exchange.affiliateLink}
