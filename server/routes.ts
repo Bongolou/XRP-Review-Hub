@@ -188,16 +188,28 @@ export async function registerRoutes(
   ];
 
   for (const lang of ["es", "zh", "ja", "ko", "pt", "de", "fr"]) {
-    const mdName = `xrpl-defi-starter-kit.${lang}.md`;
+    const defiMdName = `xrpl-defi-starter-kit.${lang}.md`;
     leadMagnets.push({
-      route: `/downloads/${mdName}`,
-      filename: mdName,
+      route: `/downloads/${defiMdName}`,
+      filename: defiMdName,
       contentType: "text/markdown; charset=utf-8",
     });
-    const pdfName = `xrpl-defi-starter-kit.${lang}.pdf`;
+    const defiPdfName = `xrpl-defi-starter-kit.${lang}.pdf`;
     leadMagnets.push({
-      route: `/downloads/${pdfName}`,
-      filename: `downloads/${pdfName}`,
+      route: `/downloads/${defiPdfName}`,
+      filename: `downloads/${defiPdfName}`,
+      contentType: "application/pdf",
+    });
+    const walletMdName = `xrpl-wallet-starter-kit.${lang}.md`;
+    leadMagnets.push({
+      route: `/downloads/${walletMdName}`,
+      filename: walletMdName,
+      contentType: "text/markdown; charset=utf-8",
+    });
+    const walletPdfName = `xrpl-wallet-starter-kit.${lang}.pdf`;
+    leadMagnets.push({
+      route: `/downloads/${walletPdfName}`,
+      filename: `downloads/${walletPdfName}`,
       contentType: "application/pdf",
     });
   }

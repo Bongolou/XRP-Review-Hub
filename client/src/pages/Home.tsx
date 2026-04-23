@@ -51,6 +51,7 @@ import {
   EmailCaptureBlock,
   BestForCallout,
   LastUpdated,
+  getLeadMagnetAssetUrl,
   type FastCompareRow,
 } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
@@ -1078,7 +1079,7 @@ export default function Home() {
 
       {/* Lead magnet email capture */}
       <section className="container mx-auto px-4 py-20">
-        <EmailCaptureBlock source="homepage" />
+        <EmailCaptureBlock source="homepage" assetUrl={getLeadMagnetAssetUrl(language)} />
       </section>
 
       <div className="h-24" aria-hidden="true" />

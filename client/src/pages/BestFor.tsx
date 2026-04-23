@@ -13,6 +13,7 @@ import {
   FAQAccordion,
   LastUpdated,
   EmailCaptureBlock,
+  getLeadMagnetAssetUrl,
   type FastCompareRow,
 } from "@/components/conversion";
 
@@ -223,7 +224,7 @@ export default function BestFor() {
         </section>
 
         <section className="my-24">
-          <EmailCaptureBlock source={`best-for-${slug}`} />
+          <EmailCaptureBlock source={`best-for-${slug}`} assetUrl={getLeadMagnetAssetUrl(language)} />
         </section>
 
         <section className="my-24">

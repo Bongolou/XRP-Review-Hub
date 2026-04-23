@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useParams } from "wouter";
 import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock } from "@/components/conversion";
+import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock, getLeadMagnetAssetUrl } from "@/components/conversion";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
@@ -1356,6 +1356,7 @@ export default function WalletReview() {
             description={t("walletReview.emailCapture.desc").replace(/\{NAME\}/g, wallet.name)}
             source={`wallet_review_${slug}`}
             leadMagnet="wallet_starter_kit"
+            assetUrl={getLeadMagnetAssetUrl(language)}
           />
         </div>
 

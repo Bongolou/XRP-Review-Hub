@@ -8,6 +8,21 @@ import type { Language } from "@/lib/i18n/translations";
 export const LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-wallet-starter-kit.pdf";
 export const DEFI_LEAD_MAGNET_ASSET_URL = "/downloads/xrpl-defi-starter-kit.pdf";
 
+const LEAD_MAGNET_LOCALIZED: Record<Language, string> = {
+  en: "/downloads/xrpl-wallet-starter-kit.pdf",
+  es: "/downloads/xrpl-wallet-starter-kit.es.pdf",
+  zh: "/downloads/xrpl-wallet-starter-kit.zh.pdf",
+  ja: "/downloads/xrpl-wallet-starter-kit.ja.pdf",
+  ko: "/downloads/xrpl-wallet-starter-kit.ko.pdf",
+  pt: "/downloads/xrpl-wallet-starter-kit.pt.pdf",
+  de: "/downloads/xrpl-wallet-starter-kit.de.pdf",
+  fr: "/downloads/xrpl-wallet-starter-kit.fr.pdf",
+};
+
+export function getLeadMagnetAssetUrl(language: Language): string {
+  return LEAD_MAGNET_LOCALIZED[language] ?? LEAD_MAGNET_ASSET_URL;
+}
+
 const DEFI_LEAD_MAGNET_LOCALIZED: Record<Language, string> = {
   en: "/downloads/xrpl-defi-starter-kit.pdf",
   es: "/downloads/xrpl-defi-starter-kit.es.pdf",

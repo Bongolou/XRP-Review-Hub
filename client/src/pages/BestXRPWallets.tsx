@@ -12,6 +12,7 @@ import {
   LastUpdated,
   EmailCaptureBlock,
   ReviewSummaryCard,
+  getLeadMagnetAssetUrl,
   type FastCompareRow,
 } from "@/components/conversion";
 
@@ -228,7 +229,7 @@ export default function BestXRPWallets() {
         </section>
 
         <section className="my-20">
-          <EmailCaptureBlock source="best-xrp-wallets" />
+          <EmailCaptureBlock source="best-xrp-wallets" assetUrl={getLeadMagnetAssetUrl(language)} />
         </section>
 
         <section className="my-20 md:my-24">
