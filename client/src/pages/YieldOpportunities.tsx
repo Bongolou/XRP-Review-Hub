@@ -14,6 +14,7 @@ import {
 import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 import upholdLogo from "@/assets/logos/uphold-logo.webp";
 import bitrueLogo from "@/assets/logos/bitrue-logo.webp";
@@ -122,6 +123,7 @@ export default function YieldOpportunities() {
     title: seo.title,
     description: seo.description,
     canonicalPath: "/yield",
+    image: buildPageOgImage(seo.title),
   });
   return (
     <Layout>

@@ -1,6 +1,7 @@
 import { Layout } from "@/components/Layout";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 export default function Terms() {
@@ -10,6 +11,7 @@ export default function Terms() {
     title: seo.title,
     description: seo.description,
     canonicalPath: "/terms",
+    image: buildPageOgImage(seo.title),
   });
   return (
     <Layout>

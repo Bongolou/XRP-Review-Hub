@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 import {
   FastCompareTable,
@@ -21,6 +22,7 @@ export default function BestXRPWallets() {
     title: seo.title,
     description: seo.description,
     canonicalPath: "/best-xrp-wallets",
+    image: buildPageOgImage(seo.title),
   });
 
   const rows: FastCompareRow[] = [

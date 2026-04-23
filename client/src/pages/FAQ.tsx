@@ -4,6 +4,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
@@ -111,7 +112,7 @@ function FAQItem({ questionKey, answerKey, t }: { questionKey: string; answerKey
 export default function FAQ() {
   const { t, language } = useLanguage();
   const seo = getStaticPageSeo(language, "faq");
-  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/faq" });
+  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/faq", image: buildPageOgImage(seo.title) });
 
   const allQuestions = faqs.flatMap((c) => c.questions);
   const stripHtml = (s: string) => s.replace(/<[^>]*>/g, "");

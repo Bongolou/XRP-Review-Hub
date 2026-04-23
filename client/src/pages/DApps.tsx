@@ -31,6 +31,7 @@ import {
 } from "@/components/conversion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 
 type TopPick = {
   name: string;
@@ -329,6 +330,7 @@ export default function DApps() {
     title: t("dapps.metaTitle"),
     description: t("dapps.metaDescription"),
     canonicalPath: "/dapps",
+    image: buildPageOgImage(t("dapps.metaTitle")),
   });
 
   const dappCompareRows: FastCompareRow[] = [

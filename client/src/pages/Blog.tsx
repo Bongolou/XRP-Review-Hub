@@ -5,6 +5,7 @@ import { ArrowRight, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 import { blogPosts } from "@shared/blog";
 
@@ -25,7 +26,7 @@ const categoryKeys = [
 export default function Blog() {
   const { t, language } = useLanguage();
   const seo = getStaticPageSeo(language, "blog");
-  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/blog" });
+  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/blog", image: buildPageOgImage(seo.title) });
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const filteredPosts = selectedCategory === "all" 

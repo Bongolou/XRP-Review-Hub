@@ -2,6 +2,7 @@ import { Layout } from "@/components/Layout";
 import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 import { ExternalLink, Clock, Newspaper, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -100,7 +101,7 @@ function NewsImage({ src, source }: { src?: string; source: string }) {
 export default function News() {
   const { t, language } = useLanguage();
   const seo = getStaticPageSeo(language, "news");
-  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/news" });
+  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/news", image: buildPageOgImage(seo.title) });
 
   const { data, isLoading, error, refetch, isFetching } = useQuery<NewsItem[]>({
     queryKey: ["news-feed"],

@@ -54,6 +54,7 @@ import {
   type FastCompareRow,
 } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getHomeSeo } from "@/lib/i18n/seoTranslations";
 import { Shield as ShieldIcon, BookOpen, Coins, Zap as ZapIcon } from "lucide-react";
 
@@ -559,6 +560,7 @@ export default function Home() {
     title: homeSeo.title,
     description: homeSeo.description,
     canonicalPath: "/",
+    image: buildPageOgImage(homeSeo.title),
   });
   
   return (

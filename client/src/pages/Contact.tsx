@@ -5,12 +5,13 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { Mail, MessageSquare, Send, HelpCircle, Newspaper } from "lucide-react";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 export default function Contact() {
   const { t, language } = useLanguage();
   const seo = getStaticPageSeo(language, "contact");
-  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/contact" });
+  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/contact", image: buildPageOgImage(seo.title) });
   const [formData, setFormData] = useState({
     name: "",
     email: "",

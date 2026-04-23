@@ -2,12 +2,13 @@ import { Layout } from "@/components/Layout";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { Shield, Users, Target, Heart, BookOpen, Search, RefreshCw, Award } from "lucide-react";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 export default function About() {
   const { t, language } = useLanguage();
   const seo = getStaticPageSeo(language, "about");
-  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/about" });
+  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/about", image: buildPageOgImage(seo.title) });
   
   return (
     <Layout>

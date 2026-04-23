@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 const questions = [
@@ -134,6 +135,7 @@ export default function WalletQuiz() {
     title: seo.title,
     description: seo.description,
     canonicalPath: "/wallet-quiz",
+    image: buildPageOgImage(seo.title),
   });
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});

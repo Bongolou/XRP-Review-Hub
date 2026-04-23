@@ -15,12 +15,13 @@ import bitrueLogo from "@/assets/logos/bitrue-logo.webp";
 import krakenLogo from "@/assets/logos/kraken-logo.webp";
 import xamanLogo from "@/assets/logos/xaman-logo.webp";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 export default function GettingStarted() {
   const { t, language } = useLanguage();
   const seo = getStaticPageSeo(language, "gettingStarted");
-  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/getting-started" });
+  useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/getting-started", image: buildPageOgImage(seo.title) });
 
   return (
     <Layout>

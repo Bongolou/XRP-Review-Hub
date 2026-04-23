@@ -5,6 +5,7 @@ import { useParams } from "wouter";
 import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { buildPageOgImage } from "@/lib/ogImage";
 import { getBestForSeo } from "@/lib/i18n/pageSeo";
 import {
   VerdictBox,
@@ -103,6 +104,7 @@ export default function BestFor() {
     title: seo?.title,
     description: seo?.description,
     canonicalPath: seo ? `/best-for/${slug}` : undefined,
+    image: seo ? buildPageOgImage(seo.title) : undefined,
   });
 
   if (!slug || !validSlugs.includes(slug)) {
