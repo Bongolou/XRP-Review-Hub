@@ -1,21 +1,10 @@
-Affiliate Link Audit — 2026-04-22T23:41:04.822Z
+Affiliate Link Audit — 2026-04-23T02:57:17.197Z
 ================================================================
-Total checked: 25
-OK (200, no redirect):     16
-Redirected (3xx -> 2xx):   6
-Broken / non-2xx:          3
+Total checked: 24
+OK (200, no redirect):     17
+Redirected (3xx -> 2xx):   7
+Broken / non-2xx:          0
 Ignored (known bot block): 0
-
-BROKEN / NEEDS ATTENTION (non-2xx, network errors)
-----------------------------------------------------------------
-[HTTP 404] https://www.coinbase.com/join?ref=allthingsxrpl
-    in client/src/pages/Home.tsx
-    in client/src/pages/reviews/ExchangeReview.tsx
-[HTTP 404] https://crypto.com/app
-    in client/src/pages/Home.tsx
-    in client/src/pages/reviews/ExchangeReview.tsx
-[HTTP 404] https://uphold.com/sign-up?referral=allthingsxrpl
-    in client/src/pages/reviews/ExchangeReview.tsx
 
 REDIRECTED (lands on 2xx after a 3xx — verify destination)
 ----------------------------------------------------------------
@@ -25,12 +14,17 @@ REDIRECTED (lands on 2xx after a 3xx — verify destination)
 [200] https://uphold.com/signup?referral=allthingsxrpl
     -> https://wallet.uphold.com/signup?referral=allthingsxrpl
     in client/src/pages/Home.tsx
+    in client/src/pages/reviews/ExchangeReview.tsx
 [200] https://bitrue.com/user/register?inviteCode=allthingsxrpl
     -> https://www.bitrue.com/user/register?inviteCode=allthingsxrpl
     in client/src/pages/Home.tsx
 [200] https://kraken.com/sign-up?r=allthingsxrpl
     -> https://www.kraken.com/sign-up?r=allthingsxrpl
     in client/src/pages/Home.tsx
+[200] https://crypto.com/
+    -> https://crypto.com/us
+    in client/src/pages/Home.tsx
+    in client/src/pages/reviews/ExchangeReview.tsx
 [200] https://tangem.com/?ref=allthingsxrpl
     -> https://tangem.com/en/?ref=allthingsxrpl
     in client/src/pages/reviews/WalletReview.tsx
@@ -49,6 +43,7 @@ OK
 [200] https://trustwallet.com/?ref=allthingsxrpl
 [200] https://gatehub.net/?ref=allthingsxrpl
 [200] https://www.ellipal.com/?rfsn=8973243.bbfab69
+[200] https://www.coinbase.com/join/allthingsxrpl
 [200] https://www.bitstamp.net/?ref=allthingsxrpl
 [200] https://www.kucoin.com/r?ref=allthingsxrpl
 [200] https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL

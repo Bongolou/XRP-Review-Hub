@@ -79,7 +79,7 @@ const exchangeData: Record<string, {
     founded: "2015",
     headquarters: "New York, USA",
     website: "uphold.com",
-    affiliateLink: "https://uphold.com/sign-up?referral=allthingsxrpl",
+    affiliateLink: "https://uphold.com/signup?referral=allthingsxrpl",
     bonusKey: "exchangeDetail.uphold.bonus",
     descriptionKey: "exchangeDetail.uphold.description",
     featureKeys: [
@@ -375,7 +375,7 @@ const exchangeData: Record<string, {
     founded: "2012",
     headquarters: "San Francisco, USA",
     website: "coinbase.com",
-    affiliateLink: "https://www.coinbase.com/join?ref=allthingsxrpl",
+    affiliateLink: "https://www.coinbase.com/join/allthingsxrpl",
     bonusKey: "exchangeDetail.coinbase.bonus",
     descriptionKey: "exchangeDetail.coinbase.description",
     featureKeys: [
@@ -449,7 +449,7 @@ const exchangeData: Record<string, {
     founded: "2016",
     headquarters: "Singapore",
     website: "crypto.com",
-    affiliateLink: "https://crypto.com/app",
+    affiliateLink: "https://crypto.com/",
     bonusKey: "exchangeDetail.cryptocom.bonus",
     descriptionKey: "exchangeDetail.cryptocom.description",
     featureKeys: [

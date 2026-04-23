@@ -355,7 +355,7 @@ const exchangesData = [
     bonusKey: "exchange.bonus.crypto10",
     blurbKey: "exchange.blurb.coinbase",
     featureKeys: ["exchange.feature.mostTrusted", "exchange.feature.beginnerFriendly", "exchange.feature.usBased"],
-    link: "https://www.coinbase.com/join?ref=allthingsxrpl",
+    link: "https://www.coinbase.com/join/allthingsxrpl",
     color: "text-blue-400",
     bgColor: "bg-blue-400/20",
     logo: coinbaseLogo
@@ -379,7 +379,7 @@ const exchangesData = [
     bonusKey: "exchange.bonus.signup25",
     blurbKey: "exchange.blurb.cryptocom",
     featureKeys: ["exchange.feature.visaCard", "exchange.feature.earnInterest", "exchange.feature.coins250"],
-    link: "https://crypto.com/app",
+    link: "https://crypto.com/",
     color: "text-indigo-400",
     bgColor: "bg-indigo-400/20",
     logo: cryptocomLogo
