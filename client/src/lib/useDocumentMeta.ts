@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { useLanguage } from "./i18n/LanguageContext";
+import type { Language } from "./i18n/translations";
 
 type Meta = {
   title?: string;
@@ -14,6 +16,25 @@ type SnapshotEntry = {
   prevContent: string | null;
   createdByHook: boolean;
 };
+
+const HREFLANG_MAP: Array<{ lang: Language; hreflang: string }> = [
+  { lang: "en", hreflang: "en" },
+  { lang: "es", hreflang: "es" },
+  { lang: "zh", hreflang: "zh-Hans" },
+  { lang: "ja", hreflang: "ja" },
+  { lang: "ko", hreflang: "ko" },
+  { lang: "pt", hreflang: "pt" },
+  { lang: "de", hreflang: "de" },
+  { lang: "fr", hreflang: "fr" },
+];
+
+const HREFLANG_MARKER = "data-i18n-alternate";
+
+function buildLocalizedHref(origin: string, path: string, lang: Language): string {
+  if (lang === "en") return `${origin}${path}`;
+  const sep = path.includes("?") ? "&" : "?";
+  return `${origin}${path}${sep}lang=${lang}`;
+}
 
 function snapshotMetaTag(
   selector: string,
@@ -52,6 +73,8 @@ function restoreMetaTag(entry: SnapshotEntry) {
 }
 
 export function useDocumentMeta({ title, description, canonicalPath, image }: Meta) {
+  const { language } = useLanguage();
+
   useEffect(() => {
     const prevTitle = document.title;
 
@@ -110,6 +133,10 @@ export function useDocumentMeta({ title, description, canonicalPath, image }: Me
     if (image) {
       imageSnaps.forEach((s) => setMetaTagAndTrack(s, image));
     }
+
+    const origin =
+      typeof window !== "undefined" ? window.location.origin : "";
+
     if (canonicalPath && canonicalSnap) {
       let el = document.head.querySelector<HTMLLinkElement>(
         'link[rel="canonical"]',
@@ -120,9 +147,36 @@ export function useDocumentMeta({ title, description, canonicalPath, image }: Me
         document.head.appendChild(el);
         canonicalSnap.createdByHook = true;
       }
-      const origin =
-        typeof window !== "undefined" ? window.location.origin : "";
-      el.setAttribute("href", `${origin}${canonicalPath}`);
+      el.setAttribute("href", buildLocalizedHref(origin, canonicalPath, language));
+    }
+
+    // Emit a self-referential set of hreflang alternates plus x-default so
+    // search engines understand the relationship between every translated
+    // version of this page. Mirrors the sitemap's alternate URL set.
+    const alternateLinks: HTMLLinkElement[] = [];
+    if (canonicalPath) {
+      // Clean any leftover alternates from a previous render before adding
+      // a fresh set so re-renders don't duplicate tags.
+      document.head
+        .querySelectorAll<HTMLLinkElement>(`link[${HREFLANG_MARKER}]`)
+        .forEach((node) => node.parentNode?.removeChild(node));
+
+      HREFLANG_MAP.forEach(({ lang, hreflang }) => {
+        const link = document.createElement("link");
+        link.setAttribute("rel", "alternate");
+        link.setAttribute("hreflang", hreflang);
+        link.setAttribute("href", buildLocalizedHref(origin, canonicalPath, lang));
+        link.setAttribute(HREFLANG_MARKER, "true");
+        document.head.appendChild(link);
+        alternateLinks.push(link);
+      });
+      const xdefault = document.createElement("link");
+      xdefault.setAttribute("rel", "alternate");
+      xdefault.setAttribute("hreflang", "x-default");
+      xdefault.setAttribute("href", `${origin}${canonicalPath}`);
+      xdefault.setAttribute(HREFLANG_MARKER, "true");
+      document.head.appendChild(xdefault);
+      alternateLinks.push(xdefault);
     }
 
     return () => {
@@ -142,6 +196,7 @@ export function useDocumentMeta({ title, description, canonicalPath, image }: Me
           }
         }
       }
+      alternateLinks.forEach((link) => link.parentNode?.removeChild(link));
     };
-  }, [title, description, canonicalPath, image]);
+  }, [title, description, canonicalPath, image, language]);
 }
