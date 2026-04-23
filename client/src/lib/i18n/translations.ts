@@ -1552,6 +1552,17 @@ export const translations: Record<Language, Record<string, string>> = {
       "bf.safest.faq2.a": "Yes, because the threat models are different. A software wallet trusts your phone's OS; a hardware wallet doesn't trust anything except the chip itself. The chip is air-gapped from any malware on the connected device, which removes the most common attack vector entirely.",
       "bf.safest.faq3.q": "What's the safest way to back up my hardware wallet?",
       "bf.safest.faq3.a": "Stamp your seed phrase onto a steel plate (we recommend Cryptosteel or Billfodl), store it in a different physical location from the device, and never type it into any computer or phone — ever. Optionally add a passphrase for very large holdings.",
+
+      // Homepage Fast Compare table cell labels
+      "home.compare.type.mobileSoftware": "Mobile · Software",
+      "home.compare.type.hardware": "Hardware",
+      "home.compare.type.hardwareCard": "Hardware (Card)",
+      "home.compare.type.airGapped": "Air-gapped hardware",
+      "home.compare.bestFor.dailyDexNfts": "Daily use, DEX, NFTs",
+      "home.compare.bestFor.coldStorage": "Cold storage",
+      "home.compare.bestFor.portableHardware": "Portable hardware",
+      "home.compare.bestFor.openSource": "Open-source hardware",
+      "home.compare.bestFor.maxIsolation": "Maximum isolation",
     },
   
   es: {
@@ -3092,6 +3103,17 @@ export const translations: Record<Language, Record<string, string>> = {
       "bf.safest.faq2.a": "Sí, porque los modelos de amenaza son distintos. Una billetera de software confía en el SO del teléfono; una hardware no confía en nada salvo en el propio chip. El chip está aislado de cualquier malware en el dispositivo conectado, lo que elimina por completo el vector de ataque más común.",
       "bf.safest.faq3.q": "¿Cuál es la forma más segura de respaldar mi billetera hardware?",
       "bf.safest.faq3.a": "Graba tu frase semilla en una placa de acero (recomendamos Cryptosteel o Billfodl), guárdala en una ubicación física distinta del dispositivo y nunca la escribas en ningún ordenador o teléfono — jamás. Opcionalmente, añade una passphrase para tenencias muy grandes.",
+
+      // Homepage Fast Compare table cell labels
+      "home.compare.type.mobileSoftware": "Móvil · Software",
+      "home.compare.type.hardware": "Hardware",
+      "home.compare.type.hardwareCard": "Hardware (Tarjeta)",
+      "home.compare.type.airGapped": "Hardware aislado",
+      "home.compare.bestFor.dailyDexNfts": "Uso diario, DEX, NFTs",
+      "home.compare.bestFor.coldStorage": "Almacenamiento en frío",
+      "home.compare.bestFor.portableHardware": "Hardware portátil",
+      "home.compare.bestFor.openSource": "Hardware open-source",
+      "home.compare.bestFor.maxIsolation": "Aislamiento máximo",
     },
   
   zh: {
@@ -4632,6 +4654,17 @@ export const translations: Record<Language, Record<string, string>> = {
       "bf.safest.faq2.a": "是的，因为威胁模型不同。软件钱包信任手机操作系统；硬件钱包除了芯片本身外不信任任何东西。芯片与连接设备上的任何恶意软件隔离，从根本上消除了最常见的攻击向量。",
       "bf.safest.faq3.q": "备份硬件钱包最安全的方式是什么？",
       "bf.safest.faq3.a": "把助记词刻到钢板上（推荐 Cryptosteel 或 Billfodl），存放在与设备不同的物理位置，永远不要输入任何电脑或手机。如果持仓特别大，可加 passphrase。",
+
+      // Homepage Fast Compare table cell labels
+      "home.compare.type.mobileSoftware": "移动端 · 软件",
+      "home.compare.type.hardware": "硬件",
+      "home.compare.type.hardwareCard": "硬件（卡片）",
+      "home.compare.type.airGapped": "气隙硬件",
+      "home.compare.bestFor.dailyDexNfts": "日常使用、DEX、NFT",
+      "home.compare.bestFor.coldStorage": "冷存储",
+      "home.compare.bestFor.portableHardware": "便携硬件",
+      "home.compare.bestFor.openSource": "开源硬件",
+      "home.compare.bestFor.maxIsolation": "最大隔离",
     },
   
   ja: {
@@ -6172,6 +6205,17 @@ export const translations: Record<Language, Record<string, string>> = {
       "bf.safest.faq2.a": "はい、脅威モデルが異なります。ソフトウェアウォレットはスマホのOSを信頼しますが、ハードウェアウォレットはチップ以外を信頼しません。チップは接続デバイス上のマルウェアからエアギャップ分離されており、最も一般的な攻撃経路を完全に排除します。",
       "bf.safest.faq3.q": "ハードウェアウォレットを安全にバックアップする方法は？",
       "bf.safest.faq3.a": "シードフレーズをスチールプレート（CryptosteelやBillfodl推奨）に刻印し、機器とは別の場所に保管し、PCやスマホに絶対に入力しないでください。非常に大きな保有ならパスフレーズも追加します。",
+
+      // Homepage Fast Compare table cell labels
+      "home.compare.type.mobileSoftware": "モバイル · ソフトウェア",
+      "home.compare.type.hardware": "ハードウェア",
+      "home.compare.type.hardwareCard": "ハードウェア（カード）",
+      "home.compare.type.airGapped": "エアギャップ・ハードウェア",
+      "home.compare.bestFor.dailyDexNfts": "日常利用、DEX、NFT",
+      "home.compare.bestFor.coldStorage": "コールドストレージ",
+      "home.compare.bestFor.portableHardware": "ポータブル・ハードウェア",
+      "home.compare.bestFor.openSource": "オープンソース・ハードウェア",
+      "home.compare.bestFor.maxIsolation": "最大限の隔離",
     },
   
   ko: {
@@ -7712,6 +7756,17 @@ export const translations: Record<Language, Record<string, string>> = {
       "bf.safest.faq2.a": "네, 위협 모델이 다릅니다. 소프트웨어 지갑은 휴대폰 OS를 신뢰하지만 하드웨어 지갑은 칩 외에는 아무것도 신뢰하지 않습니다. 칩은 연결된 기기의 어떤 악성코드로부터도 에어갭 격리되어 있어 가장 흔한 공격 경로를 완전히 제거합니다.",
       "bf.safest.faq3.q": "하드웨어 지갑을 가장 안전하게 백업하는 방법은 무엇인가요?",
       "bf.safest.faq3.a": "시드 문구를 강철 플레이트(Cryptosteel 또는 Billfodl 권장)에 새기고, 기기와 다른 물리적 장소에 보관하며, 절대 어떤 컴퓨터나 휴대폰에도 입력하지 마세요. 매우 큰 보유에는 패스프레이즈를 선택적으로 추가하세요.",
+
+      // Homepage Fast Compare table cell labels
+      "home.compare.type.mobileSoftware": "모바일 · 소프트웨어",
+      "home.compare.type.hardware": "하드웨어",
+      "home.compare.type.hardwareCard": "하드웨어 (카드)",
+      "home.compare.type.airGapped": "에어갭 하드웨어",
+      "home.compare.bestFor.dailyDexNfts": "일상 사용, DEX, NFT",
+      "home.compare.bestFor.coldStorage": "콜드 스토리지",
+      "home.compare.bestFor.portableHardware": "휴대용 하드웨어",
+      "home.compare.bestFor.openSource": "오픈소스 하드웨어",
+      "home.compare.bestFor.maxIsolation": "최대 격리",
     },
   
   pt: {
@@ -9252,6 +9307,17 @@ export const translations: Record<Language, Record<string, string>> = {
       "bf.safest.faq2.a": "Sim, porque os modelos de ameaça são diferentes. Uma carteira de software confia no SO do telefone; uma de hardware não confia em nada além do próprio chip. O chip está isolado de qualquer malware no dispositivo conectado, removendo por completo o vetor de ataque mais comum.",
       "bf.safest.faq3.q": "Qual é a forma mais segura de fazer backup da minha carteira hardware?",
       "bf.safest.faq3.a": "Grave sua seed em uma placa de aço (recomendamos Cryptosteel ou Billfodl), guarde em local físico diferente do dispositivo, e nunca a digite em nenhum computador ou celular — jamais. Opcionalmente, adicione uma passphrase para holdings muito grandes.",
+
+      // Homepage Fast Compare table cell labels
+      "home.compare.type.mobileSoftware": "Móvel · Software",
+      "home.compare.type.hardware": "Hardware",
+      "home.compare.type.hardwareCard": "Hardware (Cartão)",
+      "home.compare.type.airGapped": "Hardware isolado",
+      "home.compare.bestFor.dailyDexNfts": "Uso diário, DEX, NFTs",
+      "home.compare.bestFor.coldStorage": "Armazenamento offline",
+      "home.compare.bestFor.portableHardware": "Hardware portátil",
+      "home.compare.bestFor.openSource": "Hardware open-source",
+      "home.compare.bestFor.maxIsolation": "Isolamento máximo",
     },
   
   de: {
@@ -10792,6 +10858,17 @@ export const translations: Record<Language, Record<string, string>> = {
       "bf.safest.faq2.a": "Ja, weil die Bedrohungsmodelle unterschiedlich sind. Eine Software-Wallet vertraut dem OS deines Handys; eine Hardware-Wallet vertraut nichts außer dem Chip selbst. Der Chip ist von Malware auf dem verbundenen Gerät air-gapped getrennt, was den häufigsten Angriffsvektor komplett eliminiert.",
       "bf.safest.faq3.q": "Wie sichere ich meine Hardware-Wallet am sichersten?",
       "bf.safest.faq3.a": "Präge deine Seed-Phrase auf eine Stahlplatte (wir empfehlen Cryptosteel oder Billfodl), bewahre sie an einem anderen physischen Ort als das Gerät auf, und tippe sie nie in einen Computer oder ein Handy ein — niemals. Optional eine Passphrase für sehr große Bestände hinzufügen.",
+
+      // Homepage Fast Compare table cell labels
+      "home.compare.type.mobileSoftware": "Mobil · Software",
+      "home.compare.type.hardware": "Hardware",
+      "home.compare.type.hardwareCard": "Hardware (Karte)",
+      "home.compare.type.airGapped": "Air-gapped Hardware",
+      "home.compare.bestFor.dailyDexNfts": "Tägliche Nutzung, DEX, NFTs",
+      "home.compare.bestFor.coldStorage": "Cold Storage",
+      "home.compare.bestFor.portableHardware": "Tragbare Hardware",
+      "home.compare.bestFor.openSource": "Open-Source-Hardware",
+      "home.compare.bestFor.maxIsolation": "Maximale Isolation",
     },
   
   fr: {
@@ -12332,5 +12409,16 @@ export const translations: Record<Language, Record<string, string>> = {
       "bf.safest.faq2.a": "Oui, parce que les modèles de menace sont différents. Un portefeuille logiciel fait confiance à l'OS du téléphone ; un portefeuille matériel ne fait confiance qu'à la puce elle-même. La puce est isolée air-gapped de tout logiciel malveillant sur l'appareil connecté, ce qui élimine entièrement le vecteur d'attaque le plus courant.",
       "bf.safest.faq3.q": "Quelle est la façon la plus sûre de sauvegarder mon portefeuille matériel ?",
       "bf.safest.faq3.a": "Gravez votre phrase de récupération sur une plaque en acier (nous recommandons Cryptosteel ou Billfodl), stockez-la dans un lieu physique différent de l'appareil, et ne la tapez jamais sur un ordinateur ou un téléphone — jamais. Ajoutez éventuellement une passphrase pour de très gros avoirs.",
+
+      // Homepage Fast Compare table cell labels
+      "home.compare.type.mobileSoftware": "Mobile · Logiciel",
+      "home.compare.type.hardware": "Matériel",
+      "home.compare.type.hardwareCard": "Matériel (Carte)",
+      "home.compare.type.airGapped": "Matériel air-gapped",
+      "home.compare.bestFor.dailyDexNfts": "Usage quotidien, DEX, NFT",
+      "home.compare.bestFor.coldStorage": "Stockage à froid",
+      "home.compare.bestFor.portableHardware": "Matériel portable",
+      "home.compare.bestFor.openSource": "Matériel open-source",
+      "home.compare.bestFor.maxIsolation": "Isolation maximale",
     }
 };

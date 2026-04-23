@@ -123,13 +123,20 @@ const homepageUseCases: UseCase[] = [
   },
 ];
 
-const homepageCompareRows: FastCompareRow[] = [
+type HomepageCompareRowRaw = Omit<FastCompareRow, "type" | "bestFor" | "price"> & {
+  typeKey: string;
+  bestForKey: string;
+  priceKey?: string;
+  price?: string;
+};
+
+const homepageCompareRowsRaw: HomepageCompareRowRaw[] = [
   {
     id: "xaman",
     name: "Xaman (XUMM)",
-    type: "Mobile · Software",
-    price: "Free",
-    bestFor: "Daily use, DEX, NFTs",
+    typeKey: "home.compare.type.mobileSoftware",
+    priceKey: "wallet.fees.free",
+    bestForKey: "home.compare.bestFor.dailyDexNfts",
     rating: "9.9",
     reviewSlug: "xaman",
     affiliateUrl: "https://xumm.app/?ref=allthingsxrpl",
@@ -138,9 +145,9 @@ const homepageCompareRows: FastCompareRow[] = [
   {
     id: "ledger",
     name: "Ledger Nano X",
-    type: "Hardware",
+    typeKey: "home.compare.type.hardware",
     price: "$149",
-    bestFor: "Cold storage",
+    bestForKey: "home.compare.bestFor.coldStorage",
     rating: "9.9",
     reviewSlug: "ledger",
     affiliateUrl: "https://shop.ledger.com/?r=5d81f18905fe",
@@ -148,9 +155,9 @@ const homepageCompareRows: FastCompareRow[] = [
   {
     id: "tangem",
     name: "Tangem",
-    type: "Hardware (Card)",
+    typeKey: "home.compare.type.hardwareCard",
     price: "$54.90",
-    bestFor: "Portable hardware",
+    bestForKey: "home.compare.bestFor.portableHardware",
     rating: "9.4",
     reviewSlug: "tangem",
     affiliateUrl: "https://tangem.com/?promocode=ALLTHINGSXRPL",
@@ -158,9 +165,9 @@ const homepageCompareRows: FastCompareRow[] = [
   {
     id: "trezor",
     name: "Trezor Safe 5",
-    type: "Hardware",
+    typeKey: "home.compare.type.hardware",
     price: "$169",
-    bestFor: "Open-source hardware",
+    bestForKey: "home.compare.bestFor.openSource",
     rating: "9.3",
     reviewSlug: "trezor",
     affiliateUrl: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
@@ -168,9 +175,9 @@ const homepageCompareRows: FastCompareRow[] = [
   {
     id: "ellipal",
     name: "ELLIPAL Titan 2.0",
-    type: "Air-gapped hardware",
+    typeKey: "home.compare.type.airGapped",
     price: "$169",
-    bestFor: "Maximum isolation",
+    bestForKey: "home.compare.bestFor.maxIsolation",
     rating: "9.2",
     reviewSlug: "ellipal",
     affiliateUrl: "https://www.ellipal.com/?ref=allthingsxrpl",
@@ -661,7 +668,19 @@ export default function Home() {
       <UseCaseSelector cases={homepageUseCases} />
 
       {/* Fast compare table — top picks at a glance */}
-      <FastCompareTable rows={homepageCompareRows} />
+      <FastCompareTable
+        rows={homepageCompareRowsRaw.map((r) => ({
+          id: r.id,
+          name: r.name,
+          type: t(r.typeKey),
+          price: r.priceKey ? t(r.priceKey) : (r.price ?? ""),
+          bestFor: t(r.bestForKey),
+          rating: r.rating,
+          reviewSlug: r.reviewSlug,
+          affiliateUrl: r.affiliateUrl,
+          highlight: r.highlight,
+        }))}
+      />
 
       {/* Deal of the Week */}
       <section className="container mx-auto px-4 pt-20 pb-8 relative z-20">
