@@ -5,7 +5,7 @@ import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 export default function Privacy() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const seo = getStaticPageSeo(language, "privacy");
   useDocumentMeta({
     title: seo.title,
@@ -17,105 +17,94 @@ export default function Privacy() {
     <Layout>
       <div className="container mx-auto px-4 max-w-4xl py-20 md:py-24">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-black font-display mb-4">Privacy Policy</h1>
-          <p className="text-muted-foreground">Last updated: January 25, 2026</p>
+          <h1 className="text-4xl md:text-5xl font-black font-display mb-4" data-testid="text-privacy-title">{t("privacy.title")}</h1>
+          <p className="text-muted-foreground" data-testid="text-privacy-last-updated">{t("privacy.lastUpdated")}</p>
         </div>
 
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
           <div className="prose prose-invert max-w-none space-y-8">
             <section>
-              <h2 className="text-xl font-bold font-display mb-4 text-white">1. Information We Collect</h2>
+              <h2 className="text-xl font-bold font-display mb-4 text-white">{t("privacy.s1.h")}</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                We collect information you provide directly to us, such as when you subscribe to our 
-                newsletter, submit a contact form, or interact with our website.
+                {t("privacy.s1.p1")}
               </p>
               <ul className="list-disc list-inside text-muted-foreground space-y-2">
-                <li><strong className="text-white">Email Address:</strong> When you subscribe to our newsletter</li>
-                <li><strong className="text-white">Contact Information:</strong> Name, email, and message content when you use our contact form</li>
-                <li><strong className="text-white">Usage Data:</strong> Information about how you interact with our website</li>
+                <li><strong className="text-white">{t("privacy.s1.li1.label")}</strong> {t("privacy.s1.li1.text")}</li>
+                <li><strong className="text-white">{t("privacy.s1.li2.label")}</strong> {t("privacy.s1.li2.text")}</li>
+                <li><strong className="text-white">{t("privacy.s1.li3.label")}</strong> {t("privacy.s1.li3.text")}</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold font-display mb-4 text-white">2. How We Use Your Information</h2>
+              <h2 className="text-xl font-bold font-display mb-4 text-white">{t("privacy.s2.h")}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                We use the information we collect to:
+                {t("privacy.s2.p1")}
               </p>
               <ul className="list-disc list-inside text-muted-foreground space-y-2 mt-4">
-                <li>Send you our newsletter with XRPL updates, reviews, and educational content</li>
-                <li>Respond to your inquiries and provide customer support</li>
-                <li>Improve our website and content based on user behavior</li>
-                <li>Comply with legal obligations</li>
+                <li>{t("privacy.s2.li1")}</li>
+                <li>{t("privacy.s2.li2")}</li>
+                <li>{t("privacy.s2.li3")}</li>
+                <li>{t("privacy.s2.li4")}</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold font-display mb-4 text-white">3. Information Sharing</h2>
+              <h2 className="text-xl font-bold font-display mb-4 text-white">{t("privacy.s3.h")}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                We do not sell, trade, or otherwise transfer your personal information to third parties 
-                except as described in this policy. We may share information with:
+                {t("privacy.s3.p1")}
               </p>
               <ul className="list-disc list-inside text-muted-foreground space-y-2 mt-4">
-                <li>Service providers who assist in operating our website</li>
-                <li>Analytics providers to understand website usage</li>
-                <li>Law enforcement when required by law</li>
+                <li>{t("privacy.s3.li1")}</li>
+                <li>{t("privacy.s3.li2")}</li>
+                <li>{t("privacy.s3.li3")}</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold font-display mb-4 text-white">4. Cookies and Tracking</h2>
+              <h2 className="text-xl font-bold font-display mb-4 text-white">{t("privacy.s4.h")}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                We use cookies and similar tracking technologies to track activity on our website and 
-                hold certain information. Cookies are files with small amounts of data that may include 
-                an anonymous unique identifier.
+                {t("privacy.s4.p1")}
               </p>
               <p className="text-muted-foreground leading-relaxed mt-4">
-                You can instruct your browser to refuse all cookies or to indicate when a cookie is 
-                being sent. However, if you do not accept cookies, you may not be able to use some 
-                portions of our website.
+                {t("privacy.s4.p2")}
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold font-display mb-4 text-white">5. Affiliate Links</h2>
+              <h2 className="text-xl font-bold font-display mb-4 text-white">{t("privacy.s5.h")}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                Our website contains affiliate links to third-party products and services. When you 
-                click on these links, the third-party may place cookies on your device to track 
-                referrals. Please refer to each third party's privacy policy for information about 
-                their data practices.
+                {t("privacy.s5.p1")}
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold font-display mb-4 text-white">6. Data Security</h2>
+              <h2 className="text-xl font-bold font-display mb-4 text-white">{t("privacy.s6.h")}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                We implement appropriate security measures to protect your personal information. 
-                However, no method of transmission over the Internet or electronic storage is 100% 
-                secure, and we cannot guarantee absolute security.
+                {t("privacy.s6.p1")}
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold font-display mb-4 text-white">7. Your Rights</h2>
+              <h2 className="text-xl font-bold font-display mb-4 text-white">{t("privacy.s7.h")}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                You have the right to:
+                {t("privacy.s7.p1")}
               </p>
               <ul className="list-disc list-inside text-muted-foreground space-y-2 mt-4">
-                <li>Access the personal information we hold about you</li>
-                <li>Request correction of inaccurate information</li>
-                <li>Request deletion of your information</li>
-                <li>Unsubscribe from our newsletter at any time</li>
+                <li>{t("privacy.s7.li1")}</li>
+                <li>{t("privacy.s7.li2")}</li>
+                <li>{t("privacy.s7.li3")}</li>
+                <li>{t("privacy.s7.li4")}</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold font-display mb-4 text-white">8. Contact Us</h2>
+              <h2 className="text-xl font-bold font-display mb-4 text-white">{t("privacy.s8.h")}</h2>
               <p className="text-muted-foreground leading-relaxed">
-                If you have any questions about this Privacy Policy, please contact us at{" "}
+                {t("privacy.s8.p1.intro")}{" "}
                 <a href="mailto:privacy@allthingsxrpl.com" className="text-primary hover:underline">
                   privacy@allthingsxrpl.com
                 </a>{" "}
-                or through our <a href="/contact" className="text-primary hover:underline">contact form</a>.
+                {t("privacy.s8.p1.via")} <a href="/contact" className="text-primary hover:underline">{t("privacy.s8.contactForm")}</a>.
               </p>
             </section>
           </div>
