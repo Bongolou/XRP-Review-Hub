@@ -6,6 +6,7 @@ import { storage } from "./storage";
 import { insertSubscriberSchema, insertContactSchema, insertProductReviewSchema } from "@shared/schema";
 import { blogPosts } from "@shared/blog";
 import { resolveOgImageForPath } from "./socialMeta";
+import { walletCards, exchangeCards, type CardEntry } from "./cardData";
 import { Resvg } from "@resvg/resvg-js";
 import { z } from "zod";
 
@@ -67,6 +68,118 @@ function renderSvgToPng(svg: string): Buffer {
     font: { loadSystemFonts: true },
   });
   return resvg.render().asPng();
+}
+
+// In-memory cache of base64-encoded brand logos so each /og/wallet|exchange
+// request doesn't re-read and re-encode the PNG from disk.
+const logoDataUriCache = new Map<string, string | null>();
+
+function loadLogoDataUri(slug: string): string | null {
+  if (logoDataUriCache.has(slug)) return logoDataUriCache.get(slug) ?? null;
+  // Match the lookup order used by resolveLeadMagnetPath so this works in
+  // both dev (client/public) and prod (dist/public) builds.
+  const candidates = [
+    path.resolve(process.cwd(), `dist/public/logos/${slug}-logo.png`),
+    path.resolve(process.cwd(), `client/public/logos/${slug}-logo.png`),
+  ];
+  for (const p of candidates) {
+    try {
+      if (fs.existsSync(p)) {
+        const buf = fs.readFileSync(p);
+        const uri = `data:image/png;base64,${buf.toString("base64")}`;
+        logoDataUriCache.set(slug, uri);
+        return uri;
+      }
+    } catch {
+      // try next candidate
+    }
+  }
+  logoDataUriCache.set(slug, null);
+  return null;
+}
+
+function capitalizeOg(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+// Brand-aligned card for a single wallet or exchange (1200x630). Embeds the
+// brand logo as a data URI so resvg can render it without an external HTTP
+// fetch. Used as the OG image for /wallet/<slug> and /exchange/<slug> as
+// well as the per-page image entry in the sitemap, so Google Images and
+// Discover can surface a richer visual than the small square logo alone.
+function buildBrandCardSvg(
+  entry: CardEntry,
+  slug: string,
+  kindLabel: string,
+  ratingScale: 5 | 10,
+): string {
+  const w = 1200;
+  const h = 630;
+  const name = escapeOgXml(truncateOg(entry.name, 28));
+  const tagline = escapeOgXml(truncateOg(entry.tagline, 64));
+  const rating = escapeOgXml(entry.rating);
+  const footer = escapeOgXml(`${kindLabel} · All Things XRPL · 2026`);
+  const logoUri = loadLogoDataUri(slug);
+  const logoBlock = logoUri
+    ? `<image href="${escapeOgXml(logoUri)}" x="80" y="170" width="280" height="280" preserveAspectRatio="xMidYMid meet"/>`
+    : `<rect x="80" y="170" width="280" height="280" rx="32" fill="#ffffff" opacity="0.06"/>`;
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="url(#bg)"/>
+  <text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
+  ${logoBlock}
+  <text x="400" y="270" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="76" font-weight="800" fill="#ffffff">${name}</text>
+  <text x="400" y="340" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#cbd5e1">${tagline}</text>
+  <g>
+    <rect x="400" y="380" width="240" height="72" rx="36" fill="#fbbf24"/>
+    <text x="520" y="430" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="800" fill="#0b1220">★ ${rating}/${ratingScale}</text>
+  </g>
+  <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">${footer}</text>
+</svg>`;
+}
+
+function buildWalletOgSvg(slug: string): string {
+  const entry =
+    walletCards[slug] ?? {
+      name: capitalizeOg(slug),
+      tagline: "XRP wallet review on All Things XRPL",
+      rating: "9.0",
+    };
+  return buildBrandCardSvg(entry, slug, "XRP Wallet Review", 10);
+}
+
+function buildExchangeOgSvg(slug: string): string {
+  const entry =
+    exchangeCards[slug] ?? {
+      name: capitalizeOg(slug),
+      tagline: "XRP exchange review on All Things XRPL",
+      rating: "4.5",
+    };
+  return buildBrandCardSvg(entry, slug, "XRP Exchange Review", 5);
+}
+
+// Cache the rendered PNG buffer per (kind, slug) so repeat crawler hits
+// don't re-rasterize the SVG (which embeds a 600KB-1MB base64 logo) on
+// every request. Slug callers are validated against walletCards/
+// exchangeCards before reaching here, so the cache is bounded to the
+// known wallet/exchange set (~16 entries) and cannot be polluted by
+// arbitrary input.
+const ogPngCache = new Map<string, Buffer>();
+
+function getOgPng(kind: "wallet" | "exchange", slug: string): Buffer {
+  const key = `${kind}:${slug}`;
+  const cached = ogPngCache.get(key);
+  if (cached) return cached;
+  const svg = kind === "wallet" ? buildWalletOgSvg(slug) : buildExchangeOgSvg(slug);
+  const png = renderSvgToPng(svg);
+  ogPngCache.set(key, png);
+  return png;
 }
 
 function resolveLeadMagnetPath(filename: string): string | null {
@@ -360,6 +473,72 @@ export async function registerRoutes(
     }
   });
 
+  // Per-wallet branded OG card (1200x630) — used as the image for
+  // /wallet/<slug> in the sitemap and social-meta tags so search engines and
+  // social crawlers surface a richer, contextual visual instead of the small
+  // square brand logo on its own. Slugs are strictly allowlisted against
+  // walletCards/exchangeCards so unknown slugs cannot influence the
+  // logo-file lookup or balloon the in-memory cache.
+  app.get("/og/wallet.svg", (req, res) => {
+    const slug = String(req.query.slug ?? "xaman");
+    if (!Object.prototype.hasOwnProperty.call(walletCards, slug)) {
+      res.status(404).type("text/plain").send("Unknown wallet slug");
+      return;
+    }
+    const svg = buildWalletOgSvg(slug);
+    res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    res.send(svg);
+  });
+
+  app.get("/og/wallet.png", (req, res) => {
+    const slug = String(req.query.slug ?? "xaman");
+    if (!Object.prototype.hasOwnProperty.call(walletCards, slug)) {
+      res.status(404).type("text/plain").send("Unknown wallet slug");
+      return;
+    }
+    try {
+      const png = getOgPng("wallet", slug);
+      res.setHeader("Content-Type", "image/png");
+      res.setHeader("Cache-Control", "public, max-age=86400");
+      res.send(png);
+    } catch (err) {
+      console.error("Failed to render /og/wallet.png:", err);
+      res.status(500).type("text/plain").send("Failed to render OG image");
+    }
+  });
+
+  // Per-exchange branded OG card — same role as /og/wallet but with the
+  // 5-point exchange rating scale.
+  app.get("/og/exchange.svg", (req, res) => {
+    const slug = String(req.query.slug ?? "uphold");
+    if (!Object.prototype.hasOwnProperty.call(exchangeCards, slug)) {
+      res.status(404).type("text/plain").send("Unknown exchange slug");
+      return;
+    }
+    const svg = buildExchangeOgSvg(slug);
+    res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    res.send(svg);
+  });
+
+  app.get("/og/exchange.png", (req, res) => {
+    const slug = String(req.query.slug ?? "uphold");
+    if (!Object.prototype.hasOwnProperty.call(exchangeCards, slug)) {
+      res.status(404).type("text/plain").send("Unknown exchange slug");
+      return;
+    }
+    try {
+      const png = getOgPng("exchange", slug);
+      res.setHeader("Content-Type", "image/png");
+      res.setHeader("Cache-Control", "public, max-age=86400");
+      res.send(png);
+    } catch (err) {
+      console.error("Failed to render /og/exchange.png:", err);
+      res.status(500).type("text/plain").send("Failed to render OG image");
+    }
+  });
+
   // Sitemap XML — generated dynamically from the route source of truth so it
   // stays in sync with App.tsx as new wallets, exchanges, comparisons, best-for
   // hubs and blog posts are added.
@@ -390,11 +569,11 @@ export async function registerRoutes(
 
     const walletPages: Entry[] = walletSlugs.map(slug => ({
       url: `/wallet/${slug}`, priority: "0.8", changefreq: "weekly",
-      image: `/logos/${slug}-logo.png`,
+      image: `/og/wallet.png?slug=${encodeURIComponent(slug)}`,
     }));
     const exchangePages: Entry[] = exchangeSlugs.map(slug => ({
       url: `/exchange/${slug}`, priority: "0.8", changefreq: "weekly",
-      image: `/logos/${slug}-logo.png`,
+      image: `/og/exchange.png?slug=${encodeURIComponent(slug)}`,
     }));
     const comparePages: Entry[] = compareSlugs.map(slug => {
       const parts = slug.split("-vs-");

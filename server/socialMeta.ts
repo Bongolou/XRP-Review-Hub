@@ -49,13 +49,19 @@ const STATIC_ROUTES: Record<string, StaticPageKey> = {
   "/terms": "terms",
 };
 
-function logoUrl(slug: string): string {
-  return `/logos/${slug}-logo.png`;
-}
-
 function pageOg(title: string): string {
   const params = new URLSearchParams({ title });
   return `/og/page.png?${params.toString()}`;
+}
+
+function walletOg(slug: string): string {
+  const params = new URLSearchParams({ slug });
+  return `/og/wallet.png?${params.toString()}`;
+}
+
+function exchangeOg(slug: string): string {
+  const params = new URLSearchParams({ slug });
+  return `/og/exchange.png?${params.toString()}`;
 }
 
 function capitalize(s: string): string {
@@ -82,7 +88,7 @@ export function resolveMetaForPath(
     const slug = walletMatch[1];
     const seo = getSeoEntry(lang, "wallet", slug);
     if (seo) {
-      return { title: seo.title, description: seo.description, image: logoUrl(slug) };
+      return { title: seo.title, description: seo.description, image: walletOg(slug) };
     }
   }
 
@@ -92,7 +98,7 @@ export function resolveMetaForPath(
     const seo =
       exchangeSeo[lang]?.[slug] ?? exchangeSeo.en[slug];
     if (seo) {
-      return { title: seo.title, description: seo.description, image: logoUrl(slug) };
+      return { title: seo.title, description: seo.description, image: exchangeOg(slug) };
     }
   }
 
