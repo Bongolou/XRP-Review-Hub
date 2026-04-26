@@ -55,6 +55,7 @@ import {
   type FastCompareRow,
 } from "@/components/conversion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { useJsonLd } from "@/lib/useJsonLd";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getHomeSeo } from "@/lib/i18n/seoTranslations";
 import { Shield as ShieldIcon, BookOpen, Coins, Zap as ZapIcon } from "lucide-react";
@@ -563,7 +564,40 @@ export default function Home() {
     canonicalPath: "/",
     image: buildPageOgImage(homeSeo.title),
   });
-  
+
+  useJsonLd("home-faq", [
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is the best XRP wallet in 2026?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "The best XRP wallet depends on your needs. Xaman (XUMM) is best for mobile users with full XRPL DEX access. Ledger Nano X is ideal for security-focused users wanting cold storage. Tangem offers the easiest hardware wallet setup with NFC cards.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How do I stake XRP on the XRP Ledger?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "XRP cannot be directly staked like proof-of-stake coins. However, you can earn yield through XRPL's native AMM (Automated Market Maker) by providing liquidity to trading pools, or by lending XRP on platforms like Bitrue's Power Piggy.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Is XRP a good investment?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "XRP is used for fast, low-cost cross-border payments and powers the XRP Ledger ecosystem with DeFi, NFTs, and tokenization. Investment decisions should be based on your own research into the technology, use cases, and market conditions.",
+          },
+        },
+      ],
+    },
+  ]);
+
   return (
     <Layout>
       {/* Hero Section */}
