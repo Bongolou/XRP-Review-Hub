@@ -25,8 +25,16 @@ function buildPageOgSvg(rawTitle: string): string {
   const title = escapeOgXml(truncateOg(rawTitle, 40));
   const w = 1200;
   const h = 630;
+  // Embed the All Things XRPL brand mark at top-left so social shares of
+  // generic pages (About, FAQ, News, Disclosure, etc.) carry the brand
+  // identity instead of plain text on a gradient.
+  const brandUri = loadLogoDataUri("allthingsxrpl");
+  const brandMark = brandUri
+    ? `<image href="${escapeOgXml(brandUri)}" x="60" y="56" width="80" height="80" preserveAspectRatio="xMidYMid meet"/>`
+    : "";
+  const brandTextX = brandUri ? 160 : 60;
   return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0b1220"/>
@@ -34,19 +42,41 @@ function buildPageOgSvg(rawTitle: string): string {
     </linearGradient>
   </defs>
   <rect width="${w}" height="${h}" fill="url(#bg)"/>
-  <text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
+  ${brandMark}
+  <text x="${brandTextX}" y="110" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
   <text x="${w / 2}" y="${h / 2 + 30}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="120" font-weight="800" fill="#ffffff">${title}</text>
   <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">Best XRP Wallets · XRPL DeFi · 2026</text>
 </svg>`;
 }
 
-function buildCompareOgSvg(rawW1: string, rawW2: string): string {
-  const w1 = escapeOgXml(truncateOg(rawW1, 24));
-  const w2 = escapeOgXml(truncateOg(rawW2, 24));
+function buildCompareOgSvg(
+  rawW1: string,
+  rawW2: string,
+  slug1?: string | null,
+  slug2?: string | null,
+): string {
+  const w1 = escapeOgXml(truncateOg(rawW1, 18));
+  const w2 = escapeOgXml(truncateOg(rawW2, 18));
   const w = 1200;
   const h = 630;
+  const brandUri = loadLogoDataUri("allthingsxrpl");
+  const brandMark = brandUri
+    ? `<image href="${escapeOgXml(brandUri)}" x="60" y="56" width="80" height="80" preserveAspectRatio="xMidYMid meet"/>`
+    : "";
+  const brandTextX = brandUri ? 160 : 60;
+  // Wallet logo blocks. When the slug is unknown (e.g. an arbitrary string
+  // arrived via ?w1=…) we skip the logo and fall back to a subtle placeholder
+  // square so the layout stays consistent.
+  const logo1Uri = slug1 ? loadLogoDataUri(slug1) : null;
+  const logo2Uri = slug2 ? loadLogoDataUri(slug2) : null;
+  const logo1Block = logo1Uri
+    ? `<image href="${escapeOgXml(logo1Uri)}" x="160" y="200" width="240" height="240" preserveAspectRatio="xMidYMid meet"/>`
+    : `<rect x="160" y="200" width="240" height="240" rx="32" fill="#ffffff" opacity="0.06"/>`;
+  const logo2Block = logo2Uri
+    ? `<image href="${escapeOgXml(logo2Uri)}" x="800" y="200" width="240" height="240" preserveAspectRatio="xMidYMid meet"/>`
+    : `<rect x="800" y="200" width="240" height="240" rx="32" fill="#ffffff" opacity="0.06"/>`;
   return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0b1220"/>
@@ -54,10 +84,13 @@ function buildCompareOgSvg(rawW1: string, rawW2: string): string {
     </linearGradient>
   </defs>
   <rect width="${w}" height="${h}" fill="url(#bg)"/>
-  <text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
-  <text x="${w / 2}" y="${h / 2 - 40}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff">${w1}</text>
-  <text x="${w / 2}" y="${h / 2 + 40}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="64" font-weight="700" fill="#fbbf24">vs</text>
-  <text x="${w / 2}" y="${h / 2 + 140}" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="96" font-weight="800" fill="#ffffff">${w2}</text>
+  ${brandMark}
+  <text x="${brandTextX}" y="110" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
+  ${logo1Block}
+  ${logo2Block}
+  <text x="280" y="510" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="56" font-weight="800" fill="#ffffff">${w1}</text>
+  <text x="920" y="510" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="56" font-weight="800" fill="#ffffff">${w2}</text>
+  <text x="${w / 2}" y="345" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="80" font-weight="800" fill="#fbbf24">vs</text>
   <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">XRP Wallet Comparison · 2026</text>
 </svg>`;
 }
@@ -439,14 +472,33 @@ export async function registerRoutes(
     }
   });
 
+  // Validate a slug coming in via the compare card's query string against
+  // the known wallet/exchange set so the logo lookup can never be steered
+  // toward arbitrary filesystem paths and the in-memory logo cache cannot
+  // be polluted by attacker input.
+  const resolveCompareSlug = (raw: unknown): string | null => {
+    if (typeof raw !== "string" || raw.length === 0) return null;
+    const slug = raw.toLowerCase();
+    if (
+      Object.prototype.hasOwnProperty.call(walletCards, slug) ||
+      Object.prototype.hasOwnProperty.call(exchangeCards, slug)
+    ) {
+      return slug;
+    }
+    return null;
+  };
+
   // Open Graph image for comparison pages — generated as a real SVG URL so
   // social-media crawlers (Facebook, X, LinkedIn, Slack, Discord) can fetch
   // it. Names come from query params so we don't duplicate the comparison
-  // data on the server.
+  // data on the server. Optional ?slug1= / ?slug2= drive the per-wallet logo
+  // embed; if missing or unknown, the card falls back to a placeholder.
   app.get("/og/compare.svg", (req, res) => {
     const svg = buildCompareOgSvg(
       String(req.query.w1 ?? "Wallet 1"),
       String(req.query.w2 ?? "Wallet 2"),
+      resolveCompareSlug(req.query.slug1),
+      resolveCompareSlug(req.query.slug2),
     );
     res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
     res.setHeader("Cache-Control", "public, max-age=86400");
@@ -459,6 +511,8 @@ export async function registerRoutes(
       const svg = buildCompareOgSvg(
         String(req.query.w1 ?? "Wallet 1"),
         String(req.query.w2 ?? "Wallet 2"),
+        resolveCompareSlug(req.query.slug1),
+        resolveCompareSlug(req.query.slug2),
       );
       const png = renderSvgToPng(svg);
       res.setHeader("Content-Type", "image/png");
@@ -574,9 +628,12 @@ export async function registerRoutes(
     }));
     const comparePages: Entry[] = compareSlugs.map(slug => {
       const parts = slug.split("-vs-");
+      // Pass slug1/slug2 alongside w1/w2 so the compare share card embeds
+      // each wallet's brand logo (matches the URL shape produced by
+      // socialMeta.ts for live page shares).
       const image =
         parts.length === 2
-          ? `/og/compare.png?w1=${encodeURIComponent(capitalize(parts[0]))}&w2=${encodeURIComponent(capitalize(parts[1]))}`
+          ? `/og/compare.png?w1=${encodeURIComponent(capitalize(parts[0]))}&w2=${encodeURIComponent(capitalize(parts[1]))}&slug1=${encodeURIComponent(parts[0])}&slug2=${encodeURIComponent(parts[1])}`
           : undefined;
       return { url: `/compare/${slug}`, priority: "0.7", changefreq: "monthly", image };
     });

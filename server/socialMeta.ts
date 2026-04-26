@@ -109,9 +109,13 @@ export function resolveMetaForPath(
     const parts = slug.split("-vs-");
     let image: string | undefined;
     if (parts.length === 2) {
+      // Pass the raw slugs alongside the capitalized display names so
+      // /og/compare can embed each wallet's brand logo on the share card.
       const params = new URLSearchParams({
         w1: capitalize(parts[0]),
         w2: capitalize(parts[1]),
+        slug1: parts[0],
+        slug2: parts[1],
       });
       image = `/og/compare.png?${params.toString()}`;
     }
