@@ -316,14 +316,11 @@ async function fetchAllNews(): Promise<NewsItem[]> {
   return allItems;
 }
 
-const walletSlugs = [
-  "xaman", "ledger", "crossmark", "tangem", "bifrost",
-  "trustwallet", "gatehub", "ellipal", "trezor",
-];
-
-const exchangeSlugs = [
-  "uphold", "bitrue", "kraken", "coinbase", "bitstamp", "cryptocom", "kucoin",
-];
+// Single source of truth for the wallet/exchange slug sets — derived from
+// cardData so the sitemap entries, OG-image allowlist, and card metadata
+// can never drift out of sync.
+const walletSlugs = Object.keys(walletCards);
+const exchangeSlugs = Object.keys(exchangeCards);
 
 const compareSlugs = [
   "xaman-vs-ledger", "xaman-vs-tangem", "ledger-vs-tangem",
