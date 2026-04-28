@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { Eye, EyeOff, Star, Trash2, ShieldCheck, LogOut, RefreshCw } from "lucide-react";
+import { ArrowDown, ArrowUp, Eye, EyeOff, Star, Trash2, ShieldCheck, LogOut, RefreshCw, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { ProductReview } from "@shared/schema";
 
@@ -10,6 +10,21 @@ const TOKEN_STORAGE_KEY = "atxrpl-admin-token";
 interface AdminReviewsResponse {
   reviews: ProductReview[];
 }
+
+interface ReviewTargetSummaryRow {
+  targetKind: string;
+  targetSlug: string;
+  total: number;
+  hidden: number;
+  average: number | null;
+}
+
+interface AdminReviewsSummaryResponse {
+  summary: ReviewTargetSummaryRow[];
+}
+
+type SummarySortKey = "targetKind" | "targetSlug" | "total" | "hidden" | "average";
+type SummarySortDir = "asc" | "desc";
 
 function formatDate(value: string | Date): string {
   const d = typeof value === "string" ? new Date(value) : value;
@@ -123,10 +138,215 @@ function LoginForm({ onLogin }: { onLogin: (token: string) => void }) {
   );
 }
 
+interface SummaryTableProps {
+  rows: ReviewTargetSummaryRow[];
+  isLoading: boolean;
+  isFetching: boolean;
+  error: Error | null;
+  sortKey: SummarySortKey;
+  sortDir: SummarySortDir;
+  onSort: (key: SummarySortKey) => void;
+  activeTarget: { kind: string; slug: string } | null;
+  onSelectTarget: (row: ReviewTargetSummaryRow) => void;
+}
+
+function SortHeader({
+  label,
+  sortKey,
+  activeKey,
+  dir,
+  onSort,
+  align = "left",
+  testId,
+}: {
+  label: string;
+  sortKey: SummarySortKey;
+  activeKey: SummarySortKey;
+  dir: SummarySortDir;
+  onSort: (key: SummarySortKey) => void;
+  align?: "left" | "right";
+  testId: string;
+}) {
+  const active = sortKey === activeKey;
+  return (
+    <th
+      className={`px-3 py-2 text-xs font-medium text-muted-foreground uppercase tracking-wide ${
+        align === "right" ? "text-right" : "text-left"
+      }`}
+    >
+      <button
+        type="button"
+        onClick={() => onSort(sortKey)}
+        data-testid={testId}
+        className={`inline-flex items-center gap-1 hover:text-white ${
+          active ? "text-white" : ""
+        } ${align === "right" ? "ml-auto" : ""}`}
+      >
+        <span>{label}</span>
+        {active &&
+          (dir === "asc" ? (
+            <ArrowUp className="h-3.5 w-3.5" />
+          ) : (
+            <ArrowDown className="h-3.5 w-3.5" />
+          ))}
+      </button>
+    </th>
+  );
+}
+
+function SummaryTable({
+  rows,
+  isLoading,
+  isFetching,
+  error,
+  sortKey,
+  sortDir,
+  onSort,
+  activeTarget,
+  onSelectTarget,
+}: SummaryTableProps) {
+  return (
+    <div
+      className="mb-6 rounded-xl border border-white/10 bg-card/30 overflow-hidden"
+      data-testid="section-admin-summary"
+    >
+      <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between gap-2">
+        <div>
+          <h2 className="text-sm font-semibold">Traffic by review page</h2>
+          <p className="text-xs text-muted-foreground">
+            Click a row to filter the reviews below to that wallet or exchange.
+          </p>
+        </div>
+        {isFetching && !isLoading && (
+          <span className="text-xs text-muted-foreground" data-testid="text-summary-refreshing">
+            Refreshing…
+          </span>
+        )}
+      </div>
+      {error && (
+        <div
+          className="px-4 py-3 text-sm text-red-400"
+          data-testid="text-admin-summary-error"
+        >
+          Failed to load summary: {error.message}
+        </div>
+      )}
+      {isLoading ? (
+        <div className="px-4 py-6 text-sm text-muted-foreground" data-testid="text-summary-loading">
+          Loading summary…
+        </div>
+      ) : rows.length === 0 ? (
+        <div className="px-4 py-6 text-sm text-muted-foreground" data-testid="text-summary-empty">
+          No reviews yet.
+        </div>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm" data-testid="table-admin-summary">
+            <thead className="bg-white/5">
+              <tr>
+                <SortHeader
+                  label="Kind"
+                  sortKey="targetKind"
+                  activeKey={sortKey}
+                  dir={sortDir}
+                  onSort={onSort}
+                  testId="button-sort-kind"
+                />
+                <SortHeader
+                  label="Slug"
+                  sortKey="targetSlug"
+                  activeKey={sortKey}
+                  dir={sortDir}
+                  onSort={onSort}
+                  testId="button-sort-slug"
+                />
+                <SortHeader
+                  label="Total"
+                  sortKey="total"
+                  activeKey={sortKey}
+                  dir={sortDir}
+                  onSort={onSort}
+                  align="right"
+                  testId="button-sort-total"
+                />
+                <SortHeader
+                  label="Hidden"
+                  sortKey="hidden"
+                  activeKey={sortKey}
+                  dir={sortDir}
+                  onSort={onSort}
+                  align="right"
+                  testId="button-sort-hidden"
+                />
+                <SortHeader
+                  label="Avg rating"
+                  sortKey="average"
+                  activeKey={sortKey}
+                  dir={sortDir}
+                  onSort={onSort}
+                  align="right"
+                  testId="button-sort-average"
+                />
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => {
+                const isActive =
+                  !!activeTarget &&
+                  activeTarget.kind === row.targetKind &&
+                  activeTarget.slug === row.targetSlug;
+                return (
+                  <tr
+                    key={`${row.targetKind}/${row.targetSlug}`}
+                    onClick={() => onSelectTarget(row)}
+                    data-testid={`row-summary-${row.targetKind}-${row.targetSlug}`}
+                    className={`cursor-pointer border-t border-white/5 hover:bg-white/5 ${
+                      isActive ? "bg-primary/10" : ""
+                    }`}
+                  >
+                    <td className="px-3 py-2 text-xs uppercase tracking-wide text-muted-foreground">
+                      {row.targetKind}
+                    </td>
+                    <td className="px-3 py-2 font-medium">{row.targetSlug}</td>
+                    <td
+                      className="px-3 py-2 text-right tabular-nums"
+                      data-testid={`text-summary-total-${row.targetKind}-${row.targetSlug}`}
+                    >
+                      {row.total}
+                    </td>
+                    <td
+                      className={`px-3 py-2 text-right tabular-nums ${
+                        row.hidden > 0 ? "text-red-300" : "text-muted-foreground"
+                      }`}
+                      data-testid={`text-summary-hidden-${row.targetKind}-${row.targetSlug}`}
+                    >
+                      {row.hidden}
+                    </td>
+                    <td
+                      className="px-3 py-2 text-right tabular-nums"
+                      data-testid={`text-summary-average-${row.targetKind}-${row.targetSlug}`}
+                    >
+                      {row.average === null ? "—" : row.average.toFixed(2)}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ReviewsTable({ token, onLogout }: { token: string; onLogout: () => void }) {
   const queryClient = useQueryClient();
   const queryKey = ["/api/admin/reviews"];
+  const summaryQueryKey = ["/api/admin/reviews/summary"];
   const [filter, setFilter] = useState<"all" | "visible" | "hidden">("all");
+  const [targetFilter, setTargetFilter] = useState<{ kind: string; slug: string } | null>(null);
+  const [sortKey, setSortKey] = useState<SummarySortKey>("total");
+  const [sortDir, setSortDir] = useState<SummarySortDir>("desc");
   const [actionError, setActionError] = useState<string | null>(null);
 
   const { data, isLoading, isFetching, refetch, error } = useQuery<AdminReviewsResponse>({
@@ -134,33 +354,48 @@ function ReviewsTable({ token, onLogout }: { token: string; onLogout: () => void
     queryFn: () => adminFetch(token, "/api/admin/reviews?limit=200"),
   });
 
+  const summaryQuery = useQuery<AdminReviewsSummaryResponse>({
+    queryKey: summaryQueryKey,
+    queryFn: () => adminFetch(token, "/api/admin/reviews/summary"),
+  });
+
+  const invalidateAll = () => {
+    queryClient.invalidateQueries({ queryKey });
+    queryClient.invalidateQueries({ queryKey: summaryQueryKey });
+  };
+
   const hideMutation = useMutation({
     mutationFn: (id: number) =>
       adminFetch(token, `/api/admin/reviews/${id}/hide`, { method: "POST" }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey }),
+    onSuccess: invalidateAll,
     onError: (err: Error) => setActionError(err.message),
   });
 
   const unhideMutation = useMutation({
     mutationFn: (id: number) =>
       adminFetch(token, `/api/admin/reviews/${id}/unhide`, { method: "POST" }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey }),
+    onSuccess: invalidateAll,
     onError: (err: Error) => setActionError(err.message),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) =>
       adminFetch(token, `/api/admin/reviews/${id}`, { method: "DELETE" }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey }),
+    onSuccess: invalidateAll,
     onError: (err: Error) => setActionError(err.message),
   });
 
   const reviews = useMemo(() => {
-    const all = data?.reviews ?? [];
+    let all = data?.reviews ?? [];
+    if (targetFilter) {
+      all = all.filter(
+        (r) => r.targetKind === targetFilter.kind && r.targetSlug === targetFilter.slug,
+      );
+    }
     if (filter === "visible") return all.filter((r) => !r.hiddenAt);
     if (filter === "hidden") return all.filter((r) => r.hiddenAt);
     return all;
-  }, [data?.reviews, filter]);
+  }, [data?.reviews, filter, targetFilter]);
 
   const totals = useMemo(() => {
     const all = data?.reviews ?? [];
@@ -170,6 +405,38 @@ function ReviewsTable({ token, onLogout }: { token: string; onLogout: () => void
       hidden: all.filter((r) => r.hiddenAt).length,
     };
   }, [data?.reviews]);
+
+  const sortedSummary = useMemo(() => {
+    const rows = [...(summaryQuery.data?.summary ?? [])];
+    rows.sort((a, b) => {
+      let cmp = 0;
+      if (sortKey === "targetKind") {
+        cmp = a.targetKind.localeCompare(b.targetKind);
+        if (cmp === 0) cmp = a.targetSlug.localeCompare(b.targetSlug);
+      } else if (sortKey === "targetSlug") {
+        cmp = a.targetSlug.localeCompare(b.targetSlug);
+      } else if (sortKey === "total") {
+        cmp = a.total - b.total;
+      } else if (sortKey === "hidden") {
+        cmp = a.hidden - b.hidden;
+      } else if (sortKey === "average") {
+        const av = a.average ?? -1;
+        const bv = b.average ?? -1;
+        cmp = av - bv;
+      }
+      return sortDir === "asc" ? cmp : -cmp;
+    });
+    return rows;
+  }, [summaryQuery.data?.summary, sortKey, sortDir]);
+
+  const toggleSort = (key: SummarySortKey) => {
+    if (sortKey === key) {
+      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    } else {
+      setSortKey(key);
+      setSortDir(key === "targetKind" || key === "targetSlug" ? "asc" : "desc");
+    }
+  };
 
   const targetHref = (r: ProductReview) =>
     r.targetKind === "wallet" ? `/wallet/${r.targetSlug}` : `/exchange/${r.targetSlug}`;
@@ -191,10 +458,13 @@ function ReviewsTable({ token, onLogout }: { token: string; onLogout: () => void
             <Button
               variant="outline"
               size="sm"
-              onClick={() => refetch()}
+              onClick={() => {
+                refetch();
+                summaryQuery.refetch();
+              }}
               data-testid="button-admin-refresh"
             >
-              <RefreshCw className={`h-4 w-4 mr-1 ${isFetching ? "animate-spin" : ""}`} />
+              <RefreshCw className={`h-4 w-4 mr-1 ${isFetching || summaryQuery.isFetching ? "animate-spin" : ""}`} />
               Refresh
             </Button>
             <Button variant="outline" size="sm" onClick={onLogout} data-testid="button-admin-logout">
@@ -203,6 +473,28 @@ function ReviewsTable({ token, onLogout }: { token: string; onLogout: () => void
             </Button>
           </div>
         </div>
+
+        <SummaryTable
+          rows={sortedSummary}
+          isLoading={summaryQuery.isLoading}
+          isFetching={summaryQuery.isFetching}
+          error={summaryQuery.error as Error | null}
+          sortKey={sortKey}
+          sortDir={sortDir}
+          onSort={toggleSort}
+          activeTarget={targetFilter}
+          onSelectTarget={(row) => {
+            if (
+              targetFilter &&
+              targetFilter.kind === row.targetKind &&
+              targetFilter.slug === row.targetSlug
+            ) {
+              setTargetFilter(null);
+            } else {
+              setTargetFilter({ kind: row.targetKind, slug: row.targetSlug });
+            }
+          }}
+        />
 
         <div className="flex flex-wrap items-center gap-2 mb-4">
           {([
@@ -223,6 +515,16 @@ function ReviewsTable({ token, onLogout }: { token: string; onLogout: () => void
               {label}
             </button>
           ))}
+          {targetFilter && (
+            <button
+              onClick={() => setTargetFilter(null)}
+              data-testid="button-clear-target-filter"
+              className="px-3 py-1.5 rounded-full text-sm border bg-primary/10 border-primary/40 text-primary hover:bg-primary/20 inline-flex items-center gap-1"
+            >
+              <X className="h-3.5 w-3.5" />
+              {targetFilter.kind}/{targetFilter.slug}
+            </button>
+          )}
         </div>
 
         {actionError && (

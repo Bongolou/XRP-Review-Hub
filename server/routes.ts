@@ -899,6 +899,17 @@ ${blogPosts.map(post => `    <item>
     }
   });
 
+  app.get("/api/admin/reviews/summary", async (req, res) => {
+    if (!requireAdmin(req, res)) return;
+    try {
+      const summary = await storage.getReviewCountsByTarget();
+      res.json({ summary });
+    } catch (error) {
+      console.error("[Admin Reviews] Summary error:", error);
+      res.status(500).json({ error: "Failed to load review summary" });
+    }
+  });
+
   app.post("/api/admin/reviews/:id/hide", async (req, res) => {
     if (!requireAdmin(req, res)) return;
     try {

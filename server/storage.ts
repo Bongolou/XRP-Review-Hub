@@ -17,6 +17,14 @@ export interface ReviewSummary {
   average: number | null;
 }
 
+export interface ReviewTargetSummary {
+  targetKind: string;
+  targetSlug: string;
+  total: number;
+  hidden: number;
+  average: number | null;
+}
+
 export interface IStorage {
   // Newsletter Subscribers
   createSubscriber(subscriber: InsertSubscriber): Promise<Subscriber>;
@@ -42,6 +50,7 @@ export interface IStorage {
     targetSlug: string,
   ): Promise<ReviewSummary>;
   listAllProductReviews(limit?: number): Promise<ProductReview[]>;
+  getReviewCountsByTarget(): Promise<ReviewTargetSummary[]>;
   hideProductReview(id: number): Promise<ProductReview | undefined>;
   unhideProductReview(id: number): Promise<ProductReview | undefined>;
   deleteProductReview(id: number): Promise<boolean>;
@@ -130,6 +139,26 @@ export class DatabaseStorage implements IStorage {
       .from(productReviews)
       .orderBy(desc(productReviews.createdAt))
       .limit(limit);
+  }
+
+  async getReviewCountsByTarget(): Promise<ReviewTargetSummary[]> {
+    const rows = await db
+      .select({
+        targetKind: productReviews.targetKind,
+        targetSlug: productReviews.targetSlug,
+        total: sql<number>`count(*)::int`,
+        hidden: sql<number>`count(*) filter (where ${productReviews.hiddenAt} is not null)::int`,
+        average: sql<number | null>`avg(${productReviews.rating}) filter (where ${productReviews.hiddenAt} is null)::float`,
+      })
+      .from(productReviews)
+      .groupBy(productReviews.targetKind, productReviews.targetSlug);
+    return rows.map((r) => ({
+      targetKind: r.targetKind,
+      targetSlug: r.targetSlug,
+      total: r.total ?? 0,
+      hidden: r.hidden ?? 0,
+      average: r.average ?? null,
+    }));
   }
 
   async hideProductReview(id: number): Promise<ProductReview | undefined> {
