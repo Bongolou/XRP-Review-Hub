@@ -7,6 +7,7 @@ import { insertSubscriberSchema, insertContactSchema, insertProductReviewSchema 
 import { blogPosts } from "@shared/blog";
 import { resolveOgImageForPath } from "./socialMeta";
 import { notifyNewReview } from "./reviewNotify";
+import { evaluateReviewSpam, checkAkismet } from "./reviewSpamHeuristics";
 import { walletCards, exchangeCards, type CardEntry } from "./cardData";
 import { Resvg } from "@resvg/resvg-js";
 import { z } from "zod";
@@ -795,14 +796,8 @@ ${blogPosts.map(post => `    <item>
     try {
       const data = insertProductReviewSchema.parse(req.body);
 
-      // Spam guard 1: very basic URL/HTML rejection
-      if (/(https?:\/\/|<\s*a\b|<\s*script\b)/i.test(data.body)) {
-        return res
-          .status(400)
-          .json({ error: "Links and HTML aren't allowed in reviews." });
-      }
-
-      // Spam guard 2: per-IP per-target throttle
+      // Spam guard 1: per-IP per-target throttle (cheap, runs first so a flood
+      // can't burn through the heuristic regexes for free).
       const ip = (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() || req.ip || "unknown";
       const throttleKey = `${data.targetKind}:${data.targetSlug}:${ip}`;
       const last = reviewSubmissions.get(throttleKey);
@@ -812,13 +807,54 @@ ${blogPosts.map(post => `    <item>
           .status(429)
           .json({ error: "You just submitted a review — please wait a moment before sending another." });
       }
+
+      // Spam guard 2: synchronous heuristic layer (banned words, repeated
+      // characters, shouting, non-Latin script, contact info in name, …).
+      // See server/reviewSpamHeuristics.ts to extend.
+      const heuristic = evaluateReviewSpam(data);
+      if (heuristic.verdict === "reject") {
+        return res.status(400).json({ error: heuristic.reason });
+      }
+
+      // Spam guard 3: optional Akismet check, only if configured. Falls back
+      // to "ok" on timeout / network failure so it never blocks submissions.
+      const akismetVerdict = await checkAkismet(data, {
+        ip,
+        userAgent: String(req.headers["user-agent"] ?? ""),
+        referrer: String(req.headers["referer"] ?? ""),
+        permalink: `${req.protocol}://${req.get("host") ?? ""}/${data.targetKind}s/${data.targetSlug}`,
+      });
+      if (akismetVerdict.verdict === "reject") {
+        return res.status(400).json({ error: akismetVerdict.reason });
+      }
+
       reviewSubmissions.set(throttleKey, now);
 
-      const review = await storage.createProductReview(data);
-      console.log(
-        `[Reviews] New review for ${data.targetKind}:${data.targetSlug} (${data.rating}★) by ${data.authorName}`,
+      const autoHide =
+        heuristic.verdict === "hide" || akismetVerdict.verdict === "hide";
+      const hideReason =
+        heuristic.verdict === "hide"
+          ? heuristic.reason
+          : akismetVerdict.verdict === "hide"
+            ? akismetVerdict.reason
+            : null;
+
+      const review = await storage.createProductReview(
+        data,
+        autoHide ? { hiddenAt: new Date() } : undefined,
       );
-      notifyNewReview(review, req);
+      if (autoHide) {
+        console.log(
+          `[Reviews] Auto-hid review for ${data.targetKind}:${data.targetSlug} by ${data.authorName} — reason: ${hideReason}`,
+        );
+      } else {
+        console.log(
+          `[Reviews] New review for ${data.targetKind}:${data.targetSlug} (${data.rating}★) by ${data.authorName}`,
+        );
+        notifyNewReview(review, req);
+      }
+      // Always respond with success so spammers don't learn whether they were
+      // auto-hidden vs. published. The visitor sees the same "thanks" UI.
       res.status(201).json({ success: true, review });
     } catch (error) {
       if (error instanceof z.ZodError) {

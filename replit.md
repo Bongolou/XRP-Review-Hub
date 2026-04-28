@@ -52,7 +52,13 @@ Preferred communication style: Simple, everyday language.
 ### Review Notifications
 - **Module**: `server/reviewNotify.ts` — fired from `POST /api/reviews` after a visitor review is saved.
 - **Configure**: Set `REVIEW_NOTIFY_WEBHOOK_URL` to a Slack or Discord incoming webhook URL. The payload sends both `text` (Slack) and `content` (Discord) so a single env var works for either service. Set `PUBLIC_BASE_URL` to override the auto-detected host used in the `/admin/reviews` deep link.
-- **Behaviour**: Fire-and-forget — failures (no env var, network error, non-2xx response) are logged but never block the review from being saved or the API response from being sent.
+- **Behaviour**: Fire-and-forget — failures (no env var, network error, non-2xx response) are logged but never block the review from being saved or the API response from being sent. Auto-hidden reviews (see Review Spam Heuristics) deliberately do **not** trigger this notification — that's the whole point of auto-flagging.
+
+### Review Spam Heuristics
+- **Module**: `server/reviewSpamHeuristics.ts` — single source of truth for the auto-flag layer. `evaluateReviewSpam()` runs synchronously on every `POST /api/reviews` submission; `checkAkismet()` runs an optional async check after it.
+- **Verdicts**: `"reject"` → 400 with a clear error; `"hide"` → review is saved with `hiddenAt` set so it stays out of the public list and aggregate rating, only visible in the admin "Hidden" tab; `"ok"` → goes through normally. To extend, add to `HARD_BANNED_WORDS` / `SOFT_FLAG_WORDS` or push a new function into the `HEURISTICS` array.
+- **Heuristics shipped**: links/HTML (reject), hard banned words like casino/porn (reject), soft-flag contact-spam words like telegram/airdrop/100x (hide), repeated-character runs (hide), single long whitespace-free token (hide), shouting / >70% caps (hide), contact info in author name (hide), mostly-non-Latin script as a naive language guess (hide).
+- **Akismet (optional)**: Set `AKISMET_API_KEY` and `AKISMET_BLOG_URL` to enable the third-party check. 3-second timeout, fails open so submissions are never blocked by Akismet downtime. The pro-tip `discard` header is treated as a hard reject.
 
 ## External Dependencies
 

@@ -28,7 +28,10 @@ export interface IStorage {
   getAllContactSubmissions(): Promise<ContactSubmission[]>;
 
   // Product reviews (wallets + exchanges)
-  createProductReview(review: InsertProductReview): Promise<ProductReview>;
+  createProductReview(
+    review: InsertProductReview,
+    opts?: { hiddenAt?: Date },
+  ): Promise<ProductReview>;
   getProductReviews(
     targetKind: string,
     targetSlug: string,
@@ -68,8 +71,14 @@ export class DatabaseStorage implements IStorage {
     return db.select().from(contactSubmissions);
   }
 
-  async createProductReview(data: InsertProductReview): Promise<ProductReview> {
-    const [review] = await db.insert(productReviews).values(data).returning();
+  async createProductReview(
+    data: InsertProductReview,
+    opts?: { hiddenAt?: Date },
+  ): Promise<ProductReview> {
+    const [review] = await db
+      .insert(productReviews)
+      .values({ ...data, hiddenAt: opts?.hiddenAt ?? null })
+      .returning();
     return review;
   }
 
