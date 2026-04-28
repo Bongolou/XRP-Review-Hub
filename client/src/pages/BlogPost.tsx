@@ -10,6 +10,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { blogPosts } from "@shared/blog";
+import { getLocalizedBlogContent } from "@/lib/i18n/blogContent";
 
 function TwitterIcon({ className }: { className?: string }) {
   return (
@@ -981,11 +982,11 @@ const contentById: Record<number, string> = {
 
 export default function BlogPost() {
   const { id } = useParams();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   const postId = parseInt(id || "1");
   const meta = blogPosts.find(p => p.id === postId);
-  const post = meta ? { ...meta, categoryKey: meta.categoryLabelKey, content: contentById[postId] ?? "" } : undefined;
+  const post = meta ? { ...meta, categoryKey: meta.categoryLabelKey, content: getLocalizedBlogContent(language, postId) ?? contentById[postId] ?? "" } : undefined;
 
   const postTitle = post ? t(post.titleKey) : undefined;
   const postExcerpt = post ? t(post.excerptKey) : undefined;
