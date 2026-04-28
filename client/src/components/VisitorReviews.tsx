@@ -219,7 +219,6 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
           onChange={(e) => setAuthorName(e.target.value)}
           placeholder={t("reviews.namePlaceholder")}
           maxLength={60}
-          required
           data-testid={`input-review-name-${targetSlug}`}
           className="w-full h-12 px-4 rounded-lg bg-background/50 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-white placeholder:text-muted-foreground/70"
         />
@@ -230,7 +229,6 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
           placeholder={fillTemplate(t("reviews.bodyPlaceholder"), { name: targetName })}
           rows={4}
           maxLength={1000}
-          required
           data-testid={`input-review-body-${targetSlug}`}
           className="w-full px-4 py-3 rounded-lg bg-background/50 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-white placeholder:text-muted-foreground/70 resize-none"
         />
