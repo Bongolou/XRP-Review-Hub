@@ -49,6 +49,11 @@ Preferred communication style: Simple, everyday language.
 - **What it does**: Recursively walks the entire `client/src` tree (every `.ts`/`.tsx`/`.js`/`.jsx` file — pages, components, libs, blog posts, FAQs, footers, banners, etc.) and extracts every outbound `http(s)` URL, then probes each one (HEAD with GET fallback) and writes `reports/affiliate-link-audit.txt`. Unsplash image URLs, `schema.org` JSON-LD contexts, localhost URLs, URLs containing template-literal interpolation (`${…}`), and known programmatic API endpoints (CoinGecko, rss2json, Formspree, RSS feeds) are skipped so they don't create noise. Known anti-bot 403 responses from `tangem.com`, `uphold.com`, and `coinbase.com` are filed under "Ignored". Exits non-zero when broken links are found, so it can be wired into a weekly cron / CI schedule.
 - **Schedule**: A GitHub Actions workflow at `.github/workflows/affiliate-link-audit.yml` runs the audit every Monday at 12:00 UTC (and is also triggerable manually via `workflow_dispatch`). Every run uploads `reports/affiliate-link-audit.txt` as a downloadable build artifact named `affiliate-link-audit-report`. When the script exits non-zero (broken links found), the workflow opens a GitHub issue labeled `affiliate-audit` (or comments on the existing open one) containing the report and a link to the failing run, then fails the job so the maintainer is notified.
 
+### Review Notifications
+- **Module**: `server/reviewNotify.ts` — fired from `POST /api/reviews` after a visitor review is saved.
+- **Configure**: Set `REVIEW_NOTIFY_WEBHOOK_URL` to a Slack or Discord incoming webhook URL. The payload sends both `text` (Slack) and `content` (Discord) so a single env var works for either service. Set `PUBLIC_BASE_URL` to override the auto-detected host used in the `/admin/reviews` deep link.
+- **Behaviour**: Fire-and-forget — failures (no env var, network error, non-2xx response) are logged but never block the review from being saved or the API response from being sent.
+
 ## External Dependencies
 
 ### Database

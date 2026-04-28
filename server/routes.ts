@@ -6,6 +6,7 @@ import { storage } from "./storage";
 import { insertSubscriberSchema, insertContactSchema, insertProductReviewSchema } from "@shared/schema";
 import { blogPosts } from "@shared/blog";
 import { resolveOgImageForPath } from "./socialMeta";
+import { notifyNewReview } from "./reviewNotify";
 import { walletCards, exchangeCards, type CardEntry } from "./cardData";
 import { Resvg } from "@resvg/resvg-js";
 import { z } from "zod";
@@ -817,6 +818,7 @@ ${blogPosts.map(post => `    <item>
       console.log(
         `[Reviews] New review for ${data.targetKind}:${data.targetSlug} (${data.rating}★) by ${data.authorName}`,
       );
+      notifyNewReview(review, req);
       res.status(201).json({ success: true, review });
     } catch (error) {
       if (error instanceof z.ZodError) {
