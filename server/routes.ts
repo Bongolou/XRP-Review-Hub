@@ -670,15 +670,12 @@ export async function registerRoutes(
       { lang: "fr", hreflang: "fr" },
     ];
 
-    const buildAlternates = (urlPath: string): string => {
-      const lines = hreflangMap.map(({ lang, hreflang }) => {
-        const href = lang === "en"
-          ? `${baseUrl}${urlPath}`
-          : `${baseUrl}${urlPath}${urlPath.includes("?") ? "&" : "?"}lang=${lang}`;
-        return `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${href}"/>`;
-      });
-      lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${urlPath}"/>`);
-      return lines.join("\n");
+    // Append ?lang=xx to a base URL path (no-op for English, which uses the
+    // bare path as its canonical form).
+    const localizedPath = (urlPath: string, lang: string): string => {
+      if (lang === "en") return urlPath;
+      const sep = urlPath.includes("?") ? "&" : "?";
+      return `${urlPath}${sep}lang=${lang}`;
     };
 
     // Escape XML entities in URLs (notably & in query strings) so the sitemap
@@ -691,28 +688,55 @@ export async function registerRoutes(
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&apos;");
 
+    // The hreflang block is identical for every language variant of a given
+    // base path: it advertises all 8 language versions plus x-default so each
+    // translated <url> entry references its siblings (and itself) per Google's
+    // hreflang spec.
+    const buildAlternates = (urlPath: string): string => {
+      const lines = hreflangMap.map(({ lang, hreflang }) => {
+        const href = `${baseUrl}${localizedPath(urlPath, lang)}`;
+        return `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${escapeXmlAttr(href)}"/>`;
+      });
+      lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXmlAttr(`${baseUrl}${urlPath}`)}"/>`);
+      return lines.join("\n");
+    };
+
     // Resolve the page's primary image (Open Graph hero) so Google Images and
     // Discover can surface our wallet/exchange/comparison/blog visuals next to
     // organic results. Wallet/exchange/comparison/blog entries already carry a
-    // page-specific image; static and best-for pages fall back to the shared
-    // page.svg generator keyed by their resolved SEO title.
-    const buildImage = (entry: Entry): string => {
+    // page-specific image (language-agnostic, keyed by slug); static and
+    // best-for pages fall back to the shared page.png generator keyed by the
+    // page's SEO title — so we pass the localized path so the image URL picks
+    // up the per-language title where one exists.
+    const buildImage = (entry: Entry, lang: string): string => {
       const img =
-        entry.image ?? resolveOgImageForPath(entry.url) ?? "/og/page.png?title=All%20Things%20XRPL";
+        entry.image ??
+        resolveOgImageForPath(localizedPath(entry.url, lang)) ??
+        "/og/page.png?title=All%20Things%20XRPL";
       const absolute = /^https?:\/\//i.test(img) ? img : `${baseUrl}${img}`;
       return `    <image:image><image:loc>${escapeXmlAttr(absolute)}</image:loc></image:image>`;
     };
 
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${allPages.map(p => `  <url>
-    <loc>${baseUrl}${p.url}</loc>
+    // Emit one <url> entry per (path, language) pair. Listing translated URLs
+    // as their own top-level entries (instead of only as hreflang alternates
+    // of the English page) helps Google index them independently in their
+    // target locale. Total = base pages × 8 languages, well under the
+    // sitemaps.org 50,000-URL cap.
+    const renderUrl = (p: Entry, lang: string): string => {
+      const loc = `${baseUrl}${localizedPath(p.url, lang)}`;
+      return `  <url>
+    <loc>${escapeXmlAttr(loc)}</loc>
     <lastmod>${p.lastmod ?? today}</lastmod>
     <changefreq>${p.changefreq}</changefreq>
     <priority>${p.priority}</priority>
 ${buildAlternates(p.url)}
-${buildImage(p)}
-  </url>`).join("\n")}
+${buildImage(p, lang)}
+  </url>`;
+    };
+
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${allPages.map(p => hreflangMap.map(({ lang }) => renderUrl(p, lang)).join("\n")).join("\n")}
 </urlset>`;
 
     res.header("Content-Type", "application/xml; charset=utf-8");
