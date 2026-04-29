@@ -69,7 +69,7 @@ const topPicks: TopPick[] = [
       "dapps.pick.sologenic.pro2",
       "dapps.pick.sologenic.pro3",
     ],
-    affiliateUrl: "https://sologenic.com/?ref=allthingsxrpl",
+    affiliateUrl: "https://www.sologenic.com/?ref=allthingsxrpl",
     pairedWalletSlug: "crossmark",
     pairedWalletLabelKey: "dapps.pairs.crossmark",
   },
@@ -336,7 +336,7 @@ export default function DApps() {
   const dappCompareRows: FastCompareRow[] = [
     { id: "magnetic", name: "Magnetic", type: t("dapps.row.magnetic.type"), price: t("dapps.row.priceFree"), bestFor: t("dapps.row.magnetic.bestFor"), rating: "9.4", affiliateUrl: "https://www.magnetic.app/?ref=allthingsxrpl", highlight: true },
     { id: "xrpl-dex", name: "XRPL DEX", type: t("dapps.row.xrplDex.type"), price: t("dapps.row.priceFree"), bestFor: t("dapps.row.xrplDex.bestFor"), rating: "9.3", affiliateUrl: "https://xrpl.services/?ref=allthingsxrpl" },
-    { id: "sologenic", name: "Sologenic", type: t("dapps.row.sologenic.type"), price: t("dapps.row.priceFree"), bestFor: t("dapps.row.sologenic.bestFor"), rating: "9.2", affiliateUrl: "https://sologenic.com/?ref=allthingsxrpl" },
+    { id: "sologenic", name: "Sologenic", type: t("dapps.row.sologenic.type"), price: t("dapps.row.priceFree"), bestFor: t("dapps.row.sologenic.bestFor"), rating: "9.2", affiliateUrl: "https://www.sologenic.com/?ref=allthingsxrpl" },
     { id: "anodos", name: "Anodos Finance", type: t("dapps.row.anodos.type"), price: t("dapps.row.priceFree"), bestFor: t("dapps.row.anodos.bestFor"), rating: "9.1", affiliateUrl: "https://anodos.finance/?ref=allthingsxrpl" },
     { id: "bitrue-pools", name: "Bitrue XRPL Pools", type: t("dapps.row.bitruePools.type"), price: t("dapps.row.priceFree"), bestFor: t("dapps.row.bitruePools.bestFor"), rating: "9.0", affiliateUrl: "https://www.bitrue.com/activity/landing-page/?cn=900000&_channel=allthingsxrpl" },
     { id: "xpmarket", name: "XPMarket", type: t("dapps.row.xpmarket.type"), price: t("dapps.row.priceFree"), bestFor: t("dapps.row.xpmarket.bestFor"), rating: "9.0", affiliateUrl: "https://xpmarket.com/?ref=allthingsxrpl" },
@@ -406,7 +406,7 @@ export default function DApps() {
             runnerUp={{
               name: "Sologenic",
               reason: t("dapps.verdict.runnerUp.reason"),
-              href: "https://sologenic.com/?ref=allthingsxrpl",
+              href: "https://www.sologenic.com/?ref=allthingsxrpl",
             }}
             pros={[
               t("dapps.verdict.pro1"),

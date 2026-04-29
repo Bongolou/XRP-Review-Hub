@@ -535,7 +535,7 @@ const comparisons: Record<string, ComparisonData> = {
       slug: "kraken",
       type: "Exchange",
       price: "Free to join",
-      link: "https://kraken.com/sign-up?r=allthingsxrpl"
+      link: "https://www.kraken.com/sign-up?r=allthingsxrpl"
     },
     metaDescription: "Coinbase vs Kraken exchange comparison: Beginner-friendly vs professional trading. Complete analysis of fees, security, features, and which is better for buying XRP.",
     introduction: "Coinbase and Kraken are two of the most respected cryptocurrency exchanges in the world, but they cater to different audiences. Coinbase has built its reputation on making crypto accessible to beginners, while Kraken offers professional-grade tools and some of the lowest fees in the industry. For XRP buyers, both are excellent choices with important differences.",
@@ -715,7 +715,7 @@ const comparisons: Record<string, ComparisonData> = {
     bottomLine: "For a single-coin XRP holder who values simplicity and resistance to seed-phrase mistakes, Tangem is the friendlier pick. For multi-chain holders who want auditable, open-source security, Trezor remains the safer all-rounder.",
   },
   "ellipal-vs-trezor": {
-    wallet1: { name: "ELLIPAL Titan", slug: "ellipal", type: "Hardware (air-gapped)", price: "$169", link: "https://ellipal.com/?ref=allthingsxrpl" },
+    wallet1: { name: "ELLIPAL Titan", slug: "ellipal", type: "Hardware (air-gapped)", price: "$169", link: "https://www.ellipal.com/?ref=allthingsxrpl" },
     wallet2: { name: "Trezor Safe 3", slug: "trezor", type: "Hardware (USB)", price: "$79", link: "https://trezor.io/?ref=allthingsxrpl" },
     metaDescription: "ELLIPAL Titan vs Trezor Safe 3: 100% air-gapped QR signing vs open-source USB hardware wallet for XRP cold storage.",
     introduction: "ELLIPAL Titan and Trezor Safe 3 both protect your XRP with a dedicated secure element, but they take opposite approaches to connectivity. ELLIPAL is fully air-gapped — no USB, no Bluetooth, no Wi-Fi — and signs every transaction by scanning QR codes between the device and your phone. Trezor uses a tried-and-true USB connection with open-source firmware that has been audited for over a decade.",

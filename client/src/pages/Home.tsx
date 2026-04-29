@@ -334,7 +334,7 @@ const exchangesData = [
     bonusKey: "exchange.bonus.xrp1000",
     blurbKey: "exchange.blurb.bitrue",
     featureKeys: ["exchange.feature.xrpBasePairs", "exchange.feature.powerPiggy", "exchange.feature.lowFees"],
-    link: "https://bitrue.com/user/register?inviteCode=allthingsxrpl",
+    link: "https://www.bitrue.com/user/register?inviteCode=allthingsxrpl",
     color: "text-blue-500",
     bgColor: "bg-blue-500/20",
     logo: bitrueLogo
@@ -346,7 +346,7 @@ const exchangesData = [
     bonusKey: "exchange.bonus.lowFee",
     blurbKey: "exchange.blurb.kraken",
     featureKeys: ["exchange.feature.highSecurity", "exchange.feature.deepLiquidity", "exchange.feature.proTools"],
-    link: "https://kraken.com/sign-up?r=allthingsxrpl",
+    link: "https://www.kraken.com/sign-up?r=allthingsxrpl",
     color: "text-purple-500",
     bgColor: "bg-purple-500/20",
     logo: krakenLogo
