@@ -944,11 +944,17 @@ export async function registerRoutes(
     blogPosts,
   });
 
+  // Cache sitemap responses for an hour so crawlers and any CDN in front of
+  // the app can reuse them instead of regenerating multi-megabyte XML on
+  // every hit. New content still appears within the same day.
+  const SITEMAP_CACHE_CONTROL = "public, max-age=3600";
+
   // Sitemap index — points at every per-section child sitemap so search
   // engines can discover them all from a single entry point.
   app.get("/sitemap.xml", (_req, res) => {
     const chunks = buildSitemapSections(sitemapInput()).flatMap(chunkSection);
     res.header("Content-Type", "application/xml; charset=utf-8");
+    res.header("Cache-Control", SITEMAP_CACHE_CONTROL);
     res.send(renderSitemapIndexXml(chunks));
   });
 
@@ -963,6 +969,7 @@ export async function registerRoutes(
       return;
     }
     res.header("Content-Type", "application/xml; charset=utf-8");
+    res.header("Cache-Control", SITEMAP_CACHE_CONTROL);
     res.send(renderSitemapChunkXml(match.entries));
   });
 
