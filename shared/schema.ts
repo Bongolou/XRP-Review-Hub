@@ -8,6 +8,7 @@ export const subscribers = pgTable("subscribers", {
   email: text("email").notNull().unique(),
   source: text("source"),
   leadMagnet: text("lead_magnet"),
+  language: text("language"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -20,10 +21,26 @@ export const contactSubmissions = pgTable("contact_submissions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-export const insertSubscriberSchema = createInsertSchema(subscribers).pick({
+export const SUPPORTED_SUBSCRIBER_LANGUAGES = [
+  "en",
+  "es",
+  "zh",
+  "ja",
+  "ko",
+  "pt",
+  "de",
+  "fr",
+] as const;
+
+export type SubscriberLanguage = (typeof SUPPORTED_SUBSCRIBER_LANGUAGES)[number];
+
+export const insertSubscriberSchema = createInsertSchema(subscribers, {
+  language: z.enum(SUPPORTED_SUBSCRIBER_LANGUAGES).optional(),
+}).pick({
   email: true,
   source: true,
   leadMagnet: true,
+  language: true,
 });
 
 export const insertContactSchema = createInsertSchema(contactSubmissions).pick({

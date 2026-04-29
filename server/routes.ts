@@ -7,6 +7,7 @@ import { insertSubscriberSchema, insertContactSchema, insertProductReviewSchema 
 import { blogPosts } from "@shared/blog";
 import { resolveOgImageForPath } from "./socialMeta";
 import { notifyNewReview } from "./reviewNotify";
+import { sendWelcomeEmail } from "./welcomeEmail";
 import { evaluateReviewSpam, checkAkismet } from "./reviewSpamHeuristics";
 import { walletCards, exchangeCards, type CardEntry } from "./cardData";
 import { Resvg } from "@resvg/resvg-js";
@@ -990,21 +991,41 @@ ${blogPosts.map(post => `    <item>
     try {
       const data = insertSubscriberSchema.parse(req.body);
 
-      // Check if email already exists — log re-engagement source if present
+      // Check if email already exists — log re-engagement source if present.
+      // We deliberately do NOT (re)send the welcome email here: this endpoint
+      // is public + unauthenticated, so honouring a resend on every request
+      // would let anyone spam an existing subscriber's inbox via our domain.
       const existing = await storage.getSubscriberByEmail(data.email);
       if (existing) {
         if (data.source || data.leadMagnet) {
-          console.log(`[Subscribe] Existing subscriber re-engaged: ${data.email} via source=${data.source || "n/a"} magnet=${data.leadMagnet || "n/a"}`);
+          console.log(`[Subscribe] Existing subscriber re-engaged: ${data.email} via source=${data.source || "n/a"} magnet=${data.leadMagnet || "n/a"} lang=${data.language || "n/a"}`);
         }
         return res.status(200).json({ success: true, message: "You're already subscribed — thanks!" });
       }
 
       const subscriber = await storage.createSubscriber(data);
-      console.log(`[Subscribe] New subscriber: ${data.email} source=${data.source || "n/a"} magnet=${data.leadMagnet || "n/a"}`);
+      console.log(`[Subscribe] New subscriber: ${data.email} source=${data.source || "n/a"} magnet=${data.leadMagnet || "n/a"} lang=${data.language || "n/a"}`);
+      if (data.leadMagnet) {
+        sendWelcomeEmail({
+          to: data.email,
+          leadMagnet: data.leadMagnet,
+          language: data.language,
+        });
+      }
       res.status(201).json({ success: true, message: "Successfully subscribed!" });
     } catch (error) {
       if (error instanceof z.ZodError) {
-        return res.status(400).json({ error: "Invalid email address" });
+        // Surface which field actually failed instead of always blaming
+        // the email — otherwise a bad `language` code is reported as
+        // "Invalid email address", which is misleading both to the
+        // submitting visitor and to anyone debugging logs.
+        const firstIssue = error.errors[0];
+        const field = firstIssue?.path.join(".") || "email";
+        const message =
+          field === "email"
+            ? "Invalid email address"
+            : `Invalid ${field}`;
+        return res.status(400).json({ error: message });
       }
       console.error("Subscribe error:", error);
       res.status(500).json({ error: "Failed to subscribe" });

@@ -643,7 +643,7 @@ export function EmailCaptureBlock({
   leadMagnet?: string;
   assetUrl?: string;
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const resolvedTitle = title ?? t("emailCapture.title");
   const resolvedCta = cta ?? t("emailCapture.cta");
   const resolvedBullets = bullets ?? [
@@ -664,7 +664,12 @@ export function EmailCaptureBlock({
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ email, source, leadMagnet: resolvedLeadMagnet }),
+        body: JSON.stringify({
+          email,
+          source,
+          leadMagnet: resolvedLeadMagnet,
+          language,
+        }),
       });
       setStatus(res.ok ? "ok" : "err");
       if (res.ok) setEmail("");
