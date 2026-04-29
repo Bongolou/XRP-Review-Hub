@@ -11,6 +11,8 @@ import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { getExchangeSeo } from "@/lib/i18n/pageSeo";
 import { VisitorReviews, type ReviewsResponse } from "@/components/VisitorReviews";
+import { PhoneFrame } from "@/components/PhoneFrame";
+import { exchangeScreenshotUrl } from "@shared/screenshots";
 import { useFaqDeepLink } from "@/hooks/use-faq-deep-link";
 import { 
   Star, 
@@ -745,6 +747,8 @@ export default function ExchangeReview() {
         </Link>
 
         <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-8">
+          <div className="flex flex-col md:flex-row md:items-start gap-8">
+            <div className="flex-1 min-w-0">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
             <div className="flex items-start gap-5">
               {logoMap[slug || ""] && (
@@ -809,6 +813,21 @@ export default function ExchangeReview() {
           >
             {t("exchangeReview.signUp")} {exchange.name} <ExternalLink className="h-4 w-4" />
           </a>
+            </div>
+            {(() => {
+              const screenshotUrl = slug ? exchangeScreenshotUrl(slug) : null;
+              if (!screenshotUrl) return null;
+              return (
+                <div className="md:flex-shrink-0 md:w-52 order-last">
+                  <PhoneFrame
+                    src={screenshotUrl}
+                    alt={`${exchange.name} app screenshot`}
+                    testId={`phone-frame-${slug}`}
+                  />
+                </div>
+              );
+            })()}
+          </div>
         </div>
 
         {/* Editor's verdict */}
