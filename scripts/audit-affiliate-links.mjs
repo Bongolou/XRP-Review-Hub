@@ -232,6 +232,61 @@ function hostOf(u) {
   }
 }
 
+// Multi-label public suffixes we want to treat as a single TLD when computing
+// the registrable domain (eTLD+1). This is a small, hand-maintained subset of
+// the IANA Public Suffix List — enough to cover the country-code TLDs our
+// affiliate partners realistically use without pulling in a whole PSL package
+// for a CI script. If a brand-change false positive ever shows up because of a
+// missing suffix, add it here.
+const MULTI_LABEL_PUBLIC_SUFFIXES = new Set([
+  "co.uk",
+  "co.jp",
+  "co.kr",
+  "co.in",
+  "co.nz",
+  "co.za",
+  "com.au",
+  "com.br",
+  "com.cn",
+  "com.hk",
+  "com.mx",
+  "com.sg",
+  "com.tr",
+  "com.tw",
+  "com.ua",
+  "ne.jp",
+  "or.jp",
+  "org.uk",
+  "ac.uk",
+  "gov.uk",
+]);
+
+// Return the registrable domain (eTLD+1) for a hostname, e.g.
+// `www.tangem.com` -> `tangem.com`, `foo.bar.co.uk` -> `bar.co.uk`. Falls
+// back to the lowercased host when it can't be parsed (IP literal, single
+// label, empty string, etc.) so the comparison stays conservative.
+function registrableDomain(host) {
+  if (!host) return "";
+  const lower = host.toLowerCase();
+  // IPv4 / IPv6 literals — return as-is, they have no registrable domain.
+  if (/^\d+\.\d+\.\d+\.\d+$/.test(lower)) return lower;
+  if (lower.includes(":")) return lower;
+  const labels = lower.split(".").filter(Boolean);
+  if (labels.length < 2) return lower;
+  const lastTwo = labels.slice(-2).join(".");
+  if (labels.length >= 3 && MULTI_LABEL_PUBLIC_SUFFIXES.has(lastTwo)) {
+    return labels.slice(-3).join(".");
+  }
+  return lastTwo;
+}
+
+function isBrandChange(startUrl, endUrl) {
+  const startDomain = registrableDomain(hostOf(startUrl));
+  const endDomain = registrableDomain(hostOf(endUrl));
+  if (!startDomain || !endDomain) return false;
+  return startDomain !== endDomain;
+}
+
 function classify(entry) {
   const { url, finalStatus, finalUrl, chain, tooManyRedirects, error } = entry;
   if (error || finalStatus === 0) return "broken";
@@ -240,6 +295,12 @@ function classify(entry) {
   const redirected = chain.length > 1 || (finalUrl && finalUrl !== url);
 
   if (finalStatus >= 200 && finalStatus < 300) {
+    if (redirected && isBrandChange(url, finalUrl || url)) {
+      // The affiliate URL silently lands on a completely different brand.
+      // Surface this as loud as a broken link — the maintainer needs to fix
+      // or remove the link, not just verify it.
+      return "brand-change";
+    }
     return redirected ? "redirected" : "ok";
   }
   if (finalStatus === 403 && BOT_BLOCK_HOSTS.has(hostOf(finalUrl || url))) {
@@ -279,6 +340,7 @@ function formatReport(results) {
   const redirected = results.filter((r) => r.kind === "redirected");
   const ignored = results.filter((r) => r.kind === "ignored");
   const broken = results.filter((r) => r.kind === "broken");
+  const brandChange = results.filter((r) => r.kind === "brand-change");
 
   const lines = [];
   lines.push(`Affiliate Link Audit — ${new Date().toISOString()}`);
@@ -286,7 +348,8 @@ function formatReport(results) {
   lines.push(`Scanned roots: ${SCAN_ROOTS.join(", ")}`);
   lines.push(`Total checked: ${results.length}`);
   lines.push(`OK (200, no redirect):     ${ok.length}`);
-  lines.push(`Redirected (3xx -> 2xx):   ${redirected.length}`);
+  lines.push(`Redirected (same brand):   ${redirected.length}`);
+  lines.push(`Brand-change redirects:    ${brandChange.length}`);
   lines.push(`Broken / non-2xx:          ${broken.length}`);
   lines.push(`Ignored (known bot block): ${ignored.length}`);
   lines.push("");
@@ -301,8 +364,23 @@ function formatReport(results) {
     lines.push("");
   }
 
+  if (brandChange.length) {
+    lines.push(
+      "BRAND-CHANGE REDIRECTS / NEEDS ATTENTION (link silently lands on a different domain)",
+    );
+    lines.push("-".repeat(64));
+    for (const r of brandChange) {
+      const startDomain = registrableDomain(hostOf(r.url));
+      const endDomain = registrableDomain(hostOf(r.finalUrl || r.url));
+      lines.push(`[${r.finalStatus}] ${r.url}`);
+      lines.push(`    -> ${r.finalUrl}  (${startDomain} → ${endDomain})`);
+      for (const f of r.files) lines.push(`    in ${f}`);
+    }
+    lines.push("");
+  }
+
   if (redirected.length) {
-    lines.push("REDIRECTED (lands on 2xx after a 3xx — verify destination)");
+    lines.push("REDIRECTED (lands on 2xx after a 3xx, same registrable domain)");
     lines.push("-".repeat(64));
     for (const r of redirected) {
       lines.push(`[${r.finalStatus}] ${r.url}`);
@@ -343,7 +421,9 @@ async function main() {
             ? ">> "
             : partial.kind === "ignored"
               ? "-- "
-              : "!! ";
+              : partial.kind === "brand-change"
+                ? "?? "
+                : "!! ";
       console.log(`${tag}${probed.finalStatus || "ERR"}  ${url}`);
       return partial;
     },
@@ -358,8 +438,14 @@ async function main() {
   console.log(`\nReport written to ${path.relative(root, outPath)}`);
 
   const broken = checked.filter((r) => r.kind === "broken").length;
-  if (broken > 0) {
-    console.error(`\n${broken} broken link(s) found. See report.`);
+  const brandChange = checked.filter((r) => r.kind === "brand-change").length;
+  if (broken > 0 || brandChange > 0) {
+    if (broken > 0) console.error(`\n${broken} broken link(s) found. See report.`);
+    if (brandChange > 0) {
+      console.error(
+        `${brandChange} brand-change redirect(s) found — affiliate links silently land on a different domain. See report.`,
+      );
+    }
     process.exitCode = 1;
   }
 }

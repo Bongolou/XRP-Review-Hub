@@ -1,13 +1,24 @@
-Affiliate Link Audit — 2026-04-29T03:47:00.402Z
+Affiliate Link Audit — 2026-04-29T05:24:13.767Z
 ================================================================
 Scanned roots: client/src, server, shared
 Total checked: 108
 OK (200, no redirect):     93
-Redirected (3xx -> 2xx):   14
+Redirected (same brand):   12
+Brand-change redirects:    2
 Broken / non-2xx:          0
 Ignored (known bot block): 1
 
-REDIRECTED (lands on 2xx after a 3xx — verify destination)
+BRAND-CHANGE REDIRECTS / NEEDS ATTENTION (link silently lands on a different domain)
+----------------------------------------------------------------
+[200] https://twitter.com/allthingsxrpl
+    -> https://x.com/allthingsxrpl  (twitter.com → x.com)
+    in client/index.html
+    in index.html
+[200] https://xrplorer.com/?ref=allthingsxrpl
+    -> https://inftf.org/  (xrplorer.com → inftf.org)
+    in client/src/pages/DApps.tsx
+
+REDIRECTED (lands on 2xx after a 3xx, same registrable domain)
 ----------------------------------------------------------------
 [200] https://bitrue.com/user/register?inviteCode=allthingsxrpl
     -> https://www.bitrue.com/user/register?inviteCode=allthingsxrpl
@@ -47,10 +58,6 @@ REDIRECTED (lands on 2xx after a 3xx — verify destination)
     -> https://www.tiktok.com/@allthingsxrpl
     in client/index.html
     in index.html
-[200] https://twitter.com/allthingsxrpl
-    -> https://x.com/allthingsxrpl
-    in client/index.html
-    in index.html
 [200] https://uphold.com/signup?referral=allthingsxrpl
     -> https://wallet.uphold.com/signup?referral=allthingsxrpl
     in client/src/components/BannerAd.tsx
@@ -61,9 +68,6 @@ REDIRECTED (lands on 2xx after a 3xx — verify destination)
 [200] https://www.kraken.com/features/staking-coins
     -> https://www.kraken.com/features/staking
     in client/src/pages/YieldOpportunities.tsx
-[200] https://xrplorer.com/?ref=allthingsxrpl
-    -> https://inftf.org/
-    in client/src/pages/DApps.tsx
 
 IGNORED (known anti-bot 403)
 ----------------------------------------------------------------
