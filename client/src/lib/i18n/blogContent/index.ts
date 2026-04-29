@@ -1,4 +1,5 @@
 import type { Language } from "../translations";
+import { en } from "./en";
 import { es } from "./es";
 import { zh } from "./zh";
 import { ja } from "./ja";
@@ -10,6 +11,7 @@ import { fr } from "./fr";
 export type LocalizedBlogContent = Partial<Record<Language, Record<number, string>>>;
 
 export const blogContent: LocalizedBlogContent = {
+  en,
   es,
   zh,
   ja,
