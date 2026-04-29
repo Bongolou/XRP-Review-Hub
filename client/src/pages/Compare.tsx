@@ -850,7 +850,7 @@ const comparisons: Record<string, ComparisonData> = {
 
 export default function Compare() {
   const { slug } = useParams<{ slug: string }>();
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
   const comparison = comparisons[slug || ""];
   const translatedSeo = slug ? getSeoEntry(language, "compare", slug) : undefined;
   const seo = translatedSeo || (comparison
@@ -1212,8 +1212,13 @@ export default function Compare() {
         {/* In-article lead magnet */}
         <div className="mb-12">
           <EmailCaptureBlock
-            title="Still deciding? Get our 1-page wallet shortlist"
-            description="We'll email you the same comparison cheat-sheet we'd give a friend choosing between these two."
+            title={t("emailCapture.shortlist.title")}
+            description={t("emailCapture.shortlist.description")}
+            bullets={[
+              t("emailCapture.shortlist.bullet1"),
+              t("emailCapture.shortlist.bullet2"),
+              t("emailCapture.shortlist.bullet3"),
+            ]}
             source={`compare_${slug}`}
             leadMagnet="wallet_shortlist"
             assetUrl={getShortlistAssetUrl(language)}
