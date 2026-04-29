@@ -60,14 +60,17 @@ function buildPageOgSvg(rawTitle: string): string {
 </svg>`;
 }
 
+function lookupCompareEntry(slug?: string | null): CardEntry | null {
+  if (!slug) return null;
+  return walletCards[slug] ?? exchangeCards[slug] ?? null;
+}
+
 function buildCompareOgSvg(
   rawW1: string,
   rawW2: string,
   slug1?: string | null,
   slug2?: string | null,
 ): string {
-  const w1 = escapeOgXml(truncateOg(rawW1, 18));
-  const w2 = escapeOgXml(truncateOg(rawW2, 18));
   const w = 1200;
   const h = 630;
   const brandUri = loadLogoDataUri("allthingsxrpl");
@@ -75,11 +78,86 @@ function buildCompareOgSvg(
     ? `<image href="${escapeOgXml(brandUri)}" x="60" y="56" width="80" height="80" preserveAspectRatio="xMidYMid meet"/>`
     : "";
   const brandTextX = brandUri ? 160 : 60;
-  // Wallet logo blocks. When the slug is unknown (e.g. an arbitrary string
-  // arrived via ?w1=…) we skip the logo and fall back to a subtle placeholder
-  // square so the layout stays consistent.
+  const gradientDef = `
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>`;
+  const bgRect = `<rect width="${w}" height="${h}" fill="url(#bg)"/>`;
+  const brandStrip = `<text x="${brandTextX}" y="110" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>`;
+  const footer = `<text x="${w / 2}" y="${h - 30}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="24" font-weight="500" fill="#94a3b8">XRP Wallet Comparison · 2026</text>`;
+  const vsBadge = `<text x="${w / 2}" y="345" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="80" font-weight="800" fill="#fbbf24">vs</text>`;
+
+  // Wallet logos. When the slug is unknown (e.g. an arbitrary string arrived
+  // via ?w1=…) we skip the logo and fall back to a subtle placeholder square
+  // so the layout stays consistent.
   const logo1Uri = slug1 ? loadLogoDataUri(slug1) : null;
   const logo2Uri = slug2 ? loadLogoDataUri(slug2) : null;
+
+  // Try to resolve a curated app screenshot for each side. We only switch to
+  // the phone-frame layout when BOTH sides have one — otherwise an unbalanced
+  // card (one phone, one logo) would look inconsistent, and the existing
+  // logo-only layout still reads cleanly.
+  const entry1 = lookupCompareEntry(slug1);
+  const entry2 = lookupCompareEntry(slug2);
+  const shot1 = entry1?.screenshot ? loadScreenshotAsset(entry1.screenshot) : null;
+  const shot2 = entry2?.screenshot ? loadScreenshotAsset(entry2.screenshot) : null;
+
+  if (shot1 && shot2) {
+    const w1 = escapeOgXml(truncateOg(rawW1, 16));
+    const w2 = escapeOgXml(truncateOg(rawW2, 16));
+    // Two phone frames side by side, with the small wallet logo + name
+    // underneath each one and the VS badge centered between them.
+    const frameW = 240;
+    const frameH = 360;
+    const frame1X = 180;
+    const frame2X = 780;
+    const frameY = 140;
+    const inset = 14;
+    const screenW = frameW - inset * 2;
+    const screenH = frameH - inset * 2;
+    const renderPhone = (frameX: number, screenshotUri: string) => `
+  <g>
+    <rect x="${frameX + 6}" y="${frameY + 12}" width="${frameW}" height="${frameH}" rx="28" fill="#000000" opacity="0.45"/>
+    <rect x="${frameX}" y="${frameY}" width="${frameW}" height="${frameH}" rx="28" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+    <rect x="${frameX + inset}" y="${frameY + inset}" width="${screenW}" height="${screenH}" rx="12" fill="#020617"/>
+    <image href="${escapeOgXml(screenshotUri)}" x="${frameX + inset}" y="${frameY + inset}" width="${screenW}" height="${screenH}" preserveAspectRatio="xMidYMid meet"/>
+    <rect x="${frameX + inset}" y="${frameY + inset}" width="${screenW}" height="${screenH}" rx="12" fill="none" stroke="#1e293b" stroke-width="1"/>
+  </g>`;
+
+    // Small logo chip + name centered beneath each phone.
+    const renderLabel = (centerX: number, name: string, logoUri: string | null) => {
+      const logoSize = 44;
+      const logoX = centerX - 150;
+      const logoY = 525;
+      const nameX = centerX - 90;
+      const logoBlock = logoUri
+        ? `<image href="${escapeOgXml(logoUri)}" x="${logoX}" y="${logoY}" width="${logoSize}" height="${logoSize}" preserveAspectRatio="xMidYMid meet"/>`
+        : `<rect x="${logoX}" y="${logoY}" width="${logoSize}" height="${logoSize}" rx="10" fill="#ffffff" opacity="0.06"/>`;
+      return `${logoBlock}<text x="${nameX}" y="${logoY + 34}" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="800" fill="#ffffff">${name}</text>`;
+    };
+
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  ${gradientDef}
+  ${bgRect}
+  ${brandMark}
+  ${brandStrip}
+  ${renderPhone(frame1X, shot1)}
+  ${renderPhone(frame2X, shot2)}
+  ${vsBadge}
+  ${renderLabel(frame1X + frameW / 2, w1, logo1Uri)}
+  ${renderLabel(frame2X + frameW / 2, w2, logo2Uri)}
+  ${footer}
+</svg>`;
+  }
+
+  // Fallback layout (one or both slugs lack a curated screenshot): the
+  // original logo-only design so arbitrary ?w1=…&w2=… inputs still render.
+  const w1 = escapeOgXml(truncateOg(rawW1, 18));
+  const w2 = escapeOgXml(truncateOg(rawW2, 18));
   const logo1Block = logo1Uri
     ? `<image href="${escapeOgXml(logo1Uri)}" x="160" y="200" width="240" height="240" preserveAspectRatio="xMidYMid meet"/>`
     : `<rect x="160" y="200" width="240" height="240" rx="32" fill="#ffffff" opacity="0.06"/>`;
@@ -88,20 +166,15 @@ function buildCompareOgSvg(
     : `<rect x="800" y="200" width="240" height="240" rx="32" fill="#ffffff" opacity="0.06"/>`;
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b1220"/>
-      <stop offset="100%" stop-color="#1e3a8a"/>
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="url(#bg)"/>
+  ${gradientDef}
+  ${bgRect}
   ${brandMark}
-  <text x="${brandTextX}" y="110" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
+  ${brandStrip}
   ${logo1Block}
   ${logo2Block}
   <text x="280" y="510" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="56" font-weight="800" fill="#ffffff">${w1}</text>
   <text x="920" y="510" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="56" font-weight="800" fill="#ffffff">${w2}</text>
-  <text x="${w / 2}" y="345" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="80" font-weight="800" fill="#fbbf24">vs</text>
+  ${vsBadge}
   <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">XRP Wallet Comparison · 2026</text>
 </svg>`;
 }
