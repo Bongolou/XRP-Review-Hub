@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import { storage } from "./storage";
 import { insertSubscriberSchema, insertContactSchema, insertProductReviewSchema } from "@shared/schema";
-import { blogPosts } from "@shared/blog";
+import { blogPosts, type BlogPostMeta } from "@shared/blog";
 import { resolveOgImageForPath } from "./socialMeta";
 import { notifyNewReview } from "./reviewNotify";
 import { sendWelcomeEmail } from "./welcomeEmail";
@@ -290,6 +290,129 @@ function buildExchangeOgSvg(slug: string): string {
   return buildBrandCardSvg(entry, slug, "XRP Exchange Review", 5);
 }
 
+// Word-wrap a blog post title into at most `maxLines` lines of roughly
+// `maxCharsPerLine` characters each. SVG <text> doesn't auto-wrap, so we
+// break at word boundaries and ellipsize the final line if more words remain.
+function wrapTitleLines(
+  title: string,
+  maxCharsPerLine: number,
+  maxLines: number,
+): string[] {
+  const words = title.split(/\s+/).filter(Boolean);
+  const lines: string[] = [];
+  let current = "";
+  let i = 0;
+  for (; i < words.length; i++) {
+    const w = words[i];
+    const candidate = current ? `${current} ${w}` : w;
+    if (candidate.length > maxCharsPerLine) {
+      if (current) {
+        lines.push(current);
+        if (lines.length >= maxLines) break;
+        current = w;
+      } else {
+        // Single word longer than the line width — hard-truncate it.
+        lines.push(w.slice(0, maxCharsPerLine - 1) + "…");
+        if (lines.length >= maxLines) {
+          i = words.length;
+          current = "";
+          break;
+        }
+        current = "";
+      }
+    } else {
+      current = candidate;
+    }
+  }
+  if (current && lines.length < maxLines) {
+    lines.push(current);
+    i++;
+  }
+  // If we ran out of lines but still have words, append an ellipsis to the
+  // last visible line so visitors know the title was clipped.
+  if (i < words.length && lines.length > 0) {
+    const last = lines[lines.length - 1];
+    const room = maxCharsPerLine - 1;
+    lines[lines.length - 1] =
+      (last.length > room ? last.slice(0, room) : last) + "…";
+  }
+  return lines;
+}
+
+function buildBlogOgSvg(post: BlogPostMeta): string {
+  const w = 1200;
+  const h = 630;
+  const brandUri = loadLogoDataUri("allthingsxrpl");
+  const brandMark = brandUri
+    ? `<image href="${escapeOgXml(brandUri)}" x="60" y="56" width="80" height="80" preserveAspectRatio="xMidYMid meet"/>`
+    : "";
+  const brandTextX = brandUri ? 160 : 60;
+
+  // Resolve the optional wallet/exchange logo. We strictly check against
+  // the known card sets so unknown slugs cannot reach loadLogoDataUri and
+  // pollute the in-memory cache.
+  const slug = post.primarySlug;
+  const hasKnownSlug =
+    !!slug &&
+    (Object.prototype.hasOwnProperty.call(walletCards, slug) ||
+      Object.prototype.hasOwnProperty.call(exchangeCards, slug));
+  const walletLogoUri = hasKnownSlug ? loadLogoDataUri(slug!) : null;
+
+  // Reserve space on the right for the wallet logo when present so the
+  // title block can flow under a narrower content column without
+  // overlapping the brand mark. Char budgets are conservative because the
+  // SVG renderer falls back to a wider mono-ish font when 'Plus Jakarta
+  // Sans' / 'Inter' aren't available.
+  const titleMaxChars = walletLogoUri ? 18 : 24;
+  const titleLines = wrapTitleLines(post.title, titleMaxChars, 3);
+  const titleFontSize =
+    titleLines.length === 1 ? 80 : titleLines.length === 2 ? 72 : 60;
+  const titleLineHeight = Math.round(titleFontSize * 1.15);
+  const titleStartY = titleLines.length === 1 ? 360 : 320;
+
+  const category = escapeOgXml(post.category.toUpperCase());
+  // Approximate badge width based on text length so short categories
+  // ("DEFI") don't sit inside a giant pill and long ones ("INSTITUTIONAL")
+  // don't get clipped.
+  const badgeTextLen = category.length;
+  const badgeW = Math.max(140, badgeTextLen * 16 + 40);
+
+  const walletLogoBlock = walletLogoUri
+    ? `<image href="${escapeOgXml(walletLogoUri)}" x="900" y="200" width="240" height="240" preserveAspectRatio="xMidYMid meet"/>`
+    : "";
+
+  const titleTspans = titleLines
+    .map(
+      (line, idx) =>
+        `    <tspan x="60" dy="${idx === 0 ? 0 : titleLineHeight}">${escapeOgXml(line)}</tspan>`,
+    )
+    .join("\n");
+
+  const footer = escapeOgXml("All Things XRPL · XRPL Insights · 2026");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="url(#bg)"/>
+  ${brandMark}
+  <text x="${brandTextX}" y="110" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
+  <g>
+    <rect x="60" y="180" width="${badgeW}" height="56" rx="28" fill="#fbbf24"/>
+    <text x="${60 + badgeW / 2}" y="218" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="24" font-weight="800" fill="#0b1220" letter-spacing="2">${category}</text>
+  </g>
+  ${walletLogoBlock}
+  <text x="60" y="${titleStartY}" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="${titleFontSize}" font-weight="800" fill="#ffffff">
+${titleTspans}
+  </text>
+  <text x="${w / 2}" y="${h - 40}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="24" font-weight="500" fill="#94a3b8">${footer}</text>
+</svg>`;
+}
+
 // Cache the rendered PNG buffer per (kind, slug) so repeat crawler hits
 // don't re-rasterize the SVG (which embeds a 600KB-1MB base64 logo) on
 // every request. Slug callers are validated against walletCards/
@@ -305,6 +428,20 @@ function getOgPng(kind: "wallet" | "exchange", slug: string): Buffer {
   const svg = kind === "wallet" ? buildWalletOgSvg(slug) : buildExchangeOgSvg(slug);
   const png = renderSvgToPng(svg);
   ogPngCache.set(key, png);
+  return png;
+}
+
+// Cache the rendered blog OG PNG per post id. Posts are looked up via
+// the validated blogPosts list before reaching this helper, so the cache
+// is bounded to the published-post set and cannot be polluted by
+// arbitrary input.
+const blogOgPngCache = new Map<number, Buffer>();
+
+function getBlogOgPng(post: BlogPostMeta): Buffer {
+  const cached = blogOgPngCache.get(post.id);
+  if (cached) return cached;
+  const png = renderSvgToPng(buildBlogOgSvg(post));
+  blogOgPngCache.set(post.id, png);
   return png;
 }
 
@@ -683,6 +820,46 @@ export async function registerRoutes(
     }
   });
 
+  // Per-blog-post branded OG card — keyed by post id so the share preview
+  // shows the brand mark, the post category, the post title, and (when the
+  // post declares a primarySlug pointing at a known wallet/exchange) the
+  // associated brand logo. Posts are looked up against the static blogPosts
+  // list, so unknown ids 404 and the in-memory PNG cache stays bounded.
+  const resolveBlogPost = (raw: unknown): BlogPostMeta | null => {
+    const id = parseInt(String(raw ?? ""), 10);
+    if (!Number.isFinite(id)) return null;
+    return blogPosts.find((p) => p.id === id) ?? null;
+  };
+
+  app.get("/og/blog.svg", (req, res) => {
+    const post = resolveBlogPost(req.query.id);
+    if (!post) {
+      res.status(404).type("text/plain").send("Unknown blog post id");
+      return;
+    }
+    const svg = buildBlogOgSvg(post);
+    res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    res.send(svg);
+  });
+
+  app.get("/og/blog.png", (req, res) => {
+    const post = resolveBlogPost(req.query.id);
+    if (!post) {
+      res.status(404).type("text/plain").send("Unknown blog post id");
+      return;
+    }
+    try {
+      const png = getBlogOgPng(post);
+      res.setHeader("Content-Type", "image/png");
+      res.setHeader("Cache-Control", "public, max-age=86400");
+      res.send(png);
+    } catch (err) {
+      console.error("Failed to render /og/blog.png:", err);
+      res.status(500).type("text/plain").send("Failed to render OG image");
+    }
+  });
+
   // Sitemap XML — generated dynamically from the route source of truth so it
   // stays in sync with App.tsx as new wallets, exchanges, comparisons, best-for
   // hubs and blog posts are added.
@@ -735,7 +912,10 @@ export async function registerRoutes(
     }));
     const blogPages: Entry[] = blogPosts.map(p => ({
       url: `/blog/${p.id}`, priority: "0.6", changefreq: "monthly", lastmod: p.dateIso,
-      image: p.image,
+      // Point at the generated branded share card (instead of the static
+      // Unsplash hero) so Google Images and Discover surface the same
+      // All Things XRPL-branded preview that social crawlers will fetch.
+      image: `/og/blog.png?id=${p.id}`,
     }));
 
     const allPages: Entry[] = [

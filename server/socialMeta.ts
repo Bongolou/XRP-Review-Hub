@@ -64,6 +64,11 @@ function exchangeOg(slug: string): string {
   return `/og/exchange.png?${params.toString()}`;
 }
 
+function blogOg(id: number): string {
+  const params = new URLSearchParams({ id: String(id) });
+  return `/og/blog.png?${params.toString()}`;
+}
+
 function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
@@ -140,7 +145,10 @@ export function resolveMetaForPath(
       return {
         title: `${translatedTitle} | All Things XRPL`,
         description,
-        image: post.image,
+        // Branded share card so blog post previews carry the same All
+        // Things XRPL look as wallet/exchange/compare cards (and embed
+        // the wallet logo when post.primarySlug points at one).
+        image: blogOg(post.id),
       };
     }
   }

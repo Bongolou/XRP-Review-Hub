@@ -13,6 +13,11 @@ export interface BlogPostMeta {
   author: string;
   authorRole: string;
   image: string;
+  // Optional wallet/exchange slug this post primarily focuses on. When set
+  // and the slug matches a known walletCards/exchangeCards entry, the
+  // generated /og/blog.png share card embeds that brand's logo so the
+  // social preview visually ties the post back to the wallet it covers.
+  primarySlug?: string;
 }
 
 export const blogPosts: BlogPostMeta[] = [
