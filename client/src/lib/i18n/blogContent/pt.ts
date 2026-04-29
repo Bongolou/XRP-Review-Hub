@@ -1,4 +1,359 @@
 export const pt: Record<number, string> = {
+  1: `
+      <p>O XRP Ledger (XRPL) evoluiu bastante no último ano e foi muito além de pagamentos simples para se tornar um ecossistema robusto de Finanças Descentralizadas (DeFi). Com a chegada do Automated Market Maker (AMM) nativo e das sidechains, o cenário está mais vibrante do que nunca. Desenvolvedores e empreendedores constroem ferramentas financeiras sofisticadas que rivalizam com as do Ethereum ou Solana, mas com a vantagem das taxas próximas de zero e da liquidação quase instantânea.</p>
+
+      <p>Se você quer explorar DeFi no XRPL, estes são os cinco aplicativos descentralizados que devem estar no seu radar em 2026.</p>
+
+      <h2>O que diferencia o DeFi do XRPL</h2>
+      <p>Antes de mergulhar em cada dApp, vale entender o que separa o DeFi do XRPL de outros ecossistemas. O XRP Ledger liquida transações em três a cinco segundos, contra os doze segundos por bloco do Ethereum e seus frequentes congestionamentos. As taxas no XRPL costumam ser frações de centavo, o que torna prático interagir com DeFi todo dia sem ver o gas comer seus retornos. Além disso, o XRPL tem uma exchange descentralizada nativa embutida na camada do protocolo, o que significa que qualquer token emitido no ledger pode ser negociado sem precisar de um smart contract separado.</p>
+
+      <h2>1. Magnetic X</h2>
+      <p>A Magnetic se firmou como uma das principais DEXs e launchpads do XRPL. A interface é limpa, profissional e oferece ferramentas avançadas de trading que antes faltavam no ecossistema. A plataforma suporta tanto trading spot pelo order book nativo do XRPL quanto swaps via AMM, dando ao trader flexibilidade na hora de executar ordens.</p>
+
+      <h3>Recursos principais:</h3>
+      <ul>
+        <li>Ferramentas avançadas de gráficos com integração TradingView</li>
+        <li>Ordens limit e funcionalidade de stop-loss</li>
+        <li>Launchpad de tokens para novos projetos com curadoria embutida</li>
+        <li>Acompanhamento de portfólio e analytics de performance</li>
+        <li>Governança comunitária via token MAG</li>
+      </ul>
+
+      <p>O grande diferencial da Magnetic é o launchpad, que oferece um caminho estruturado para novos projetos captarem fundos e distribuírem tokens. O processo de curadoria filtra projetos de baixa qualidade e dá mais confiança aos investidores. A plataforma já viabilizou dezenas de lançamentos bem-sucedidos, ajudando a expandir o ecossistema do XRPL como um todo.</p>
+
+      <h2>2. Orchestra Finance</h2>
+      <p>A Orchestra traz estratégias sofisticadas de yield farming para o XRPL. Aproveitando o AMM nativo, ela permite que usuários otimizem a provisão de liquidez com recursos de auto-compounding. Em vez de coletar e reinvestir manualmente as taxas de trading, a Orchestra automatiza o processo todo, maximizando seu rendimento anual efetivo.</p>
+
+      <p>A plataforma oferece várias estratégias de vault adaptadas a diferentes perfis de risco. Vaults conservadores focam em pares de stablecoins com baixa volatilidade, enquanto vaults agressivos miram oportunidades de maior rendimento em pares de tokens mais voláteis. A Orchestra também fornece analytics detalhados com retornos históricos, projeções de APY atual e o detalhamento de onde vem seu rendimento. Para quem quer participar do DeFi do XRPL sem monitorar posições o tempo todo, a Orchestra é uma excelente escolha.</p>
+
+      <h2>3. XPMarket</h2>
+      <p>O XPMarket continua sendo a plataforma de analytics mais usada, mas seus novos recursos de trading o tornaram um forte concorrente no espaço DeFi. A integração entre dados ricos e capacidade de execução é fluida. Os usuários podem analisar métricas de tokens, revisar a distribuição de holders, conferir profundidade de liquidez e executar trades, tudo na mesma interface.</p>
+
+      <p>Um dos grandes destaques do XPMarket é o motor de descoberta de tokens, que traz à tona projetos emergentes com base em volume de trading, crescimento de holders e sentimento social. A plataforma também oferece ferramentas de gerenciamento de trust lines, facilitando adicionar ou remover trust lines para novos tokens do XRPL. Para quem leva a sério a pesquisa e o trading de tokens no XRPL, o XPMarket virou ferramenta diária indispensável.</p>
+
+      <h2>4. Sologenic DEX</h2>
+      <p>A Sologenic continua inovando com seus ativos tokenizados e exchange descentralizada. A plataforma agora suporta uma gama maior de ativos tradicionais tokenizados no XRPL, incluindo ações e ETFs de grandes bolsas. Essa proposta única permite que usuários do XRPL ganhem exposição a mercados financeiros tradicionais sem sair do ecossistema.</p>
+
+      <p>A Sologenic DEX trabalha com modelo de order book, garantindo spreads apertados nos pares mais negociados. A plataforma é sustentada pelo token SOLO, que oferece recompensas de staking e direitos de governança. A Sologenic também expandiu para o espaço NFT com seu próprio marketplace, criando um hub financeiro completo que conecta finanças tradicionais e mercados cripto descentralizados.</p>
+
+      <h2>5. First Ledger</h2>
+      <p>A First Ledger oferece um ponto de entrada acessível ao DeFi do XRPL com interface intuitiva e materiais educativos para iniciantes. A plataforma foi desenhada pensando em quem está começando, com tutoriais guiados que conduzem o usuário pelo primeiro swap, pela primeira provisão de liquidez e pela primeira exploração de tokens.</p>
+
+      <p>Apesar do enfoque para iniciantes, a First Ledger não abre mão de funcionalidade. Ela suporta swaps em AMM, ordens limit e gerenciamento de trust lines numa interface enxuta. A plataforma também mantém um fórum comunitário ativo onde usuários tiram dúvidas e compartilham estratégias, sendo um espaço acolhedor para quem está dando os primeiros passos em finanças descentralizadas no XRPL.</p>
+
+      <h2>Como começar com DeFi no XRPL</h2>
+      <p>Entrar no DeFi do XRPL é simples comparado a outros ecossistemas. Primeiro, você precisa de uma carteira compatível com o XRPL, como Xaman ou Crossmark. Carregue a carteira com XRP comprado em uma exchange centralizada como Coinbase, Bitstamp ou Uphold. Com a carteira pronta, acesse qualquer uma das plataformas listadas acima e conecte sua carteira via QR code ou extensão de navegador. Comece com valores pequenos para se familiarizar com a interface antes de comprometer quantias maiores.</p>
+
+      <h2>Dicas práticas para usuários de DeFi no XRPL</h2>
+      <ul>
+        <li>Confira sempre a URL de qualquer dApp antes de conectar a carteira</li>
+        <li>Comece por pares consagrados como XRP/USD para reduzir risco</li>
+        <li>Mantenha a maior parte das holdings em uma carteira hardware e envie apenas o necessário para a carteira hot quando for usar DeFi</li>
+        <li>Monitore suas posições de liquidez com regularidade para acompanhar perda impermanente</li>
+        <li>Participe de canais comunitários no Discord ou no X para ficar por dentro de novas oportunidades</li>
+      </ul>
+
+      <h2>Conclusão</h2>
+      <p>O DeFi do XRPL está amadurecendo rapidamente. Embora Ethereum e Solana ainda concentrem maior valor total bloqueado, a eficiência e o baixo custo do XRPL o tornam um lar atrativo para a próxima geração de aplicações financeiras. Cada uma dessas cinco plataformas traz algo único ao ecossistema, de ferramentas avançadas de trading a experiências amigáveis para iniciantes. Conforme o XRPL continua a evoluir com novos recursos e amendments, espere ver esses dApps e muitos outros ampliando os limites do que é possível em finanças descentralizadas.</p>
+    `,
+  2: `
+      <p>O AMM nativo do XRP Ledger abriu novas possibilidades para gerar renda passiva. Diferente de protocolos DeFi de terceiros construídos em outras chains, o AMM do XRPL é implementado diretamente na camada de protocolo, sendo uma das formas mais seguras e eficientes de obter rendimento em cripto. Este guia mostra tudo o que você precisa saber sobre as recompensas de staking via AMM, do básico até estratégias avançadas.</p>
+
+      <h2>O que é um AMM?</h2>
+      <p>Um Automated Market Maker é um tipo de protocolo de exchange descentralizada que usa uma fórmula matemática para precificar ativos. Em vez de um order book como nas exchanges tradicionais, os ativos são precificados por um algoritmo. Isso significa que negociações podem acontecer a qualquer momento sem precisar de uma contraparte do outro lado, já que a própria pool de liquidez funciona como parceira de trading.</p>
+
+      <p>Os AMMs viraram a espinha dorsal do DeFi em todas as principais blockchains porque resolveram o problema de liquidez que afetava as primeiras exchanges descentralizadas. Qualquer pessoa pode virar market maker depositando ativos numa pool e, em troca, recebe uma fatia de cada negociação que passa por ela.</p>
+
+      <h2>Como funciona o AMM do XRPL</h2>
+      <p>O AMM do XRPL usa a fórmula de produto constante (x * y = k) para determinar preços. Provedores de liquidez depositam valores equivalentes de dois ativos numa pool e recebem tokens LP que representam sua participação. O que torna a implementação do XRPL especial é que ela roda como recurso nativo do próprio ledger, e não como um smart contract, eliminando toda uma classe de riscos de smart contract que afeta outras plataformas.</p>
+
+      <p>Cada pool AMM no XRPL está associada a uma conta AMM única que guarda os ativos pareados. A pool cobra uma taxa de trading que vai de zero a um por cento, definida por um mecanismo de governança em que os holders de tokens LP votam no nível da taxa. Esse sistema de taxa por leilão ajuda as pools a encontrar a taxa ótima entre volume de traders e retorno dos provedores.</p>
+
+      <h3>Passos para fornecer liquidez:</h3>
+      <ul>
+        <li>Escolha o par (por exemplo, XRP/USD, XRP/SOLO ou quaisquer dois tokens do XRPL)</li>
+        <li>Deposite valores equivalentes dos dois ativos na pool</li>
+        <li>Receba tokens LP representando sua participação proporcional</li>
+        <li>Ganhe taxas de trading automaticamente conforme elas se acumulam na pool</li>
+        <li>Saque a qualquer momento resgatando seus tokens LP</li>
+      </ul>
+
+      <h2>Entendendo as recompensas</h2>
+      <p>Quando traders trocam ativos na pool, pagam uma pequena taxa. Essa taxa é distribuída a todos os provedores de liquidez de acordo com a fatia que cada um detém. Suas recompensas se acumulam automaticamente dentro da pool, ou seja, o valor dos seus tokens LP cresce com o tempo conforme as taxas são coletadas.</p>
+
+      <p>Para ilustrar: imagine que você fornece dez por cento da liquidez total de uma pool. Se a pool processa o equivalente a dez mil XRP em trades num dia com taxa de 0,5%, ela arrecada cinquenta XRP em taxas. Sua parte seria cinco XRP nesse dia. Ao longo de um mês, isso pode compor retornos relevantes, especialmente em pools de alto volume.</p>
+
+      <h3>Estimando seus retornos:</h3>
+      <p>Seu rendimento real depende de três fatores: o volume de trading da pool, a porcentagem da taxa e sua participação na liquidez total. Pools de maior volume geram mais taxas, mas também tendem a atrair mais provedores, o que dilui retornos individuais. A estratégia mais lucrativa costuma ser encontrar pools com bom volume e liquidez total relativamente modesta.</p>
+
+      <h2>Riscos a considerar</h2>
+      <p>A perda impermanente é o principal risco para provedores de liquidez. Ela ocorre quando a relação de preço entre os ativos depositados muda em comparação com o momento do depósito. Quanto maior a divergência de preço, maior a perda impermanente. Por exemplo, se você deposita XRP e USD com o XRP a um dólar e o XRP sobe para dois dólares, sua posição na pool valerá menos do que se você tivesse simplesmente segurado os dois ativos separadamente.</p>
+
+      <p>No entanto, a perda impermanente só se realiza quando você saca a liquidez. Se os preços voltarem à proporção original, a perda desaparece. Em pools ativas com volume consistente, as taxas acumuladas costumam mais do que compensar a perda impermanente ao longo do tempo. Pares de stablecoins como USD/EUR sofrem perda impermanente mínima porque os preços ficam altamente correlacionados.</p>
+
+      <h3>Outros riscos:</h3>
+      <ul>
+        <li>Pools de baixa liquidez podem ter slippage maior, afastando traders e reduzindo sua receita de taxas</li>
+        <li>Tokens recém-criados podem perder valor rápido, ampliando a perda impermanente</li>
+        <li>Custo de oportunidade de travar ativos numa pool em vez de outras estratégias de rendimento</li>
+      </ul>
+
+      <h2>Comparando rendimentos do AMM do XRPL com outras opções</h2>
+      <p>Os rendimentos do AMM do XRPL costumam variar entre cinco e trinta por cento ao ano, dependendo da pool, comparando favoravelmente a muitas alternativas. Contas poupança tradicionais oferecem cerca de quatro a cinco por cento no cenário atual. Plataformas centralizadas de empréstimo cripto pagam taxas similares, mas com risco de contraparte. Recompensas de staking em chains proof-of-stake costumam ficar entre três e oito por cento. A vantagem da provisão no AMM do XRPL é que seus ativos permanecem sob seu controle a todo momento e a implementação na camada do protocolo reduz o risco de smart contract.</p>
+
+      <h2>Exemplos de pools populares</h2>
+      <p>A pool XRP/USD está sempre entre as de maior volume, gerando renda constante de taxas pela atividade contínua de troca entre XRP e stablecoins. Pares como XRP/SOLO e XRP/CSC também registram volumes saudáveis. Para provedores mais aventureiros, pares de tokens novos podem oferecer APYs maiores, embora carreguem mais risco pela volatilidade de preço e pela liquidez total mais baixa.</p>
+
+      <h2>Como começar</h2>
+      <p>Para começar a ganhar recompensas em AMM, você precisa de uma carteira compatível com o XRPL como Xaman ou Crossmark e algum XRP somado ao ativo escolhido para o par. Conecte sua carteira a uma interface AMM como Orchestra Finance ou Sologenic DEX. Vá até a seção AMM, escolha sua pool e indique quanta liquidez quer fornecer. Confirme a transação na carteira e você receberá os tokens LP imediatamente.</p>
+
+      <p>Comece com um valor pequeno para se familiarizar com o processo. Acompanhe sua posição por alguns dias para ver como as taxas se acumulam e como o valor da pool se comporta. Depois de entender a dinâmica, você pode aumentar a posição ou explorar outras pools. Lembre-se: sacar a liquidez é tão simples quanto depositar, então você nunca fica preso permanentemente.</p>
+    `,
+  3: `
+      <p>Proteger seus ativos digitais exige uma abordagem em camadas. Seja com carteira hardware ou software, estas práticas de segurança ajudam a manter suas cripto seguras. A natureza descentralizada das criptomoedas significa que não existe um banco para ligar quando algo dá errado, então toda a responsabilidade pela segurança é sua. Seguindo estas boas práticas, você reduz drasticamente o risco de perder seus fundos para roubos, golpes ou erros simples.</p>
+
+      <h2>1. Proteja sua seed phrase</h2>
+      <p>Sua seed phrase é a chave mestra dos seus fundos. Nunca a guarde digitalmente, não tire foto e não compartilhe com ninguém. Anote em papel ou use uma solução de backup metálica feita especificamente para guardar seed phrases. Backups metálicos resistem a fogo e água, sendo ideais para proteção de longo prazo.</p>
+
+      <p>Considere dividir sua seed phrase em várias partes e guardar cada uma em locais seguros distintos. Por exemplo, você pode usar um esquema dois-de-três em que quaisquer duas partes reconstroem a frase completa. Isso protege contra roubo e perda, já que um ladrão com uma parte não acessa seus fundos e perder uma parte não te tranca para sempre.</p>
+
+      <h3>Opções de armazenamento de seed phrase:</h3>
+      <ul>
+        <li>Backup em papel guardado em cofre à prova de fogo</li>
+        <li>Placas metálicas para seed phrase de empresas como Cryptosteel ou Billfodl</li>
+        <li>Armazenamento dividido em múltiplos locais seguros</li>
+        <li>Cofres bancários para holdings de alto valor</li>
+      </ul>
+
+      <h2>2. Use uma carteira hardware</h2>
+      <p>Para holdings significativas, uma carteira hardware como Ledger ou Trezor oferece a melhor segurança. Suas chaves privadas nunca saem do dispositivo, protegendo contra malware e hackers. Mesmo se o seu computador estiver totalmente comprometido, a carteira hardware garante que as chaves permaneçam isoladas em um secure element que não pode ser acessado por software malicioso.</p>
+
+      <p>Ao escolher uma carteira hardware para o XRPL, o Ledger Nano X e o Nano S Plus oferecem suporte nativo a XRP. As cards Tangem trazem alternativa elegante com NFC e sem bateria para carregar. O ELLIPAL Titan adota outra abordagem com design totalmente air-gapped, comunicando-se apenas por QR codes, eliminando vetores de ataque com fio ou sem fio.</p>
+
+      <h3>Boas práticas com carteiras hardware:</h3>
+      <ul>
+        <li>Compre apenas direto do fabricante ou de revendedores autorizados</li>
+        <li>Verifique se o dispositivo não foi violado ao chegar</li>
+        <li>Defina um PIN forte que não seja usado em outro lugar</li>
+        <li>Ative o recurso opcional de passphrase para uma camada extra de segurança</li>
+        <li>Teste seu backup recuperando em um segundo dispositivo antes de guardar grandes quantias</li>
+      </ul>
+
+      <h2>3. Ative a autenticação de dois fatores</h2>
+      <p>Em qualquer conta de exchange ou carteira web, sempre ative a autenticação de dois fatores. Use um app autenticador como Google Authenticator, Authy ou uma chave de segurança hardware como YubiKey em vez de SMS sempre que possível. O 2FA por SMS é vulnerável a ataques de SIM swap, em que criminosos convencem sua operadora a transferir seu número para um chip que eles controlam.</p>
+
+      <p>Se o seu app autenticador suportar, faça backup das seeds de 2FA com segurança. Perder o acesso ao autenticador sem códigos de backup pode te trancar fora das contas de exchange e forçar processos longos de verificação de identidade para recuperar acesso. Guarde os códigos de backup em local seguro separado da seed phrase.</p>
+
+      <h2>4. Verifique endereços com cuidado</h2>
+      <p>Malware de sequestro de área de transferência pode silenciosamente substituir endereços de cripto copiados por endereços controlados por atacantes. Sempre confira os primeiros e os últimos caracteres de qualquer endereço antes de confirmar uma transação. Em carteiras hardware, verifique se o endereço mostrado na tela do dispositivo bate com o esperado, já que essa tela não pode ser manipulada por malware no computador.</p>
+
+      <p>Para endereços que você usa com frequência, aproveite a agenda ou recursos de contatos disponíveis em carteiras como a Xaman. Isso reduz o risco de erros e permite verificar endereços salvos uma vez em vez de toda vez. Ao enviar grandes quantias, sempre faça uma transação de teste pequena primeiro para confirmar o endereço antes do envio total.</p>
+
+      <h2>5. Mantenha o software atualizado</h2>
+      <p>Atualize regularmente o software da carteira, o sistema operacional e o software de segurança para se proteger de vulnerabilidades conhecidas. Desenvolvedores de carteiras lançam patches com frequência que corrigem problemas de segurança, e rodar software desatualizado deixa você exposto a ataques já documentados publicamente.</p>
+
+      <p>Ative atualizações automáticas sempre que possível e assine canais oficiais de comunicação da sua carteira e exchanges. Ao atualizar firmware ou software de carteira, baixe sempre da fonte oficial e verifique o download quando houver checksums.</p>
+
+      <h2>6. Proteja-se contra engenharia social</h2>
+      <p>Ataques de engenharia social estão entre os mais eficazes porque atacam a psicologia humana em vez de sistemas técnicos. Golpistas podem se passar por suporte, membros de projetos ou até amigos para te enganar e arrancar informações sensíveis ou aprovar transações maliciosas.</p>
+
+      <p>Nunca compartilhe sua seed phrase, chaves privadas ou senhas com ninguém, não importa quem a pessoa diga ser. Equipes de suporte legítimas nunca pedem essas informações. Desconfie de mensagens não solicitadas em redes sociais, especialmente as que criam urgência ou prometem recompensas boas demais para serem verdade. Sempre valide as informações por canais oficiais antes de agir.</p>
+
+      <h2>7. Segurança de rede</h2>
+      <p>Evite acessar carteiras ou contas de exchange em redes Wi-Fi públicas, que podem ser monitoradas ou falsificadas por atacantes. Se precisar usar Wi-Fi público, conecte-se via VPN confiável para criptografar seu tráfego. Em casa, garanta que o firmware do roteador está atualizado e que você está usando WPA3 ou WPA2 com senha forte.</p>
+
+      <p>Considere usar um dispositivo dedicado para transações cripto, sem navegação geral, e-mail ou downloads de arquivos. Isso reduz drasticamente a superfície de ataque e a chance de encontrar malware ou sites de phishing durante o uso comum da internet.</p>
+
+      <h2>8. Crie um plano de recuperação</h2>
+      <p>Planeje o inesperado com instruções claras de recuperação para familiares de confiança ou representantes legais. Se algo te acontecer, seus ativos cripto podem ser perdidos para sempre sem documentação adequada. Considere trabalhar com um advogado de planejamento sucessório que entenda de cripto para incluir a recuperação de ativos digitais no seu plano.</p>
+
+      <ul>
+        <li>Documente onde os backups estão guardados sem revelar as seed phrases em si</li>
+        <li>Explique o processo de recuperação passo a passo para alguém sem familiaridade com cripto</li>
+        <li>Considere uma configuração multisig que exija várias partes confiáveis para aprovar transações</li>
+        <li>Revise e atualize seu plano de recuperação ao menos uma vez por ano</li>
+      </ul>
+
+      <h2>Conclusão</h2>
+      <p>Segurança não é uma configuração feita uma só vez, e sim uma prática contínua. Permaneça atento, informado e nunca tenha pressa ao fazer transações. O tempo que você investe em práticas de segurança adequadas vale muito mais do que a potencial perda dos seus ativos digitais. Construa seus hábitos de segurança aos poucos, começando pelo básico e adicionando camadas conforme suas holdings crescem. A regra mais importante é simples: se algo soa estranho ou bom demais para ser verdade, pare e verifique antes de continuar.</p>
+    `,
+  4: `
+      <p>O ecossistema de NFTs no XRP Ledger cresceu enormemente desde a chegada do suporte nativo via padrão XLS-20. Diferente de outras blockchains em que NFTs dependem de smart contracts, os NFTs do XRPL estão integrados ao protocolo, oferecendo um nível de confiabilidade e eficiência difícil de igualar. Este guia cobre tudo o que você precisa saber sobre marketplaces de NFT no XRPL, da escolha da plataforma certa à criação do seu primeiro NFT.</p>
+
+      <h2>Por que XRPL para NFTs?</h2>
+      <p>O XRPL oferece várias vantagens convincentes para NFTs que o destacam diante de concorrentes lotados como Ethereum e Solana. As transações liquidam em três a cinco segundos, as taxas costumam ser menores que uma fração de centavo e o cumprimento de royalties é integrado diretamente à camada do protocolo. Isso significa que criadores recebem royalties automaticamente em cada venda secundária, ao contrário do Ethereum, onde a aplicação no nível do marketplace tem sido inconsistente e polêmica.</p>
+
+      <h3>Vantagens do NFT no XRPL em relação ao Ethereum:</h3>
+      <ul>
+        <li>Custos de cunhagem abaixo de um centavo contra cinquenta a duzentos dólares no Ethereum em pico de congestão</li>
+        <li>Cumprimento de royalties no nível do protocolo, impossível de contornar</li>
+        <li>Sem risco de smart contract, já que NFTs são objetos nativos do ledger</li>
+        <li>Liquidação em três a cinco segundos contra minutos no Ethereum</li>
+        <li>Mecanismos de oferta e leilão embutidos no nível do protocolo</li>
+      </ul>
+
+      <h2>Principais marketplaces de NFT do XRPL</h2>
+
+      <h3>1. XRP.cafe</h3>
+      <p>Um dos marketplaces de NFT originais do XRPL, o XRP.cafe oferece uma interface limpa e intuitiva e uma comunidade ativa de colecionadores e criadores. A plataforma se destaca em revelar artistas emergentes e coleções em alta com seus recursos de descoberta. O XRP.cafe suporta vendas diretas, ofertas e formatos de leilão, dando flexibilidade aos vendedores na hora de listar. O marketplace não cobra taxas de plataforma sobre as negociações, sendo um dos lugares mais econômicos para comprar e vender NFTs no XRPL.</p>
+
+      <p>O lado comunitário do XRP.cafe é particularmente forte. Eventos regulares de showcase destacam novos artistas, e os recursos sociais permitem que colecionadores sigam seus criadores favoritos e recebam notificações quando novas obras saem. Para artistas que estão chegando ao XRPL, o XRP.cafe é uma excelente porta de entrada com forte capacidade de descoberta.</p>
+
+      <h3>2. OnXRP</h3>
+      <p>OnXRP é uma plataforma completa que combina trading de NFT com trading de tokens e outros serviços do XRPL. Conhecida por suas ferramentas de nível profissional, a OnXRP oferece analytics detalhados de coleções, incluindo histórico de floor price, tendências de volume, distribuição de holders e ranking de raridade. A plataforma suporta operações em lote, permitindo que power users listem, deslistem ou transfiram vários NFTs num único fluxo de transação.</p>
+
+      <p>A OnXRP também oferece um serviço de launchpad para novas coleções, cuidando dos aspectos técnicos de mint e distribuição para que os criadores foquem na arte. A plataforma já hospedou alguns dos lançamentos de NFT mais bem-sucedidos do XRPL, com coleções esgotando minutos após irem ao ar.</p>
+
+      <h3>3. Sologenic NFT Marketplace</h3>
+      <p>Sustentado pelo time consagrado da Sologenic, este marketplace oferece coleções premium e uma experiência robusta de trading. O marketplace da Sologenic se beneficia do ecossistema mais amplo, que inclui DEX e plataforma de ativos tokenizados. As coleções listadas na Sologenic costumam ser mais curadas, com o time avaliando projetos antes de aparecerem na plataforma. Essa curadoria mantém a qualidade e dá mais confiança aos colecionadores.</p>
+
+      <h2>Comparação de taxas e custos</h2>
+      <p>Uma das maiores vantagens dos marketplaces de NFT do XRPL é o custo, muito baixo em comparação com outros ecossistemas. Cunhar um NFT no XRPL custa cerca de 0,00001 XRP em taxas de transação mais um pequeno requisito de reserva. A maioria dos marketplaces do XRPL cobra taxas de plataforma nulas ou mínimas sobre vendas, com o custo principal sendo o royalty do criador. Compare com o Ethereum, em que o OpenSea cobra 2,5% de taxa de plataforma além de gas, que pode variar de vinte a centenas de dólares dependendo da congestão.</p>
+
+      <h2>Como criar seu primeiro NFT</h2>
+      <p>Cunhar seu primeiro NFT no XRPL é um processo direto que leva alguns minutos. Aqui vai o passo a passo:</p>
+      <ul>
+        <li>Configure e carregue uma carteira Xaman ou Crossmark com um pouco de XRP</li>
+        <li>Conecte a carteira ao marketplace escolhido via QR code ou extensão de navegador</li>
+        <li>Vá até a seção de cunhagem e faça upload da arte digital (a maioria suporta imagens, vídeos e áudio)</li>
+        <li>Preencha os metadados, incluindo título, descrição e detalhes da coleção</li>
+        <li>Defina sua porcentagem de royalty (cinco a dez por cento é o padrão da comunidade)</li>
+        <li>Escolha se o NFT será transferível e se a URI poderá ser atualizada</li>
+        <li>Confirme a transação na carteira e pague a pequena taxa de cunhagem</li>
+        <li>Seu NFT está vivo no XRPL e visível em todos os marketplaces compatíveis</li>
+      </ul>
+
+      <p>Uma observação técnica importante: NFTs do XRPL usam o tipo de transação NFTokenMint, que cria o NFT como objeto nativo do ledger. O arquivo de mídia em si normalmente é armazenado em IPFS ou solução similar de armazenamento descentralizado, e o NFT contém uma URI apontando para a mídia e seus metadados.</p>
+
+      <h2>Construindo uma estratégia de coleção</h2>
+      <p>Seja para colecionar por prazer ou investimento, ter uma estratégia ajuda a tomar decisões melhores. Foque em artistas com produção consistente e base crescente em vez de correr atrás de hype. Preste atenção na distribuição de holders de uma coleção, já que uma boa pulverização entre muitas carteiras indica interesse genuíno em vez de escassez artificial criada por poucos grandes detentores.</p>
+
+      <p>Entre nos servidores Discord e nas comunidades no X das coleções que te interessam. A comunidade de NFT do XRPL é notavelmente acolhedora e colaborativa, com colecionadores compartilhando insights e ajudando recém-chegados a entender o espaço. Siga colecionadores experientes para aprender o que eles procuram em projetos promissores.</p>
+
+      <h2>Dicas para colecionadores</h2>
+      <ul>
+        <li>Pesquise o histórico do artista, trabalhos anteriores e reputação na comunidade antes de comprar</li>
+        <li>Verifique a autenticidade da coleção checando a conta emissora num explorador do XRPL como o Bithomp</li>
+        <li>Comece por peças acessíveis para aprender a dinâmica do mercado antes de investir valores significativos</li>
+        <li>Use ferramentas de raridade para entender quais traços são comuns e quais são escassos numa coleção</li>
+        <li>Tenha paciência e evite compras por FOMO em frenesis de lançamento, quando os preços costumam estar inflados</li>
+      </ul>
+
+      <h2>O futuro dos NFTs no XRPL</h2>
+      <p>O ecossistema de NFTs do XRPL segue crescendo com novos marketplaces, ferramentas e aplicações criativas surgindo com regularidade. Conforme mais artistas e colecionadores descobrem os benefícios das taxas próximas de zero e dos recursos no nível do protocolo, espere ver o ecossistema atrair projetos cada vez mais diversos e ambiciosos. De arte digital e música a ativos de games e ingressos de eventos, os NFTs do XRPL estão encontrando casos de uso que vão muito além de simples colecionáveis.</p>
+    `,
+  5: `
+      <p>As sidechains do XRPL representam uma grande evolução nas capacidades do ecossistema, viabilizando smart contracts e novos casos de uso enquanto mantêm conexão com o ledger principal. Por anos, uma das críticas mais comuns ao XRP Ledger foi a falta de programabilidade comparada ao Ethereum e a outras plataformas de smart contracts. As sidechains respondem diretamente a essa crítica, permitindo que desenvolvedores construam praticamente qualquer coisa enquanto ainda aproveitam a velocidade, eficiência de custos e liquidez do XRPL principal.</p>
+
+      <h2>O que são sidechains?</h2>
+      <p>Sidechains são blockchains independentes que rodam em paralelo ao XRPL principal, mas conseguem se comunicar com ele por meio de uma ponte federada. Cada sidechain opera com seu próprio mecanismo de consenso, conjunto de validadores e regras de transação, mantendo a capacidade de transferir ativos para frente e para trás com o ledger principal. Essa arquitetura permite experimentação e especialização sem colocar em risco a estabilidade ou o desempenho do ledger principal.</p>
+
+      <p>Pense nas sidechains como filiais especializadas de uma empresa. O XRPL principal cuida do que faz melhor: pagamentos rápidos e baratos e trading de tokens nativos. As sidechains cuidam de tudo o mais, de smart contracts complexos a modelos de governança customizados, cada uma otimizada para seu caso de uso particular. Os ativos podem fluir livremente entre a chain principal e qualquer sidechain, criando um ecossistema unificado bem mais versátil do que qualquer blockchain isolada.</p>
+
+      <h2>Benefícios principais</h2>
+      <ul>
+        <li><strong>Smart Contracts:</strong> Compatibilidade total com EVM em algumas sidechains, permitindo desenvolvimento em Solidity</li>
+        <li><strong>Escalabilidade:</strong> Tira operações complexas da chain principal para evitar congestão</li>
+        <li><strong>Flexibilidade:</strong> Mecanismos de consenso e modelos de governança customizados para diferentes necessidades</li>
+        <li><strong>Interoperabilidade:</strong> Mova ativos entre chains de forma fluida pelo protocolo de ponte</li>
+        <li><strong>Isolamento de risco:</strong> Bugs ou problemas numa sidechain não afetam o XRPL principal</li>
+        <li><strong>Especialização:</strong> Cada sidechain pode ser otimizada para casos específicos como games, DeFi ou empresas</li>
+      </ul>
+
+      <h2>Como funciona a ponte cross-chain</h2>
+      <p>A ponte federada é a peça crítica de infraestrutura que torna as sidechains práticas. Ela permite que XRP e outros ativos se movam entre a mainnet e as sidechains com segurança. A ponte é gerenciada por um conjunto de validadores confiáveis chamados witness servers, que monitoram transações nos dois lados da ponte e coordenam o bloqueio e a cunhagem de ativos.</p>
+
+      <p>Quando um usuário quer mover XRP da chain principal para uma sidechain, ele envia o XRP para uma conta especial de ponte na mainnet. Os witness servers detectam o depósito e autorizam a cunhagem de uma quantia equivalente de XRP wrapped na sidechain. Quando o usuário quer voltar, o processo se inverte: o XRP wrapped é queimado na sidechain e o XRP original é liberado da conta de ponte na mainnet.</p>
+
+      <h3>Modelo de segurança da ponte:</h3>
+      <ul>
+        <li>Vários witness servers independentes precisam concordar antes de qualquer transação de ponte ser processada</li>
+        <li>Assinaturas com limiar garantem que nenhum witness sozinho pode autorizar transferências</li>
+        <li>As contas de ponte nas duas chains são controladas por arranjos multisig</li>
+        <li>Todas as transações de ponte são totalmente auditáveis nas duas chains</li>
+      </ul>
+
+      <h2>Sidechains notáveis do XRPL</h2>
+
+      <h3>EVM Sidechain</h3>
+      <p>A EVM sidechain leva smart contracts compatíveis com Ethereum ao ecossistema do XRPL. Desenvolvedores podem implantar contratos Solidity e usar ferramentas familiares como MetaMask, Remix, Hardhat e Truffle. Isso reduz drasticamente a barreira de entrada para as centenas de milhares de desenvolvedores Ethereum, que agora podem construir sobre infraestrutura XRPL sem aprender uma nova linguagem de programação ou conjunto de ferramentas.</p>
+
+      <p>A EVM sidechain roda uma versão modificada da Ethereum Virtual Machine com produção de blocos própria, mas usa XRP (vindo da mainnet via ponte) como token nativo de gas. As taxas de transação na EVM sidechain são significativamente menores que na mainnet do Ethereum, tornando práticas as aplicações que exigem interações frequentes com contratos. Protocolos DeFi, plataformas de NFT e aplicações de games que seriam proibitivamente caras no Ethereum conseguem rodar com bom custo na EVM sidechain do XRPL.</p>
+
+      <h3>Xahau e o amendment Hooks</h3>
+      <p>Embora tecnicamente seja uma rede separada e não uma sidechain tradicional, o Xahau merece menção por demonstrar o poder de estender a funcionalidade do XRPL. O Xahau roda o amendment Hooks, que adiciona lógica programável diretamente ao ledger. Hooks são pedaços leves de código escritos em C e compilados para WebAssembly que executam antes ou depois de transações, viabilizando lógica customizada como pagamentos condicionais, cobrança de assinaturas e governança de DAOs.</p>
+
+      <p>A abordagem dos Hooks difere fundamentalmente dos smart contracts EVM. Em vez de criar contas independentes de contrato que mantêm estado e ativos, Hooks se anexam a contas existentes e modificam o comportamento das transações. O resultado é um sistema bem mais leve e eficiente, com capacidades e trade-offs diferentes em comparação com plataformas completas de smart contracts.</p>
+
+      <h2>Ecossistema e ferramentas para desenvolvedores</h2>
+      <p>Construir nas sidechains do XRPL é apoiado por um conjunto crescente de ferramentas e documentação. A XRPL Foundation oferece grants para desenvolvimento de sidechains, e a comunidade mantém SDKs em várias linguagens, incluindo JavaScript, Python e Java. Para a EVM sidechain, todo o ecossistema de ferramentas do Ethereum está disponível, incluindo block explorers, frameworks de testes e pipelines de deploy.</p>
+
+      <p>Desenvolvedores interessados em construir nas sidechains do XRPL podem começar pela documentação oficial em xrpl.org, que inclui tutoriais, referências de API e projetos de exemplo. O Discord de desenvolvedores do XRPL é uma comunidade ativa onde builders trocam conhecimento e colaboram em projetos. Hackathons e programas de bounty regularmente trazem à tona novas aplicações e casos de uso.</p>
+
+      <h2>Casos de uso reais sendo construídos</h2>
+      <p>Várias categorias de aplicações já estão tomando forma nas sidechains do XRPL. Protocolos DeFi estão lançando plataformas de empréstimo, agregadores de yield e mercados de derivativos na EVM sidechain. Estúdios de games estão construindo jogos integrados a blockchain em que ativos in-game são representados como NFTs negociáveis em todo o ecossistema. Soluções corporativas para rastreamento de cadeia de suprimentos, verificação de identidade e autenticação de documentos aproveitam as opções de privacidade e customização das sidechains.</p>
+
+      <h3>Comparativos de desempenho:</h3>
+      <ul>
+        <li>Mainnet do XRPL: 1.500 transações por segundo, finalidade em três a cinco segundos</li>
+        <li>EVM sidechain do XRPL: centenas de transações por segundo com baixos custos de gas</li>
+        <li>Mainnet do Ethereum: aproximadamente quinze transações por segundo com custos de gas variáveis</li>
+        <li>Solana: milhares de transações por segundo, mas com instabilidade ocasional da rede</li>
+      </ul>
+
+      <h2>Implicações futuras</h2>
+      <p>Sidechains abrem portas para protocolos DeFi, aplicações de games e soluções corporativas que exigem mais programabilidade do que a chain principal oferece. Conforme a tecnologia de pontes amadurece e mais sidechains entram em operação, o ecossistema do XRPL se torna uma rede multi-chain capaz de suportar virtualmente qualquer caso de uso de blockchain mantendo as forças centrais que fizeram o ledger principal confiável por mais de uma década.</p>
+
+      <p>A visão de longo prazo é uma teia interconectada de sidechains especializadas, cada uma otimizada para propósitos diferentes, todas compartilhando liquidez e ativos pelo protocolo de ponte. Essa abordagem modular significa que o ecossistema do XRPL pode crescer e se adaptar a novos casos de uso sem nunca comprometer a estabilidade e o desempenho do ledger principal que sustenta tudo.</p>
+    `,
+  6: `
+      <p>A tokenização de Real World Assets (RWA) está transformando como instituições interagem com o XRP Ledger. De imóveis a commodities, o XRPL vem se tornando uma plataforma de referência para digitalizar ativos tradicionais e trazê-los para o mundo das finanças baseadas em blockchain. Essa mudança representa um dos avanços mais relevantes do cripto porque conecta tecnologia digital a valor tangível do mundo real, beneficiando tanto players institucionais quanto investidores comuns.</p>
+
+      <h2>O que é tokenização de ativos?</h2>
+      <p>Tokenização converte direitos de propriedade sobre um ativo em tokens digitais numa blockchain. Esses tokens podem representar propriedade fracionada, tornando ativos antes ilíquidos negociáveis 24 horas por dia, sete dias por semana. Em vez de precisar de centenas de milhares de dólares para investir num imóvel comercial ou numa barra de ouro, a tokenização permite possuir uma pequena fração desse ativo representada por tokens na sua carteira.</p>
+
+      <h2>Como a tokenização funciona no XRPL</h2>
+      <p>No XRP Ledger, ativos tokenizados são emitidos pelo sistema nativo de emissão de tokens. Um emissor cria uma trust line para um token específico que representa o ativo, e investidores estabelecem trust lines para esse emissor para deter os tokens. Todo o ciclo de vida do token, da emissão à negociação e ao resgate, acontece de forma nativa no ledger sem precisar de smart contracts ou infraestrutura externa.</p>
+
+      <p>A exchange descentralizada embutida do XRPL significa que, uma vez emitido, o ativo tokenizado pode ser negociado imediatamente contra XRP ou qualquer outro token do ledger. A liquidação é final em três a cinco segundos e os custos de transação são frações de centavo, tornando microtransações e rebalanceamento frequente economicamente viáveis.</p>
+
+      <h2>Tipos de ativos sendo tokenizados</h2>
+      <ul>
+        <li><strong>Imóveis:</strong> Propriedades comerciais e residenciais, viabilizando propriedade fracionada de prédios e terrenos</li>
+        <li><strong>Commodities:</strong> Ouro, prata, platina e produtos agrícolas com lastro físico verificável</li>
+        <li><strong>Valores mobiliários:</strong> Ações, títulos e treasuries de mercados financeiros regulados</li>
+        <li><strong>Arte e colecionáveis:</strong> Obras físicas de alto valor e raridades acessíveis a investidores menores</li>
+        <li><strong>Créditos de carbono:</strong> Ativos ambientais que podem ser negociados de forma transparente on-chain</li>
+        <li><strong>Private equity:</strong> Participações em empresas privadas que tradicionalmente exigem status de investidor qualificado</li>
+      </ul>
+
+      <h2>Por que XRPL?</h2>
+      <p>As baixas taxas, a liquidação rápida em três a cinco segundos e os recursos embutidos de compliance do XRP Ledger o tornam particularmente atrativo para casos de uso institucionais. O recurso Authorized Trust Lines permite que emissores restrinjam quem pode deter seus tokens, algo essencial para valores mobiliários que têm exigências regulatórias sobre qualificação de investidores. Os emissores também podem congelar tokens quando exigido por lei ou em resposta a atividade suspeita, dando o controle que reguladores demandam.</p>
+
+      <p>A eficiência energética do ledger é outra vantagem que conversa com instituições com compromissos ambientais, sociais e de governança. Diferente de blockchains proof-of-work que consomem enormes quantidades de eletricidade, o mecanismo de consenso do XRPL usa energia desprezível, sendo uma escolha sustentável para programas de tokenização em larga escala. O histórico de mais de uma década de operação contínua sem nenhum fechamento de ledger perdido também oferece a confiabilidade que participantes institucionais exigem.</p>
+
+      <h2>Benefícios para investidores</h2>
+      <p>A tokenização no XRPL abre várias vantagens que mercados tradicionais não conseguem igualar. A propriedade fracionada permite investir desde poucos dólares em ativos que antes exigiam capital substancial. Mercados para ativos tokenizados podem operar continuamente, ao contrário das bolsas tradicionais que fecham nos fins de semana e feriados. A liquidez melhora porque tokens podem ser negociados globalmente por qualquer pessoa com uma carteira XRPL, ampliando enormemente o conjunto de possíveis compradores e vendedores em comparação aos mercados privados tradicionais.</p>
+
+      <h2>Projetos notáveis</h2>
+
+      <h3>Archax</h3>
+      <p>A Archax é uma exchange de valores mobiliários digitais regulada no Reino Unido que vem ativamente tokenizando fundos e títulos no XRPL. Como uma das primeiras exchanges de ativos digitais reguladas pela FCA, a Archax traz credibilidade institucional ao ecossistema. Já tokenizaram fundos de mercado monetário e outros instrumentos financeiros, demonstrando que produtos financeiros regulados podem operar de forma eficaz sobre infraestrutura blockchain.</p>
+
+      <h3>Meld Gold</h3>
+      <p>A Meld Gold oferece certificados de ouro tokenizados lastreados em ouro físico armazenado em cofres seguros. Cada token representa uma quantidade específica de ouro, e os holders podem resgatar seus tokens por entrega física se quiserem. Isso oferece a praticidade e divisibilidade do ouro digital com a segurança do lastro físico, sendo uma alternativa atrativa aos ETFs tradicionais de ouro com taxas menores e liquidação instantânea.</p>
+
+      <h2>Desafios e riscos</h2>
+      <p>Apesar da promessa, a tokenização de RWA enfrenta vários desafios. Os arcabouços jurídicos para ativos tokenizados ainda estão em evolução na maioria das jurisdições, criando incerteza sobre direitos de propriedade e cumprimento. A ligação entre um token digital e um ativo físico exige custodiantes confiáveis e estruturas legais que introduzem risco de contraparte. Se a entidade que detém o ativo físico falhar ou agir desonestamente, holders dos tokens podem sofrer perdas independentemente do que a blockchain registre.</p>
+
+      <h2>Cenário regulatório</h2>
+      <p>Conforme as regulações evoluem globalmente, os recursos de compliance do XRPL o posicionam bem para adoção institucional. A capacidade de congelar tokens e exigir autorização oferece os controles que reguladores na maioria das jurisdições exigem. Na União Europeia, a regulação Markets in Crypto-Assets está criando arcabouços mais claros para valores mobiliários tokenizados. Os Estados Unidos vêm registrando engajamento crescente da SEC sobre a classificação de ativos digitais, enquanto jurisdições como Singapura, Suíça e Emirados Árabes Unidos estabeleceram ambientes regulatórios mais progressistas que estimulam ativamente a tokenização.</p>
+
+      <p>A tendência principal em todas as regiões é o movimento rumo à clareza, e não à proibição. Reguladores em geral reconhecem os benefícios de eficiência da tokenização e trabalham para criar arcabouços que protegem investidores ao mesmo tempo que permitem inovação. Projetos construídos sobre infraestrutura compatível com compliance como o XRPL ficam mais bem posicionados para navegar esse cenário em transformação porque os controles necessários já estão disponíveis no nível do protocolo.</p>
+
+      <h2>Conclusão</h2>
+      <p>A tokenização de RWA no XRPL ainda está em estágios iniciais, mas cresce rápido conforme instituições reconhecem os benefícios da gestão de ativos baseada em blockchain. A combinação de baixos custos, liquidação rápida, ferramentas embutidas de compliance e histórico comprovado faz do XRP Ledger uma plataforma convincente para trazer ativos tradicionais para a chain. Conforme os arcabouços regulatórios amadurecem e mais projetos demonstram implementações bem-sucedidas, espere ver uma onda crescente de ativos do mundo real chegando ao ledger nos próximos anos.</p>
+    `,
   7: `
       <p>Gerar renda passiva com seu XRP é um objetivo de muitos investidores, mas o XRP em si não suporta staking tradicional como redes Proof of Stake como Ethereum ou Cardano. O XRP Ledger usa um mecanismo de consenso federado que não exige capital travado para proteger a rede. Mesmo assim, existem várias opções legítimas para colocar seu XRP para trabalhar em 2026, desde provisão de liquidez no AMM nativo até plataformas de empréstimo centralizadas. Este guia explica o que "fazer staking" de XRP realmente significa hoje, percorre as opções mais seguras e destaca os riscos que você precisa entender antes de comprometer fundos.</p>
 
