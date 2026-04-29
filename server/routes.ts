@@ -134,15 +134,47 @@ function loadLogoDataUri(slug: string): string | null {
   return null;
 }
 
+// Cached data-URI for each curated app screenshot. Keyed by filename
+// (e.g. "xaman.jpg") matching CardEntry.screenshot.
+const screenshotCache = new Map<string, string | null>();
+
+function loadScreenshotAsset(filename: string): string | null {
+  if (screenshotCache.has(filename)) {
+    return screenshotCache.get(filename) ?? null;
+  }
+  const candidates = [
+    path.resolve(process.cwd(), `dist/public/screenshots/${filename}`),
+    path.resolve(process.cwd(), `client/public/screenshots/${filename}`),
+  ];
+  for (const p of candidates) {
+    try {
+      if (!fs.existsSync(p)) continue;
+      const ext = path.extname(filename).toLowerCase();
+      const mime =
+        ext === ".png"
+          ? "image/png"
+          : ext === ".webp"
+          ? "image/webp"
+          : ext === ".jpg" || ext === ".jpeg"
+          ? "image/jpeg"
+          : null;
+      if (!mime) continue;
+      const buf = fs.readFileSync(p);
+      const uri = `data:${mime};base64,${buf.toString("base64")}`;
+      screenshotCache.set(filename, uri);
+      return uri;
+    } catch {
+      // try next candidate
+    }
+  }
+  screenshotCache.set(filename, null);
+  return null;
+}
+
 function capitalizeOg(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-// Brand-aligned card for a single wallet or exchange (1200x630). Embeds the
-// brand logo as a data URI so resvg can render it without an external HTTP
-// fetch. Used as the OG image for /wallet/<slug> and /exchange/<slug> as
-// well as the per-page image entry in the sitemap, so Google Images and
-// Discover can surface a richer visual than the small square logo alone.
 function buildBrandCardSvg(
   entry: CardEntry,
   slug: string,
@@ -151,24 +183,37 @@ function buildBrandCardSvg(
 ): string {
   const w = 1200;
   const h = 630;
-  const name = escapeOgXml(truncateOg(entry.name, 28));
-  const tagline = escapeOgXml(truncateOg(entry.tagline, 64));
   const rating = escapeOgXml(entry.rating);
   const footer = escapeOgXml(`${kindLabel} · All Things XRPL · 2026`);
   const logoUri = loadLogoDataUri(slug);
-  const logoBlock = logoUri
-    ? `<image href="${escapeOgXml(logoUri)}" x="80" y="170" width="280" height="280" preserveAspectRatio="xMidYMid meet"/>`
-    : `<rect x="80" y="170" width="280" height="280" rx="32" fill="#ffffff" opacity="0.06"/>`;
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  const screenshotUri = entry.screenshot
+    ? loadScreenshotAsset(entry.screenshot)
+    : null;
+
+  const bgRect = `<rect width="${w}" height="${h}" fill="url(#bg)"/>`;
+  const brandStrip = `<text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>`;
+  const footerText = `<text x="${w / 2}" y="${h - 40}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="24" font-weight="500" fill="#94a3b8">${footer}</text>`;
+
+  const gradientDef = `
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0b1220"/>
       <stop offset="100%" stop-color="#1e3a8a"/>
     </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="url(#bg)"/>
-  <text x="60" y="100" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="700" fill="#60a5fa" letter-spacing="2">ALL THINGS XRPL</text>
+  </defs>`;
+
+  // Fallback layout (no curated screenshot): logo-only design.
+  if (!screenshotUri) {
+    const name = escapeOgXml(truncateOg(entry.name, 28));
+    const tagline = escapeOgXml(truncateOg(entry.tagline, 64));
+    const logoBlock = logoUri
+      ? `<image href="${escapeOgXml(logoUri)}" x="80" y="170" width="280" height="280" preserveAspectRatio="xMidYMid meet"/>`
+      : `<rect x="80" y="170" width="280" height="280" rx="32" fill="#ffffff" opacity="0.06"/>`;
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  ${gradientDef}
+  ${bgRect}
+  ${brandStrip}
   ${logoBlock}
   <text x="400" y="270" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="76" font-weight="800" fill="#ffffff">${name}</text>
   <text x="400" y="340" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#cbd5e1">${tagline}</text>
@@ -177,6 +222,51 @@ function buildBrandCardSvg(
     <text x="520" y="430" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="36" font-weight="800" fill="#0b1220">★ ${rating}/${ratingScale}</text>
   </g>
   <text x="${w / 2}" y="${h - 60}" text-anchor="middle" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="500" fill="#94a3b8">${footer}</text>
+</svg>`;
+  }
+
+  // Screenshot layout: brand info on the left, framed app screenshot on the right.
+  const name = escapeOgXml(truncateOg(entry.name, 22));
+  const tagline = escapeOgXml(truncateOg(entry.tagline, 56));
+  const leftLogoBlock = logoUri
+    ? `<image href="${escapeOgXml(logoUri)}" x="60" y="170" width="120" height="120" preserveAspectRatio="xMidYMid meet"/>`
+    : `<rect x="60" y="170" width="120" height="120" rx="20" fill="#ffffff" opacity="0.06"/>`;
+
+  const frameX = 720;
+  const frameY = 75;
+  const frameW = 360;
+  const frameH = 580;
+  const screenInset = 20;
+  const screenW = frameW - screenInset * 2;
+  const screenH = frameH - screenInset * 2;
+  const screenX = frameX + screenInset;
+  const screenY = frameY + screenInset;
+
+  // Drop shadow, bezel, screen background, screenshot (letterboxed via meet
+  // so portrait and landscape screenshots both display in full).
+  const deviceFrame = `
+  <g>
+    <rect x="${frameX + 8}" y="${frameY + 16}" width="${frameW}" height="${frameH}" rx="32" fill="#000000" opacity="0.45"/>
+    <rect x="${frameX}" y="${frameY}" width="${frameW}" height="${frameH}" rx="32" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+    <rect x="${screenX}" y="${screenY}" width="${screenW}" height="${screenH}" rx="14" fill="#020617"/>
+    <image href="${escapeOgXml(screenshotUri)}" x="${screenX}" y="${screenY}" width="${screenW}" height="${screenH}" preserveAspectRatio="xMidYMid meet"/>
+    <rect x="${screenX}" y="${screenY}" width="${screenW}" height="${screenH}" rx="14" fill="none" stroke="#1e293b" stroke-width="1"/>
+  </g>`;
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  ${gradientDef}
+  ${bgRect}
+  ${brandStrip}
+  ${leftLogoBlock}
+  <text x="60" y="350" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="62" font-weight="800" fill="#ffffff">${name}</text>
+  <text x="60" y="402" font-family="'Inter', system-ui, sans-serif" font-size="24" font-weight="500" fill="#cbd5e1">${tagline}</text>
+  <g>
+    <rect x="60" y="438" width="240" height="68" rx="34" fill="#fbbf24"/>
+    <text x="180" y="484" text-anchor="middle" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-size="32" font-weight="800" fill="#0b1220">★ ${rating}/${ratingScale}</text>
+  </g>
+  ${deviceFrame}
+  ${footerText}
 </svg>`;
 }
 
