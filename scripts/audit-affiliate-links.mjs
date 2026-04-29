@@ -45,6 +45,7 @@ const SKIP_URL_SUBSTRINGS = [
   // GET/HEAD.
   "api.coingecko.com",
   "api.rss2json.com",
+  "api.resend.com",
   "formspree.io",
   "news.google.com/rss",
   "cointelegraph.com/rss",
@@ -60,6 +61,17 @@ const SKIP_URL_SUBSTRINGS = [
   "http://x",
 ];
 
+// CDN/asset/analytics hosts referenced as bare origins in
+// <link rel="preconnect"> / preload tags. The bare origin returns 404 because
+// there is nothing at the root path, but the actual asset URLs under these
+// hosts (e.g. fonts.googleapis.com/css2?family=…) are still audited normally
+// and should pass. Match exactly so we don't accidentally skip those.
+const SKIP_URL_EXACT = new Set([
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com",
+  "https://www.googletagmanager.com",
+]);
+
 const BOT_BLOCK_HOSTS = new Set([
   "tangem.com",
   "www.tangem.com",
@@ -67,6 +79,8 @@ const BOT_BLOCK_HOSTS = new Set([
   "www.uphold.com",
   "coinbase.com",
   "www.coinbase.com",
+  "firstledger.net",
+  "www.firstledger.net",
 ]);
 
 const TIMEOUT_MS = 15000;
@@ -104,6 +118,7 @@ function cleanUrl(raw) {
   for (const skip of SKIP_URL_SUBSTRINGS) {
     if (url.includes(skip)) return null;
   }
+  if (SKIP_URL_EXACT.has(url)) return null;
   return url;
 }
 

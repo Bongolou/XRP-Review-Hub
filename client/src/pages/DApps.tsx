@@ -166,6 +166,18 @@ const dapps: DApp[] = [
     verified: true,
   },
   {
+    id: 5,
+    name: "First Ledger",
+    taglineKey: "dapps.d.5.tagline",
+    descriptionKey: "dapps.d.5.description",
+    categoryKey: "dapps.cat.analytics",
+    featureKeys: ["dapps.d.5.f1", "dapps.d.5.f2", "dapps.d.5.f3", "dapps.d.5.f4"],
+    affiliate: "https://firstledger.net/?ref=allthingsxrpl",
+    color: "from-indigo-500 to-purple-500",
+    icon: BarChart3,
+    verified: true,
+  },
+  {
     id: 6,
     name: "XRPL.services",
     taglineKey: "dapps.d.6.tagline",
