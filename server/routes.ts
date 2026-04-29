@@ -863,13 +863,51 @@ export async function registerRoutes(
   // Sitemap XML — generated dynamically from the route source of truth so it
   // stays in sync with App.tsx as new wallets, exchanges, comparisons, best-for
   // hubs and blog posts are added.
-  app.get("/sitemap.xml", (_req, res) => {
-    const baseUrl = "https://allthingsxrpl.com";
-    const today = new Date().toISOString().slice(0, 10);
+  //
+  // `/sitemap.xml` is a sitemap *index* that points at per-section child
+  // sitemaps (`/sitemap-wallets.xml`, `/sitemap-blog.xml`, etc.). Each child
+  // sitemap is auto-chunked so it stays under both sitemaps.org caps:
+  //   - 50,000 URLs per file
+  //   - 50 MB per file (uncompressed)
+  // Each `<url>` block today is ≈1.1 KB once you include the 8-language
+  // hreflang alternate block plus the image entry, so 50,000 URLs would
+  // already exceed the 50 MB size cap. We pick a 25,000-URL soft cap to keep
+  // the worst-case file size around 28 MB (and still leave room for adding
+  // more languages or richer per-URL metadata in the future). Sections that
+  // exceed the cap split into `-1.xml`, `-2.xml`, etc. without any manual
+  // intervention.
+  const SITEMAP_BASE_URL = "https://allthingsxrpl.com";
+  const SITEMAP_URL_LIMIT = 25000;
 
-    type Entry = { url: string; priority: string; changefreq: string; lastmod?: string; image?: string };
+  type SitemapEntry = {
+    url: string;
+    priority: string;
+    changefreq: string;
+    lastmod?: string;
+    image?: string;
+  };
 
-    const staticPages: Entry[] = [
+  // hreflang annotations — tell search engines about every language version
+  // of each URL so the right translation surfaces per region. Languages map
+  // to ISO codes Google expects (e.g. zh -> zh-Hans).
+  const sitemapHreflangMap: Array<{ lang: string; hreflang: string }> = [
+    { lang: "en", hreflang: "en" },
+    { lang: "es", hreflang: "es" },
+    { lang: "zh", hreflang: "zh-Hans" },
+    { lang: "ja", hreflang: "ja" },
+    { lang: "ko", hreflang: "ko" },
+    { lang: "pt", hreflang: "pt" },
+    { lang: "de", hreflang: "de" },
+    { lang: "fr", hreflang: "fr" },
+  ];
+
+  const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+  // Build the entry list for each section. Returned as a fresh object per
+  // request so `lastmod` reflects the current day for entries that don't
+  // carry their own date.
+  const buildSitemapSections = (): Array<{ id: string; entries: SitemapEntry[] }> => {
+    const staticPages: SitemapEntry[] = [
       { url: "/", priority: "1.0", changefreq: "daily" },
       { url: "/best-xrp-wallets", priority: "0.9", changefreq: "weekly" },
       { url: "/getting-started", priority: "0.9", changefreq: "weekly" },
@@ -886,17 +924,15 @@ export async function registerRoutes(
       { url: "/terms", priority: "0.3", changefreq: "yearly" },
     ];
 
-    const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-
-    const walletPages: Entry[] = walletSlugs.map(slug => ({
+    const walletPages: SitemapEntry[] = walletSlugs.map(slug => ({
       url: `/wallet/${slug}`, priority: "0.8", changefreq: "weekly",
       image: `/og/wallet.png?slug=${encodeURIComponent(slug)}`,
     }));
-    const exchangePages: Entry[] = exchangeSlugs.map(slug => ({
+    const exchangePages: SitemapEntry[] = exchangeSlugs.map(slug => ({
       url: `/exchange/${slug}`, priority: "0.8", changefreq: "weekly",
       image: `/og/exchange.png?slug=${encodeURIComponent(slug)}`,
     }));
-    const comparePages: Entry[] = compareSlugs.map(slug => {
+    const comparePages: SitemapEntry[] = compareSlugs.map(slug => {
       const parts = slug.split("-vs-");
       // Pass slug1/slug2 alongside w1/w2 so the compare share card embeds
       // each wallet's brand logo (matches the URL shape produced by
@@ -907,10 +943,10 @@ export async function registerRoutes(
           : undefined;
       return { url: `/compare/${slug}`, priority: "0.7", changefreq: "monthly", image };
     });
-    const bestForPages: Entry[] = bestForSlugs.map(slug => ({
+    const bestForPages: SitemapEntry[] = bestForSlugs.map(slug => ({
       url: `/best-for/${slug}`, priority: "0.8", changefreq: "weekly",
     }));
-    const blogPages: Entry[] = blogPosts.map(p => ({
+    const blogPages: SitemapEntry[] = blogPosts.map(p => ({
       url: `/blog/${p.id}`, priority: "0.6", changefreq: "monthly", lastmod: p.dateIso,
       // Point at the generated branded share card (instead of the static
       // Unsplash hero) so Google Images and Discover surface the same
@@ -918,100 +954,140 @@ export async function registerRoutes(
       image: `/og/blog.png?id=${p.id}`,
     }));
 
-    const allPages: Entry[] = [
-      ...staticPages,
-      ...walletPages,
-      ...exchangePages,
-      ...comparePages,
-      ...bestForPages,
-      ...blogPages,
+    return [
+      { id: "static", entries: staticPages },
+      { id: "wallets", entries: walletPages },
+      { id: "exchanges", entries: exchangePages },
+      { id: "compare", entries: comparePages },
+      { id: "best-for", entries: bestForPages },
+      { id: "blog", entries: blogPages },
     ];
+  };
 
-    // hreflang annotations — tell search engines about every language
-    // version of each URL so the right translation surfaces per region.
-    // Languages map to ISO codes Google expects (e.g. zh -> zh-Hans).
-    const hreflangMap: Array<{ lang: string; hreflang: string }> = [
-      { lang: "en", hreflang: "en" },
-      { lang: "es", hreflang: "es" },
-      { lang: "zh", hreflang: "zh-Hans" },
-      { lang: "ja", hreflang: "ja" },
-      { lang: "ko", hreflang: "ko" },
-      { lang: "pt", hreflang: "pt" },
-      { lang: "de", hreflang: "de" },
-      { lang: "fr", hreflang: "fr" },
-    ];
+  // Append ?lang=xx to a base URL path (no-op for English, which uses the
+  // bare path as its canonical form).
+  const localizedSitemapPath = (urlPath: string, lang: string): string => {
+    if (lang === "en") return urlPath;
+    const sep = urlPath.includes("?") ? "&" : "?";
+    return `${urlPath}${sep}lang=${lang}`;
+  };
 
-    // Append ?lang=xx to a base URL path (no-op for English, which uses the
-    // bare path as its canonical form).
-    const localizedPath = (urlPath: string, lang: string): string => {
-      if (lang === "en") return urlPath;
-      const sep = urlPath.includes("?") ? "&" : "?";
-      return `${urlPath}${sep}lang=${lang}`;
-    };
+  // Escape XML entities in URLs (notably & in query strings) so the sitemap
+  // remains valid against the sitemaps.org schema.
+  const escapeXmlAttr = (s: string): string =>
+    s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&apos;");
 
-    // Escape XML entities in URLs (notably & in query strings) so the sitemap
-    // remains valid against the sitemaps.org schema.
-    const escapeXmlAttr = (s: string): string =>
-      s
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&apos;");
+  // Split a section's entries into chunks small enough that, after multiplying
+  // by the language count, the resulting child sitemap stays under
+  // SITEMAP_URL_LIMIT URLs. Each chunk gets a stable id: single-chunk sections
+  // keep their bare id (e.g. `wallets`), multi-chunk sections gain a 1-based
+  // suffix (e.g. `blog-1`, `blog-2`).
+  const chunkSection = (
+    section: { id: string; entries: SitemapEntry[] },
+  ): Array<{ id: string; entries: SitemapEntry[] }> => {
+    const langCount = sitemapHreflangMap.length;
+    const maxEntriesPerChunk = Math.max(1, Math.floor(SITEMAP_URL_LIMIT / langCount));
+    if (section.entries.length === 0) return [];
+    if (section.entries.length <= maxEntriesPerChunk) {
+      return [{ id: section.id, entries: section.entries }];
+    }
+    const chunks: Array<{ id: string; entries: SitemapEntry[] }> = [];
+    for (let i = 0; i < section.entries.length; i += maxEntriesPerChunk) {
+      const slice = section.entries.slice(i, i + maxEntriesPerChunk);
+      chunks.push({ id: `${section.id}-${chunks.length + 1}`, entries: slice });
+    }
+    return chunks;
+  };
 
-    // The hreflang block is identical for every language variant of a given
-    // base path: it advertises all 8 language versions plus x-default so each
-    // translated <url> entry references its siblings (and itself) per Google's
-    // hreflang spec.
-    const buildAlternates = (urlPath: string): string => {
-      const lines = hreflangMap.map(({ lang, hreflang }) => {
-        const href = `${baseUrl}${localizedPath(urlPath, lang)}`;
-        return `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${escapeXmlAttr(href)}"/>`;
-      });
-      lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXmlAttr(`${baseUrl}${urlPath}`)}"/>`);
-      return lines.join("\n");
-    };
+  // The hreflang block is identical for every language variant of a given
+  // base path: it advertises all 8 language versions plus x-default so each
+  // translated <url> entry references its siblings (and itself) per Google's
+  // hreflang spec.
+  const buildSitemapAlternates = (urlPath: string): string => {
+    const lines = sitemapHreflangMap.map(({ lang, hreflang }) => {
+      const href = `${SITEMAP_BASE_URL}${localizedSitemapPath(urlPath, lang)}`;
+      return `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${escapeXmlAttr(href)}"/>`;
+    });
+    lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXmlAttr(`${SITEMAP_BASE_URL}${urlPath}`)}"/>`);
+    return lines.join("\n");
+  };
 
-    // Resolve the page's primary image (Open Graph hero) so Google Images and
-    // Discover can surface our wallet/exchange/comparison/blog visuals next to
-    // organic results. Wallet/exchange/comparison/blog entries already carry a
-    // page-specific image (language-agnostic, keyed by slug); static and
-    // best-for pages fall back to the shared page.png generator keyed by the
-    // page's SEO title — so we pass the localized path so the image URL picks
-    // up the per-language title where one exists.
-    const buildImage = (entry: Entry, lang: string): string => {
-      const img =
-        entry.image ??
-        resolveOgImageForPath(localizedPath(entry.url, lang)) ??
-        "/og/page.png?title=All%20Things%20XRPL";
-      const absolute = /^https?:\/\//i.test(img) ? img : `${baseUrl}${img}`;
-      return `    <image:image><image:loc>${escapeXmlAttr(absolute)}</image:loc></image:image>`;
-    };
+  // Resolve the page's primary image (Open Graph hero) so Google Images and
+  // Discover can surface our wallet/exchange/comparison/blog visuals next to
+  // organic results. Wallet/exchange/comparison/blog entries already carry a
+  // page-specific image (language-agnostic, keyed by slug); static and
+  // best-for pages fall back to the shared page.png generator keyed by the
+  // page's SEO title — so we pass the localized path so the image URL picks
+  // up the per-language title where one exists.
+  const buildSitemapImage = (entry: SitemapEntry, lang: string): string => {
+    const img =
+      entry.image ??
+      resolveOgImageForPath(localizedSitemapPath(entry.url, lang)) ??
+      "/og/page.png?title=All%20Things%20XRPL";
+    const absolute = /^https?:\/\//i.test(img) ? img : `${SITEMAP_BASE_URL}${img}`;
+    return `    <image:image><image:loc>${escapeXmlAttr(absolute)}</image:loc></image:image>`;
+  };
 
-    // Emit one <url> entry per (path, language) pair. Listing translated URLs
-    // as their own top-level entries (instead of only as hreflang alternates
-    // of the English page) helps Google index them independently in their
-    // target locale. Total = base pages × 8 languages, well under the
-    // sitemaps.org 50,000-URL cap.
-    const renderUrl = (p: Entry, lang: string): string => {
-      const loc = `${baseUrl}${localizedPath(p.url, lang)}`;
-      return `  <url>
+  // Emit one <url> entry per (path, language) pair. Listing translated URLs
+  // as their own top-level entries (instead of only as hreflang alternates
+  // of the English page) helps Google index them independently in their
+  // target locale.
+  const renderSitemapUrl = (p: SitemapEntry, lang: string, today: string): string => {
+    const loc = `${SITEMAP_BASE_URL}${localizedSitemapPath(p.url, lang)}`;
+    return `  <url>
     <loc>${escapeXmlAttr(loc)}</loc>
     <lastmod>${p.lastmod ?? today}</lastmod>
     <changefreq>${p.changefreq}</changefreq>
     <priority>${p.priority}</priority>
-${buildAlternates(p.url)}
-${buildImage(p, lang)}
+${buildSitemapAlternates(p.url)}
+${buildSitemapImage(p, lang)}
   </url>`;
-    };
+  };
 
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+  const renderSitemapChunkXml = (entries: SitemapEntry[]): string => {
+    const today = new Date().toISOString().slice(0, 10);
+    return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${allPages.map(p => hreflangMap.map(({ lang }) => renderUrl(p, lang)).join("\n")).join("\n")}
+${entries.map(p => sitemapHreflangMap.map(({ lang }) => renderSitemapUrl(p, lang, today)).join("\n")).join("\n")}
 </urlset>`;
+  };
 
+  // Sitemap index — points at every per-section child sitemap so search
+  // engines can discover them all from a single entry point.
+  app.get("/sitemap.xml", (_req, res) => {
+    const today = new Date().toISOString().slice(0, 10);
+    const chunks = buildSitemapSections().flatMap(chunkSection);
+    const entries = chunks
+      .map(({ id }) => `  <sitemap>
+    <loc>${escapeXmlAttr(`${SITEMAP_BASE_URL}/sitemap-${id}.xml`)}</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>`)
+      .join("\n");
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries}
+</sitemapindex>`;
     res.header("Content-Type", "application/xml; charset=utf-8");
     res.send(xml);
+  });
+
+  // Per-section child sitemaps — :name resolves to either a section id
+  // (`wallets`) or a chunk-suffixed id (`blog-2`) produced by chunkSection.
+  app.get("/sitemap-:name.xml", (req, res) => {
+    const name = req.params.name;
+    const chunks = buildSitemapSections().flatMap(chunkSection);
+    const match = chunks.find(c => c.id === name);
+    if (!match) {
+      res.status(404).type("text/plain").send("Sitemap not found");
+      return;
+    }
+    res.header("Content-Type", "application/xml; charset=utf-8");
+    res.send(renderSitemapChunkXml(match.entries));
   });
 
   // RSS Feed

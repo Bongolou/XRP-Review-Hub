@@ -62,6 +62,11 @@ Preferred communication style: Simple, everyday language.
 - **Templates**: Per-language templates exist for the `wallet_shortlist` lead magnet only (the only magnet with a localized PDF set per language). Other lead magnets currently fall through with no email — extend `WALLET_SHORTLIST_TEMPLATES` / the `renderWelcomeEmail` switch when more magnets get localized assets.
 - **Behaviour**: Fire-and-forget — failures (transport down, network error, non-2xx response) are logged but never block the subscribe response.
 
+### Sitemap
+- **Endpoint**: `GET /sitemap.xml` returns a `<sitemapindex>` that points at per-section child sitemaps (`/sitemap-static.xml`, `/sitemap-wallets.xml`, `/sitemap-exchanges.xml`, `/sitemap-compare.xml`, `/sitemap-best-for.xml`, `/sitemap-blog.xml`). Each child sitemap is served by `GET /sitemap-:name.xml`.
+- **Auto-chunking**: Each section is split into chunks of at most `floor(25000 / 8) = 3125` entries (8 = supported language count) so every child sitemap stays under both sitemaps.org caps — 50,000 URLs *and* 50 MB uncompressed. (Each `<url>` block is ≈1.1 KB with the full hreflang alternates + image entry, so a 50k-URL file would already exceed the 50 MB size cap; the 25,000-URL soft cap keeps the worst case around 28 MB.) Single-chunk sections keep their bare id (e.g. `wallets`); sections that exceed the cap split into `-1.xml`, `-2.xml`, etc. and the index lists every chunk automatically — no manual intervention as the catalogue grows.
+- **Per-language entries**: Each (path, language) pair becomes its own `<url>` entry with the full hreflang alternate block, preserving the prior behaviour where translated URLs are independently indexable.
+
 ### Review Spam Heuristics
 - **Module**: `server/reviewSpamHeuristics.ts` — single source of truth for the auto-flag layer. `evaluateReviewSpam()` runs synchronously on every `POST /api/reviews` submission; `checkAkismet()` runs an optional async check after it.
 - **Verdicts**: `"reject"` → 400 with a clear error; `"hide"` → review is saved with `hiddenAt` set so it stays out of the public list and aggregate rating, only visible in the admin "Hidden" tab; `"ok"` → goes through normally. To extend, add to `HARD_BANNED_WORDS` / `SOFT_FLAG_WORDS` or push a new function into the `HEURISTICS` array.
