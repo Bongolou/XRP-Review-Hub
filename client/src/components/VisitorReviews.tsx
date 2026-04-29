@@ -57,6 +57,11 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
   const [hoverRating, setHoverRating] = useState(0);
   const [authorName, setAuthorName] = useState("");
   const [body, setBody] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<{
+    rating?: string;
+    name?: string;
+    body?: string;
+  }>({});
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -74,6 +79,7 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
     onSuccess: () => {
       setSuccessMessage(t("reviews.successPosted"));
       setErrorMessage(null);
+      setFieldErrors({});
       setRating(0);
       setHoverRating(0);
       setAuthorName("");
@@ -104,16 +110,18 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
     e.preventDefault();
     setErrorMessage(null);
     setSuccessMessage(null);
+    const nextErrors: { rating?: string; name?: string; body?: string } = {};
     if (rating < 1 || rating > 5) {
-      setErrorMessage(t("reviews.errorRating"));
-      return;
+      nextErrors.rating = t("reviews.errorRating");
     }
     if (authorName.trim().length < 2) {
-      setErrorMessage(t("reviews.errorName"));
-      return;
+      nextErrors.name = t("reviews.errorName");
     }
     if (body.trim().length < 20) {
-      setErrorMessage(t("reviews.errorBody"));
+      nextErrors.body = t("reviews.errorBody");
+    }
+    setFieldErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
       return;
     }
     mutation.mutate();
@@ -188,7 +196,16 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
 
         <div>
           <label className="block text-sm text-muted-foreground mb-2">{t("reviews.yourRating")}</label>
-          <div className="flex items-center gap-1" data-testid={`rating-picker-${targetSlug}`}>
+          <div
+            className={`flex items-center gap-1 rounded-lg ${
+              fieldErrors.rating
+                ? "border border-red-500 ring-1 ring-red-500 px-2 py-1 -mx-2 -my-1"
+                : ""
+            }`}
+            data-testid={`rating-picker-${targetSlug}`}
+            aria-invalid={fieldErrors.rating ? true : undefined}
+            aria-describedby={fieldErrors.rating ? `error-review-rating-${targetSlug}` : undefined}
+          >
             {[1, 2, 3, 4, 5].map((value) => {
               const active = (hoverRating || rating) >= value;
               const ariaLabel =
@@ -197,7 +214,12 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
                 <button
                   key={value}
                   type="button"
-                  onClick={() => setRating(value)}
+                  onClick={() => {
+                    setRating(value);
+                    if (fieldErrors.rating) {
+                      setFieldErrors((prev) => ({ ...prev, rating: undefined }));
+                    }
+                  }}
                   onMouseEnter={() => setHoverRating(value)}
                   onMouseLeave={() => setHoverRating(0)}
                   aria-label={ariaLabel}
@@ -211,27 +233,80 @@ export function VisitorReviews({ targetKind, targetSlug, targetName }: VisitorRe
               );
             })}
           </div>
+          {fieldErrors.rating && (
+            <div
+              id={`error-review-rating-${targetSlug}`}
+              className="mt-2 text-sm text-red-400"
+              data-testid={`error-review-rating-${targetSlug}`}
+            >
+              {fieldErrors.rating}
+            </div>
+          )}
         </div>
 
-        <input
-          type="text"
-          value={authorName}
-          onChange={(e) => setAuthorName(e.target.value)}
-          placeholder={t("reviews.namePlaceholder")}
-          maxLength={60}
-          data-testid={`input-review-name-${targetSlug}`}
-          className="w-full h-12 px-4 rounded-lg bg-background/50 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-white placeholder:text-muted-foreground/70"
-        />
+        <div>
+          <input
+            type="text"
+            value={authorName}
+            onChange={(e) => {
+              setAuthorName(e.target.value);
+              if (fieldErrors.name) {
+                setFieldErrors((prev) => ({ ...prev, name: undefined }));
+              }
+            }}
+            placeholder={t("reviews.namePlaceholder")}
+            maxLength={60}
+            data-testid={`input-review-name-${targetSlug}`}
+            aria-invalid={fieldErrors.name ? true : undefined}
+            aria-describedby={fieldErrors.name ? `error-review-name-${targetSlug}` : undefined}
+            className={`w-full h-12 px-4 rounded-lg bg-background/50 border outline-none text-white placeholder:text-muted-foreground/70 ${
+              fieldErrors.name
+                ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                : "border-white/10 focus:border-primary focus:ring-1 focus:ring-primary"
+            }`}
+          />
+          {fieldErrors.name && (
+            <div
+              id={`error-review-name-${targetSlug}`}
+              className="mt-2 text-sm text-red-400"
+              data-testid={`error-review-name-${targetSlug}`}
+            >
+              {fieldErrors.name}
+            </div>
+          )}
+        </div>
 
-        <textarea
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-          placeholder={fillTemplate(t("reviews.bodyPlaceholder"), { name: targetName })}
-          rows={4}
-          maxLength={1000}
-          data-testid={`input-review-body-${targetSlug}`}
-          className="w-full px-4 py-3 rounded-lg bg-background/50 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none text-white placeholder:text-muted-foreground/70 resize-none"
-        />
+        <div>
+          <textarea
+            value={body}
+            onChange={(e) => {
+              setBody(e.target.value);
+              if (fieldErrors.body) {
+                setFieldErrors((prev) => ({ ...prev, body: undefined }));
+              }
+            }}
+            placeholder={fillTemplate(t("reviews.bodyPlaceholder"), { name: targetName })}
+            rows={4}
+            maxLength={1000}
+            data-testid={`input-review-body-${targetSlug}`}
+            aria-invalid={fieldErrors.body ? true : undefined}
+            aria-describedby={fieldErrors.body ? `error-review-body-${targetSlug}` : undefined}
+            className={`w-full px-4 py-3 rounded-lg bg-background/50 border outline-none text-white placeholder:text-muted-foreground/70 resize-none ${
+              fieldErrors.body
+                ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                : "border-white/10 focus:border-primary focus:ring-1 focus:ring-primary"
+            }`}
+          />
+          {fieldErrors.body && (
+            <div
+              id={`error-review-body-${targetSlug}`}
+              className="mt-2 text-sm text-red-400"
+              data-testid={`error-review-body-${targetSlug}`}
+            >
+              {fieldErrors.body}
+            </div>
+          )}
+        </div>
 
         <div className="flex items-center justify-between gap-3">
           <div className="text-xs text-muted-foreground">
