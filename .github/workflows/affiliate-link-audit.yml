@@ -23,6 +23,12 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Run audit script unit tests
+        # Fast offline checks for the brand-change classifier so a regression
+        # in registrableDomain / classify is caught before we burn an entire
+        # live audit run.
+        run: node --test scripts/audit-affiliate-links.test.mjs
+
       - name: Run affiliate link audit
         id: audit
         run: node scripts/audit-affiliate-links.mjs

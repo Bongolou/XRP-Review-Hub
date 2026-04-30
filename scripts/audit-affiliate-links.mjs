@@ -404,6 +404,8 @@ function formatReport(results) {
   return lines.join("\n");
 }
 
+export { registrableDomain, isBrandChange, classify, hostOf };
+
 async function main() {
   const entries = await collectUrls();
   console.log(`Found ${entries.length} unique outbound URLs. Checking…`);
@@ -450,7 +452,16 @@ async function main() {
   }
 }
 
-main().catch((err) => {
-  console.error("Audit failed:", err);
-  process.exit(2);
-});
+// Only run the audit when this file is executed directly (e.g. `node
+// scripts/audit-affiliate-links.mjs`). When imported from the test file the
+// helpers are exercised in isolation and we don't want to kick off real
+// network calls.
+const invokedDirectly =
+  process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (invokedDirectly) {
+  main().catch((err) => {
+    console.error("Audit failed:", err);
+    process.exit(2);
+  });
+}
