@@ -214,18 +214,6 @@ const dapps: DApp[] = [
     verified: true,
   },
   {
-    id: 9,
-    name: "XRPLORER",
-    taglineKey: "dapps.d.9.tagline",
-    descriptionKey: "dapps.d.9.description",
-    categoryKey: "dapps.cat.explorer",
-    featureKeys: ["dapps.d.9.f1", "dapps.d.9.f2", "dapps.d.9.f3", "dapps.d.9.f4"],
-    affiliate: "https://xrplorer.com/?ref=allthingsxrpl",
-    color: "from-red-500 to-pink-500",
-    icon: Search,
-    verified: true,
-  },
-  {
     id: 10,
     name: "GateHub Trade",
     taglineKey: "dapps.d.10.tagline",
