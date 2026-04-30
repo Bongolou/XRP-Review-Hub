@@ -44,6 +44,7 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { DealOfTheWeek } from "@/components/DealOfTheWeek";
 import { BannerAd } from "@/components/BannerAd";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { localizeAffiliateUrl } from "@/lib/affiliateLinks";
 import {
   TrustStrip,
   UseCaseSelector,
@@ -786,7 +787,7 @@ export default function Home() {
                           {wallet.complementary.map((tool, tIdx) => (
                             <a 
                               key={tIdx} 
-                              href={tool.link} 
+                              href={localizeAffiliateUrl(tool.link, language)} 
                               target="_blank" 
                               rel="noopener noreferrer"
                               className="inline-flex items-center text-primary hover:text-primary/80 transition-colors bg-primary/10 px-2 py-1 rounded border border-primary/20"
@@ -806,7 +807,7 @@ export default function Home() {
 
                   <div className="flex flex-col gap-3 flex-shrink-0 w-full md:w-[140px] self-center md:self-start md:pt-1">
                     <Button asChild className="w-full relative group overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
-                      <a href={wallet.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center" aria-label={`Visit ${wallet.name} website`}>
+                      <a href={localizeAffiliateUrl(wallet.link, language)} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center" aria-label={`Visit ${wallet.name} website`}>
                         <span className="relative z-10">{t("wallets.visitSite")}</span>
                         <ExternalLink className="ml-2 h-4 w-4 relative z-10" />
                       </a>
@@ -911,7 +912,7 @@ export default function Home() {
 
                   <div className="flex flex-col gap-3">
                     <Button asChild className="w-full relative overflow-hidden bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-white font-bold shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_-5px_rgba(59,130,246,0.7)] transition-all duration-300">
-                      <a href={exchange.link} target="_blank" rel="noopener noreferrer" aria-label={`Claim bonus at ${exchange.name}`}>
+                      <a href={localizeAffiliateUrl(exchange.link, language)} target="_blank" rel="noopener noreferrer" aria-label={`Claim bonus at ${exchange.name}`}>
                         {t("exchanges.claimBonus")} <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
                     </Button>

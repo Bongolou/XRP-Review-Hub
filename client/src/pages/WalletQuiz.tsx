@@ -4,6 +4,7 @@ import { ArrowRight, ArrowLeft, ExternalLink, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { localizeAffiliateUrl } from "@/lib/affiliateLinks";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
@@ -240,7 +241,7 @@ export default function WalletQuiz() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href={recommendation.primary.link}
+                  href={localizeAffiliateUrl(recommendation.primary.link, language)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 h-12 px-8 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import type { Language } from "@/lib/i18n/translations";
+import { localizeAffiliateUrl } from "@/lib/affiliateLinks";
 import {
   ArrowRight,
   ExternalLink,
@@ -248,7 +249,7 @@ export function FastCompareTable({
   rows: FastCompareRow[];
   ctaLabel?: string;
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const resolvedTitle = title ?? t("fastCompare.title");
   const resolvedSubtitle = subtitle ?? t("fastCompare.subtitle");
   const resolvedCta = ctaLabel ?? t("fastCompare.get");
@@ -308,7 +309,7 @@ export function FastCompareTable({
                         </Button>
                       </Link>
                     )}
-                    <a href={r.affiliateUrl} target="_blank" rel="noopener noreferrer">
+                    <a href={localizeAffiliateUrl(r.affiliateUrl, language)} target="_blank" rel="noopener noreferrer">
                       <Button
                         size="sm"
                         className="bg-primary hover:bg-primary/90 text-white text-sm h-10 px-5"
@@ -358,7 +359,7 @@ export function FastCompareTable({
                 </Link>
               )}
               <a
-                href={r.affiliateUrl}
+                href={localizeAffiliateUrl(r.affiliateUrl, language)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1"
@@ -397,8 +398,9 @@ export function VerdictBox({
   cons?: string[];
 }) {
   const computedReviewHref = reviewHref ?? (reviewSlug ? `/${reviewKind}/${reviewSlug}` : undefined);
-  const { t: tT } = useLanguage();
+  const { t: tT, language } = useLanguage();
   const tVerdict = (k: string) => tT(`verdict.${k}`);
+  const localizedAffiliateUrl = localizeAffiliateUrl(affiliateUrl, language);
   return (
     <div
       className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent p-7 md:p-10"
@@ -454,7 +456,7 @@ export function VerdictBox({
       )}
 
       <div className="flex flex-wrap gap-3">
-        <a href={affiliateUrl} target="_blank" rel="noopener noreferrer">
+        <a href={localizedAffiliateUrl} target="_blank" rel="noopener noreferrer">
           <Button
             size="lg"
             className="bg-primary hover:bg-primary/90 text-white font-bold"
@@ -535,6 +537,7 @@ export function CTABlock({
   secondaryLabel?: string;
   secondaryHref?: string;
 }) {
+  const { language } = useLanguage();
   return (
     <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-primary/15 to-secondary/15 p-8 md:p-10 text-center">
       <h3 className="text-xl md:text-2xl font-bold font-display mb-3">{title}</h3>
@@ -542,7 +545,7 @@ export function CTABlock({
         <p className="text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">{description}</p>
       )}
       <div className="flex flex-wrap justify-center gap-3">
-        <a href={primaryUrl} target="_blank" rel="noopener noreferrer">
+        <a href={localizeAffiliateUrl(primaryUrl, language)} target="_blank" rel="noopener noreferrer">
           <Button className="bg-primary hover:bg-primary/90 text-white font-bold">
             {primaryLabel} <ExternalLink className="ml-2 h-4 w-4" />
           </Button>
@@ -783,7 +786,7 @@ export function ReviewSummaryCard({
   reviewSlug: string;
   type: string;
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   return (
     <div className="rounded-2xl border border-white/10 bg-card/40 backdrop-blur-md p-6 hover:border-primary/40 transition-all flex flex-col h-full">
       <div className="flex items-start justify-between mb-3">
@@ -809,7 +812,7 @@ export function ReviewSummaryCard({
         ))}
       </ul>
       <div className="flex flex-col gap-2">
-        <a href={affiliateUrl} target="_blank" rel="noopener noreferrer">
+        <a href={localizeAffiliateUrl(affiliateUrl, language)} target="_blank" rel="noopener noreferrer">
           <Button className="w-full bg-primary hover:bg-primary/90 text-white font-bold">
             {t("verdict.get") || "Get"} {name} <ExternalLink className="ml-2 h-4 w-4" />
           </Button>

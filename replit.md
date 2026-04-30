@@ -34,6 +34,7 @@ Preferred communication style: Simple, everyday language.
 - **Supported Languages**: English, Spanish, Chinese, Japanese, Korean, Portuguese, German, and French.
 - **System**: Custom `LanguageContext` and `useLanguage` hook, `translations.ts` for all keys.
 - **Translated Sections**: Comprehensive translation across navigation, hero, wallet/exchange sections (including features and badges), Knowledge Hub articles, features, newsletter CTA, footer, About, Contact, FAQ, Getting Started pages, and detail page UI elements.
+- **Locale-aware affiliate links**: `client/src/lib/affiliateLinks.ts` rewrites the bare-host Tangem and Crypto.com referral URLs at render time based on the visitor's selected i18n language (e.g. DE viewers get `tangem.com/de/`, KO viewers get `crypto.com/kr`). Stored URLs in page data are kept as the bare host on purpose so the destination's own geo-redirect handles languages that have no localized path (currently JA on crypto.com). The `FastCompareTable`, `VerdictBox`, `ReviewSummaryCard`, and `CTABlock` components in `conversion.tsx` apply the helper automatically; inline `<a href>` affiliate links wrap it themselves.
 
 ### News Feed
 - **Architecture**: Backend `/api/news` endpoint fetches and caches (15-minute TTL) RSS feeds from Google News, CoinTelegraph, and CryptoSlate, filtering by XRPL keywords.

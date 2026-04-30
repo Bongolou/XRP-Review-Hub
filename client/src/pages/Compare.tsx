@@ -7,6 +7,7 @@ import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock, getShortlis
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { getSeoEntry } from "@/lib/i18n/seoTranslations";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { localizeAffiliateUrl } from "@/lib/affiliateLinks";
 
 type ComparisonData = {
   wallet1: {
@@ -938,7 +939,7 @@ export default function Compare() {
         {/* Twin affiliate CTAs */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10">
           <a
-            href={comparison.wallet1.link}
+            href={localizeAffiliateUrl(comparison.wallet1.link, language)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 h-12 rounded-lg bg-primary hover:bg-primary/90 text-white font-bold transition-colors"
@@ -947,7 +948,7 @@ export default function Compare() {
             Get {comparison.wallet1.name} <ExternalLink className="h-4 w-4" />
           </a>
           <a
-            href={comparison.wallet2.link}
+            href={localizeAffiliateUrl(comparison.wallet2.link, language)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 h-12 rounded-lg bg-secondary hover:bg-secondary/90 text-white font-bold transition-colors"
@@ -1182,7 +1183,7 @@ export default function Compare() {
             <h3 className="font-bold text-xl mb-2">{comparison.wallet1.name}</h3>
             <p className="text-muted-foreground mb-4">{comparison.wallet1.type} • {comparison.wallet1.price}</p>
             <div className="flex flex-col gap-2">
-              <a href={comparison.wallet1.link} target="_blank" rel="noopener noreferrer">
+              <a href={localizeAffiliateUrl(comparison.wallet1.link, language)} target="_blank" rel="noopener noreferrer">
                 <Button className="w-full bg-primary hover:bg-primary/90">
                   Get {comparison.wallet1.name} <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
@@ -1197,7 +1198,7 @@ export default function Compare() {
             <h3 className="font-bold text-xl mb-2">{comparison.wallet2.name}</h3>
             <p className="text-muted-foreground mb-4">{comparison.wallet2.type} • {comparison.wallet2.price}</p>
             <div className="flex flex-col gap-2">
-              <a href={comparison.wallet2.link} target="_blank" rel="noopener noreferrer">
+              <a href={localizeAffiliateUrl(comparison.wallet2.link, language)} target="_blank" rel="noopener noreferrer">
                 <Button className="w-full bg-primary hover:bg-primary/90">
                   Get {comparison.wallet2.name} <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>

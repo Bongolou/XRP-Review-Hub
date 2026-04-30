@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useParams } from "wouter";
 import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { localizeAffiliateUrl } from "@/lib/affiliateLinks";
 import { VerdictBox, BestForCallout, LastUpdated } from "@/components/conversion";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
@@ -805,7 +806,7 @@ export default function ExchangeReview() {
           <div className="mb-6"><LastUpdated date="April 2026" /></div>
 
           <a 
-            href={exchange.affiliateLink}
+            href={localizeAffiliateUrl(exchange.affiliateLink, language)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-12 !px-12 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"
@@ -1021,7 +1022,7 @@ export default function ExchangeReview() {
 
         <div className="text-center pb-8">
           <a 
-            href={exchange.affiliateLink}
+            href={localizeAffiliateUrl(exchange.affiliateLink, language)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-14 !px-12 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-lg transition-colors"
@@ -1053,7 +1054,7 @@ export default function ExchangeReview() {
               </div>
             </div>
             <a
-              href={exchange.affiliateLink}
+              href={localizeAffiliateUrl(exchange.affiliateLink, language)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 h-10 px-4 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg transition-colors flex-shrink-0"
