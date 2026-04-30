@@ -14,6 +14,7 @@ import {
   compareSlugs,
   bestForSlugs,
 } from "./sitemap";
+import { registerRssRoute } from "./rss";
 import { notifyNewReview } from "./reviewNotify";
 import { sendWelcomeEmail } from "./welcomeEmail";
 import { evaluateReviewSpam, checkAkismet } from "./reviewSpamHeuristics";
@@ -973,31 +974,9 @@ export async function registerRoutes(
     res.send(renderSitemapChunkXml(match.entries));
   });
 
-  // RSS Feed
-  app.get("/rss.xml", (req, res) => {
-    const baseUrl = "https://allthingsxrpl.com";
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>All Things XRPL</title>
-    <description>Your trusted source for XRP Ledger wallet comparisons, dApp reviews, and staking guides.</description>
-    <link>${baseUrl}</link>
-    <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml"/>
-    <language>en-us</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-${blogPosts.map(post => `    <item>
-      <title>${post.title}</title>
-      <link>${baseUrl}/blog/${post.id}</link>
-      <guid>${baseUrl}/blog/${post.id}</guid>
-      <pubDate>${new Date(post.dateIso).toUTCString()}</pubDate>
-      <category>${post.category}</category>
-    </item>`).join("\n")}
-  </channel>
-</rss>`;
-
-    res.header("Content-Type", "application/rss+xml");
-    res.send(xml);
-  });
+  // RSS Feed — defers to `./rss.registerRssRoute` so tests register the
+  // exact same handler against a bare Express app.
+  registerRssRoute(app, blogPosts);
 
   // XRP News feed API
   app.get("/api/news", async (req, res) => {

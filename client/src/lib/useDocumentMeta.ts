@@ -156,9 +156,14 @@ export function useDocumentMeta({ title, description, canonicalPath, image }: Me
     const alternateLinks: HTMLLinkElement[] = [];
     if (canonicalPath) {
       // Clean any leftover alternates from a previous render before adding
-      // a fresh set so re-renders don't duplicate tags.
+      // a fresh set so re-renders don't duplicate tags. Also clean tags
+      // injected server-side by `server/socialMeta.ts` (marked with
+      // `data-hreflang-injected`) so SSR + client hydration don't both
+      // emit a hreflang block for the same page.
       document.head
-        .querySelectorAll<HTMLLinkElement>(`link[${HREFLANG_MARKER}]`)
+        .querySelectorAll<HTMLLinkElement>(
+          `link[${HREFLANG_MARKER}], link[data-hreflang-injected]`,
+        )
         .forEach((node) => node.parentNode?.removeChild(node));
 
       HREFLANG_MAP.forEach(({ lang, hreflang }) => {

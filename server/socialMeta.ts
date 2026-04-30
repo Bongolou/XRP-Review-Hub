@@ -27,6 +27,27 @@ const LANGS: ReadonlyArray<Language> = [
   "fr",
 ];
 
+// Map every supported UI language to the ISO hreflang code Google expects.
+// Mirrors `sitemapHreflangMap` in ./sitemap.
+export const socialMetaHreflangMap: ReadonlyArray<{
+  lang: Language;
+  hreflang: string;
+}> = [
+  { lang: "en", hreflang: "en" },
+  { lang: "es", hreflang: "es" },
+  { lang: "zh", hreflang: "zh-Hans" },
+  { lang: "ja", hreflang: "ja" },
+  { lang: "ko", hreflang: "ko" },
+  { lang: "pt", hreflang: "pt" },
+  { lang: "de", hreflang: "de" },
+  { lang: "fr", hreflang: "fr" },
+];
+
+// Marker attribute used so re-entering injectSocialMeta on a previously-
+// processed template (or on a re-rendered page) doesn't double-stamp the
+// hreflang block. The matching client hook uses an analogous marker.
+const HREFLANG_MARKER_ATTR = "data-hreflang-injected";
+
 function pickLanguage(query: URLSearchParams): Language {
   const raw = (query.get("lang") || "").toLowerCase();
   return (LANGS as ReadonlyArray<string>).includes(raw)
@@ -230,6 +251,49 @@ function replaceMetaByProperty(
   return re.test(html) ? html.replace(re, tag) : html.replace(/<\/head>/i, `    ${tag}\n  </head>`);
 }
 
+// Hreflang alternates describe canonical language variants of a page, so
+// we ignore the inbound query string entirely and emit `pathname` + (an
+// optional `?lang=xx` for non-English). Request-only params like utm
+// trackers or session ids must not appear in alternate URLs.
+function localizedSocialPath(pathname: string, lang: Language | "x-default"): string {
+  if (lang === "en" || lang === "x-default") return pathname;
+  return `${pathname}?lang=${lang}`;
+}
+
+// Emit one `<link rel="alternate" hreflang="..." />` per supported
+// language plus an `x-default` entry pointing at the canonical English
+// URL.
+export function buildHreflangLinkTags(
+  pathname: string,
+  host: string,
+  protocol: string,
+): string {
+  const baseUrl = `${protocol}://${host}`;
+  const lines = socialMetaHreflangMap.map(({ lang, hreflang }) => {
+    const href = `${baseUrl}${localizedSocialPath(pathname, lang)}`;
+    return `    <link rel="alternate" hreflang="${hreflang}" href="${escapeHtmlAttr(
+      href,
+    )}" ${HREFLANG_MARKER_ATTR} />`;
+  });
+  const xdefaultHref = `${baseUrl}${localizedSocialPath(pathname, "x-default")}`;
+  lines.push(
+    `    <link rel="alternate" hreflang="x-default" href="${escapeHtmlAttr(
+      xdefaultHref,
+    )}" ${HREFLANG_MARKER_ATTR} />`,
+  );
+  return lines.join("\n");
+}
+
+// Strip any previously-injected hreflang block before re-injecting so the
+// helper is safe to call multiple times on the same template.
+function stripExistingHreflangLinks(html: string): string {
+  const re = new RegExp(
+    `\\s*<link\\b[^>]*\\b${HREFLANG_MARKER_ATTR}\\b[^>]*/?>`,
+    "gi",
+  );
+  return html.replace(re, "");
+}
+
 export function injectSocialMeta(
   html: string,
   originalUrl: string,
@@ -263,6 +327,13 @@ export function injectSocialMeta(
     out = replaceMetaByProperty(out, "og:image", absolute);
     out = replaceMetaByName(out, "twitter:image", absolute);
   }
+
+  // Inject the hreflang block server-side so crawlers (and any client
+  // that ignores JS) see the alternate language URLs in the initial HTML
+  // payload.
+  const hreflang = buildHreflangLinkTags(url.pathname, host, protocol);
+  out = stripExistingHreflangLinks(out);
+  out = out.replace(/<\/head>/i, `${hreflang}\n  </head>`);
 
   return out;
 }
