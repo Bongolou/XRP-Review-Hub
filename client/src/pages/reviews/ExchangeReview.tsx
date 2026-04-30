@@ -87,7 +87,7 @@ const exchangeData: Record<string, {
     founded: "2015",
     headquarters: "New York, USA",
     website: "uphold.com",
-    affiliateLink: "https://uphold.com/signup?referral=allthingsxrpl",
+    affiliateLink: "https://wallet.uphold.com/signup?referral=allthingsxrpl",
     bonusKey: "exchangeDetail.uphold.bonus",
     descriptionKey: "exchangeDetail.uphold.description",
     featureKeys: [

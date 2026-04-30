@@ -323,7 +323,7 @@ const exchangesData = [
     bonusKey: "exchange.bonus.btc20",
     blurbKey: "exchange.blurb.uphold",
     featureKeys: ["exchange.feature.bestForXRP", "exchange.feature.fiatOnRamp", "exchange.feature.instantTrade"],
-    link: "https://uphold.com/signup?referral=allthingsxrpl",
+    link: "https://wallet.uphold.com/signup?referral=allthingsxrpl",
     color: "text-green-500",
     bgColor: "bg-green-500/20",
     logo: upholdLogo

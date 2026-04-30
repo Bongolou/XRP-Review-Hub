@@ -81,8 +81,8 @@ const stakingOptions: StakingOption[] = [
       "yield.option.uphold.f4",
     ],
     riskKey: "yield.risk.low",
-    link: "https://uphold.com/signup?referral=allthingsxrpl",
-    affiliate: "https://uphold.com/signup?referral=allthingsxrpl",
+    link: "https://wallet.uphold.com/signup?referral=allthingsxrpl",
+    affiliate: "https://wallet.uphold.com/signup?referral=allthingsxrpl",
     color: "from-green-500 to-emerald-500",
   },
   {

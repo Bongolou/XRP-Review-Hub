@@ -18,7 +18,7 @@ const defaultAds = {
     title: "Buy XRP with Uphold",
     description: "Get $20 bonus when you sign up and trade",
     ctaText: "Sign Up Free",
-    link: "https://uphold.com/signup?referral=allthingsxrpl"
+    link: "https://wallet.uphold.com/signup?referral=allthingsxrpl"
   },
   sidebar: {
     partner: "ledger",

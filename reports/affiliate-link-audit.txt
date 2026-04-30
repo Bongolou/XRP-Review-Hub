@@ -1,9 +1,9 @@
-Affiliate Link Audit — 2026-04-30T01:37:29.848Z
+Affiliate Link Audit — 2026-04-30T01:48:52.873Z
 ================================================================
 Scanned roots: client/src, server, shared
 Total checked: 106
-OK (200, no redirect):     99
-Redirected (same brand):   4
+OK (200, no redirect):     100
+Redirected (same brand):   3
 Brand-change redirects:    1
 Broken / non-2xx:          1
 Ignored (known bot block): 1
@@ -36,13 +36,6 @@ REDIRECTED (lands on 2xx after a 3xx, same registrable domain)
     in client/src/pages/Compare.tsx
     in client/src/pages/WalletQuiz.tsx
     in client/src/pages/reviews/WalletReview.tsx
-[200] https://uphold.com/signup?referral=allthingsxrpl
-    -> https://wallet.uphold.com/signup?referral=allthingsxrpl
-    in client/src/components/BannerAd.tsx
-    in client/src/pages/GettingStarted.tsx
-    in client/src/pages/Home.tsx
-    in client/src/pages/YieldOpportunities.tsx
-    in client/src/pages/reviews/ExchangeReview.tsx
 
 IGNORED (known anti-bot 403)
 ----------------------------------------------------------------
@@ -124,6 +117,7 @@ OK
 [200] https://the.gatekeeperconsent.com/cmp.min.js
 [200] https://trezor.io/?ref=allthingsxrpl
 [200] https://trustwallet.com/?ref=allthingsxrpl
+[200] https://wallet.uphold.com/signup?referral=allthingsxrpl
 [200] https://www.bitrue.com/activity/landing-page/?cn=900000&_channel=allthingsxrpl
 [200] https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL
 [200] https://www.bitrue.com/user/register?inviteCode=allthingsxrpl
