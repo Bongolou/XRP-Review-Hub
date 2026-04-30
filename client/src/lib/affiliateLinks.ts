@@ -48,11 +48,15 @@ const CRYPTOCOM_REGION_PATH: Record<Language, string | null> = {
   ja: null,
 };
 
-const TANGEM_BARE_HOST = /^https:\/\/(?:www\.)?tangem\.com\/(\?[^#]*)?(#.*)?$/;
+// Match either the bare host (`tangem.com/?...`) or the canonical English
+// landing path (`tangem.com/en/?...`). Source files now reference the `/en/`
+// form so the link audit reports OK instead of "redirected", but we still
+// rewrite to the visitor's actual language at render time.
+const TANGEM_LOCALIZABLE = /^https:\/\/(?:www\.)?tangem\.com\/(?:en\/?)?(\?[^#]*)?(#.*)?$/;
 const CRYPTOCOM_BARE_HOST = /^https:\/\/(?:www\.)?crypto\.com\/?(\?[^#]*)?(#.*)?$/;
 
 export function localizeAffiliateUrl(url: string, language: Language): string {
-  const tangem = url.match(TANGEM_BARE_HOST);
+  const tangem = url.match(TANGEM_LOCALIZABLE);
   if (tangem) {
     const lang = TANGEM_LANG_PATH[language] ?? "en";
     const query = tangem[1] ?? "";

@@ -152,7 +152,7 @@ const comparisons: Record<string, ComparisonData> = {
       slug: "tangem",
       type: "Hardware Card",
       price: "$54.90",
-      link: "https://tangem.com/?ref=allthingsxrpl"
+      link: "https://tangem.com/en/?ref=allthingsxrpl"
     },
     metaDescription: "Compare Xaman and Tangem wallets for XRP storage. Full feature analysis, security comparison, and recommendations for different use cases.",
     introduction: "Xaman and Tangem represent two innovative but very different approaches to XRP wallet design. Xaman is the premier software wallet built by XRPL Labs with deep protocol integration, while Tangem offers a unique credit-card-sized hardware wallet that uses NFC technology.",
@@ -224,7 +224,7 @@ const comparisons: Record<string, ComparisonData> = {
       slug: "tangem",
       type: "Hardware Card",
       price: "$54.90",
-      link: "https://tangem.com/?ref=allthingsxrpl"
+      link: "https://tangem.com/en/?ref=allthingsxrpl"
     },
     metaDescription: "Ledger vs Tangem hardware wallet comparison. Detailed analysis of security, features, and which is better for XRP storage.",
     introduction: "Two hardware wallets, two very different designs. Ledger Nano X is the industry-standard USB device with a screen and button controls, while Tangem is a credit-card-sized NFC card. Both keep your keys offline, but they differ significantly in features, price, and user experience.",
@@ -684,7 +684,7 @@ const comparisons: Record<string, ComparisonData> = {
   },
   "trezor-vs-tangem": {
     wallet1: { name: "Trezor Safe 3", slug: "trezor", type: "Hardware", price: "$79", link: "https://trezor.io/?ref=allthingsxrpl" },
-    wallet2: { name: "Tangem", slug: "tangem", type: "Hardware (NFC card)", price: "$54.90", link: "https://tangem.com/?ref=allthingsxrpl" },
+    wallet2: { name: "Tangem", slug: "tangem", type: "Hardware (NFC card)", price: "$54.90", link: "https://tangem.com/en/?ref=allthingsxrpl" },
     metaDescription: "Trezor Safe 3 vs Tangem for XRP cold storage: open-source recovery seed vs seedless NFC tap-to-sign cards.",
     introduction: "Trezor and Tangem represent two very different philosophies of hardware security. Trezor is the classic seed-phrase, USB-connected device backed by open-source firmware. Tangem skips the seed phrase entirely with an NFC card you tap against your phone to sign transactions. Both are excellent for XRP cold storage — the right pick depends on whether you trust paper backups or prefer ditching them entirely.",
     winner: "Tangem",

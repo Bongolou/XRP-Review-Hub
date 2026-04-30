@@ -281,7 +281,7 @@ const walletData: Record<string, {
     price: "$54.90",
     platforms: ["iOS", "Android", "NFC Card"],
     website: "tangem.com",
-    affiliateLink: "https://tangem.com/?ref=allthingsxrpl",
+    affiliateLink: "https://tangem.com/en/?ref=allthingsxrpl",
     descriptionKey: "walletDetail.tangem.description",
     featureKeys: [
       "walletDetail.tangem.feature1",

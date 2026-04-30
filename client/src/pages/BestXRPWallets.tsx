@@ -56,7 +56,7 @@ export default function BestXRPWallets() {
       bestFor: t("bxw.row.tangem.bestFor"),
       rating: "9.4",
       reviewSlug: "tangem",
-      affiliateUrl: "https://tangem.com/?promocode=ALLTHINGSXRPL",
+      affiliateUrl: "https://tangem.com/en/?promocode=ALLTHINGSXRPL",
     },
     {
       id: "trezor",
@@ -137,7 +137,7 @@ export default function BestXRPWallets() {
         t("bxw.summary.tangem.pro2"),
         t("bxw.summary.tangem.pro3"),
       ],
-      affiliateUrl: "https://tangem.com/?promocode=ALLTHINGSXRPL",
+      affiliateUrl: "https://tangem.com/en/?promocode=ALLTHINGSXRPL",
       reviewSlug: "tangem",
     },
   ];

@@ -164,7 +164,7 @@ const homepageCompareRowsRaw: HomepageCompareRowRaw[] = [
     bestForKey: "home.compare.bestFor.portableHardware",
     rating: "9.4",
     reviewSlug: "tangem",
-    affiliateUrl: "https://tangem.com/?promocode=ALLTHINGSXRPL",
+    affiliateUrl: "https://tangem.com/en/?promocode=ALLTHINGSXRPL",
   },
   {
     id: "trezor",
@@ -204,7 +204,7 @@ const walletsData = [
     link: "https://xumm.app/?ref=allthingsxrpl",
     logo: xamanLogo,
     complementary: [
-      { nameKey: "wallet.complementary.tangemBackup", link: "https://tangem.com/?promocode=ALLTHINGSXRPL" },
+      { nameKey: "wallet.complementary.tangemBackup", link: "https://tangem.com/en/?promocode=ALLTHINGSXRPL" },
       { nameKey: "wallet.complementary.ledgerCold", link: "https://shop.ledger.com/?r=5d81f18905fe" }
     ]
   },
@@ -244,7 +244,7 @@ const walletsData = [
     featureKeys: ["wallet.feature.nfcSupport", "wallet.feature.waterproof", "wallet.feature.noBattery", "wallet.feature.easySetup"],
     blurbKey: "wallet.blurb.tangem",
     popular: false,
-    link: "https://tangem.com/?promocode=ALLTHINGSXRPL",
+    link: "https://tangem.com/en/?promocode=ALLTHINGSXRPL",
     logo: tangemLogo
   },
   {

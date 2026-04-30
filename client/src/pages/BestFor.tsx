@@ -22,11 +22,11 @@ const slugWalletRows: Record<string, { id: string; price: string; rating: string
     { id: "xaman", price: "free", rating: "9.9", reviewSlug: "xaman", affiliateUrl: "https://xumm.app/?ref=allthingsxrpl", highlight: true },
     { id: "crossmark", price: "free", rating: "9.5", reviewSlug: "crossmark", affiliateUrl: "https://crossmark.io/?ref=allthingsxrpl" },
     { id: "bifrost", price: "free", rating: "9.0", reviewSlug: "bifrost", affiliateUrl: "https://bifrostwallet.com/?ref=allthingsxrpl" },
-    { id: "tangem", price: "$54.90", rating: "9.4", reviewSlug: "tangem", affiliateUrl: "https://tangem.com/?promocode=ALLTHINGSXRPL" },
+    { id: "tangem", price: "$54.90", rating: "9.4", reviewSlug: "tangem", affiliateUrl: "https://tangem.com/en/?promocode=ALLTHINGSXRPL" },
   ],
   hardware: [
     { id: "ledger", price: "$149", rating: "9.9", reviewSlug: "ledger", affiliateUrl: "https://shop.ledger.com/?r=5d81f18905fe", highlight: true },
-    { id: "tangem", price: "$54.90", rating: "9.4", reviewSlug: "tangem", affiliateUrl: "https://tangem.com/?promocode=ALLTHINGSXRPL" },
+    { id: "tangem", price: "$54.90", rating: "9.4", reviewSlug: "tangem", affiliateUrl: "https://tangem.com/en/?promocode=ALLTHINGSXRPL" },
     { id: "trezor", price: "$169", rating: "9.3", reviewSlug: "trezor", affiliateUrl: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959" },
     { id: "ellipal", price: "$169", rating: "9.0", reviewSlug: "ellipal", affiliateUrl: "https://www.ellipal.com/?ref=allthingsxrpl" },
   ],
@@ -34,7 +34,7 @@ const slugWalletRows: Record<string, { id: string; price: string; rating: string
     { id: "ledger", price: "$149", rating: "9.9", reviewSlug: "ledger", affiliateUrl: "https://shop.ledger.com/?r=5d81f18905fe", highlight: true },
     { id: "ellipal", price: "$169", rating: "9.0", reviewSlug: "ellipal", affiliateUrl: "https://www.ellipal.com/?ref=allthingsxrpl" },
     { id: "trezor", price: "$169", rating: "9.3", reviewSlug: "trezor", affiliateUrl: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959" },
-    { id: "tangem", price: "$54.90", rating: "9.4", reviewSlug: "tangem", affiliateUrl: "https://tangem.com/?promocode=ALLTHINGSXRPL" },
+    { id: "tangem", price: "$54.90", rating: "9.4", reviewSlug: "tangem", affiliateUrl: "https://tangem.com/en/?promocode=ALLTHINGSXRPL" },
   ],
   defi: [
     { id: "xaman", price: "free", rating: "9.9", reviewSlug: "xaman", affiliateUrl: "https://xumm.app/?ref=allthingsxrpl", highlight: true },
@@ -44,7 +44,7 @@ const slugWalletRows: Record<string, { id: string; price: string; rating: string
   ],
   safest: [
     { id: "ledger", price: "$149", rating: "9.9", reviewSlug: "ledger", affiliateUrl: "https://shop.ledger.com/?r=5d81f18905fe", highlight: true },
-    { id: "tangem", price: "$54.90", rating: "9.4", reviewSlug: "tangem", affiliateUrl: "https://tangem.com/?promocode=ALLTHINGSXRPL" },
+    { id: "tangem", price: "$54.90", rating: "9.4", reviewSlug: "tangem", affiliateUrl: "https://tangem.com/en/?promocode=ALLTHINGSXRPL" },
     { id: "ellipal", price: "$169", rating: "9.0", reviewSlug: "ellipal", affiliateUrl: "https://www.ellipal.com/?ref=allthingsxrpl" },
     { id: "xaman", price: "free", rating: "9.9", reviewSlug: "xaman", affiliateUrl: "https://xumm.app/?ref=allthingsxrpl" },
   ],

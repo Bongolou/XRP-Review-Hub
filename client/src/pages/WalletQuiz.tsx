@@ -99,7 +99,7 @@ function getRecommendation(answers: Answers): Recommendation {
         name: "Tangem",
         slug: "tangem",
         descKey: "quiz.rec.tangem.desc",
-        link: "https://tangem.com/?ref=allthingsxrpl",
+        link: "https://tangem.com/en/?ref=allthingsxrpl",
       },
       secondary: {
         name: "Xaman",
