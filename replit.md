@@ -64,3 +64,36 @@ Preferred communication style: Simple, everyday language.
 - Akismet (optional, for review spam detection).
 - Resend (for welcome emails).
 - Slack/Discord (for review notifications).
+
+## Deployment
+
+The live site at allthingsxrpl.com is hosted on Bluehost shared hosting,
+which only serves static files. The Express backend in `server/` does
+**not** run in production — `/api/*`, `/og/*.png`, the dynamic
+`/sitemap*.xml`, `/rss.xml`, the contact form, the newsletter signup,
+and review submissions only work in the Replit dev environment.
+
+### Auto-deploy from GitHub to Bluehost
+- **Workflow**: `.github/workflows/deploy.yml`
+- **Triggers**: every push to `main`, plus manual runs via the
+  *Actions → Deploy to Bluehost → Run workflow* button.
+- **What it does**: checks out the repo, runs `npm ci` and
+  `npm run build` (which produces `dist/public/`), then syncs the
+  contents of `dist/public/` to Bluehost over FTPS using
+  `SamKirkland/FTP-Deploy-Action`. The action syncs changed files
+  (and may remove previously deployed bundle files that disappear
+  from the new build) but does **not** wipe the destination, so
+  hand-placed files in `public_html/` (e.g. `.htaccess`) that were
+  never part of `dist/public/` survive.
+- **Secrets required** (Settings → Secrets and variables → Actions):
+  `BLUEHOST_FTP_SERVER`, `BLUEHOST_FTP_USERNAME`,
+  `BLUEHOST_FTP_PASSWORD`, `BLUEHOST_FTP_SERVER_DIR` (the path on
+  the FTP server, typically `/public_html/` or
+  `/public_html/<subfolder>/`).
+- **Logs**: GitHub repo → *Actions* → "Deploy to Bluehost" → pick a
+  run. Each run posts a short summary with the deployed commit SHA.
+- **Replit OAuth caveat**: Replit's GitHub OAuth app does not request
+  the `workflow` scope, so changes to files under `.github/workflows/`
+  cannot be pushed via the in-Replit Git pane. Edit those files on
+  github.com directly, or push from a local clone using a Personal
+  Access Token that has both `repo` and `workflow` scopes.

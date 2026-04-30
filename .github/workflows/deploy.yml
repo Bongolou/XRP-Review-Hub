@@ -1,0 +1,67 @@
+name: Deploy to Bluehost
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# A fast-follow push should supersede the in-flight deploy rather than
+# race it (which can leave the live site briefly serving an older build).
+concurrency:
+  group: deploy-bluehost
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Deploy dist/public to Bluehost over FTPS
+        # Pinned to a specific minor of a well-maintained, widely-used
+        # FTP deploy action. dangerous-clean-slate is intentionally
+        # left at its default (false) so the action only syncs the
+        # built bundle and leaves any user-managed files in the
+        # destination (e.g. a hand-edited .htaccess, cgi-bin/, etc.)
+        # untouched.
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.BLUEHOST_FTP_SERVER }}
+          username: ${{ secrets.BLUEHOST_FTP_USERNAME }}
+          password: ${{ secrets.BLUEHOST_FTP_PASSWORD }}
+          server-dir: ${{ secrets.BLUEHOST_FTP_SERVER_DIR }}
+          local-dir: ./dist/public/
+          protocol: ftps
+          # Skip files we never want to ship even if they sneak into
+          # dist/public/ for some reason.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+
+      - name: Summarize deploy
+        if: always()
+        run: |
+          echo "### Deploy to Bluehost" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Commit: \`${GITHUB_SHA}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Triggered by: \`${GITHUB_EVENT_NAME}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Finished at: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_STEP_SUMMARY"
