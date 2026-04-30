@@ -85,11 +85,35 @@ and review submissions only work in the Replit dev environment.
   from the new build) but does **not** wipe the destination, so
   hand-placed files in `public_html/` (e.g. `.htaccess`) that were
   never part of `dist/public/` survive.
-- **Secrets required** (Settings → Secrets and variables → Actions):
-  `BLUEHOST_FTP_SERVER`, `BLUEHOST_FTP_USERNAME`,
-  `BLUEHOST_FTP_PASSWORD`, `BLUEHOST_FTP_SERVER_DIR` (the path on
-  the FTP server, typically `/public_html/` or
-  `/public_html/<subfolder>/`).
+- **One-time GitHub setup** (do this once per repo, in this order):
+  1. Add the four repo secrets at *github.com → Settings → Secrets
+     and variables → Actions → New repository secret*. Where to find
+     each value in cPanel:
+     - `BLUEHOST_FTP_SERVER` — cPanel → *Files → FTP Accounts*. Use
+       the hostname shown for your account (typically `ftp.<your-
+       domain>` or the server hostname like `boxXXXX.bluehost.com`).
+       Do **not** include `ftp://`, port, or a path.
+     - `BLUEHOST_FTP_USERNAME` — cPanel → *Files → FTP Accounts*. Use
+       the full FTP login (often `user@yourdomain.com`). Either
+       create a dedicated FTP user scoped to `public_html/` or use
+       the main account.
+     - `BLUEHOST_FTP_PASSWORD` — the password set on the FTP user
+       above. If you forgot it, click *Change Password* on that
+       account in cPanel.
+     - `BLUEHOST_FTP_SERVER_DIR` — the absolute path on the FTP
+       server to deploy into, with a trailing slash. Typically
+       `/public_html/` for the root domain, or
+       `/public_html/<subfolder>/` for a subfolder install.
+  2. Create the workflow file on github.com directly: *Add file →
+     Create new file*, name it `.github/workflows/deploy.yml`, paste
+     the YAML body from the local `.github/workflows/deploy.yml` in
+     this repo, and commit to `main`. (This step is needed because
+     the Replit Git pane can't push files under `.github/workflows/`
+     — see the OAuth caveat below.)
+  3. Verify with a manual run: *Actions → Deploy to Bluehost → Run
+     workflow → Run workflow*. After it finishes green, hard-reload
+     the live site with cache disabled and confirm the latest
+     content is showing.
 - **Logs**: GitHub repo → *Actions* → "Deploy to Bluehost" → pick a
   run. Each run posts a short summary with the deployed commit SHA.
 - **Replit OAuth caveat**: Replit's GitHub OAuth app does not request
