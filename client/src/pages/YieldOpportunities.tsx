@@ -100,7 +100,7 @@ const stakingOptions: StakingOption[] = [
       "yield.option.kraken.f4",
     ],
     riskKey: "yield.risk.low",
-    link: "https://www.kraken.com/features/staking-coins",
+    link: "https://www.kraken.com/features/staking",
     affiliate: "https://www.kraken.com/sign-up?clickid=allthingsxrpl",
     color: "from-purple-500 to-violet-500",
   },
