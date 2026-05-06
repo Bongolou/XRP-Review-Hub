@@ -161,10 +161,35 @@ export default function BlogPost() {
                 </div>
               </div>
 
-              <div 
-                className="article-content"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+              {(() => {
+                const html = post.content;
+                const paragraphCount = (html.match(/<p[\s>]/gi) || []).length;
+                if (paragraphCount >= 4) {
+                  const parts = html.split(/<\/p>/i);
+                  const mid = Math.ceil(paragraphCount / 2);
+                  const firstHalf = parts.slice(0, mid).join("</p>") + "</p>";
+                  const secondHalf = parts.slice(mid).join("</p>");
+                  return (
+                    <>
+                      <div
+                        className="article-content"
+                        dangerouslySetInnerHTML={{ __html: firstHalf }}
+                      />
+                      <BannerAd variant="inline" />
+                      <div
+                        className="article-content"
+                        dangerouslySetInnerHTML={{ __html: secondHalf }}
+                      />
+                    </>
+                  );
+                }
+                return (
+                  <div
+                    className="article-content"
+                    dangerouslySetInnerHTML={{ __html: html }}
+                  />
+                );
+              })()}
 
               <div className="mt-8">
                 <BannerAd variant="horizontal" />

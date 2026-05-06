@@ -4,7 +4,7 @@ import upholdLogo from "@/assets/logos/uphold-logo.webp";
 import ledgerLogo from "@/assets/logos/ledger-logo.webp";
 
 interface BannerAdProps {
-  variant?: "horizontal" | "sidebar";
+  variant?: "horizontal" | "sidebar" | "inline";
   partner?: string;
   title?: string;
   description?: string;
@@ -26,6 +26,13 @@ const defaultAds = {
     description: "Get a Ledger hardware wallet",
     ctaText: "Shop Now",
     link: "https://shop.ledger.com/?r=5d81f18905fe"
+  },
+  inline: {
+    partner: "ledger",
+    title: "Ledger Nano S Plus",
+    description: "Hardware wallet for XRP",
+    ctaText: "Shop Now",
+    link: "https://shop.ledger.com/pages/ledger-nano-s-plus/?r=5d81f18905fe"
   }
 };
 
@@ -45,8 +52,39 @@ export function BannerAd({
   const adLink = link || defaults.link;
 
   const handleClick = () => {
-    trackAffiliateClick(adPartner, `banner_${variant}`);
+    if (variant === "inline") {
+      trackAffiliateClick(adPartner, "inline_300x250");
+    } else {
+      trackAffiliateClick(adPartner, `banner_${variant}`);
+    }
   };
+
+  if (variant === "inline") {
+    return (
+      <div className="my-8 flex flex-col items-center" data-testid={`banner-ad-${variant}`}>
+        <div className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Sponsored</div>
+        <a
+          href={adLink}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          onClick={handleClick}
+          className="block rounded-lg overflow-hidden border border-white/10 hover:border-primary/50 transition-colors w-full max-w-[300px]"
+          style={{ aspectRatio: "6 / 5" }}
+          data-testid={`banner-ad-${variant}-link`}
+        >
+          <img
+            src="https://affiliate.ledger.com/image/300/250/Default"
+            alt={adTitle}
+            width={300}
+            height={250}
+            loading="lazy"
+            decoding="async"
+            className="block w-full h-full"
+          />
+        </a>
+      </div>
+    );
+  }
 
   if (variant === "sidebar") {
     return (
