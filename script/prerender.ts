@@ -24,14 +24,31 @@ const PRERENDER_READY_SELECTOR = 'meta[name="prerender-ready"][content="true"]';
 const PROD_ORIGIN =
   process.env.PRERENDER_PROD_ORIGIN || "https://allthingsxrpl.com";
 
-// Resolve the chromium executable. In CI we install the playwright
-// browsers via `npx playwright install --with-deps chromium` and the
-// bundled binary is used. In the Replit dev environment the Nix-provided
-// `chromium` binary on PATH is used (set via PLAYWRIGHT_CHROMIUM_PATH or
-// auto-detected from /run/current-system or `chromium` lookup).
+// Resolve the chromium executable. Order of preference:
+//   1. PLAYWRIGHT_CHROMIUM_PATH env var (explicit override)
+//   2. `chromium` discoverable on PATH (the Nix-provided system
+//      chromium installed in the Replit dev container — Playwright's
+//      bundled binary on Replit is missing several glibc/X11 libs and
+//      crashes with exit 127, but the system chromium has every shared
+//      library it needs)
+//   3. Fall back to Playwright's bundled chromium (this is what runs in
+//      GitHub Actions, where `npx playwright install --with-deps
+//      chromium` provisions both the binary and its system deps)
 function resolveChromiumPath(): string | undefined {
   const envPath = process.env.PLAYWRIGHT_CHROMIUM_PATH;
   if (envPath && envPath.trim()) return envPath.trim();
+  try {
+    // `which` exits 0 and prints the absolute path if found, non-zero
+    // otherwise. Use spawnSync to avoid pulling in shell semantics.
+    const { spawnSync } = require("child_process") as typeof import("child_process");
+    const r = spawnSync("which", ["chromium"], { encoding: "utf-8" });
+    if (r.status === 0) {
+      const found = r.stdout.trim();
+      if (found) return found;
+    }
+  } catch {
+    // ignore — fall through to bundled
+  }
   return undefined;
 }
 
