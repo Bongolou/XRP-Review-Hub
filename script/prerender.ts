@@ -85,7 +85,7 @@ function startStaticServer(
 // Strip the Vite/Replit dev-mode runtime banner if present (it embeds a
 // websocket script that's not appropriate for a static deploy). The
 // production Vite build already omits it, but this is a defensive net.
-function postProcessHtml(html: string, route: string, baseUrl: string): string {
+export function postProcessHtml(html: string, route: string, baseUrl: string): string {
   let out = html;
   // Rewrite the localhost origin baked into canonical/og/twitter URLs
   // by useDocumentMeta and ogImage helpers (which read
@@ -168,11 +168,21 @@ async function snapshotRoute(
       timeout: PRERENDER_TIMEOUT_MS,
     });
     // Wait for the SPA to render the page and call useDocumentMeta,
-    // which sets <meta name="prerender-ready" content="true">.
-    await page.waitForSelector(PRERENDER_READY_SELECTOR, {
-      timeout: PRERENDER_TIMEOUT_MS,
-      state: "attached",
-    });
+    // which sets <meta name="prerender-ready" content="true">. Wrap
+    // the timeout in a clearer error so a failure points at exactly
+    // which route is broken (instead of a generic Playwright timeout).
+    try {
+      await page.waitForSelector(PRERENDER_READY_SELECTOR, {
+        timeout: PRERENDER_TIMEOUT_MS,
+        state: "attached",
+      });
+    } catch (err) {
+      throw new Error(
+        `prerender-ready signal never appeared for route ${route} ` +
+          `(${PRERENDER_TIMEOUT_MS}ms). Does the page call useDocumentMeta()?`,
+        { cause: err as Error },
+      );
+    }
     const html = await page.content();
     return postProcessHtml(html, route, baseUrl);
   } finally {
