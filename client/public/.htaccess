@@ -1,0 +1,38 @@
+# All Things XRPL — Apache rules for the static Bluehost deploy.
+#
+# Each prerendered route ships as `dist/public/<route>/index.html`
+# (built by script/prerender.ts at deploy time). Apache's default
+# DirectoryIndex behavior already serves those files when a browser
+# requests `/wallet/ledger` — no special rule needed.
+#
+# For any path that does NOT have a prerendered file (e.g. a future
+# wallet slug typed by hand, or any client-only route), fall back to
+# the SPA shell at /index.html so React can take over.
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Skip rewrite for real files and directories so prerendered
+  # <route>/index.html, /assets/*, /sitemap*.xml, /og/*.png (when
+  # present), favicon, etc. all serve normally.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # SPA fallback for everything else — return the shell so wouter
+  # can render the matching route on the client.
+  RewriteRule ^ /index.html [L]
+</IfModule>
+
+# Cache built bundle assets aggressively (filenames are hashed so they
+# can be safely cached forever); HTML and sitemap files revalidate
+# quickly so updates show up on the next deploy.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2|webp|png|jpg|jpeg|gif|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
+</IfModule>

@@ -184,6 +184,19 @@ export function useDocumentMeta({ title, description, canonicalPath, image }: Me
       alternateLinks.push(xdefault);
     }
 
+    // Signal to the build-time prerenderer (Playwright) that this page's
+    // SEO meta has been applied and the snapshot can be captured. Harmless
+    // in dev/production — it's just a meta tag the prerender script polls.
+    let readyMeta = document.head.querySelector<HTMLMetaElement>(
+      'meta[name="prerender-ready"]',
+    );
+    if (!readyMeta) {
+      readyMeta = document.createElement("meta");
+      readyMeta.setAttribute("name", "prerender-ready");
+      document.head.appendChild(readyMeta);
+    }
+    readyMeta.setAttribute("content", "true");
+
     return () => {
       if (title) document.title = prevTitle;
       titleSnaps.forEach(restoreMetaTag);

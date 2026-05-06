@@ -31,6 +31,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # The build step calls script/prerender.ts, which launches a
+      # headless Chromium via Playwright to snapshot every public route
+      # to static HTML. The browser binary and its system libraries
+      # are NOT installed by `npm ci`, so install them explicitly here.
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
       - name: Build site
         run: npm run build
 

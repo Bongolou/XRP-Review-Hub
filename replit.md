@@ -73,6 +73,30 @@ which only serves static files. The Express backend in `server/` does
 `/sitemap*.xml`, `/rss.xml`, the contact form, the newsletter signup,
 and review submissions only work in the Replit dev environment.
 
+### Static prerender at build time
+- Every public route in the SPA is snapshotted to a real `<route>/index.html`
+  file at the end of `npm run build` so Googlebot indexes fully-populated
+  pages instead of an empty SPA shell. Implementation in
+  `script/prerender.ts` + `script/prerenderRoutes.ts`; wired into
+  `script/build.ts` after sitemap generation.
+- The renderer boots a tiny `sirv` server over `dist/public/` (with the
+  *original* `index.html` as the fallback for unknown paths) and drives
+  a headless Chromium via Playwright. `client/src/lib/useDocumentMeta.ts`
+  injects `<meta name="prerender-ready" content="true">` once SEO meta
+  is applied; the script polls for that selector before capturing
+  `page.content()`. Localhost origin baked into canonical/og URLs is
+  rewritten to `https://allthingsxrpl.com` (override with
+  `PRERENDER_PROD_ORIGIN`). Set `SKIP_PRERENDER=1` to bypass.
+- Routes are enumerated from the same data the sitemap uses (wallets,
+  exchanges, compares, best-for, blog) — see `enumeratePrerenderRoutes`.
+  `/admin/reviews` is intentionally excluded.
+- Apache rules in `client/public/.htaccess` serve prerendered files
+  first and fall back to `/index.html` so unknown paths still hydrate
+  the SPA.
+- In Replit dev set `PLAYWRIGHT_CHROMIUM_PATH=$(which chromium)`. In
+  GitHub Actions `npx playwright install --with-deps chromium` runs
+  before the build (see `.github/workflows/deploy.yml`).
+
 ### Auto-deploy from GitHub to Bluehost
 - **Workflow**: `.github/workflows/deploy.yml`
 - **Triggers**: every push to `main`, plus manual runs via the

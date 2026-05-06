@@ -9,6 +9,7 @@ import {
   bestForSlugs,
 } from "../server/sitemap";
 import { blogPosts } from "../shared/blog";
+import { prerenderAll } from "./prerender";
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
@@ -67,6 +68,14 @@ async function buildAll() {
 
   console.log("writing sitemap files...");
   await writeSitemapFilesToDist();
+
+  if (process.env.SKIP_PRERENDER === "1") {
+    console.log("skipping prerender (SKIP_PRERENDER=1)");
+  } else {
+    console.log("prerendering routes...");
+    const written = await prerenderAll(join("dist", "public"));
+    console.log(`  prerendered ${written.length} routes`);
+  }
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
