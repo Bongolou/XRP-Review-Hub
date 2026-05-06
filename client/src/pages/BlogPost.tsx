@@ -14,6 +14,7 @@ import { RELATED_BY_BLOG } from "@/lib/internalLinkMap";
 import { SafeHtml } from "@/components/SafeHtml";
 import { blogPosts } from "@shared/blog";
 import { getLocalizedBlogContent } from "@/lib/i18n/blogContent";
+import { getBlogSeo } from "@/lib/i18n/blogSeo";
 import { TwitterIcon, FacebookIcon, TikTokIcon } from "@/components/icons/SocialIcons";
 
 export default function BlogPost() {
@@ -26,9 +27,16 @@ export default function BlogPost() {
 
   const postTitle = post ? t(post.titleKey) : undefined;
   const postExcerpt = post ? t(post.excerptKey) : undefined;
+  const postSeo = post ? getBlogSeo(language, post.id) : undefined;
+  const metaTitle = postSeo?.title
+    ? postSeo.title
+    : postTitle
+      ? `${postTitle} | All Things XRPL`
+      : undefined;
+  const metaDescription = postSeo?.description ?? postExcerpt;
   useDocumentMeta({
-    title: postTitle ? `${postTitle} | All Things XRPL` : undefined,
-    description: postExcerpt,
+    title: metaTitle,
+    description: metaDescription,
     canonicalPath: post ? `/blog/${post.id}` : undefined,
     image: post?.image,
   });
@@ -41,7 +49,8 @@ export default function BlogPost() {
           "@context": "https://schema.org",
           "@type": "Article",
           headline: postTitle,
-          description: postExcerpt,
+          description: metaDescription,
+          ...(postSeo?.keywords ? { keywords: postSeo.keywords } : {}),
           image: post.image,
           datePublished: post.dateIso,
           dateModified: post.dateIso,
