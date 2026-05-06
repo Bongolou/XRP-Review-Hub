@@ -1,6 +1,14 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
-import { rm, readFile } from "fs/promises";
+import { rm, readFile, writeFile } from "fs/promises";
+import { join } from "path";
+import { walletCards, exchangeCards } from "../server/cardData";
+import {
+  renderSitemapFiles,
+  compareSlugs,
+  bestForSlugs,
+} from "../server/sitemap";
+import { blogPosts } from "../shared/blog";
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
@@ -32,11 +40,33 @@ const allowlist = [
   "zod-validation-error",
 ];
 
+// Render every sitemap file (index + per-section chunks) and write it
+// into dist/public/ so the static Bluehost deploy ships a fresh sitemap
+// on every push to main. The pure rendering lives in server/sitemap.ts —
+// this is just the file-writing wrapper.
+async function writeSitemapFilesToDist() {
+  const files = renderSitemapFiles({
+    walletSlugs: Object.keys(walletCards),
+    exchangeSlugs: Object.keys(exchangeCards),
+    compareSlugs,
+    bestForSlugs,
+    blogPosts,
+  });
+  const outDir = join("dist", "public");
+  await Promise.all(
+    files.map((f) => writeFile(join(outDir, f.filename), f.xml, "utf-8")),
+  );
+  console.log(`  wrote ${files.length} sitemap files to ${outDir}/`);
+}
+
 async function buildAll() {
   await rm("dist", { recursive: true, force: true });
 
   console.log("building client...");
   await viteBuild();
+
+  console.log("writing sitemap files...");
+  await writeSitemapFilesToDist();
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));

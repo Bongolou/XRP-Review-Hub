@@ -11,6 +11,7 @@ import {
   buildSitemapSections,
   chunkSection,
   renderSitemapChunkXml,
+  renderSitemapFiles,
   renderSitemapIndexXml,
   sitemapHreflangMap,
   compareSlugs,
@@ -201,6 +202,32 @@ describe("sitemap generator", () => {
       expect(c.entries.length * sitemapHreflangMap.length)
         .toBeLessThanOrEqual(SITEMAP_URL_LIMIT);
     }
+  });
+
+  it("renderSitemapFiles produces an index plus one file per chunk", () => {
+    const files = renderSitemapFiles(productionInput(), FIXED_DAY);
+    const names = files.map(f => f.filename);
+    // Always starts with the index.
+    expect(names[0]).toBe("sitemap.xml");
+    // Every expected section file is present.
+    const expected = ["sitemap-static.xml", "sitemap-wallets.xml",
+      "sitemap-exchanges.xml", "sitemap-compare.xml",
+      "sitemap-best-for.xml", "sitemap-blog.xml"];
+    for (const e of expected) expect(names).toContain(e);
+    // No duplicate filenames.
+    expect(new Set(names).size).toBe(names.length);
+    // Index references every child file by URL.
+    const indexXml = files[0].xml;
+    for (const name of names.slice(1)) {
+      expect(indexXml).toContain(`${SITEMAP_BASE_URL}/${name}`);
+    }
+    // A child file contains a known URL (homepage in static, first wallet
+    // in wallets), proving the rendered XML reflects current content.
+    const staticFile = files.find(f => f.filename === "sitemap-static.xml")!;
+    expect(staticFile.xml).toContain(`${SITEMAP_BASE_URL}/</loc>`);
+    const walletsFile = files.find(f => f.filename === "sitemap-wallets.xml")!;
+    const firstWallet = Object.keys(walletCards)[0];
+    expect(walletsFile.xml).toContain(`/wallet/${firstWallet}</loc>`);
   });
 
   it("references every chunk from the sitemap index", () => {

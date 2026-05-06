@@ -226,6 +226,28 @@ ${entries.map(p => sitemapHreflangMap.map(({ lang }) => renderSitemapUrl(p, lang
 </urlset>`;
 }
 
+// Render the full set of sitemap files (index + every chunk) as
+// { filename, xml } pairs. Used by both the build-time writer (so the
+// static Bluehost deploy ships fresh sitemaps) and tests, so the same
+// rendering pipeline is exercised from both sides.
+export function renderSitemapFiles(
+  input: SitemapInput,
+  today?: string,
+): Array<{ filename: string; xml: string }> {
+  const day = today ?? new Date().toISOString().slice(0, 10);
+  const chunks = buildSitemapSections(input).flatMap(chunkSection);
+  const files: Array<{ filename: string; xml: string }> = [
+    { filename: "sitemap.xml", xml: renderSitemapIndexXml(chunks, day) },
+  ];
+  for (const chunk of chunks) {
+    files.push({
+      filename: `sitemap-${chunk.id}.xml`,
+      xml: renderSitemapChunkXml(chunk.entries, day),
+    });
+  }
+  return files;
+}
+
 export function renderSitemapIndexXml(chunks: SitemapSection[], today?: string): string {
   const day = today ?? new Date().toISOString().slice(0, 10);
   const entries = chunks
