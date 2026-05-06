@@ -113,6 +113,12 @@ export const seoTranslations: Record<Language, SeoBundle> = {
         description:
           "Trezor Safe 3 para XRP 2026 — cartera hardware open source con elemento seguro. Soporte XRP, comisiones, seguridad y comparativa con Ledger Nano X dentro.",
       },
+      "trezor-safe-5": {
+        title:
+          "Reseña de Trezor Safe 5 2026 | Cartera hardware premium con pantalla táctil para XRP",
+        description:
+          "Trezor Safe 5 para XRP 2026 — hardware premium open source con pantalla táctil a color y elemento seguro EAL6+. Veredicto y comparativa con Ledger Nano X.",
+      },
       ellipal: {
         title: "Reseña de ELLIPAL Titan 2026 | Almacenamiento en frío air-gapped para XRP",
         description:
@@ -184,6 +190,12 @@ export const seoTranslations: Record<Language, SeoBundle> = {
         title: "Trezor Safe 3 评测 2026 | 面向 XRP 的开源硬件钱包",
         description:
           "2026 年 Trezor Safe 3 评测——带安全芯片的开源硬件钱包。XRP 支持、费用、安全模型与 Ledger Nano X 对比尽在文中。",
+      },
+      "trezor-safe-5": {
+        title:
+          "Trezor Safe 5 评测 2026 | 面向 XRP 的高端触屏硬件钱包",
+        description:
+          "2026 年 Trezor Safe 5 评测。带彩色触摸屏与 EAL6+ 安全芯片的高端开源 XRP 硬件钱包。结论与 Ledger Nano X 对比尽在文中。",
       },
       ellipal: {
         title: "ELLIPAL Titan 评测 2026 | XRP 完全离线冷存储",
@@ -257,6 +269,12 @@ export const seoTranslations: Record<Language, SeoBundle> = {
         description:
           "2026年版 Trezor Safe 3 レビュー — セキュアエレメント搭載のオープンソース・ハードウェアウォレット。XRP対応、手数料、セキュリティ、Ledger Nano X比較を本文で。",
       },
+      "trezor-safe-5": {
+        title:
+          "Trezor Safe 5 レビュー 2026 | XRP向けプレミアム・タッチスクリーン・ハードウェアウォレット",
+        description:
+          "2026年版 Trezor Safe 5 XRPレビュー — カラータッチスクリーンとEAL6+セキュアエレメントを備えたプレミアムなオープンソース・ハードウェアウォレット。Ledger Nano X比較を本文で。",
+      },
       ellipal: {
         title: "ELLIPAL Titan レビュー 2026 | 完全エアギャップのXRPコールドストレージ",
         description:
@@ -328,6 +346,12 @@ export const seoTranslations: Record<Language, SeoBundle> = {
         title: "Trezor Safe 3 리뷰 2026 | XRP를 위한 오픈소스 하드웨어 지갑",
         description:
           "2026년 Trezor Safe 3 리뷰 — 시큐어 엘리먼트 탑재 오픈소스 하드웨어 지갑. XRP 지원, 수수료, 보안 모델, Ledger Nano X 비교까지 본문 공개.",
+      },
+      "trezor-safe-5": {
+        title:
+          "Trezor Safe 5 리뷰 2026 | XRP를 위한 프리미엄 터치스크린 하드웨어 지갑",
+        description:
+          "2026년 XRP용 Trezor Safe 5 리뷰 — 컬러 터치스크린과 EAL6+ 시큐어 엘리먼트를 갖춘 프리미엄 오픈소스 하드웨어 지갑. Ledger Nano X 비교까지 본문 공개.",
       },
       ellipal: {
         title: "ELLIPAL Titan 리뷰 2026 | XRP를 위한 완전 에어갭 콜드 스토리지",
@@ -401,6 +425,12 @@ export const seoTranslations: Record<Language, SeoBundle> = {
         description:
           "Trezor Safe 3 para XRP 2026 — carteira hardware open source com secure element. Suporte XRP, taxas, segurança e comparação com Ledger Nano X dentro.",
       },
+      "trezor-safe-5": {
+        title:
+          "Análise da Trezor Safe 5 2026 | Carteira hardware premium com tela touch para XRP",
+        description:
+          "Trezor Safe 5 para XRP 2026 — hardware premium open source com tela touch colorida e secure element EAL6+. Veredicto e comparação com Ledger Nano X.",
+      },
       ellipal: {
         title: "Análise da ELLIPAL Titan 2026 | Cold storage 100% air-gapped para XRP",
         description:
@@ -473,6 +503,12 @@ export const seoTranslations: Record<Language, SeoBundle> = {
         description:
           "Trezor Safe 3 für XRP 2026 — Open-Source-Hardware-Wallet mit Secure Element. XRP-Support, Gebühren, Sicherheitsmodell und Ledger-Nano-X-Vergleich inklusive.",
       },
+      "trezor-safe-5": {
+        title:
+          "Trezor Safe 5 Test 2026 | Premium-Hardware-Wallet mit Touchscreen für XRP",
+        description:
+          "Trezor Safe 5 für XRP 2026 — Premium-Open-Source-Hardware-Wallet mit Farb-Touchscreen und EAL6+ Secure Element. Fazit und Ledger-Nano-X-Vergleich inklusive.",
+      },
       ellipal: {
         title: "ELLIPAL Titan Test 2026 | Komplett air-gapped Cold-Storage für XRP",
         description:
@@ -544,6 +580,12 @@ export const seoTranslations: Record<Language, SeoBundle> = {
         title: "Test Trezor Safe 3 2026 | Portefeuille hardware open source pour XRP",
         description:
           "Trezor Safe 3 pour XRP 2026 — portefeuille hardware open source avec secure element. Support XRP, frais, sécurité et comparaison Ledger Nano X inclus.",
+      },
+      "trezor-safe-5": {
+        title:
+          "Test Trezor Safe 5 2026 | Portefeuille hardware premium à écran tactile pour XRP",
+        description:
+          "Trezor Safe 5 pour XRP 2026 — hardware premium open source avec écran tactile couleur et secure element EAL6+. Verdict et comparaison Ledger Nano X inclus.",
       },
       ellipal: {
         title: "Test ELLIPAL Titan 2026 | Cold storage 100 % air-gapped pour XRP",
