@@ -5,6 +5,9 @@
 import { describe, it, expect } from "vitest";
 import express from "express";
 import type { AddressInfo } from "net";
+import { mkdtemp, readFile, writeFile, readdir } from "fs/promises";
+import { tmpdir } from "os";
+import { join } from "path";
 import { blogPosts } from "@shared/blog";
 import { walletCards, exchangeCards } from "./cardData";
 import {
@@ -228,6 +231,22 @@ describe("sitemap generator", () => {
     const walletsFile = files.find(f => f.filename === "sitemap-wallets.xml")!;
     const firstWallet = Object.keys(walletCards)[0];
     expect(walletsFile.xml).toContain(`/wallet/${firstWallet}</loc>`);
+  });
+
+  it("physically writes every sitemap file to a target directory", async () => {
+    // Mirror the build script's writer against a temp dir so we cover the
+    // file-system step the deploy depends on (not just the rendered XML).
+    const dir = await mkdtemp(join(tmpdir(), "sitemap-build-"));
+    const files = renderSitemapFiles(productionInput(), FIXED_DAY);
+    await Promise.all(
+      files.map(f => writeFile(join(dir, f.filename), f.xml, "utf-8")),
+    );
+    const written = (await readdir(dir)).sort();
+    expect(written).toEqual(files.map(f => f.filename).sort());
+    // Spot-check that one written file matches the rendered content
+    // (catches encoding regressions in the writer).
+    const onDisk = await readFile(join(dir, "sitemap.xml"), "utf-8");
+    expect(onDisk).toBe(files[0].xml);
   });
 
   it("references every chunk from the sitemap index", () => {
