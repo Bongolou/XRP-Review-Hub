@@ -167,14 +167,14 @@ const homepageCompareRowsRaw: HomepageCompareRowRaw[] = [
     affiliateUrl: "https://tangem.com/en/?promocode=ALLTHINGSXRPL",
   },
   {
-    id: "trezor",
+    id: "trezor-safe-5",
     name: "Trezor Safe 5",
     typeKey: "home.compare.type.hardware",
     price: "$169",
     bestForKey: "home.compare.bestFor.openSource",
-    rating: "9.3",
-    reviewSlug: "trezor",
-    affiliateUrl: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
+    rating: "9.5",
+    reviewSlug: "trezor-safe-5",
+    affiliateUrl: "https://affil.trezor.io/aff_c?offer_id=235&aff_id=36959",
   },
   {
     id: "ellipal",
@@ -310,6 +310,19 @@ const walletsData = [
     blurbKey: "wallet.blurb.trezor",
     popular: false,
     link: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
+    logo: trezorLogo
+  },
+  {
+    id: 10,
+    name: "Trezor Safe 5",
+    slug: "trezor-safe-5",
+    typeKey: "wallet.type.hardware",
+    rating: 9.5,
+    fees: "$169",
+    featureKeys: ["wallet.feature.openSource", "wallet.feature.secureElement", "wallet.feature.highSecurity", "wallet.feature.trusted"],
+    blurbKey: "wallet.blurb.trezor-safe-5",
+    popular: false,
+    link: "https://affil.trezor.io/aff_c?offer_id=235&aff_id=36959",
     logo: trezorLogo
   }
 ];

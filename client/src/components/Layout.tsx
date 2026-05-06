@@ -160,7 +160,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li><Link href="/wallet/tangem" className="hover:text-primary transition-colors inline-block py-1">Tangem {t("common.review")}</Link></li>
                 <li><Link href="/wallet/ledger" className="hover:text-primary transition-colors inline-block py-1">Ledger {t("common.review")}</Link></li>
                 <li><Link href="/wallet/bifrost" className="hover:text-primary transition-colors inline-block py-1">Bifrost {t("common.review")}</Link></li>
-                <li><Link href="/wallet/trezor" className="hover:text-primary transition-colors inline-block py-1">Trezor {t("common.review")}</Link></li>
+                <li><Link href="/wallet/trezor" className="hover:text-primary transition-colors inline-block py-1">Trezor Safe 3 {t("common.review")}</Link></li>
+                <li><Link href="/wallet/trezor-safe-5" className="hover:text-primary transition-colors inline-block py-1">Trezor Safe 5 {t("common.review")}</Link></li>
                 <li><Link href="/wallet-quiz" className="hover:text-primary transition-colors inline-block py-1">{t("footer.walletQuiz")}</Link></li>
                 <li><ScrollToSection id="wallets" className="hover:text-primary transition-colors font-medium text-primary cursor-pointer inline-block py-1">{t("footer.viewAllWallets")} →</ScrollToSection></li>
               </ul>

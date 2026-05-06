@@ -36,6 +36,11 @@ export const seoTranslations: Record<Language, SeoBundle> = {
         description:
           "Trezor Safe 3 review for 2026. Open-source hardware wallet with secure element — XRP support, fees, security model and head-to-head with Ledger Nano X.",
       },
+      "trezor-safe-5": {
+        title: "Trezor Safe 5 Review 2026 | Premium Touchscreen Hardware Wallet for XRP",
+        description:
+          "Trezor Safe 5 review for 2026. Premium open-source hardware wallet with color touchscreen and EAL6+ secure element — XRP support, security model and how it compares to Ledger Nano X.",
+      },
       ellipal: {
         title: "ELLIPAL Titan Review 2026 | Air-Gapped Cold Storage for XRP",
         description:

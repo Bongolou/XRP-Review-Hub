@@ -70,6 +70,12 @@ export const walletCards: Record<string, CardEntry> = {
     rating: "9.2",
     screenshot: walletScreenshots.trezor,
   },
+  "trezor-safe-5": {
+    name: "Trezor Safe 5",
+    tagline: "Premium color-touchscreen hardware wallet for XRP",
+    rating: "9.5",
+    screenshot: walletScreenshots.trezor,
+  },
 };
 
 export const exchangeCards: Record<string, CardEntry> = {

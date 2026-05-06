@@ -105,6 +105,7 @@ const WALLET_BEST_FOR_MAP: Record<string, { slug: string; labelKey: string; desc
   ledger: { slug: "hardware", labelKey: "walletReview.bestFor.hardware.label", descKey: "walletReview.bestFor.hardware.desc.ledger" },
   tangem: { slug: "hardware", labelKey: "walletReview.bestFor.hardware.label", descKey: "walletReview.bestFor.hardware.desc.tangem" },
   trezor: { slug: "hardware", labelKey: "walletReview.bestFor.hardware.label", descKey: "walletReview.bestFor.hardware.desc.trezor" },
+  "trezor-safe-5": { slug: "hardware", labelKey: "walletReview.bestFor.hardware.label", descKey: "walletReview.bestFor.hardware.desc.trezor-safe-5" },
   ellipal: { slug: "cold-storage", labelKey: "walletReview.bestFor.coldStorage.label", descKey: "walletReview.bestFor.coldStorage.desc" },
   crossmark: { slug: "defi", labelKey: "walletReview.bestFor.defi.label", descKey: "walletReview.bestFor.defi.desc.crossmark" },
   bifrost: { slug: "defi", labelKey: "walletReview.bestFor.defi.label", descKey: "walletReview.bestFor.defi.desc.bifrost" },
@@ -128,6 +129,10 @@ const WALLET_LINK_MAP: Record<string, { alternatives: string[]; comparisons: str
   trezor: {
     alternatives: ["ledger", "ellipal"],
     comparisons: ["trezor-vs-ledger", "trezor-vs-tangem", "ellipal-vs-trezor"],
+  },
+  "trezor-safe-5": {
+    alternatives: ["ledger", "tangem", "trezor"],
+    comparisons: ["trezor-vs-ledger", "trezor-vs-tangem"],
   },
   ellipal: {
     alternatives: ["ledger", "trezor"],
@@ -180,6 +185,7 @@ const logoMap: Record<string, string> = {
   trustwallet: trustwalletLogo,
   ellipal: ellipalLogo,
   trezor: trezorLogo,
+  "trezor-safe-5": trezorLogo,
   tangem: tangemLogo,
 };
 
@@ -865,6 +871,80 @@ const walletData: Record<string, {
         ]
       }
     ]
+  },
+  "trezor-safe-5": {
+    name: "Trezor Safe 5",
+    taglineKey: "walletDetail.trezor-safe-5.tagline",
+    rating: 4.8,
+    typeKey: "wallet.type.hardware",
+    price: "$169",
+    platforms: ["Windows", "macOS", "Linux", "Android"],
+    website: "trezor.io",
+    affiliateLink: "https://affil.trezor.io/aff_c?offer_id=235&aff_id=36959",
+    descriptionKey: "walletDetail.trezor-safe-5.description",
+    featureKeys: [
+      "walletDetail.trezor-safe-5.feature1",
+      "walletDetail.trezor-safe-5.feature2",
+      "walletDetail.trezor-safe-5.feature3",
+      "walletDetail.trezor-safe-5.feature4",
+      "walletDetail.trezor-safe-5.feature5",
+      "walletDetail.trezor-safe-5.feature6",
+      "walletDetail.trezor-safe-5.feature7",
+      "walletDetail.trezor-safe-5.feature8"
+    ],
+    proKeys: [
+      "walletDetail.trezor-safe-5.pro1",
+      "walletDetail.trezor-safe-5.pro2",
+      "walletDetail.trezor-safe-5.pro3",
+      "walletDetail.trezor-safe-5.pro4",
+      "walletDetail.trezor-safe-5.pro5",
+      "walletDetail.trezor-safe-5.pro6"
+    ],
+    conKeys: [
+      "walletDetail.trezor-safe-5.con1",
+      "walletDetail.trezor-safe-5.con2",
+      "walletDetail.trezor-safe-5.con3",
+      "walletDetail.trezor-safe-5.con4"
+    ],
+    bestForKey: "walletDetail.trezor-safe-5.bestFor",
+    securityFeatureKeys: [
+      "walletDetail.trezor-safe-5.security1",
+      "walletDetail.trezor-safe-5.security2",
+      "walletDetail.trezor-safe-5.security3",
+      "walletDetail.trezor-safe-5.security4",
+      "walletDetail.trezor-safe-5.security5",
+      "walletDetail.trezor-safe-5.security6"
+    ],
+    review: [
+      {
+        heading: "Overview and First Impressions",
+        paragraphs: [
+          "The Trezor Safe 5 is SatoshiLabs' flagship hardware wallet — a premium, color-touchscreen device that builds on more than a decade of Trezor engineering. Where the Safe 3 prioritises affordability and simplicity, the Safe 5 is designed for long-term holders who want a polished, modern experience without giving up the open-source guarantees that made the Trezor brand. It is the most refined Trezor device ever shipped, and it is squarely positioned as a competitor to Ledger's premium line.",
+          "Out of the box, the Safe 5 feels noticeably more substantial than the Safe 3. The 1.54-inch color touchscreen is bright and responsive, the haptic feedback is subtle but pleasant, and the rounded magnetic backing snaps cleanly into the included dock. There are no buttons — every interaction happens on the screen — which makes confirming XRP transactions, entering your PIN, and navigating the menus feel closer to using a small smartphone than a traditional hardware wallet."
+        ]
+      },
+      {
+        heading: "User Experience and Trezor Suite",
+        paragraphs: [
+          "Setup is the smoothest of any Trezor device to date. You plug the Safe 5 into your computer over USB-C, open Trezor Suite (or the web app), follow the on-screen wizard, and write down your 12, 20, or 24-word recovery seed. The color screen pays off immediately during setup: addresses are easier to verify, the keyboard for entering your passphrase is laid out comfortably, and warnings stand out clearly. The whole process typically takes under ten minutes, and Trezor Suite handles firmware updates without ever exposing your seed.",
+          "Day-to-day, the Safe 5 acts as a cold-storage signer for XRP via Trezor Suite. You can send and receive XRP, view your balance and transaction history, and confirm every transfer on the device's touchscreen before signing. Trezor still does not natively expose XRPL DEX trading, trustlines, or NFTs in Suite — those remain the domain of XRPL-native wallets — so most XRP holders pair the Safe 5 with Xaman or Crossmark for ecosystem features and use the Safe 5 itself as the secure vault for the bulk of their holdings."
+        ]
+      },
+      {
+        heading: "Security Architecture",
+        paragraphs: [
+          "Under the hood the Safe 5 uses a CC EAL6+ certified secure element (Optiga Trust M11) paired with Trezor's open-source firmware. The combination is significant: the secure element protects your seed against physical extraction attacks that targeted earlier Trezor models, while the open-source firmware preserves the auditability and transparency that long-time Trezor users rely on. Every transaction is signed inside the secure element after you confirm the on-screen details with a deliberate touch-and-hold, so malware on your phone or laptop cannot silently move your XRP.",
+          "The Safe 5 supports PIN protection with a randomized on-device keypad, optional passphrases (the so-called 25th word) for plausible deniability, and Shamir Backup (SLIP-39) for splitting your seed into multiple shares. Firmware updates are signed and verified on-device, and Trezor publishes a detailed security policy plus the full source for both the firmware and Suite. For high-net-worth XRP holders who want certified hardware security without giving up the right to inspect the code, this is one of the strongest combinations on the market."
+        ]
+      },
+      {
+        heading: "Who Should Use Trezor Safe 5",
+        paragraphs: [
+          "The Trezor Safe 5 is the right pick for XRP holders who want a premium, modern cold-storage device and who value open-source verifiability as much as certified hardware security. At $169 it sits at the same price point as the Ledger Nano X and the ELLIPAL Titan, and its color touchscreen, EAL6+ secure element, and Shamir Backup support make it competitive on every spec that matters for long-term storage. If you already trust the Trezor brand but found the Safe 3's monochrome screen and single button limiting, the Safe 5 is the obvious upgrade.",
+          "Where the Safe 5 is less compelling is for users who primarily want a single device to drive day-to-day XRPL activity. There is no Bluetooth, no on-device DEX, and no native NFT browser — just like every other multi-chain hardware wallet. The intended workflow is to pair the Safe 5 with a software XRPL wallet such as Xaman or Crossmark, signing transactions on the Safe 5 while doing the discovery, trading, and dApp work on your phone or browser. Treated that way, it is one of the most polished cold-storage signers a serious XRP holder can buy."
+        ]
+      }
+    ]
   }
 };
 
@@ -1186,7 +1266,40 @@ export default function WalletReview() {
           </div>
         )}
 
-        {wallet.review && wallet.review.length > 0 && <BannerAd variant="inline" />}
+        {wallet.review && wallet.review.length > 0 && slug !== "trezor-safe-5" && <BannerAd variant="inline" />}
+
+        {slug === "trezor-safe-5" && (
+          <>
+            <div className="my-8 flex flex-col items-center" data-testid="banner-ad-trezor-safe-5">
+              <div className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Sponsored</div>
+              <a
+                href="https://affil.trezor.io/aff_c?offer_id=235&aff_id=36959"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="block rounded-lg overflow-hidden border border-white/10 hover:border-primary/50 transition-colors"
+                style={{ width: 300, height: 250 }}
+                data-testid="banner-ad-trezor-safe-5-link"
+              >
+                <img
+                  src="https://media.go2speed.org/brand/files/trezor/235/Affiliate_Banner_TS5_v2_300x250.png"
+                  alt="Trezor Safe 5"
+                  width={300}
+                  height={250}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: 300, height: 250 }}
+                />
+              </a>
+            </div>
+            <img
+              src="https://affil.trezor.io/aff_i?offer_id=235&aff_id=36959"
+              width={0}
+              height={0}
+              style={{ position: "absolute", visibility: "hidden" }}
+              alt=""
+            />
+          </>
+        )}
 
         {/* Alternatives — strong contextual internal linking */}
         {(() => {
