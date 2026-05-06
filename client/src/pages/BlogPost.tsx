@@ -164,7 +164,7 @@ export default function BlogPost() {
               {(() => {
                 const html = post.content;
                 const paragraphCount = (html.match(/<p[\s>]/gi) || []).length;
-                if (paragraphCount >= 4) {
+                if (paragraphCount >= 2) {
                   const parts = html.split(/<\/p>/i);
                   const mid = Math.ceil(paragraphCount / 2);
                   const firstHalf = parts.slice(0, mid).join("</p>") + "</p>";
@@ -184,10 +184,13 @@ export default function BlogPost() {
                   );
                 }
                 return (
-                  <div
-                    className="article-content"
-                    dangerouslySetInnerHTML={{ __html: html }}
-                  />
+                  <>
+                    <div
+                      className="article-content"
+                      dangerouslySetInnerHTML={{ __html: html }}
+                    />
+                    <BannerAd variant="inline" />
+                  </>
                 );
               })()}
 

@@ -1170,24 +1170,29 @@ export default function WalletReview() {
           );
         })()}
 
-        {wallet.review && wallet.review.length > 0 && (
-          <>
+        {wallet.review && wallet.review.length > 0 && (() => {
+          const midIdx = Math.max(1, Math.floor(wallet.review.length / 2));
+          return (
             <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 mb-8" data-testid={`section-review-${slug}`}>
               <h2 className="text-2xl font-bold font-display mb-10">{t("walletReview.inDepthReview")}</h2>
               {wallet.review.map((section, idx) => (
-                <div key={idx} className="mb-10 last:mb-0">
-                  <h3 className="text-xl font-bold font-display mb-5 text-primary">{t(`walletDetail.${slug}.review.s${idx}.h`)}</h3>
-                  {section.paragraphs.map((_paragraph, pIdx) => (
-                    <p key={pIdx} className="text-muted-foreground leading-relaxed mb-4 last:mb-0">
-                      {t(`walletDetail.${slug}.review.s${idx}.p${pIdx}`)}
-                    </p>
-                  ))}
-                </div>
+                <Fragment key={idx}>
+                  <div className="mb-10 last:mb-0">
+                    <h3 className="text-xl font-bold font-display mb-5 text-primary">{t(`walletDetail.${slug}.review.s${idx}.h`)}</h3>
+                    {section.paragraphs.map((_paragraph, pIdx) => (
+                      <p key={pIdx} className="text-muted-foreground leading-relaxed mb-4 last:mb-0">
+                        {t(`walletDetail.${slug}.review.s${idx}.p${pIdx}`)}
+                      </p>
+                    ))}
+                  </div>
+                  {idx === midIdx - 1 && idx < wallet.review!.length - 1 && (
+                    <BannerAd variant="inline" />
+                  )}
+                </Fragment>
               ))}
             </div>
-            {slug !== "ledger" && <BannerAd variant="inline" />}
-          </>
-        )}
+          );
+        })()}
 
         {/* Alternatives — strong contextual internal linking */}
         {(() => {

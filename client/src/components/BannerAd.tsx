@@ -68,8 +68,8 @@ export function BannerAd({
           target="_blank"
           rel="noopener noreferrer sponsored"
           onClick={handleClick}
-          className="block rounded-lg overflow-hidden border border-white/10 hover:border-primary/50 transition-colors w-full max-w-[300px]"
-          style={{ aspectRatio: "6 / 5" }}
+          className="block rounded-lg overflow-hidden border border-white/10 hover:border-primary/50 transition-colors"
+          style={{ width: "300px", height: "250px" }}
           data-testid={`banner-ad-${variant}-link`}
         >
           <img
@@ -79,7 +79,8 @@ export function BannerAd({
             height={250}
             loading="lazy"
             decoding="async"
-            className="block w-full h-full"
+            className="block"
+            style={{ width: "300px", height: "250px" }}
           />
         </a>
       </div>
