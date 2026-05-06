@@ -1,29 +1,20 @@
 import { walletCards, exchangeCards } from "../server/cardData";
-import { compareSlugs, bestForSlugs } from "../server/sitemap";
+import {
+  compareSlugs,
+  bestForSlugs,
+  staticPagePaths,
+} from "../server/sitemap";
 import { blogPosts } from "../shared/blog";
 
-// The list of static (non-parameterized) routes the SPA serves. Kept in
-// sync with `staticPages` in server/sitemap.ts and the <Route> table in
-// client/src/App.tsx. `/news` and `/wallet-quiz` are included because
-// they still benefit from prerendered shell + meta even though their
-// dynamic content (RSS feed, quiz state) only fills in client-side.
-// `/admin/reviews` is intentionally excluded — it should not be indexed.
-export const PRERENDER_STATIC_ROUTES: string[] = [
-  "/",
-  "/best-xrp-wallets",
-  "/getting-started",
-  "/wallet-quiz",
-  "/blog",
-  "/news",
-  "/dapps",
-  "/yield",
-  "/faq",
-  "/about",
-  "/contact",
-  "/disclosure",
-  "/privacy",
-  "/terms",
-];
+// The list of static (non-parameterized) routes the SPA serves. Imported
+// directly from server/sitemap.ts so the sitemap and the prerenderer
+// share a single source of truth — adding a new static page only
+// requires editing `staticPagePaths`. `/admin/reviews` is intentionally
+// absent from `staticPagePaths` (must not be indexed); `/news` and
+// `/wallet-quiz` are included because they still benefit from a
+// prerendered shell + meta even though their dynamic content fills in
+// client-side.
+export const PRERENDER_STATIC_ROUTES: ReadonlyArray<string> = staticPagePaths;
 
 // Build the full list of routes to prerender from the same source data the
 // sitemap uses, so a new wallet/exchange/comparison/blog post automatically

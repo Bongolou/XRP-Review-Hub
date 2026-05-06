@@ -34,6 +34,47 @@ export const bestForSlugs: string[] = [
   "beginners", "hardware", "cold-storage", "defi", "safest",
 ];
 
+// Single source of truth for the static (non-parameterized) public pages
+// the SPA exposes. Both the sitemap and the build-time prerenderer
+// import this list, so adding a new static page only requires editing
+// one place. `/admin/reviews` is intentionally absent — admin routes
+// must not be indexed.
+export const staticPagePaths: ReadonlyArray<string> = [
+  "/",
+  "/best-xrp-wallets",
+  "/getting-started",
+  "/wallet-quiz",
+  "/blog",
+  "/news",
+  "/dapps",
+  "/yield",
+  "/faq",
+  "/about",
+  "/contact",
+  "/disclosure",
+  "/privacy",
+  "/terms",
+];
+
+// Per-page sitemap metadata, keyed by the path in `staticPagePaths`.
+// Kept alongside the path list so it stays trivially in sync.
+const staticPageMetadata: Record<string, { priority: string; changefreq: string }> = {
+  "/": { priority: "1.0", changefreq: "daily" },
+  "/best-xrp-wallets": { priority: "0.9", changefreq: "weekly" },
+  "/getting-started": { priority: "0.9", changefreq: "weekly" },
+  "/wallet-quiz": { priority: "0.9", changefreq: "weekly" },
+  "/blog": { priority: "0.8", changefreq: "daily" },
+  "/news": { priority: "0.8", changefreq: "hourly" },
+  "/dapps": { priority: "0.7", changefreq: "weekly" },
+  "/yield": { priority: "0.7", changefreq: "weekly" },
+  "/faq": { priority: "0.7", changefreq: "weekly" },
+  "/about": { priority: "0.5", changefreq: "monthly" },
+  "/contact": { priority: "0.5", changefreq: "monthly" },
+  "/disclosure": { priority: "0.3", changefreq: "yearly" },
+  "/privacy": { priority: "0.3", changefreq: "yearly" },
+  "/terms": { priority: "0.3", changefreq: "yearly" },
+};
+
 export type SitemapEntry = {
   url: string;
   priority: string;
@@ -77,22 +118,10 @@ const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 export function buildSitemapSections(input: SitemapInput): SitemapSection[] {
   const { walletSlugs, exchangeSlugs, compareSlugs, bestForSlugs, blogPosts } = input;
 
-  const staticPages: SitemapEntry[] = [
-    { url: "/", priority: "1.0", changefreq: "daily" },
-    { url: "/best-xrp-wallets", priority: "0.9", changefreq: "weekly" },
-    { url: "/getting-started", priority: "0.9", changefreq: "weekly" },
-    { url: "/wallet-quiz", priority: "0.9", changefreq: "weekly" },
-    { url: "/blog", priority: "0.8", changefreq: "daily" },
-    { url: "/news", priority: "0.8", changefreq: "hourly" },
-    { url: "/dapps", priority: "0.7", changefreq: "weekly" },
-    { url: "/yield", priority: "0.7", changefreq: "weekly" },
-    { url: "/faq", priority: "0.7", changefreq: "weekly" },
-    { url: "/about", priority: "0.5", changefreq: "monthly" },
-    { url: "/contact", priority: "0.5", changefreq: "monthly" },
-    { url: "/disclosure", priority: "0.3", changefreq: "yearly" },
-    { url: "/privacy", priority: "0.3", changefreq: "yearly" },
-    { url: "/terms", priority: "0.3", changefreq: "yearly" },
-  ];
+  const staticPages: SitemapEntry[] = staticPagePaths.map((url) => ({
+    url,
+    ...staticPageMetadata[url],
+  }));
 
   const walletPages: SitemapEntry[] = walletSlugs.map(slug => ({
     url: `/wallet/${slug}`, priority: "0.8", changefreq: "weekly",
