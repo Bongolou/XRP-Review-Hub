@@ -9,6 +9,7 @@
 // navigator, useDocumentMeta DOM mutations) all behave exactly like they
 // do in production. Trying to renderToString from Node would land us in
 // dependency hell.
+import { spawnSync } from "child_process";
 import { createServer, type Server } from "http";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import { dirname, join, resolve } from "path";
@@ -36,19 +37,26 @@ const PROD_ORIGIN =
 //      chromium` provisions both the binary and its system deps)
 function resolveChromiumPath(): string | undefined {
   const envPath = process.env.PLAYWRIGHT_CHROMIUM_PATH;
-  if (envPath && envPath.trim()) return envPath.trim();
+  if (envPath && envPath.trim()) {
+    console.log(`  chromium: using PLAYWRIGHT_CHROMIUM_PATH=${envPath.trim()}`);
+    return envPath.trim();
+  }
+  // `which` exits 0 and prints the absolute path if found, non-zero
+  // otherwise. Use spawnSync to avoid pulling in shell semantics. ESM-
+  // safe: spawnSync is imported at module top.
   try {
-    // `which` exits 0 and prints the absolute path if found, non-zero
-    // otherwise. Use spawnSync to avoid pulling in shell semantics.
-    const { spawnSync } = require("child_process") as typeof import("child_process");
     const r = spawnSync("which", ["chromium"], { encoding: "utf-8" });
     if (r.status === 0) {
       const found = r.stdout.trim();
-      if (found) return found;
+      if (found) {
+        console.log(`  chromium: detected on PATH at ${found}`);
+        return found;
+      }
     }
   } catch {
     // ignore — fall through to bundled
   }
+  console.log("  chromium: falling back to Playwright's bundled binary");
   return undefined;
 }
 
