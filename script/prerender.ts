@@ -198,8 +198,10 @@ async function snapshotRoute(
   }
 }
 
-export async function prerenderAll(distPublicDir: string): Promise<string[]> {
-  const routes = enumeratePrerenderRoutes();
+export async function prerenderAll(
+  distPublicDir: string,
+  routes: string[] = enumeratePrerenderRoutes(),
+): Promise<string[]> {
   const shellHtml = await readFile(join(distPublicDir, "index.html"), "utf-8");
   const { server, port } = await startStaticServer(distPublicDir, shellHtml);
   const baseUrl = `http://127.0.0.1:${port}`;
