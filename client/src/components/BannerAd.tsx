@@ -69,7 +69,7 @@ export function BannerAd({
           rel="noopener noreferrer sponsored"
           onClick={handleClick}
           className="block rounded-lg overflow-hidden border border-white/10 hover:border-primary/50 transition-colors"
-          style={{ width: "300px", height: "250px" }}
+          style={{ width: "min(300px, 100%)", aspectRatio: "6 / 5" }}
           data-testid={`banner-ad-${variant}-link`}
         >
           <img
@@ -80,7 +80,7 @@ export function BannerAd({
             loading="lazy"
             decoding="async"
             className="block"
-            style={{ width: "300px", height: "250px" }}
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
           />
         </a>
       </div>
