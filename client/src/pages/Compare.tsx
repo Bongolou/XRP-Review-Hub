@@ -370,7 +370,7 @@ const comparisons: Record<string, ComparisonData> = {
       slug: "trezor",
       type: "Hardware",
       price: "$79",
-      link: "https://trezor.io/?ref=allthingsxrpl"
+      link: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959"
     },
     wallet2: {
       name: "Ledger Nano X",
@@ -683,7 +683,7 @@ const comparisons: Record<string, ComparisonData> = {
     bottomLine: "Are you an XRP enthusiast who wants full access to everything the XRP Ledger offers? Xaman is your wallet. Do you hold XRP alongside Bitcoin, Ethereum, and other assets? Trust Wallet's multi-chain convenience makes more sense. The best choice depends on whether XRP is your focus or just part of a larger portfolio."
   },
   "trezor-vs-tangem": {
-    wallet1: { name: "Trezor Safe 3", slug: "trezor", type: "Hardware", price: "$79", link: "https://trezor.io/?ref=allthingsxrpl" },
+    wallet1: { name: "Trezor Safe 3", slug: "trezor", type: "Hardware", price: "$79", link: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959" },
     wallet2: { name: "Tangem", slug: "tangem", type: "Hardware (NFC card)", price: "$54.90", link: "https://tangem.com/en/?ref=allthingsxrpl" },
     metaDescription: "Trezor Safe 3 vs Tangem for XRP cold storage: open-source recovery seed vs seedless NFC tap-to-sign cards.",
     introduction: "Trezor and Tangem represent two very different philosophies of hardware security. Trezor is the classic seed-phrase, USB-connected device backed by open-source firmware. Tangem skips the seed phrase entirely with an NFC card you tap against your phone to sign transactions. Both are excellent for XRP cold storage — the right pick depends on whether you trust paper backups or prefer ditching them entirely.",
@@ -717,7 +717,7 @@ const comparisons: Record<string, ComparisonData> = {
   },
   "ellipal-vs-trezor": {
     wallet1: { name: "ELLIPAL Titan", slug: "ellipal", type: "Hardware (air-gapped)", price: "$169", link: "https://www.ellipal.com/?ref=allthingsxrpl" },
-    wallet2: { name: "Trezor Safe 3", slug: "trezor", type: "Hardware (USB)", price: "$79", link: "https://trezor.io/?ref=allthingsxrpl" },
+    wallet2: { name: "Trezor Safe 3", slug: "trezor", type: "Hardware (USB)", price: "$79", link: "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959" },
     metaDescription: "ELLIPAL Titan vs Trezor Safe 3: 100% air-gapped QR signing vs open-source USB hardware wallet for XRP cold storage.",
     introduction: "ELLIPAL Titan and Trezor Safe 3 both protect your XRP with a dedicated secure element, but they take opposite approaches to connectivity. ELLIPAL is fully air-gapped — no USB, no Bluetooth, no Wi-Fi — and signs every transaction by scanning QR codes between the device and your phone. Trezor uses a tried-and-true USB connection with open-source firmware that has been audited for over a decade.",
     winner: "ELLIPAL Titan",
