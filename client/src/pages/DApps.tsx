@@ -31,6 +31,7 @@ import {
 } from "@/components/conversion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
+import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 import { buildPageOgImage } from "@/lib/ogImage";
 
 type TopPick = {
@@ -313,12 +314,13 @@ const categoryKeys = [
 
 export default function DApps() {
   const { t, language } = useLanguage();
+  const dappsSeo = getStaticPageSeo(language, "dapps");
 
   useDocumentMeta({
-    title: t("dapps.metaTitle"),
-    description: t("dapps.metaDescription"),
+    title: dappsSeo.title,
+    description: dappsSeo.description,
     canonicalPath: "/dapps",
-    image: buildPageOgImage(t("dapps.metaTitle")),
+    image: buildPageOgImage(dappsSeo.title),
   });
 
   const dappCompareRows: FastCompareRow[] = [

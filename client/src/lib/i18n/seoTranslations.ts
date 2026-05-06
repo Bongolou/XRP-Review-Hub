@@ -13,7 +13,7 @@ export const seoTranslations: Record<Language, SeoBundle> = {
     home: {
       title: "Best XRP Wallets 2026 | Compare Xaman, Ledger, Tangem & More",
       description:
-        "Hands-on reviews of the best XRP wallets for 2026. Compare Xaman, Ledger Nano X, Tangem, Trezor and more — by use case, security, fees and price. Updated April 2026.",
+        "The XRP wallets we trust with our own coins in 2026. Hands-on picks for daily use, DeFi, hardware and cold storage — verdict inside, updated April 2026.",
     },
     wallet: {
       xaman: {
@@ -39,7 +39,7 @@ export const seoTranslations: Record<Language, SeoBundle> = {
       "trezor-safe-5": {
         title: "Trezor Safe 5 Review 2026 | Premium Touchscreen Hardware Wallet for XRP",
         description:
-          "Trezor Safe 5 review for 2026. Premium open-source hardware wallet with color touchscreen and EAL6+ secure element — XRP support, security model and how it compares to Ledger Nano X.",
+          "Trezor Safe 5 for XRP in 2026: premium open-source hardware wallet with color touchscreen and EAL6+ secure element. Verdict and Ledger Nano X comparison inside.",
       },
       ellipal: {
         title: "ELLIPAL Titan Review 2026 | Air-Gapped Cold Storage for XRP",
@@ -90,7 +90,7 @@ export const seoTranslations: Record<Language, SeoBundle> = {
     home: {
       title: "Mejores carteras XRP 2026 | Compara Xaman, Ledger, Tangem y más",
       description:
-        "Reseñas prácticas de las mejores carteras XRP para 2026. Compara Xaman, Ledger Nano X, Tangem, Trezor y más — por caso de uso, seguridad, comisiones y precio. Actualizado en abril de 2026.",
+        "Las carteras XRP en las que confiamos en 2026. Selección práctica para uso diario, DeFi, hardware y cold storage — veredicto dentro, abril 2026.",
     },
     wallet: {
       xaman: {
@@ -162,7 +162,7 @@ export const seoTranslations: Record<Language, SeoBundle> = {
     home: {
       title: "2026 年最佳 XRP 钱包 | 比较 Xaman、Ledger、Tangem 等",
       description:
-        "2026 年最佳 XRP 钱包的实测评测。按使用场景、安全性、费用和价格比较 Xaman、Ledger Nano X、Tangem、Trezor 等钱包。2026 年 4 月更新。",
+        "2026 年我们愿意托付自己 XRP 的钱包。日常使用、DeFi、硬件与冷存储的实测推荐——内含结论,2026 年 4 月更新。",
     },
     wallet: {
       xaman: {
@@ -234,7 +234,7 @@ export const seoTranslations: Record<Language, SeoBundle> = {
     home: {
       title: "2026年版 おすすめXRPウォレット | Xaman・Ledger・Tangemほかを比較",
       description:
-        "2026年のおすすめXRPウォレットを実機レビュー。Xaman、Ledger Nano X、Tangem、Trezorなどを用途・セキュリティ・手数料・価格で比較。2026年4月更新。",
+        "2026年に自分のXRPを任せているウォレット。日常使い・DeFi・ハードウェア・コールドストレージ向けの実機厳選 — 結論を中で公開、2026年4月更新。",
     },
     wallet: {
       xaman: {
@@ -306,7 +306,7 @@ export const seoTranslations: Record<Language, SeoBundle> = {
     home: {
       title: "2026년 최고의 XRP 지갑 | Xaman, Ledger, Tangem 등 비교",
       description:
-        "2026년 최고의 XRP 지갑에 대한 실사용 리뷰. Xaman, Ledger Nano X, Tangem, Trezor 등을 사용 사례·보안·수수료·가격으로 비교. 2026년 4월 업데이트.",
+        "2026년 우리가 직접 사용하는 XRP 지갑. 일상 사용, DeFi, 하드웨어, 콜드 스토리지를 위한 실사용 추천 — 평가 내장, 2026년 4월 업데이트.",
     },
     wallet: {
       xaman: {
@@ -378,7 +378,7 @@ export const seoTranslations: Record<Language, SeoBundle> = {
     home: {
       title: "Melhores Carteiras XRP 2026 | Compare Xaman, Ledger, Tangem e mais",
       description:
-        "Análises práticas das melhores carteiras XRP para 2026. Compare Xaman, Ledger Nano X, Tangem, Trezor e outras — por caso de uso, segurança, taxas e preço. Atualizado em abril de 2026.",
+        "As carteiras XRP nas quais confiamos nossos próprios coins em 2026. Escolhas práticas para uso diário, DeFi, hardware e cold storage — veredicto dentro.",
     },
     wallet: {
       xaman: {
@@ -450,7 +450,7 @@ export const seoTranslations: Record<Language, SeoBundle> = {
     home: {
       title: "Beste XRP-Wallets 2026 | Xaman, Ledger, Tangem & mehr im Vergleich",
       description:
-        "Praxis-Tests der besten XRP-Wallets für 2026. Vergleiche Xaman, Ledger Nano X, Tangem, Trezor und mehr — nach Anwendungsfall, Sicherheit, Gebühren und Preis. Aktualisiert im April 2026.",
+        "Die XRP-Wallets, denen wir 2026 unsere eigenen Coins anvertrauen. Praxis-Picks für Alltag, DeFi, Hardware und Cold Storage — Fazit inklusive, Stand April 2026.",
     },
     wallet: {
       xaman: {
@@ -522,7 +522,7 @@ export const seoTranslations: Record<Language, SeoBundle> = {
     home: {
       title: "Meilleurs portefeuilles XRP 2026 | Comparez Xaman, Ledger, Tangem et plus",
       description:
-        "Tests pratiques des meilleurs portefeuilles XRP pour 2026. Comparez Xaman, Ledger Nano X, Tangem, Trezor et plus — par cas d'usage, sécurité, frais et prix. Mis à jour en avril 2026.",
+        "Les portefeuilles XRP en lesquels nous avons confiance en 2026. Sélection pratique pour le quotidien, la DeFi, le matériel et le cold storage — verdict inclus.",
     },
     wallet: {
       xaman: {
