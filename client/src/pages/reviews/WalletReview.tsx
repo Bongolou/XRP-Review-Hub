@@ -7,6 +7,8 @@ import { Link } from "@/lib/i18n/LocalizedLink";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { localizeAffiliateUrl } from "@/lib/affiliateLinks";
 import { VerdictBox, BestForCallout, LastUpdated, EmailCaptureBlock, getLeadMagnetAssetUrl } from "@/components/conversion";
+import { RelatedContent } from "@/components/RelatedContent";
+import { RELATED_BY_WALLET } from "@/lib/internalLinkMap";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
@@ -1510,6 +1512,13 @@ export default function WalletReview() {
           <h2 className="text-xl font-bold font-display mb-2">{t("walletReview.bestFor")}</h2>
           <p className="text-muted-foreground">{t(wallet.bestForKey)}</p>
         </div>
+
+        {slug && RELATED_BY_WALLET[slug] && (
+          <RelatedContent
+            heading="Related XRP wallet content"
+            items={RELATED_BY_WALLET[slug]}
+          />
+        )}
 
         {/* In-article lead magnet */}
         <div className="mb-12">

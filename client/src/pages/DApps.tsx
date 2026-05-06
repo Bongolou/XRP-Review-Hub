@@ -33,6 +33,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 import { buildPageOgImage } from "@/lib/ogImage";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 
 type TopPick = {
   name: string;
@@ -322,6 +323,25 @@ export default function DApps() {
     canonicalPath: "/dapps",
     image: buildPageOgImage(dappsSeo.title),
   });
+
+  const dappsOrigin = typeof window !== "undefined" ? window.location.origin : "";
+  useJsonLd("dapps-page", [
+    buildBreadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "XRPL dApps", path: "/dapps" },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "XRPL dApps",
+      itemListElement: dapps.map((d, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: d.name,
+        url: d.affiliate,
+      })),
+    },
+  ]);
 
   const dappCompareRows: FastCompareRow[] = [
     { id: "magnetic", name: "Magnetic", type: t("dapps.row.magnetic.type"), price: t("dapps.row.priceFree"), bestFor: t("dapps.row.magnetic.bestFor"), rating: "9.4", affiliateUrl: "https://www.magnetic.app/?ref=allthingsxrpl", highlight: true },

@@ -16,6 +16,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import upholdLogo from "@/assets/logos/uphold-logo.webp";
 import bitrueLogo from "@/assets/logos/bitrue-logo.webp";
 import krakenLogo from "@/assets/logos/kraken-logo.webp";
@@ -148,6 +149,33 @@ export default function YieldOpportunities() {
     canonicalPath: "/yield",
     image: buildPageOgImage(seo.title),
   });
+
+  useJsonLd("yield-page", [
+    buildBreadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "XRP Yield Opportunities", path: "/yield" },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "XRP Yield Opportunities",
+      itemListElement: [
+        ...stakingOptions.map((o, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: `${o.platform} — ${t(o.nameKey)}`,
+          url: o.affiliate,
+        })),
+        ...xrplNativeOptions.map((o, i) => ({
+          "@type": "ListItem",
+          position: stakingOptions.length + i + 1,
+          name: t(o.nameKey),
+          url: o.learnMoreLink,
+        })),
+      ],
+    },
+  ]);
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-20 md:py-24">

@@ -7,6 +7,10 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getBestForSeo } from "@/lib/i18n/pageSeo";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
+import { RelatedContent } from "@/components/RelatedContent";
+import { RELATED_BY_BEST_FOR } from "@/lib/internalLinkMap";
+import { SafeHtml } from "@/components/SafeHtml";
 import {
   VerdictBox,
   FastCompareTable,
@@ -140,9 +144,45 @@ export default function BestFor() {
     if (!q || q === `bf.${slug}.faq${i}.q`) return null;
     return {
       q,
-      a: <span dangerouslySetInnerHTML={{ __html: a }} />,
+      a: <SafeHtml as="span" html={a} />,
     };
   }).filter((x): x is { q: string; a: React.ReactElement } => x !== null);
+
+  const stripHtml = (s: string) => s.replace(/<[^>]*>/g, "");
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const titleForCrumb = t(`bf.${slug}.title`);
+  useJsonLd(`best-for:${slug}`, [
+    buildBreadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "Best XRP Wallets", path: "/best-xrp-wallets" },
+      { name: titleForCrumb, path: `/best-for/${slug}` },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: titleForCrumb,
+      itemListElement: rows.map((r, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: r.name,
+        url: `${origin}/wallet/${r.reviewSlug}`,
+      })),
+    },
+    ...(faqs.length > 0
+      ? [{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f, i) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: stripHtml(t(`bf.${slug}.faq${i + 1}.a`)),
+            },
+          })),
+        }]
+      : []),
+  ]);
 
   return (
     <Layout>
@@ -187,11 +227,17 @@ export default function BestFor() {
 
         <section className="my-20 max-w-3xl">
           <h2 className="text-2xl font-bold font-display mb-4">{t("bf.whyHeading")}</h2>
-          <div
+          <SafeHtml
+            as="div"
             className="text-muted-foreground leading-relaxed space-y-4"
-            dangerouslySetInnerHTML={{ __html: t(`bf.${slug}.body`) }}
+            html={t(`bf.${slug}.body`)}
           />
         </section>
+
+        <RelatedContent
+          heading={t("bf.relatedHeading") !== "bf.relatedHeading" ? t("bf.relatedHeading") : "Keep exploring"}
+          items={RELATED_BY_BEST_FOR[slug] ?? []}
+        />
 
         <section className="my-20 grid md:grid-cols-3 gap-6 md:gap-8">
           <Link

@@ -8,6 +8,9 @@ import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { getSeoEntry } from "@/lib/i18n/seoTranslations";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { localizeAffiliateUrl } from "@/lib/affiliateLinks";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
+import { RelatedContent } from "@/components/RelatedContent";
+import { RELATED_BY_COMPARE } from "@/lib/internalLinkMap";
 
 type ComparisonData = {
   wallet1: {
@@ -870,6 +873,54 @@ export default function Compare() {
     image: compareImage,
   });
 
+  useJsonLd(`compare:${slug ?? "none"}`, comparison && slug
+    ? [
+        buildBreadcrumbList([
+          { name: "Home", path: "/" },
+          { name: "Compare", path: "/compare" },
+          { name: `${comparison.wallet1.name} vs ${comparison.wallet2.name}`, path: `/compare/${slug}` },
+        ]),
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: `Which is better for beginners — ${comparison.wallet1.name} or ${comparison.wallet2.name}?`,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: `For most newcomers to XRP we recommend starting with the simpler of the two interfaces and graduating to a hardware solution once your holdings grow.`,
+              },
+            },
+            {
+              "@type": "Question",
+              name: `Can I use both ${comparison.wallet1.name} and ${comparison.wallet2.name} together?`,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: `Yes — and many serious XRP holders do exactly that. A common setup is to use a feature-rich software wallet for daily XRPL DEX, NFT, and AMM activity, and a hardware wallet to cold-store the bulk of your XRP.`,
+              },
+            },
+            {
+              "@type": "Question",
+              name: `Which one is safer for large XRP holdings?`,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: `Hardware wallets and air-gapped devices are always the safer choice for cold storage of significant amounts. Software and browser wallets are appropriate for active trading and dApp interaction, but should not hold your entire portfolio.`,
+              },
+            },
+            {
+              "@type": "Question",
+              name: `Are these wallets compatible with the XRPL DEX, AMM, and NFTs?`,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: `Native XRPL software wallets like Xaman and Crossmark provide the deepest support for the DEX, AMM pools, and XRPL NFTs. Hardware wallets generally handle send/receive and trustlines but rely on a software wallet for richer ecosystem features.`,
+              },
+            },
+          ],
+        },
+      ]
+    : []);
+
   if (!comparison) {
     return (
       <Layout>
@@ -1263,6 +1314,13 @@ export default function Compare() {
           <BestForCallout label="Best for security" href="/best-for/cold-storage" description="Hardware-first cold storage picks." />
           <BestForCallout label="Best for XRPL DeFi" href="/best-for/defi" description="Wallets that unlock DEX + AMM." />
         </div>
+
+        {slug && RELATED_BY_COMPARE[slug] && (
+          <RelatedContent
+            heading="Related guides and reviews"
+            items={RELATED_BY_COMPARE[slug]}
+          />
+        )}
 
         {/* More Comparisons */}
         <div className="text-center">

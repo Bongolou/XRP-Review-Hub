@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
+import { SafeHtml } from "@/components/SafeHtml";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
 
 const faqs = [
@@ -103,7 +104,7 @@ function FAQItem({ questionKey, answerKey, t }: { questionKey: string; answerKey
         <ChevronDown className={cn("h-5 w-5 shrink-0 transition-transform", isOpen && "rotate-180")} />
       </button>
       <div className={cn("overflow-hidden transition-all", isOpen ? "max-h-96 pb-4" : "max-h-0")}>
-        <p className="text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: answer }} />
+        <SafeHtml as="p" className="text-muted-foreground leading-relaxed" html={answer} />
       </div>
     </div>
   );

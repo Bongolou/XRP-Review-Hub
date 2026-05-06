@@ -8,6 +8,7 @@ import { localizeAffiliateUrl } from "@/lib/affiliateLinks";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 
 type Question = {
   id: number;
@@ -146,6 +147,12 @@ export default function WalletQuiz() {
     canonicalPath: "/wallet-quiz",
     image: buildPageOgImage(seo.title),
   });
+  useJsonLd("wallet-quiz", [
+    buildBreadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "XRP Wallet Quiz", path: "/wallet-quiz" },
+    ]),
+  ]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [showResults, setShowResults] = useState(false);

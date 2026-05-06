@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import {
   FastCompareTable,
   VerdictBox,
@@ -156,6 +157,35 @@ export default function BestXRPWallets() {
     q: t(`bxw.faq${i}.q`),
     a: <span dangerouslySetInnerHTML={{ __html: t(`bxw.faq${i}.a`) }} />,
   }));
+
+  const stripHtml = (s: string) => s.replace(/<[^>]*>/g, "");
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  useJsonLd("best-xrp-wallets", [
+    buildBreadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "Best XRP Wallets", path: "/best-xrp-wallets" },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Best XRP Wallets in 2026",
+      itemListElement: rows.map((r, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: r.name,
+        url: `${origin}/wallet/${r.reviewSlug}`,
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [1, 2, 3, 4, 5, 6].map((i) => ({
+        "@type": "Question",
+        name: t(`bxw.faq${i}.q`),
+        acceptedAnswer: { "@type": "Answer", text: stripHtml(t(`bxw.faq${i}.a`)) },
+      })),
+    },
+  ]);
 
   return (
     <Layout>

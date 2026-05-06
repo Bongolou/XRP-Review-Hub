@@ -17,11 +17,31 @@ import xamanLogo from "@/assets/logos/xaman-logo.webp";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 
 export default function GettingStarted() {
   const { t, language } = useLanguage();
   const seo = getStaticPageSeo(language, "gettingStarted");
   useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/getting-started", image: buildPageOgImage(seo.title) });
+
+  useJsonLd("getting-started", [
+    buildBreadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "How to Buy XRP", path: "/getting-started" },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      name: t("gettingStarted.title"),
+      description: t("gettingStarted.subtitle"),
+      step: [1, 2, 3, 4, 5].map((n) => ({
+        "@type": "HowToStep",
+        position: n,
+        name: t(`gettingStarted.step${n}.title`),
+        text: t(`gettingStarted.step${n}.content`),
+      })),
+    },
+  ]);
 
   return (
     <Layout>

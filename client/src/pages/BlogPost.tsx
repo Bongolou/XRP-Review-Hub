@@ -9,6 +9,9 @@ import { BannerAd } from "@/components/BannerAd";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
+import { RelatedContent } from "@/components/RelatedContent";
+import { RELATED_BY_BLOG } from "@/lib/internalLinkMap";
+import { SafeHtml } from "@/components/SafeHtml";
 import { blogPosts } from "@shared/blog";
 import { getLocalizedBlogContent } from "@/lib/i18n/blogContent";
 import { TwitterIcon, FacebookIcon, TikTokIcon } from "@/components/icons/SocialIcons";
@@ -171,24 +174,15 @@ export default function BlogPost() {
                   const secondHalf = parts.slice(mid).join("</p>");
                   return (
                     <>
-                      <div
-                        className="article-content"
-                        dangerouslySetInnerHTML={{ __html: firstHalf }}
-                      />
+                      <SafeHtml as="div" className="article-content" html={firstHalf} />
                       <BannerAd variant="inline" />
-                      <div
-                        className="article-content"
-                        dangerouslySetInnerHTML={{ __html: secondHalf }}
-                      />
+                      <SafeHtml as="div" className="article-content" html={secondHalf} />
                     </>
                   );
                 }
                 return (
                   <>
-                    <div
-                      className="article-content"
-                      dangerouslySetInnerHTML={{ __html: html }}
-                    />
+                    <SafeHtml as="div" className="article-content" html={html} />
                     <BannerAd variant="inline" />
                   </>
                 );
@@ -197,6 +191,13 @@ export default function BlogPost() {
               <div className="mt-8">
                 <BannerAd variant="horizontal" />
               </div>
+
+              {post && RELATED_BY_BLOG[post.id] && (
+                <RelatedContent
+                  heading="Related reading"
+                  items={RELATED_BY_BLOG[post.id]}
+                />
+              )}
 
               <BlogComments postId={postId} />
             </div>

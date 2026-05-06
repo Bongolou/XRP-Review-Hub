@@ -7,6 +7,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { blogPosts } from "@shared/blog";
 
 const categoryKeys = [
@@ -28,6 +29,25 @@ export default function Blog() {
   const seo = getStaticPageSeo(language, "blog");
   useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/blog", image: buildPageOgImage(seo.title) });
   const [selectedCategory, setSelectedCategory] = useState("all");
+
+  const blogOrigin = typeof window !== "undefined" ? window.location.origin : "";
+  useJsonLd("blog-index", [
+    buildBreadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "Blog", path: "/blog" },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "All Things XRPL Blog",
+      itemListElement: blogPosts.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: t(p.titleKey),
+        url: `${blogOrigin}/blog/${p.id}`,
+      })),
+    },
+  ]);
 
   const filteredPosts = selectedCategory === "all" 
     ? blogPosts 

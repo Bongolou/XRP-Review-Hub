@@ -10,6 +10,8 @@ import { VerdictBox, BestForCallout, LastUpdated } from "@/components/conversion
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
+import { RelatedContent } from "@/components/RelatedContent";
+import { RELATED_BY_EXCHANGE } from "@/lib/internalLinkMap";
 import { getExchangeSeo } from "@/lib/i18n/pageSeo";
 import { VisitorReviews, type ReviewsResponse } from "@/components/VisitorReviews";
 import { PhoneFrame } from "@/components/PhoneFrame";
@@ -1019,6 +1021,13 @@ export default function ExchangeReview() {
             ))}
           </Accordion>
         </div>
+
+        {slug && RELATED_BY_EXCHANGE[slug] && (
+          <RelatedContent
+            heading="Related XRP exchange content"
+            items={RELATED_BY_EXCHANGE[slug]}
+          />
+        )}
 
         <div className="text-center pb-8">
           <a 

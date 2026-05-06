@@ -4,6 +4,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
+import { useJsonLd, buildBreadcrumbList } from "@/lib/useJsonLd";
 import { ExternalLink, Clock, Newspaper, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -102,6 +103,13 @@ export default function News() {
   const { t, language } = useLanguage();
   const seo = getStaticPageSeo(language, "news");
   useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/news", image: buildPageOgImage(seo.title) });
+
+  useJsonLd("news-page", [
+    buildBreadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "XRP News", path: "/news" },
+    ]),
+  ]);
 
   const { data, isLoading, error, refetch, isFetching } = useQuery<NewsItem[]>({
     queryKey: ["news-feed"],
