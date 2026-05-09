@@ -1,6 +1,7 @@
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { Mail, MessageSquare, Send, HelpCircle, Newspaper } from "lucide-react";
@@ -20,6 +21,15 @@ export default function Contact() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const handlePartnershipClick = () => {
+    setFormData((prev) => ({
+      ...prev,
+      subject: prev.subject || t("contact.info.partner.title"),
+    }));
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,37 +80,54 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          <div className="p-6 rounded-xl bg-card/30 border border-white/10 text-center">
+          <a
+            href="mailto:contact@allthingsxrpl.com"
+            data-testid="link-contact-email"
+            className="block p-6 rounded-xl bg-card/30 border border-white/10 text-center transition hover:bg-card/50 hover:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary"
+          >
             <div className="bg-primary/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 border border-primary/30">
               <Mail className="h-6 w-6 text-primary" />
             </div>
             <h3 className="font-display font-bold mb-2">{t("contact.info.email.title")}</h3>
             <p className="text-sm text-muted-foreground">{t("contact.info.email.desc")}</p>
-          </div>
-          <div className="p-6 rounded-xl bg-card/30 border border-white/10 text-center">
+          </a>
+          <Link
+            href="/faq"
+            data-testid="link-contact-faq"
+            className="block p-6 rounded-xl bg-card/30 border border-white/10 text-center transition hover:bg-card/50 hover:border-green-400/40 focus:outline-none focus:ring-2 focus:ring-green-400"
+          >
             <div className="bg-green-500/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 border border-green-500/30">
               <HelpCircle className="h-6 w-6 text-green-400" />
             </div>
             <h3 className="font-display font-bold mb-2">{t("contact.info.faq.title")}</h3>
             <p className="text-sm text-muted-foreground">{t("contact.info.faq.desc")}</p>
-          </div>
-          <div className="p-6 rounded-xl bg-card/30 border border-white/10 text-center">
+          </Link>
+          <button
+            type="button"
+            onClick={handlePartnershipClick}
+            data-testid="button-contact-partnership"
+            className="block w-full p-6 rounded-xl bg-card/30 border border-white/10 text-center transition hover:bg-card/50 hover:border-purple-400/40 focus:outline-none focus:ring-2 focus:ring-purple-400"
+          >
             <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
               <Send className="h-6 w-6 text-purple-400" />
             </div>
             <h3 className="font-display font-bold mb-2">{t("contact.info.partner.title")}</h3>
             <p className="text-sm text-muted-foreground">{t("contact.info.partner.desc")}</p>
-          </div>
-          <div className="p-6 rounded-xl bg-card/30 border border-white/10 text-center">
+          </button>
+          <Link
+            href="/#newsletter"
+            data-testid="link-contact-newsletter"
+            className="block p-6 rounded-xl bg-card/30 border border-white/10 text-center transition hover:bg-card/50 hover:border-cyan-400/40 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          >
             <div className="bg-cyan-500/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 border border-cyan-500/30">
               <Newspaper className="h-6 w-6 text-cyan-400" />
             </div>
             <h3 className="font-display font-bold mb-2">{t("contact.info.newsletter.title")}</h3>
             <p className="text-sm text-muted-foreground">{t("contact.info.newsletter.desc")}</p>
-          </div>
+          </Link>
         </div>
 
-        <div className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
+        <div ref={formRef} className="bg-card/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
           <h2 className="text-2xl font-bold font-display mb-8">{t("contact.form.submit")}</h2>
           
           <form onSubmit={handleSubmit} className="space-y-6">

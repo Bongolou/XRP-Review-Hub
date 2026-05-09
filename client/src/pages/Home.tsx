@@ -1139,7 +1139,7 @@ export default function Home() {
       <div className="h-24" aria-hidden="true" />
 
       {/* Newsletter CTA */}
-      <section className="py-20 md:py-24 container mx-auto px-4">
+      <section id="newsletter" className="py-20 md:py-24 container mx-auto px-4 scroll-mt-24">
         <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 p-6 md:p-8 text-center">
           <div className="absolute inset-0 grid-bg opacity-30" />
           <div className="relative z-10 max-w-2xl mx-auto">
