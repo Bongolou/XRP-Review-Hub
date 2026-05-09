@@ -74,7 +74,8 @@ describe.skipIf(!chromiumAvailable())("prerender integration", () => {
 
   it("renders multiple routes into per-route index.html files with route-specific content", async () => {
     const routes = ["/wallet/ledger", "/exchange/kraken", "/blog/1"];
-    const written = await prerenderAll(distDir, routes);
+    const jobs = routes.map((route) => ({ route, lang: "en" as const }));
+    const written = await prerenderAll(distDir, jobs);
     expect(written).toHaveLength(routes.length);
 
     for (const route of routes) {
@@ -95,6 +96,47 @@ describe.skipIf(!chromiumAvailable())("prerender integration", () => {
       expect(html).not.toContain("initial-loader");
       expect(html).toContain(`data-prerendered-route="${route}"`);
       expect(html).toContain("/assets/index-FIXTURE.js");
+    }
+  }, 60_000);
+
+  it("snapshots the same route once per language to per-language index.<lang>.html files", async () => {
+    // Use a different route so this test doesn't collide with the
+    // previous one's outputs (the fixture's `?lang=` parameter is
+    // ignored — every snapshot writes the same content — so we're
+    // really asserting the file path layout and the URL the
+    // snapshotter visited).
+    const jobs = [
+      { route: "/wallet/xaman", lang: "en" as const },
+      { route: "/wallet/xaman", lang: "de" as const },
+      { route: "/wallet/xaman", lang: "fr" as const },
+      { route: "/", lang: "es" as const },
+    ];
+    const written = await prerenderAll(distDir, jobs);
+    expect(written).toHaveLength(jobs.length);
+
+    const en = await readFile(
+      join(distDir, "wallet", "xaman", "index.html"),
+      "utf-8",
+    );
+    const de = await readFile(
+      join(distDir, "wallet", "xaman", "index.de.html"),
+      "utf-8",
+    );
+    const fr = await readFile(
+      join(distDir, "wallet", "xaman", "index.fr.html"),
+      "utf-8",
+    );
+    const esHome = await readFile(join(distDir, "index.es.html"), "utf-8");
+
+    // Every snapshot got the route-specific shell content
+    expect(en).toContain("/wallet/xaman content");
+    expect(de).toContain("/wallet/xaman content");
+    expect(fr).toContain("/wallet/xaman content");
+    expect(esHome).toContain("/ content");
+
+    // Localhost origin rewritten for every language
+    for (const html of [en, de, fr, esHome]) {
+      expect(html).not.toContain("127.0.0.1");
     }
 
     await rm(distDir, { recursive: true, force: true });

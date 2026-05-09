@@ -3,7 +3,10 @@ import { existsSync, readFileSync } from "fs";
 import { join } from "path";
 import {
   enumeratePrerenderRoutes,
+  enumeratePrerenderJobs,
+  jobToFilePath,
   routeToFilePath,
+  PRERENDER_LANGUAGES,
   PRERENDER_STATIC_ROUTES,
 } from "./prerenderRoutes";
 import { buildSitemapSections } from "../server/sitemap";
@@ -59,6 +62,37 @@ describe("prerender route enumeration", () => {
   });
 });
 
+describe("enumeratePrerenderJobs", () => {
+  const routes = enumeratePrerenderRoutes();
+  const jobs = enumeratePrerenderJobs();
+
+  it("emits one job per (route, language) pair", () => {
+    expect(jobs.length).toBe(routes.length * PRERENDER_LANGUAGES.length);
+  });
+
+  it("covers every supported language for every route", () => {
+    for (const route of routes) {
+      const langsForRoute = jobs
+        .filter((j) => j.route === route)
+        .map((j) => j.lang)
+        .sort();
+      expect(langsForRoute).toEqual([...PRERENDER_LANGUAGES].sort());
+    }
+  });
+
+  it("exposes English as one of the languages so the bare URL still gets snapshotted", () => {
+    expect(PRERENDER_LANGUAGES).toContain("en");
+  });
+
+  it("matches the hreflang language set the SPA emits", () => {
+    // Keep the prerender language list aligned with the sitemap's
+    // hreflang map — drift would mean the sitemap advertises a
+    // translated URL we never built a snapshot for, or vice versa.
+    const expected = ["en", "es", "zh", "ja", "ko", "pt", "de", "fr"].sort();
+    expect([...PRERENDER_LANGUAGES].sort()).toEqual(expected);
+  });
+});
+
 describe("routeToFilePath", () => {
   it("maps / to index.html", () => {
     expect(routeToFilePath("/")).toBe("index.html");
@@ -66,6 +100,36 @@ describe("routeToFilePath", () => {
   it("maps nested routes to <route>/index.html", () => {
     expect(routeToFilePath("/wallet/ledger")).toBe("wallet/ledger/index.html");
     expect(routeToFilePath("/blog/1")).toBe("blog/1/index.html");
+  });
+});
+
+describe("jobToFilePath", () => {
+  it("uses bare index.html for English so DirectoryIndex serves it by default", () => {
+    expect(jobToFilePath({ route: "/", lang: "en" })).toBe("index.html");
+    expect(jobToFilePath({ route: "/wallet/ledger", lang: "en" })).toBe(
+      "wallet/ledger/index.html",
+    );
+  });
+
+  it("appends a language suffix for non-English snapshots", () => {
+    expect(jobToFilePath({ route: "/", lang: "de" })).toBe("index.de.html");
+    expect(jobToFilePath({ route: "/wallet/ledger", lang: "de" })).toBe(
+      "wallet/ledger/index.de.html",
+    );
+    expect(jobToFilePath({ route: "/blog/1", lang: "fr" })).toBe(
+      "blog/1/index.fr.html",
+    );
+    expect(jobToFilePath({ route: "/compare/xaman-vs-ledger", lang: "zh" })).toBe(
+      "compare/xaman-vs-ledger/index.zh.html",
+    );
+  });
+
+  it("never collides English and non-English snapshots for the same route", () => {
+    const route = "/wallet/ledger";
+    const paths = new Set(
+      PRERENDER_LANGUAGES.map((lang) => jobToFilePath({ route, lang })),
+    );
+    expect(paths.size).toBe(PRERENDER_LANGUAGES.length);
   });
 });
 
@@ -77,6 +141,7 @@ describe("routeToFilePath", () => {
 describe("prerendered HTML output (only runs after a local build)", () => {
   const distPublic = join(process.cwd(), "dist", "public");
   const ledgerHtmlPath = join(distPublic, "wallet", "ledger", "index.html");
+  const ledgerHtmlPathDe = join(distPublic, "wallet", "ledger", "index.de.html");
   const hasBuild = existsSync(ledgerHtmlPath);
 
   it.skipIf(!hasBuild)("bakes the wallet/ledger title and canonical into static HTML", () => {
@@ -88,4 +153,15 @@ describe("prerendered HTML output (only runs after a local build)", () => {
     expect(html).not.toContain("127.0.0.1");
     expect(html).toMatch(/\/assets\/index-[A-Za-z0-9_-]+\.js/);
   });
+
+  it.skipIf(!hasBuild || !existsSync(ledgerHtmlPathDe))(
+    "writes a German wallet/ledger snapshot with a German canonical",
+    () => {
+      const html = readFileSync(ledgerHtmlPathDe, "utf-8");
+      expect(html).toContain(
+        'href="https://allthingsxrpl.com/wallet/ledger?lang=de"',
+      );
+      expect(html).not.toContain("127.0.0.1");
+    },
+  );
 });

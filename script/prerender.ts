@@ -4,6 +4,16 @@
 // runtime, so client-side behavior (routing, language switching, modals,
 // affiliate-link rewriting) is unchanged.
 //
+// Each route is snapshotted once per supported language. The English
+// snapshot lands at `<route>/index.html` (the bare DirectoryIndex Apache
+// serves by default); each non-English snapshot lands at
+// `<route>/index.<lang>.html`, which the .htaccess rewrites map to
+// `?lang=<lang>` request URLs. That way Google can index the German /
+// Spanish / etc. versions of every page independently with their own
+// translated <title>/<meta>/canonical, while the URL the visitor sees
+// stays the existing `?lang=de` shape (which the SPA already understands
+// for language switching, share links, and hreflang annotations).
+//
 // The actual rendering is done by a real headless browser (Chromium via
 // Playwright) so the SPA's browser-only APIs (window, localStorage,
 // navigator, useDocumentMeta DOM mutations) all behave exactly like they
@@ -15,7 +25,12 @@ import { mkdir, readFile, writeFile } from "fs/promises";
 import { dirname, join, resolve } from "path";
 import sirv from "sirv";
 import { chromium, type Browser } from "playwright";
-import { enumeratePrerenderRoutes, routeToFilePath } from "./prerenderRoutes";
+import {
+  enumeratePrerenderJobs,
+  jobToFilePath,
+  type PrerenderJob,
+  type PrerenderLang,
+} from "./prerenderRoutes";
 
 const PRERENDER_TIMEOUT_MS = 20_000;
 const PRERENDER_READY_SELECTOR = 'meta[name="prerender-ready"][content="true"]';
@@ -127,12 +142,30 @@ export function postProcessHtml(html: string, route: string, baseUrl: string): s
   return out;
 }
 
-async function snapshotRoute(
+// Build the snapshot URL for a (route, lang) pair. English uses the
+// bare path so the SPA renders in its default language; non-English
+// appends `?lang=<lang>` so LanguageContext picks up the chosen
+// language at first render and useDocumentMeta emits the translated
+// title/description/canonical.
+function jobUrl(baseUrl: string, job: PrerenderJob): string {
+  if (job.lang === "en") return `${baseUrl}${job.route}`;
+  const sep = job.route.includes("?") ? "&" : "?";
+  return `${baseUrl}${job.route}${sep}lang=${job.lang}`;
+}
+
+async function snapshotJob(
   browser: Browser,
   baseUrl: string,
-  route: string,
+  job: PrerenderJob,
 ): Promise<string> {
-  const page = await browser.newPage();
+  // Use a fresh browser context per snapshot so localStorage from one
+  // job (e.g. the German `allthingsxrpl_language=de` value the SPA
+  // writes on first render) can never leak into a later job that
+  // happens to share the same browser. Without isolation, snapshot
+  // ordering would silently change which language each page rendered
+  // in.
+  const context = await browser.newContext();
+  const page = await context.newPage();
   // Intercept /api/* requests — they 404 in the prerender environment
   // (the static server doesn't proxy to Express), and React Query's
   // default retry behavior would slow the snapshot down. Returning a
@@ -171,7 +204,7 @@ async function snapshotRoute(
   });
 
   try {
-    await page.goto(`${baseUrl}${route}`, {
+    await page.goto(jobUrl(baseUrl, job), {
       waitUntil: "domcontentloaded",
       timeout: PRERENDER_TIMEOUT_MS,
     });
@@ -186,21 +219,23 @@ async function snapshotRoute(
       });
     } catch (err) {
       throw new Error(
-        `prerender-ready signal never appeared for route ${route} ` +
-          `(${PRERENDER_TIMEOUT_MS}ms). Does the page call useDocumentMeta()?`,
+        `prerender-ready signal never appeared for route ${job.route} ` +
+          `(lang=${job.lang}, ${PRERENDER_TIMEOUT_MS}ms). ` +
+          `Does the page call useDocumentMeta()?`,
         { cause: err as Error },
       );
     }
     const html = await page.content();
-    return postProcessHtml(html, route, baseUrl);
+    return postProcessHtml(html, job.route, baseUrl);
   } finally {
     await page.close();
+    await context.close();
   }
 }
 
 export async function prerenderAll(
   distPublicDir: string,
-  routes: string[] = enumeratePrerenderRoutes(),
+  jobs: PrerenderJob[] = enumeratePrerenderJobs(),
 ): Promise<string[]> {
   const shellHtml = await readFile(join(distPublicDir, "index.html"), "utf-8");
   const { server, port } = await startStaticServer(distPublicDir, shellHtml);
@@ -211,14 +246,14 @@ export async function prerenderAll(
       executablePath: resolveChromiumPath(),
       args: ["--no-sandbox", "--disable-dev-shm-usage"],
     });
-    // Snapshot every route into memory first; only after all snapshots
+    // Snapshot every job into memory first; only after all snapshots
     // finish do we write to disk. This guarantees every page is
     // rendered against the same untouched SPA shell — if we wrote
     // /wallet/ledger/index.html mid-loop, a later route that
     // accidentally requested /wallet/ledger as a sub-resource would
     // pick up the already-prerendered HTML and the snapshot would be
     // wrong.
-    const snapshots: Array<{ route: string; html: string }> = [];
+    const snapshots: Array<{ job: PrerenderJob; html: string }> = [];
     // Run a small worker pool — Playwright handles multiple pages
     // sharing one browser cheaply, and the per-page work is mostly
     // wait-on-React-render, not CPU. 4 parallel pages cuts wall-clock
@@ -228,17 +263,19 @@ export async function prerenderAll(
     const workers = Array.from({ length: CONCURRENCY }, async () => {
       while (true) {
         const idx = cursor++;
-        if (idx >= routes.length) return;
-        const route = routes[idx];
-        const html = await snapshotRoute(browser!, baseUrl, route);
-        snapshots.push({ route, html });
-        console.log(`  snapshot ${route} (${html.length} bytes)`);
+        if (idx >= jobs.length) return;
+        const job = jobs[idx];
+        const html = await snapshotJob(browser!, baseUrl, job);
+        snapshots.push({ job, html });
+        console.log(
+          `  snapshot ${job.route} [${job.lang}] (${html.length} bytes)`,
+        );
       }
     });
     await Promise.all(workers);
     const written: string[] = [];
-    for (const { route, html } of snapshots) {
-      const target = join(distPublicDir, routeToFilePath(route));
+    for (const { job, html } of snapshots) {
+      const target = join(distPublicDir, jobToFilePath(job));
       await mkdir(dirname(target), { recursive: true });
       await writeFile(target, html, "utf-8");
       written.push(target);
@@ -262,3 +299,7 @@ if (isDirectInvocation) {
       process.exit(1);
     });
 }
+
+// Re-export for callers/tests that want the type without depending on
+// prerenderRoutes directly.
+export type { PrerenderJob, PrerenderLang };

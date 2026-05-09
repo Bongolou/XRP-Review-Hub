@@ -5,6 +5,15 @@
 # DirectoryIndex behavior already serves those files when a browser
 # requests `/wallet/ledger` — no special rule needed.
 #
+# Per-language snapshots ship as `<route>/index.<lang>.html` siblings
+# (e.g. `wallet/ledger/index.de.html`). The rewrite block below maps
+# `?lang=<lang>` query strings onto those files so Google indexes the
+# German / Spanish / etc. version of each page with its own translated
+# <title>/<meta>/canonical instead of the English snapshot. The URL the
+# visitor sees stays as `/wallet/ledger?lang=de` — the SPA already
+# uses that query parameter for language switching, share links, and
+# hreflang annotations.
+#
 # For any path that does NOT have a prerendered file (e.g. a future
 # wallet slug typed by hand, or any client-only route), fall back to
 # the SPA shell at /index.html so React can take over.
@@ -12,6 +21,24 @@ DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # Per-language snapshot for nested routes:
+  #   /wallet/ledger?lang=de  →  /wallet/ledger/index.de.html
+  # Only fires when the targeted file actually exists on disk, so
+  # languages we haven't (yet) prerendered for a given route fall
+  # through to the English snapshot via the file-existence check below
+  # (and from there to the SPA shell). The trailing `?` in the
+  # RewriteRule substitution drops the original query string so we
+  # don't end up with `index.de.html?lang=de` in the served URL.
+  RewriteCond %{QUERY_STRING} (?:^|&)lang=(es|zh|ja|ko|pt|de|fr)(?:&|$)
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.%1.html -f
+  RewriteRule ^([^/].*?)/?$ /$1/index.%1.html? [L]
+
+  # Per-language snapshot for the home page:
+  #   /?lang=de  →  /index.de.html
+  RewriteCond %{QUERY_STRING} (?:^|&)lang=(es|zh|ja|ko|pt|de|fr)(?:&|$)
+  RewriteCond %{DOCUMENT_ROOT}/index.%1.html -f
+  RewriteRule ^/?$ /index.%1.html? [L]
 
   # Skip rewrite for real files and directories so prerendered
   # <route>/index.html, /assets/*, /sitemap*.xml, /og/*.png (when
