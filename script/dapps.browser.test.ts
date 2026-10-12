@@ -7,6 +7,34 @@ import type { Language } from "../client/src/lib/i18n/translations";
 
 const languages: Language[] = ["en", "es", "zh", "ja", "ko", "pt", "de", "fr"];
 
+type SavedLanguageCase = {
+  name: string;
+  stored: string;
+  query: string | null;
+  expected: Language;
+};
+
+const savedLanguageCases: SavedLanguageCase[] = [
+  ...languages.map((language, index) => ({
+    name: `explicit ${language} overrides a conflicting saved preference`,
+    stored: languages[(index + 1) % languages.length],
+    query: language,
+    expected: language,
+  })),
+  ...languages.map(language => ({
+    name: `missing query restores saved ${language}`,
+    stored: language,
+    query: null,
+    expected: language,
+  })),
+  { name: "unsupported query uses valid saved preference", stored: "ja", query: "xx", expected: "ja" },
+  { name: "empty query uses valid saved preference", stored: "de", query: "", expected: "de" },
+  { name: "valid query overrides invalid saved preference", stored: "xx", query: "fr", expected: "fr" },
+  { name: "missing query and invalid saved preference fall back to English", stored: "xx", query: null, expected: "en" },
+  { name: "invalid query and invalid saved preference fall back to English", stored: "xx", query: "xx", expected: "en" },
+  { name: "empty query and empty saved preference fall back to English", stored: "", query: "", expected: "en" },
+];
+
 // Use Nix's fully provisioned Chromium on Replit. Elsewhere install the
 // Playwright runtime with: npx playwright install --with-deps chromium.
 // Deliberately fail (rather than skip coverage) if the browser cannot launch.
@@ -70,6 +98,36 @@ describe("DApps rendered browser metadata", () => {
     await browser?.close();
     await server?.close();
   });
+
+  it.each(savedLanguageCases)("$name", async ({ stored, query, expected }) => {
+    // Seed this origin before the app runs, as if reopening a saved preference.
+    // A fresh context per case prevents earlier language switches leaking in.
+    const context = await browser!.newContext({
+      viewport: { width: 1440, height: 1000 },
+      storageState: {
+        cookies: [],
+        origins: [{
+          origin: baseURL,
+          localStorage: [{ name: "allthingsxrpl_language", value: stored }],
+        }],
+      },
+    });
+    try {
+      await context.route("**/*", route =>
+        new URL(route.request().url()).origin === baseURL ? route.continue() : route.abort());
+      const page = await context.newPage();
+      const path = query === null ? "/dapps" : `/dapps?lang=${encodeURIComponent(query)}`;
+      await page.goto(`${baseURL}${path}`);
+      await page.getByTestId("text-dapps-title").waitFor();
+      await expectMetadata(page, expected);
+      await expect.poll(() => page.evaluate(() => document.documentElement.lang)).toBe(expected);
+      await expect.poll(() => new URL(page.url()).searchParams.get("lang"))
+        .toBe(expected === "en" ? null : expected);
+      expect(new URL(page.url()).pathname).toBe("/dapps");
+    } finally {
+      await context.close();
+    }
+  }, 60_000);
 
   it.each(languages)("%s: initial render, live language switch, and browser back", async (language) => {
     const context = await browser!.newContext({ viewport: { width: 1440, height: 1000 } });
