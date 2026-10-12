@@ -9,12 +9,21 @@ const languages: Language[] = ["en", "es", "zh", "ja", "ko", "pt", "de", "fr"];
 
 type SavedLanguageCase = {
   name: string;
-  stored: string;
+  stored: string | null;
   query: string | null;
   expected: Language;
 };
 
 const savedLanguageCases: SavedLanguageCase[] = [
+  ...["constructor", "toString", "__proto__", "hasOwnProperty"].flatMap(
+    (invalid): SavedLanguageCase[] => [
+      { name: `${invalid} query uses valid saved preference`, stored: "ja", query: invalid, expected: "ja" },
+      { name: `${invalid} query without saved preference falls back to English`, stored: null, query: invalid, expected: "en" },
+      { name: `${invalid} saved preference without query falls back to English`, stored: invalid, query: null, expected: "en" },
+      { name: `${invalid} query and saved preference fall back to English`, stored: invalid, query: invalid, expected: "en" },
+      { name: `valid query overrides ${invalid} saved preference`, stored: invalid, query: "fr", expected: "fr" },
+    ],
+  ),
   ...languages.map((language, index) => ({
     name: `explicit ${language} overrides a conflicting saved preference`,
     stored: languages[(index + 1) % languages.length],
@@ -108,7 +117,7 @@ describe("DApps rendered browser metadata", () => {
         cookies: [],
         origins: [{
           origin: baseURL,
-          localStorage: [{ name: "allthingsxrpl_language", value: stored }],
+          localStorage: stored === null ? [] : [{ name: "allthingsxrpl_language", value: stored }],
         }],
       },
     });
@@ -116,6 +125,8 @@ describe("DApps rendered browser metadata", () => {
       await context.route("**/*", route =>
         new URL(route.request().url()).origin === baseURL ? route.continue() : route.abort());
       const page = await context.newPage();
+      const pageErrors: string[] = [];
+      page.on("pageerror", error => pageErrors.push(error.message));
       const path = query === null ? "/dapps" : `/dapps?lang=${encodeURIComponent(query)}`;
       await page.goto(`${baseURL}${path}`);
       await page.getByTestId("text-dapps-title").waitFor();
@@ -124,6 +135,7 @@ describe("DApps rendered browser metadata", () => {
       await expect.poll(() => new URL(page.url()).searchParams.get("lang"))
         .toBe(expected === "en" ? null : expected);
       expect(new URL(page.url()).pathname).toBe("/dapps");
+      expect(pageErrors).toEqual([]);
     } finally {
       await context.close();
     }

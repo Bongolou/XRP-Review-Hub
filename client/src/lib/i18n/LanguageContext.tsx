@@ -15,11 +15,15 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const STORAGE_KEY = "allthingsxrpl_language";
 const DEFAULT_LANG: Language = "en";
 
+function isSupportedLanguage(value: string | null): value is Language {
+  return value !== null && Object.prototype.hasOwnProperty.call(translations, value);
+}
+
 function readLangFromUrl(): Language | null {
   if (typeof window === "undefined") return null;
   const urlLang = new URLSearchParams(window.location.search).get("lang");
-  if (urlLang && urlLang in translations) {
-    return urlLang as Language;
+  if (isSupportedLanguage(urlLang)) {
+    return urlLang;
   }
   return null;
 }
@@ -49,8 +53,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       const urlLang = readLangFromUrl();
       if (urlLang) return urlLang;
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored && stored in translations) {
-        return stored as Language;
+      if (isSupportedLanguage(stored)) {
+        return stored;
       }
     }
     return DEFAULT_LANG;
