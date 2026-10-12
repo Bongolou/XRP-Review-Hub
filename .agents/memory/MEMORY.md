@@ -1,0 +1,1 @@
+- [Canvas preview provisioning](canvas-preview-provisioning.md) — a live frame is not proof its sandbox runtime exists; verify before delivery.
