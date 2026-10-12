@@ -1,1 +1,2 @@
 - [Canvas preview provisioning](canvas-preview-provisioning.md) — a live frame is not proof its sandbox runtime exists; verify before delivery.
+- [Portable dependency locks](portable-dependency-locks.md) — Replit-internal package URLs can break GitHub installs even when local checks pass.
