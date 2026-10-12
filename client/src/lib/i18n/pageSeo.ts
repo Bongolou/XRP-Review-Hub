@@ -384,9 +384,9 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
         "How All Things XRPL collects, uses and protects your data — cookies, analytics, email signups and your rights under GDPR and CCPA.",
     },
     dapps: {
-      title: "Best XRPL DeFi & dApps 2026 | AMM, NFT & Yield Picks",
+      title: "Best XRPL dApps 2026: DeFi, DEX & NFT Picks",
       description:
-        "The XRPL DeFi protocols, AMM pools and NFT marketplaces actually worth your time and capital in 2026 — hands-on picks with editor's verdict inside.",
+        "The XRPL dApps we actually use in 2026 — DEX, AMM, lending and NFT picks ranked by liquidity, security and ease of use.",
     },
     terms: {
       title: "Terms of Service | All Things XRPL",
@@ -451,9 +451,9 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
         "Cómo All Things XRPL recopila, utiliza y protege tus datos — cookies, analítica, suscripciones por email y tus derechos bajo el RGPD y la CCPA.",
     },
     dapps: {
-      title: "Mejores DeFi y dApps de XRPL 2026 | AMM, NFT y yield",
+      title: "Mejores dApps de XRPL 2026: DeFi, DEX y NFT",
       description:
-        "Los protocolos DeFi, pools AMM y mercados NFT de XRPL que de verdad merecen tu tiempo y capital en 2026 — selección práctica con veredicto editorial dentro.",
+        "Las dApps de XRPL que usamos en 2026 — DEX, AMM, préstamos y NFT clasificados por liquidez, seguridad y facilidad de uso.",
     },
     terms: {
       title: "Términos del servicio | All Things XRPL",
@@ -518,9 +518,9 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
         "All Things XRPL 如何收集、使用与保护你的数据——Cookie、分析、邮件订阅,以及你在 GDPR 与 CCPA 下的权利。",
     },
     dapps: {
-      title: "2026 年最佳 XRPL DeFi 与 dApp | AMM、NFT 与收益精选",
+      title: "2026 年最佳 XRPL dApp：DeFi、DEX 与 NFT 精选",
       description:
-        "2026 年真正值得投入时间和资金的 XRPL DeFi 协议、AMM 资金池与 NFT 市场——实测精选,内含编辑结论。",
+        "我们在 2026 年实际使用的 XRPL dApp——按流动性、安全性和易用性评选的 DEX、AMM、借贷与 NFT 应用。",
     },
     terms: {
       title: "服务条款 | All Things XRPL",
@@ -585,9 +585,9 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
         "All Things XRPLによるデータの収集・利用・保護方針 — Cookie、解析、メール登録、GDPR・CCPAに基づくあなたの権利。",
     },
     dapps: {
-      title: "2026年版 おすすめXRPL DeFi & dApp | AMM・NFT・利回り厳選",
+      title: "2026年のおすすめXRPL dApp：DeFi・DEX・NFT厳選",
       description:
-        "2026年に本当に時間と資金を投じる価値のあるXRPL DeFiプロトコル、AMMプール、NFTマーケットプレイスを実機厳選 — 編集部の結論を本文で公開。",
+        "2026年に私たちが実際に使うXRPL dApp — DEX・AMM・レンディング・NFTを流動性、安全性、使いやすさで評価して厳選。",
     },
     terms: {
       title: "利用規約 | All Things XRPL",
@@ -652,9 +652,9 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
         "All Things XRPL이 데이터를 수집, 사용, 보호하는 방법 — 쿠키, 분석, 이메일 구독, GDPR 및 CCPA에 따른 권리.",
     },
     dapps: {
-      title: "2026년 최고의 XRPL DeFi & dApp | AMM·NFT·수익 추천",
+      title: "2026년 최고의 XRPL dApp: DeFi·DEX·NFT 추천",
       description:
-        "2026년 정말로 시간과 자본을 들일 가치가 있는 XRPL DeFi 프로토콜, AMM 풀, NFT 마켓플레이스를 실사용 큐레이션 — 편집팀의 추천을 본문에서 공개.",
+        "2026년 우리가 실제로 사용하는 XRPL dApp — DEX, AMM, 대출, NFT를 유동성, 보안, 사용 편의성으로 평가해 선정했습니다.",
     },
     terms: {
       title: "서비스 약관 | All Things XRPL",
@@ -719,9 +719,9 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
         "Como o All Things XRPL coleta, usa e protege seus dados — cookies, análise, inscrições por e-mail e seus direitos sob o GDPR e o CCPA.",
     },
     dapps: {
-      title: "Melhores DeFi e dApps do XRPL 2026 | AMM, NFTs e yield",
+      title: "Melhores dApps do XRPL 2026: DeFi, DEX e NFT",
       description:
-        "Os protocolos DeFi, pools AMM e marketplaces NFT do XRPL que realmente valem seu tempo e capital em 2026 — escolhas práticas com veredicto editorial dentro.",
+        "Os dApps do XRPL que usamos em 2026 — DEX, AMM, empréstimos e NFT classificados por liquidez, segurança e facilidade de uso.",
     },
     terms: {
       title: "Termos de uso | All Things XRPL",
@@ -786,9 +786,9 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
         "Wie All Things XRPL deine Daten erhebt, nutzt und schützt — Cookies, Analyse, E-Mail-Anmeldungen und deine Rechte gemäß DSGVO und CCPA.",
     },
     dapps: {
-      title: "Beste XRPL DeFi & dApps 2026 | AMM, NFT & Yield-Picks",
+      title: "Beste XRPL-dApps 2026: DeFi, DEX & NFT-Auswahl",
       description:
-        "Die XRPL-DeFi-Protokolle, AMM-Pools und NFT-Marktplätze, die 2026 deine Zeit und dein Kapital wirklich wert sind — Praxis-Picks mit Editor's Verdict im Beitrag.",
+        "Die XRPL-dApps, die wir 2026 nutzen — DEX, AMM, Kredite und NFTs, bewertet nach Liquidität, Sicherheit und Benutzerfreundlichkeit.",
     },
     terms: {
       title: "Nutzungsbedingungen | All Things XRPL",
@@ -853,9 +853,9 @@ export const staticPageSeo: Record<Language, StaticSeoMap> = {
         "Comment All Things XRPL collecte, utilise et protège vos données — cookies, analyse, inscriptions par e-mail et vos droits au titre du RGPD et du CCPA.",
     },
     dapps: {
-      title: "Meilleurs DeFi & dApps XRPL 2026 | AMM, NFT et rendement",
+      title: "Meilleures dApps XRPL 2026 : DeFi, DEX et NFT",
       description:
-        "Les protocoles DeFi, pools AMM et marketplaces NFT XRPL qui méritent vraiment votre temps en 2026 — sélection pratique, verdict éditorial inclus.",
+        "Les dApps XRPL que nous utilisons en 2026 — DEX, AMM, prêts et NFT classés selon leur liquidité, leur sécurité et leur facilité d'utilisation.",
     },
     terms: {
       title: "Conditions d'utilisation | All Things XRPL",

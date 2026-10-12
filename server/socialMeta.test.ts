@@ -1,6 +1,9 @@
 // Regression tests for the per-page hreflang block injected by
 // injectSocialMeta.
 import { describe, it, expect } from "vitest";
+import { getStaticPageSeo, staticPageSeo } from "../client/src/lib/i18n/pageSeo";
+import { translations, type Language } from "../client/src/lib/i18n/translations";
+import { dappsTranslations } from "../client/src/lib/i18n/dappsTranslations";
 import { blogPosts } from "@shared/blog";
 import { walletCards, exchangeCards } from "./cardData";
 import { compareSlugs, bestForSlugs, sitemapHreflangMap } from "./sitemap";
@@ -8,10 +11,34 @@ import {
   injectSocialMeta,
   buildHreflangLinkTags,
   socialMetaHreflangMap,
+  resolveMetaForPath,
 } from "./socialMeta";
 
 const HOST = "allthingsxrpl.com";
 const PROTOCOL = "https";
+
+describe("dApps centralized SEO", () => {
+  it("uses the recommended English copy", () => {
+    expect(getStaticPageSeo("en", "dapps")).toEqual({
+      title: "Best XRPL dApps 2026: DeFi, DEX & NFT Picks",
+      description: "The XRPL dApps we actually use in 2026 — DEX, AMM, lending and NFT picks ranked by liquidity, security and ease of use.",
+    });
+  });
+
+  it.each(Object.keys(translations) as Language[])("uses shared metadata for %s without legacy keys", (language) => {
+    const seo = staticPageSeo[language].dapps;
+    expect(seo.title).toMatch(/XRPL/);
+    expect(seo.title).toMatch(/2026/);
+    expect(seo.description.length).toBeGreaterThan(0);
+    expect(resolveMetaForPath("/dapps", new URLSearchParams({ lang: language }))).toMatchObject(seo);
+    const html = injectSocialMeta(TEMPLATE, `/dapps?lang=${language}`, HOST, PROTOCOL);
+    expect(html).not.toContain("placeholder");
+    for (const dictionary of [translations[language], dappsTranslations[language]]) {
+      expect(dictionary).not.toHaveProperty("dapps.metaTitle");
+      expect(dictionary).not.toHaveProperty("dapps.metaDescription");
+    }
+  });
+});
 
 const TEMPLATE = `<!DOCTYPE html>
 <html lang="en">

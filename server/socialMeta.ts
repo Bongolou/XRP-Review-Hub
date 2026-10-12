@@ -12,7 +12,6 @@ import {
   type BestForSlug,
 } from "../client/src/lib/i18n/pageSeo";
 import { translations, type Language } from "../client/src/lib/i18n/translations";
-import { dappsTranslations } from "../client/src/lib/i18n/dappsTranslations";
 
 type Meta = { title: string; description: string; image?: string };
 
@@ -56,6 +55,7 @@ function pickLanguage(query: URLSearchParams): Language {
 }
 
 const STATIC_ROUTES: Record<string, StaticPageKey> = {
+  "/dapps": "dapps",
   "/about": "about",
   "/faq": "faq",
   "/contact": "contact",
@@ -179,15 +179,6 @@ export function resolveMetaForPath(
     const slug = bestForMatch[1] as BestForSlug;
     const seo = bestForSeo[lang]?.[slug] ?? bestForSeo.en[slug];
     if (seo) return { title: seo.title, description: seo.description, image: pageOg(seo.title) };
-  }
-
-  if (clean === "/dapps") {
-    const dict = dappsTranslations[lang] ?? dappsTranslations.en;
-    const enDict = dappsTranslations.en;
-    const title = dict["dapps.metaTitle"] ?? enDict["dapps.metaTitle"];
-    const description =
-      dict["dapps.metaDescription"] ?? enDict["dapps.metaDescription"];
-    return { title, description, image: pageOg(title) };
   }
 
   if (clean in STATIC_ROUTES) {
