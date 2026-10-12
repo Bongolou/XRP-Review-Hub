@@ -58,6 +58,20 @@ See [`.env.example`](./.env.example). At minimum you must set:
 
 ## Project structure
 
+### Browser metadata regression tests
+
+Run `npm run test:browser` to check `/dapps` metadata against the central
+SEO map in all eight languages, including live language changes, browser
+Back, and navigating to another page and back. These tests also run with
+`npx vitest run` and before the deployment build.
+
+The tests start their own Vite server on an ephemeral port and need no
+database or running application workflow. On Replit they use the system
+Chromium (including its Linux libraries). On other Linux machines, first run
+`npx playwright install --with-deps chromium`. An explicit browser binary
+can be selected with `PLAYWRIGHT_CHROMIUM_PATH`. Missing browser dependencies
+fail the tests rather than silently skipping coverage.
+
 ```
 client/        React + Vite frontend
 server/        Express API and SSR entry
