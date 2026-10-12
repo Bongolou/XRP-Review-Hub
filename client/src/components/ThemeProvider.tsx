@@ -12,8 +12,12 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("theme") as Theme;
-      if (stored) return stored;
+      try {
+        const stored = localStorage.getItem("theme") as Theme;
+        if (stored) return stored;
+      } catch {
+        // Use the default theme when storage is unavailable.
+      }
     }
     return "dark";
   });
@@ -27,7 +31,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       root.classList.add("dark");
       root.classList.remove("light");
     }
-    localStorage.setItem("theme", theme);
+    try {
+      localStorage.setItem("theme", theme);
+    } catch {
+      // Theme switching still works for this visit without persistence.
+    }
   }, [theme]);
 
   const toggleTheme = () => {

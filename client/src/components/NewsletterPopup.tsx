@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -8,15 +8,24 @@ export function NewsletterPopup() {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const dismissed = useRef(false);
+
+  const hasSeenPopup = () => {
+    if (dismissed.current) return true;
+    try {
+      return Boolean(localStorage.getItem("newsletter_popup_seen"));
+    } catch {
+      return false;
+    }
+  };
 
   useEffect(() => {
-    const hasSeenPopup = localStorage.getItem("newsletter_popup_seen");
-    if (hasSeenPopup) return;
+    if (hasSeenPopup()) return;
 
     let timeoutId: NodeJS.Timeout;
     
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
+      if (e.clientY <= 0 && !hasSeenPopup()) {
         setIsVisible(true);
         document.removeEventListener("mouseout", handleMouseLeave);
       }
@@ -24,25 +33,31 @@ export function NewsletterPopup() {
 
     // Also show after 30 seconds if user hasn't left
     timeoutId = setTimeout(() => {
-      if (!localStorage.getItem("newsletter_popup_seen")) {
+      if (!hasSeenPopup()) {
         setIsVisible(true);
       }
     }, 30000);
 
     // Wait 5 seconds before enabling exit intent
-    setTimeout(() => {
+    const exitIntentTimeoutId = setTimeout(() => {
       document.addEventListener("mouseout", handleMouseLeave);
     }, 5000);
 
     return () => {
       document.removeEventListener("mouseout", handleMouseLeave);
       clearTimeout(timeoutId);
+      clearTimeout(exitIntentTimeoutId);
     };
   }, []);
 
   const handleClose = () => {
+    dismissed.current = true;
     setIsVisible(false);
-    localStorage.setItem("newsletter_popup_seen", "true");
+    try {
+      localStorage.setItem("newsletter_popup_seen", "true");
+    } catch {
+      // Keep dismissal in memory if this browser denies persistence.
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

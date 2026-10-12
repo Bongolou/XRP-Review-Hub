@@ -52,9 +52,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (typeof window !== "undefined") {
       const urlLang = readLangFromUrl();
       if (urlLang) return urlLang;
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (isSupportedLanguage(stored)) {
-        return stored;
+      try {
+        const stored = window.localStorage.getItem(STORAGE_KEY);
+        if (isSupportedLanguage(stored)) {
+          return stored;
+        }
+      } catch {
+        // Storage is optional; denied access falls back to English.
       }
     }
     return DEFAULT_LANG;
@@ -62,10 +66,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    if (lang === DEFAULT_LANG) {
-      localStorage.removeItem(STORAGE_KEY);
-    } else {
-      localStorage.setItem(STORAGE_KEY, lang);
+    try {
+      if (lang === DEFAULT_LANG) {
+        window.localStorage.removeItem(STORAGE_KEY);
+      } else {
+        window.localStorage.setItem(STORAGE_KEY, lang);
+      }
+    } catch {
+      // Keep in-memory state and URL switching working without persistence.
     }
     document.documentElement.lang = lang;
     syncLangInUrl(lang, "push");

@@ -141,6 +141,62 @@ describe("DApps rendered browser metadata", () => {
     }
   }, 60_000);
 
+  it.each([
+    { query: null, expected: "en" },
+    { query: "xx", expected: "en" },
+    { query: "constructor", expected: "en" },
+    { query: "fr", expected: "fr" },
+    { query: "en", expected: "en" },
+  ] as { query: string | null; expected: Language }[])(
+    "blocked storage: query $query renders $expected and permits switching",
+    async ({ query, expected }) => {
+      const context = await browser!.newContext({ viewport: { width: 1440, height: 1000 } });
+      try {
+        await context.addInitScript(() => {
+          for (const method of ["getItem", "setItem", "removeItem"] as const) {
+            Storage.prototype[method] = () => {
+              throw new DOMException("Storage access denied", "SecurityError");
+            };
+          }
+        });
+        await context.route("**/*", route =>
+          new URL(route.request().url()).origin === baseURL ? route.continue() : route.abort());
+        const page = await context.newPage();
+        const pageErrors: string[] = [];
+        page.on("pageerror", error => pageErrors.push(error.message));
+        const search = query === null ? "" : `&lang=${encodeURIComponent(query)}`;
+        await page.goto(`${baseURL}/dapps?source=storage-test${search}#content`);
+        await page.getByTestId("text-dapps-title").waitFor();
+
+        const expectLanguage = async (language: Language) => {
+          await expectMetadata(page, language);
+          await expect.poll(() => page.evaluate(() => document.documentElement.lang)).toBe(language);
+          await expect.poll(() => new URL(page.url()).searchParams.get("lang"))
+            .toBe(language === "en" ? null : language);
+          expect(new URL(page.url()).searchParams.get("source")).toBe("storage-test");
+          expect(new URL(page.url()).hash).toBe("#content");
+        };
+        await expectLanguage(expected);
+        await page.evaluate(() => Reflect.set(window, "__storageTestDocument", "original"));
+
+        // Non-English exercises setItem; returning to English exercises removeItem.
+        for (const language of ["ja", "en"] as const) {
+          await page.getByTestId("language-selector").filter({ visible: true }).first().click();
+          await page.getByTestId(`lang-${language}`).filter({ visible: true }).click();
+          await expectLanguage(language);
+        }
+        await page.goBack();
+        await expectLanguage("ja");
+        await page.goBack();
+        await expectLanguage(expected);
+        expect(await page.evaluate(() => Reflect.get(window, "__storageTestDocument"))).toBe("original");
+        expect(pageErrors).toEqual([]);
+      } finally {
+        await context.close();
+      }
+    }, 60_000,
+  );
+
   it.each(languages)("%s: initial render, live language switch, and browser back", async (language) => {
     const context = await browser!.newContext({ viewport: { width: 1440, height: 1000 } });
     try {
