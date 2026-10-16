@@ -16,14 +16,14 @@ permissions:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "20"
           cache: "npm"
@@ -51,7 +51,7 @@ jobs:
         # built bundle and leaves any user-managed files in the
         # destination (e.g. a hand-edited .htaccess, cgi-bin/, etc.)
         # untouched.
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.BLUEHOST_FTP_SERVER }}
           username: ${{ secrets.BLUEHOST_FTP_USERNAME }}
