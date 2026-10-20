@@ -22,6 +22,16 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Preserve moderation credentials on hosts using PHP/FastCGI.
+  RewriteCond %{HTTP:Authorization} .
+  RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+  # Dynamic routes must precede both the real-file bypass (including built
+  # sitemaps) and the SPA fallback. PHP/cURL relays to the published Node app;
+  # mod_proxy is not required on Bluehost shared hosting. REQUEST_URI and
+  # the original query string are preserved by this internal rewrite.
+  RewriteRule ^(?:api(?:/.*)?|og/.*|sitemap(?:-[a-z0-9-]+)?\.xml|rss\.xml)$ /backend-relay.php [END]
+
   # Per-language snapshot for nested routes:
   #   /wallet/ledger?lang=de  →  /wallet/ledger/index.de.html
   # Only fires when the targeted file actually exists on disk, so

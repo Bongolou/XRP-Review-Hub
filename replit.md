@@ -68,10 +68,64 @@ Preferred communication style: Simple, everyday language.
 ## Deployment
 
 The live site at allthingsxrpl.com is hosted on Bluehost shared hosting,
-which only serves static files. The Express backend in `server/` does
-**not** run in production — `/api/*`, `/og/*.png`, the dynamic
-`/sitemap*.xml`, `/rss.xml`, the contact form, the newsletter signup,
-and review submissions only work in the Replit dev environment.
+which serves the static frontend and can execute PHP, but not the Express
+backend in `server/`. The public Node backend is already published at
+`https://xrp-review-hub.replit.app` (Replit Autoscale, Node 20).
+
+### Bluehost backend relay (prepared; production rollout not yet verified)
+- Keep the website on Bluehost and preserve the existing Cloudflare DNS
+  management. Dynamic requests use relative
+  URLs, so browsers and crawlers continue to request allthingsxrpl.com.
+- `deployment/bluehost/backend-relay.php` forwards only the application's
+  API, sitemap, RSS, and OG-image routes to the fixed public backend origin.
+  It requires PHP 7.4+ with cURL and outbound HTTPS. It verifies TLS, refuses
+  redirects, caps request/response sizes, and preserves status, JSON, XML,
+  binary images, query strings, and moderation authorization. It never
+  contains database credentials or an admin token.
+- `client/public/.htaccess` routes dynamic paths to the relay **before**
+  serving real files or falling back to the SPA. This includes build-time
+  sitemap files, so live sitemaps come from the backend. No Apache
+  `mod_proxy` support or browser CORS configuration is required.
+- The GitHub build sets `BLUEHOST_DEPLOY=1` to copy the PHP relay to
+  `dist/public/`. Normal Replit builds omit it so Node never serves PHP
+  source. Backend changes still require a separate Replit republish; FTPS
+  deploys cannot update the running Node service.
+- Contact submissions go to `/api/contact` and PostgreSQL, not Formspree.
+  All newsletter widgets check for a JSON response to avoid reporting
+  success when Apache accidentally returns the SPA shell. News uses the
+  backend's XRPL-filtered feed rather than a separate browser RSS service.
+- Welcome emails require a connected **Resend** integration (or a direct
+  `RESEND_API_KEY` in backend Secrets) and `WELCOME_EMAIL_FROM` set to an
+  address on a Resend-verified sending domain. `PUBLIC_BASE_URL` defaults
+  to `https://allthingsxrpl.com`. Sending is awaited before signup responds,
+  rather than discarded when an autoscaling instance goes idle. Responses
+  include `emailStatus` when creating a new subscriber; database writes
+  remain successful if the email provider fails.
+- Resend domain verification was confirmed on 2026-10-11. Shared environment
+  configuration uses `All Things XRPL <newsletter@allthingsxrpl.com>` as
+  `WELCOME_EMAIL_FROM` and `https://allthingsxrpl.com` as `PUBLIC_BASE_URL`.
+  These settings still require backend republishing and an actual delivery
+  check; domain verification alone does not prove live email delivery.
+- **Rollout order:** connect Resend and verify its sending domain, configure
+  the sender, republish the Node backend, then merge/deploy the frontend
+  and relay to Bluehost. Enable PHP/cURL for the actual document root.
+  Back up any host-managed `.htaccess` directives before deployment and
+  keep Bluehost's PHP-handler directives intact.
+- **Live acceptance checks still required:** public-domain contact,
+  newsletter, and review submissions must produce rows in the production
+  database; welcome email must be received; `/news` must show headlines;
+  `/sitemap.xml`, child sitemaps, `/rss.xml`, and `/og/page.png` must return
+  200 with XML/image content. Do not consider a working dev preview proof
+  that the Bluehost relay has been deployed.
+- **Merge handoff:** The user approved delivering the tested implementation
+  separately from production rollout and live acceptance checks. Apply the
+  task changes to the main app before syncing GitHub; the task workspace's
+  Git pane cannot sync remotes. Earlier command-line pushes failed
+  authentication, so do not assume a live deployment occurred.
+- The news Refresh button requests a fresh feed, with a shared one-minute
+  upstream cooldown and concurrent-request deduplication. It displays a
+  localized completion time or an explicit retry error. Ordinary requests
+  retain the fifteen-minute cache.
 
 ### Static prerender at build time
 - Every public route in the SPA is snapshotted to a real `<route>/index.html`

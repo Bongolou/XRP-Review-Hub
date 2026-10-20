@@ -9,7 +9,7 @@ import { ExternalLink, Clock, Newspaper, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { fetchAllNews } from "@/lib/fetchNews";
 
 interface NewsItem {
@@ -101,6 +101,8 @@ function NewsImage({ src, source }: { src?: string; source: string }) {
 
 export default function News() {
   const { t, language } = useLanguage();
+  const forceRefresh = useRef(false);
+  const [checkedAt, setCheckedAt] = useState<Date>();
   const seo = getStaticPageSeo(language, "news");
   useDocumentMeta({ title: seo.title, description: seo.description, canonicalPath: "/news", image: buildPageOgImage(seo.title) });
 
@@ -113,12 +115,23 @@ export default function News() {
 
   const { data, isLoading, error, refetch, isFetching } = useQuery<NewsItem[]>({
     queryKey: ["news-feed"],
-    queryFn: fetchAllNews,
+    queryFn: () => fetchAllNews({ refresh: forceRefresh.current }),
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
   });
 
   const news = data || [];
+  async function refreshNews() {
+    if (forceRefresh.current || isFetching) return;
+    forceRefresh.current = true;
+    setCheckedAt(undefined);
+    try {
+      const result = await refetch();
+      if (!result.isError) setCheckedAt(new Date());
+    } finally {
+      forceRefresh.current = false;
+    }
+  }
 
   return (
     <Layout>
@@ -140,7 +153,7 @@ export default function News() {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => refetch()}
+            onClick={refreshNews}
             disabled={isFetching}
             className="border-white/10 bg-white/5 hover:bg-white/10"
             data-testid="button-refresh-news"
@@ -148,6 +161,9 @@ export default function News() {
             <RefreshCw className={`h-4 w-4 mr-2 ${isFetching ? 'animate-spin' : ''}`} />
             {t("news.refresh")}
           </Button>
+          <p role="status" aria-live="polite" className="text-sm text-muted-foreground mt-3 min-h-5">
+            {checkedAt && `${t("news.checked")} ${checkedAt.toLocaleTimeString(language)}`}
+          </p>
         </div>
 
         {isLoading ? (
@@ -166,7 +182,7 @@ export default function News() {
           <div className="text-center py-20">
             <Newspaper className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             <p className="text-muted-foreground text-lg mb-4">{t("news.error")}</p>
-            <Button onClick={() => refetch()} variant="outline">
+            <Button onClick={refreshNews} disabled={isFetching} variant="outline">
               {t("news.tryAgain")}
             </Button>
           </div>
@@ -190,7 +206,7 @@ export default function News() {
                 data-testid={`card-news-${idx}`}
               >
                 <div className="h-full bg-card/30 rounded-xl border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] overflow-hidden flex flex-col">
-                  <NewsImage src={item.imageUrl} source={item.source} />
+                  <NewsImage key={item.imageUrl} src={item.imageUrl} source={item.source} />
                   <div className="p-6 flex flex-col flex-1">
                     <div className="flex items-center justify-between mb-3">
                       <Badge variant="outline" className={`text-xs ${getSourceColor(item.source)}`}>

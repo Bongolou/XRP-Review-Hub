@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import type { Language } from "@/lib/i18n/translations";
 import { localizeAffiliateUrl } from "@/lib/affiliateLinks";
+import { apiRequest } from "@/lib/queryClient";
 import {
   ArrowRight,
   ExternalLink,
@@ -664,15 +665,11 @@ export function EmailCaptureBlock({
     if (!email) return;
     setStatus("loading");
     try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
+      const res = await apiRequest("POST", "/api/subscribe", {
           email,
           source,
           leadMagnet: resolvedLeadMagnet,
           language,
-        }),
       });
       setStatus(res.ok ? "ok" : "err");
       if (res.ok) setEmail("");

@@ -5,6 +5,9 @@ async function throwIfResNotOk(res: Response) {
     const text = (await res.text()) || res.statusText;
     throw new Error(`${res.status}: ${text}`);
   }
+  if (!res.headers.get("content-type")?.includes("application/json")) {
+    throw new Error("The backend returned an unexpected response. Please try again.");
+  }
 }
 
 export async function apiRequest(

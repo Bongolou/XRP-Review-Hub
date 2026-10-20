@@ -8,6 +8,7 @@ import { Mail, MessageSquare, Send, HelpCircle, Newspaper } from "lucide-react";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { buildPageOgImage } from "@/lib/ogImage";
 import { getStaticPageSeo } from "@/lib/i18n/pageSeo";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function Contact() {
   const { t, language } = useLanguage();
@@ -36,14 +37,7 @@ export default function Contact() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/mqeqgeqk", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await apiRequest("POST", "/api/contact", formData);
 
       if (response.ok) {
         toast({

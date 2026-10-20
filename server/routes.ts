@@ -21,6 +21,7 @@ import { evaluateReviewSpam, checkAkismet } from "./reviewSpamHeuristics";
 import { walletCards, exchangeCards, type CardEntry } from "./cardData";
 import { Resvg } from "@resvg/resvg-js";
 import { z } from "zod";
+import { createNewsCache } from "./newsCache";
 
 const escapeOgXml = (s: string): string =>
   s
@@ -547,8 +548,6 @@ interface NewsItem {
   imageUrl?: string;
 }
 
-let newsCache: { items: NewsItem[]; lastFetched: number } = { items: [], lastFetched: 0 };
-const NEWS_CACHE_TTL = 15 * 60 * 1000;
 
 function extractTag(xml: string, tag: string): string {
   const cdataMatch = xml.match(new RegExp(`<${tag}>\\s*<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>\\s*</${tag}>`));
@@ -610,12 +609,7 @@ async function fetchNewsFromFeed(url: string, sourceName: string): Promise<NewsI
   }
 }
 
-async function fetchAllNews(): Promise<NewsItem[]> {
-  const now = Date.now();
-  if (newsCache.items.length > 0 && now - newsCache.lastFetched < NEWS_CACHE_TTL) {
-    return newsCache.items;
-  }
-
+async function loadNews(): Promise<NewsItem[]> {
   const feeds = [
     { url: 'https://news.google.com/rss/search?q=XRP+OR+XRPL+OR+%22XRP+Ledger%22+OR+Ripple+crypto&hl=en-US&gl=US&ceid=US:en', source: 'Google News' },
     { url: 'https://cointelegraph.com/rss/tag/xrp', source: 'CoinTelegraph' },
@@ -656,10 +650,11 @@ async function fetchAllNews(): Promise<NewsItem[]> {
 
   allItems = allItems.slice(0, 50);
 
-  newsCache = { items: allItems, lastFetched: now };
+  if (allItems.length === 0) throw new Error("No news articles available from upstream feeds");
   console.log(`[News] Fetched ${allItems.length} XRP news articles`);
   return allItems;
 }
+const fetchAllNews = createNewsCache(loadNews);
 
 // Single source of truth for the wallet/exchange slug sets — derived from
 // cardData so the sitemap entries, OG-image allowlist, and card metadata
@@ -980,9 +975,10 @@ export async function registerRoutes(
 
   // XRP News feed API
   app.get("/api/news", async (req, res) => {
+    res.setHeader("Cache-Control", "no-store");
     try {
       const limit = Math.min(parseInt(req.query.limit as string) || 20, 50);
-      const items = await fetchAllNews();
+      const items = await fetchAllNews(req.query.refresh === "1");
       res.json({ items: items.slice(0, limit) });
     } catch (error) {
       console.error("[News] Error:", error);
@@ -1211,16 +1207,14 @@ export async function registerRoutes(
         return res.status(200).json({ success: true, message: "You're already subscribed — thanks!" });
       }
 
-      const subscriber = await storage.createSubscriber(data);
+      await storage.createSubscriber(data);
       console.log(`[Subscribe] New subscriber: ${data.email} source=${data.source || "n/a"} magnet=${data.leadMagnet || "n/a"} lang=${data.language || "n/a"}`);
-      if (data.leadMagnet) {
-        sendWelcomeEmail({
+      const emailStatus = await sendWelcomeEmail({
           to: data.email,
-          leadMagnet: data.leadMagnet,
+          leadMagnet: data.leadMagnet || "newsletter",
           language: data.language,
-        });
-      }
-      res.status(201).json({ success: true, message: "Successfully subscribed!" });
+      });
+      res.status(201).json({ success: true, message: "Successfully subscribed!", emailStatus });
     } catch (error) {
       if (error instanceof z.ZodError) {
         // Surface which field actually failed instead of always blaming

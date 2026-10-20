@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { X, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 export function NewsletterPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -66,13 +67,8 @@ export function NewsletterPopup() {
 
     setIsLoading(true);
     try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({ email, source: "exit_intent_popup", leadMagnet: "newsletter" }),
+      const response = await apiRequest("POST", "/api/subscribe", {
+        email, source: "exit_intent_popup", leadMagnet: "newsletter",
       });
 
       if (response.ok) {

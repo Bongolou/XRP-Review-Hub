@@ -1,2 +1,4 @@
 - [Canvas preview provisioning](canvas-preview-provisioning.md) — a live frame is not proof its sandbox runtime exists; verify before delivery.
 - [Portable dependency locks](portable-dependency-locks.md) — Replit-internal package URLs can break GitHub installs even when local checks pass.
+- [Bluehost hosting choice](bluehost-hosting.md) — keep the website on Bluehost; do not move its domain to Replit without a new user decision.
+- [GitHub authentication](github-authentication.md) — connection health and attachment status can disagree with actual Git push access.

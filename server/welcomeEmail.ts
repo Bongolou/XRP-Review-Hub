@@ -2,6 +2,7 @@ import {
   SUPPORTED_SUBSCRIBER_LANGUAGES,
   type SubscriberLanguage,
 } from "@shared/schema";
+import { ReplitConnectors } from "@replit/connectors-sdk";
 
 // Hard-coded production canonical so welcome emails never embed a
 // host-header-derived URL (mitigates host-header poisoning, where an
@@ -220,6 +221,16 @@ export function renderWelcomeEmail(opts: {
   language?: string | null;
   baseUrl: string;
 }): RenderedEmail | null {
+  if (opts.leadMagnet === "newsletter") {
+    const baseUrl = opts.baseUrl.replace(/\/+$/, "");
+    return {
+      subject: "Welcome to All Things XRPL",
+      text: `Thanks for subscribing to All Things XRPL. You'll receive XRPL news, wallet guides, and reviews.\n\nExplore the site: ${baseUrl}`,
+      html: `<p>Thanks for subscribing to All Things XRPL. You'll receive XRPL news, wallet guides, and reviews.</p><p><a href="${escapeHtml(baseUrl)}">Explore the site</a></p>`,
+      downloadUrl: baseUrl,
+      language: "en",
+    };
+  }
   if (!isSupportedMagnet(opts.leadMagnet)) {
     // Unknown magnet (e.g. plain "newsletter" signups) — no welcome email.
     return null;
@@ -284,68 +295,68 @@ function escapeHtml(s: string): string {
 async function sendViaResend(opts: {
   to: string;
   from: string;
-  apiKey: string;
+  apiKey?: string;
   email: RenderedEmail;
 }): Promise<void> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 5000);
   try {
-    const res = await fetch("https://api.resend.com/emails", {
+    const body = JSON.stringify({
+      from: opts.from,
+      to: opts.to,
+      subject: opts.email.subject,
+      html: opts.email.html,
+      text: opts.email.text,
+    });
+    const res = opts.apiKey ? await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "content-type": "application/json",
         authorization: `Bearer ${opts.apiKey}`,
       },
-      body: JSON.stringify({
-        from: opts.from,
-        to: opts.to,
-        subject: opts.email.subject,
-        html: opts.email.html,
-        text: opts.email.text,
-      }),
+      body,
       signal: controller.signal,
+    }) : await new ReplitConnectors().proxy("resend", "/emails", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body,
     });
     if (!res.ok) {
-      const detail = await res.text().catch(() => "");
-      console.error(
-        `[WelcomeEmail] Resend responded ${res.status}: ${detail.slice(0, 200)}`,
-      );
+      throw new Error(`Resend responded ${res.status}`);
     }
   } finally {
     clearTimeout(timer);
   }
 }
 
-export function sendWelcomeEmail(opts: {
+export async function sendWelcomeEmail(opts: {
   to: string;
   leadMagnet: string;
   language?: string | null;
-}): void {
+}): Promise<"sent" | "failed" | "not_configured" | "not_applicable"> {
   const baseUrl = buildBaseUrl();
   const email = renderWelcomeEmail({
     leadMagnet: opts.leadMagnet,
     language: opts.language,
     baseUrl,
   });
-  if (!email) return;
+  if (!email) return "not_applicable";
 
   const apiKey = process.env.RESEND_API_KEY?.trim();
   const from = process.env.WELCOME_EMAIL_FROM?.trim();
 
-  // No transport configured: log the localized subject + download link so
-  // operators can verify the language is being honoured even before the
-  // sending integration is wired up. Body is intentionally not logged to
-  // keep PII out of the logs.
-  if (!apiKey || !from) {
-    console.log(
-      `[WelcomeEmail] (no transport) lang=${email.language} to=${opts.to} subject="${email.subject}" download=${email.downloadUrl}`,
-    );
-    return;
+  if (!from) {
+    console.error("[WelcomeEmail] WELCOME_EMAIL_FROM is not configured");
+    return "not_configured";
   }
 
-  setImmediate(() => {
-    sendViaResend({ to: opts.to, from, apiKey, email }).catch((err) => {
-      console.error("[WelcomeEmail] Failed to send:", err);
-    });
-  });
+  // Await transport before returning the HTTP response: autoscaling can
+  // suspend an idle instance and discard fire-and-forget email work.
+  try {
+    await sendViaResend({ to: opts.to, from, apiKey, email });
+    return "sent";
+  } catch {
+    console.error("[WelcomeEmail] Sending failed");
+    return "failed";
+  }
 }

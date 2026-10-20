@@ -41,7 +41,15 @@ jobs:
       - name: Check browser metadata regressions
         run: npm run test:browser
 
+      - name: Check Bluehost relay regressions
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y php-cli php-curl
+          npx vitest run script/backend-relay.test.ts script/backend-client.test.ts server/welcomeEmail.test.ts
+
       - name: Build site
+        env:
+          BLUEHOST_DEPLOY: "1"
         run: npm run build
 
       - name: Deploy dist/public to Bluehost over FTPS
@@ -75,3 +83,4 @@ jobs:
           echo "- Commit: \`${GITHUB_SHA}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- Triggered by: \`${GITHUB_EVENT_NAME}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- Finished at: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Dynamic routes are relayed to the public Replit backend; publish backend changes separately." >> "$GITHUB_STEP_SUMMARY"

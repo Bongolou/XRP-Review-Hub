@@ -35,6 +35,7 @@ export const SUPPORTED_SUBSCRIBER_LANGUAGES = [
 export type SubscriberLanguage = (typeof SUPPORTED_SUBSCRIBER_LANGUAGES)[number];
 
 export const insertSubscriberSchema = createInsertSchema(subscribers, {
+  email: z.string().trim().toLowerCase().email().max(254),
   language: z.enum(SUPPORTED_SUBSCRIBER_LANGUAGES).optional(),
 }).pick({
   email: true,
@@ -43,7 +44,12 @@ export const insertSubscriberSchema = createInsertSchema(subscribers, {
   language: true,
 });
 
-export const insertContactSchema = createInsertSchema(contactSubmissions).pick({
+export const insertContactSchema = createInsertSchema(contactSubmissions, {
+  name: z.string().trim().min(1).max(100),
+  email: z.string().trim().email().max(254),
+  subject: z.string().trim().min(1).max(200),
+  message: z.string().trim().min(1).max(10000),
+}).pick({
   name: true,
   email: true,
   subject: true,

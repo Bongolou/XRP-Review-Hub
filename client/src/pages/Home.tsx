@@ -491,7 +491,7 @@ function formatTimeAgo(dateStr: string): string {
 function LatestNewsPreview({ t }: { t: (key: string) => string }) {
   const { data, isLoading } = useQuery({
     queryKey: ["news-feed"],
-    queryFn: fetchAllNews,
+    queryFn: () => fetchAllNews(),
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
   });

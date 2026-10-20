@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 export function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -13,13 +14,8 @@ export function NewsletterForm() {
 
     setIsLoading(true);
     try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({ email, source: "newsletter_form", leadMagnet: "newsletter" }),
+      const response = await apiRequest("POST", "/api/subscribe", {
+        email, source: "newsletter_form", leadMagnet: "newsletter",
       });
 
       if (response.ok) {

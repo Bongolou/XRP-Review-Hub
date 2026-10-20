@@ -1,6 +1,6 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
-import { rm, readFile, writeFile } from "fs/promises";
+import { rm, readFile, writeFile, copyFile } from "fs/promises";
 import { join } from "path";
 import { walletCards, exchangeCards } from "../server/cardData";
 import {
@@ -65,6 +65,11 @@ async function buildAll() {
 
   console.log("building client...");
   await viteBuild();
+
+  // PHP must only ship to the PHP host, never be served as source by Node.
+  if (process.env.BLUEHOST_DEPLOY === "1") {
+    await copyFile("deployment/bluehost/backend-relay.php", "dist/public/backend-relay.php");
+  }
 
   console.log("writing sitemap files...");
   await writeSitemapFilesToDist();
