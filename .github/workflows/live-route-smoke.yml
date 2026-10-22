@@ -1,0 +1,67 @@
+name: Live Route Health Check
+
+on:
+  schedule:
+    # Hourly at minute 17 UTC, away from the busy top-of-hour window.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Separate from deploy-bluehost: monitoring must never cancel a deployment.
+concurrency:
+  group: live-route-health-check
+  cancel-in-progress: false
+
+jobs:
+  check-live-routes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test smoke checker
+        run: python3 -m unittest discover -s script -p 'post_deploy_smoke_test.py'
+
+      # Uses the same fixed Bluehost origin, payload validation and bounded
+      # retries as deployment checks. Only public GETs; no secrets or writes.
+      - name: Check live Bluehost routes
+        id: smoke
+        timeout-minutes: 12
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 -u script/post_deploy_smoke.py 2>&1 | tee "$RUNNER_TEMP/live-route-smoke.log"
+
+      - name: Summarize route health
+        if: always()
+        env:
+          SMOKE_OUTCOME: ${{ steps.smoke.outcome }}
+        shell: bash
+        run: |
+          {
+            echo "### Live Route Health Check"
+            echo ""
+            echo "- Target: https://allthingsxrpl.com (Bluehost)"
+            echo "- Check outcome: $SMOKE_OUTCOME"
+            echo "- Finished at: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            echo "- Read-only checks; no deployment or application writes."
+            echo ""
+            echo '```text'
+            if [ -f "$RUNNER_TEMP/live-route-smoke.log" ]; then
+              tail -c 60000 "$RUNNER_TEMP/live-route-smoke.log"
+            else
+              echo "Live checks did not start. See the preceding step logs."
+            fi
+            echo ""
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -56,6 +56,31 @@ See [`.env.example`](./.env.example). At minimum you must set:
 - Newsletter signup writes to the `subscribers` table
 - A few `/wallet/{slug}`, `/exchange/{slug}`, `/compare/{slug}`, and `/best-for/{slug}` routes render correctly
 
+### Scheduled live route checks (read-only)
+
+`.github/workflows/live-route-smoke.yml` runs **Live Route Health Check**
+hourly at minute 17 UTC, independently of frontend or backend deployments.
+It can also be run from **GitHub → Actions → Live Route Health Check → Run
+workflow**. The schedule becomes active when the workflow is on the repository's
+default branch; GitHub may delay scheduled runs, so this is not real-time monitoring.
+
+It reuses `script/post_deploy_smoke.py` against `https://allthingsxrpl.com`,
+checking news and review APIs, RSS, the sitemap index and every advertised child
+sitemap, and an OG PNG. Response payloads are validated, so an HTML fallback
+with HTTP 200 still fails. Each route gets at most four attempts with a
+20-second request timeout and 10-second delay between attempts; the live-check
+step is capped at 12 minutes.
+
+Failures mark the GitHub Actions run failed. Open its summary and **Check live
+Bluehost routes** logs to see the failing routes and attempts. GitHub Actions
+notifications depend on your GitHub notification settings. No application
+emails, submissions, records, DNS changes, or deployments are performed, and
+no application credentials are needed.
+
+To run the same checks manually: `python3 script/post_deploy_smoke.py`.
+To test the checker offline:
+`python3 -m unittest discover -s script -p 'post_deploy_smoke_test.py'`.
+
 ## Project structure
 
 ### Browser metadata regression tests
