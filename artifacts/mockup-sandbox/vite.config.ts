@@ -51,6 +51,13 @@ export default defineConfig({
       '@': path.resolve(import.meta.dirname, 'src'),
     },
   },
+  // Tailwind v4 is handled by the Vite plugin, not the root app's
+  // legacy PostCSS configuration.
+  css: {
+    postcss: {
+      plugins: [],
+    },
+  },
   root: path.resolve(import.meta.dirname),
   build: {
     outDir: path.resolve(import.meta.dirname, 'dist'),
