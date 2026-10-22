@@ -31,6 +31,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check localized affiliate links
+        run: npx vitest run client/src/lib/affiliateLinks.test.ts
+
       # The build step calls script/prerender.ts, which launches a
       # headless Chromium via Playwright to snapshot every public route
       # to static HTML. The browser binary and its system libraries

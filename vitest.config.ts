@@ -14,6 +14,7 @@ export default defineConfig({
       "server/**/*.test.ts",
       "shared/**/*.test.ts",
       "script/**/*.test.ts",
+      "client/src/lib/**/*.test.ts",
     ],
   },
 });
