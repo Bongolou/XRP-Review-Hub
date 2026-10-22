@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { Language, translations, languageNames } from "./translations";
 import { dappsTranslations } from "./dappsTranslations";
+import { detectVisitorCountry } from "../visitorCountry";
 
 interface LanguageContextType {
   language: Language;
@@ -8,6 +9,8 @@ interface LanguageContextType {
   t: (key: string) => string;
   languageNames: Record<Language, string>;
   availableLanguages: Language[];
+  /** Auto-detected country, only used until a visitor explicitly chooses a language. */
+  country: string | undefined;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -48,6 +51,16 @@ function syncLangInUrl(lang: Language, mode: "push" | "replace") {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [hasLanguagePreference, setHasLanguagePreference] = useState(() => {
+    if (readLangFromUrl()) return true;
+    try {
+      return typeof window !== "undefined" &&
+        isSupportedLanguage(window.localStorage.getItem(STORAGE_KEY));
+    } catch {
+      return false;
+    }
+  });
+  const [detectedCountry, setDetectedCountry] = useState<string>();
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== "undefined") {
       const urlLang = readLangFromUrl();
@@ -65,19 +78,27 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   });
 
   const setLanguage = (lang: Language) => {
+    setHasLanguagePreference(true);
     setLanguageState(lang);
     try {
-      if (lang === DEFAULT_LANG) {
-        window.localStorage.removeItem(STORAGE_KEY);
-      } else {
-        window.localStorage.setItem(STORAGE_KEY, lang);
-      }
+      // English is also an explicit preference: do not re-enable geo routing
+      // on the next visit merely because English has no URL parameter.
+      window.localStorage.setItem(STORAGE_KEY, lang);
     } catch {
       // Keep in-memory state and URL switching working without persistence.
     }
     document.documentElement.lang = lang;
     syncLangInUrl(lang, "push");
   };
+
+  useEffect(() => {
+    if (hasLanguagePreference) return;
+    let active = true;
+    void detectVisitorCountry().then(country => {
+      if (active) setDetectedCountry(country);
+    });
+    return () => { active = false; };
+  }, [hasLanguagePreference]);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -89,6 +110,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const handlePopState = () => {
+      // History navigation is an explicit locale navigation, including English.
+      setHasLanguagePreference(true);
       const urlLang = readLangFromUrl() ?? DEFAULT_LANG;
       setLanguageState((prev) => (prev === urlLang ? prev : urlLang));
     };
@@ -109,7 +132,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const availableLanguages: Language[] = ["en", "es", "zh", "ja", "ko", "pt", "de", "fr"];
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, languageNames, availableLanguages }}>
+    <LanguageContext.Provider value={{
+      language, setLanguage, t, languageNames, availableLanguages,
+      country: hasLanguagePreference ? undefined : detectedCountry,
+    }}>
       {children}
     </LanguageContext.Provider>
   );

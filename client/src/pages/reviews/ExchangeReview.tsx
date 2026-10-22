@@ -603,7 +603,7 @@ const exchangeData: Record<string, {
 
 export default function ExchangeReview() {
   const { slug } = useParams<{ slug: string }>();
-  const { t, language } = useLanguage();
+  const { t, language, country } = useLanguage();
   const exchange = exchangeData[slug || ""];
   const seo = slug ? getExchangeSeo(language, slug) : undefined;
   const origin =
@@ -808,7 +808,7 @@ export default function ExchangeReview() {
           <div className="mb-6"><LastUpdated date="April 2026" /></div>
 
           <a 
-            href={localizeAffiliateUrl(exchange.affiliateLink, language)}
+            href={localizeAffiliateUrl(exchange.affiliateLink, language, country)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-12 !px-12 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"
@@ -1031,7 +1031,7 @@ export default function ExchangeReview() {
 
         <div className="text-center pb-8">
           <a 
-            href={localizeAffiliateUrl(exchange.affiliateLink, language)}
+            href={localizeAffiliateUrl(exchange.affiliateLink, language, country)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-14 !px-12 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-lg transition-colors"
@@ -1063,7 +1063,7 @@ export default function ExchangeReview() {
               </div>
             </div>
             <a
-              href={localizeAffiliateUrl(exchange.affiliateLink, language)}
+              href={localizeAffiliateUrl(exchange.affiliateLink, language, country)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 h-10 px-4 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg transition-colors flex-shrink-0"

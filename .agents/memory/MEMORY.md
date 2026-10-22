@@ -4,3 +4,4 @@
 - [GitHub authentication](github-authentication.md) — connection health and attachment status can disagree with actual Git push access.
 - [Google rich-result validation](google-rich-results.md) — the external test can require Google sign-in; local schema checks are not a Google validation result.
 - [Mixed package-manager remediation](mixed-package-managers.md) — removing a lockfile can silently change which package manager the installation tool selects.
+- [Visitor country routing](visitor-country-routing.md) — resolve country in the browser; a Bluehost relay can make backend geo headers describe the host instead.

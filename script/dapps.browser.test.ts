@@ -179,7 +179,7 @@ describe("DApps rendered browser metadata", () => {
         await expectLanguage(expected);
         await page.evaluate(() => Reflect.set(window, "__storageTestDocument", "original"));
 
-        // Non-English exercises setItem; returning to English exercises removeItem.
+        // Both non-English and explicit English choices attempt persistence.
         for (const language of ["ja", "en"] as const) {
           await page.getByTestId("language-selector").filter({ visible: true }).first().click();
           await page.getByTestId(`lang-${language}`).filter({ visible: true }).click();

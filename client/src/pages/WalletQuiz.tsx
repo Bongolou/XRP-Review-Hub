@@ -139,7 +139,7 @@ function getRecommendation(answers: Answers): Recommendation {
 }
 
 export default function WalletQuiz() {
-  const { language, t } = useLanguage();
+  const { language, t, country } = useLanguage();
   const seo = getStaticPageSeo(language, "walletQuiz");
   useDocumentMeta({
     title: seo.title,
@@ -248,7 +248,7 @@ export default function WalletQuiz() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href={localizeAffiliateUrl(recommendation.primary.link, language)}
+                  href={localizeAffiliateUrl(recommendation.primary.link, language, country)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 h-12 px-8 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"

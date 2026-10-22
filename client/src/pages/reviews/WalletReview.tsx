@@ -952,7 +952,7 @@ const walletData: Record<string, {
 
 export default function WalletReview() {
   const { slug } = useParams<{ slug: string }>();
-  const { t, language } = useLanguage();
+  const { t, language, country } = useLanguage();
   const wallet = walletData[slug || ""];
   const seo = slug ? getSeoEntry(language, "wallet", slug) : undefined;
   const origin =
@@ -1189,7 +1189,7 @@ export default function WalletReview() {
           <div className="mb-6"><LastUpdated date="April 2026" /></div>
 
           <a 
-            href={localizeAffiliateUrl(wallet.affiliateLink, language)}
+            href={localizeAffiliateUrl(wallet.affiliateLink, language, country)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-12 !px-12 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors"
@@ -1533,7 +1533,7 @@ export default function WalletReview() {
 
         <div className="text-center pb-8">
           <a 
-            href={localizeAffiliateUrl(wallet.affiliateLink, language)}
+            href={localizeAffiliateUrl(wallet.affiliateLink, language, country)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 h-14 !px-12 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-lg transition-colors"
@@ -1565,7 +1565,7 @@ export default function WalletReview() {
               </div>
             </div>
             <a
-              href={localizeAffiliateUrl(wallet.affiliateLink, language)}
+              href={localizeAffiliateUrl(wallet.affiliateLink, language, country)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 h-10 px-4 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg transition-colors flex-shrink-0"
