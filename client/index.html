@@ -76,7 +76,12 @@
         --color-muted-foreground: hsl(215 20% 65%);
         --color-border: hsl(217 33% 25%);
       }
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      /* Match Tailwind's layer order even before the stylesheet loads.
+         An unlayered reset overrides utility padding/margins on every page. */
+      @layer theme, base, components, utilities;
+      @layer base {
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      }
       html { scroll-behavior: smooth; }
       body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

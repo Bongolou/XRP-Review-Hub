@@ -457,10 +457,10 @@ export function VerdictBox({
       )}
 
       <div className="flex flex-wrap gap-3">
-        <a href={localizedAffiliateUrl} target="_blank" rel="noopener noreferrer">
+        <a href={localizedAffiliateUrl} target="_blank" rel="noopener noreferrer" className="max-w-full">
           <Button
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-white font-bold"
+            className="max-w-full whitespace-normal h-auto py-3 bg-primary hover:bg-primary/90 text-white font-bold"
             data-testid="button-verdict-cta"
           >
             {tVerdict("get")} {pickName} <ExternalLink className="ml-2 h-4 w-4" />

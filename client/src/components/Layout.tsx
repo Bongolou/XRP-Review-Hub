@@ -54,7 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       />
       
       <div className="bg-primary/10 border-b border-primary/20 py-2 relative z-[60]">
-        <div className="container mx-auto px-4 flex items-center justify-between overflow-visible">
+        <div className="container mx-auto px-4 flex flex-wrap items-center justify-between gap-2 overflow-visible">
           <PriceTicker />
           <div className="flex items-center gap-2 overflow-visible">
             <SocialLinks />
