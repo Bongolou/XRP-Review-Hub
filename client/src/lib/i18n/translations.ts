@@ -23,6 +23,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.news": "News",
     "nav.gettingStarted": "Getting Started",
     "nav.compare": "Compare",
+    "compare.breadcrumbTitle": "{first} vs {second}",
     "nav.about": "About",
     "nav.contact": "Contact",
     
@@ -1913,6 +1914,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.news": "Noticias",
     "nav.gettingStarted": "Comenzar",
     "nav.compare": "Comparar",
+    "compare.breadcrumbTitle": "{first} frente a {second}",
     "nav.about": "Nosotros",
     "nav.contact": "Contacto",
     
@@ -3657,6 +3659,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.news": "新闻",
     "nav.gettingStarted": "入门指南",
     "nav.compare": "比较",
+    "compare.breadcrumbTitle": "{first} 对比 {second}",
     "nav.about": "关于我们",
     "nav.contact": "联系我们",
     
@@ -5401,6 +5404,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.news": "ニュース",
     "nav.gettingStarted": "はじめに",
     "nav.compare": "比較",
+    "compare.breadcrumbTitle": "{first}と{second}の比較",
     "nav.about": "について",
     "nav.contact": "お問い合わせ",
     
@@ -7145,6 +7149,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.news": "뉴스",
     "nav.gettingStarted": "시작하기",
     "nav.compare": "비교",
+    "compare.breadcrumbTitle": "{first} 대 {second}",
     "nav.about": "소개",
     "nav.contact": "문의",
     
@@ -8889,6 +8894,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.news": "Notícias",
     "nav.gettingStarted": "Começar",
     "nav.compare": "Comparar",
+    "compare.breadcrumbTitle": "{first} versus {second}",
     "nav.about": "Sobre",
     "nav.contact": "Contato",
     
@@ -10633,6 +10639,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.news": "Nachrichten",
     "nav.gettingStarted": "Erste Schritte",
     "nav.compare": "Vergleichen",
+    "compare.breadcrumbTitle": "{first} im Vergleich zu {second}",
     "nav.about": "Über uns",
     "nav.contact": "Kontakt",
     
@@ -12377,6 +12384,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "nav.news": "Actualités",
     "nav.gettingStarted": "Commencer",
     "nav.compare": "Comparer",
+    "compare.breadcrumbTitle": "{first} contre {second}",
     "nav.about": "À propos",
     "nav.contact": "Contact",
     

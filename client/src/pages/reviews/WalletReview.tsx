@@ -1038,10 +1038,10 @@ export default function WalletReview() {
           ],
         },
         buildBreadcrumbList([
-          { name: "Home", path: "/" },
-          { name: "Wallets", path: "/#wallets" },
+          { name: t("nav.home"), path: "/" },
+          { name: t("nav.wallets"), path: "/#wallets" },
           { name: wallet.name, path: `/wallet/${slug}` },
-        ]),
+        ], language),
         {
           "@context": "https://schema.org",
           "@type": "FAQPage",

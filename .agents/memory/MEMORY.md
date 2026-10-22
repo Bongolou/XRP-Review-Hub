@@ -2,3 +2,4 @@
 - [Portable dependency locks](portable-dependency-locks.md) — Replit-internal package URLs can break GitHub installs even when local checks pass.
 - [Bluehost hosting choice](bluehost-hosting.md) — keep the website on Bluehost; do not move its domain to Replit without a new user decision.
 - [GitHub authentication](github-authentication.md) — connection health and attachment status can disagree with actual Git push access.
+- [Google rich-result validation](google-rich-results.md) — the external test can require Google sign-in; local schema checks are not a Google validation result.

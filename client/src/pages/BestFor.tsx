@@ -112,21 +112,7 @@ export default function BestFor() {
     image: seo ? buildPageOgImage(seo.title) : undefined,
   });
 
-  if (!slug || !validSlugs.includes(slug)) {
-    return (
-      <Layout>
-        <div className="container mx-auto px-4 max-w-3xl text-center py-16">
-          <h1 className="text-3xl font-bold font-display mb-4">{t("bf.notFoundTitle")}</h1>
-          <p className="text-muted-foreground mb-6">{t("bf.notFoundDesc")}</p>
-          <Link href="/best-xrp-wallets" className="text-primary hover:underline">
-            {t("bf.notFoundLink")}
-          </Link>
-        </div>
-      </Layout>
-    );
-  }
-
-  const rows: FastCompareRow[] = slugWalletRows[slug].map((r) => ({
+  const rows: FastCompareRow[] = (slugWalletRows[slug] ?? []).map((r) => ({
     id: r.id,
     name: walletDisplayName[r.id] || r.id,
     type: t(`bxw.row.${r.id}.type`),
@@ -151,12 +137,12 @@ export default function BestFor() {
   const stripHtml = (s: string) => s.replace(/<[^>]*>/g, "");
   const origin = typeof window !== "undefined" ? window.location.origin : "";
   const titleForCrumb = t(`bf.${slug}.title`);
-  useJsonLd(`best-for:${slug}`, [
+  useJsonLd(`best-for:${slug}`, seo ? [
     buildBreadcrumbList([
-      { name: "Home", path: "/" },
-      { name: "Best XRP Wallets", path: "/best-xrp-wallets" },
+      { name: t("nav.home"), path: "/" },
+      { name: t("bxw.title"), path: "/best-xrp-wallets" },
       { name: titleForCrumb, path: `/best-for/${slug}` },
-    ]),
+    ], language),
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
@@ -182,7 +168,21 @@ export default function BestFor() {
           })),
         }]
       : []),
-  ]);
+  ] : null);
+
+  if (!slug || !validSlugs.includes(slug)) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 max-w-3xl text-center py-16">
+          <h1 className="text-3xl font-bold font-display mb-4">{t("bf.notFoundTitle")}</h1>
+          <p className="text-muted-foreground mb-6">{t("bf.notFoundDesc")}</p>
+          <Link href="/best-xrp-wallets" className="text-primary hover:underline">
+            {t("bf.notFoundLink")}
+          </Link>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

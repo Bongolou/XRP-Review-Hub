@@ -876,10 +876,15 @@ export default function Compare() {
   useJsonLd(`compare:${slug ?? "none"}`, comparison && slug
     ? [
         buildBreadcrumbList([
-          { name: "Home", path: "/" },
-          { name: "Compare", path: "/compare" },
-          { name: `${comparison.wallet1.name} vs ${comparison.wallet2.name}`, path: `/compare/${slug}` },
-        ]),
+          { name: t("nav.home"), path: "/" },
+          { name: t("nav.compare"), path: "/best-xrp-wallets" },
+          {
+            name: t("compare.breadcrumbTitle")
+              .replace("{first}", comparison.wallet1.name)
+              .replace("{second}", comparison.wallet2.name),
+            path: `/compare/${slug}`,
+          },
+        ], language),
         {
           "@context": "https://schema.org",
           "@type": "FAQPage",

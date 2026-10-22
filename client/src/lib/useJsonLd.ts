@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { appendLangToHref } from "./i18n/LocalizedLink";
+import type { Language } from "./i18n/translations";
 
 export type JsonLdNode = Record<string, unknown>;
 
@@ -44,6 +46,7 @@ export function useJsonLd(id: string, nodes: JsonLdNode[] | null | undefined) {
 
 export function buildBreadcrumbList(
   items: { name: string; path: string }[],
+  language: Language = "en",
 ): JsonLdNode {
   const origin =
     typeof window !== "undefined" ? window.location.origin : "";
@@ -54,7 +57,7 @@ export function buildBreadcrumbList(
       "@type": "ListItem",
       position: idx + 1,
       name: item.name,
-      item: `${origin}${item.path}`,
+      item: `${origin}${appendLangToHref(item.path, language)}`,
     })),
   };
 }

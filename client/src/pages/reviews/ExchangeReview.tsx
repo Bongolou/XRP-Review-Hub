@@ -680,10 +680,10 @@ export default function ExchangeReview() {
           ],
         },
         buildBreadcrumbList([
-          { name: "Home", path: "/" },
-          { name: "Exchanges", path: "/#exchanges" },
+          { name: t("nav.home"), path: "/" },
+          { name: t("nav.exchanges"), path: "/#exchanges" },
           { name: exchange.name, path: `/exchange/${slug}` },
-        ]),
+        ], language),
         {
           "@context": "https://schema.org",
           "@type": "FAQPage",

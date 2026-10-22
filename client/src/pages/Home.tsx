@@ -876,7 +876,7 @@ export default function Home() {
       <div className="h-24" aria-hidden="true" />
 
       {/* Top Exchanges Section */}
-      <section className="py-20 md:py-24 bg-card/10 border-y border-white/5 relative">
+      <section id="exchanges" className="py-20 md:py-24 bg-card/10 border-y border-white/5 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/20 text-white hover:bg-primary/30 border-primary/50">{t("exchanges.badge")}</Badge>
