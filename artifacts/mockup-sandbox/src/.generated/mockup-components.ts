@@ -7,7 +7,7 @@ export const modules: ModuleMap = {
   "./components/mockups/wallet-radar/WalletRadarRefined.tsx": () => import("../components/mockups/wallet-radar/WalletRadarRefined.tsx"),
   "./components/mockups/wallet-radar/WalletRadarTidal.tsx": () => import("../components/mockups/wallet-radar/WalletRadarTidal.tsx"),
   "./components/mockups/templates/CRMPipelineBoard-O-VmG-/Pipeline.tsx": () => import("../components/mockups/templates/CRMPipelineBoard-O-VmG-/Pipeline.tsx"),
-  "./components/mockups/templates/CRMPipelineBoard-qAANW0/Pipeline.tsx": () => import("../components/mockups/templates/CRMPipelineBoard-qAANW0/Pipeline.tsx"),
   "./components/mockups/templates/CRMPipelineBoard-PA0kA3/Pipeline.tsx": () => import("../components/mockups/templates/CRMPipelineBoard-PA0kA3/Pipeline.tsx"),
+  "./components/mockups/templates/CRMPipelineBoard-qAANW0/Pipeline.tsx": () => import("../components/mockups/templates/CRMPipelineBoard-qAANW0/Pipeline.tsx"),
   "./components/mockups/templates/NorthBeachOpenMicFlyer-HxnQdW/OpenMicFlyer.tsx": () => import("../components/mockups/templates/NorthBeachOpenMicFlyer-HxnQdW/OpenMicFlyer.tsx")
 };
