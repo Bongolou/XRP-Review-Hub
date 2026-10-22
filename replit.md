@@ -72,7 +72,20 @@ which serves the static frontend and can execute PHP, but not the Express
 backend in `server/`. The public Node backend is already published at
 `https://xrp-review-hub.replit.app` (Replit Autoscale, Node 20).
 
-### Bluehost backend relay (prepared; production rollout not yet verified)
+### Bluehost backend relay
+- **Production verification — 2026-10-22:** GitHub Bluehost deployment
+  completed successfully. Public-domain contact, review, and newsletter
+  POSTs returned JSON 201; read-only production database queries confirmed
+  one matching synthetic record for each. The review uses the isolated
+  `deployment-test-20261022` slug, not a real product.
+- `/api/news?limit=3&refresh=1` returned JSON and `/news` visibly rendered
+  headlines. `/sitemap.xml`, all six child sitemaps, and `/rss.xml` returned
+  XML; `/og/page.png?page=home` returned PNG. These were public Bluehost
+  requests, confirming the deployed PHP relay can reach the backend.
+- The authorized newsletter test returned `emailStatus: sent`; recipient
+  inbox receipt remains unconfirmed. No backend publish timestamp was
+  independently verified. API persistence checks do not prove every
+  browser interaction or email inbox delivery.
 - Keep the website on Bluehost and preserve the existing Cloudflare DNS
   management. Dynamic requests use relative
   URLs, so browsers and crawlers continue to request allthingsxrpl.com.
@@ -104,19 +117,17 @@ backend in `server/`. The public Node backend is already published at
 - Resend domain verification was confirmed on 2026-10-11. Shared environment
   configuration uses `All Things XRPL <newsletter@allthingsxrpl.com>` as
   `WELCOME_EMAIL_FROM` and `https://allthingsxrpl.com` as `PUBLIC_BASE_URL`.
-  These settings still require backend republishing and an actual delivery
-  check; domain verification alone does not prove live email delivery.
+  A production subscription returned `emailStatus: sent` on 2026-10-22.
+  Recipient receipt still needs confirmation; domain verification and a
+  successful provider request alone do not prove inbox delivery.
 - **Rollout order:** connect Resend and verify its sending domain, configure
   the sender, republish the Node backend, then merge/deploy the frontend
   and relay to Bluehost. Enable PHP/cURL for the actual document root.
   Back up any host-managed `.htaccess` directives before deployment and
   keep Bluehost's PHP-handler directives intact.
-- **Live acceptance checks still required:** public-domain contact,
-  newsletter, and review submissions must produce rows in the production
-  database; welcome email must be received; `/news` must show headlines;
-  `/sitemap.xml`, child sitemaps, `/rss.xml`, and `/og/page.png` must return
-  200 with XML/image content. Do not consider a working dev preview proof
-  that the Bluehost relay has been deployed.
+- **Remaining live acceptance check:** confirm receipt of the authorized
+  welcome email. Public-domain persistence, news rendering, refresh API,
+  feed, sitemap, and share-image checks passed as described above.
 - **Merge handoff:** The user approved delivering the tested implementation
   separately from production rollout and live acceptance checks. Apply the
   task changes to the main app before syncing GitHub; the task workspace's
