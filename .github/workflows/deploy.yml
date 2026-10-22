@@ -17,7 +17,7 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
@@ -52,6 +52,9 @@ jobs:
           BLUEHOST_DEPLOY: "1"
         run: npm run build
 
+      - name: Test post-deploy smoke checker
+        run: python3 -m unittest discover -s script -p 'post_deploy_smoke_test.py'
+
       - name: Deploy dist/public to Bluehost over FTPS
         # Pinned to a specific minor of a well-maintained, widely-used
         # FTP deploy action. dangerous-clean-slate is intentionally
@@ -75,6 +78,12 @@ jobs:
             **/node_modules/**
             **/.DS_Store
 
+      # Only public GET requests: no submissions, admin calls, or emails.
+      # A 200 SPA fallback is a failure, not proof the backend relay works.
+      - name: Check live Bluehost routes
+        timeout-minutes: 10
+        run: python3 script/post_deploy_smoke.py
+
       - name: Summarize deploy
         if: always()
         run: |
@@ -84,3 +93,4 @@ jobs:
           echo "- Triggered by: \`${GITHUB_EVENT_NAME}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- Finished at: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_STEP_SUMMARY"
           echo "- Dynamic routes are relayed to the public Replit backend; publish backend changes separately." >> "$GITHUB_STEP_SUMMARY"
+          echo "- Result (including read-only live route checks): ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"
