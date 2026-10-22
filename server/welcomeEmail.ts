@@ -194,7 +194,7 @@ function normalizeLanguage(lang?: string | null): SubscriberLanguage {
 }
 
 function isSupportedMagnet(magnet: string): magnet is LeadMagnetKey {
-  return magnet in MAGNET_META;
+  return Object.prototype.hasOwnProperty.call(MAGNET_META, magnet);
 }
 
 function buildBaseUrl(): string {
@@ -231,12 +231,16 @@ export function renderWelcomeEmail(opts: {
       language: "en",
     };
   }
-  if (!isSupportedMagnet(opts.leadMagnet)) {
-    // Unknown magnet (e.g. plain "newsletter" signups) — no welcome email.
+  // Accept the public asset's hyphenated ID as well as the existing form ID.
+  const leadMagnet = opts.leadMagnet === "xrpl-defi-starter-kit"
+    ? "xrpl_defi_starter_kit"
+    : opts.leadMagnet;
+  if (!isSupportedMagnet(leadMagnet)) {
+    // Unknown magnets have no downloadable welcome email.
     return null;
   }
   const language = normalizeLanguage(opts.language);
-  const meta = MAGNET_META[opts.leadMagnet];
+  const meta = MAGNET_META[leadMagnet];
   const copy = COPY_BY_LANGUAGE[language];
   const description = meta.description[language];
   const downloadPath = meta.pathByLanguage[language];
