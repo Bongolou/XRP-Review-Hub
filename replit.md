@@ -83,9 +83,9 @@ backend in `server/`. The public Node backend is already published at
   XML; `/og/page.png?page=home` returned PNG. These were public Bluehost
   requests, confirming the deployed PHP relay can reach the backend.
 - The authorized newsletter test returned `emailStatus: sent`; recipient
-  inbox receipt remains unconfirmed. No backend publish timestamp was
-  independently verified. API persistence checks do not prove every
-  browser interaction or email inbox delivery.
+  inbox receipt was confirmed by the user on 2026-10-22. No backend publish
+  timestamp was independently verified. API persistence checks do not
+  prove every browser interaction.
 - Keep the website on Bluehost and preserve the existing Cloudflare DNS
   management. Dynamic requests use relative
   URLs, so browsers and crawlers continue to request allthingsxrpl.com.
@@ -118,16 +118,15 @@ backend in `server/`. The public Node backend is already published at
   configuration uses `All Things XRPL <newsletter@allthingsxrpl.com>` as
   `WELCOME_EMAIL_FROM` and `https://allthingsxrpl.com` as `PUBLIC_BASE_URL`.
   A production subscription returned `emailStatus: sent` on 2026-10-22.
-  Recipient receipt still needs confirmation; domain verification and a
-  successful provider request alone do not prove inbox delivery.
+  The user confirmed inbox receipt for that authorized test.
 - **Rollout order:** connect Resend and verify its sending domain, configure
   the sender, republish the Node backend, then merge/deploy the frontend
   and relay to Bluehost. Enable PHP/cURL for the actual document root.
   Back up any host-managed `.htaccess` directives before deployment and
   keep Bluehost's PHP-handler directives intact.
-- **Remaining live acceptance check:** confirm receipt of the authorized
-  welcome email. Public-domain persistence, news rendering, refresh API,
-  feed, sitemap, and share-image checks passed as described above.
+- **Live acceptance results:** public-domain persistence, news rendering,
+  refresh API, feed, sitemap, share-image, and authorized welcome-email
+  receipt checks passed as described above.
 - **Merge handoff:** The user approved delivering the tested implementation
   separately from production rollout and live acceptance checks. Apply the
   task changes to the main app before syncing GitHub; the task workspace's
