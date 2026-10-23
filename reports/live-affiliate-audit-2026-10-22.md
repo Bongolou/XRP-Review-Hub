@@ -1,0 +1,630 @@
+# Live affiliate-link audit — 22 October 2026
+
+Production target: https://allthingsxrpl.com. Inspection only: no application code, links, accounts, hosting, configuration or deployments changed.
+
+## Executive summary
+
+- **544 language-preserving public page responses inspected:** 68 routes × 8 languages, using slash-plus-query URLs where necessary. All six child sitemaps were fetched from production. The original sitemap requests and the corrected localized requests are recorded separately.
+- **59 distinct affiliate/promotional destination URLs checked:** all 59 appeared in the corrected production HTML inventory at **2,584 anchor placements** (includes responsive desktop/mobile duplicates). Quiz destinations are also covered. Every destination received a bounded GET probe.
+- **Priority issues:** KuCoin's referral URL returns 404; Coinbase's referral page returns 200 but says it cannot find the promotion; Magnetic's URL returns business-management software, not the advertised XRPL DEX.
+- **Wrong-merchant verdict buttons:** four comparison pages advertise Ledger or Xaman but link to another wallet in all eight languages — 32 confirmed incorrect placements. These defects are separate from destination HTTP status.
+- **Availability concerns, not proven globally dead links:** Orchestra timed out; Sologenic.com returned 525. Neither result establishes permanent downtime or an invalid affiliate account.
+- **Language-routing defect:** all 469 non-home, non-English sitemap requests redirected to trailing-slash URLs while dropping ?lang. Their English responses are NOT counted as translated placements. A second sweep fetched all 469 slash-plus-language URLs, preserving the language query, and replaced those placements in the final inventory.
+- **Coverage is not a blanket pass.** Full hydration, referral recognition and all regional paths could not be verified on every surface. The browser supplement records completed interactions and explicitly lists inaccessible checks.
+- Results across 59 URLs: **43 working HTTP page responses**, **11 HTTP-reachable but JavaScript/referral behavior unverified**, **2 confirmed failures** (KuCoin route and Coinbase promotion), **1 unexpected destination** (Magnetic), **1 observed SSL outage** (Sologenic.com), and **1 timeout** (Orchestra). No bot or login block was confirmed; browser time limits are recorded as unverified, not as bot blocks.
+
+## Method and coverage
+
+Observed audit environment country: **US**, from the public Cloudflare trace endpoint; no IP retained. Browser trace also reported US. No other real countries were tested. Language query parameters select UI language, not geography.
+
+GET requests used a descriptive audit user agent, four concurrent requests, 20-second page / 15-second merchant timeouts and at most nine response hops. Redirects were followed manually for merchant probes. No purchases, signups, forms, anti-bot bypasses or account access. Redirect chains include observed HTTP responses only; browser JavaScript navigation may differ.
+
+| Public section | Routes | Language URLs |
+|---|---:|---:|
+| Static pages (home, guide, quiz, news, legal, etc.) | 14 | 112 |
+| Wallet reviews (including Trezor Safe 5) | 10 | 80 |
+| Exchange reviews | 7 | 56 |
+| Comparisons | 13 | 104 |
+| Best-for guides | 5 | 40 |
+| Blog articles | 19 | 152 |
+| **Total** | **68** | **544** |
+
+Languages: en, es, de, fr, ja, ko, pt, zh — 68 final page URLs each. Discovery found no additional public route families beyond the sitemap. Trailing slashes must NOT be treated as equivalent for locale coverage: production redirects can remove the query. Route families were cross-checked with client/src/App.tsx and server/sitemap.ts; affiliate data and interactive conditions were cross-checked with Home, Compare, WalletQuiz, conversion widgets, wallet reviews, BannerAd, DApps and YieldOpportunities. Source was used only for expected coverage, never as evidence that a link is live.
+
+Browser coverage: all eight homepage language states were hydrated/scrolled; 17 of 32 recommendation-branch/language combinations were observed (all four in EN/ES/DE; Tangem in FR/JA/KO/PT/ZH). The 15 remaining combinations are explicitly unverified. Spanish Ledger-vs-Tangem comparison and Chinese Tangem review/mobile sticky CTA were inspected. Four merchant destinations were browser-confirmed: KuCoin, Coinbase, Magnetic and Sologenic.com. Other merchant checks remain HTTP-only, not fully validated browser flows.
+
+Production HTML includes cards, comparison tables/mobile copies, review CTAs, sticky review CTAs, verdicts, deal/banner placements, blog links, dApp and yield links. A full HTTP page matrix is in live-affiliate-coverage-2026-10-22.csv. Every observed destination/page/placement/test-id/anchor-text is in live-affiliate-placements-2026-10-22.csv. Counts are DOM anchor counts, not impressions or unique visible clicks.
+
+The original 544 sitemap requests are retained in live-affiliate-sitemap-responses-2026-10-22.csv; 469 lose the requested language before returning 200. The corrective 469 requests and exact final URLs are in live-affiliate-localized-coverage-2026-10-22.csv, with placements in live-affiliate-localized-placements-2026-10-22.csv. The main coverage/placement files combine 75 valid original responses (eight home states and 67 English routes) with those 469 corrective responses. Placement page references now use the actual final URL. Across both sweeps, 1,013 page requests were inspected, not 1,013 distinct pages.
+
+All external HTML anchors were examined: the only excluded external URLs were the site's X, Facebook and TikTok profiles. Tracking pixels, merchant image URLs and embedded ad-network inventory are not visitor affiliate anchors. Crypto.com and Kraken staking were included despite lacking referral parameters.
+
+## Actionable findings
+
+| Finding | Affected production pages (all eight language URLs) | HTML placements | Action |
+|---|---|---:|---|
+| KuCoin referral returns 404 | / and /exchange/kucoin | 40 | Obtain a valid merchant-issued link before separately approving replacement. |
+| Coinbase cannot find this promotion, despite HTTP 200 | /, /exchange/coinbase, /compare/coinbase-vs-kraken | 64 | Check the referral account/campaign in the partner portal; validate a replacement without signup. |
+| Magnetic opens PSA/business-management software | /dapps | 40 | Verify the intended XRPL project's official domain; do not assume this similarly named business is the merchant. |
+| Orchestra request timeout | /dapps | 24 | Retry from an ordinary browser/network and consult official project status; not a proven permanent failure. |
+| Sologenic.com returns 525 | /dapps | 32 | Confirm official destination and availability. Do not silently substitute sologenic.org, whose separate live links were tested independently. |
+| Language query lost on non-slash sitemap redirects | All 67 non-home routes × seven non-English languages | 469 page requests | Separately approve a hosting redirect or sitemap URL correction that preserves ?lang; verify effective URLs before counting locale coverage. |
+
+Crypto.com links have **no visible referral identifier**, although the site promotes a signup bonus. A successful locale landing does not substantiate that bonus or attribution. Tangem mixes promocode=ALLTHINGSXRPL and ref=allthingsxrpl; ELLIPAL mixes ref=allthingsxrpl and rfsn=8973243.bbfab69; Kraken mixes r and clickid; Bitrue uses multiple invitation/channel forms. These are observable inconsistencies to confirm against merchant-issued links, not proof that any specific parameter is invalid.
+
+### Confirmed wrong-merchant comparison verdict CTAs
+
+The corrected production HTML inventory records these mismatches at root/main/verdict-box. Each row below occurs in en, es, de, fr, ja, ko, pt and zh (eight placements each). The localized Get prefix varies, but the named wallet and wrong href persist. This is confirmed rendered-HTML evidence, not a prediction from source; browser hydration was not independently exercised for these 32 buttons.
+
+| Final production page | Advertised wallet | Actual destination | Result |
+|---|---|---|---|
+| /compare/trezor-vs-ledger/ | Get Ledger | https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959 → Trezor Safe 3 | Wrong merchant, 8 locales |
+| /compare/bifrost-vs-xaman/ | Get Xaman | https://bifrostwallet.com/?ref=allthingsxrpl | Wrong merchant, 8 locales |
+| /compare/gatehub-vs-xaman/ | Get Xaman | https://gatehub.net/?ref=allthingsxrpl | Wrong merchant, 8 locales |
+| /compare/trustwallet-vs-xaman/ | Get Xaman for XRP | https://trustwallet.com/?ref=allthingsxrpl | Wrong merchant, 8 locales |
+
+Exact page, localized label and destination for all 32 cases are exported in live-affiliate-wrong-verdicts-2026-10-22.csv and included in the main placement CSV. The source corroborates the cause: Compare.tsx chooses wallet2 only when comparison.winner exactly equals wallet2.name, otherwise choosing wallet1. Short verdict names such as Ledger or Xaman do not match the full product names.
+
+**Recommended separate fix (not implemented):** bind verdict selections to stable wallet identifiers rather than display-name equality in client/src/pages/Compare.tsx; make the label, affiliate destination and review link refer to the same selected merchant. Verify those rendered labels and hrefs on all four affected comparison routes in all eight languages, and cover Both/Depends cases explicitly. No code or merchant URL was changed by this audit.
+
+The destination-status totals above are URL-level network results, not placement-correctness totals. In particular, Trezor, Bifrost, GateHub and Trust Wallet can return working pages while being incorrect destinations for these verdict buttons.
+
+The Ledger Nano S Plus banner redirects to the classic Nano range page while retaining r=5d81f18905fe. This is a same-brand broader landing, not a dead link; confirm it still matches the advertised product. Trezor's tracking domain redirects to the matching Safe 3 / Safe 5 product with affiliate_id=36959 and offer_id retained plus a generated transaction identifier. That is expected tracking behavior, not an unrelated-brand failure.
+
+## Language and regional observations
+
+On the production homepage HTML, Tangem promo paths match all eight requested languages (Chinese uses zh-Hans). Crypto.com homepage paths are en→us, de→de, es→es, fr→fr, ko→kr, pt→pt, zh→zh; Japanese uses the bare host, which redirected to /us from this environment.
+
+The initial non-home sitemap requests lost ?lang during the slash redirect and therefore returned English HTML. This was NOT merely a pre-hydration effect. Corrective requests use /path/?lang=xx and verify that the final URL retains the query. Their actual anchors replace the misattributed responses in the final inventory. For example /wallet/tangem/?lang=de returns a German title and German Tangem review/sticky anchors. Across the corrected inventory, each language has 26 Tangem anchors, all using its expected locale path, and five Crypto.com anchors, all using the mapped language path (Japanese retains the bare host). Non-anchor embedded metadata can still contain English URLs; those are not visitor-clickable placements. Browser quiz evidence independently confirms locale-specific Tangem results across all eight languages.
+
+Expected current source behavior: explicit language takes precedence over automatic country; Crypto.com supports country mappings (for example GB→uk) while Tangem uses language. The browser supplement distinguishes any simulations from actual country observations. No global geographic validation, merchant eligibility validation or country coverage is claimed.
+
+## Attribution and limits
+
+**Loading a merchant page does not prove commission attribution, valid partner membership, a recognized invitation, a discount, or eligibility for a signup bonus.** URL retention only shows transport of a parameter. A parameter disappearing during an ordinary tracking redirect would not, by itself, prove lost attribution. No affiliate dashboards or conversion evidence were accessed.
+
+Visible recognition: Coinbase provided negative promotion evidence. Trezor exposed affiliate/offer identifiers in the landing URL, but that is not visible commission recognition. For other destinations, no validated referral-success message was established in the HTTP sweep. The browser supplement records any merchant UI evidence it could obtain. No checkout or signup was used to test recognition.
+
+Explicitly not counted as passes: post-login screens, signup/checkout outcomes, email/download-gated content, partner dashboards, third-party dynamic ad inventories, every possible responsive viewport, all 243 answer combinations per quiz locale, and any browser checks marked skipped/timed out in the supplement. The quiz has four recommendation branches, which were targeted rather than claiming exhaustive answer combinations.
+
+Read live-affiliate-browser-2026-10-22.md for completed browser checks and remaining gaps. JavaScript-only merchant landing behavior is classified separately below. The old reports/affiliate-link-audit.txt remains unchanged and is a source scan, not this production audit.
+
+## Destination register
+
+This register covers all 59 observed destinations, all found in the corrected HTML inventory. Page references below are final base paths: exact language URLs, placement identifiers and anchor labels remain in the CSV and browser JSON. HTTP hop chains and parameter maps are also available in live-affiliate-probes-2026-10-22.json.
+
+### 1. https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://trezor.io/trezor-safe-3?transaction_id=1028e30ed037aed917216d42a54c37&offer_id=169&affiliate_id=36959
+- HTTP chain: 302 https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959 → 200 https://trezor.io/trezor-safe-3?transaction_id=1028e30ed037aed917216d42a54c37&offer_id=169&affiliate_id=36959
+- Pages: /, /best-for/cold-storage/, /best-for/hardware/, /best-xrp-wallets/, /compare/ellipal-vs-trezor/, /compare/trezor-vs-ledger/, /compare/trezor-vs-tangem/, /wallet/trezor/
+- HTML placements: 152; browser quiz observations: 0; placement examples: button-cta-trezor; button-get-trezor; button-sticky-cta-trezor; deal-cta; root/main; root/main/section-fast-compare/compare-card-trezor; root/main/section-fast-compare/compare-row-trezor; root/main/verdict-box
+- Initial parameters: {"offer_id": "169", "aff_id": "36959"}
+- Final parameters: {"transaction_id": "1028e30ed037aed917216d42a54c37", "offer_id": "169", "affiliate_id": "36959"}
+- Placement warning: this reachable merchant is incorrectly linked by a comparison verdict advertising another wallet; see the wrong-merchant verdict table and evidence CSV.
+
+### 2. https://affil.trezor.io/aff_c?offer_id=235&aff_id=36959
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://trezor.io/trezor-safe-5?transaction_id=102a414592f52d52f6b28f47e1d9ae&offer_id=235&affiliate_id=36959
+- HTTP chain: 302 https://affil.trezor.io/aff_c?offer_id=235&aff_id=36959 → 200 https://trezor.io/trezor-safe-5?transaction_id=102a414592f52d52f6b28f47e1d9ae&offer_id=235&affiliate_id=36959
+- Pages: /, /best-xrp-wallets/, /wallet/trezor-safe-5/
+- HTML placements: 80; browser quiz observations: 0; placement examples: banner-ad-trezor-safe-5-link; button-get-trezor-safe-5; button-sticky-cta-trezor-safe-5; root/main; root/main/section-fast-compare/compare-card-trezor-safe-5; root/main/section-fast-compare/compare-row-trezor-safe-5; root/main/verdict-box; root/main/wallets
+- Initial parameters: {"offer_id": "235", "aff_id": "36959"}
+- Final parameters: {"transaction_id": "102a414592f52d52f6b28f47e1d9ae", "offer_id": "235", "affiliate_id": "36959"}
+
+### 3. https://anodos.finance/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://anodos.finance/en?ref=allthingsxrpl
+- HTTP chain: 307 https://anodos.finance/?ref=allthingsxrpl → 200 https://anodos.finance/en?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 32; browser quiz observations: 0; placement examples: link-dapp-visit-anodos-finance; link-toppick-visit-anodos finance; root/main/section-fast-compare/compare-card-anodos; root/main/section-fast-compare/compare-row-anodos
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 4. https://bifrostwallet.com/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://bifrostwallet.com/?ref=allthingsxrpl
+- HTTP chain: 200 https://bifrostwallet.com/?ref=allthingsxrpl
+- Pages: /, /best-for/beginners/, /best-for/defi/, /best-xrp-wallets/, /compare/bifrost-vs-crossmark/, /compare/bifrost-vs-xaman/, /wallet/bifrost/
+- HTML placements: 136; browser quiz observations: 0; placement examples: button-cta-bifrost; button-get-bifrost; button-sticky-cta-bifrost; root/main; root/main/section-fast-compare/compare-card-bifrost; root/main/section-fast-compare/compare-row-bifrost; root/main/verdict-box; root/main/wallets
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+- Placement warning: this reachable merchant is incorrectly linked by a comparison verdict advertising another wallet; see the wrong-merchant verdict table and evidence CSV.
+
+### 5. https://crossmark.io/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://crossmark.io/?ref=allthingsxrpl
+- HTTP chain: 200 https://crossmark.io/?ref=allthingsxrpl
+- Pages: /, /best-for/beginners/, /best-for/defi/, /best-xrp-wallets/, /compare/bifrost-vs-crossmark/, /wallet/crossmark/
+- HTML placements: 104; browser quiz observations: 0; placement examples: button-cta-crossmark; button-get-crossmark; button-sticky-cta-crossmark; root/main; root/main/section-fast-compare/compare-card-crossmark; root/main/section-fast-compare/compare-row-crossmark; root/main/verdict-box; root/main/wallets
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 6. https://crypto.com/
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://crypto.com/us
+- HTTP chain: 302 https://crypto.com/ → 200 https://crypto.com/us
+- Pages: /, /exchange/cryptocom/
+- HTML placements: 5; browser quiz observations: 0; placement examples: button-signup-cryptocom; button-sticky-cta-cryptocom; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {}
+- Final parameters: {}
+
+### 7. https://crypto.com/de
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://crypto.com/de
+- HTTP chain: 200 https://crypto.com/de
+- Pages: /, /exchange/cryptocom/
+- HTML placements: 5; browser quiz observations: 0; placement examples: button-signup-cryptocom; button-sticky-cta-cryptocom; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {}
+- Final parameters: {}
+
+### 8. https://crypto.com/es
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://crypto.com/es
+- HTTP chain: 200 https://crypto.com/es
+- Pages: /, /exchange/cryptocom/
+- HTML placements: 5; browser quiz observations: 0; placement examples: button-signup-cryptocom; button-sticky-cta-cryptocom; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {}
+- Final parameters: {}
+
+### 9. https://crypto.com/fr
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://crypto.com/fr
+- HTTP chain: 200 https://crypto.com/fr
+- Pages: /, /exchange/cryptocom/
+- HTML placements: 5; browser quiz observations: 0; placement examples: button-signup-cryptocom; button-sticky-cta-cryptocom; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {}
+- Final parameters: {}
+
+### 10. https://crypto.com/kr
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://crypto.com/kr
+- HTTP chain: 200 https://crypto.com/kr
+- Pages: /, /exchange/cryptocom/
+- HTML placements: 5; browser quiz observations: 0; placement examples: button-signup-cryptocom; button-sticky-cta-cryptocom; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {}
+- Final parameters: {}
+
+### 11. https://crypto.com/pt
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://crypto.com/pt
+- HTTP chain: 200 https://crypto.com/pt
+- Pages: /, /exchange/cryptocom/
+- HTML placements: 5; browser quiz observations: 0; placement examples: button-signup-cryptocom; button-sticky-cta-cryptocom; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {}
+- Final parameters: {}
+
+### 12. https://crypto.com/us
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://crypto.com/us
+- HTTP chain: 200 https://crypto.com/us
+- Pages: /, /exchange/cryptocom/
+- HTML placements: 5; browser quiz observations: 0; placement examples: button-signup-cryptocom; button-sticky-cta-cryptocom; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {}
+- Final parameters: {}
+
+### 13. https://crypto.com/zh
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://crypto.com/zh
+- HTTP chain: 200 https://crypto.com/zh
+- Pages: /, /exchange/cryptocom/
+- HTML placements: 5; browser quiz observations: 0; placement examples: button-signup-cryptocom; button-sticky-cta-cryptocom; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {}
+- Final parameters: {}
+
+### 14. https://firstledger.net/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://firstledger.net/?ref=allthingsxrpl
+- HTTP chain: 200 https://firstledger.net/?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 8; browser quiz observations: 0; placement examples: link-dapp-visit-first-ledger
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 15. https://gatehub.net/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://gatehub.net/?ref=allthingsxrpl
+- HTTP chain: 200 https://gatehub.net/?ref=allthingsxrpl
+- Pages: /, /best-for/defi/, /compare/gatehub-vs-ledger/, /compare/gatehub-vs-xaman/, /dapps/, /wallet/gatehub/
+- HTML placements: 104; browser quiz observations: 0; placement examples: button-cta-gatehub; button-get-gatehub; button-sticky-cta-gatehub; link-dapp-visit-gatehub-trade; root/main; root/main/section-fast-compare/compare-card-gatehub; root/main/section-fast-compare/compare-row-gatehub; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+- Placement warning: this reachable merchant is incorrectly linked by a comparison verdict advertising another wallet; see the wrong-merchant verdict table and evidence CSV.
+
+### 16. https://onthedex.live/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://onthedex.live/?ref=allthingsxrpl
+- HTTP chain: 200 https://onthedex.live/?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 8; browser quiz observations: 0; placement examples: link-dapp-visit-onthedex.live
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 17. https://orchestra.finance/?ref=allthingsxrpl
+- Result: **Inconclusive: network timeout**
+- Final observed URL: https://orchestra.finance/?ref=allthingsxrpl
+- HTTP chain: no response received.
+- Pages: /dapps/
+- HTML placements: 24; browser quiz observations: 0; placement examples: link-dapp-visit-orchestra-finance; root/main/section-fast-compare/compare-card-orchestra; root/main/section-fast-compare/compare-row-orchestra
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+- Probe error: <urlopen error timed out>
+
+### 18. https://shop.ledger.com/?r=5d81f18905fe
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://shop.ledger.com/?r=5d81f18905fe
+- HTTP chain: 200 https://shop.ledger.com/?r=5d81f18905fe
+- Pages: /, /best-for/cold-storage/, /best-for/hardware/, /best-for/safest/, /best-xrp-wallets/, /compare/ellipal-vs-ledger/, /compare/gatehub-vs-ledger/, /compare/ledger-vs-tangem/, /compare/trezor-vs-ledger/, /compare/xaman-vs-ledger/, /wallet-quiz/, /wallet/ledger/
+- HTML placements: 256; browser quiz observations: 3; placement examples: button-cta-ledger; button-get-ledger; button-get-recommended; button-sticky-cta-ledger; root/main; root/main/section; root/main/section-fast-compare/compare-card-ledger; root/main/section-fast-compare/compare-row-ledger
+- Initial parameters: {"r": "5d81f18905fe"}
+- Final parameters: {"r": "5d81f18905fe"}
+
+### 19. https://shop.ledger.com/pages/ledger-nano-s-plus/?r=5d81f18905fe
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://shop.ledger.com/pages/classic-ledger-nano-signers?r=5d81f18905fe
+- HTTP chain: 308 https://shop.ledger.com/pages/ledger-nano-s-plus/?r=5d81f18905fe → 308 https://shop.ledger.com/pages/ledger-nano-s-plus?r=5d81f18905fe → 200 https://shop.ledger.com/pages/classic-ledger-nano-signers?r=5d81f18905fe
+- Pages: /blog/1/, /blog/10/, /blog/11/, /blog/12/, /blog/13/, /blog/14/, /blog/15/, /blog/16/, /blog/17/, /blog/18/, /blog/19/, /blog/2/, /blog/3/, /blog/4/, /blog/5/, /blog/6/, /blog/7/, /blog/8/, /blog/9/, /wallet/bifrost/, /wallet/crossmark/, /wallet/ellipal/, /wallet/gatehub/, /wallet/ledger/, /wallet/tangem/, /wallet/trezor/, /wallet/trustwallet/, /wallet/xaman/
+- HTML placements: 224; browser quiz observations: 0; placement examples: banner-ad-inline-link
+- Initial parameters: {"r": "5d81f18905fe"}
+- Final parameters: {"r": "5d81f18905fe"}
+
+### 20. https://sologenic.org/?ref=allthingsxrpl
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://sologenic.org/?ref=allthingsxrpl
+- HTTP chain: 200 https://sologenic.org/?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 8; browser quiz observations: 0; placement examples: link-dapp-visit-sologenic
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 21. https://sologenic.org/trade?ref=allthingsxrpl
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://sologenic.org/trade?ref=allthingsxrpl
+- HTTP chain: 200 https://sologenic.org/trade?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 8; browser quiz observations: 0; placement examples: link-dapp-visit-solo-dex
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 22. https://tangem.com/de/?promocode=ALLTHINGSXRPL
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/de/?promocode=ALLTHINGSXRPL
+- HTTP chain: 200 https://tangem.com/de/?promocode=ALLTHINGSXRPL
+- Pages: /, /best-for/beginners/, /best-for/cold-storage/, /best-for/hardware/, /best-for/safest/, /best-xrp-wallets/
+- HTML placements: 15; browser quiz observations: 0; placement examples: root/main/section; root/main/section-fast-compare/compare-card-tangem; root/main/section-fast-compare/compare-row-tangem; root/main/wallets
+- Initial parameters: {"promocode": "ALLTHINGSXRPL"}
+- Final parameters: {"promocode": "ALLTHINGSXRPL"}
+
+### 23. https://tangem.com/en/?promocode=ALLTHINGSXRPL
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/en/?promocode=ALLTHINGSXRPL
+- HTTP chain: 200 https://tangem.com/en/?promocode=ALLTHINGSXRPL
+- Pages: /, /best-for/beginners/, /best-for/cold-storage/, /best-for/hardware/, /best-for/safest/, /best-xrp-wallets/
+- HTML placements: 15; browser quiz observations: 0; placement examples: root/main/section; root/main/section-fast-compare/compare-card-tangem; root/main/section-fast-compare/compare-row-tangem; root/main/wallets
+- Initial parameters: {"promocode": "ALLTHINGSXRPL"}
+- Final parameters: {"promocode": "ALLTHINGSXRPL"}
+
+### 24. https://tangem.com/en/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/en/?ref=allthingsxrpl
+- HTTP chain: 200 https://tangem.com/en/?ref=allthingsxrpl
+- Pages: /compare/ledger-vs-tangem/, /compare/trezor-vs-tangem/, /compare/xaman-vs-tangem/, /wallet-quiz/, /wallet/tangem/
+- HTML placements: 11; browser quiz observations: 1; placement examples: button-cta-tangem; button-get-recommended; button-get-tangem; button-sticky-cta-tangem; root/main; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 25. https://tangem.com/es/?promocode=ALLTHINGSXRPL
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/es/?promocode=ALLTHINGSXRPL
+- HTTP chain: 200 https://tangem.com/es/?promocode=ALLTHINGSXRPL
+- Pages: /, /best-for/beginners/, /best-for/cold-storage/, /best-for/hardware/, /best-for/safest/, /best-xrp-wallets/
+- HTML placements: 15; browser quiz observations: 0; placement examples: root/main/section; root/main/section-fast-compare/compare-card-tangem; root/main/section-fast-compare/compare-row-tangem; root/main/wallets
+- Initial parameters: {"promocode": "ALLTHINGSXRPL"}
+- Final parameters: {"promocode": "ALLTHINGSXRPL"}
+
+### 26. https://tangem.com/fr/?promocode=ALLTHINGSXRPL
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/fr/?promocode=ALLTHINGSXRPL
+- HTTP chain: 200 https://tangem.com/fr/?promocode=ALLTHINGSXRPL
+- Pages: /, /best-for/beginners/, /best-for/cold-storage/, /best-for/hardware/, /best-for/safest/, /best-xrp-wallets/
+- HTML placements: 15; browser quiz observations: 0; placement examples: root/main/section; root/main/section-fast-compare/compare-card-tangem; root/main/section-fast-compare/compare-row-tangem; root/main/wallets
+- Initial parameters: {"promocode": "ALLTHINGSXRPL"}
+- Final parameters: {"promocode": "ALLTHINGSXRPL"}
+
+### 27. https://tangem.com/ja/?promocode=ALLTHINGSXRPL
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/ja/?promocode=ALLTHINGSXRPL
+- HTTP chain: 200 https://tangem.com/ja/?promocode=ALLTHINGSXRPL
+- Pages: /, /best-for/beginners/, /best-for/cold-storage/, /best-for/hardware/, /best-for/safest/, /best-xrp-wallets/
+- HTML placements: 15; browser quiz observations: 0; placement examples: root/main/section; root/main/section-fast-compare/compare-card-tangem; root/main/section-fast-compare/compare-row-tangem; root/main/wallets
+- Initial parameters: {"promocode": "ALLTHINGSXRPL"}
+- Final parameters: {"promocode": "ALLTHINGSXRPL"}
+
+### 28. https://tangem.com/ko/?promocode=ALLTHINGSXRPL
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/ko/?promocode=ALLTHINGSXRPL
+- HTTP chain: 200 https://tangem.com/ko/?promocode=ALLTHINGSXRPL
+- Pages: /, /best-for/beginners/, /best-for/cold-storage/, /best-for/hardware/, /best-for/safest/, /best-xrp-wallets/
+- HTML placements: 15; browser quiz observations: 0; placement examples: root/main/section; root/main/section-fast-compare/compare-card-tangem; root/main/section-fast-compare/compare-row-tangem; root/main/wallets
+- Initial parameters: {"promocode": "ALLTHINGSXRPL"}
+- Final parameters: {"promocode": "ALLTHINGSXRPL"}
+
+### 29. https://tangem.com/pt/?promocode=ALLTHINGSXRPL
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/pt/?promocode=ALLTHINGSXRPL
+- HTTP chain: 200 https://tangem.com/pt/?promocode=ALLTHINGSXRPL
+- Pages: /, /best-for/beginners/, /best-for/cold-storage/, /best-for/hardware/, /best-for/safest/, /best-xrp-wallets/
+- HTML placements: 15; browser quiz observations: 0; placement examples: root/main/section; root/main/section-fast-compare/compare-card-tangem; root/main/section-fast-compare/compare-row-tangem; root/main/wallets
+- Initial parameters: {"promocode": "ALLTHINGSXRPL"}
+- Final parameters: {"promocode": "ALLTHINGSXRPL"}
+
+### 30. https://tangem.com/zh-Hans/?promocode=ALLTHINGSXRPL
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/zh-Hans/?promocode=ALLTHINGSXRPL
+- HTTP chain: 200 https://tangem.com/zh-Hans/?promocode=ALLTHINGSXRPL
+- Pages: /, /best-for/beginners/, /best-for/cold-storage/, /best-for/hardware/, /best-for/safest/, /best-xrp-wallets/
+- HTML placements: 15; browser quiz observations: 0; placement examples: root/main/section; root/main/section-fast-compare/compare-card-tangem; root/main/section-fast-compare/compare-row-tangem; root/main/wallets
+- Initial parameters: {"promocode": "ALLTHINGSXRPL"}
+- Final parameters: {"promocode": "ALLTHINGSXRPL"}
+
+### 31. https://trustwallet.com/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://trustwallet.com/?ref=allthingsxrpl
+- HTTP chain: 200 https://trustwallet.com/?ref=allthingsxrpl
+- Pages: /, /compare/trustwallet-vs-xaman/, /wallet/trustwallet/
+- HTML placements: 64; browser quiz observations: 0; placement examples: button-cta-trustwallet; button-get-trustwallet; button-sticky-cta-trustwallet; root/main; root/main/verdict-box; root/main/wallets
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+- Placement warning: this reachable merchant is incorrectly linked by a comparison verdict advertising another wallet; see the wrong-merchant verdict table and evidence CSV.
+
+### 32. https://wallet.uphold.com/signup?referral=allthingsxrpl
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://wallet.uphold.com/signup?referral=allthingsxrpl
+- HTTP chain: 200 https://wallet.uphold.com/signup?referral=allthingsxrpl
+- Pages: /, /blog/1/, /blog/10/, /blog/11/, /blog/12/, /blog/13/, /blog/14/, /blog/15/, /blog/16/, /blog/17/, /blog/18/, /blog/19/, /blog/2/, /blog/3/, /blog/4/, /blog/5/, /blog/6/, /blog/7/, /blog/8/, /blog/9/, /exchange/uphold/, /getting-started/, /yield/
+- HTML placements: 224; browser quiz observations: 0; placement examples: banner-ad-horizontal; button-signup-uphold; button-sticky-cta-uphold; root/main; root/main/exchanges; root/main/section; root/main/verdict-box
+- Initial parameters: {"referral": "allthingsxrpl"}
+- Final parameters: {"referral": "allthingsxrpl"}
+
+### 33. https://www.bitrue.com/activity/landing-page/?cn=900000&_channel=allthingsxrpl
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://www.bitrue.com/activity/landing-page/?cn=900000&_channel=allthingsxrpl
+- HTTP chain: 200 https://www.bitrue.com/activity/landing-page/?cn=900000&_channel=allthingsxrpl
+- Pages: /dapps/, /yield/
+- HTML placements: 32; browser quiz observations: 0; placement examples: link-dapp-visit-bitrue-xrpl-pools; root/main/section; root/main/section-fast-compare/compare-card-bitrue-pools; root/main/section-fast-compare/compare-row-bitrue-pools
+- Initial parameters: {"cn": "900000", "_channel": "allthingsxrpl"}
+- Final parameters: {"cn": "900000", "_channel": "allthingsxrpl"}
+
+### 34. https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL
+- HTTP chain: 200 https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL
+- Pages: /exchange/bitrue/, /getting-started/, /yield/
+- HTML placements: 56; browser quiz observations: 0; placement examples: button-signup-bitrue; button-sticky-cta-bitrue; root/main; root/main/section; root/main/verdict-box
+- Initial parameters: {"inviteCode": "ALLTHINGSXRPL"}
+- Final parameters: {"inviteCode": "ALLTHINGSXRPL"}
+
+### 35. https://www.bitrue.com/user/register?inviteCode=allthingsxrpl
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://www.bitrue.com/user/register?inviteCode=allthingsxrpl
+- HTTP chain: 200 https://www.bitrue.com/user/register?inviteCode=allthingsxrpl
+- Pages: /
+- HTML placements: 8; browser quiz observations: 0; placement examples: root/main/exchanges
+- Initial parameters: {"inviteCode": "allthingsxrpl"}
+- Final parameters: {"inviteCode": "allthingsxrpl"}
+
+### 36. https://www.bitstamp.net/?ref=allthingsxrpl
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://www.bitstamp.net/?ref=allthingsxrpl
+- HTTP chain: 200 https://www.bitstamp.net/?ref=allthingsxrpl
+- Pages: /, /exchange/bitstamp/
+- HTML placements: 40; browser quiz observations: 0; placement examples: button-signup-bitstamp; button-sticky-cta-bitstamp; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 37. https://www.coinbase.com/join/allthingsxrpl
+- Result: **Promotion failure: merchant says cannot find promotion (HTTP 200)**
+- Final observed URL: https://www.coinbase.com/join/allthingsxrpl
+- HTTP chain: 200 https://www.coinbase.com/join/allthingsxrpl
+- Pages: /, /compare/coinbase-vs-kraken/, /exchange/coinbase/
+- HTML placements: 64; browser quiz observations: 0; placement examples: button-cta-coinbase; button-signup-coinbase; button-sticky-cta-coinbase; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {}
+- Final parameters: {}
+
+### 38. https://www.ellipal.com/?ref=allthingsxrpl
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://www.ellipal.com/?ref=allthingsxrpl
+- HTTP chain: 200 https://www.ellipal.com/?ref=allthingsxrpl
+- Pages: /, /best-for/cold-storage/, /best-for/hardware/, /best-for/safest/, /best-xrp-wallets/, /compare/ellipal-vs-trezor/
+- HTML placements: 104; browser quiz observations: 0; placement examples: button-cta-ellipal; root/main; root/main/section-fast-compare/compare-card-ellipal; root/main/section-fast-compare/compare-row-ellipal; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 39. https://www.ellipal.com/?rfsn=8973243.bbfab69
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://www.ellipal.com/?rfsn=8973243.bbfab69
+- HTTP chain: 200 https://www.ellipal.com/?rfsn=8973243.bbfab69
+- Pages: /, /compare/ellipal-vs-ledger/, /wallet/ellipal/
+- HTML placements: 64; browser quiz observations: 0; placement examples: button-cta-ellipal; button-get-ellipal; button-sticky-cta-ellipal; root/main; root/main/verdict-box; root/main/wallets
+- Initial parameters: {"rfsn": "8973243.bbfab69"}
+- Final parameters: {"rfsn": "8973243.bbfab69"}
+
+### 40. https://www.kraken.com/features/staking
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://www.kraken.com/pro/staking
+- HTTP chain: 301 https://www.kraken.com/features/staking → 200 https://www.kraken.com/pro/staking
+- Pages: /yield/
+- HTML placements: 8; browser quiz observations: 0; placement examples: root/main/section
+- Initial parameters: {}
+- Final parameters: {}
+
+### 41. https://www.kraken.com/sign-up?clickid=allthingsxrpl
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://www.kraken.com/sign-up?clickid=allthingsxrpl
+- HTTP chain: 200 https://www.kraken.com/sign-up?clickid=allthingsxrpl
+- Pages: /exchange/kraken/, /getting-started/, /yield/
+- HTML placements: 48; browser quiz observations: 0; placement examples: button-signup-kraken; button-sticky-cta-kraken; root/main; root/main/section; root/main/verdict-box
+- Initial parameters: {"clickid": "allthingsxrpl"}
+- Final parameters: {"clickid": "allthingsxrpl"}
+
+### 42. https://www.kraken.com/sign-up?r=allthingsxrpl
+- Result: **HTTP reachable; JavaScript landing/referral behavior unverified**
+- Final observed URL: https://www.kraken.com/sign-up?r=allthingsxrpl
+- HTTP chain: 200 https://www.kraken.com/sign-up?r=allthingsxrpl
+- Pages: /, /compare/coinbase-vs-kraken/
+- HTML placements: 24; browser quiz observations: 0; placement examples: button-cta-kraken; root/main; root/main/exchanges
+- Initial parameters: {"r": "allthingsxrpl"}
+- Final parameters: {"r": "allthingsxrpl"}
+
+### 43. https://www.kucoin.com/r?ref=allthingsxrpl
+- Result: **Confirmed HTTP failure: 404**
+- Final observed URL: https://www.kucoin.com/r?ref=allthingsxrpl
+- HTTP chain: 404 https://www.kucoin.com/r?ref=allthingsxrpl
+- Pages: /, /exchange/kucoin/
+- HTML placements: 40; browser quiz observations: 0; placement examples: button-signup-kucoin; button-sticky-cta-kucoin; root/main; root/main/exchanges; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 44. https://www.magnetic.app/?ref=allthingsxrpl
+- Result: **Unexpected destination: business-management software (HTTP 200)**
+- Final observed URL: https://www.magnetic.app/?ref=allthingsxrpl
+- HTTP chain: 200 https://www.magnetic.app/?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 40; browser quiz observations: 0; placement examples: link-dapp-visit-magnetic; link-toppick-visit-magnetic; root/main/section-fast-compare/compare-card-magnetic; root/main/section-fast-compare/compare-row-magnetic; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 45. https://www.sologenic.com/?ref=allthingsxrpl
+- Result: **Unavailable in this probe: HTTP 525 SSL handshake failure**
+- Final observed URL: https://www.sologenic.com/?ref=allthingsxrpl
+- HTTP chain: 525 https://www.sologenic.com/?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 32; browser quiz observations: 0; placement examples: link-toppick-visit-sologenic; root/main/section-fast-compare/compare-card-sologenic; root/main/section-fast-compare/compare-row-sologenic; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 46. https://www.xrplevm.org/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://www.xrplevm.org/?ref=allthingsxrpl
+- HTTP chain: 200 https://www.xrplevm.org/?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 8; browser quiz observations: 0; placement examples: link-dapp-visit-xrpl-evm
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 47. https://xahau.network/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://xahau.network/?ref=allthingsxrpl
+- HTTP chain: 200 https://xahau.network/?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 8; browser quiz observations: 0; placement examples: link-dapp-visit-xahau
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 48. https://xaman.app/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://xaman.app/?ref=allthingsxrpl
+- HTTP chain: 200 https://xaman.app/?ref=allthingsxrpl
+- Pages: /compare/bifrost-vs-xaman/, /compare/gatehub-vs-xaman/, /compare/trustwallet-vs-xaman/, /compare/xaman-vs-ledger/, /compare/xaman-vs-tangem/, /getting-started/, /wallet-quiz/, /wallet/xaman/
+- HTML placements: 136; browser quiz observations: 6; placement examples: button-cta-xaman; button-get-recommended; button-get-xaman; button-sticky-cta-xaman; root/main; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 49. https://xpmarket.com/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://xpmarket.com/?ref=allthingsxrpl
+- HTTP chain: 200 https://xpmarket.com/?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 24; browser quiz observations: 0; placement examples: link-dapp-visit-xpmarket; root/main/section-fast-compare/compare-card-xpmarket; root/main/section-fast-compare/compare-row-xpmarket
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 50. https://xrpl.services/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://xrpl.services/?ref=allthingsxrpl
+- HTTP chain: 200 https://xrpl.services/?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 40; browser quiz observations: 0; placement examples: link-dapp-visit-xrpl-dex; link-dapp-visit-xrpl.services; link-toppick-visit-xrpl dex; root/main/section-fast-compare/compare-card-xrpl-dex; root/main/section-fast-compare/compare-row-xrpl-dex
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 51. https://xrplwin.com/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://xrplwin.com/?ref=allthingsxrpl
+- HTTP chain: 200 https://xrplwin.com/?ref=allthingsxrpl
+- Pages: /dapps/
+- HTML placements: 8; browser quiz observations: 0; placement examples: link-dapp-visit-xrplwin
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 52. https://xumm.app/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://xumm.app/?ref=allthingsxrpl
+- HTTP chain: 200 https://xumm.app/?ref=allthingsxrpl
+- Pages: /, /best-for/beginners/, /best-for/defi/, /best-for/safest/, /best-xrp-wallets/
+- HTML placements: 120; browser quiz observations: 0; placement examples: root/main/section; root/main/section-fast-compare/compare-card-xaman; root/main/section-fast-compare/compare-row-xaman; root/main/verdict-box; root/main/wallets
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 53. https://tangem.com/de/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/de/?ref=allthingsxrpl
+- HTTP chain: 200 https://tangem.com/de/?ref=allthingsxrpl
+- Pages: /compare/ledger-vs-tangem/, /compare/trezor-vs-tangem/, /compare/xaman-vs-tangem/, /wallet-quiz/, /wallet/tangem/
+- HTML placements: 11; browser quiz observations: 1; placement examples: button-cta-tangem; button-get-recommended; button-get-tangem; button-sticky-cta-tangem; root/main; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 54. https://tangem.com/es/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/es/?ref=allthingsxrpl
+- HTTP chain: 200 https://tangem.com/es/?ref=allthingsxrpl
+- Pages: /compare/ledger-vs-tangem/, /compare/trezor-vs-tangem/, /compare/xaman-vs-tangem/, /wallet-quiz/, /wallet/tangem/
+- HTML placements: 11; browser quiz observations: 1; placement examples: button-cta-tangem; button-get-recommended; button-get-tangem; button-sticky-cta-tangem; root/main; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 55. https://tangem.com/fr/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/fr/?ref=allthingsxrpl
+- HTTP chain: 200 https://tangem.com/fr/?ref=allthingsxrpl
+- Pages: /compare/ledger-vs-tangem/, /compare/trezor-vs-tangem/, /compare/xaman-vs-tangem/, /wallet-quiz/, /wallet/tangem/
+- HTML placements: 11; browser quiz observations: 1; placement examples: button-cta-tangem; button-get-recommended; button-get-tangem; button-sticky-cta-tangem; root/main; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 56. https://tangem.com/ja/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/ja/?ref=allthingsxrpl
+- HTTP chain: 200 https://tangem.com/ja/?ref=allthingsxrpl
+- Pages: /compare/ledger-vs-tangem/, /compare/trezor-vs-tangem/, /compare/xaman-vs-tangem/, /wallet-quiz/, /wallet/tangem/
+- HTML placements: 11; browser quiz observations: 1; placement examples: button-cta-tangem; button-get-recommended; button-get-tangem; button-sticky-cta-tangem; root/main; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 57. https://tangem.com/ko/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/ko/?ref=allthingsxrpl
+- HTTP chain: 200 https://tangem.com/ko/?ref=allthingsxrpl
+- Pages: /compare/ledger-vs-tangem/, /compare/trezor-vs-tangem/, /compare/xaman-vs-tangem/, /wallet-quiz/, /wallet/tangem/
+- HTML placements: 11; browser quiz observations: 1; placement examples: button-cta-tangem; button-get-recommended; button-get-tangem; button-sticky-cta-tangem; root/main; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 58. https://tangem.com/pt/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/pt/?ref=allthingsxrpl
+- HTTP chain: 200 https://tangem.com/pt/?ref=allthingsxrpl
+- Pages: /compare/ledger-vs-tangem/, /compare/trezor-vs-tangem/, /compare/xaman-vs-tangem/, /wallet-quiz/, /wallet/tangem/
+- HTML placements: 11; browser quiz observations: 1; placement examples: button-cta-tangem; button-get-recommended; button-get-tangem; button-sticky-cta-tangem; root/main; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}
+
+### 59. https://tangem.com/zh-Hans/?ref=allthingsxrpl
+- Result: **Working page response (HTTP only; attribution not verified)**
+- Final observed URL: https://tangem.com/zh-Hans/?ref=allthingsxrpl
+- HTTP chain: 200 https://tangem.com/zh-Hans/?ref=allthingsxrpl
+- Pages: /compare/ledger-vs-tangem/, /compare/trezor-vs-tangem/, /compare/xaman-vs-tangem/, /wallet-quiz/, /wallet/tangem/
+- HTML placements: 11; browser quiz observations: 1; placement examples: button-cta-tangem; button-get-recommended; button-get-tangem; button-sticky-cta-tangem; root/main; root/main/verdict-box
+- Initial parameters: {"ref": "allthingsxrpl"}
+- Final parameters: {"ref": "allthingsxrpl"}

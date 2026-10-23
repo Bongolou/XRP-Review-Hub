@@ -1,0 +1,44 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "mGJbtZZtq8pWcHvt07tAI"
+uri = "file://reports/live-affiliate-audit-2026-10-22.html"
+type = "html"
+title = "Final live affiliate audit — 22 October 2026"
+description = "Includes corrected multilingual coverage, merchant failures, lost-language redirects and 32 wrong-merchant comparison buttons."
+logical_id = "b8b57075-8da0-4043-b1f1-95974d757996"
+content_hash = "sha256:835f848bef28372473d6763f1c21bcd87aee1b247ffafccac57d9db949320fdc"
+size = 59636
+mtime_ms = 1792713085075
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:23117de3-10e7-4c52-ad46-d6ab79553ea5/b8b57075-8da0-4043-b1f1-95974d757996/13d78e58-0ab5-4375-8a4b-3629c4e11c30"
+storage_version_token = "1792713096707439"
+content_type = "text/html"
+
+[[outputs]]
+id = "DWpdDWM4MqSNbDwOo2DPL"
+uri = "file://reports/live-affiliate-placements-2026-10-22.csv"
+type = "table"
+title = "Corrected live affiliate placement inventory"
+description = "2,584 anchors attributed to actual final page URLs across all eight languages; replaces the earlier inventory."
+logical_id = "794524e0-bbc3-4cfe-b4da-d183582cf3ca"
+content_hash = "sha256:7c2adb23abaff4e86dd623489bc8ec4f13bc394da98c4d31ade37049051baf1a"
+size = 393685
+mtime_ms = 1792712884126
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:23117de3-10e7-4c52-ad46-d6ab79553ea5/794524e0-bbc3-4cfe-b4da-d183582cf3ca/6f800785-963b-4148-a695-fe5c13336c57"
+storage_version_token = "1792712929013890"
+content_type = "text/csv"
+
+[[outputs]]
+id = "Go8M0wOxDD4zM0-7V9TrZ"
+uri = "file://reports/live-affiliate-wrong-verdicts-2026-10-22.csv"
+type = "table"
+title = "Wrong-merchant comparison buttons"
+description = "32 confirmed rendered label/destination mismatches across four comparison pages and eight languages."
+logical_id = "12a37d72-8f6e-41de-ad22-976b95cbede9"
+content_hash = "sha256:d50cc3584b5a4c77004f0c8c6942669b2ddc6cd6c01daa57f1b3b4c7ece32517"
+size = 4731
+mtime_ms = 1792713085002
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:23117de3-10e7-4c52-ad46-d6ab79553ea5/12a37d72-8f6e-41de-ad22-976b95cbede9/21341b25-94bd-4c82-85f1-184b123bce07"
+storage_version_token = "1792713097299387"
+content_type = "text/csv"

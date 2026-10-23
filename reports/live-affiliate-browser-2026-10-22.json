@@ -1,0 +1,322 @@
+{
+  "audit": "read-only production affiliate browser audit",
+  "date": "2026-10-22",
+  "target": "https://allthingsxrpl.com",
+  "scope": "One Playwright browser pass. Production only; no app changes. Quiz selections were local UI state. No forms, signups, purchases, recommendation links, or bot challenges were submitted or bypassed.",
+  "evidence_limits": {
+    "country": "Cloudflare public /cdn-cgi/trace returned HTTP 200 and loc=US. Only country retained; no IP recorded.",
+    "cookie_handling": "No cookie values or secrets were read or recorded. The app's consent manager itself logged that it restored/stored consent.",
+    "external_navigation": "The initial multi-URL batches exceeded the browser action cap. Follow-up one-page GET navigations confirmed Coinbase, Magnetic, KuCoin, and Sologenic. Other requested merchant destinations remain unverified."
+  },
+  "visitor_country_implementation": {
+    "file_read": "client/src/lib/visitorCountry.ts",
+    "observed_logic": "One lookup per page lifetime; fetches https://www.cloudflare.com/cdn-cgi/trace with credentials omitted, no-store cache, no-referrer, and a 2.5-second abort; parses only loc=XX, ignores XX, and returns undefined on errors."
+  },
+  "homepage": {
+    "en": {
+      "url": "https://allthingsxrpl.com/",
+      "http_status": 200,
+      "title": "Best XRP Wallets 2026 | Compare Xaman, Ledger, Tangem & More",
+      "observed": "Hydrated homepage, sticky site navigation, header language selector, hero quiz CTA to /wallet-quiz, use-case links, wallet comparison content, deal CTA, forms visible but untouched."
+    },
+    "es": {
+      "url": "https://allthingsxrpl.com/?lang=es",
+      "title": "Mejores carteras XRP 2026 | Compara Xaman, Ledger, Tangem y más",
+      "scroll_height_px": 16579,
+      "observed": "Hydrated homepage and full-page scroll; sticky navigation. Spanish navigation/CTAs coexist with English hero title 'Best XRP Wallets 2026' and English description. CTA and content placements include usecase-beginner, usecase-mobile, usecase-hardware, compare-row-xaman, compare-row-ledger, compare-row-tangem, compare-row-trezor-safe-5, compare-row-ellipal, and deal-cta. No signup form was used."
+    },
+    "other_languages": {
+      "de": {
+        "url": "https://allthingsxrpl.com/?lang=de",
+        "status": 200,
+        "title": "Beste XRP-Wallets 2026 | Xaman, Ledger, Tangem & mehr im Vergleich",
+        "scroll_height_px": 16472,
+        "placements": ["usecase-beginner", "usecase-mobile", "usecase-hardware", "usecase-large", "usecase-cold", "usecase-defi", "usecase-safest", "compare-row-xaman", "compare-row-ledger", "compare-row-tangem", "compare-row-trezor-safe-5", "compare-row-ellipal", "deal-cta", "banner-ad-horizontal"],
+        "observed": "Sticky navigation. German nav/CTAs and sections coexist with English hero H1 and description.",
+        "tangem_promo": "https://tangem.com/de/?promocode=ALLTHINGSXRPL"
+      },
+      "fr": {
+        "url": "https://allthingsxrpl.com/?lang=fr",
+        "title": "Meilleurs portefeuilles XRP 2026 | Comparez Xaman, Ledger, Tangem et plus",
+        "scroll_height_px": 16459,
+        "placements": ["usecase-beginner", "usecase-mobile", "usecase-hardware", "usecase-large", "usecase-cold", "usecase-defi", "usecase-safest", "compare-row-xaman", "compare-row-ledger", "compare-row-tangem", "compare-row-trezor-safe-5", "compare-row-ellipal", "deal-cta", "banner-ad-horizontal"],
+        "observed": "Full scroll and sticky navigation. French nav/sections/CTAs coexist with English hero H1 and description.",
+        "tangem_promo": "https://tangem.com/fr/?promocode=ALLTHINGSXRPL"
+      },
+      "ja": {
+        "url": "https://allthingsxrpl.com/?lang=ja",
+        "status": 200,
+        "title": "2026年版 おすすめXRPウォレット | Xaman・Ledger・Tangemほかを比較",
+        "scroll_height_px": 16154,
+        "placements": ["usecase-beginner", "usecase-mobile", "usecase-hardware", "usecase-large", "usecase-cold", "usecase-defi", "usecase-safest", "compare-row-xaman", "compare-row-ledger", "compare-row-tangem", "compare-row-trezor-safe-5", "compare-row-ellipal", "deal-cta", "banner-ad-horizontal"],
+        "observed": "Sticky navigation. Japanese nav/sections/CTAs coexist with English hero H1 and description.",
+        "tangem_promo": "https://tangem.com/ja/?promocode=ALLTHINGSXRPL"
+      },
+      "ko": {
+        "url": "https://allthingsxrpl.com/?lang=ko",
+        "status": 200,
+        "title": "2026년 최고의 XRP 지갑 | Xaman, Ledger, Tangem 등 비교",
+        "scroll_height_px": 15866,
+        "placements": ["usecase-beginner", "usecase-mobile", "usecase-hardware", "usecase-large", "usecase-cold", "usecase-defi", "usecase-safest", "compare-row-xaman", "compare-row-ledger", "compare-row-tangem", "compare-row-trezor-safe-5", "compare-row-ellipal", "deal-cta", "banner-ad-horizontal"],
+        "observed": "Sticky navigation. Korean nav/sections/CTAs coexist with English hero H1 and description.",
+        "tangem_promo": "https://tangem.com/ko/?promocode=ALLTHINGSXRPL"
+      },
+      "pt": {
+        "url": "https://allthingsxrpl.com/?lang=pt",
+        "status": 200,
+        "title": "Melhores Carteiras XRP 2026 | Compare Xaman, Ledger, Tangem e mais",
+        "scroll_height_px": 16472,
+        "placements": ["usecase-beginner", "usecase-mobile", "usecase-hardware", "usecase-large", "usecase-cold", "usecase-defi", "usecase-safest", "compare-row-xaman", "compare-row-ledger", "compare-row-tangem", "compare-row-trezor-safe-5", "compare-row-ellipal", "deal-cta", "banner-ad-horizontal"],
+        "observed": "Sticky navigation. Portuguese nav/sections/CTAs coexist with English hero H1 and description.",
+        "tangem_promo": "https://tangem.com/pt/?promocode=ALLTHINGSXRPL"
+      },
+      "zh": {
+        "url": "https://allthingsxrpl.com/?lang=zh",
+        "status": 200,
+        "title": "2026 年最佳 XRP 钱包 | 比较 Xaman、Ledger、Tangem 等",
+        "scroll_height_px": 15778,
+        "placements": ["usecase-beginner", "usecase-mobile", "usecase-hardware", "usecase-large", "usecase-cold", "usecase-defi", "usecase-safest", "compare-row-xaman", "compare-row-ledger", "compare-row-tangem", "compare-row-trezor-safe-5", "compare-row-ellipal", "deal-cta", "banner-ad-horizontal"],
+        "observed": "Sticky navigation. Chinese nav/sections/CTAs coexist with English hero H1 and description.",
+        "tangem_promo": "https://tangem.com/zh-Hans/?promocode=ALLTHINGSXRPL"
+      }
+    }
+  },
+  "quiz": {
+    "testids": ["quiz-option-{value}", "button-get-recommended"],
+    "sequences": {
+      "Ledger": ["small", "hold", "beginner", "hardware", "simple"],
+      "Tangem": ["large", "daily", "beginner", "hardware", "simple"],
+      "Xaman_DeFi": ["small", "defi", "advanced", "software", "features"],
+      "Xaman_default": ["small", "hold", "beginner", "software", "simple"]
+    },
+    "verified_outcomes": [
+      {
+        "lang": "en",
+        "page": "https://allthingsxrpl.com/wallet-quiz/",
+        "outcome": "Ledger",
+        "heading": "Ledger Nano X",
+        "href": "https://shop.ledger.com/?r=5d81f18905fe"
+      },
+      {
+        "lang": "en",
+        "page": "https://allthingsxrpl.com/wallet-quiz/",
+        "outcome": "Tangem",
+        "heading": "Tangem",
+        "href": "https://tangem.com/en/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "en",
+        "page": "https://allthingsxrpl.com/wallet-quiz/",
+        "outcome": "Xaman_DeFi",
+        "heading": "Xaman (XUMM)",
+        "href": "https://xaman.app/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "en",
+        "page": "https://allthingsxrpl.com/wallet-quiz/",
+        "outcome": "Xaman_default",
+        "heading": "Xaman (XUMM)",
+        "href": "https://xaman.app/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "es",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=es",
+        "outcome": "Ledger",
+        "heading": "Ledger Nano X",
+        "href": "https://shop.ledger.com/?r=5d81f18905fe"
+      },
+      {
+        "lang": "es",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=es",
+        "outcome": "Tangem",
+        "heading": "Tangem",
+        "href": "https://tangem.com/es/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "es",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=es",
+        "outcome": "Xaman_DeFi",
+        "heading": "Xaman (XUMM)",
+        "href": "https://xaman.app/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "es",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=es",
+        "outcome": "Xaman_default",
+        "heading": "Xaman (XUMM)",
+        "href": "https://xaman.app/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "de",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=de",
+        "outcome": "Tangem",
+        "heading": "Tangem",
+        "href": "https://tangem.com/de/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "de",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=de",
+        "outcome": "Ledger",
+        "heading": "Ledger Nano X",
+        "href": "https://shop.ledger.com/?r=5d81f18905fe"
+      },
+      {
+        "lang": "de",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=de",
+        "outcome": "Xaman_DeFi",
+        "heading": "Xaman (XUMM)",
+        "href": "https://xaman.app/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "de",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=de",
+        "outcome": "Xaman_default",
+        "heading": "Xaman (XUMM)",
+        "href": "https://xaman.app/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "fr",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=fr",
+        "outcome": "Tangem",
+        "heading": "Tangem",
+        "href": "https://tangem.com/fr/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "ja",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=ja",
+        "outcome": "Tangem",
+        "heading": "Tangem",
+        "href": "https://tangem.com/ja/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "ko",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=ko",
+        "outcome": "Tangem",
+        "heading": "Tangem",
+        "href": "https://tangem.com/ko/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "pt",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=pt",
+        "outcome": "Tangem",
+        "heading": "Tangem",
+        "href": "https://tangem.com/pt/?ref=allthingsxrpl"
+      },
+      {
+        "lang": "zh",
+        "page": "https://allthingsxrpl.com/wallet-quiz/?lang=zh",
+        "outcome": "Tangem",
+        "heading": "Tangem",
+        "href": "https://tangem.com/zh-Hans/?ref=allthingsxrpl"
+      }
+    ],
+    "outcomes_not_verified": {
+      "fr": ["Ledger", "Xaman_DeFi", "Xaman_default"],
+      "ja": ["Ledger", "Xaman_DeFi", "Xaman_default"],
+      "ko": ["Ledger", "Xaman_DeFi", "Xaman_default"],
+      "pt": ["Ledger", "Xaman_DeFi", "Xaman_default"],
+      "zh": ["Ledger", "Xaman_DeFi", "Xaman_default"],
+      "reason": "German was fully tested. French, Japanese, Korean, Portuguese, and Chinese Tangem outcomes were each verified by restart and the supplied local selection sequence; other outcomes in those locales were not run. An automatically appearing newsletter modal blocked some attempts, was closed via its close control, and no fields were filled or submitted."
+    },
+    "interaction_note": "No recommendation CTA was clicked. English, Spanish, and German each produced all four expected outcomes; Tangem was independently selected and verified in French, Japanese, Korean, Portuguese, and Chinese."
+  },
+  "internal_pages": [
+    {
+      "url": "https://allthingsxrpl.com/compare/ledger-vs-tangem/?lang=es",
+      "http_status": 200,
+      "h1": "Ledger Nano X vs Tangem",
+      "observed": "Hydrated comparison; verdict-box selects Ledger. Spanish navigation/update labels coexist with English comparison copy and CTA labels. Ledger and Tangem CTAs present."
+    },
+    {
+      "url": "https://allthingsxrpl.com/wallet/tangem/?lang=zh",
+      "http_status": 200,
+      "viewport": "390x844",
+      "title": "Tangem 钱包 XRP 评测 (2026) | 卡片式冷存储 | All Things XRPL",
+      "h1": "Tangem",
+      "sticky_cta_testid": "sticky-cta-tangem",
+      "sticky_cta_button_testid": "button-sticky-cta-tangem",
+      "sticky_cta_destination": "https://tangem.com/zh-Hans/?ref=allthingsxrpl",
+      "observed": "Mobile Chinese Tangem review hydrated with rating 4.7/5, price $54.90, purchase CTA and fixed bottom purchase bar. No CTA click or review form submission."
+    }
+  ],
+  "observed_homepage_partner_links": [
+    {
+      "href": "https://shop.ledger.com/?r=5d81f18905fe",
+      "placement": "comparison/recommendation"
+    },
+    {
+      "href": "https://tangem.com/es/?promocode=ALLTHINGSXRPL",
+      "placement": "homepage comparison"
+    },
+    {
+      "href": "https://tangem.com/en/?ref=allthingsxrpl",
+      "placement": "English quiz recommendation"
+    },
+    {
+      "href": "https://tangem.com/es/?ref=allthingsxrpl",
+      "placement": "Spanish quiz recommendation"
+    },
+    {
+      "href": "https://tangem.com/de/?promocode=ALLTHINGSXRPL",
+      "placement": "German homepage comparison"
+    },
+    {
+      "href": "https://tangem.com/fr/?promocode=ALLTHINGSXRPL",
+      "placement": "French homepage comparison"
+    },
+    {
+      "href": "https://tangem.com/ja/?promocode=ALLTHINGSXRPL",
+      "placement": "Japanese homepage comparison"
+    },
+    {
+      "href": "https://tangem.com/ko/?promocode=ALLTHINGSXRPL",
+      "placement": "Korean homepage comparison"
+    },
+    {
+      "href": "https://tangem.com/pt/?promocode=ALLTHINGSXRPL",
+      "placement": "Portuguese homepage comparison"
+    },
+    {
+      "href": "https://tangem.com/zh-Hans/?promocode=ALLTHINGSXRPL",
+      "placement": "Chinese homepage comparison"
+    },
+    {
+      "href": "https://www.ellipal.com/?ref=allthingsxrpl",
+      "placement": "homepage wallet card"
+    },
+    {
+      "href": "https://www.ellipal.com/?rfsn=8973243.bbfab69",
+      "placement": "homepage featured recommendation"
+    },
+    {
+      "href": "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
+      "placement": "homepage Trezor offer"
+    },
+    {
+      "href": "https://affil.trezor.io/aff_c?offer_id=235&aff_id=36959",
+      "placement": "homepage Trezor comparison"
+    }
+  ],
+  "requested_partner_navigations": [
+    {"url": "https://www.kucoin.com/r?ref=allthingsxrpl", "http_status": 404, "title": "", "visible_message": "Page Not Found; We couldn't find the page you're looking for.", "final_url": "https://www.kucoin.com/r?ref=allthingsxrpl"},
+    {"url": "https://orchestra.finance/?ref=allthingsxrpl", "status": "Not verified"},
+    {"url": "https://www.sologenic.com/?ref=allthingsxrpl", "http_status": 525, "title": "sologenic.com | 525: SSL handshake failed", "visible_message": "Cloudflare reports Browser Working, Cloudflare Working, www.sologenic.com Host Error; SSL/TLS handshake to origin failed.", "final_url": "https://www.sologenic.com/?ref=allthingsxrpl"},
+    {"url": "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959", "status": "Not verified"},
+    {"url": "https://affil.trezor.io/aff_c?offer_id=235&aff_id=36959", "status": "Not verified"},
+    {"url": "https://wallet.uphold.com/signup?referral=allthingsxrpl", "status": "Not verified"},
+    {"url": "https://www.coinbase.com/join/allthingsxrpl", "http_status": 200, "title": "Can’t find this promotion.", "visible_message": "We are looking into it now, apologies for the inconvenience.", "state_testid": "invalid-referral-code", "final_url": "https://www.coinbase.com/join/allthingsxrpl"},
+    {"url": "https://www.kraken.com/sign-up?r=allthingsxrpl", "status": "Not verified"},
+    {"url": "https://www.bitrue.com/user/register?inviteCode=allthingsxrpl", "status": "Not verified"},
+    {"url": "https://www.magnetic.app/?ref=allthingsxrpl", "http_status": 200, "title": "PSA Software for Consulting Firms & Agencies | Magnetic", "visible_message": "Professional services firm management software homepage; no XRPL/DEX promotion visible.", "final_url": "https://www.magnetic.app/?ref=allthingsxrpl", "utm_fields": "Browser logs reported utm_source, utm_medium, utm_campaign, utm_term, utm_content set to null."},
+    {"url": "https://tangem.com/es/?promocode=ALLTHINGSXRPL", "status": "Not verified by navigation"},
+    {"url": "https://tangem.com/en/?ref=allthingsxrpl", "status": "Not verified by navigation"},
+    {"url": "https://www.ellipal.com/?ref=allthingsxrpl", "status": "Not verified by navigation"},
+    {"url": "https://www.ellipal.com/?rfsn=8973243.bbfab69", "status": "Not verified by navigation"}
+  ],
+  "observed_runtime_notes": [
+    "Consent-management script logged TypeError: window.__gpp is not a function, followed by consent initialization/restoration messages.",
+    "Newsletter modal appeared during delayed quiz testing and blocked one click. It was closed via its close control; no email was entered and no form was submitted.",
+    "No bot challenge was bypassed.",
+    "Follow-up individual main-navigation checks: Coinbase 200 invalid-promotion state; Magnetic 200 unrelated PSA software page; KuCoin 404; Sologenic 525 origin SSL handshake failure. The outcomes distinguish an invalid referral, unrelated destination, missing route, and origin/geo/infrastructure error rather than treating them all as dead links."
+  ]
+}

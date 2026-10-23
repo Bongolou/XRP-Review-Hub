@@ -1,0 +1,1120 @@
+[
+  {
+    "url": "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
+    "chain": [
+      {
+        "url": "https://affil.trezor.io/aff_c?offer_id=169&aff_id=36959",
+        "status": 302,
+        "location": "https://trezor.io/trezor-safe-3?transaction_id=1028e30ed037aed917216d42a54c37&offer_id=169&affiliate_id=36959"
+      },
+      {
+        "url": "https://trezor.io/trezor-safe-3?transaction_id=1028e30ed037aed917216d42a54c37&offer_id=169&affiliate_id=36959",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://trezor.io/trezor-safe-3?transaction_id=1028e30ed037aed917216d42a54c37&offer_id=169&affiliate_id=36959",
+    "title": "Trezor Safe 3 | Secure Hardware Wallet for Your Coins & Tokens | Trezor",
+    "initialParameters": {
+      "offer_id": "169",
+      "aff_id": "36959"
+    },
+    "finalParameters": {
+      "transaction_id": "1028e30ed037aed917216d42a54c37",
+      "offer_id": "169",
+      "affiliate_id": "36959"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://affil.trezor.io/aff_c?offer_id=235&aff_id=36959",
+    "chain": [
+      {
+        "url": "https://affil.trezor.io/aff_c?offer_id=235&aff_id=36959",
+        "status": 302,
+        "location": "https://trezor.io/trezor-safe-5?transaction_id=102a414592f52d52f6b28f47e1d9ae&offer_id=235&affiliate_id=36959"
+      },
+      {
+        "url": "https://trezor.io/trezor-safe-5?transaction_id=102a414592f52d52f6b28f47e1d9ae&offer_id=235&affiliate_id=36959",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://trezor.io/trezor-safe-5?transaction_id=102a414592f52d52f6b28f47e1d9ae&offer_id=235&affiliate_id=36959",
+    "title": "Trezor Safe 5 | Secure Crypto Hardware Wallet | Trezor",
+    "initialParameters": {
+      "offer_id": "235",
+      "aff_id": "36959"
+    },
+    "finalParameters": {
+      "transaction_id": "102a414592f52d52f6b28f47e1d9ae",
+      "offer_id": "235",
+      "affiliate_id": "36959"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://anodos.finance/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://anodos.finance/?ref=allthingsxrpl",
+        "status": 307,
+        "location": "/en?ref=allthingsxrpl"
+      },
+      {
+        "url": "https://anodos.finance/en?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://anodos.finance/en?ref=allthingsxrpl",
+    "title": "Anodos | Your Gateway to Financial Sovereignty",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://bifrostwallet.com/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://bifrostwallet.com/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://bifrostwallet.com/?ref=allthingsxrpl",
+    "title": "Bifrost Wallet - Self-custody, multi-chain crypto wallet for DeFi, NFTs and Web3",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://crossmark.io/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://crossmark.io/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://crossmark.io/?ref=allthingsxrpl",
+    "title": "CROSSMARK",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://crypto.com/",
+    "chain": [
+      {
+        "url": "https://crypto.com/",
+        "status": 302,
+        "location": "https://crypto.com/us"
+      },
+      {
+        "url": "https://crypto.com/us",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://crypto.com/us",
+    "title": "Crypto.com: Buy, Sell, Trade Crypto, Stocks & More",
+    "initialParameters": {},
+    "finalParameters": {},
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://crypto.com/de",
+    "chain": [
+      {
+        "url": "https://crypto.com/de",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://crypto.com/de",
+    "title": "Crypto.com Deutschland: Kryptowährungen sicher kaufen, verkaufen und handeln",
+    "initialParameters": {},
+    "finalParameters": {},
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://crypto.com/es",
+    "chain": [
+      {
+        "url": "https://crypto.com/es",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://crypto.com/es",
+    "title": "Crypto.com Internacional: Compra y vende criptomonedas con confianza",
+    "initialParameters": {},
+    "finalParameters": {},
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://crypto.com/fr",
+    "chain": [
+      {
+        "url": "https://crypto.com/fr",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://crypto.com/fr",
+    "title": "Crypto.com International : Achetez, vendez et tradez des cryptos en confiance",
+    "initialParameters": {},
+    "finalParameters": {},
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://crypto.com/kr",
+    "chain": [
+      {
+        "url": "https://crypto.com/kr",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://crypto.com/kr",
+    "title": "크립토닷컴 코리아 (Crypto.com Korea): 비트코인, 이더리움 및 다양한 가상자산을 안전하게 구매, 판매 및 거래하세요.",
+    "initialParameters": {},
+    "finalParameters": {},
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://crypto.com/pt",
+    "chain": [
+      {
+        "url": "https://crypto.com/pt",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://crypto.com/pt",
+    "title": "Crypto.com Portugal: Compre, venda e negocie com segurança Bitcoin, Ethereum e mais de 400 criptomoedas",
+    "initialParameters": {},
+    "finalParameters": {},
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://crypto.com/us",
+    "chain": [
+      {
+        "url": "https://crypto.com/us",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://crypto.com/us",
+    "title": "Crypto.com: Buy, Sell, Trade Crypto, Stocks & More",
+    "initialParameters": {},
+    "finalParameters": {},
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://crypto.com/zh",
+    "chain": [
+      {
+        "url": "https://crypto.com/zh",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://crypto.com/zh",
+    "title": "Crypto.com 國際：安全買賣交易 Bitcoin、 Ethereum 及 400 種以上加密貨幣",
+    "initialParameters": {},
+    "finalParameters": {},
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://firstledger.net/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://firstledger.net/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://firstledger.net/?ref=allthingsxrpl",
+    "title": "First Ledger — Trade, launch, and earn on the XRP Ledger",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://gatehub.net/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://gatehub.net/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://gatehub.net/?ref=allthingsxrpl",
+    "title": "GateHub",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://onthedex.live/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://onthedex.live/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://onthedex.live/?ref=allthingsxrpl",
+    "title": "Live Crypto Token Prices, Charts and Explorer for the XRP Ledger | OnTheDEX.LIVE!",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://orchestra.finance/?ref=allthingsxrpl",
+    "chain": [],
+    "final": "https://orchestra.finance/?ref=allthingsxrpl",
+    "error": "<urlopen error timed out>",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Inconclusive: network timeout"
+  },
+  {
+    "url": "https://shop.ledger.com/?r=5d81f18905fe",
+    "chain": [
+      {
+        "url": "https://shop.ledger.com/?r=5d81f18905fe",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://shop.ledger.com/?r=5d81f18905fe",
+    "title": "Ledger - certified secure crypto Hardware Wallets | Ledger",
+    "initialParameters": {
+      "r": "5d81f18905fe"
+    },
+    "finalParameters": {
+      "r": "5d81f18905fe"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://shop.ledger.com/pages/ledger-nano-s-plus/?r=5d81f18905fe",
+    "chain": [
+      {
+        "url": "https://shop.ledger.com/pages/ledger-nano-s-plus/?r=5d81f18905fe",
+        "status": 308,
+        "location": "/pages/ledger-nano-s-plus?r=5d81f18905fe"
+      },
+      {
+        "url": "https://shop.ledger.com/pages/ledger-nano-s-plus?r=5d81f18905fe",
+        "status": 308,
+        "location": "/pages/classic-ledger-nano-signers?r=5d81f18905fe"
+      },
+      {
+        "url": "https://shop.ledger.com/pages/classic-ledger-nano-signers?r=5d81f18905fe",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://shop.ledger.com/pages/classic-ledger-nano-signers?r=5d81f18905fe",
+    "title": "Classic Ledger Nano range: reliable backup signers | Ledger | Ledger",
+    "initialParameters": {
+      "r": "5d81f18905fe"
+    },
+    "finalParameters": {
+      "r": "5d81f18905fe"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://sologenic.org/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://sologenic.org/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://sologenic.org/?ref=allthingsxrpl",
+    "title": "",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://sologenic.org/trade?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://sologenic.org/trade?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://sologenic.org/trade?ref=allthingsxrpl",
+    "title": "Sologenic DEX & NFT Marketplace | Crypto Asset Trading, DeFi",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://tangem.com/de/?promocode=ALLTHINGSXRPL",
+    "chain": [
+      {
+        "url": "https://tangem.com/de/?promocode=ALLTHINGSXRPL",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/de/?promocode=ALLTHINGSXRPL",
+    "title": "Tangem Hardware-Wallet – Die sicherste Krypto-Wallet kaufen │ Tangem",
+    "initialParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "finalParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/en/?promocode=ALLTHINGSXRPL",
+    "chain": [
+      {
+        "url": "https://tangem.com/en/?promocode=ALLTHINGSXRPL",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/en/?promocode=ALLTHINGSXRPL",
+    "title": "Tangem Wallet — The Secure Hardware & Crypto Wallet",
+    "initialParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "finalParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/en/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://tangem.com/en/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/en/?ref=allthingsxrpl",
+    "title": "Tangem Wallet — The Secure Hardware & Crypto Wallet",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/es/?promocode=ALLTHINGSXRPL",
+    "chain": [
+      {
+        "url": "https://tangem.com/es/?promocode=ALLTHINGSXRPL",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/es/?promocode=ALLTHINGSXRPL",
+    "title": "Tangem Wallet - La Billetera Segura de Hardware para Cripto",
+    "initialParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "finalParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/fr/?promocode=ALLTHINGSXRPL",
+    "chain": [
+      {
+        "url": "https://tangem.com/fr/?promocode=ALLTHINGSXRPL",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/fr/?promocode=ALLTHINGSXRPL",
+    "title": "Le meilleur portefeuille de crypto-monnaies – Tangem Wallet",
+    "initialParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "finalParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/ja/?promocode=ALLTHINGSXRPL",
+    "chain": [
+      {
+        "url": "https://tangem.com/ja/?promocode=ALLTHINGSXRPL",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/ja/?promocode=ALLTHINGSXRPL",
+    "title": "Tangemウォレット — 安全性に優れたハードウェア暗号資産ウォレット",
+    "initialParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "finalParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/ko/?promocode=ALLTHINGSXRPL",
+    "chain": [
+      {
+        "url": "https://tangem.com/ko/?promocode=ALLTHINGSXRPL",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/ko/?promocode=ALLTHINGSXRPL",
+    "title": "Tangem Wallet — 안전한 하드웨어 및 암호화폐 지갑",
+    "initialParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "finalParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/pt/?promocode=ALLTHINGSXRPL",
+    "chain": [
+      {
+        "url": "https://tangem.com/pt/?promocode=ALLTHINGSXRPL",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/pt/?promocode=ALLTHINGSXRPL",
+    "title": "Tangem Wallet — A carteira de hardware e criptomoedas segura.",
+    "initialParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "finalParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/zh-Hans/?promocode=ALLTHINGSXRPL",
+    "chain": [
+      {
+        "url": "https://tangem.com/zh-Hans/?promocode=ALLTHINGSXRPL",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/zh-Hans/?promocode=ALLTHINGSXRPL",
+    "title": "安全可靠的硬體及加密錢包 — Tangem錢包",
+    "initialParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "finalParameters": {
+      "promocode": "ALLTHINGSXRPL"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://trustwallet.com/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://trustwallet.com/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://trustwallet.com/?ref=allthingsxrpl",
+    "title": "Best Crypto Wallet for Web3, NFTs and DeFi | Trust Wallet",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://wallet.uphold.com/signup?referral=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://wallet.uphold.com/signup?referral=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://wallet.uphold.com/signup?referral=allthingsxrpl",
+    "title": "WalletUphold Wallet",
+    "initialParameters": {
+      "referral": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "referral": "allthingsxrpl"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://www.bitrue.com/activity/landing-page/?cn=900000&_channel=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.bitrue.com/activity/landing-page/?cn=900000&_channel=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.bitrue.com/activity/landing-page/?cn=900000&_channel=allthingsxrpl",
+    "title": "Crypto Exchange | XRP Exchange | XRP Trade | Bitrue",
+    "initialParameters": {
+      "cn": "900000",
+      "_channel": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "cn": "900000",
+      "_channel": "allthingsxrpl"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL",
+    "chain": [
+      {
+        "url": "https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.bitrue.com/activity/task/task-landing?inviteCode=ALLTHINGSXRPL",
+    "title": "Crypto Exchange | XRP Exchange | XRP Trade | Bitrue",
+    "initialParameters": {
+      "inviteCode": "ALLTHINGSXRPL"
+    },
+    "finalParameters": {
+      "inviteCode": "ALLTHINGSXRPL"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://www.bitrue.com/user/register?inviteCode=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.bitrue.com/user/register?inviteCode=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.bitrue.com/user/register?inviteCode=allthingsxrpl",
+    "title": "Sign up Bitrue Crypto Exchange Platform",
+    "initialParameters": {
+      "inviteCode": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "inviteCode": "allthingsxrpl"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://www.bitstamp.net/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.bitstamp.net/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.bitstamp.net/?ref=allthingsxrpl",
+    "title": "",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://www.coinbase.com/join/allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.coinbase.com/join/allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.coinbase.com/join/allthingsxrpl",
+    "title": "Can’t find this promotion.Coinbase logo",
+    "initialParameters": {},
+    "finalParameters": {},
+    "result": "Promotion failure: merchant says cannot find promotion (HTTP 200)"
+  },
+  {
+    "url": "https://www.ellipal.com/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.ellipal.com/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.ellipal.com/?ref=allthingsxrpl",
+    "title": "\r\n      ELLIPAL: Crypto Hardware Wallets | Secure Cold Wallets\rVisaMastercardAmerican ExpressDiscoverPayPalGoogle PayBitcoin",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://www.ellipal.com/?rfsn=8973243.bbfab69",
+    "chain": [
+      {
+        "url": "https://www.ellipal.com/?rfsn=8973243.bbfab69",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.ellipal.com/?rfsn=8973243.bbfab69",
+    "title": "\r\n      ELLIPAL: Crypto Hardware Wallets | Secure Cold Wallets\rVisaMastercardAmerican ExpressDiscoverPayPalGoogle PayBitcoin",
+    "initialParameters": {
+      "rfsn": "8973243.bbfab69"
+    },
+    "finalParameters": {
+      "rfsn": "8973243.bbfab69"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://www.kraken.com/features/staking",
+    "chain": [
+      {
+        "url": "https://www.kraken.com/features/staking",
+        "status": 301,
+        "location": "https://www.kraken.com/pro/staking"
+      },
+      {
+        "url": "https://www.kraken.com/pro/staking",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.kraken.com/pro/staking",
+    "title": "Crypto Staking | Earn staking rewards up to 21%",
+    "initialParameters": {},
+    "finalParameters": {},
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://www.kraken.com/sign-up?clickid=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.kraken.com/sign-up?clickid=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.kraken.com/sign-up?clickid=allthingsxrpl",
+    "title": "Create account - Kraken | Buy, Sell and Margin Trade Bitcoin (BTC) and Ethereum (ETH)",
+    "initialParameters": {
+      "clickid": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "clickid": "allthingsxrpl"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://www.kraken.com/sign-up?r=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.kraken.com/sign-up?r=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.kraken.com/sign-up?r=allthingsxrpl",
+    "title": "Create account - Kraken | Buy, Sell and Margin Trade Bitcoin (BTC) and Ethereum (ETH)",
+    "initialParameters": {
+      "r": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "r": "allthingsxrpl"
+    },
+    "result": "HTTP reachable; JavaScript landing/referral behavior unverified"
+  },
+  {
+    "url": "https://www.kucoin.com/r?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.kucoin.com/r?ref=allthingsxrpl",
+        "status": 404,
+        "location": null
+      }
+    ],
+    "final": "https://www.kucoin.com/r?ref=allthingsxrpl",
+    "title": "",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Confirmed HTTP failure: 404"
+  },
+  {
+    "url": "https://www.magnetic.app/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.magnetic.app/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.magnetic.app/?ref=allthingsxrpl",
+    "title": "PSA Software for Consulting Firms & Agencies | Magnetic",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Unexpected destination: business-management software (HTTP 200)"
+  },
+  {
+    "url": "https://www.sologenic.com/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.sologenic.com/?ref=allthingsxrpl",
+        "status": 525,
+        "location": null
+      }
+    ],
+    "final": "https://www.sologenic.com/?ref=allthingsxrpl",
+    "title": "",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Unavailable in this probe: HTTP 525 SSL handshake failure"
+  },
+  {
+    "url": "https://www.xrplevm.org/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://www.xrplevm.org/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://www.xrplevm.org/?ref=allthingsxrpl",
+    "title": "XRPL EVM – Scalability & Compatibility for EVM with XRP",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://xahau.network/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://xahau.network/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://xahau.network/?ref=allthingsxrpl",
+    "title": "Xahau",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://xaman.app/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://xaman.app/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://xaman.app/?ref=allthingsxrpl",
+    "title": "Xaman – The Best XRP Wallet for Security & Control. Trusted by Millions",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://xpmarket.com/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://xpmarket.com/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://xpmarket.com/?ref=allthingsxrpl",
+    "title": "XPMarket: DEX, AMM, NFTs, Tokens & Launches on the XRP Ledger",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://xrpl.services/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://xrpl.services/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://xrpl.services/?ref=allthingsxrpl",
+    "title": "XRPL Services",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://xrplwin.com/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://xrplwin.com/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://xrplwin.com/?ref=allthingsxrpl",
+    "title": "XRP Ledger Explorer - XRPLWin",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://xumm.app/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://xumm.app/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://xumm.app/?ref=allthingsxrpl",
+    "title": "Xaman – The Best XRP Wallet for Security & Control. Trusted by Millions",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/de/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://tangem.com/de/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/de/?ref=allthingsxrpl",
+    "title": "Tangem Hardware-Wallet – Die sicherste Krypto-Wallet kaufen │ Tangem",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/es/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://tangem.com/es/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/es/?ref=allthingsxrpl",
+    "title": "Tangem Wallet - La Billetera Segura de Hardware para Cripto",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/fr/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://tangem.com/fr/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/fr/?ref=allthingsxrpl",
+    "title": "Le meilleur portefeuille de crypto-monnaies – Tangem Wallet",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/ja/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://tangem.com/ja/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/ja/?ref=allthingsxrpl",
+    "title": "Tangemウォレット — 安全性に優れたハードウェア暗号資産ウォレット",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/ko/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://tangem.com/ko/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/ko/?ref=allthingsxrpl",
+    "title": "Tangem Wallet — 안전한 하드웨어 및 암호화폐 지갑",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/pt/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://tangem.com/pt/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/pt/?ref=allthingsxrpl",
+    "title": "Tangem Wallet — A carteira de hardware e criptomoedas segura.",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  },
+  {
+    "url": "https://tangem.com/zh-Hans/?ref=allthingsxrpl",
+    "chain": [
+      {
+        "url": "https://tangem.com/zh-Hans/?ref=allthingsxrpl",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "final": "https://tangem.com/zh-Hans/?ref=allthingsxrpl",
+    "title": "安全可靠的硬體及加密錢包 — Tangem錢包",
+    "initialParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "finalParameters": {
+      "ref": "allthingsxrpl"
+    },
+    "result": "Working page response (HTTP only; attribution not verified)"
+  }
+]
